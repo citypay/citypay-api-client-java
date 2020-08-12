@@ -1,0 +1,3152 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: support@citypay.com
+    name: CityPay Support
+    url: https://citypay.com/customer-centre/technical-support.html
+  description: |2
+
+    This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It
+    provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing,
+    3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and
+    Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.
+
+    ## Compliance and Security
+    <aside class="notice">
+      Before we begin a reminder that your application will need to adhere to PCI-DSS standards to operate safely
+      and to meet requirements set out by Visa and MasterCard and the PCI Security Standards Council including:
+    </aside>
+
+    * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at
+      lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments
+      as part of our compliance program.
+    * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or
+      primary access number (PAN)
+    * The application must not display the full card number on receipts, it is recommended to mask the PAN
+      and show the last 4 digits. The API will return this for you for ease of receipt creation
+    * If you are developing a website, you will be required to perform regular scans on the network where you host the
+      application to meet your compliance obligations
+    * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information
+      is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/)
+    * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP
+      address. Our application firewalls analyse data that may be an attempt to break a large number of security common
+      security vulnerabilities.
+  title: CityPay Payment API
+  version: 6.0.0
+servers:
+- description: Production processing endpoint
+  url: https://api.citypay.com/v6
+- description: Testing service returning test results for all transactions
+  url: https://sandbox.citypay.com/v6
+security:
+- cp-api-key: []
+tags:
+- description: "A Card holder account models a card holder and can register 1 or more\
+    \ cards for charging\nagainst. The account offers a credential on file option\
+    \ to the CityPay gateway alowing for \nboth card holder initiated and merchant\
+    \ initiated transaction processing.\n\nThis can included unscheduled or scheduled\
+    \ transactions that can be requested through this API.\n"
+  name: Card Holder Account
+- description: Operations that are for operational purposes only such as checking
+    connectivity to the API.
+  name: Operational
+- description: "The Payment Processing API offers standard and enhanced payment processing\
+    \ for MOTO, e-commerce\n and continuous authority transactions that include fraud\
+    \ and risk checking, 3D-Secure flows \n and payment querying.\n"
+  name: Payment Processing
+paths:
+  /account/{accountid}/register:
+    post:
+      description: "Allows for a card to be registered for the account. The card will\
+        \ be added for future \nprocessing and will be available as a tokenised value\
+        \ for future processing.\n\nThe card will be validated for\n\n0. Being a valid\
+        \ card number (luhn check)\n0. Having a valid expiry date\n0. Being a valid\
+        \ bin value.\n"
+      operationId: AccountCardRegisterRequest
+      parameters:
+      - description: The account id that refers to the customer's account no. This
+          value will have been provided when setting up the card holder account.
+        explode: false
+        in: path
+        name: accountid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterCard'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/RegisterCard'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardHolderAccount'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/CardHolderAccount'
+          description: A successfully registered card provides a reload of the account
+            including the new card.
+      summary: Card Registration
+      tags:
+      - Card Holder Account
+      x-contentType: application/json
+      x-accepts: application/json
+  /account/{accountid}:
+    delete:
+      description: |
+        Allows for the deletion of an account. The account will marked for deletion and subsequent purging. No further
+        transactions will be alowed to be processed or actioned against this account.
+      operationId: AccountDeleteRequest
+      parameters:
+      - description: The account id that refers to the customer's account no. This
+          value will have been provided when setting up the card holder account.
+        explode: false
+        in: path
+        name: accountid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+          description: An acknowledgment that the card holder account has been marked
+            for deletion.
+      summary: Account Deletion
+      tags:
+      - Card Holder Account
+      x-accepts: application/json
+    get:
+      description: "Allows for the retrieval of a card holder account for the given\
+        \ `id`. Should duplicate accounts exist\nfor the same `id`, the first account\
+        \ created with that `id` will be returned.\n\nThe account can be used for\
+        \ tokenisation processing by listing all cards assigned to the account.\n\
+        The returned cards will include all `active`, `inactive` and `expired` cards.\
+        \ This can be used to \nenable a card holder to view their wallet and make\
+        \ constructive choices on which card to use.\n"
+      operationId: AccountRetrieveRequest
+      parameters:
+      - description: The account id that refers to the customer's account no. This
+          value will have been provided when setting up the card holder account.
+        explode: false
+        in: path
+        name: accountid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardHolderAccount'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/CardHolderAccount'
+          description: A card holder account that matches the account id provided
+            in the request.
+      summary: Account Retrieval
+      tags:
+      - Card Holder Account
+      x-accepts: application/json
+  /ping:
+    post:
+      description: "A ping request which performs a connection and authentication\
+        \ test to the CityPay API server. The request\nwill return a standard Acknowledgement\
+        \ with a response code `044` to signify a successful\nping.\n\nThe ping call\
+        \ is useful to confirm that you will be able to access \nthe API from behind\
+        \ any firewalls and that the permission\nmodel is granting access from your\
+        \ source.\n"
+      operationId: PingRequest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ping'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Ping'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+          description: A result of the ping request.
+      summary: Ping Request
+      tags:
+      - Operational
+      x-contentType: application/json
+      x-accepts: application/json
+  /capture:
+    post:
+      description: "_The capture process only applies to transactions which have been\
+        \ pre-authorised only._ \n\nThe capture process will ensure\nthat a transaction\
+        \ will now settle. It is expected that a capture call will be provided within\
+        \ 3 days or\na maximum of 7 days.\n\nA capture request is provided to confirm\
+        \ that you wish the transaction to be settled. This request can\ncontain a\
+        \ final amount for the transaction which is different to the original authorisation\
+        \ amount. This\nmay be useful in a delayed system process such as waiting\
+        \ for stock to be ordered, confirmed, or services\nprovided before the final\
+        \ cost is known.\n\nWhen a transaction is completed, a new authorisation code\
+        \ may be created and a new confirmation\ncan be sent online to the acquiring\
+        \ bank.\n\nOnce the transaction has been processed. A standard [`Acknowledgement`](#acknowledgement)\
+        \ will be returned,\noutlining the result of the transaction. On a successful\
+        \ completion process, the transaction will\nbe available for the settlement\
+        \ and completed at the end of the day.\n"
+      operationId: CaptureRequest
+      requestBody:
+        content:
+          application/json:
+            examples:
+              example1:
+                externalValue: CaptureRequest-example1.json
+                summary: Basic capture call for a merchant with a given identifier
+              example3:
+                externalValue: CaptureRequest-example3.json
+                summary: Capture call for a merchant with identifier and airline data
+                  once a ticket has been issued
+              example2:
+                externalValue: CaptureRequest-example2.json
+                summary: Basic capture call for a merchant with a transno and final
+                  amount
+            schema:
+              $ref: '#/components/schemas/CaptureRequest'
+          text/xml:
+            examples:
+              example1:
+                externalValue: CaptureRequest-example1.xml
+                summary: Basic capture call for a merchant with a given identifier
+              example3:
+                externalValue: CaptureRequest-example3.xml
+                summary: Capture call for a merchant with identifier and airline data
+                  once a ticket has been issued
+              example2:
+                externalValue: CaptureRequest-example2.xml
+                summary: Basic capture call for a merchant with a transno and final
+                  amount
+            schema:
+              $ref: '#/components/schemas/CaptureRequest'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+          description: A result and acknowledgement of the capture request.
+      summary: Capture
+      tags:
+      - Payment Processing
+      x-contentType: application/json
+      x-accepts: application/json
+  /account/{accountid}/contact:
+    post:
+      description: Allows for the ability to change the contact details for an account.
+      operationId: AccountChangeContactRequest
+      parameters:
+      - description: The account id that refers to the customer's account no. This
+          value will have been provided when setting up the card holder account.
+        explode: false
+        in: path
+        name: accountid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactDetails'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/ContactDetails'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardHolderAccount'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/CardHolderAccount'
+          description: A revised account with the new details set.
+      summary: Contact Details Update
+      tags:
+      - Card Holder Account
+      x-contentType: application/json
+      x-accepts: application/json
+  /account/{accountid}/card/{cardId}/status:
+    post:
+      description: "Updates the status of a card for processing. The following values\
+        \ are available\n\n| Status | Description | \n|--------|-------------|\n|\
+        \ Active | The card is active for processing and can be used for charging\
+        \ against with a valid token |\n| Inactive | The card is inactive for processing\
+        \ and cannot be used for processing, it will require reactivation before being\
+        \ used to charge |\n| Expired | The card has expired either due to the expiry\
+        \ date no longer being valid or due to a replacement card being issued |\n"
+      operationId: AccountCardStatusRequest
+      parameters:
+      - description: The account id that refers to the customer's account no. This
+          value will have been provided when setting up the card holder account.
+        explode: false
+        in: path
+        name: accountid
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of the card that is presented by a call to retrieve a
+          card holder account.
+        explode: false
+        in: path
+        name: cardId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardStatus'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/CardStatus'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+          description: Acknowledges the card status has changed, returning 01 for
+            a valid change or 00 for non valid change.
+      summary: Card Status
+      tags:
+      - Card Holder Account
+      x-contentType: application/json
+      x-accepts: application/json
+  /account/create:
+    post:
+      description: Creates a new card holder account and initialises the account ready
+        for adding cards.
+      operationId: AccountCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountCreate'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/AccountCreate'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardHolderAccount'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/CardHolderAccount'
+          description: Provides an initialised account.
+      summary: Account Create
+      tags:
+      - Card Holder Account
+      x-contentType: application/json
+      x-accepts: application/json
+  /void:
+    post:
+      description: "_The void process generally applies to transactions which have\
+        \ been pre-authorised only however voids can occur \non the same day if performed\
+        \ before batching and settlement._ \n\nThe void process will ensure that a\
+        \ transaction will now settle. It is expected that a void call will be \n\
+        provided on the same day before batching and settlement or within 3 days or\
+        \ within a maximum of 7 days.\n\nOnce the transaction has been processed as\
+        \ a void, an [`Acknowledgement`](#acknowledgement) will be returned,\noutlining\
+        \ the result of the transaction.\n"
+      operationId: VoidRequest
+      requestBody:
+        content:
+          application/json:
+            examples:
+              example1:
+                externalValue: VoidRequest-example1.json
+                summary: Basic capture call for a merchant with a given identifier
+              example2:
+                externalValue: VoidRequest-example2.json
+                summary: Basic capture call for a merchant with a transno and final
+                  amount
+            schema:
+              $ref: '#/components/schemas/VoidRequest'
+          text/xml:
+            examples:
+              example1:
+                externalValue: VoidRequest-example1.xml
+                summary: Basic capture call for a merchant with a given identifier
+              example2:
+                externalValue: VoidRequest-example2.xml
+                summary: Basic capture call for a merchant with a transno and final
+                  amount
+            schema:
+              $ref: '#/components/schemas/VoidRequest'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+          description: A result and acknowledgement of the void request.
+      summary: Void
+      tags:
+      - Payment Processing
+      x-contentType: application/json
+      x-accepts: application/json
+  /account/{accountid}/status:
+    post:
+      description: |
+        Updates the status of an account. An account can have the following statuses applied
+
+        | Status | Description |
+        |--------|-------------|
+        | Active | The account is active for processing |
+        | Disabled | The account has been disabled and cannot be used for processing. The account will require reactivation to continue procesing |
+      operationId: AccountStatusRequest
+      parameters:
+      - description: The account id that refers to the customer's account no. This
+          value will have been provided when setting up the card holder account.
+        explode: false
+        in: path
+        name: accountid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountStatus'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/AccountStatus'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+          description: An acknowledgment that the card holder account status has been
+            updated.
+      summary: Account Status
+      tags:
+      - Card Holder Account
+      x-contentType: application/json
+      x-accepts: application/json
+  /account/{accountid}/card/{cardId}:
+    delete:
+      description: |
+        Deletes a card from the account. The card will be marked for deletion before a subsequent
+        purge will clear the card permanently.
+      operationId: AccountCardDeleteRequest
+      parameters:
+      - description: The account id that refers to the customer's account no. This
+          value will have been provided when setting up the card holder account.
+        explode: false
+        in: path
+        name: accountid
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id of the card that is presented by a call to retrieve a
+          card holder account.
+        explode: false
+        in: path
+        name: cardId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+          description: Acknowledges the card has been requested for deletion.
+      summary: Card Deletion
+      tags:
+      - Card Holder Account
+      x-accepts: application/json
+  /cres:
+    post:
+      description: "The CRes request performs authorisation processing once a challenge\
+        \ request has been completed\nwith an Authentication Server (ACS). This challenge\
+        \ response contains confirmation that will\nallow the API systems to return\
+        \ an authorisation response based on the result. Our systems will \nknow out\
+        \ of band via an `RReq` call by the ACS to notify us if the liability shift\
+        \ has been issued.\n\nAny call to the CRes operation will require a previous\
+        \ authorisation request and cannot be called \non its own without a previous\
+        \ [request challenge](#requestchallenged) being obtained.\n"
+      operationId: CResRequest
+      requestBody:
+        content:
+          application/json:
+            examples:
+              example1:
+                externalValue: CResRequest-example1.json
+                summary: PaRes example request
+            schema:
+              $ref: '#/components/schemas/CResAuthRequest'
+          text/xml:
+            examples:
+              example1:
+                externalValue: CResRequest-example1.xml
+                summary: PaRes example request
+            schema:
+              $ref: '#/components/schemas/CResAuthRequest'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+          description: A result of processing the 3DSv2 authorisation data.
+      summary: CRes
+      tags:
+      - Payment Processing
+      x-contentType: application/json
+      x-accepts: application/json
+  /authorise:
+    post:
+      description: "An authorisation process performs a standard transaction authorisation\
+        \ based on the provided parameters of its request.\nThe CityPay gateway will\
+        \ route your transaction via an Acquiring bank for subsequent authorisation\
+        \ to the appropriate card \nschemes such as Visa or MasterCard.\n\nThe authorisation\
+        \ API should be used for server environments to process transactions on demand\
+        \ and in realtime. \n\nThe authorisation API can be used for multiple types\
+        \ of transactions including E-commerce, mail order, telephone order,\ncustomer\
+        \ present (keyed), continuous authority, pre-authorisation and others. CityPay\
+        \ will configure your account for \nthe appropriate coding and this will perform\
+        \ transparently by the gateway. \n\nData properties that are required, may\
+        \ depend on the environment you are conducting payment for. Our API aims to\
+        \ be\n flexible enough to cater for these structures. Our integration team\
+        \ will aid you in providing the necessary data to \n transact. \n \n \n###\
+        \ E-commerce workflows\n \nFor E-commerce transactions requiring 3DSv1 and\
+        \ 3DSv2 transactions, the API contains a fully accredited in built mechanism\n\
+        to handle authentication.\n\nThe gateway has been accredited extensively with\
+        \ both Acquirers and Card Schemes and simplifies the nature of these calls\n\
+        into a simple structure for authentication, preventing integrators from performing\
+        \ lengthy and a costly accreditation with\nVisa and MasterCard.\n\n3D-secure\
+        \ has been around for a number of years and aims to shift the liability of\
+        \ a transaction away from a merchant back\nto the card holder. A *liability\
+        \ shift* determines whether a card holder can charge back a transaction as\
+        \ unknown. Effectively\nthe process asks for a card holder to authenticate\
+        \ the transaction prior to authorisation producing a Cardholder \nverification\
+        \ value (CAVV) as evidence of authorisation.\n \n#### 3DSv1\n\n```json\n{\
+        \ \n  \"AuthenticationRequired\": {\n    \"acsurl\": \"https://bank.com/3DS/ACS\"\
+        ,\n    \"pareq\": \"SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...\"\
+        ,\n    \"md\": \"WQgZXZlcnl0aGluZyBiZW\"\n  }               \n}\n```\n\n```xml\n\
+        <AuthenticationRequired>\n <acsurl>https://bank.com/3DS/ACS</acsurl>\n <pareq>SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...</pareq>\n\
+        \ <md>WQgZXZlcnl0aGluZyBiZW</md>\n</AuthenticationRequired>\n```\n\nFor E-commerce\
+        \ transactions requiring 3DSv1, the API contains a built in MPI which will\
+        \ be called to check whether the \ncard is participating in 3DSv1 with Verified\
+        \ by Visa or MasterCard SecureCode. We only support Amex SafeKey with 3DSv2.\
+        \ Should the card be enrolled, a payer \nrequest (PAReq) value will be created\
+        \ and returned back as an [authentication required](#authenticationrequired)\
+        \ response object. \n\nYour system will need to process this authentication\
+        \ packet and forward the user's browser to an authentication server (ACS)\
+        \ \nto gain the user's authentication. Once complete, the ACS will produce\
+        \ a HTTP `POST` call back to the URL supplied in \n the authentication request\
+        \ as `merchant_termurl`. This URL should behave as a controller and handle\
+        \ the post data from the\n  ACS and on a forked server to server HTTP request,\
+        \ forward this data to the [pares authentication url](#pares) for \n  subsequent\
+        \ authorisation processing. You may prefer to provide a processing page whilst\
+        \ this is being processed.\n  Processing with our systems should be relatively\
+        \ quick and be between 500ms - 3000ms however it is desirable to let\n  the\
+        \ user see that something is happening rather than a pending browser.\n  \n\
+        \  The main reason for ensuring that this controller is two fold:\n  \n  1.\
+        \ We are never in control of the user's browser in a server API call\n  2.\
+        \ The controller is actioned on your site to ensure that any post actions\
+        \ from authorisation can be executed in real time\n  \nTo forward the user\
+        \ to the ACS, we recommend a simple auto submit HTML form.\n\n```html\n<html\
+        \ lang=\"en\">\n\t<head>\n        <title>Forward to ACS</title>\n\t\t<script\
+        \ type=\"text/javascript\">\n        function onLoadEvent() { \n         \
+        \   document.acs.submit(); \n        }\n        </script>\n        <noscript>You\
+        \ will require JavaScript to be enabled to complete this transaction</noscript>\n\
+        \    </head>\n    <body onload=\"onLoadEvent();\">\n        <form name=\"\
+        acs\" action=\"{{ACSURL from Response}}\" method=\"POST\">\n            <input\
+        \ type=\"hidden\" name=\"PaReq\" value=\"{{PaReq Packet from Response}}\"\
+        \ />\n            <input type=\"hidden\" name=\"TermUrl\" value=\"{{Your Controller}}\"\
+        \ />\n            <input type=\"hidden\" name=\"MD\" value=\"{{MD From Response}}\"\
+        \ />\n        </form>\n    </body>\n</html>\n```\n\nPlease note that 3DSv1\
+        \ is being phased out due to changes to strong customer authentication mechanisms.\
+        \ 3DSv2 addresses\nthis and will solidify the authorisation and confirmation\
+        \ process.\n\nWe provide a Test ACS for full 3DSv1 integration testing that\
+        \ simulates an ACS. \n\n\n#### 3DSv2\n\n```json\n{ \n  \"RequestChallenged\"\
+        : {\n    \"acsurl\": \"https://bank.com/3DS/ACS\",\n    \"creq\": \"SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...\"\
+        \n  }               \n}\n```\n\n```xml\n<RequestChallenged>\n <acsurl>https://bank.com/3DS/ACS</acsurl>\n\
+        \ <creq>SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...</creq>\n\
+        </RequestChallenged>\n```\n\nAll merchants in the EEC will require to migrate\
+        \ their E-commerce transactions to a secure customer authentication \nmodel\
+        \ (SCA) throughout 2020. This has been adopted by the payment's industry as\
+        \ a progressive move alongside the European \nUnions payments service directive.\n\
+        \nCityPay support 3DSv2 for Verified by Visa, MasterCard Identity Check and\
+        \ American Express SafeKey 2.0 and will be rolling\nout acquirers on the new\
+        \ platform from Q2 2020. The new enhancement to 3DSv2 will allow for CityPay\
+        \ to seamlessly authenticate\ntransactions in a \"frictionless\" flowed method\
+        \ which will authenticate low risk transactions with minimal impact to a \n\
+        standard authorisation flow. Our API simply performs this on behalf of the\
+        \ merchant and cardholder. For these transactions\nyou will not be required\
+        \ to change anything.\n\nHowever, should a transaction be \"challenged\" the\
+        \ API will return a [request challenge](#requestchallenged) which will \n\
+        require your integration to forward the cardholder's browser to the given\
+        \ [ACS url](#acsurl) by posting the [creq](#creq)\nvalue. Once complete, the\
+        \ ACS will have already been in touch with our servers by sending us a result\
+        \ of the authentication\nknown as `RReq`.\n\nOur servers however will await\
+        \ confirmation that the authorisation should continue and on receipt of a\
+        \ [cres](#cres)\nvalue, the flow will perform full authorisation processing.\
+        \ \n\nPlease note that the CRes returned to us is purely a mechanism of acknowledging\
+        \ that transactions should be committed for\nauthorisation. The ACS by this\
+        \ point will have sent us the verification value (CAVV) to perform a liability\
+        \ shift. The CRes\nvalue will be validated for receipt of the CAVV and subsequently\
+        \ may return back response codes illustrating this. \n\nTo forward the user\
+        \ to the ACS, we recommend a simple auto submit HTML form.\n\n```html\n<html\
+        \ lang=\"en\">\n\t<head>\n        <title>Forward to ACS</title>\n\t\t<script\
+        \ type=\"text/javascript\">\n        function onLoadEvent() { \n         \
+        \   document.acs.submit(); \n        }\n        </script>\n        <noscript>You\
+        \ will require JavaScript to be enabled to complete this transaction</noscript>\n\
+        \    </head>\n    <body onload=\"onLoadEvent();\">\n        <form name=\"\
+        acs\" action=\"{{ACSURL from Response}}\" method=\"POST\">\n            <input\
+        \ type=\"hidden\" name=\"creq\" value=\"{{CReq Packet from Response}}\" />\n\
+        \        </form>\n    </body>\n</html>\n```\n\nWe are currently working on\
+        \ an integration test suite for 3DSv2 which will mock the ACS challenge process.\n"
+      operationId: AuthorisationRequest
+      requestBody:
+        content:
+          application/json:
+            examples:
+              example1:
+                externalValue: AuthorisationRequest-example1.json
+                summary: Basic capture call for a merchant with a given identifier
+            schema:
+              $ref: '#/components/schemas/AuthRequest'
+          text/xml:
+            examples:
+              example1:
+                externalValue: AuthorisationRequest-example1.xml
+                summary: Basic capture call for a merchant with a given identifier
+            schema:
+              $ref: '#/components/schemas/AuthRequest'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Decision'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Decision'
+          description: A decision made by the result of processing.
+      summary: Authorisation
+      tags:
+      - Payment Processing
+      x-contentType: application/json
+      x-accepts: application/json
+  /retrieve:
+    post:
+      description: "A retrieval request which allows an integration to obtain the\
+        \ result of a transaction processed\nin the last 90 days. The request allows\
+        \ for retrieval based on the identifier or transaction \nnumber. \n\nThe process\
+        \ may return multiple results in particular where a transaction was processed\
+        \ multiple\ntimes against the same identifier. This can happen if errors were\
+        \ first received. The API therefore\nreturns up to the first 5 transactions\
+        \ in the latest date time order.\n\nIt is not intended for this operation\
+        \ to be a replacement for reporting and only allows for base transaction\n\
+        information to be returned.\n"
+      operationId: RetrievalRequest
+      requestBody:
+        content:
+          application/json:
+            examples:
+              example1:
+                externalValue: RetrievalRequest-example1.json
+                summary: Basic retrieval call for a merchant with a given identifier
+            schema:
+              $ref: '#/components/schemas/RetrieveRequest'
+          text/xml:
+            examples:
+              example1:
+                externalValue: RetrievalRequest-example1.xml
+                summary: Basic retrieval call for a merchant with a given identifier
+            schema:
+              $ref: '#/components/schemas/RetrieveRequest'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthReferences'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/AuthReferences'
+          description: A result of the retrieval request.
+      summary: Retrieval
+      tags:
+      - Payment Processing
+      x-contentType: application/json
+      x-accepts: application/json
+  /charge:
+    post:
+      description: "A charge process obtains an authorisation using a tokenised value\
+        \ which represents a stored card \non a card holder account. \nA card must\
+        \ previously be registered by calling `/account-register-card` with the card\
+        \ details \nor retrieved using `/account-retrieve`\n\nTokens are generated\
+        \ whenever a previously registered list of cards are retrieved. Each token\
+        \ has, by design a \nrelatively short time to live of 30 minutes. This is\
+        \ both to safe guard the merchant and card holder from \nreplay attacks. Tokens\
+        \ are also restricted to your account, preventing malicious actors from stealing\
+        \ details\nfor use elsewhere.  \n\nIf a token is reused after it has expired\
+        \ it will be rejected and a new token will be required.\n \nTokenisation can\
+        \ be used for\n \n- repeat authorisations on a previously stored card\n- easy\
+        \ authorisations just requiring CSC values to be entered\n- can be used for\
+        \ credential on file style payments\n- can require full 3-D Secure authentication\
+        \ to retain the liability shift\n- wallet style usage.\n"
+      operationId: ChargeRequest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChargeRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/ChargeRequest'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Decision'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Decision'
+          description: A decision met by the result of the charge.
+      summary: Charge
+      tags:
+      - Card Holder Account
+      x-contentType: application/json
+      x-accepts: application/json
+  /merchants/{clientid}:
+    get:
+      description: |
+        An operational request to list current merchants for a client.
+
+        ### Sorting
+
+        Sorting can be performed by include a query parameter i.e. `/merchants/?sort=merchantid`
+
+        Fields that can be sorted are `merchantid` or `name`.
+      operationId: ListMerchantsRequest
+      parameters:
+      - description: The client id to return merchants for, specifying "default" will
+          use the value in your api key.
+        explode: false
+        in: path
+        name: clientid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListMerchantsResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ListMerchantsResponse'
+          description: A list of merchants that are configured against the client
+            id.
+      summary: List Merchants Request
+      tags:
+      - Operational
+      x-accepts: application/json
+  /pares:
+    post:
+      description: "The Payer Authentication Response (PaRes) is an operation after\
+        \ the result of authentication \n being performed. The request uses an encoded\
+        \ packet of authentication data to \nnotify us of the completion of the liability\
+        \ shift. Once this value has been unpacked and its\nsignature is checked,\
+        \ our systems will proceed to authorisation processing.  \n\nAny call to the\
+        \ PaRes operation will require a previous authorisation request and cannot\
+        \ be called \non its own without a previous [authentication required](#authenticationrequired)\
+        \  being obtained.\n"
+      operationId: PaResRequest
+      requestBody:
+        content:
+          application/json:
+            examples:
+              example1:
+                externalValue: PaResRequest-example1.json
+                summary: PaRes example request
+            schema:
+              $ref: '#/components/schemas/PaResAuthRequest'
+          text/xml:
+            examples:
+              example1:
+                externalValue: PaResRequest-example1.xml
+                summary: PaRes example request
+            schema:
+              $ref: '#/components/schemas/PaResAuthRequest'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+          description: A result of processing the 3DSv1 authorisation data.
+      summary: PaRes
+      tags:
+      - Payment Processing
+      x-contentType: application/json
+      x-accepts: application/json
+components:
+  schemas:
+    CardHolderAccount:
+      example:
+        account_id: aaabbb-cccddd-eee
+        cards:
+        - bin_description: bin_description
+          bin_commercial: true
+          scheme: Visa
+          bin_currency: bin_currency
+          expyear: 2023
+          label: Visa/0002
+          card_id: card_id
+          label2: Visa/0002,Exp:2304
+          token: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
+          card_status: card_status
+          bin_country_issued: bin_country_issued
+          default: true
+          last4digits: "2"
+          bin_credit: true
+          bin_corporate: true
+          expmonth: 9
+          bin_debit: true
+          bin_eu: true
+        - bin_description: bin_description
+          bin_commercial: true
+          scheme: Visa
+          bin_currency: bin_currency
+          expyear: 2023
+          label: Visa/0002
+          card_id: card_id
+          label2: Visa/0002,Exp:2304
+          token: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
+          card_status: card_status
+          bin_country_issued: bin_country_issued
+          default: true
+          last4digits: "2"
+          bin_credit: true
+          bin_corporate: true
+          expmonth: 9
+          bin_debit: true
+          bin_eu: true
+        unique_id: unique_id
+        default_card_index: default_card_index
+        date_created: 2020-01-02T18:32:28Z
+        contact:
+          area: London
+          country: GB
+          firstname: John
+          address3: address3
+          address2: Westminster
+          address1: 79 Parliament St
+          mobile_no: "447790123456"
+          postcode: L1 789
+          title: Mr
+          lastname: Smith
+          telephone_no: "442030123456"
+          company: Acme Ltd
+          email: card.holder@citypay.com
+        default_card_id: default_card_id
+        status: status
+      properties:
+        account_id:
+          description: |
+            The account id of the card holder account provided by the merchant which uniquely identifies the account.
+          example: aaabbb-cccddd-eee
+          maxLength: 50
+          minLength: 5
+          type: string
+        cards:
+          items:
+            $ref: '#/components/schemas/Card'
+          type: array
+        contact:
+          $ref: '#/components/schemas/ContactDetails'
+        date_created:
+          description: The date and time the account was created.
+          example: 2020-01-02T18:32:28Z
+          format: date-time
+          type: string
+        default_card_id:
+          description: The id of the default card.
+          type: string
+        default_card_index:
+          description: The index in the array of the default card.
+          type: string
+        status:
+          description: |
+            Defines the status of the account for processing valid values are
+
+             - ACTIVE for active accounts that are able to process
+             - DISABLED for accounts that are currently disabled for processing.
+          type: string
+        unique_id:
+          description: A unique id of the card holder account which uniquely identifies
+            the stored account. This value is not searchable.
+          type: string
+      required:
+      - account_id
+      - contact
+      type: object
+    AuthResponse:
+      example:
+        authen_result: authen_result
+        atrn: atrn
+        maskedpan: 4***********0002
+        scheme: Visa
+        sha256: sha256
+        eci: eci
+        transno: 78416
+        result: 1
+        datetime: 2020-01-02T18:32:28Z
+        authorised: true
+        context: aspiu352908ns47n343598bads
+        currency: GBP
+        avs_result: avs_result
+        live: true
+        trans_status: trans_status
+        csc_result: csc_result
+        bin_description: bin_description
+        identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+        amount: 3600
+        bin_commercial: true
+        result_message: Accepted Transaction
+        atsd: atsd
+        authcode: 001245A
+        cavv: cavv
+        merchantid: 11223344
+        result_code: "0"
+        bin_debit: true
+      properties:
+        amount:
+          description: The amount of the transaction processed.
+          example: 3600
+          format: int32
+          maxLength: 12
+          minLength: 1
+          type: integer
+        atrn:
+          description: |
+            A reference number provided by the acquirer for a transaction it can be used to cross reference transactions
+            with an Acquirers reporting panel.
+          type: string
+        atsd:
+          description: Additional Transaction Security Data used for ecommerce transactions
+            to decipher security capabilities and attempts against a transaction.
+          type: string
+        authcode:
+          description: |
+            The authorisation code as returned by the card issuer or acquiring bank when a transaction has successfully
+              been authorised. Authorisation codes contain alphanumeric values. Whilst the code confirms authorisation it
+              should not be used to determine whether a transaction was successfully processed. For instance an auth code
+              may be returned when a transaction has been subsequently declined due to a CSC mismatch.
+          example: 001245A
+          type: string
+        authen_result:
+          description: |
+            The result of any authentication using 3d_secure authorisation against ecommerce transactions. Values are
+            | Value | Description |
+            |-------|-------------|
+            | Y | Authentication Successful. The Cardholder's password was successfully validated. |
+            | N | Authentication Failed. Customer failed or cancelled authentication, transaction denied. |
+            | A | Attempts Processing Performed Authentication could not be completed but a proof of authentication attempt (CAVV) was generated |
+            | U | Authentication Could Not Be Performed Authentication could not be completed, due to technical or other problem |
+          type: string
+        authorised:
+          description: |
+            A boolean definition that indicates that the transaction was authorised. It will return false if the transaction
+             was declined, rejected or cancelled due to CSC matching failures.
+            Attention should be referenced to the AuthResult and Response code for accurate determination of the result.
+          example: true
+          type: boolean
+        avs_result:
+          description: |
+            The AVS result codes determine the result of checking the AVS values within the
+            Address Verification fraud system. If a transaction is declined due to the AVS code not matching,
+            this value can help determine the reason for the decline.
+
+             | Code | Description |
+             |------|------------|
+             | Y | Address and 5 digit post code match |
+             | M | Street address and Postal codes match for international transaction |
+             | U | No AVS data available from issuer auth system |
+             | A | Addres matches, post code does not |
+             | I | Address information verified for international transaction |
+             | Z | 5 digit post code matches, Address does not |
+             | W | 9 digit post code matches, Address does not |
+             | X | Postcode and address match |
+             | B | Postal code not verified due to incompatible formats |
+             | P | Postal codes match. Street address not verified due to to incompatible formats |
+             | E | AVS Error |
+             | C | Street address and Postal code not verified due to incompatible formats |
+             | D | Street address and postal codes match |
+             |   | No information |
+             | N | Neither postcode nor address match |
+             | R | Retry, System unavailble or Timed Out |
+             | S | AVS Service not supported by issuer or processor |
+             | G | Issuer does not participate in AVS |
+          maxLength: 1
+          minLength: 1
+          type: string
+        bin_commercial:
+          description: Determines whether the bin range was found to be a commercial
+            or business card.
+          type: boolean
+        bin_debit:
+          description: Determines whether the bin range was found to be a debit card.
+            If false the card was considered as a credit card.
+          type: boolean
+        bin_description:
+          description: A description of the bin range found for the card.
+          type: string
+        cavv:
+          description: |
+            The cardholder authentication verification value which can be returned for verification purposes of the authenticated
+             transaction for dispute realisation.
+          type: string
+        context:
+          description: The context which processed the transaction, can be used for
+            support purposes to trace transactions.
+          example: aspiu352908ns47n343598bads
+          type: string
+        csc_result:
+          description: |
+            The CSC rseult codes determine the result of checking the provided CSC value within the
+            Card Security Code fraud system. If a transaction is declined due to the CSC code not matching,
+            this value can help determine the reason for the decline.
+
+             | Code | Description |
+             |------|------------|
+             |   | No information |
+             | M | Card verification data matches |
+             | N | Card verification data was checked but did not match |
+             | P | Card verification was not processed |
+             | S | The card verification data should be on the card but the merchant indicates that it is not |
+             | U | The card issuer is not certified |
+          maxLength: 1
+          minLength: 1
+          type: string
+        currency:
+          description: The currency the transaction was processed in. This is an `ISO4217`
+            alpha currency value.
+          example: GBP
+          maxLength: 3
+          minLength: 3
+          type: string
+        datetime:
+          description: |
+            The UTC date time of the transaction in ISO data time format.
+          example: 2020-01-02T18:32:28Z
+          format: date-time
+          type: string
+        eci:
+          description: |
+            An Electronic Commerce Indicator (ECI) used to identify the result of authentication using 3DSecure.
+          type: string
+        identifier:
+          description: The identifier provided within the request.
+          example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          maxLength: 50
+          minLength: 4
+          type: string
+        live:
+          description: Used to identify that a tranasction was processed on a live
+            authorisation platform.
+          example: true
+          type: boolean
+        maskedpan:
+          description: |
+            A masked value of the card number used for processing displaying limited values that can be used on a receipt.
+          example: 4***********0002
+          type: string
+        merchantid:
+          description: The merchant id that processed this transaction.
+          example: 11223344
+          format: int32
+          type: integer
+        result:
+          description: |
+            An integer result that indicates the outcome of the transaction. The Code value below maps to the result value
+
+             | Code | Abbrev | Description |
+             |------|-------|-------------|
+             | 0 | Declined | Declined |
+             | 1 | Accepted | Accepted |
+             | 2 | Rejected | Rejected |
+             | 3 | Not Attempted | Not Attempted |
+             | 4 | Referred | Referred |
+             | 5 | PinRetry | Perform PIN Retry |
+             | 6 | ForSigVer | Force Signature Verification |
+             | 7 | Hold | Hold |
+             | 8 | SecErr | Security Error |
+             | 9 | CallAcq | Call Acquirer |
+             | 10 | DNH | Do Not Honour |
+             | 11 | RtnCrd | Retain Card |
+             | 12 | ExprdCrd | Expired Card |
+             | 13 | InvldCrd | Invalid Card No |
+             | 14 | PinExcd | Pin Tries Exceeded |
+             | 15 | PinInvld | Pin Invalid |
+             | 16 | AuthReq | Authentication Required |
+             | 17 | AuthenFail | Authentication Failed |
+             | 18 | Verified | Card Verified |
+             | 19 | Cancelled | Cancelled |
+             | 20 | Un | Unknown |
+          example: 1
+          format: int32
+          type: integer
+        result_code:
+          description: |
+            The result code as defined in the Response Codes Reference for example 000 is an accepted live
+            transaction whilst 001 is an accepted test transaction. Result codes identify the source of success and failure.
+            Codes may start with an alpha character i.e. C001 indicating a type of error such as a card validation error.
+          example: "0"
+          type: string
+        result_message:
+          description: |
+            The message regarding the result which provides further narrative to the result code.
+          example: Accepted Transaction
+          type: string
+        scheme:
+          description: |
+            A name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard.
+          example: Visa
+          type: string
+        sha256:
+          description: |
+            A SHA256 digest value of the transaction used to validate the response data
+            The digest is calculated by concatenating
+             * authcode
+             * amount
+             * response_code
+             * merchant_id
+             * trans_no
+             * identifier
+             * licence_key - which is not provided in the response.
+          type: string
+        trans_status:
+          description: |
+            Used to identify the status of a transaction. The status is used to track a transaction through its life cycle.
+
+            | Id | Description |
+            |----|-------------|
+            | O | Transaction is open for settlement |
+            | A | Transaction is assigned for settlement and can no longer be voided |
+            | S | Transaction has been settled   |
+            | D | Transaction has been declined |
+            | R | Transaction has been rejected |
+            | P | Transaction has been authorised only and awaiting a capture. Used in pre-auth situations |
+            | C | Transaction has been cancelled |
+            | E | Transaction has expired |
+            | I | Transaction has been initialised but no action was able to be carried out |
+            | H | Transaction is awaiting authorisation |
+            | . | Transaction is on hold |
+            | V | Transaction has been verified |
+          type: string
+        transno:
+          description: |
+            The resulting transaction number, ordered incrementally from 1 for every merchant_id. The value will default to less than 1
+            for transactions that do not have a transaction number issued.
+          example: 78416
+          format: int32
+          type: integer
+      type: object
+    ChargeRequest:
+      example:
+        identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+        amount: 3600
+        csc_policy: csc_policy
+        trans_info: trans_info
+        duplicate_policy: duplicate_policy
+        token: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
+        csc: "12"
+        merchantid: 11223344
+        match_avsa: match_avsa
+        avs_postcode_policy: avs_postcode_policy
+        currency: GBP
+        sdk: MyClient 1.3.0
+        trans_type: trans_type
+      properties:
+        amount:
+          description: |
+            The amount to authorise in the lowest unit of currency with a variable length to a maximum of 12 digits.
+            No decimal points are to be included and no divisional characters such as 1,024.
+            The amount should be the total amount required for the transaction.
+            For example with GBP £1,021.95 the amount value is 102195.
+          example: 3600
+          format: int32
+          maxLength: 12
+          minLength: 1
+          type: integer
+        avs_postcode_policy:
+          description: |
+            A policy value which determines whether an AVS postcode policy is enforced or bypassed.
+
+            Values are
+             `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+             `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.
+             `2` to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.
+             `3` to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation.
+          type: string
+        csc:
+          description: |
+            The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card
+            (American Express has it on the front). The value helps to identify posession of the card as it is not
+            available within the chip or magnetic swipe.
+
+            When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped
+            out by any integer parsing.
+
+            The CSC number aids fraud prevention in Mail Order and Internet payments.
+
+             Business rules are available on your account to identify whether to accept
+            or decline transactions based on mismatched results of the CSC.
+
+            The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored.
+            This applies to all entities handling card data.
+            It should also not be used in any hashing process.
+            CityPay do not store the value and have no method of retrieving the value once the transaction has been processed.
+            For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm.
+          example: "12"
+          maxLength: 4
+          minLength: 3
+          type: string
+        csc_policy:
+          description: |
+            A policy value which determines whether a CSC policy is enforced or bypassed.
+
+            Values are
+             `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+             `1` for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.
+             `2` to bypass. Transactions that are bypassed will be allowed through even if the CSC did not match.
+             `3` to ignore. Transactions that are ignored will bypass the result and not send the CSC details for authorisation.
+          type: string
+        currency:
+          description: The processing currency for the transaction. Will default to
+            the merchant account currency.
+          example: GBP
+          maxLength: 3
+          minLength: 3
+          type: string
+        duplicate_policy:
+          description: |
+            A policy value which determines whether a duplication policy is enforced or bypassed. A duplication check has a window
+            of time set against your account within which it can action. If a previous transaction with matching values occurred within
+            the window, any subsequent transaction will result in a T001 result.
+
+            Values are
+             `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+             `1` for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.
+             `2` to bypass. Transactions that are bypassed will not be checked for duplication within the duplication window.
+             `3` to ignore. Transactions that are ignored will have the same affect as bypass.
+          type: string
+        identifier:
+          description: |
+            The identifier of the transaction to process. The value should be a valid reference and may be used to perform
+             post processing actions and to aid in reconciliation of transactions.
+
+            The value should be a valid printable string with ASCII character ranges from 32 to 127.
+
+            The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)
+            this will aid in ensuring each transaction is identifiable.
+
+            When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent
+            request will ensure that a transaction is considered as different.
+          example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          maxLength: 50
+          minLength: 4
+          type: string
+        match_avsa:
+          description: |
+            A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.
+
+
+            Values are
+             `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+             `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.
+             `2` to bypass. Transactions that are bypassed will be allowed through even if the address did not match.
+             `3` to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation.
+          type: string
+        merchantid:
+          description: Identifies the merchant account to perform processing for.
+          example: 11223344
+          format: int32
+          type: integer
+        sdk:
+          description: An optional reference value for the calling client such as
+            a version number i.e.
+          example: MyClient 1.3.0
+          type: string
+        token:
+          description: |
+            A tokenised form of a card that belongs to a card holder's account and that
+            has been previously registered. The token is time based and will only be active for
+            a short duration. The value is therefore designed not to be stored remotely for future
+             use.
+
+            Tokens will start with ct and are resiliently tamper proof using HMacSHA-256.
+            No sensitive card data is stored internally within the token.
+
+            Each card will contain a different token and the value may be different on any retrieval call.
+
+            The value can be presented for payment as a selection value to an end user in a web application.
+          example: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
+          format: base58
+          type: string
+        trans_info:
+          description: Further information that can be added to the transaction will
+            display in reporting. Can be used for flexible values such as operator
+            id.
+          maxLength: 50
+          type: string
+        trans_type:
+          description: The type of transaction being submitted. Normally this value
+            is not required and your account manager may request that you set this
+            field.
+          maxLength: 1
+          type: string
+      required:
+      - amount
+      - identifier
+      - merchantid
+      - token
+      type: object
+    RequestChallenged:
+      example:
+        creq: creq
+        merchantid: 11223344
+        ThreeDServerTransId: ThreeDServerTransId
+        acs_url: https://acs.cardissuer.com/3dsv1
+        transno: 78416
+      properties:
+        acs_url:
+          description: |
+            The url of the Access Control Server (ACS) to forward the user to.
+          example: https://acs.cardissuer.com/3dsv1
+          format: url
+          type: string
+        creq:
+          description: The challenge request data which is encoded for usage by the
+            ACS.
+          type: string
+        merchantid:
+          description: The merchant id that processed this transaction.
+          example: 11223344
+          format: int32
+          type: integer
+        ThreeDServerTransId:
+          description: The 3DSv2 trans id reference for the challenge process.
+          type: string
+        transno:
+          description: |
+            The transaction number for the challenge, ordered incrementally from 1 for every merchant_id.
+          example: 78416
+          format: int32
+          type: integer
+      type: object
+    AuthReference:
+      example:
+        amount_value: amount_value
+        identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+        amount: 3600
+        atrn: atrn
+        batchno: batchno
+        maskedpan: 4***********0002
+        transno: 78416
+        authcode: 001245A
+        result: result
+        datetime: 2020-01-02T18:32:28Z
+        merchantid: 11223344
+        currency: GBP
+        trans_status: trans_status
+        trans_type: trans_type
+      properties:
+        amount:
+          description: The amount of the transaction in decimal currency format.
+          example: 3600
+          format: int32
+          maxLength: 12
+          minLength: 1
+          type: integer
+        amount_value:
+          description: The amount of the transaction in integer/request format.
+          type: string
+        atrn:
+          description: A reference number provided by the acquiring services.
+          type: string
+        authcode:
+          description: The authorisation code of the transaction returned by the acquirer
+            or card issuer.
+          example: 001245A
+          type: string
+        batchno:
+          description: A batch number which the transaction has been end of day batched
+            towards.
+          type: string
+        currency:
+          description: The currency of the transaction in ISO 4217 code format.
+          example: GBP
+          maxLength: 3
+          minLength: 3
+          type: string
+        datetime:
+          description: The date and time of the transaction.
+          example: 2020-01-02T18:32:28Z
+          format: date-time
+          type: string
+        identifier:
+          description: The identifier of the transaction used to process the transaction.
+          example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          maxLength: 50
+          minLength: 4
+          type: string
+        maskedpan:
+          description: A masking of the card number which was used to process the
+            tranasction.
+          example: 4***********0002
+          type: string
+        merchantid:
+          description: The merchant id of the transaction result.
+          example: 11223344
+          format: int32
+          type: integer
+        result:
+          description: The result of the transaction.
+          type: string
+        trans_status:
+          description: The current status of the transaction through it's lifecycle.
+          type: string
+        trans_type:
+          description: The type of transaction that was processed.
+          maxLength: 1
+          type: string
+        transno:
+          description: The transaction number of the transaction.
+          example: 78416
+          format: int32
+          type: integer
+      type: object
+    Card:
+      example:
+        bin_description: bin_description
+        bin_commercial: true
+        scheme: Visa
+        bin_currency: bin_currency
+        expyear: 2023
+        label: Visa/0002
+        card_id: card_id
+        label2: Visa/0002,Exp:2304
+        token: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
+        card_status: card_status
+        bin_country_issued: bin_country_issued
+        default: true
+        last4digits: "2"
+        bin_credit: true
+        bin_corporate: true
+        expmonth: 9
+        bin_debit: true
+        bin_eu: true
+      properties:
+        bin_commercial:
+          description: Defines whether the card is a commercial card.
+          type: boolean
+        bin_corporate:
+          description: Defines whether the card is a corporate business card.
+          type: boolean
+        bin_country_issued:
+          description: The determined country where the card was issued.
+          type: string
+        bin_credit:
+          description: Defines whether the card is a credit card.
+          type: boolean
+        bin_currency:
+          description: The default currency determined for the card.
+          type: string
+        bin_debit:
+          description: Defines whether the card is a debit card.
+          type: boolean
+        bin_description:
+          description: A description of the bin on the card to identify what type
+            of product the card is.
+          type: string
+        bin_eu:
+          description: Defines whether the card is regulated within the EU.
+          type: boolean
+        card_id:
+          description: The id of the card that is returned. Should be used for referencing
+            the card when perform any changes.
+          type: string
+        card_status:
+          description: |
+            The status of the card such, valid values are
+             - ACTIVE the card is active for processing
+             - INACTIVE the card is not active for processing
+             - EXPIRED for cards that have passed their expiry date.
+          type: string
+        default:
+          description: Determines if the card is the default card for the account
+            and should be regarded as the first option to be used for processing.
+          type: boolean
+        expmonth:
+          description: The expiry month of the card.
+          example: 9
+          format: int32
+          maximum: 12
+          minimum: 1
+          type: integer
+        expyear:
+          description: The expiry year of the card.
+          example: 2023
+          format: int32
+          maximum: 2100
+          minimum: 2000
+          type: integer
+        label:
+          description: A label which identifies this card.
+          example: Visa/0002
+          type: string
+        label2:
+          description: A label which also provides the expiry date of the card.
+          example: Visa/0002,Exp:2304
+          type: string
+        last4digits:
+          description: The last 4 digits of the card to aid in identification.
+          example: "2"
+          type: string
+        scheme:
+          description: The scheme that issued the card.
+          example: Visa
+          type: string
+        token:
+          description: A token that can be used to process against the card.
+          example: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
+          format: base58
+          type: string
+      type: object
+    ExternalMPI:
+      example:
+        authen_result: authen_result
+        cavv: cavv
+        xid: xid
+        eci: 0
+        enrolled: enrolled
+      properties:
+        authen_result:
+          description: The authentication result available from the MPI.
+          maxLength: 1
+          type: string
+        cavv:
+          description: A value determining the cardholder verification value supplied
+            by the card scheme.
+          maxLength: 20
+          type: string
+        eci:
+          description: The obtained e-commerce indicator from the MPI.
+          format: int32
+          maxLength: 1
+          type: integer
+        enrolled:
+          description: A value determining whether the card holder was enrolled.
+          maxLength: 1
+          type: string
+        xid:
+          description: The XID used for processing with the MPI.
+          maxLength: 20
+          type: string
+      type: object
+    Acknowledgement:
+      example:
+        identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+        code: "0"
+        context: aspiu352908ns47n343598bads
+        message: Approved 044332
+      properties:
+        code:
+          description: A response code providing a result of the process.
+          example: "0"
+          maxLength: 4
+          minLength: 3
+          type: string
+        context:
+          description: A context id of the process used for referencing transactions
+            through support.
+          example: aspiu352908ns47n343598bads
+          type: string
+        identifier:
+          description: An identifier if presented in the original request.
+          example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          maxLength: 50
+          minLength: 4
+          type: string
+        message:
+          description: A response message providing a description of the result of
+            the process.
+          example: Approved 044332
+          type: string
+      type: object
+    AirlineSegment:
+      example:
+        segment_fare: 7500
+        flight_number: "772"
+        stop_over_indicator: "1"
+        class_service_code: CC
+        departure_date: 2020-08-01T00:00:00.000+0000
+        departure_location_code: JER
+        arrival_location_code: SOU
+        carrier_code: ZZ
+      properties:
+        arrival_location_code:
+          description: |
+            A standard airline routing code (airport code or location identifier) applicable to the
+            arrival portion of this segment.
+          example: SOU
+          maxLength: 3
+          type: string
+        carrier_code:
+          description: |
+            This field contains the two character airline designator code (air carrier code or airline code) that
+            corresponds to the airline carrier applicable for up to four flight segments of this trip itinerary.
+          example: ZZ
+          maxLength: 2
+          type: string
+        class_service_code:
+          description: |
+            This field contains a code that corresponds to the fare class (A, B, C, D, Premium, Discounted, etc.)
+            within the overall class of service (e.g., First Class, Business, Economy) applicable to this travel segment,
+            as specified in the IATA Standard Code allocation table.
+          example: CC
+          maxLength: 2
+          type: string
+        departure_date:
+          description: The Departure Date for the travel segment in ISO Date Format
+            (yyyy-MM-dd).
+          example: 2020-08-01
+          format: date
+          type: string
+        departure_location_code:
+          description: |
+            A standard airline routing code (airport code or location identifier) applicable to the
+            departure portion of this segment.
+          example: JER
+          maxLength: 3
+          type: string
+        flight_number:
+          description: This field contains the carrier-assigned Flight Number for
+            this travel segment.
+          example: "772"
+          maxLength: 4
+          type: string
+        segment_fare:
+          description: This field contains the total Fare for this travel segment.
+          example: 7500
+          format: int32
+          type: integer
+        stop_over_indicator:
+          description: O = Stopover allowed, X = Stopover not allowed.
+          example: "1"
+          maxLength: 1
+          type: string
+      required:
+      - arrival_location_code
+      - carrier_code
+      - class_service_code
+      - departure_date
+      - flight_number
+      type: object
+    Error:
+      properties:
+        code:
+          description: A response code providing a result of the process.
+          example: "0"
+          maxLength: 4
+          minLength: 3
+          type: string
+        context:
+          description: A context id of the process used for referencing transactions
+            through support.
+          example: aspiu352908ns47n343598bads
+          type: string
+        identifier:
+          description: An identifier if presented in the original request.
+          example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          maxLength: 50
+          minLength: 4
+          type: string
+        message:
+          description: A response message providing a description of the result of
+            the process.
+          example: Approved 044332
+          type: string
+      type: object
+    CResAuthRequest:
+      example:
+        cres: x90+vZ/7Ll05Vid/jPfQn8adw+4D/vRDUGT19kndW97Hfirbv66ycfSp8jNlvy7PkHbx44NEt3vo...
+      properties:
+        cres:
+          description: |
+            The challenge response data forwarded by the ACS in 3D-Secure V2 processing. Data
+            should be forwarded to CityPay unchanged for subsequent authorisation and processing.
+          example: x90+vZ/7Ll05Vid/jPfQn8adw+4D/vRDUGT19kndW97Hfirbv66ycfSp8jNlvy7PkHbx44NEt3vo...
+          format: base64
+          type: string
+      type: object
+    MCC6012:
+      example:
+        recipient_dob: recipient_dob
+        recipient_postcode: recipient_postcode
+        recipient_account: recipient_account
+        recipient_lastname: recipient_lastname
+      properties:
+        recipient_account:
+          description: The account number of the recipient.
+          type: string
+        recipient_dob:
+          description: The date of birth of the recipient.
+          type: string
+        recipient_lastname:
+          description: The lastname of ther recepient.
+          type: string
+        recipient_postcode:
+          description: The postcode of the recipient.
+          type: string
+      type: object
+    RetrieveRequest:
+      example:
+        identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+        merchantid: 11223344
+        transno: 78416
+      properties:
+        identifier:
+          description: The identifier of the transaction to retrieve. Optional if
+            a transaction number is provided.
+          example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          maxLength: 50
+          minLength: 4
+          type: string
+        merchantid:
+          description: The merchant account to retrieve data for.
+          example: 11223344
+          format: int32
+          type: integer
+        transno:
+          description: The transaction number of a transaction to retrieve. Optional
+            if an identifier is supplied.
+          example: 78416
+          format: int32
+          type: integer
+      required:
+      - merchantid
+      type: object
+    AuthReferences:
+      example:
+        auths:
+        - amount_value: amount_value
+          identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          amount: 3600
+          atrn: atrn
+          batchno: batchno
+          maskedpan: 4***********0002
+          transno: 78416
+          authcode: 001245A
+          result: result
+          datetime: 2020-01-02T18:32:28Z
+          merchantid: 11223344
+          currency: GBP
+          trans_status: trans_status
+          trans_type: trans_type
+        - amount_value: amount_value
+          identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          amount: 3600
+          atrn: atrn
+          batchno: batchno
+          maskedpan: 4***********0002
+          transno: 78416
+          authcode: 001245A
+          result: result
+          datetime: 2020-01-02T18:32:28Z
+          merchantid: 11223344
+          currency: GBP
+          trans_status: trans_status
+          trans_type: trans_type
+      properties:
+        auths:
+          items:
+            $ref: '#/components/schemas/AuthReference'
+          type: array
+      type: object
+    AuthenRequired:
+      example:
+        pareq: eNrNWdnOo0qSfpXSmUuf0+w2tFy/lOyYxYDZ79h3sAEbm6cfbFfV+bu6pqe7R2qNJeQkiIwlMyK+...
+        md: md
+        acs_url: https://acs.cardissuer.com/3dsv1
+      properties:
+        acs_url:
+          description: |
+            The url of the Access Control Server (ACS) to forward the user to.
+          example: https://acs.cardissuer.com/3dsv1
+          format: url
+          type: string
+        md:
+          description: |
+            Merchant Data (MD) which should be sent to the ACS to establish and reference
+            the authentication session.
+          type: string
+        pareq:
+          description: |
+            The Payer Authentication Request packet which should be `POSTed` to the Url of the ACS
+            to establish the authentication session. Data should be sent untouched.
+          example: eNrNWdnOo0qSfpXSmUuf0+w2tFy/lOyYxYDZ79h3sAEbm6cfbFfV+bu6pqe7R2qNJeQkiIwlMyK+...
+          format: base64
+          type: string
+      type: object
+    Decision:
+      example:
+        result:
+          authen_result: authen_result
+          atrn: atrn
+          maskedpan: 4***********0002
+          scheme: Visa
+          sha256: sha256
+          eci: eci
+          transno: 78416
+          result: 1
+          datetime: 2020-01-02T18:32:28Z
+          authorised: true
+          context: aspiu352908ns47n343598bads
+          currency: GBP
+          avs_result: avs_result
+          live: true
+          trans_status: trans_status
+          csc_result: csc_result
+          bin_description: bin_description
+          identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          amount: 3600
+          bin_commercial: true
+          result_message: Accepted Transaction
+          atsd: atsd
+          authcode: 001245A
+          cavv: cavv
+          merchantid: 11223344
+          result_code: "0"
+          bin_debit: true
+        challenge:
+          creq: creq
+          merchantid: 11223344
+          ThreeDServerTransId: ThreeDServerTransId
+          acs_url: https://acs.cardissuer.com/3dsv1
+          transno: 78416
+        authentication:
+          pareq: eNrNWdnOo0qSfpXSmUuf0+w2tFy/lOyYxYDZ79h3sAEbm6cfbFfV+bu6pqe7R2qNJeQkiIwlMyK+...
+          md: md
+          acs_url: https://acs.cardissuer.com/3dsv1
+      properties:
+        authentication:
+          $ref: '#/components/schemas/AuthenRequired'
+        challenge:
+          $ref: '#/components/schemas/RequestChallenged'
+        result:
+          $ref: '#/components/schemas/AuthResponse'
+      type: object
+    AuthRequest:
+      example:
+        bill_to:
+          area: London
+          country: GB
+          firstname: John
+          address3: address3
+          address2: Westminster
+          address1: 79 Parliament St
+          mobile_no: "447790123456"
+          postcode: L1 789
+          title: Mr
+          lastname: Smith
+          telephone_no: "442030123456"
+          company: Acme Ltd
+          email: card.holder@citypay.com
+        identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+        threedsecure:
+          downgrade1: true
+          accept_headers: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          merchant_termurl: merchant_termurl
+          tds_policy: tds_policy
+          user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36
+            (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
+        amount: 3600
+        card_holder_name: card_holder_name
+        expyear: 2023
+        csc_policy: csc_policy
+        mcc6012:
+          recipient_dob: recipient_dob
+          recipient_postcode: recipient_postcode
+          recipient_account: recipient_account
+          recipient_lastname: recipient_lastname
+        trans_info: trans_info
+        duplicate_policy: duplicate_policy
+        csc: "12"
+        merchantid: 11223344
+        expmonth: 9
+        airline_data:
+          number_in_party: 2
+          no_air_segments: 2
+          ticket_issue_name: Issue Name
+          transaction_type: TKT
+          eticket_indicator: true
+          passenger_name: NE Person
+          ticket_issue_city: London
+          conjunction_ticket_indicator: false
+          segment4:
+            segment_fare: 7500
+            flight_number: "772"
+            stop_over_indicator: "1"
+            class_service_code: CC
+            departure_date: 2020-08-01T00:00:00.000+0000
+            departure_location_code: JER
+            arrival_location_code: SOU
+            carrier_code: ZZ
+          ticket_issue_date: 2020-08-01T00:00:00.000+0000
+          segment3:
+            segment_fare: 7500
+            flight_number: "772"
+            stop_over_indicator: "1"
+            class_service_code: CC
+            departure_date: 2020-08-01T00:00:00.000+0000
+            departure_location_code: JER
+            arrival_location_code: SOU
+            carrier_code: ZZ
+          segment2:
+            segment_fare: 7500
+            flight_number: "772"
+            stop_over_indicator: "1"
+            class_service_code: CC
+            departure_date: 2020-08-01T00:00:00.000+0000
+            departure_location_code: JER
+            arrival_location_code: SOU
+            carrier_code: ZZ
+          segment1:
+            segment_fare: 7500
+            flight_number: "772"
+            stop_over_indicator: "1"
+            class_service_code: CC
+            departure_date: 2020-08-01T00:00:00.000+0000
+            departure_location_code: JER
+            arrival_location_code: SOU
+            carrier_code: ZZ
+          original_ticket_no: original_ticket_no
+          ticket_no: A112233
+          carrier_name: EG Air
+        match_avsa: match_avsa
+        avs_postcode_policy: avs_postcode_policy
+        currency: GBP
+        cardnumber: 4000 0000 0000 0002
+        external_mpi:
+          authen_result: authen_result
+          cavv: cavv
+          xid: xid
+          eci: 0
+          enrolled: enrolled
+        sdk: MyClient 1.3.0
+        ship_to:
+          area: London
+          country: GB
+          firstname: John
+          address3: address3
+          address2: Westminster
+          address1: 79 Parliament St
+          mobile_no: "447790123456"
+          postcode: L1 789
+          title: Mr
+          lastname: Smith
+          telephone_no: "442030123456"
+          company: Acme Ltd
+          email: card.holder@citypay.com
+        trans_type: trans_type
+      properties:
+        airline_data:
+          $ref: '#/components/schemas/AirlineAdvice'
+        amount:
+          description: |
+            The amount to authorise in the lowest unit of currency with a variable length to a maximum of 12 digits.
+            No decimal points are to be included and no divisional characters such as 1,024.
+            The amount should be the total amount required for the transaction.
+            For example with GBP £1,021.95 the amount value is 102195.
+          example: 3600
+          format: int32
+          maxLength: 12
+          minLength: 1
+          type: integer
+        avs_postcode_policy:
+          description: |
+            A policy value which determines whether an AVS postcode policy is enforced or bypassed.
+
+            Values are
+             `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+             `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.
+             `2` to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.
+             `3` to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation.
+          type: string
+        bill_to:
+          $ref: '#/components/schemas/ContactDetails'
+        card_holder_name:
+          description: |
+            The card holder name as appears on the card such as MR N E BODY. Required for some acquirers.
+          type: string
+        cardnumber:
+          description: |
+            The card number (PAN) with a variable length to a maximum of 21 digits in numerical form.
+            Any non numeric characters will be stripped out of the card number, this includes whitespace or separators internal of the
+            provided value.
+
+            The card number must be treated as sensitive data. We only provide an obfuscated value in logging and reporting.
+             The plaintext value is encrypted in our database using AES 256 GMC bit encryption for settlement or refund purposes.
+
+            When providing the card number to our gateway through the authorisation API you will be handling the card data on
+            your application. This will require further PCI controls to be in place and this value must never be stored.
+          example: 4000 0000 0000 0002
+          maxLength: 22
+          minLength: 12
+          type: string
+        csc:
+          description: |
+            The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card
+            (American Express has it on the front). The value helps to identify posession of the card as it is not
+            available within the chip or magnetic swipe.
+
+            When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped
+            out by any integer parsing.
+
+            The CSC number aids fraud prevention in Mail Order and Internet payments.
+
+             Business rules are available on your account to identify whether to accept
+            or decline transactions based on mismatched results of the CSC.
+
+            The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored.
+            This applies to all entities handling card data.
+            It should also not be used in any hashing process.
+            CityPay do not store the value and have no method of retrieving the value once the transaction has been processed.
+            For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm.
+          example: "12"
+          maxLength: 4
+          minLength: 3
+          type: string
+        csc_policy:
+          description: |
+            A policy value which determines whether a CSC policy is enforced or bypassed.
+
+            Values are
+             `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+             `1` for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.
+             `2` to bypass. Transactions that are bypassed will be allowed through even if the CSC did not match.
+             `3` to ignore. Transactions that are ignored will bypass the result and not send the CSC details for authorisation.
+          type: string
+        currency:
+          description: The processing currency for the transaction. Will default to
+            the merchant account currency.
+          example: GBP
+          maxLength: 3
+          minLength: 3
+          type: string
+        duplicate_policy:
+          description: |
+            A policy value which determines whether a duplication policy is enforced or bypassed. A duplication check has a window
+            of time set against your account within which it can action. If a previous transaction with matching values occurred within
+            the window, any subsequent transaction will result in a T001 result.
+
+            Values are
+             `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+             `1` for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.
+             `2` to bypass. Transactions that are bypassed will not be checked for duplication within the duplication window.
+             `3` to ignore. Transactions that are ignored will have the same affect as bypass.
+          type: string
+        expmonth:
+          description: |
+            The month of expiry of the card. The month value should be a numerical value between 1 and 12.
+          example: 9
+          format: int32
+          maximum: 12
+          minimum: 1
+          type: integer
+        expyear:
+          description: |
+            The year of expiry of the card.
+          example: 2023
+          format: int32
+          maximum: 2100
+          minimum: 2000
+          type: integer
+        external_mpi:
+          $ref: '#/components/schemas/ExternalMPI'
+        identifier:
+          description: |
+            The identifier of the transaction to process. The value should be a valid reference and may be used to perform
+             post processing actions and to aid in reconciliation of transactions.
+
+            The value should be a valid printable string with ASCII character ranges from 32 to 127.
+
+            The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)
+            this will aid in ensuring each transaction is identifiable.
+
+            When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent
+            request will ensure that a transaction is considered as different.
+          example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          maxLength: 50
+          minLength: 4
+          type: string
+        match_avsa:
+          description: |
+            A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.
+
+
+            Values are
+             `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+             `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.
+             `2` to bypass. Transactions that are bypassed will be allowed through even if the address did not match.
+             `3` to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation.
+          type: string
+        mcc6012:
+          $ref: '#/components/schemas/MCC6012'
+        merchantid:
+          description: Identifies the merchant account to perform processing for.
+          example: 11223344
+          format: int32
+          type: integer
+        sdk:
+          description: An optional reference value for the calling client such as
+            a version number i.e.
+          example: MyClient 1.3.0
+          type: string
+        ship_to:
+          $ref: '#/components/schemas/ContactDetails'
+        threedsecure:
+          $ref: '#/components/schemas/ThreeDSecure'
+        trans_info:
+          description: Further information that can be added to the transaction will
+            display in reporting. Can be used for flexible values such as operator
+            id.
+          maxLength: 50
+          type: string
+        trans_type:
+          description: The type of transaction being submitted. Normally this value
+            is not required and your account manager may request that you set this
+            field.
+          maxLength: 1
+          type: string
+      required:
+      - amount
+      - cardnumber
+      - expmonth
+      - expyear
+      - identifier
+      - merchantid
+      type: object
+    ListMerchantsResponse:
+      example:
+        clientid: PC12345
+        merchants:
+        - status_label: Active
+          merchantid: 11223344
+          name: Merchant 1
+          currency: GBP
+          status: A
+        - status_label: Active
+          merchantid: 11223344
+          name: Merchant 1
+          currency: GBP
+          status: A
+        client_name: client_name
+      properties:
+        client_name:
+          description: The client name that was requested.
+          type: string
+        clientid:
+          description: The client id requested.
+          example: PC12345
+          maxLength: 10
+          minLength: 3
+          type: string
+        merchants:
+          items:
+            $ref: '#/components/schemas/Merchant'
+          type: array
+      type: object
+    AccountCreate:
+      example:
+        account_id: aaabbb-cccddd-eee
+        contact:
+          area: London
+          country: GB
+          firstname: John
+          address3: address3
+          address2: Westminster
+          address1: 79 Parliament St
+          mobile_no: "447790123456"
+          postcode: L1 789
+          title: Mr
+          lastname: Smith
+          telephone_no: "442030123456"
+          company: Acme Ltd
+          email: card.holder@citypay.com
+      properties:
+        account_id:
+          description: |
+            A card holder account id used for uniquely identifying the account. This value will be used for future
+            referencing of the account oand to link your system to this API. This value is immutable and
+            never changes.
+          example: aaabbb-cccddd-eee
+          maxLength: 50
+          minLength: 5
+          type: string
+        contact:
+          $ref: '#/components/schemas/ContactDetails'
+      required:
+      - account_id
+      type: object
+    CardStatus:
+      example:
+        card_status: card_status
+        default: true
+      properties:
+        card_status:
+          description: The status of the card to set, valid values are ACTIVE or INACTIVE.
+          type: string
+        default:
+          description: Defines if the card is set as the default.
+          type: boolean
+      type: object
+    ContactDetails:
+      example:
+        area: London
+        country: GB
+        firstname: John
+        address3: address3
+        address2: Westminster
+        address1: 79 Parliament St
+        mobile_no: "447790123456"
+        postcode: L1 789
+        title: Mr
+        lastname: Smith
+        telephone_no: "442030123456"
+        company: Acme Ltd
+        email: card.holder@citypay.com
+      properties:
+        address1:
+          description: The first line of the address for the card holder.
+          example: 79 Parliament St
+          maxLength: 40
+          type: string
+        address2:
+          description: The second line of the address for the card holder.
+          example: Westminster
+          maxLength: 30
+          type: string
+        address3:
+          description: The third line of the address for the card holder.
+          maxLength: 20
+          type: string
+        area:
+          description: The area such as city, department, parish for the card holder.
+          example: London
+          maxLength: 20
+          type: string
+        company:
+          description: The company name for the card holder if the contact is a corporate
+            contact.
+          example: Acme Ltd
+          type: string
+        country:
+          description: |
+            The country code in ISO 3166 format. The country value may be used for fraud analysis and for
+              acceptance of the transaction.
+          example: GB
+          maxLength: 2
+          minLength: 2
+          type: string
+        email:
+          description: An email address for the card holder which may be used for
+            correspondence.
+          example: card.holder@citypay.com
+          type: string
+        firstname:
+          description: The first name  of the card holder.
+          example: John
+          type: string
+        lastname:
+          description: The last name or surname of the card holder.
+          example: Smith
+          type: string
+        mobile_no:
+          description: A mobile number for the card holder the mobile number is often
+            required by delivery companies to ensure they are able to be in contact
+            when required.
+          example: "447790123456"
+          maxLength: 20
+          type: string
+        postcode:
+          description: The postcode or zip code of the address which may be used for
+            fraud analysis.
+          example: L1 789
+          maxLength: 10
+          type: string
+        telephone_no:
+          description: A telephone number for the card holder.
+          example: "442030123456"
+          maxLength: 20
+          type: string
+        title:
+          description: A title for the card holder such as Mr, Mrs, Ms, M. Mme. etc.
+          example: Mr
+          type: string
+      type: object
+    VoidRequest:
+      example:
+        identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+        merchantid: 11223344
+        sdk: MyClient 1.3.0
+        transno: 78416
+      properties:
+        identifier:
+          description: The identifier of the transaction to void. If an empty value
+            is supplied then a `trans_no` value must be supplied.
+          example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          maxLength: 50
+          minLength: 4
+          type: string
+        merchantid:
+          description: Identifies the merchant account to perform the void for.
+          example: 11223344
+          format: int32
+          type: integer
+        sdk:
+          description: An optional reference value for the calling client such as
+            a version number i.e.
+          example: MyClient 1.3.0
+          type: string
+        transno:
+          description: The transaction number of the transaction to look up and void.
+            If an empty value is supplied then an identifier value must be supplied.
+          example: 78416
+          format: int32
+          type: integer
+      required:
+      - merchantid
+      type: object
+    AccountStatus:
+      example:
+        status: status
+      properties:
+        status:
+          description: The status of the account to set, valid values are ACTIVE or
+            DISABLED.
+          type: string
+      type: object
+    ThreeDSecure:
+      example:
+        downgrade1: true
+        accept_headers: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+        merchant_termurl: merchant_termurl
+        tds_policy: tds_policy
+        user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36
+          (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
+      properties:
+        accept_headers:
+          description: |
+            The content of the HTTP accept header as sent to the merchant from the cardholder's user agent.
+            This value will be validated by the ACS when the card holder authenticates themselves to verify that
+            no intermediary is performing this action. Required for 3DSv1.
+          example: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          type: string
+        downgrade1:
+          description: |
+            Where a merchant is configured for 3DSv2, setting this option will attempt to downgrade the transaction to
+             3DSv1.
+          type: boolean
+        merchant_termurl:
+          description: |
+            A controller URL for 3D-Secure processing that any response from an authentication request or
+            challenge request should be sent to.
+
+            The controller should forward on the response from the URL back via this API for subsequent processing.
+            Required if 3DSv1 or 3DSv2 is required.
+          type: string
+        tds_policy:
+          description: |
+            A policy value which determines whether ThreeDSecure is enforced or bypassed. Note that this will only work for
+            e-commerce transactions and accounts that have 3DSecure enabled and fully registered with Visa, MasterCard or
+            American Express. It is useful when transactions may be wanted to bypass processing rules.
+
+            Note that this may affect the liability shift of transactions and may occur a higher fee with the acquiring bank.
+
+            Values are
+             `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+             `1` for an enforced policy. Transactions will be enabled for 3DS processing
+             `2` to bypass. Transactions that are bypassed will switch off 3DS processing.
+          type: string
+        user_agent:
+          description: |
+            The content of the HTTP user-agent header as sent to the merchant from the cardholder's user agent.
+            This value will be validated by the ACS when the card holder authenticates themselves to verify that
+            no intermediary is performing this action. Required for 3DSv1.
+          example: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36
+            (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
+          type: string
+      type: object
+    PaResAuthRequest:
+      example:
+        md: md
+        pares: v66ycfSp8jNlvy7PkHbx44NEt3vox90+vZ/7Ll05Vid/jPfQn8adw+4D/vRDUGT19kndW97Hfirb...
+      properties:
+        md:
+          description: |
+            The Merchant Data (MD) which is a unique ID to reference the authentication session.
+            This value will be created by CityPay when required. When responding from the ACS,
+            this value will be returned by the ACS.
+          type: string
+        pares:
+          description: |
+            The Payer Authentication Response packet which is returned by the ACS containing the
+             response of the authentication session including verification values. The response
+             is a base64 encoded packet and should be forwarded to CityPay untouched.
+          example: v66ycfSp8jNlvy7PkHbx44NEt3vox90+vZ/7Ll05Vid/jPfQn8adw+4D/vRDUGT19kndW97Hfirb...
+          format: base64
+          type: string
+      required:
+      - md
+      - pares
+      type: object
+    AirlineAdvice:
+      example:
+        number_in_party: 2
+        no_air_segments: 2
+        ticket_issue_name: Issue Name
+        transaction_type: TKT
+        eticket_indicator: true
+        passenger_name: NE Person
+        ticket_issue_city: London
+        conjunction_ticket_indicator: false
+        segment4:
+          segment_fare: 7500
+          flight_number: "772"
+          stop_over_indicator: "1"
+          class_service_code: CC
+          departure_date: 2020-08-01T00:00:00.000+0000
+          departure_location_code: JER
+          arrival_location_code: SOU
+          carrier_code: ZZ
+        ticket_issue_date: 2020-08-01T00:00:00.000+0000
+        segment3:
+          segment_fare: 7500
+          flight_number: "772"
+          stop_over_indicator: "1"
+          class_service_code: CC
+          departure_date: 2020-08-01T00:00:00.000+0000
+          departure_location_code: JER
+          arrival_location_code: SOU
+          carrier_code: ZZ
+        segment2:
+          segment_fare: 7500
+          flight_number: "772"
+          stop_over_indicator: "1"
+          class_service_code: CC
+          departure_date: 2020-08-01T00:00:00.000+0000
+          departure_location_code: JER
+          arrival_location_code: SOU
+          carrier_code: ZZ
+        segment1:
+          segment_fare: 7500
+          flight_number: "772"
+          stop_over_indicator: "1"
+          class_service_code: CC
+          departure_date: 2020-08-01T00:00:00.000+0000
+          departure_location_code: JER
+          arrival_location_code: SOU
+          carrier_code: ZZ
+        original_ticket_no: original_ticket_no
+        ticket_no: A112233
+        carrier_name: EG Air
+      properties:
+        carrier_name:
+          description: The name of the airline carrier that generated the tickets
+            for airline travel.
+          example: EG Air
+          maxLength: 25
+          type: string
+        conjunction_ticket_indicator:
+          description: |
+            true if a conjunction ticket (with additional coupons) was issued for an itinerary
+            with more than four segments. Defaults to false.
+          example: false
+          type: boolean
+        eticket_indicator:
+          description: The Electronic Ticket Indicator, a code that indicates if an
+            electronic ticket was issued.  Defaults to true.
+          example: true
+          type: boolean
+        no_air_segments:
+          description: |
+            A value that indicates the number of air travel segments included on this ticket.
+            Valid entries include the numerals “0” through “4”. Required only if the transaction type is TKT or EXC.
+          example: 2
+          format: int32
+          maximum: 4
+          minimum: 0
+          type: integer
+        number_in_party:
+          description: The number of people in the party.
+          example: 2
+          format: int32
+          type: integer
+        original_ticket_no:
+          description: Required if transaction type is EXC.
+          maxLength: 14
+          type: string
+        passenger_name:
+          description: The name of the passenger when the traveller is not the card
+            member that purchased the ticket. Required only if the transaction type
+            is TKT or EXC.
+          example: NE Person
+          maxLength: 25
+          type: string
+        segment1:
+          $ref: '#/components/schemas/AirlineSegment'
+        segment2:
+          $ref: '#/components/schemas/AirlineSegment'
+        segment3:
+          $ref: '#/components/schemas/AirlineSegment'
+        segment4:
+          $ref: '#/components/schemas/AirlineSegment'
+        ticket_issue_city:
+          description: The name of the city town or village where the transaction
+            took place.
+          example: London
+          maxLength: 18
+          type: string
+        ticket_issue_date:
+          description: The date the ticket was issued in ISO Date format (yyyy-MM-dd).
+          example: 2020-08-01
+          format: date
+          maxLength: 10
+          type: string
+        ticket_issue_name:
+          description: The name of the agency generating the ticket.
+          example: Issue Name
+          maxLength: 26
+          type: string
+        ticket_no:
+          description: |
+            This must be a valid ticket number, i.e. numeric (the first 3 digits must represent the valid IATA plate carrier code).
+            The final check digit should be validated prior to submission. On credit charges, this field should contain the
+            number of the original ticket, and not of a replacement.
+          example: A112233
+          maxLength: 14
+          type: string
+        transaction_type:
+          description: |
+            This field contains the Transaction Type code assigned to this transaction. Valid codes include:
+
+             - `TKT` = Ticket Purchase
+             - `REF` = Refund
+             - `EXC` = Exchange Ticket
+             - `MSC` = Miscellaneous (non-Ticket Purchase- and non-Exchange Ticket-related transactions only).
+          example: TKT
+          maxLength: 3
+          minLength: 3
+          type: string
+      required:
+      - carrier_name
+      - number_in_party
+      - segment1
+      - ticket_issue_city
+      - ticket_issue_date
+      - ticket_issue_name
+      - ticket_no
+      - transaction_type
+      type: object
+    RegisterCard:
+      example:
+        default: true
+        expmonth: 9
+        expyear: 2023
+        cardnumber: 4000 0000 0000 0002
+      properties:
+        cardnumber:
+          description: The primary number of the card.
+          example: 4000 0000 0000 0002
+          maxLength: 22
+          minLength: 12
+          type: string
+        default:
+          description: Determines whether the card should be the new default card.
+          type: boolean
+        expmonth:
+          description: The expiry month of the card.
+          example: 9
+          format: int32
+          maximum: 12
+          minimum: 1
+          type: integer
+        expyear:
+          description: The expiry year of the card.
+          example: 2023
+          format: int32
+          maximum: 2100
+          minimum: 2000
+          type: integer
+      required:
+      - cardnumber
+      - expmonth
+      - expyear
+      type: object
+    Ping:
+      example:
+        identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+      properties:
+        identifier:
+          description: An identifier of the ping request which will be returned in
+            the response.
+          example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          maxLength: 50
+          minLength: 4
+          type: string
+      type: object
+    CaptureRequest:
+      example:
+        identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+        amount: 3600
+        merchantid: 11223344
+        airline_data:
+          number_in_party: 2
+          no_air_segments: 2
+          ticket_issue_name: Issue Name
+          transaction_type: TKT
+          eticket_indicator: true
+          passenger_name: NE Person
+          ticket_issue_city: London
+          conjunction_ticket_indicator: false
+          segment4:
+            segment_fare: 7500
+            flight_number: "772"
+            stop_over_indicator: "1"
+            class_service_code: CC
+            departure_date: 2020-08-01T00:00:00.000+0000
+            departure_location_code: JER
+            arrival_location_code: SOU
+            carrier_code: ZZ
+          ticket_issue_date: 2020-08-01T00:00:00.000+0000
+          segment3:
+            segment_fare: 7500
+            flight_number: "772"
+            stop_over_indicator: "1"
+            class_service_code: CC
+            departure_date: 2020-08-01T00:00:00.000+0000
+            departure_location_code: JER
+            arrival_location_code: SOU
+            carrier_code: ZZ
+          segment2:
+            segment_fare: 7500
+            flight_number: "772"
+            stop_over_indicator: "1"
+            class_service_code: CC
+            departure_date: 2020-08-01T00:00:00.000+0000
+            departure_location_code: JER
+            arrival_location_code: SOU
+            carrier_code: ZZ
+          segment1:
+            segment_fare: 7500
+            flight_number: "772"
+            stop_over_indicator: "1"
+            class_service_code: CC
+            departure_date: 2020-08-01T00:00:00.000+0000
+            departure_location_code: JER
+            arrival_location_code: SOU
+            carrier_code: ZZ
+          original_ticket_no: original_ticket_no
+          ticket_no: A112233
+          carrier_name: EG Air
+        sdk: MyClient 1.3.0
+        transno: 78416
+      properties:
+        airline_data:
+          $ref: '#/components/schemas/AirlineAdvice'
+        amount:
+          description: |
+            The completion amount provided in the lowest unit of currency for the specific currency of the merchant,
+            with a variable length to a maximum of 12 digits. No decimal points to be included. For example with
+            GBP 75.45 use the value 7545. Please check that you do not supply divisional characters such as 1,024 in the
+            request which may be caused by some number formatters.
+            If no amount is supplied, the original processing amount is used.
+          example: 3600
+          format: int32
+          maxLength: 12
+          minLength: 1
+          type: integer
+        identifier:
+          description: The identifier of the transaction to capture. If an empty value
+            is supplied then a `trans_no` value must be supplied.
+          example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          maxLength: 50
+          minLength: 4
+          type: string
+        merchantid:
+          description: Identifies the merchant account to perform the capture for.
+          example: 11223344
+          format: int32
+          type: integer
+        sdk:
+          description: An optional reference value for the calling client such as
+            a version number i.e.
+          example: MyClient 1.3.0
+          type: string
+        transno:
+          description: The transaction number of the transaction to look up and capture.
+            If an empty value is supplied then an identifier value must be supplied.
+          example: 78416
+          format: int32
+          type: integer
+      required:
+      - merchantid
+      type: object
+    Merchant:
+      example:
+        status_label: Active
+        merchantid: 11223344
+        name: Merchant 1
+        currency: GBP
+        status: A
+      properties:
+        currency:
+          description: The currency of the merchant.
+          example: GBP
+          type: string
+        merchantid:
+          description: The merchant id which uniquely identifies the merchant account.
+          example: 11223344
+          format: int32
+          type: integer
+        name:
+          description: The name of the merchant.
+          example: Merchant 1
+          type: string
+        status:
+          description: The status of the account.
+          example: A
+          type: string
+        status_label:
+          description: The status label of the account.
+          example: Active
+          type: string
+      type: object
+  securitySchemes:
+    cp-api-key:
+      description: |
+        The `cp-api-key` authentication header is required for all payment processing access.
+         All calls using this key will be validated against white listed IP addressing
+         and calls are scrutinised by the CityPay application firewall for security protection
+         and attack mitigation.
+
+         A key has been designed to:
+         - be temporal and time based. The key rotates frequently to protect against replay attacks and to ensure a
+           computation derives your client details from the request
+         - to remain secret, the key value is youur access permission to process transactions and
+           although we have preventative measures to protect the key, undue exposure is not desirable
+         - to allow processing against multiple merchant accounts that belong to your CityPay account.
+         - to use a HTTP header value to protect undue logging mechanisms from logging data packet values and
+           logically seperates authentication concerns from the body of data.
+      in: header
+      name: cp-api-key
+      type: apiKey
+
