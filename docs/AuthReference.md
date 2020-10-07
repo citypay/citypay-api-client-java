@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | **Integer** | The amount of the transaction in decimal currency format. |  [optional]
-**amountValue** | **String** | The amount of the transaction in integer/request format. |  [optional]
+**amount** | **String** | The amount of the transaction in decimal currency format. |  [optional]
+**amountValue** | **Integer** | The amount of the transaction in integer/request format. |  [optional]
 **atrn** | **String** | A reference number provided by the acquiring services. |  [optional]
 **authcode** | **String** | The authorisation code of the transaction returned by the acquirer or card issuer. |  [optional]
 **batchno** | **String** | A batch number which the transaction has been end of day batched towards. |  [optional]

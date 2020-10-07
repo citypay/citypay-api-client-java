@@ -6,9 +6,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**authentication** | [**AuthenRequired**](AuthenRequired.md) |  |  [optional]
-**challenge** | [**RequestChallenged**](RequestChallenged.md) |  |  [optional]
-**result** | [**AuthResponse**](AuthResponse.md) |  |  [optional]
+**authenRequired** | [**AuthenRequired**](AuthenRequired.md) |  |  [optional]
+**authResponse** | [**AuthResponse**](AuthResponse.md) |  |  [optional]
+**requestChallenged** | [**RequestChallenged**](RequestChallenged.md) |  |  [optional]
 
 
 
