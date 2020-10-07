@@ -31,7 +31,6 @@ import java.io.IOException;
 /**
  * AuthRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-07T09:17:31.584Z[GMT]")
 public class AuthRequest {
   public static final String SERIALIZED_NAME_AIRLINE_DATA = "airline_data";
   @SerializedName(SERIALIZED_NAME_AIRLINE_DATA)

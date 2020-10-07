@@ -2,7 +2,7 @@
 
 CityPay Payment API
 - API version: 6.0.9
-  - Build date: 2020-10-07T09:17:31.584Z[GMT]
+  - Build date: 2020-10-07T10:10:36.678Z[GMT]
 
 
 This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It

@@ -26,7 +26,6 @@ import java.io.IOException;
 /**
  * ExternalMPI
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-07T09:17:31.584Z[GMT]")
 public class ExternalMPI {
   public static final String SERIALIZED_NAME_AUTHEN_RESULT = "authen_result";
   @SerializedName(SERIALIZED_NAME_AUTHEN_RESULT)

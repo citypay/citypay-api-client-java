@@ -26,7 +26,6 @@ import java.io.IOException;
 /**
  * CardStatus
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-07T09:17:31.584Z[GMT]")
 public class CardStatus {
   public static final String SERIALIZED_NAME_CARD_STATUS = "card_status";
   @SerializedName(SERIALIZED_NAME_CARD_STATUS)

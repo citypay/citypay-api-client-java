@@ -29,7 +29,6 @@ import java.io.IOException;
 /**
  * Decision
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-07T09:17:31.584Z[GMT]")
 public class Decision {
   public static final String SERIALIZED_NAME_AUTHEN_REQUIRED = "AuthenRequired";
   @SerializedName(SERIALIZED_NAME_AUTHEN_REQUIRED)

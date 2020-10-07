@@ -29,7 +29,6 @@ import java.util.List;
 /**
  * ListMerchantsResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-07T09:17:31.584Z[GMT]")
 public class ListMerchantsResponse {
   public static final String SERIALIZED_NAME_CLIENT_NAME = "client_name";
   @SerializedName(SERIALIZED_NAME_CLIENT_NAME)

@@ -26,7 +26,6 @@ import java.io.IOException;
 /**
  * ThreeDSecure
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-07T09:17:31.584Z[GMT]")
 public class ThreeDSecure {
   public static final String SERIALIZED_NAME_ACCEPT_HEADERS = "accept_headers";
   @SerializedName(SERIALIZED_NAME_ACCEPT_HEADERS)

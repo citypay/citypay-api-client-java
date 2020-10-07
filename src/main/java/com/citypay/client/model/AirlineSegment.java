@@ -27,7 +27,6 @@ import java.time.LocalDate;
 /**
  * AirlineSegment
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-07T09:17:31.584Z[GMT]")
 public class AirlineSegment {
   public static final String SERIALIZED_NAME_ARRIVAL_LOCATION_CODE = "arrival_location_code";
   @SerializedName(SERIALIZED_NAME_ARRIVAL_LOCATION_CODE)

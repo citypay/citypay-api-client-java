@@ -26,7 +26,6 @@ import java.io.IOException;
 /**
  * RequestChallenged
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-07T09:17:31.584Z[GMT]")
 public class RequestChallenged {
   public static final String SERIALIZED_NAME_ACS_URL = "acs_url";
   @SerializedName(SERIALIZED_NAME_ACS_URL)
