@@ -12,63 +12,35 @@
 
 package com.citypay.client.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import org.junit.Assert;
-import org.junit.Ignore;
+import com.citypay.client.JSON;
+import com.google.gson.reflect.TypeToken;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 
 /**
  * Model tests for Acknowledgement
  */
 public class AcknowledgementTest {
-    private final Acknowledgement model = new Acknowledgement();
+
+    private final Acknowledgement ack = new JSON().deserialize("{\n" +
+            "    \"code\": \"000\",\n" +
+            "    \"context\": \"1B12WmDZB3EYSbb\",\n" +
+            "    \"identifier\": \"testIdentifier\",\n" +
+            "    \"message\": \"System: Accepted Transaction\"\n" +
+            "}   ", new TypeToken<Acknowledgement>(){}.getType());
 
     /**
      * Model tests for Acknowledgement
      */
     @Test
     public void testAcknowledgement() {
-        // TODO: test Acknowledgement
-    }
+        assertEquals("000",ack.getCode());
+        assertEquals("1B12WmDZB3EYSbb",ack.getContext());
+        assertEquals("testIdentifier",ack.getIdentifier());
+        assertEquals("System: Accepted Transaction",ack.getMessage());
 
-    /**
-     * Test the property 'code'
-     */
-    @Test
-    public void codeTest() {
-        // TODO: test code
-    }
-
-    /**
-     * Test the property 'context'
-     */
-    @Test
-    public void contextTest() {
-        // TODO: test context
-    }
-
-    /**
-     * Test the property 'identifier'
-     */
-    @Test
-    public void identifierTest() {
-        // TODO: test identifier
-    }
-
-    /**
-     * Test the property 'message'
-     */
-    @Test
-    public void messageTest() {
-        // TODO: test message
     }
 
 }

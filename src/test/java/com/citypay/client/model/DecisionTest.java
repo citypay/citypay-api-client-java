@@ -12,34 +12,59 @@
 
 package com.citypay.client.model;
 
-import com.citypay.client.model.AuthResponse;
-import com.citypay.client.model.AuthenRequired;
-import com.citypay.client.model.RequestChallenged;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import org.junit.Assert;
-import org.junit.Ignore;
+import com.citypay.client.JSON;
+import com.google.gson.reflect.TypeToken;
+
 import org.junit.Test;
 
+import java.time.OffsetDateTime;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Model tests for Decision
  */
 public class DecisionTest {
-    private final Decision model = new Decision();
+    private final Decision decision = new JSON().deserialize("{\n" +
+            "    \"AuthResponse\": {\n" +
+            "        \"amount\": 5500,\n" +
+            "        \"atrn\": \"atrn1\",\n" +
+            "        \"atsd\": \"a\",\n" +
+            "        \"authcode\": \"12345\",\n" +
+            "        \"authen_result\": \"R\",\n" +
+            "        \"authorised\": true,\n" +
+            "        \"avs_result\": \"G\",\n" +
+            "        \"bin_commercial\": false,\n" +
+            "        \"bin_debit\": false,\n" +
+            "        \"bin_description\": \"bin_desc\",\n" +
+            "        \"cavv\": \"cavvvvvvvvvvvvv\",\n" +
+            "        \"context\": \"20200812075906AAAGV4\",\n" +
+            "        \"csc_result\": \"C\",\n" +
+            "        \"currency\": \"GBP\",\n" +
+            "        \"datetime\": \"2020-08-12T07:59:11Z\",\n" +
+            "        \"eci\": \"0\",\n" +
+            "        \"identifier\": \"ident1\",\n" +
+            "        \"live\": true,\n" +
+            "        \"maskedpan\": \"400000******0002\",\n" +
+            "        \"merchantid\": 12345,\n" +
+            "        \"result\": 1,\n" +
+            "        \"result_code\": \"000\",\n" +
+            "        \"result_message\": \"System: Accepted Transaction\",\n" +
+            "        \"scheme\": \"VISA_BUSINESS\",\n" +
+            "        \"sha256\": \"abcdefg\",\n" +
+            "        \"trans_status\": \"P\",\n" +
+            "        \"transno\": 74875\n" +
+            "    }\n" +
+            "}", new TypeToken<Decision>(){}.getType());
 
     /**
      * Model tests for Decision
      */
     @Test
     public void testDecision() {
-        // TODO: test Decision
+        assert decision.getAuthenRequired()==null;
+        assert decision.getAuthResponse()!=null;
+        assert decision.getRequestChallenged()==null;
     }
 
     /**
@@ -63,7 +88,34 @@ public class DecisionTest {
      */
     @Test
     public void resultTest() {
-        // TODO: test result
+        AuthResponse result = decision.getAuthResponse();
+        assert result != null;
+        assertEquals(Integer.valueOf(5500), result.getAmount());
+        assertEquals("atrn1", result.getAtrn());
+        assertEquals("a", result.getAtsd());
+        assertEquals("12345", result.getAuthcode());
+        assertEquals("R", result.getAuthenResult());
+        assertEquals(true, result.isAuthorised());
+        assertEquals("G", result.getAvsResult());
+        assertEquals(false, result.isBinCommercial());
+        assertEquals(false, result.isBinDebit());
+        assertEquals("bin_desc", result.getBinDescription());
+        assertEquals("cavvvvvvvvvvvvv", result.getCavv());
+        assertEquals("20200812075906AAAGV4", result.getContext());
+        assertEquals("C", result.getCscResult());
+        assertEquals("GBP", result.getCurrency());
+        assertEquals(OffsetDateTime.parse("2020-08-12T07:59:11Z"), result.getDatetime());
+        assertEquals("0", result.getEci());
+        assertEquals("ident1", result.getIdentifier());
+        assertEquals(true, result.isLive());
+        assertEquals("400000******0002", result.getMaskedpan());
+        assertEquals(Integer.valueOf(12345), result.getMerchantid());
+        assertEquals(Integer.valueOf(1), result.getResult());
+        assertEquals("000", result.getResultCode());
+        assertEquals("System: Accepted Transaction", result.getResultMessage());
+        assertEquals("VISA_BUSINESS", result.getScheme());
+        assertEquals("abcdefg", result.getSha256());
+        assertEquals("P", result.getTransStatus());
+        assertEquals(Integer.valueOf(74875), result.getTransno());
     }
-
 }

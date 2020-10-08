@@ -12,9 +12,11 @@
 
 package com.citypay.client.model;
 
+import com.citypay.client.JSON;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
@@ -24,19 +26,26 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 
 /**
  * Model tests for Error
  */
 public class ErrorTest {
-    private final Error model = new Error();
+    private final Error error = new JSON().deserialize("{\n" +
+            "            \"code\": \"000\",\n" +
+            "            \"context\": \"aspiu352908ns47n343598bads\",\n" +
+            "            \"identifier\": \"95b857a1-5955-4b86-963c-5a6dbfc4fb95\",\n" +
+            "            \"message\": \"Approved 044332\"\n" +
+            "        }", new TypeToken<Error>(){}.getType());
 
     /**
      * Model tests for Error
      */
     @Test
     public void testError() {
-        // TODO: test Error
+        assert error!=null;
     }
 
     /**
@@ -44,7 +53,7 @@ public class ErrorTest {
      */
     @Test
     public void codeTest() {
-        // TODO: test code
+        assertEquals("000", error.getCode());
     }
 
     /**
@@ -52,7 +61,7 @@ public class ErrorTest {
      */
     @Test
     public void contextTest() {
-        // TODO: test context
+        assertEquals("aspiu352908ns47n343598bads", error.getContext());
     }
 
     /**
@@ -60,7 +69,7 @@ public class ErrorTest {
      */
     @Test
     public void identifierTest() {
-        // TODO: test identifier
+        assertEquals("95b857a1-5955-4b86-963c-5a6dbfc4fb95", error.getIdentifier());
     }
 
     /**
@@ -68,7 +77,7 @@ public class ErrorTest {
      */
     @Test
     public void messageTest() {
-        // TODO: test message
+        assertEquals("Approved 044332", error.getMessage());
     }
 
 }

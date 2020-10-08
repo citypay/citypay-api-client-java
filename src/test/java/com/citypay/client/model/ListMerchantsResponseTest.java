@@ -12,10 +12,12 @@
 
 package com.citypay.client.model;
 
+import com.citypay.client.JSON;
 import com.citypay.client.model.Merchant;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
@@ -27,19 +29,39 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 
 /**
  * Model tests for ListMerchantsResponse
  */
 public class ListMerchantsResponseTest {
-    private final ListMerchantsResponse model = new ListMerchantsResponse();
+    private final ListMerchantsResponse listMerchantsResponse = new JSON().deserialize("{\n" +
+            "        \"client_name\": \"CityPay Demo\",\n" +
+            "        \"clientid\": \"PC123456\",\n" +
+            "        \"merchants\": [\n" +
+            "            {\n" +
+            "                \"currency\": \"GBP\",\n" +
+            "                \"merchantid\": 12345678,\n" +
+            "                \"name\": \"CityPay One\",\n" +
+            "                \"status\": \"T\",\n" +
+            "                \"status_label\": \"Test\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "                \"currency\": \"GBP\",\n" +
+            "                \"merchantid\": 87654321,\n" +
+            "                \"name\": \"CityPay Two\",\n" +
+            "                \"status\": \"T\",\n" +
+            "                \"status_label\": \"Test\"\n" +
+            "            }\n" +
+            "        ]\n" +
+            "}", new TypeToken<ListMerchantsResponse>(){}.getType());
 
     /**
      * Model tests for ListMerchantsResponse
      */
     @Test
     public void testListMerchantsResponse() {
-        // TODO: test ListMerchantsResponse
+        assert listMerchantsResponse!=null;
     }
 
     /**
@@ -47,7 +69,7 @@ public class ListMerchantsResponseTest {
      */
     @Test
     public void clientNameTest() {
-        // TODO: test clientName
+        assertEquals("CityPay Demo", listMerchantsResponse.getClientName());
     }
 
     /**
@@ -55,7 +77,7 @@ public class ListMerchantsResponseTest {
      */
     @Test
     public void clientidTest() {
-        // TODO: test clientid
+        assertEquals("PC123456", listMerchantsResponse.getClientid());
     }
 
     /**
@@ -63,7 +85,19 @@ public class ListMerchantsResponseTest {
      */
     @Test
     public void merchantsTest() {
-        // TODO: test merchants
+        List<Merchant> merchants = listMerchantsResponse.getMerchants();
+        assert merchants!=null;
+        assertEquals("GBP", merchants.get(0).getCurrency());
+        assertEquals(Integer.valueOf(12345678), merchants.get(0).getMerchantid());
+        assertEquals("CityPay One", merchants.get(0).getName());
+        assertEquals("T", merchants.get(0).getStatus());
+        assertEquals("Test", merchants.get(0).getStatusLabel());
+
+        assertEquals("GBP", merchants.get(1).getCurrency());
+        assertEquals(Integer.valueOf(87654321), merchants.get(1).getMerchantid());
+        assertEquals("CityPay Two", merchants.get(1).getName());
+        assertEquals("T", merchants.get(1).getStatus());
+        assertEquals("Test", merchants.get(1).getStatusLabel());
     }
 
 }

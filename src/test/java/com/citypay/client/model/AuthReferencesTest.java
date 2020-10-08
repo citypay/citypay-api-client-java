@@ -12,42 +12,60 @@
 
 package com.citypay.client.model;
 
-import com.citypay.client.model.AuthReference;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import org.junit.Assert;
-import org.junit.Ignore;
+import com.citypay.client.JSON;
+import com.google.gson.reflect.TypeToken;
 import org.junit.Test;
+
+import java.time.OffsetDateTime;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 
 /**
  * Model tests for AuthReferences
  */
 public class AuthReferencesTest {
-    private final AuthReferences model = new AuthReferences();
+
+    private final AuthReferences authReferences = new JSON().deserialize("{\"auths\": [\n" +
+            "          {\n" +
+            "              \"amount\": \"0.12\",\n" +
+            "              \"amount_value\": 12,\n" +
+            "              \"atrn\": null,\n" +
+            "              \"authcode\": \"A12345\",\n" +
+            "              \"batchno\": null,\n" +
+            "              \"currency\": \"GBP\",\n" +
+            "              \"datetime\": \"2020-07-21T15:55:04Z\",\n" +
+            "              \"identifier\": \"TestingAPI\",\n" +
+            "              \"maskedpan\": \"400000******0000\",\n" +
+            "              \"merchantid\": 12345678,\n" +
+            "              \"result\": \"Accepted\",\n" +
+            "              \"trans_status\": \"O\",\n" +
+            "              \"trans_type\": \"S\",\n" +
+            "              \"transno\": 88\n" +
+            "          }\n" +
+            "      ]\n" +
+            "} ", new TypeToken<AuthReferences>(){}.getType());
 
     /**
      * Model tests for AuthReferences
      */
     @Test
     public void testAuthReferences() {
-        // TODO: test AuthReferences
+        assert authReferences.getAuths() != null;
+        assertEquals("0.12", authReferences.getAuths().get(0).getAmount());
+        assertEquals(Integer.valueOf(12), authReferences.getAuths().get(0).getAmountValue());
+        assertNull(authReferences.getAuths().get(0).getAtrn());
+        assertEquals("A12345", authReferences.getAuths().get(0).getAuthcode());
+        assertNull(authReferences.getAuths().get(0).getBatchno());
+        assertEquals("GBP", authReferences.getAuths().get(0).getCurrency());
+        assertEquals(OffsetDateTime.parse("2020-07-21T15:55:04Z"), authReferences.getAuths().get(0).getDatetime());
+        assertEquals("TestingAPI", authReferences.getAuths().get(0).getIdentifier());
+        assertEquals("400000******0000", authReferences.getAuths().get(0).getMaskedpan());
+        assertEquals(Integer.valueOf(12345678), authReferences.getAuths().get(0).getMerchantid());
+        assertEquals("Accepted", authReferences.getAuths().get(0).getResult());
+        assertEquals("O", authReferences.getAuths().get(0).getTransStatus());
+        assertEquals("S", authReferences.getAuths().get(0).getTransType());
+        assertEquals(Integer.valueOf(88), authReferences.getAuths().get(0).getTransno());
     }
-
-    /**
-     * Test the property 'auths'
-     */
-    @Test
-    public void authsTest() {
-        // TODO: test auths
-    }
-
 }

@@ -12,9 +12,11 @@
 
 package com.citypay.client.model;
 
+import com.citypay.client.JSON;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
@@ -25,19 +27,50 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+
 
 /**
  * Model tests for AuthResponse
  */
 public class AuthResponseTest {
-    private final AuthResponse model = new AuthResponse();
+    private final AuthResponse authResponse = new JSON().deserialize("{\n" +
+                    "          \"amount\": 5500,\n" +
+                    "          \"atrn\": \"atrn1\",\n" +
+                    "          \"atsd\": \"a\",\n" +
+                    "          \"authcode\": \"12345\",\n" +
+                    "          \"authen_result\": \"R\",\n" +
+                    "          \"authorised\": true,\n" +
+                    "          \"avs_result\": \"G\",\n" +
+                    "          \"bin_commercial\": false,\n" +
+                    "          \"bin_debit\": false,\n" +
+                    "          \"bin_description\": \"bin_desc\",\n" +
+                    "          \"cavv\": \"cavvvvvvvvvvvvv\",\n" +
+                    "          \"context\": \"20200812075906AAAGV4\",\n" +
+                    "          \"csc_result\": \"C\",\n" +
+                    "          \"currency\": \"GBP\",\n" +
+                    "          \"datetime\": \"2020-08-12T07:59:11Z\",\n" +
+                    "          \"eci\": \"0\",\n" +
+                    "          \"identifier\": \"ident1\",\n" +
+                    "          \"live\": true,\n" +
+                    "          \"maskedpan\": \"400000******0002\",\n" +
+                    "          \"merchantid\": 12345,\n" +
+                    "          \"result\": 1,\n" +
+                    "          \"result_code\": \"000\",\n" +
+                    "          \"result_message\": \"System: Accepted Transaction\",\n" +
+                    "          \"scheme\": \"VISA_BUSINESS\",\n" +
+                    "          \"sha256\": \"abcdefg\",\n" +
+                    "          \"trans_status\": \"P\",\n" +
+                    "          \"transno\": 74875\n" +
+                    "        }",
+            new TypeToken<AuthResponse>(){}.getType());
 
     /**
      * Model tests for AuthResponse
      */
     @Test
     public void testAuthResponse() {
-        // TODO: test AuthResponse
+        assert authResponse != null;
     }
 
     /**
@@ -45,7 +78,7 @@ public class AuthResponseTest {
      */
     @Test
     public void amountTest() {
-        // TODO: test amount
+        assertEquals(Integer.valueOf(5500), authResponse.getAmount());
     }
 
     /**
@@ -53,7 +86,7 @@ public class AuthResponseTest {
      */
     @Test
     public void atrnTest() {
-        // TODO: test atrn
+        assertEquals("atrn1", authResponse.getAtrn());
     }
 
     /**
@@ -61,7 +94,7 @@ public class AuthResponseTest {
      */
     @Test
     public void atsdTest() {
-        // TODO: test atsd
+        assertEquals("a", authResponse.getAtsd());
     }
 
     /**
@@ -69,7 +102,7 @@ public class AuthResponseTest {
      */
     @Test
     public void authcodeTest() {
-        // TODO: test authcode
+        assertEquals("12345", authResponse.getAuthcode());
     }
 
     /**
@@ -77,7 +110,7 @@ public class AuthResponseTest {
      */
     @Test
     public void authenResultTest() {
-        // TODO: test authenResult
+        assertEquals("R", authResponse.getAuthenResult());
     }
 
     /**
@@ -85,7 +118,7 @@ public class AuthResponseTest {
      */
     @Test
     public void authorisedTest() {
-        // TODO: test authorised
+        assertTrue(authResponse.isAuthorised());
     }
 
     /**
@@ -93,7 +126,7 @@ public class AuthResponseTest {
      */
     @Test
     public void avsResultTest() {
-        // TODO: test avsResult
+        assertEquals("G", authResponse.getAvsResult());
     }
 
     /**
@@ -101,7 +134,7 @@ public class AuthResponseTest {
      */
     @Test
     public void binCommercialTest() {
-        // TODO: test binCommercial
+        assertFalse(authResponse.isBinCommercial());
     }
 
     /**
@@ -109,7 +142,7 @@ public class AuthResponseTest {
      */
     @Test
     public void binDebitTest() {
-        // TODO: test binDebit
+        assertFalse(authResponse.isBinDebit());
     }
 
     /**
@@ -117,7 +150,7 @@ public class AuthResponseTest {
      */
     @Test
     public void binDescriptionTest() {
-        // TODO: test binDescription
+        assertEquals("bin_desc", authResponse.getBinDescription());
     }
 
     /**
@@ -125,7 +158,7 @@ public class AuthResponseTest {
      */
     @Test
     public void cavvTest() {
-        // TODO: test cavv
+        assertEquals("cavvvvvvvvvvvvv", authResponse.getCavv());
     }
 
     /**
@@ -133,7 +166,7 @@ public class AuthResponseTest {
      */
     @Test
     public void contextTest() {
-        // TODO: test context
+        assertEquals("20200812075906AAAGV4", authResponse.getContext());
     }
 
     /**
@@ -141,7 +174,7 @@ public class AuthResponseTest {
      */
     @Test
     public void cscResultTest() {
-        // TODO: test cscResult
+        assertEquals("C", authResponse.getCscResult());
     }
 
     /**
@@ -149,7 +182,7 @@ public class AuthResponseTest {
      */
     @Test
     public void currencyTest() {
-        // TODO: test currency
+        assertEquals("GBP", authResponse.getCurrency());
     }
 
     /**
@@ -157,7 +190,7 @@ public class AuthResponseTest {
      */
     @Test
     public void datetimeTest() {
-        // TODO: test datetime
+        assertEquals(OffsetDateTime.parse("2020-08-12T07:59:11Z"), authResponse.getDatetime());
     }
 
     /**
@@ -165,7 +198,7 @@ public class AuthResponseTest {
      */
     @Test
     public void eciTest() {
-        // TODO: test eci
+        assertEquals("0", authResponse.getEci());
     }
 
     /**
@@ -173,7 +206,7 @@ public class AuthResponseTest {
      */
     @Test
     public void identifierTest() {
-        // TODO: test identifier
+        assertEquals("ident1", authResponse.getIdentifier());
     }
 
     /**
@@ -181,7 +214,7 @@ public class AuthResponseTest {
      */
     @Test
     public void liveTest() {
-        // TODO: test live
+        assertTrue(authResponse.isLive());
     }
 
     /**
@@ -189,7 +222,7 @@ public class AuthResponseTest {
      */
     @Test
     public void maskedpanTest() {
-        // TODO: test maskedpan
+        assertEquals("400000******0002", authResponse.getMaskedpan());
     }
 
     /**
@@ -197,7 +230,7 @@ public class AuthResponseTest {
      */
     @Test
     public void merchantidTest() {
-        // TODO: test merchantid
+        assertEquals(Integer.valueOf(12345), authResponse.getMerchantid());
     }
 
     /**
@@ -205,7 +238,7 @@ public class AuthResponseTest {
      */
     @Test
     public void resultTest() {
-        // TODO: test result
+        assertEquals(Integer.valueOf(1), authResponse.getResult());
     }
 
     /**
@@ -213,7 +246,7 @@ public class AuthResponseTest {
      */
     @Test
     public void resultCodeTest() {
-        // TODO: test resultCode
+        assertEquals("000", authResponse.getResultCode());
     }
 
     /**
@@ -221,7 +254,7 @@ public class AuthResponseTest {
      */
     @Test
     public void resultMessageTest() {
-        // TODO: test resultMessage
+        assertEquals("System: Accepted Transaction", authResponse.getResultMessage());
     }
 
     /**
@@ -229,7 +262,7 @@ public class AuthResponseTest {
      */
     @Test
     public void schemeTest() {
-        // TODO: test scheme
+        assertEquals("VISA_BUSINESS", authResponse.getScheme());
     }
 
     /**
@@ -237,7 +270,7 @@ public class AuthResponseTest {
      */
     @Test
     public void sha256Test() {
-        // TODO: test sha256
+        assertEquals("abcdefg", authResponse.getSha256());
     }
 
     /**
@@ -245,7 +278,7 @@ public class AuthResponseTest {
      */
     @Test
     public void transStatusTest() {
-        // TODO: test transStatus
+        assertEquals("P", authResponse.getTransStatus());
     }
 
     /**
@@ -253,7 +286,7 @@ public class AuthResponseTest {
      */
     @Test
     public void transnoTest() {
-        // TODO: test transno
+        assertEquals(Integer.valueOf(74875), authResponse.getTransno());
     }
 
 }

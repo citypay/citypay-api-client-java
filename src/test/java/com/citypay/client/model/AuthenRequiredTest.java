@@ -12,31 +12,41 @@
 
 package com.citypay.client.model;
 
+import com.citypay.client.JSON;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 
 /**
  * Model tests for AuthenRequired
  */
 public class AuthenRequiredTest {
-    private final AuthenRequired model = new AuthenRequired();
+    private final AuthenRequired authenRequired = new JSON().deserialize("{\n" +
+                    "               \"acs_url\": \"https://www.acs.com/tdsecure/opt_in_dispatcher.jsp?partner=debit&VAA=B\",\n" +
+                    "                \"md\": \"0000000000000000000022\",\n" +
+                    "                \"pareq\": \"eJxVUm1v2yAQ/itWv8dg/B5dmJyfw==\"\n" +
+                    "            }",
+            new TypeToken<AuthenRequired>(){}.getType());
 
     /**
      * Model tests for AuthenRequired
      */
     @Test
     public void testAuthenRequired() {
-        // TODO: test AuthenRequired
+        assert authenRequired!=null;
     }
 
     /**
@@ -44,7 +54,7 @@ public class AuthenRequiredTest {
      */
     @Test
     public void acsUrlTest() {
-        // TODO: test acsUrl
+        assertEquals("https://www.acs.com/tdsecure/opt_in_dispatcher.jsp?partner=debit&VAA=B", authenRequired.getAcsUrl());
     }
 
     /**
@@ -52,7 +62,7 @@ public class AuthenRequiredTest {
      */
     @Test
     public void mdTest() {
-        // TODO: test md
+        assertEquals("0000000000000000000022", authenRequired.getMd());
     }
 
     /**
@@ -60,7 +70,7 @@ public class AuthenRequiredTest {
      */
     @Test
     public void pareqTest() {
-        // TODO: test pareq
+        assertEquals("eJxVUm1v2yAQ/itWv8dg/B5dmJyfw==", authenRequired.getPareq());
     }
 
 }
