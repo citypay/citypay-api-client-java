@@ -22,118 +22,90 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.time.*;
 
 /**
- * RegisterCard
+ * Exists
  */
-public class RegisterCard {
-  public static final String SERIALIZED_NAME_CARDNUMBER = "cardnumber";
-  @SerializedName(SERIALIZED_NAME_CARDNUMBER)
-  private String cardnumber;
+public class Exists {
+  public static final String SERIALIZED_NAME_ACTIVE = "active";
+  @SerializedName(SERIALIZED_NAME_ACTIVE)
+  private Boolean active;
 
-  public static final String SERIALIZED_NAME_DEFAULT = "default";
-  @SerializedName(SERIALIZED_NAME_DEFAULT)
-  private Boolean _default;
+  public static final String SERIALIZED_NAME_EXISTS = "exists";
+  @SerializedName(SERIALIZED_NAME_EXISTS)
+  private Boolean exists;
 
-  public static final String SERIALIZED_NAME_EXPMONTH = "expmonth";
-  @SerializedName(SERIALIZED_NAME_EXPMONTH)
-  private Integer expmonth;
-
-  public static final String SERIALIZED_NAME_EXPYEAR = "expyear";
-  @SerializedName(SERIALIZED_NAME_EXPYEAR)
-  private Integer expyear;
+  public static final String SERIALIZED_NAME_LAST_MODIFIED = "last_modified";
+  @SerializedName(SERIALIZED_NAME_LAST_MODIFIED)
+  private OffsetDateTime lastModified = null;
 
 
-  public RegisterCard cardnumber(String cardnumber) {
+  public Exists active(Boolean active) {
     
-    this.cardnumber = cardnumber;
+    this.active = active;
     return this;
   }
 
    /**
-   * The primary number of the card.
-   * @return cardnumber
-  **/
-  @ApiModelProperty(example = "4000 0000 0000 0002", required = true, value = "The primary number of the card.")
-
-  public String getCardnumber() {
-    return cardnumber;
-  }
-
-
-  public void setCardnumber(String cardnumber) {
-    this.cardnumber = cardnumber;
-  }
-
-
-  public RegisterCard _default(Boolean _default) {
-    
-    this._default = _default;
-    return this;
-  }
-
-   /**
-   * Determines whether the card should be the new default card.
-   * @return _default
+   * Boolean value whether the entity is active.
+   * @return active
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Determines whether the card should be the new default card.")
+  @ApiModelProperty(example = "true", value = "Boolean value whether the entity is active.")
 
-  public Boolean isDefault() {
-    return _default;
+  public Boolean isActive() {
+    return active;
   }
 
 
-  public void setDefault(Boolean _default) {
-    this._default = _default;
+  public void setActive(Boolean active) {
+    this.active = active;
   }
 
 
-  public RegisterCard expmonth(Integer expmonth) {
+  public Exists exists(Boolean exists) {
     
-    this.expmonth = expmonth;
+    this.exists = exists;
     return this;
   }
 
    /**
-   * The expiry month of the card.
-   * minimum: 1
-   * maximum: 12
-   * @return expmonth
+   * Boolean value whether the entity exists.
+   * @return exists
   **/
-  @ApiModelProperty(example = "9", required = true, value = "The expiry month of the card.")
+  @ApiModelProperty(example = "true", required = true, value = "Boolean value whether the entity exists.")
 
-  public Integer getExpmonth() {
-    return expmonth;
+  public Boolean isExists() {
+    return exists;
   }
 
 
-  public void setExpmonth(Integer expmonth) {
-    this.expmonth = expmonth;
+  public void setExists(Boolean exists) {
+    this.exists = exists;
   }
 
 
-  public RegisterCard expyear(Integer expyear) {
+  public Exists lastModified(OffsetDateTime lastModified) {
     
-    this.expyear = expyear;
+    this.lastModified = lastModified;
     return this;
   }
 
    /**
-   * The expiry year of the card.
-   * minimum: 2000
-   * maximum: 2100
-   * @return expyear
+   * The last modified date of the entity.
+   * @return lastModified
   **/
-  @ApiModelProperty(example = "2023", required = true, value = "The expiry year of the card.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2020-01-02T18:32:28Z", value = "The last modified date of the entity.")
 
-  public Integer getExpyear() {
-    return expyear;
+  public OffsetDateTime getLastModified() {
+    return lastModified;
   }
 
 
-  public void setExpyear(Integer expyear) {
-    this.expyear = expyear;
+  public void setLastModified(OffsetDateTime lastModified) {
+    this.lastModified = lastModified;
   }
 
 
@@ -145,27 +117,25 @@ public class RegisterCard {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RegisterCard registerCard = (RegisterCard) o;
-    return Objects.equals(this.cardnumber, registerCard.cardnumber) &&
-        Objects.equals(this._default, registerCard._default) &&
-        Objects.equals(this.expmonth, registerCard.expmonth) &&
-        Objects.equals(this.expyear, registerCard.expyear);
+    Exists exists = (Exists) o;
+    return Objects.equals(this.active, exists.active) &&
+        Objects.equals(this.exists, exists.exists) &&
+        Objects.equals(this.lastModified, exists.lastModified);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cardnumber, _default, expmonth, expyear);
+    return Objects.hash(active, exists, lastModified);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RegisterCard {\n");
-    sb.append("    cardnumber: ").append(toIndentedString(cardnumber)).append("\n");
-    sb.append("    _default: ").append(toIndentedString(_default)).append("\n");
-    sb.append("    expmonth: ").append(toIndentedString(expmonth)).append("\n");
-    sb.append("    expyear: ").append(toIndentedString(expyear)).append("\n");
+    sb.append("class Exists {\n");
+    sb.append("    active: ").append(toIndentedString(active)).append("\n");
+    sb.append("    exists: ").append(toIndentedString(exists)).append("\n");
+    sb.append("    lastModified: ").append(toIndentedString(lastModified)).append("\n");
     sb.append("}");
     return sb.toString();
   }

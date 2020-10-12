@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**accountChangeContactRequest**](CardHolderAccountApi.md#accountChangeContactRequest) | **POST** /account/{accountid}/contact | Contact Details Update
 [**accountCreate**](CardHolderAccountApi.md#accountCreate) | **POST** /account/create | Account Create
 [**accountDeleteRequest**](CardHolderAccountApi.md#accountDeleteRequest) | **DELETE** /account/{accountid} | Account Deletion
+[**accountExistsRequest**](CardHolderAccountApi.md#accountExistsRequest) | **GET** /account-exists/{accountid} | Account Exists
 [**accountRetrieveRequest**](CardHolderAccountApi.md#accountRetrieveRequest) | **GET** /account/{accountid} | Account Retrieval
 [**accountStatusRequest**](CardHolderAccountApi.md#accountStatusRequest) | **POST** /account/{accountid}/status | Account Status
 [**chargeRequest**](CardHolderAccountApi.md#chargeRequest) | **POST** /charge | Charge
@@ -88,7 +89,7 @@ Name | Type | Description  | Notes
 **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
 **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
-**200** | Acknowledges the card has been requested for deletion. |  -  |
+**200** | Acknowledges the card has been requested for deletion. A response code of &#x60;001&#x60; is returned if the account is available for deletion otherwise an error code is returned. |  -  |
 
 <a name="accountCardRegisterRequest"></a>
 # **accountCardRegisterRequest**
@@ -240,7 +241,7 @@ Name | Type | Description  | Notes
 **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
 **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
-**200** | Acknowledges the card status has changed, returning 01 for a valid change or 00 for non valid change. |  -  |
+**200** | Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change.  |  -  |
 
 <a name="accountChangeContactRequest"></a>
 # **accountChangeContactRequest**
@@ -461,7 +462,80 @@ Name | Type | Description  | Notes
 **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
 **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
-**200** | An acknowledgment that the card holder account has been marked for deletion. |  -  |
+**200** | An acknowledgment code of &#x60;001&#x60; that the card holder account has been marked for deletion. |  -  |
+
+<a name="accountExistsRequest"></a>
+# **accountExistsRequest**
+> Exists accountExistsRequest(accountid)
+
+Account Exists
+
+.
+
+### Example
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.CardHolderAccountApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.citypay.com/v6");
+    
+    // Configure API key authorization: cp-api-key
+    ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+    cp-api-key.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //cp-api-key.setApiKeyPrefix("Token");
+
+    CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+    String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+    try {
+      Exists result = apiInstance.accountExistsRequest(accountid);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CardHolderAccountApi#accountExistsRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountid** | **String**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |
+
+### Return type
+
+[**Exists**](Exists.md)
+
+### Authorization
+
+[cp-api-key](../README.md#cp-api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
+**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+**200** | A response model determining whether the account exists, if exists is true, a last modified date of the account is also provided. |  -  |
 
 <a name="accountRetrieveRequest"></a>
 # **accountRetrieveRequest**
@@ -609,7 +683,7 @@ Name | Type | Description  | Notes
 **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
 **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
-**200** | An acknowledgment that the card holder account status has been updated. |  -  |
+**200** | An acknowledgment that the card holder account status has been updated. A response code of &#x60;001&#x60; is returned if the request was accepted or no change required. A response code of &#x60;000&#x60; is returned if the request contains invalid data.  |  -  |
 
 <a name="chargeRequest"></a>
 # **chargeRequest**

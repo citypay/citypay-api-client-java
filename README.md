@@ -1,8 +1,8 @@
 # CityPay API Client for Java
 
 CityPay Payment API
-- API version: 6.0.0
-  - Build date: 2020-08-04T15:49:38.101Z[GMT]
+- API version: 6.0.9
+  - Build date: 2020-10-07T10:10:36.678Z[GMT]
 
 
 This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It
@@ -72,15 +72,6 @@ Add this dependency to your project's POM:
 </dependency>
 ```
 
-### Gradle users
-
-Add this dependency to your project's build file:
-
-```groovy
-compile "com.citypay:citypay-api-client-java:1.0.0"
-```
-
-### Others
 
 At first generate the JAR by executing:
 
@@ -111,12 +102,7 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.citypay.com/v6");
-    
-    // Configure API key authorization: cp-api-key
-    ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
-    cp-api-key.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //cp-api-key.setApiKeyPrefix("Token");
+defaultClient.setApiKey(ApiKey.create("CLIENT_ID", "LICENCE_KEY"));    
 
     CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
     String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
@@ -148,6 +134,7 @@ Class | Method | HTTP request | Description
 *CardHolderAccountApi* | [**accountChangeContactRequest**](docs/CardHolderAccountApi.md#accountChangeContactRequest) | **POST** /account/{accountid}/contact | Contact Details Update
 *CardHolderAccountApi* | [**accountCreate**](docs/CardHolderAccountApi.md#accountCreate) | **POST** /account/create | Account Create
 *CardHolderAccountApi* | [**accountDeleteRequest**](docs/CardHolderAccountApi.md#accountDeleteRequest) | **DELETE** /account/{accountid} | Account Deletion
+*CardHolderAccountApi* | [**accountExistsRequest**](docs/CardHolderAccountApi.md#accountExistsRequest) | **GET** /account-exists/{accountid} | Account Exists
 *CardHolderAccountApi* | [**accountRetrieveRequest**](docs/CardHolderAccountApi.md#accountRetrieveRequest) | **GET** /account/{accountid} | Account Retrieval
 *CardHolderAccountApi* | [**accountStatusRequest**](docs/CardHolderAccountApi.md#accountStatusRequest) | **POST** /account/{accountid}/status | Account Status
 *CardHolderAccountApi* | [**chargeRequest**](docs/CardHolderAccountApi.md#chargeRequest) | **POST** /charge | Charge
@@ -157,6 +144,7 @@ Class | Method | HTTP request | Description
 *PaymentProcessingApi* | [**cResRequest**](docs/PaymentProcessingApi.md#cResRequest) | **POST** /cres | CRes
 *PaymentProcessingApi* | [**captureRequest**](docs/PaymentProcessingApi.md#captureRequest) | **POST** /capture | Capture
 *PaymentProcessingApi* | [**paResRequest**](docs/PaymentProcessingApi.md#paResRequest) | **POST** /pares | PaRes
+*PaymentProcessingApi* | [**refundRequest**](docs/PaymentProcessingApi.md#refundRequest) | **POST** /refund | Refund
 *PaymentProcessingApi* | [**retrievalRequest**](docs/PaymentProcessingApi.md#retrievalRequest) | **POST** /retrieve | Retrieval
 *PaymentProcessingApi* | [**voidRequest**](docs/PaymentProcessingApi.md#voidRequest) | **POST** /void | Void
 
@@ -182,12 +170,14 @@ Class | Method | HTTP request | Description
  - [ContactDetails](docs/ContactDetails.md)
  - [Decision](docs/Decision.md)
  - [Error](docs/Error.md)
+ - [Exists](docs/Exists.md)
  - [ExternalMPI](docs/ExternalMPI.md)
  - [ListMerchantsResponse](docs/ListMerchantsResponse.md)
  - [MCC6012](docs/MCC6012.md)
  - [Merchant](docs/Merchant.md)
  - [PaResAuthRequest](docs/PaResAuthRequest.md)
  - [Ping](docs/Ping.md)
+ - [RefundRequest](docs/RefundRequest.md)
  - [RegisterCard](docs/RegisterCard.md)
  - [RequestChallenged](docs/RequestChallenged.md)
  - [RetrieveRequest](docs/RetrieveRequest.md)

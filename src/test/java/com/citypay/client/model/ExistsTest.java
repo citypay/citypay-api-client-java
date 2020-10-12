@@ -20,127 +20,48 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.time.*;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for ChargeRequest
+ * Model tests for Exists
  */
-public class ChargeRequestTest {
-    private final ChargeRequest model = new ChargeRequest();
+public class ExistsTest {
+    private final Exists model = new Exists();
 
     /**
-     * Model tests for ChargeRequest
+     * Model tests for Exists
      */
     @Test
-    public void testChargeRequest() {
-        // TODO: test ChargeRequest
+    public void testExists() {
+        // TODO: test Exists
     }
 
     /**
-     * Test the property 'amount'
+     * Test the property 'active'
      */
     @Test
-    public void amountTest() {
-        // TODO: test amount
+    public void activeTest() {
+        // TODO: test active
     }
 
     /**
-     * Test the property 'avsPostcodePolicy'
+     * Test the property 'exists'
      */
     @Test
-    public void avsPostcodePolicyTest() {
-        // TODO: test avsPostcodePolicy
+    public void existsTest() {
+        // TODO: test exists
     }
 
     /**
-     * Test the property 'csc'
+     * Test the property 'lastModified'
      */
     @Test
-    public void cscTest() {
-        // TODO: test csc
-    }
-
-    /**
-     * Test the property 'cscPolicy'
-     */
-    @Test
-    public void cscPolicyTest() {
-        // TODO: test cscPolicy
-    }
-
-    /**
-     * Test the property 'currency'
-     */
-    @Test
-    public void currencyTest() {
-        // TODO: test currency
-    }
-
-    /**
-     * Test the property 'duplicatePolicy'
-     */
-    @Test
-    public void duplicatePolicyTest() {
-        // TODO: test duplicatePolicy
-    }
-
-    /**
-     * Test the property 'identifier'
-     */
-    @Test
-    public void identifierTest() {
-        // TODO: test identifier
-    }
-
-    /**
-     * Test the property 'matchAvsa'
-     */
-    @Test
-    public void matchAvsaTest() {
-        // TODO: test matchAvsa
-    }
-
-    /**
-     * Test the property 'merchantid'
-     */
-    @Test
-    public void merchantidTest() {
-        // TODO: test merchantid
-    }
-
-    /**
-     * Test the property 'sdk'
-     */
-    @Test
-    public void sdkTest() {
-        // TODO: test sdk
-    }
-
-    /**
-     * Test the property 'token'
-     */
-    @Test
-    public void tokenTest() {
-        // TODO: test token
-    }
-
-    /**
-     * Test the property 'transInfo'
-     */
-    @Test
-    public void transInfoTest() {
-        // TODO: test transInfo
-    }
-
-    /**
-     * Test the property 'transType'
-     */
-    @Test
-    public void transTypeTest() {
-        // TODO: test transType
+    public void lastModifiedTest() {
+        // TODO: test lastModified
     }
 
 }

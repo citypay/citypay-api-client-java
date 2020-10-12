@@ -26,17 +26,17 @@ import org.junit.Test;
 
 
 /**
- * Model tests for ChargeRequest
+ * Model tests for RefundRequest
  */
-public class ChargeRequestTest {
-    private final ChargeRequest model = new ChargeRequest();
+public class RefundRequestTest {
+    private final RefundRequest model = new RefundRequest();
 
     /**
-     * Model tests for ChargeRequest
+     * Model tests for RefundRequest
      */
     @Test
-    public void testChargeRequest() {
-        // TODO: test ChargeRequest
+    public void testRefundRequest() {
+        // TODO: test RefundRequest
     }
 
     /**
@@ -48,59 +48,11 @@ public class ChargeRequestTest {
     }
 
     /**
-     * Test the property 'avsPostcodePolicy'
-     */
-    @Test
-    public void avsPostcodePolicyTest() {
-        // TODO: test avsPostcodePolicy
-    }
-
-    /**
-     * Test the property 'csc'
-     */
-    @Test
-    public void cscTest() {
-        // TODO: test csc
-    }
-
-    /**
-     * Test the property 'cscPolicy'
-     */
-    @Test
-    public void cscPolicyTest() {
-        // TODO: test cscPolicy
-    }
-
-    /**
-     * Test the property 'currency'
-     */
-    @Test
-    public void currencyTest() {
-        // TODO: test currency
-    }
-
-    /**
-     * Test the property 'duplicatePolicy'
-     */
-    @Test
-    public void duplicatePolicyTest() {
-        // TODO: test duplicatePolicy
-    }
-
-    /**
      * Test the property 'identifier'
      */
     @Test
     public void identifierTest() {
         // TODO: test identifier
-    }
-
-    /**
-     * Test the property 'matchAvsa'
-     */
-    @Test
-    public void matchAvsaTest() {
-        // TODO: test matchAvsa
     }
 
     /**
@@ -112,19 +64,11 @@ public class ChargeRequestTest {
     }
 
     /**
-     * Test the property 'sdk'
+     * Test the property 'refundRef'
      */
     @Test
-    public void sdkTest() {
-        // TODO: test sdk
-    }
-
-    /**
-     * Test the property 'token'
-     */
-    @Test
-    public void tokenTest() {
-        // TODO: test token
+    public void refundRefTest() {
+        // TODO: test refundRef
     }
 
     /**
@@ -133,14 +77,6 @@ public class ChargeRequestTest {
     @Test
     public void transInfoTest() {
         // TODO: test transInfo
-    }
-
-    /**
-     * Test the property 'transType'
-     */
-    @Test
-    public void transTypeTest() {
-        // TODO: test transType
     }
 
 }

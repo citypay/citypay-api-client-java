@@ -32,7 +32,7 @@ info:
       address. Our application firewalls analyse data that may be an attempt to break a large number of security common
       security vulnerabilities.
   title: CityPay Payment API
-  version: 6.0.0
+  version: 6.0.9
 servers:
 - description: Production processing endpoint
   url: https://api.citypay.com/v6
@@ -161,8 +161,8 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Acknowledgement'
-          description: An acknowledgment that the card holder account has been marked
-            for deletion.
+          description: An acknowledgment code of `001` that the card holder account
+            has been marked for deletion.
       summary: Account Deletion
       tags:
       - Card Holder Account
@@ -266,7 +266,8 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Acknowledgement'
-          description: A result of the ping request.
+          description: A result of the ping request, returning on 044 response code
+            on successful receipt of the ping request.
       summary: Ping Request
       tags:
       - Operational
@@ -350,11 +351,61 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Acknowledgement'
-          description: A result and acknowledgement of the capture request.
+          description: A result and acknowledgement of the capture request. The response
+            will return a `000|001` response on a successful capture otherwise an
+            error code response explaining the error.
       summary: Capture
       tags:
       - Payment Processing
       x-contentType: application/json
+      x-accepts: application/json
+  /account-exists/{accountid}:
+    get:
+      description: "."
+      operationId: AccountExistsRequest
+      parameters:
+      - description: The account id that refers to the customer's account no. This
+          value will have been provided when setting up the card holder account.
+        explode: false
+        in: path
+        name: accountid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Exists'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Exists'
+          description: A response model determining whether the account exists, if
+            exists is true, a last modified date of the account is also provided.
+      summary: Account Exists
+      tags:
+      - Card Holder Account
       x-accepts: application/json
   /account/{accountid}/contact:
     post:
@@ -479,8 +530,8 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Acknowledgement'
-          description: Acknowledges the card status has changed, returning 01 for
-            a valid change or 00 for non valid change.
+          description: |
+            Acknowledges the card status has changed, returning a response code of `001` for a valid change or `000` for a non valid change.
       summary: Card Status
       tags:
       - Card Holder Account
@@ -532,6 +583,55 @@ paths:
       summary: Account Create
       tags:
       - Card Holder Account
+      x-contentType: application/json
+      x-accepts: application/json
+  /refund:
+    post:
+      description: "A refund request which allows for the refunding of a previous\
+        \ transaction up \nand to the amount of the original sale. A refund will be\
+        \ performed against the \noriginal card used to process the transaction.\n"
+      operationId: RefundRequest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefundRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/RefundRequest'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+          description: A result of the refund of sale processing.
+      summary: Refund
+      tags:
+      - Payment Processing
       x-contentType: application/json
       x-accepts: application/json
   /void:
@@ -598,7 +698,9 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Acknowledgement'
-          description: A result and acknowledgement of the void request.
+          description: |
+            A result and acknowledgement of the void request, returning an `080|003` response code on successful void/cancellation of the transaction.
+            If an error occurs an error code will be returned explaining the failure.
       summary: Void
       tags:
       - Payment Processing
@@ -661,8 +763,10 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Acknowledgement'
-          description: An acknowledgment that the card holder account status has been
-            updated.
+          description: |
+            An acknowledgment that the card holder account status has been updated.
+            A response code of `001` is returned if the request was accepted or no change required.
+            A response code of `000` is returned if the request contains invalid data.
       summary: Account Status
       tags:
       - Card Holder Account
@@ -721,7 +825,9 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Acknowledgement'
-          description: Acknowledges the card has been requested for deletion.
+          description: Acknowledges the card has been requested for deletion. A response
+            code of `001` is returned if the account is available for deletion otherwise
+            an error code is returned.
       summary: Card Deletion
       tags:
       - Card Holder Account
@@ -864,7 +970,7 @@ paths:
         \ a progressive move alongside the European \nUnions payments service directive.\n\
         \nCityPay support 3DSv2 for Verified by Visa, MasterCard Identity Check and\
         \ American Express SafeKey 2.0 and will be rolling\nout acquirers on the new\
-        \ platform from Q2 2020. The new enhancement to 3DSv2 will allow for CityPay\
+        \ platform from Q4 2020. The new enhancement to 3DSv2 will allow for CityPay\
         \ to seamlessly authenticate\ntransactions in a \"frictionless\" flowed method\
         \ which will authenticate low risk transactions with minimal impact to a \n\
         standard authorisation flow. Our API simply performs this on behalf of the\
@@ -891,7 +997,17 @@ paths:
         acs\" action=\"{{ACSURL from Response}}\" method=\"POST\">\n            <input\
         \ type=\"hidden\" name=\"creq\" value=\"{{CReq Packet from Response}}\" />\n\
         \        </form>\n    </body>\n</html>\n```\n\nWe are currently working on\
-        \ an integration test suite for 3DSv2 which will mock the ACS challenge process.\n"
+        \ an integration test suite for 3DSv2 which will mock the ACS challenge process.\n\
+        \        \n### Testing 3DSv2 Integrations\n\nThe API provides a mock 3dsV2\
+        \ handler which performs a number of scenarios based on the value of the CSC\
+        \ in the request.\n\n| CSC Value | Behaviour |\n|-----------|-----------|\n\
+        | 731       | Frictionless processing - Not authenticated |\n| 732       |\
+        \ Frictionless processing - Account verification count not be performed |\
+        \        \n| 733       | Frictionless processing - Verification Rejected |\
+        \        \n| 741       | Frictionless processing - Attempts Processing | \
+        \       \n| 750       | Frictionless processing - Authenticated  |       \
+        \ \n| 761       | Triggers an error message |  \n| Any       | Challenge Request\
+        \ |\n"
       operationId: AuthorisationRequest
       requestBody:
         content:
@@ -1193,6 +1309,7 @@ components:
         - bin_description: bin_description
           bin_commercial: true
           scheme: Visa
+          date_created: 2020-01-02T18:32:28Z
           bin_currency: bin_currency
           expyear: 2023
           label: Visa/0002
@@ -1211,6 +1328,7 @@ components:
         - bin_description: bin_description
           bin_commercial: true
           scheme: Visa
+          date_created: 2020-01-02T18:32:28Z
           bin_currency: bin_currency
           expyear: 2023
           label: Visa/0002
@@ -1227,7 +1345,7 @@ components:
           bin_debit: true
           bin_eu: true
         unique_id: unique_id
-        default_card_index: default_card_index
+        default_card_index: 0
         date_created: 2020-01-02T18:32:28Z
         contact:
           area: London
@@ -1243,6 +1361,7 @@ components:
           telephone_no: "442030123456"
           company: Acme Ltd
           email: card.holder@citypay.com
+        last_modified: 2020-01-02T18:32:28Z
         default_card_id: default_card_id
         status: status
       properties:
@@ -1269,7 +1388,12 @@ components:
           type: string
         default_card_index:
           description: The index in the array of the default card.
-          type: string
+          format: int32
+          type: integer
+        last_modified:
+          description: The date and time the account was last modified.
+          example: 2020-01-02T18:32:28Z
+          type: date-time
         status:
           description: |
             Defines the status of the account for processing valid values are
@@ -1550,6 +1674,13 @@ components:
     ChargeRequest:
       example:
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+        threedsecure:
+          downgrade1: true
+          accept_headers: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          merchant_termurl: merchant_termurl
+          tds_policy: tds_policy
+          user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36
+            (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
         amount: 3600
         csc_policy: csc_policy
         trans_info: trans_info
@@ -1560,7 +1691,6 @@ components:
         match_avsa: match_avsa
         avs_postcode_policy: avs_postcode_policy
         currency: GBP
-        sdk: MyClient 1.3.0
         trans_type: trans_type
       properties:
         amount:
@@ -1641,7 +1771,7 @@ components:
             The identifier of the transaction to process. The value should be a valid reference and may be used to perform
              post processing actions and to aid in reconciliation of transactions.
 
-            The value should be a valid printable string with ASCII character ranges from 32 to 127.
+            The value should be a valid printable string with ASCII character ranges from 0x32 to 0x127.
 
             The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)
             this will aid in ensuring each transaction is identifiable.
@@ -1668,11 +1798,8 @@ components:
           example: 11223344
           format: int32
           type: integer
-        sdk:
-          description: An optional reference value for the calling client such as
-            a version number i.e.
-          example: MyClient 1.3.0
-          type: string
+        threedsecure:
+          $ref: '#/components/schemas/ThreeDSecure'
         token:
           description: |
             A tokenised form of a card that belongs to a card holder's account and that
@@ -1707,12 +1834,71 @@ components:
       - merchantid
       - token
       type: object
+    RefundRequest:
+      example:
+        identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+        amount: 3600
+        refund_ref: 8322
+        merchantid: 11223344
+        trans_info: trans_info
+      properties:
+        amount:
+          description: |
+            The amount to refund in the lowest unit of currency with a variable length to a maximum of 12 digits.
+            The amount should be the total amount required to refund for the transaction up to the original processed amount.
+            No decimal points are to be included and no divisional characters such as 1,024.
+            For example with GBP £1,021.95 the amount value is 102195.
+          example: 3600
+          format: int32
+          maxLength: 12
+          minLength: 1
+          type: integer
+        identifier:
+          description: |
+            The identifier of the refund to process. The value should be a valid reference and may be used to perform
+             post processing actions and to aid in reconciliation of transactions.
+
+            The value should be a valid printable string with ASCII character ranges from 0x32 to 0x127.
+
+            The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)
+            this will aid in ensuring each transaction is identifiable.
+
+            When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent
+            request will ensure that a transaction is considered as different.
+          example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          maxLength: 50
+          minLength: 4
+          type: string
+        merchantid:
+          description: Identifies the merchant account to perform the refund for.
+          example: 11223344
+          format: int32
+          type: integer
+        refund_ref:
+          description: |
+            A reference to the original transaction number that is wanting to be refunded. The original
+             transaction must be on the same merchant id, previously authorised.
+          example: 8322
+          format: int32
+          type: integer
+        trans_info:
+          description: Further information that can be added to the transaction will
+            display in reporting. Can be used for flexible values such as operator
+            id.
+          maxLength: 50
+          type: string
+      required:
+      - amount
+      - identifier
+      - merchantid
+      - refund_ref
+      type: object
     RequestChallenged:
       example:
         creq: creq
         merchantid: 11223344
-        ThreeDServerTransId: ThreeDServerTransId
         acs_url: https://acs.cardissuer.com/3dsv1
+        threedserver_trans_id: threedserver_trans_id
         transno: 78416
       properties:
         acs_url:
@@ -1730,7 +1916,7 @@ components:
           example: 11223344
           format: int32
           type: integer
-        ThreeDServerTransId:
+        threedserver_trans_id:
           description: The 3DSv2 trans id reference for the challenge process.
           type: string
         transno:
@@ -1742,9 +1928,9 @@ components:
       type: object
     AuthReference:
       example:
-        amount_value: amount_value
+        amount_value: 3600
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-        amount: 3600
+        amount: "20.0"
         atrn: atrn
         batchno: batchno
         maskedpan: 4***********0002
@@ -1759,14 +1945,16 @@ components:
       properties:
         amount:
           description: The amount of the transaction in decimal currency format.
+          example: "20.0"
+          maxLength: 12
+          type: string
+        amount_value:
+          description: The amount of the transaction in integer/request format.
           example: 3600
           format: int32
           maxLength: 12
           minLength: 1
           type: integer
-        amount_value:
-          description: The amount of the transaction in integer/request format.
-          type: string
         atrn:
           description: A reference number provided by the acquiring services.
           type: string
@@ -1827,6 +2015,7 @@ components:
         bin_description: bin_description
         bin_commercial: true
         scheme: Visa
+        date_created: 2020-01-02T18:32:28Z
         bin_currency: bin_currency
         expyear: 2023
         label: Visa/0002
@@ -1878,6 +2067,11 @@ components:
              - ACTIVE the card is active for processing
              - INACTIVE the card is not active for processing
              - EXPIRED for cards that have passed their expiry date.
+          type: string
+        date_created:
+          description: The date time of when the card was created.
+          example: 2020-01-02T18:32:28Z
+          format: date-time
           type: string
         default:
           description: Determines if the card is the default card for the account
@@ -2136,9 +2330,9 @@ components:
     AuthReferences:
       example:
         auths:
-        - amount_value: amount_value
+        - amount_value: 3600
           identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-          amount: 3600
+          amount: "20.0"
           atrn: atrn
           batchno: batchno
           maskedpan: 4***********0002
@@ -2150,9 +2344,9 @@ components:
           currency: GBP
           trans_status: trans_status
           trans_type: trans_type
-        - amount_value: amount_value
+        - amount_value: 3600
           identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-          amount: 3600
+          amount: "20.0"
           atrn: atrn
           batchno: batchno
           maskedpan: 4***********0002
@@ -2197,7 +2391,17 @@ components:
       type: object
     Decision:
       example:
-        result:
+        RequestChallenged:
+          creq: creq
+          merchantid: 11223344
+          acs_url: https://acs.cardissuer.com/3dsv1
+          threedserver_trans_id: threedserver_trans_id
+          transno: 78416
+        AuthenRequired:
+          pareq: eNrNWdnOo0qSfpXSmUuf0+w2tFy/lOyYxYDZ79h3sAEbm6cfbFfV+bu6pqe7R2qNJeQkiIwlMyK+...
+          md: md
+          acs_url: https://acs.cardissuer.com/3dsv1
+        AuthResponse:
           authen_result: authen_result
           atrn: atrn
           maskedpan: 4***********0002
@@ -2225,23 +2429,13 @@ components:
           merchantid: 11223344
           result_code: "0"
           bin_debit: true
-        challenge:
-          creq: creq
-          merchantid: 11223344
-          ThreeDServerTransId: ThreeDServerTransId
-          acs_url: https://acs.cardissuer.com/3dsv1
-          transno: 78416
-        authentication:
-          pareq: eNrNWdnOo0qSfpXSmUuf0+w2tFy/lOyYxYDZ79h3sAEbm6cfbFfV+bu6pqe7R2qNJeQkiIwlMyK+...
-          md: md
-          acs_url: https://acs.cardissuer.com/3dsv1
       properties:
-        authentication:
+        AuthenRequired:
           $ref: '#/components/schemas/AuthenRequired'
-        challenge:
-          $ref: '#/components/schemas/RequestChallenged'
-        result:
+        AuthResponse:
           $ref: '#/components/schemas/AuthResponse'
+        RequestChallenged:
+          $ref: '#/components/schemas/RequestChallenged'
       type: object
     AuthRequest:
       example:
@@ -2340,7 +2534,6 @@ components:
           xid: xid
           eci: 0
           enrolled: enrolled
-        sdk: MyClient 1.3.0
         ship_to:
           area: London
           country: GB
@@ -2476,7 +2669,7 @@ components:
             The identifier of the transaction to process. The value should be a valid reference and may be used to perform
              post processing actions and to aid in reconciliation of transactions.
 
-            The value should be a valid printable string with ASCII character ranges from 32 to 127.
+            The value should be a valid printable string with ASCII character ranges from 0x32 to 0x127.
 
             The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)
             this will aid in ensuring each transaction is identifiable.
@@ -2505,11 +2698,6 @@ components:
           example: 11223344
           format: int32
           type: integer
-        sdk:
-          description: An optional reference value for the calling client such as
-            a version number i.e.
-          example: MyClient 1.3.0
-          type: string
         ship_to:
           $ref: '#/components/schemas/ContactDetails'
         threedsecure:
@@ -2627,21 +2815,21 @@ components:
         address1:
           description: The first line of the address for the card holder.
           example: 79 Parliament St
-          maxLength: 40
+          maxLength: 50
           type: string
         address2:
           description: The second line of the address for the card holder.
           example: Westminster
-          maxLength: 30
+          maxLength: 50
           type: string
         address3:
           description: The third line of the address for the card holder.
-          maxLength: 20
+          maxLength: 50
           type: string
         area:
           description: The area such as city, department, parish for the card holder.
           example: London
-          maxLength: 20
+          maxLength: 50
           type: string
         company:
           description: The company name for the card holder if the contact is a corporate
@@ -2692,11 +2880,31 @@ components:
           example: Mr
           type: string
       type: object
+    Exists:
+      example:
+        active: true
+        exists: true
+        last_modified: 2020-01-02T18:32:28Z
+      properties:
+        active:
+          description: Boolean value whether the entity is active.
+          example: true
+          type: boolean
+        exists:
+          description: Boolean value whether the entity exists.
+          example: true
+          type: boolean
+        last_modified:
+          description: The last modified date of the entity.
+          example: 2020-01-02T18:32:28Z
+          type: date-time
+      required:
+      - exists
+      type: object
     VoidRequest:
       example:
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
         merchantid: 11223344
-        sdk: MyClient 1.3.0
         transno: 78416
       properties:
         identifier:
@@ -2711,11 +2919,6 @@ components:
           example: 11223344
           format: int32
           type: integer
-        sdk:
-          description: An optional reference value for the calling client such as
-            a version number i.e.
-          example: MyClient 1.3.0
-          type: string
         transno:
           description: The transaction number of the transaction to look up and void.
             If an empty value is supplied then an identifier value must be supplied.
@@ -3057,7 +3260,6 @@ components:
           original_ticket_no: original_ticket_no
           ticket_no: A112233
           carrier_name: EG Air
-        sdk: MyClient 1.3.0
         transno: 78416
       properties:
         airline_data:
@@ -3086,11 +3288,6 @@ components:
           example: 11223344
           format: int32
           type: integer
-        sdk:
-          description: An optional reference value for the calling client such as
-            a version number i.e.
-          example: MyClient 1.3.0
-          type: string
         transno:
           description: The transaction number of the transaction to look up and capture.
             If an empty value is supplied then an identifier value must be supplied.
