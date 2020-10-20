@@ -1681,6 +1681,7 @@ components:
           tds_policy: tds_policy
           user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36
             (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
+          cp_bx: cp_bx
         amount: 3600
         csc_policy: csc_policy
         trans_info: trans_info
@@ -2461,6 +2462,7 @@ components:
           tds_policy: tds_policy
           user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36
             (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
+          cp_bx: cp_bx
         amount: 3600
         card_holder_name: card_holder_name
         expyear: 2023
@@ -2945,13 +2947,26 @@ components:
         tds_policy: tds_policy
         user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36
           (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
+        cp_bx: cp_bx
       properties:
         accept_headers:
           description: |
+            Required for 3DSv1. Optional if the `cp_bx` value is provided otherwise required for 3Dv2 processing operating in
+            browser authentication mode.
+
+            The `cp_bx` value will override any value supplied to this field.
+
             The content of the HTTP accept header as sent to the merchant from the cardholder's user agent.
             This value will be validated by the ACS when the card holder authenticates themselves to verify that
             no intermediary is performing this action. Required for 3DSv1.
           example: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          type: string
+        cp_bx:
+          description: |
+            Required for 3DSv2.
+
+            Browser extension value produced by the citypay.js `bx` function. See https://sandbox.citypay.com/3dsv2/bx for
+             details.
           type: string
         downgrade1:
           description: |
@@ -2960,6 +2975,8 @@ components:
           type: boolean
         merchant_termurl:
           description: |
+            Required for 3DSv1 and 3Dv2 processing.
+
             A controller URL for 3D-Secure processing that any response from an authentication request or
             challenge request should be sent to.
 
@@ -2981,6 +2998,11 @@ components:
           type: string
         user_agent:
           description: |
+            Required for 3DSv1. Optional if the `cp_bx` value is provided otherwise required 3Dv2 processing operating in
+            browser authentication mode.
+
+            The `cp_bx` value will override any value supplied to this field.
+
             The content of the HTTP user-agent header as sent to the merchant from the cardholder's user agent.
             This value will be validated by the ACS when the card holder authenticates themselves to verify that
             no intermediary is performing this action. Required for 3DSv1.

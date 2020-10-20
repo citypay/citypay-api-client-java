@@ -2,7 +2,7 @@
 
 CityPay Payment API
 - API version: 6.0.9
-  - Build date: 2020-10-07T10:10:36.678Z[GMT]
+  - Build date: 2020-10-20T21:12:09.126Z[GMT]
 
 
 This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It
@@ -67,7 +67,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.citypay</groupId>
   <artifactId>citypay-api-client-java</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -81,7 +81,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/citypay-api-client-java-1.0.0.jar`
+* `target/citypay-api-client-java-1.0.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
