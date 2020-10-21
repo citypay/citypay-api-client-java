@@ -32,7 +32,7 @@ info:
       address. Our application firewalls analyse data that may be an attempt to break a large number of security common
       security vulnerabilities.
   title: CityPay Payment API
-  version: 6.0.9
+  version: 6.0.12
 servers:
 - description: Production processing endpoint
   url: https://api.citypay.com/v6
@@ -297,14 +297,14 @@ paths:
               example1:
                 externalValue: CaptureRequest-example1.json
                 summary: Basic capture call for a merchant with a given identifier
-              example3:
-                externalValue: CaptureRequest-example3.json
-                summary: Capture call for a merchant with identifier and airline data
-                  once a ticket has been issued
               example2:
                 externalValue: CaptureRequest-example2.json
                 summary: Basic capture call for a merchant with a transno and final
                   amount
+              example3:
+                externalValue: CaptureRequest-example3.json
+                summary: Capture call for a merchant with identifier and airline data
+                  once a ticket has been issued
             schema:
               $ref: '#/components/schemas/CaptureRequest'
           text/xml:
@@ -312,14 +312,14 @@ paths:
               example1:
                 externalValue: CaptureRequest-example1.xml
                 summary: Basic capture call for a merchant with a given identifier
-              example3:
-                externalValue: CaptureRequest-example3.xml
-                summary: Capture call for a merchant with identifier and airline data
-                  once a ticket has been issued
               example2:
                 externalValue: CaptureRequest-example2.xml
                 summary: Basic capture call for a merchant with a transno and final
                   amount
+              example3:
+                externalValue: CaptureRequest-example3.xml
+                summary: Capture call for a merchant with identifier and airline data
+                  once a ticket has been issued
             schema:
               $ref: '#/components/schemas/CaptureRequest'
         required: true
@@ -947,21 +947,21 @@ paths:
         \ The controller is actioned on your site to ensure that any post actions\
         \ from authorisation can be executed in real time\n  \nTo forward the user\
         \ to the ACS, we recommend a simple auto submit HTML form.\n\n```html\n<html\
-        \ lang=\"en\">\n\t<head>\n        <title>Forward to ACS</title>\n\t\t<script\
-        \ type=\"text/javascript\">\n        function onLoadEvent() { \n         \
-        \   document.acs.submit(); \n        }\n        </script>\n        <noscript>You\
-        \ will require JavaScript to be enabled to complete this transaction</noscript>\n\
-        \    </head>\n    <body onload=\"onLoadEvent();\">\n        <form name=\"\
-        acs\" action=\"{{ACSURL from Response}}\" method=\"POST\">\n            <input\
-        \ type=\"hidden\" name=\"PaReq\" value=\"{{PaReq Packet from Response}}\"\
-        \ />\n            <input type=\"hidden\" name=\"TermUrl\" value=\"{{Your Controller}}\"\
-        \ />\n            <input type=\"hidden\" name=\"MD\" value=\"{{MD From Response}}\"\
-        \ />\n        </form>\n    </body>\n</html>\n```\n\nPlease note that 3DSv1\
-        \ is being phased out due to changes to strong customer authentication mechanisms.\
-        \ 3DSv2 addresses\nthis and will solidify the authorisation and confirmation\
-        \ process.\n\nWe provide a Test ACS for full 3DSv1 integration testing that\
-        \ simulates an ACS. \n\n\n#### 3DSv2\n\n```json\n{ \n  \"RequestChallenged\"\
-        : {\n    \"acsurl\": \"https://bank.com/3DS/ACS\",\n    \"creq\": \"SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...\"\
+        \ lang=\"en\">\n<head>\n        <title>Forward to ACS</title>\n<script type=\"\
+        text/javascript\">\n        function onLoadEvent() { \n            document.acs.submit();\
+        \ \n        }\n        </script>\n        <noscript>You will require JavaScript\
+        \ to be enabled to complete this transaction</noscript>\n    </head>\n   \
+        \ <body onload=\"onLoadEvent();\">\n        <form name=\"acs\" action=\"{{ACSURL\
+        \ from Response}}\" method=\"POST\">\n            <input type=\"hidden\" name=\"\
+        PaReq\" value=\"{{PaReq Packet from Response}}\" />\n            <input type=\"\
+        hidden\" name=\"TermUrl\" value=\"{{Your Controller}}\" />\n            <input\
+        \ type=\"hidden\" name=\"MD\" value=\"{{MD From Response}}\" />\n        </form>\n\
+        \    </body>\n</html>\n```\n\nPlease note that 3DSv1 is being phased out due\
+        \ to changes to strong customer authentication mechanisms. 3DSv2 addresses\n\
+        this and will solidify the authorisation and confirmation process.\n\nWe provide\
+        \ a Test ACS for full 3DSv1 integration testing that simulates an ACS. \n\n\
+        \n#### 3DSv2\n\n```json\n{ \n  \"RequestChallenged\": {\n    \"acsurl\": \"\
+        https://bank.com/3DS/ACS\",\n    \"creq\": \"SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...\"\
         \n  }               \n}\n```\n\n```xml\n<RequestChallenged>\n <acsurl>https://bank.com/3DS/ACS</acsurl>\n\
         \ <creq>SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...</creq>\n\
         </RequestChallenged>\n```\n\nAll merchants in the EEC will require to migrate\
@@ -989,25 +989,24 @@ paths:
         \ shift. The CRes\nvalue will be validated for receipt of the CAVV and subsequently\
         \ may return back response codes illustrating this. \n\nTo forward the user\
         \ to the ACS, we recommend a simple auto submit HTML form.\n\n```html\n<html\
-        \ lang=\"en\">\n\t<head>\n        <title>Forward to ACS</title>\n\t\t<script\
-        \ type=\"text/javascript\">\n        function onLoadEvent() { \n         \
-        \   document.acs.submit(); \n        }\n        </script>\n        <noscript>You\
-        \ will require JavaScript to be enabled to complete this transaction</noscript>\n\
-        \    </head>\n    <body onload=\"onLoadEvent();\">\n        <form name=\"\
-        acs\" action=\"{{ACSURL from Response}}\" method=\"POST\">\n            <input\
-        \ type=\"hidden\" name=\"creq\" value=\"{{CReq Packet from Response}}\" />\n\
-        \        </form>\n    </body>\n</html>\n```\n\nWe are currently working on\
-        \ an integration test suite for 3DSv2 which will mock the ACS challenge process.\n\
-        \        \n### Testing 3DSv2 Integrations\n\nThe API provides a mock 3dsV2\
-        \ handler which performs a number of scenarios based on the value of the CSC\
-        \ in the request.\n\n| CSC Value | Behaviour |\n|-----------|-----------|\n\
-        | 731       | Frictionless processing - Not authenticated |\n| 732       |\
-        \ Frictionless processing - Account verification count not be performed |\
-        \        \n| 733       | Frictionless processing - Verification Rejected |\
-        \        \n| 741       | Frictionless processing - Attempts Processing | \
-        \       \n| 750       | Frictionless processing - Authenticated  |       \
-        \ \n| 761       | Triggers an error message |  \n| Any       | Challenge Request\
-        \ |\n"
+        \ lang=\"en\">\n<head>\n        <title>Forward to ACS</title>\n<script type=\"\
+        text/javascript\">\n        function onLoadEvent() { \n            document.acs.submit();\
+        \ \n        }\n        </script>\n        <noscript>You will require JavaScript\
+        \ to be enabled to complete this transaction</noscript>\n    </head>\n   \
+        \ <body onload=\"onLoadEvent();\">\n        <form name=\"acs\" action=\"{{ACSURL\
+        \ from Response}}\" method=\"POST\">\n            <input type=\"hidden\" name=\"\
+        creq\" value=\"{{CReq Packet from Response}}\" />\n        </form>\n    </body>\n\
+        </html>\n```\n\nWe are currently working on an integration test suite for\
+        \ 3DSv2 which will mock the ACS challenge process.\n        \n### Testing\
+        \ 3DSv2 Integrations\n\nThe API provides a mock 3dsV2 handler which performs\
+        \ a number of scenarios based on the value of the CSC in the request.\n\n\
+        | CSC Value | Behaviour |\n|-----------|-----------|\n| 731       | Frictionless\
+        \ processing - Not authenticated |\n| 732       | Frictionless processing\
+        \ - Account verification count not be performed |        \n| 733       | Frictionless\
+        \ processing - Verification Rejected |        \n| 741       | Frictionless\
+        \ processing - Attempts Processing |        \n| 750       | Frictionless processing\
+        \ - Authenticated  |        \n| 761       | Triggers an error message |  \n\
+        | Any       | Challenge Request |\n"
       operationId: AuthorisationRequest
       requestBody:
         content:
