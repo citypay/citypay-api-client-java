@@ -30,3 +30,6 @@ jobs:
       env:
         MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+        CP_CLIENT_ID: ${{secrets.CP_CLIENT_ID}}
+        CP_MERCHANT_ID: ${{secrets.CP_MERCHANT_ID}}
+        CP_LICENCE_KEY: ${{secrets.CP_LICENCE_KEY}}
