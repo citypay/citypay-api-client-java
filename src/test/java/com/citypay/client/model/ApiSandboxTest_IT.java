@@ -8,18 +8,16 @@ import com.citypay.client.api.OperationalApi;
 import com.citypay.client.api.PaymentProcessingApi;
 import com.citypay.client.auth.ApiKeyAuth;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static org.junit.Assert.*;
 
-public class ItApiSandboxTest {
+public class ApiSandboxTest_IT {
 
     public static String clientId = System.getenv("CP_CLIENT_ID");
     public static String licenceKey = System.getenv("CP_LICENCE_KEY");
@@ -31,6 +29,19 @@ public class ItApiSandboxTest {
     @Before
     public void setupConfig() {
         {
+
+            if (clientId == null) {
+                throw new IllegalStateException("No CP_CLIENT_ID Env variable found");
+            }
+
+            if (licenceKey == null) {
+                throw new IllegalStateException("No CP_LICENCE_KEY Env variable found");
+            }
+
+            if (merchantId == null) {
+                throw new IllegalStateException("No CP_MERCHANT_ID Env variable found");
+            }
+
             try {
                 key = ApiKey.create(clientId, licenceKey);
             } catch (InvalidKeyException | NoSuchAlgorithmException | IOException e) {
@@ -171,7 +182,7 @@ public class ItApiSandboxTest {
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
-        assert result!=null;
+        assert result != null;
         assertEquals(chaId, result.getAccountId());
         assertEquals("7 Esplanade", result.getContact().getAddress1());
         assert result.getCards() != null;
@@ -199,7 +210,7 @@ public class ItApiSandboxTest {
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
         }
-        assert decision!=null;
+        assert decision != null;
         assertNotNull(decision.getAuthResponse());
         assertNull(decision.getAuthenRequired());
         assertNull(decision.getRequestChallenged());
