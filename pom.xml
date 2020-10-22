@@ -5,7 +5,7 @@
     <artifactId>citypay-api-client-java</artifactId>
     <packaging>jar</packaging>
     <name>citypay-api-client-java</name>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <url>https://github.com/citypay/citypay-api-client-java</url>
     <description>CityPay API Java Client</description>
     <scm>
@@ -272,13 +272,4 @@
         <junit-version>4.13</junit-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <distributionManagement>
-        <repository>
-            <id>ossrh</id>
-            <name>Central Repository OSSRH</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
-
 </project>
