@@ -1,10 +1,9 @@
 # CityPay API Client for Java
 
 [![Build Status](https://travis-ci.org/citypay/citypay-api-client-java.svg?branch=master)](https://travis-ci.org/citypay/citypay-api-client-java)
-
 CityPay Payment API
 - API version: 6.0.12
-  - Build date: 2020-10-22T12:49:41.081Z[GMT]
+  - Build date: 2020-10-22T14:28:37.258Z[GMT]
 
 
 This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It
@@ -69,7 +68,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.citypay</groupId>
   <artifactId>citypay-api-client-java</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -83,7 +82,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/citypay-api-client-java-1.0.3.jar`
+* `target/citypay-api-client-java-1.0.4.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
