@@ -2,6 +2,7 @@
 
 # Card
 
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -15,8 +16,8 @@ Name | Type | Description | Notes
 **binDescription** | **String** | A description of the bin on the card to identify what type of product the card is. |  [optional]
 **binEu** | **Boolean** | Defines whether the card is regulated within the EU. |  [optional]
 **cardId** | **String** | The id of the card that is returned. Should be used for referencing the card when perform any changes. |  [optional]
-**cardStatus** | **String** | The status of the card such, valid values are  - ACTIVE the card is active for processing  - INACTIVE the card is not active for processing  - EXPIRED for cards that have passed their expiry date.  |  [optional]
-**dateCreated** | [**OffsetDateTime**](OffsetDateTime.md) | The date time of when the card was created. |  [optional]
+**cardStatus** | **String** | The status of the card such, valid values are   - ACTIVE the card is active for processing   - INACTIVE the card is not active for processing   - EXPIRED for cards that have passed their expiry date.  |  [optional]
+**dateCreated** | **OffsetDateTime** | The date time of when the card was created. |  [optional]
 **_default** | **Boolean** | Determines if the card is the default card for the account and should be regarded as the first option to be used for processing. |  [optional]
 **expmonth** | **Integer** | The expiry month of the card. |  [optional]
 **expyear** | **Integer** | The expiry year of the card. |  [optional]

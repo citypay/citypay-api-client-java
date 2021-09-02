@@ -55,10 +55,11 @@ public class RefundRequest {
   }
 
    /**
-   * The amount to refund in the lowest unit of currency with a variable length to a maximum of 12 digits. The amount should be the total amount required to refund for the transaction up to the original processed amount. No decimal points are to be included and no divisional characters such as 1,024. For example with GBP £1,021.95 the amount value is 102195. 
+   * The amount to refund in the lowest unit of currency with a variable length to a maximum of 12 digits.  The amount should be the total amount required to refund for the transaction up to the original processed amount.  No decimal points are to be included and no divisional characters such as 1,024.  For example with GBP £1,021.95 the amount value is 102195. 
    * @return amount
   **/
-  @ApiModelProperty(example = "3600", required = true, value = "The amount to refund in the lowest unit of currency with a variable length to a maximum of 12 digits. The amount should be the total amount required to refund for the transaction up to the original processed amount. No decimal points are to be included and no divisional characters such as 1,024. For example with GBP £1,021.95 the amount value is 102195. ")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "3600", required = true, value = "The amount to refund in the lowest unit of currency with a variable length to a maximum of 12 digits.  The amount should be the total amount required to refund for the transaction up to the original processed amount.  No decimal points are to be included and no divisional characters such as 1,024.  For example with GBP £1,021.95 the amount value is 102195. ")
 
   public Integer getAmount() {
     return amount;
@@ -80,6 +81,7 @@ public class RefundRequest {
    * The identifier of the refund to process. The value should be a valid reference and may be used to perform  post processing actions and to aid in reconciliation of transactions.  The value should be a valid printable string with ASCII character ranges from 0x32 to 0x127.  The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier) this will aid in ensuring each transaction is identifiable.  When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent request will ensure that a transaction is considered as different. 
    * @return identifier
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "95b857a1-5955-4b86-963c-5a6dbfc4fb95", required = true, value = "The identifier of the refund to process. The value should be a valid reference and may be used to perform  post processing actions and to aid in reconciliation of transactions.  The value should be a valid printable string with ASCII character ranges from 0x32 to 0x127.  The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier) this will aid in ensuring each transaction is identifiable.  When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent request will ensure that a transaction is considered as different. ")
 
   public String getIdentifier() {
@@ -102,6 +104,7 @@ public class RefundRequest {
    * Identifies the merchant account to perform the refund for.
    * @return merchantid
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "11223344", required = true, value = "Identifies the merchant account to perform the refund for.")
 
   public Integer getMerchantid() {
@@ -124,6 +127,7 @@ public class RefundRequest {
    * A reference to the original transaction number that is wanting to be refunded. The original  transaction must be on the same merchant id, previously authorised. 
    * @return refundRef
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "8322", required = true, value = "A reference to the original transaction number that is wanting to be refunded. The original  transaction must be on the same merchant id, previously authorised. ")
 
   public Integer getRefundRef() {
@@ -160,7 +164,7 @@ public class RefundRequest {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -180,7 +184,6 @@ public class RefundRequest {
     return Objects.hash(amount, identifier, merchantid, refundRef, transInfo);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -198,7 +201,7 @@ public class RefundRequest {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

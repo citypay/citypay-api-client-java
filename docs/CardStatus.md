@@ -2,6 +2,7 @@
 
 # CardStatus
 
+
 ## Properties
 
 Name | Type | Description | Notes

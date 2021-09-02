@@ -43,10 +43,11 @@ public class PaResAuthRequest {
   }
 
    /**
-   * The Merchant Data (MD) which is a unique ID to reference the authentication session. This value will be created by CityPay when required. When responding from the ACS, this value will be returned by the ACS. 
+   * The Merchant Data (MD) which is a unique ID to reference the authentication session.  This value will be created by CityPay when required. When responding from the ACS, this value will be returned by the ACS. 
    * @return md
   **/
-  @ApiModelProperty(required = true, value = "The Merchant Data (MD) which is a unique ID to reference the authentication session. This value will be created by CityPay when required. When responding from the ACS, this value will be returned by the ACS. ")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "The Merchant Data (MD) which is a unique ID to reference the authentication session.  This value will be created by CityPay when required. When responding from the ACS, this value will be returned by the ACS. ")
 
   public String getMd() {
     return md;
@@ -68,6 +69,7 @@ public class PaResAuthRequest {
    * The Payer Authentication Response packet which is returned by the ACS containing the  response of the authentication session including verification values. The response  is a base64 encoded packet and should be forwarded to CityPay untouched. 
    * @return pares
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "v66ycfSp8jNlvy7PkHbx44NEt3vox90+vZ/7Ll05Vid/jPfQn8adw+4D/vRDUGT19kndW97Hfirb...", required = true, value = "The Payer Authentication Response packet which is returned by the ACS containing the  response of the authentication session including verification values. The response  is a base64 encoded packet and should be forwarded to CityPay untouched. ")
 
   public String getPares() {
@@ -81,7 +83,7 @@ public class PaResAuthRequest {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -98,7 +100,6 @@ public class PaResAuthRequest {
     return Objects.hash(md, pares);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -113,7 +114,7 @@ public class PaResAuthRequest {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

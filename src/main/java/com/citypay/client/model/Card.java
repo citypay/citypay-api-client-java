@@ -319,11 +319,11 @@ public class Card {
   }
 
    /**
-   * The status of the card such, valid values are  - ACTIVE the card is active for processing  - INACTIVE the card is not active for processing  - EXPIRED for cards that have passed their expiry date. 
+   * The status of the card such, valid values are   - ACTIVE the card is active for processing   - INACTIVE the card is not active for processing   - EXPIRED for cards that have passed their expiry date. 
    * @return cardStatus
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The status of the card such, valid values are  - ACTIVE the card is active for processing  - INACTIVE the card is not active for processing  - EXPIRED for cards that have passed their expiry date. ")
+  @ApiModelProperty(value = "The status of the card such, valid values are   - ACTIVE the card is active for processing   - INACTIVE the card is not active for processing   - EXPIRED for cards that have passed their expiry date. ")
 
   public String getCardStatus() {
     return cardStatus;
@@ -419,7 +419,7 @@ public class Card {
    * @return expyear
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2023", value = "The expiry year of the card.")
+  @ApiModelProperty(example = "2024", value = "The expiry year of the card.")
 
   public Integer getExpyear() {
     return expyear;
@@ -547,7 +547,7 @@ public class Card {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -581,7 +581,6 @@ public class Card {
     return Objects.hash(binCommercial, binCorporate, binCountryIssued, binCredit, binCurrency, binDebit, binDescription, binEu, cardId, cardStatus, dateCreated, _default, expmonth, expyear, label, label2, last4digits, scheme, token);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -613,7 +612,7 @@ public class Card {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

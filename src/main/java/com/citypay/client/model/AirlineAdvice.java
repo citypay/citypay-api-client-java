@@ -104,6 +104,7 @@ public class AirlineAdvice {
    * The name of the airline carrier that generated the tickets for airline travel.
    * @return carrierName
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "EG Air", required = true, value = "The name of the airline carrier that generated the tickets for airline travel.")
 
   public String getCarrierName() {
@@ -169,13 +170,13 @@ public class AirlineAdvice {
   }
 
    /**
-   * A value that indicates the number of air travel segments included on this ticket. Valid entries include the numerals “0” through “4”. Required only if the transaction type is TKT or EXC. 
+   * A value that indicates the number of air travel segments included on this ticket.  Valid entries include the numerals “0” through “4”. Required only if the transaction type is TKT or EXC. 
    * minimum: 0
    * maximum: 4
    * @return noAirSegments
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2", value = "A value that indicates the number of air travel segments included on this ticket. Valid entries include the numerals “0” through “4”. Required only if the transaction type is TKT or EXC. ")
+  @ApiModelProperty(example = "2", value = "A value that indicates the number of air travel segments included on this ticket.  Valid entries include the numerals “0” through “4”. Required only if the transaction type is TKT or EXC. ")
 
   public Integer getNoAirSegments() {
     return noAirSegments;
@@ -197,6 +198,7 @@ public class AirlineAdvice {
    * The number of people in the party.
    * @return numberInParty
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "2", required = true, value = "The number of people in the party.")
 
   public Integer getNumberInParty() {
@@ -265,6 +267,7 @@ public class AirlineAdvice {
    * Get segment1
    * @return segment1
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public AirlineSegment getSegment1() {
@@ -356,6 +359,7 @@ public class AirlineAdvice {
    * The name of the city town or village where the transaction took place.
    * @return ticketIssueCity
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "London", required = true, value = "The name of the city town or village where the transaction took place.")
 
   public String getTicketIssueCity() {
@@ -378,7 +382,8 @@ public class AirlineAdvice {
    * The date the ticket was issued in ISO Date format (yyyy-MM-dd).
    * @return ticketIssueDate
   **/
-  @ApiModelProperty(example = "Sat Aug 01 00:00:00 GMT 2020", required = true, value = "The date the ticket was issued in ISO Date format (yyyy-MM-dd).")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "Sat Aug 01 00:00:00 UTC 2020", required = true, value = "The date the ticket was issued in ISO Date format (yyyy-MM-dd).")
 
   public LocalDate getTicketIssueDate() {
     return ticketIssueDate;
@@ -400,6 +405,7 @@ public class AirlineAdvice {
    * The name of the agency generating the ticket.
    * @return ticketIssueName
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "Issue Name", required = true, value = "The name of the agency generating the ticket.")
 
   public String getTicketIssueName() {
@@ -422,6 +428,7 @@ public class AirlineAdvice {
    * This must be a valid ticket number, i.e. numeric (the first 3 digits must represent the valid IATA plate carrier code). The final check digit should be validated prior to submission. On credit charges, this field should contain the number of the original ticket, and not of a replacement. 
    * @return ticketNo
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "A112233", required = true, value = "This must be a valid ticket number, i.e. numeric (the first 3 digits must represent the valid IATA plate carrier code). The final check digit should be validated prior to submission. On credit charges, this field should contain the number of the original ticket, and not of a replacement. ")
 
   public String getTicketNo() {
@@ -441,10 +448,11 @@ public class AirlineAdvice {
   }
 
    /**
-   * This field contains the Transaction Type code assigned to this transaction. Valid codes include:   - &#x60;TKT&#x60; &#x3D; Ticket Purchase  - &#x60;REF&#x60; &#x3D; Refund  - &#x60;EXC&#x60; &#x3D; Exchange Ticket  - &#x60;MSC&#x60; &#x3D; Miscellaneous (non-Ticket Purchase- and non-Exchange Ticket-related transactions only). 
+   * This field contains the Transaction Type code assigned to this transaction. Valid codes include:   - &#x60;TKT&#x60; &#x3D; Ticket Purchase   - &#x60;REF&#x60; &#x3D; Refund   - &#x60;EXC&#x60; &#x3D; Exchange Ticket   - &#x60;MSC&#x60; &#x3D; Miscellaneous (non-Ticket Purchase- and non-Exchange Ticket-related transactions only). 
    * @return transactionType
   **/
-  @ApiModelProperty(example = "TKT", required = true, value = "This field contains the Transaction Type code assigned to this transaction. Valid codes include:   - `TKT` = Ticket Purchase  - `REF` = Refund  - `EXC` = Exchange Ticket  - `MSC` = Miscellaneous (non-Ticket Purchase- and non-Exchange Ticket-related transactions only). ")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "TKT", required = true, value = "This field contains the Transaction Type code assigned to this transaction. Valid codes include:   - `TKT` = Ticket Purchase   - `REF` = Refund   - `EXC` = Exchange Ticket   - `MSC` = Miscellaneous (non-Ticket Purchase- and non-Exchange Ticket-related transactions only). ")
 
   public String getTransactionType() {
     return transactionType;
@@ -457,7 +465,7 @@ public class AirlineAdvice {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -488,7 +496,6 @@ public class AirlineAdvice {
     return Objects.hash(carrierName, conjunctionTicketIndicator, eticketIndicator, noAirSegments, numberInParty, originalTicketNo, passengerName, segment1, segment2, segment3, segment4, ticketIssueCity, ticketIssueDate, ticketIssueName, ticketNo, transactionType);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -517,7 +524,7 @@ public class AirlineAdvice {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

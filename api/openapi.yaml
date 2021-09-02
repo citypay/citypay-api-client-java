@@ -32,7 +32,7 @@ info:
       address. Our application firewalls analyse data that may be an attempt to break a large number of security common
       security vulnerabilities.
   title: CityPay Payment API
-  version: 6.0.12
+  version: 6.2.2
 servers:
 - description: Production processing endpoint
   url: https://api.citypay.com/v6
@@ -41,11 +41,18 @@ servers:
 security:
 - cp-api-key: []
 tags:
-- description: "A Card holder account models a card holder and can register 1 or more\
-    \ cards for charging\nagainst. The account offers a credential on file option\
-    \ to the CityPay gateway alowing for \nboth card holder initiated and merchant\
-    \ initiated transaction processing.\n\nThis can included unscheduled or scheduled\
-    \ transactions that can be requested through this API.\n"
+- description: "Batch processing uses the Batch and Instalment Service (BIS) which\
+    \ allows for transaction processing against cardholder \naccounts using a dynamic\
+    \ batch file. For merchants who process on schedules and dynamic amounts, the\
+    \ service allows for \nthe presentation of cardholder account references and transaction\
+    \ requirements to run as a scheduled batch.\n"
+  name: Batch Processing
+- description: "A cardholder account models a cardholder and can register 1 or more\
+    \ cards for tokenised charging. \n\nThe account offers a credential on file option\
+    \ to the CityPay gateway allowing for both cardholder initiated and \nmerchant\
+    \ initiated transaction processing.\n\nThis can include unscheduled or scheduled\
+    \ transactions that can be requested through this API and include batch \nprocessing\
+    \ options.\n"
   name: Card Holder Account
 - description: Operations that are for operational purposes only such as checking
     connectivity to the API.
@@ -352,16 +359,69 @@ paths:
               schema:
                 $ref: '#/components/schemas/Acknowledgement'
           description: A result and acknowledgement of the capture request. The response
-            will return a `000|001` response on a successful capture otherwise an
+            will return a `000/001` response on a successful capture otherwise an
             error code response explaining the error.
       summary: Capture
       tags:
       - Payment Processing
       x-contentType: application/json
       x-accepts: application/json
+  /batch/process:
+    post:
+      description: |
+        A batch process request is used to start the batch process workflow by uploading batch
+        data and initialising a new batch for processing. Once validated the batch will be queued
+        for processing and further updates can be received by a subsequent call to retrieve the batch
+        status.
+      operationId: BatchProcessRequest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessBatchRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/ProcessBatchRequest'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessBatchResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ProcessBatchResponse'
+          description: Request to process a batch provided in the request.
+      summary: Batch Process Request
+      tags:
+      - Batch Processing
+      x-contentType: application/json
+      x-accepts: application/json
   /account-exists/{accountid}:
     get:
-      description: "."
+      description: "Checks that an account exists and is active by providing the account\
+        \ id as a url parameter \nChecks that an account exists and is active by providing\
+        \ the account id as a url parameter.\n"
       operationId: AccountExistsRequest
       parameters:
       - description: The account id that refers to the customer's account no. This
@@ -530,8 +590,8 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Acknowledgement'
-          description: |
-            Acknowledges the card status has changed, returning a response code of `001` for a valid change or `000` for a non valid change.
+          description: </br>Acknowledges the card status has changed, returning a
+            response code of `001` for a valid change or `000` for a non valid change.
       summary: Card Status
       tags:
       - Card Holder Account
@@ -698,9 +758,9 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Acknowledgement'
-          description: |
-            A result and acknowledgement of the void request, returning an `080|003` response code on successful void/cancellation of the transaction.
-            If an error occurs an error code will be returned explaining the failure.
+          description: </br>A result and acknowledgement of the void request, returning
+            an `080/003` response code on successful void/cancellation of the transaction.</br></br>If
+            an error occurs an error code will be returned explaining the failure.
       summary: Void
       tags:
       - Payment Processing
@@ -763,10 +823,10 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Acknowledgement'
-          description: |
-            An acknowledgment that the card holder account status has been updated.
-            A response code of `001` is returned if the request was accepted or no change required.
-            A response code of `000` is returned if the request contains invalid data.
+          description: An acknowledgment that the card holder account status has been
+            updated.</br></br>A response code of `001` is returned if the request
+            was accepted or no change required.</br></br>A response code of `000`
+            is returned if the request contains invalid data.
       summary: Account Status
       tags:
       - Card Holder Account
@@ -946,24 +1006,28 @@ paths:
         \ We are never in control of the user's browser in a server API call\n  2.\
         \ The controller is actioned on your site to ensure that any post actions\
         \ from authorisation can be executed in real time\n  \nTo forward the user\
-        \ to the ACS, we recommend a simple auto submit HTML form.\n\n```html\n<html\
-        \ lang=\"en\">\n<head>\n        <title>Forward to ACS</title>\n<script type=\"\
-        text/javascript\">\n        function onLoadEvent() { \n            document.acs.submit();\
-        \ \n        }\n        </script>\n        <noscript>You will require JavaScript\
-        \ to be enabled to complete this transaction</noscript>\n    </head>\n   \
-        \ <body onload=\"onLoadEvent();\">\n        <form name=\"acs\" action=\"{{ACSURL\
-        \ from Response}}\" method=\"POST\">\n            <input type=\"hidden\" name=\"\
-        PaReq\" value=\"{{PaReq Packet from Response}}\" />\n            <input type=\"\
-        hidden\" name=\"TermUrl\" value=\"{{Your Controller}}\" />\n            <input\
-        \ type=\"hidden\" name=\"MD\" value=\"{{MD From Response}}\" />\n        </form>\n\
-        \    </body>\n</html>\n```\n\nPlease note that 3DSv1 is being phased out due\
-        \ to changes to strong customer authentication mechanisms. 3DSv2 addresses\n\
-        this and will solidify the authorisation and confirmation process.\n\nWe provide\
+        \ to the ACS, we recommend a simple auto submit HTML form.\n\n> Simple auto\
+        \ submit HTML form\n\n```html\n<html lang=\"en\">\n<head>\n        <title>Forward\
+        \ to ACS</title>\n<script type=\"text/javascript\">\n        function onLoadEvent()\
+        \ { \n            document.acs.submit(); \n        }\n        </script>\n\
+        \        <noscript>You will require JavaScript to be enabled to complete this\
+        \ transaction</noscript>\n    </head>\n    <body onload=\"onLoadEvent();\"\
+        >\n        <form name=\"acs\" action=\"{{ACSURL from Response}}\" method=\"\
+        POST\">\n            <input type=\"hidden\" name=\"PaReq\" value=\"{{PaReq\
+        \ Packet from Response}}\" />\n            <input type=\"hidden\" name=\"\
+        TermUrl\" value=\"{{Your Controller}}\" />\n            <input type=\"hidden\"\
+        \ name=\"MD\" value=\"{{MD From Response}}\" />\n        </form>\n    </body>\n\
+        </html>\n```\n\nPlease note that 3DSv1 is being phased out due to changes\
+        \ to strong customer authentication mechanisms. 3DSv2 addresses\nthis and\
+        \ will solidify the authorisation and confirmation process.\n\nWe provide\
         \ a Test ACS for full 3DSv1 integration testing that simulates an ACS. \n\n\
         \n#### 3DSv2\n\n```json\n{ \n  \"RequestChallenged\": {\n    \"acsurl\": \"\
         https://bank.com/3DS/ACS\",\n    \"creq\": \"SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...\"\
-        \n  }               \n}\n```\n\n```xml\n<RequestChallenged>\n <acsurl>https://bank.com/3DS/ACS</acsurl>\n\
-        \ <creq>SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...</creq>\n\
+        ,\n    \"merchantid\": 12345,\n    \"transno\": 1,\n    \"threedserver_trans_id\"\
+        : \"d652d8d2-d74a-4264-a051-a7862b10d5d6\"\n  }               \n}\n```\n\n\
+        ```xml\n<RequestChallenged>\n  <acsurl>https://bank.com/3DS/ACS</acsurl>\n\
+        \  <creq>SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...</creq>\n\
+        \  <merchantid>12345</merchantid>\n  <transno>1</transno>\n  <threedserver_trans_id>d652d8d2-d74a-4264-a051-a7862b10d5d6</threedserver_trans_id>\n\
         </RequestChallenged>\n```\n\nAll merchants in the EEC will require to migrate\
         \ their E-commerce transactions to a secure customer authentication \nmodel\
         \ (SCA) throughout 2020. This has been adopted by the payment's industry as\
@@ -980,33 +1044,43 @@ paths:
         require your integration to forward the cardholder's browser to the given\
         \ [ACS url](#acsurl) by posting the [creq](#creq)\nvalue. Once complete, the\
         \ ACS will have already been in touch with our servers by sending us a result\
-        \ of the authentication\nknown as `RReq`.\n\nOur servers however will await\
-        \ confirmation that the authorisation should continue and on receipt of a\
-        \ [cres](#cres)\nvalue, the flow will perform full authorisation processing.\
-        \ \n\nPlease note that the CRes returned to us is purely a mechanism of acknowledging\
-        \ that transactions should be committed for\nauthorisation. The ACS by this\
-        \ point will have sent us the verification value (CAVV) to perform a liability\
-        \ shift. The CRes\nvalue will be validated for receipt of the CAVV and subsequently\
-        \ may return back response codes illustrating this. \n\nTo forward the user\
-        \ to the ACS, we recommend a simple auto submit HTML form.\n\n```html\n<html\
-        \ lang=\"en\">\n<head>\n        <title>Forward to ACS</title>\n<script type=\"\
-        text/javascript\">\n        function onLoadEvent() { \n            document.acs.submit();\
-        \ \n        }\n        </script>\n        <noscript>You will require JavaScript\
+        \ of the authentication\nknown as `RReq`.\n\nTo maintain session state, a\
+        \ parameter `ThreeDSSessionData` can be posted to the ACS url and will be\
+        \ returned alongside \nthe `CRes` value. This will ensure that any controller\
+        \ code will be able to isolate state between calls. This field\nis to be used\
+        \ by your own systems rather than ours and may be any value which can uniquely\
+        \ identify your cardholder's\nsession. As an option, we do provide a `threedserver_trans_id`\
+        \ value in the `RequestChallenged` packet which can be used\nfor the `ThreeDSSessionData`\
+        \ value as it is used to uniquely identify the 3D-Secure session. \n\nOur\
+        \ servers however will await confirmation that the authorisation should continue\
+        \ and on receipt of a [cres](#cres)\nvalue, the flow will perform full authorisation\
+        \ processing. \n\nPlease note that the CRes returned to us is purely a mechanism\
+        \ of acknowledging that transactions should be committed for\nauthorisation.\
+        \ The ACS by this point will have sent us the verification value (CAVV) to\
+        \ perform a liability shift. The CRes\nvalue will be validated for receipt\
+        \ of the CAVV and subsequently may return back response codes illustrating\
+        \ this. \n\nTo forward the user to the ACS, we recommend a simple auto submit\
+        \ HTML form.\n\n> Simple auto submit HTML form\n\n```html\n<html lang=\"en\"\
+        >\n<head>\n        <title>Forward to ACS</title>\n<script type=\"text/javascript\"\
+        >\n        function onLoadEvent() { \n            document.acs.submit(); \n\
+        \        }\n        </script>\n        <noscript>You will require JavaScript\
         \ to be enabled to complete this transaction</noscript>\n    </head>\n   \
         \ <body onload=\"onLoadEvent();\">\n        <form name=\"acs\" action=\"{{ACSURL\
         \ from Response}}\" method=\"POST\">\n            <input type=\"hidden\" name=\"\
-        creq\" value=\"{{CReq Packet from Response}}\" />\n        </form>\n    </body>\n\
-        </html>\n```\n\nWe are currently working on an integration test suite for\
-        \ 3DSv2 which will mock the ACS challenge process.\n        \n### Testing\
-        \ 3DSv2 Integrations\n\nThe API provides a mock 3dsV2 handler which performs\
-        \ a number of scenarios based on the value of the CSC in the request.\n\n\
-        | CSC Value | Behaviour |\n|-----------|-----------|\n| 731       | Frictionless\
-        \ processing - Not authenticated |\n| 732       | Frictionless processing\
-        \ - Account verification count not be performed |        \n| 733       | Frictionless\
-        \ processing - Verification Rejected |        \n| 741       | Frictionless\
-        \ processing - Attempts Processing |        \n| 750       | Frictionless processing\
-        \ - Authenticated  |        \n| 761       | Triggers an error message |  \n\
-        | Any       | Challenge Request |\n"
+        creq\" value=\"{{CReq Packet from Response}}\" />\n            <input type=\"\
+        hidden\" name=\"ThreeDSSessionData\" value=\"{{session-identifier}}\" />\n\
+        \        </form>\n    </body>\n</html>\n```\n\nWe are currently working on\
+        \ an integration test suite for 3DSv2 which will mock the ACS challenge process.\n\
+        \        \n### Testing 3DSv2 Integrations\n\nThe API provides a mock 3dsV2\
+        \ handler which performs a number of scenarios based on the value of the CSC\
+        \ in the request.\n\n| CSC Value | Behaviour |\n|-----------|-----------|\n\
+        | 731       | Frictionless processing - Not authenticated |\n| 732       |\
+        \ Frictionless processing - Account verification count not be performed |\
+        \        \n| 733       | Frictionless processing - Verification Rejected |\
+        \        \n| 741       | Frictionless processing - Attempts Processing | \
+        \       \n| 750       | Frictionless processing - Authenticated  |       \
+        \ \n| 761       | Triggers an error message |  \n| Any       | Challenge Request\
+        \ |\n"
       operationId: AuthorisationRequest
       requestBody:
         content:
@@ -1057,6 +1131,54 @@ paths:
       summary: Authorisation
       tags:
       - Payment Processing
+      x-contentType: application/json
+      x-accepts: application/json
+  /batch/retrieve:
+    post:
+      description: The operation is used to retrieve a report of the result of a batch
+        process.
+      operationId: GetBatchReportRequest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchReportRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/BatchReportRequest'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchReportResponseModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/BatchReportResponseModel'
+          description: The report for a given batch.
+      summary: BatchReportRequest
+      tags:
+      - Batch Processing
       x-contentType: application/json
       x-accepts: application/json
   /retrieve:
@@ -1237,6 +1359,53 @@ paths:
       tags:
       - Operational
       x-accepts: application/json
+  /batch/status:
+    post:
+      description: The operation is used to retrieve the status of a batch process.
+      operationId: CheckBatchStatusRequest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckBatchStatus'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/CheckBatchStatus'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckBatchStatusResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/CheckBatchStatusResponse'
+          description: The status of a batch provided in the request.
+      summary: CheckBatchStatus
+      tags:
+      - Batch Processing
+      x-contentType: application/json
+      x-accepts: application/json
   /pares:
     post:
       description: "The Payer Authentication Response (PaRes) is an operation after\
@@ -1310,7 +1479,7 @@ components:
           scheme: Visa
           date_created: 2020-01-02T18:32:28Z
           bin_currency: bin_currency
-          expyear: 2023
+          expyear: 2024
           label: Visa/0002
           card_id: card_id
           label2: Visa/0002,Exp:2304
@@ -1329,7 +1498,7 @@ components:
           scheme: Visa
           date_created: 2020-01-02T18:32:28Z
           bin_currency: bin_currency
-          expyear: 2023
+          expyear: 2024
           label: Visa/0002
           card_id: card_id
           label2: Visa/0002,Exp:2304
@@ -1398,6 +1567,7 @@ components:
             Defines the status of the account for processing valid values are
 
              - ACTIVE for active accounts that are able to process
+
              - DISABLED for accounts that are currently disabled for processing.
           type: string
         unique_id:
@@ -1464,18 +1634,36 @@ components:
           type: string
         authen_result:
           description: |
-            The result of any authentication using 3d_secure authorisation against ecommerce transactions. Values are
-            | Value | Description |
-            |-------|-------------|
-            | Y | Authentication Successful. The Cardholder's password was successfully validated. |
-            | N | Authentication Failed. Customer failed or cancelled authentication, transaction denied. |
-            | A | Attempts Processing Performed Authentication could not be completed but a proof of authentication attempt (CAVV) was generated |
-            | U | Authentication Could Not Be Performed Authentication could not be completed, due to technical or other problem |
+            The result of any authentication using 3d_secure authorisation against ecommerce transactions. Values are:
+
+            <table>
+            <tr>
+            <th>Value</th>
+            <th>Description</th>
+            </tr>
+            <tr>
+            <td>Y</td>
+            <td>Authentication Successful. The Cardholder's password was successfully validated.</td>
+            </tr>
+            <tr>
+            <td>N</td>
+            <td>Authentication Failed. Customer failed or cancelled authentication, transaction denied.</td>
+            </tr>
+            <tr>
+            <td>A</td>
+            <td>Attempts Processing Performed Authentication could not be completed but a proof of authentication attempt (CAVV) was generated.</td>
+            </tr>
+            <tr>
+            <td>U</td>
+            <td>Authentication Could Not Be Performed Authentication could not be completed, due to technical or other problem.</td>
+            </tr>
+            </table>
           type: string
         authorised:
           description: |
             A boolean definition that indicates that the transaction was authorised. It will return false if the transaction
              was declined, rejected or cancelled due to CSC matching failures.
+
             Attention should be referenced to the AuthResult and Response code for accurate determination of the result.
           example: true
           type: boolean
@@ -1485,26 +1673,30 @@ components:
             Address Verification fraud system. If a transaction is declined due to the AVS code not matching,
             this value can help determine the reason for the decline.
 
-             | Code | Description |
-             |------|------------|
-             | Y | Address and 5 digit post code match |
-             | M | Street address and Postal codes match for international transaction |
-             | U | No AVS data available from issuer auth system |
-             | A | Addres matches, post code does not |
-             | I | Address information verified for international transaction |
-             | Z | 5 digit post code matches, Address does not |
-             | W | 9 digit post code matches, Address does not |
-             | X | Postcode and address match |
-             | B | Postal code not verified due to incompatible formats |
-             | P | Postal codes match. Street address not verified due to to incompatible formats |
-             | E | AVS Error |
-             | C | Street address and Postal code not verified due to incompatible formats |
-             | D | Street address and postal codes match |
-             |   | No information |
-             | N | Neither postcode nor address match |
-             | R | Retry, System unavailble or Timed Out |
-             | S | AVS Service not supported by issuer or processor |
-             | G | Issuer does not participate in AVS |
+            <table>
+            <tr>
+            <th>Code</th>
+            <th>Description</th>
+            </tr>
+            <tr><td>Y</td><td>Address and 5 digit post code match</td></tr>
+            <tr><td>M</td><td>Street address and Postal codes match for international transaction</td></tr>
+            <tr><td>U</td><td>No AVS data available from issuer auth system</td></tr>
+            <tr><td>A</td><td>Addres matches, post code does not</td></tr>
+            <tr><td>I</td><td>Address information verified for international transaction</td></tr>
+            <tr><td>Z</td><td>5 digit post code matches, Address does not</td></tr>
+            <tr><td>W</td><td>9 digit post code matches, Address does not</td></tr>
+            <tr><td>X</td><td>Postcode and address match</td></tr>
+            <tr><td>B</td><td>Postal code not verified due to incompatible formats</td></tr>
+            <tr><td>P</td><td>Postal codes match. Street address not verified due to to incompatible formats</td></tr>
+            <tr><td>E</td><td>AVS Error</td></tr>
+            <tr><td>C</td><td>Street address and Postal code not verified due to incompatible formats</td></tr>
+            <tr><td>D</td><td>Street address and postal codes match</td></tr>
+            <tr><td> </td><td>No information</td></tr>
+            <tr><td>N</td><td>Neither postcode nor address match</td></tr>
+            <tr><td>R</td><td>Retry, System unavailble or Timed Out</td></tr>
+            <tr><td>S</td><td>AVS Service not supported by issuer or processor</td></tr>
+            <tr><td>G</td><td>Issuer does not participate in AVS</td></tr>
+            </table>
           maxLength: 1
           minLength: 1
           type: string
@@ -1535,14 +1727,18 @@ components:
             Card Security Code fraud system. If a transaction is declined due to the CSC code not matching,
             this value can help determine the reason for the decline.
 
-             | Code | Description |
-             |------|------------|
-             |   | No information |
-             | M | Card verification data matches |
-             | N | Card verification data was checked but did not match |
-             | P | Card verification was not processed |
-             | S | The card verification data should be on the card but the merchant indicates that it is not |
-             | U | The card issuer is not certified |
+            <table>
+            <tr>
+            <th>Code</th>
+            <th>Description</th>
+            </tr>
+            <tr><td> </td><td>No information</td></tr>
+            <tr><td>M</td><td>Card verification data matches</td></tr>
+            <tr><td>N</td><td>Card verification data was checked but did not match</td></tr>
+            <tr><td>P</td><td>Card verification was not processed</td></tr>
+            <tr><td>S</td><td>The card verification data should be on the card but the merchant indicates that it is not</td></tr>
+            <tr><td>U</td><td>The card issuer is not certified</td></tr>
+            </table>
           maxLength: 1
           minLength: 1
           type: string
@@ -1570,7 +1766,7 @@ components:
           minLength: 4
           type: string
         live:
-          description: Used to identify that a tranasction was processed on a live
+          description: Used to identify that a transaction was processed on a live
             authorisation platform.
           example: true
           type: boolean
@@ -1588,29 +1784,34 @@ components:
           description: |
             An integer result that indicates the outcome of the transaction. The Code value below maps to the result value
 
-             | Code | Abbrev | Description |
-             |------|-------|-------------|
-             | 0 | Declined | Declined |
-             | 1 | Accepted | Accepted |
-             | 2 | Rejected | Rejected |
-             | 3 | Not Attempted | Not Attempted |
-             | 4 | Referred | Referred |
-             | 5 | PinRetry | Perform PIN Retry |
-             | 6 | ForSigVer | Force Signature Verification |
-             | 7 | Hold | Hold |
-             | 8 | SecErr | Security Error |
-             | 9 | CallAcq | Call Acquirer |
-             | 10 | DNH | Do Not Honour |
-             | 11 | RtnCrd | Retain Card |
-             | 12 | ExprdCrd | Expired Card |
-             | 13 | InvldCrd | Invalid Card No |
-             | 14 | PinExcd | Pin Tries Exceeded |
-             | 15 | PinInvld | Pin Invalid |
-             | 16 | AuthReq | Authentication Required |
-             | 17 | AuthenFail | Authentication Failed |
-             | 18 | Verified | Card Verified |
-             | 19 | Cancelled | Cancelled |
-             | 20 | Un | Unknown |
+            <table>
+            <tr>
+            <th>Code</th>
+            <th>Abbrev</th>
+            <th>Description</th>
+            </tr>
+            <tr><td>0</td><td>Declined</td><td>Declined</td></tr>
+            <tr><td>1</td><td>Accepted</td><td>Accepted</td></tr>
+            <tr><td>2</td><td>Rejected</td><td>Rejected</td></tr>
+            <tr><td>3</td><td>Not Attempted</td><td>Not Attempted</td></tr>
+            <tr><td>4</td><td>Referred</td><td>Referred</td></tr>
+            <tr><td>5</td><td>PinRetry</td><td>Perform PIN Retry</td></tr>
+            <tr><td>6</td><td>ForSigVer</td><td>Force Signature Verification</td></tr>
+            <tr><td>7</td><td>Hold</td><td>Hold</td></tr>
+            <tr><td>8</td><td>SecErr</td><td>Security Error</td></tr>
+            <tr><td>9</td><td>CallAcq</td><td>Call Acquirer</td></tr>
+            <tr><td>10</td><td>DNH</td><td>Do Not Honour</td></tr>
+            <tr><td>11</td><td>RtnCrd</td><td>Retain Card</td></tr>
+            <tr><td>12</td><td>ExprdCrd</td><td>Expired Card</td></tr>
+            <tr><td>13</td><td>InvldCrd</td><td>Invalid Card No</td></tr>
+            <tr><td>14</td><td>PinExcd</td><td>Pin Tries Exceeded</td></tr>
+            <tr><td>15</td><td>PinInvld</td><td>Pin Invalid</td></tr>
+            <tr><td>16</td><td>AuthReq</td><td>Authentication Required</td></tr>
+            <tr><td>17</td><td>AuthenFail</td><td>Authentication Failed</td></tr>
+            <tr><td>18</td><td>Verified</td><td>Card Verified</td></tr>
+            <tr><td>19</td><td>Cancelled</td><td>Cancelled</td></tr>
+            <tr><td>20</td><td>Un</td><td>Unknown</td></tr>
+            </table>
           example: 1
           format: int32
           type: integer
@@ -1618,6 +1819,7 @@ components:
           description: |
             The result code as defined in the Response Codes Reference for example 000 is an accepted live
             transaction whilst 001 is an accepted test transaction. Result codes identify the source of success and failure.
+
             Codes may start with an alpha character i.e. C001 indicating a type of error such as a card validation error.
           example: "0"
           type: string
@@ -1635,32 +1837,79 @@ components:
           description: |
             A SHA256 digest value of the transaction used to validate the response data
             The digest is calculated by concatenating
+
              * authcode
+
              * amount
+
              * response_code
+
              * merchant_id
+
              * trans_no
+
              * identifier
+
              * licence_key - which is not provided in the response.
           type: string
         trans_status:
           description: |
             Used to identify the status of a transaction. The status is used to track a transaction through its life cycle.
 
-            | Id | Description |
-            |----|-------------|
-            | O | Transaction is open for settlement |
-            | A | Transaction is assigned for settlement and can no longer be voided |
-            | S | Transaction has been settled   |
-            | D | Transaction has been declined |
-            | R | Transaction has been rejected |
-            | P | Transaction has been authorised only and awaiting a capture. Used in pre-auth situations |
-            | C | Transaction has been cancelled |
-            | E | Transaction has expired |
-            | I | Transaction has been initialised but no action was able to be carried out |
-            | H | Transaction is awaiting authorisation |
-            | . | Transaction is on hold |
-            | V | Transaction has been verified |
+            <table>
+            <tr>
+            <th>Id</th>
+            <th>Description</th>
+            </tr>
+            <tr>
+            <td>O</td>
+            <td>Transaction is open for settlement</td>
+            </tr>
+            <tr>
+            <td>A</td>
+            <td>Transaction is assigned for settlement and can no longer be voided</td>
+            </tr>
+            <tr>
+            <td>S</td>
+            <td>Transaction has been settled</td>
+            </tr>
+            <tr>
+            <td>D</td>
+            <td>Transaction has been declined</td>
+            </tr>
+            <tr>
+            <td>R</td>
+            <td>Transaction has been rejected</td>
+            </tr>
+            <tr>
+            <td>P</td>
+            <td>Transaction has been authorised only and awaiting a capture. Used in pre-auth situations</td>
+            </tr>
+            <tr>
+            <td>C</td>
+            <td>Transaction has been cancelled</td>
+            </tr>
+            <tr>
+            <td>E</td>
+            <td>Transaction has expired</td>
+            </tr>
+            <tr>
+            <td>I</td>
+            <td>Transaction has been initialised but no action was able to be carried out</td>
+            </tr>
+            <tr>
+            <td>H</td>
+            <td>Transaction is awaiting authorisation</td>
+            </tr>
+            <tr>
+            <td>.</td>
+            <td>Transaction is on hold</td>
+            </tr>
+            <tr>
+            <td>V</td>
+            <td>Transaction has been verified</td>
+            </tr>
+            </table>
           type: string
         transno:
           description: |
@@ -1676,11 +1925,11 @@ components:
         threedsecure:
           downgrade1: true
           accept_headers: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
-          merchant_termurl: merchant_termurl
+          merchant_termurl: https://mysite.com/acs/return
           tds_policy: tds_policy
           user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36
             (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
-          cp_bx: cp_bx
+          cp_bx: FjaW50b3NoOyBJbnRlbCBNYWMgT1MgWCAx...
         amount: 3600
         csc_policy: csc_policy
         trans_info: trans_info
@@ -1696,8 +1945,11 @@ components:
         amount:
           description: |
             The amount to authorise in the lowest unit of currency with a variable length to a maximum of 12 digits.
+
             No decimal points are to be included and no divisional characters such as 1,024.
+
             The amount should be the total amount required for the transaction.
+
             For example with GBP £1,021.95 the amount value is 102195.
           example: 3600
           format: int32
@@ -1710,8 +1962,11 @@ components:
 
             Values are
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+
              `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.
+
              `2` to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.
+
              `3` to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation.
           type: string
         csc:
@@ -1725,12 +1980,15 @@ components:
 
             The CSC number aids fraud prevention in Mail Order and Internet payments.
 
-             Business rules are available on your account to identify whether to accept
+            Business rules are available on your account to identify whether to accept
             or decline transactions based on mismatched results of the CSC.
 
             The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored.
+
             This applies to all entities handling card data.
+
             It should also not be used in any hashing process.
+
             CityPay do not store the value and have no method of retrieving the value once the transaction has been processed.
             For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm.
           example: "12"
@@ -1743,8 +2001,11 @@ components:
 
             Values are
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+
              `1` for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.
+
              `2` to bypass. Transactions that are bypassed will be allowed through even if the CSC did not match.
+
              `3` to ignore. Transactions that are ignored will bypass the result and not send the CSC details for authorisation.
           type: string
         currency:
@@ -1762,8 +2023,11 @@ components:
 
             Values are
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+
              `1` for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.
+
              `2` to bypass. Transactions that are bypassed will not be checked for duplication within the duplication window.
+
              `3` to ignore. Transactions that are ignored will have the same affect as bypass.
           type: string
         identifier:
@@ -1786,11 +2050,13 @@ components:
           description: |
             A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.
 
-
             Values are
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+
              `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.
+
              `2` to bypass. Transactions that are bypassed will be allowed through even if the address did not match.
+
              `3` to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation.
           type: string
         merchantid:
@@ -1805,12 +2071,15 @@ components:
             A tokenised form of a card that belongs to a card holder's account and that
             has been previously registered. The token is time based and will only be active for
             a short duration. The value is therefore designed not to be stored remotely for future
-             use.
+            use.
+
 
             Tokens will start with ct and are resiliently tamper proof using HMacSHA-256.
             No sensitive card data is stored internally within the token.
 
+
             Each card will contain a different token and the value may be different on any retrieval call.
+
 
             The value can be presented for payment as a selection value to an end user in a web application.
           example: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
@@ -1834,6 +2103,23 @@ components:
       - merchantid
       - token
       type: object
+    ProcessBatchResponse:
+      example:
+        valid: true
+        message: Approved 044332
+      properties:
+        message:
+          description: Information regarding the processing request.
+          example: Approved 044332
+          type: string
+        valid:
+          description: true if the request has been accepted for processing and is
+            valid.
+          example: true
+          type: boolean
+      required:
+      - valid
+      type: object
     RefundRequest:
       example:
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
@@ -1845,8 +2131,11 @@ components:
         amount:
           description: |
             The amount to refund in the lowest unit of currency with a variable length to a maximum of 12 digits.
+
             The amount should be the total amount required to refund for the transaction up to the original processed amount.
+
             No decimal points are to be included and no divisional characters such as 1,024.
+
             For example with GBP £1,021.95 the amount value is 102195.
           example: 3600
           format: int32
@@ -1917,7 +2206,8 @@ components:
           format: int32
           type: integer
         threedserver_trans_id:
-          description: The 3DSv2 trans id reference for the challenge process.
+          description: The 3DSv2 trans id reference for the challenge process. May
+            be used to create the ThreeDSSessionData value to send to the ACS.
           type: string
         transno:
           description: |
@@ -2017,7 +2307,7 @@ components:
         scheme: Visa
         date_created: 2020-01-02T18:32:28Z
         bin_currency: bin_currency
-        expyear: 2023
+        expyear: 2024
         label: Visa/0002
         card_id: card_id
         label2: Visa/0002,Exp:2304
@@ -2064,8 +2354,11 @@ components:
         card_status:
           description: |
             The status of the card such, valid values are
+
              - ACTIVE the card is active for processing
+
              - INACTIVE the card is not active for processing
+
              - EXPIRED for cards that have passed their expiry date.
           type: string
         date_created:
@@ -2086,7 +2379,7 @@ components:
           type: integer
         expyear:
           description: The expiry year of the card.
-          example: 2023
+          example: 2024
           format: int32
           maximum: 2100
           minimum: 2000
@@ -2363,6 +2656,54 @@ components:
           items:
             $ref: '#/components/schemas/AuthReference'
           type: array
+          x-description: Authorisations which match the request.
+      type: object
+    ProcessBatchRequest:
+      example:
+        account_id: AC1
+        batch_id: 1975
+        transactions:
+        - identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          amount: 3600
+          account_id: aaabbb-cccddd-eee
+          merchantid: 11223344
+        - identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          amount: 3600
+          account_id: aaabbb-cccddd-eee
+          merchantid: 11223344
+        batch_date: 2020-01-02T18:32:28Z
+      properties:
+        account_id:
+          description: The batch account id to process the batch for. Defaults to
+            your client id if not provided.
+          example: AC1
+          maxLength: 20
+          minLength: 3
+          type: string
+        batch_date:
+          description: The date and time that the file was created in ISO-8601 format.
+          example: 2020-01-02T18:32:28Z
+          format: date-time
+          type: string
+        batch_id:
+          description: |
+            The id is a referencable id for the batch that should be generated by your integration.
+            Its recommended to use an incremental id to help determine if a batch has been skipped or missed.
+            The id is used by reporting systems to reference the unique batch alongside your client id.
+          example: 1975
+          format: int32
+          maxLength: 8
+          minimum: 1
+          type: integer
+        transactions:
+          items:
+            $ref: '#/components/schemas/BatchTransaction'
+          type: array
+          x-description: Transactions requested for processing.
+      required:
+      - batch_date
+      - batch_id
+      - transactions
       type: object
     AuthenRequired:
       example:
@@ -2388,6 +2729,32 @@ components:
           example: eNrNWdnOo0qSfpXSmUuf0+w2tFy/lOyYxYDZ79h3sAEbm6cfbFfV+bu6pqe7R2qNJeQkiIwlMyK+...
           format: base64
           type: string
+      type: object
+    CheckBatchStatusResponse:
+      example:
+        batch_id: 1975
+        batch_status: COMPLETE
+        batch_date: 2020-01-02T18:32:28Z
+      properties:
+        batch_date:
+          description: The date and time that the file was created in ISO-8601 format.
+          example: 2020-01-02T18:32:28Z
+          format: date-time
+          type: string
+        batch_id:
+          description: The batch id requested.
+          example: 1975
+          format: int32
+          maxLength: 8
+          minimum: 1
+          type: integer
+        batch_status:
+          description: The status of the batch. Possible values are.
+          example: COMPLETE
+          type: string
+      required:
+      - batch_date
+      - batch_status
       type: object
     Decision:
       example:
@@ -2437,6 +2804,43 @@ components:
         RequestChallenged:
           $ref: '#/components/schemas/RequestChallenged'
       type: object
+    BatchTransaction:
+      example:
+        identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+        amount: 3600
+        account_id: aaabbb-cccddd-eee
+        merchantid: 11223344
+      properties:
+        account_id:
+          description: The card holder account id to process against.
+          example: aaabbb-cccddd-eee
+          maxLength: 50
+          minLength: 5
+          type: string
+        amount:
+          description: The amount required to process in the lowest denomination.
+          example: 3600
+          format: int32
+          maxLength: 12
+          minLength: 1
+          type: integer
+        identifier:
+          description: An identifier used to reference the transaction set by your
+            integration. The value should be used to refer to the transaction in future
+            calls.
+          example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          maxLength: 50
+          minLength: 4
+          type: string
+        merchantid:
+          description: The CityPay merchant id used to process the transaction.
+          example: 11223344
+          format: int32
+          type: integer
+      required:
+      - account_id
+      - amount
+      type: object
     AuthRequest:
       example:
         bill_to:
@@ -2457,14 +2861,14 @@ components:
         threedsecure:
           downgrade1: true
           accept_headers: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
-          merchant_termurl: merchant_termurl
+          merchant_termurl: https://mysite.com/acs/return
           tds_policy: tds_policy
           user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36
             (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
-          cp_bx: cp_bx
+          cp_bx: FjaW50b3NoOyBJbnRlbCBNYWMgT1MgWCAx...
         amount: 3600
         card_holder_name: card_holder_name
-        expyear: 2023
+        expyear: 2024
         csc_policy: csc_policy
         mcc6012:
           recipient_dob: recipient_dob
@@ -2556,8 +2960,11 @@ components:
         amount:
           description: |
             The amount to authorise in the lowest unit of currency with a variable length to a maximum of 12 digits.
+
             No decimal points are to be included and no divisional characters such as 1,024.
+
             The amount should be the total amount required for the transaction.
+
             For example with GBP £1,021.95 the amount value is 102195.
           example: 3600
           format: int32
@@ -2570,8 +2977,11 @@ components:
 
             Values are
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+
              `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.
+
              `2` to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.
+
              `3` to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation.
           type: string
         bill_to:
@@ -2606,12 +3016,15 @@ components:
 
             The CSC number aids fraud prevention in Mail Order and Internet payments.
 
-             Business rules are available on your account to identify whether to accept
+            Business rules are available on your account to identify whether to accept
             or decline transactions based on mismatched results of the CSC.
 
             The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored.
+
             This applies to all entities handling card data.
+
             It should also not be used in any hashing process.
+
             CityPay do not store the value and have no method of retrieving the value once the transaction has been processed.
             For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm.
           example: "12"
@@ -2624,8 +3037,11 @@ components:
 
             Values are
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+
              `1` for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.
+
              `2` to bypass. Transactions that are bypassed will be allowed through even if the CSC did not match.
+
              `3` to ignore. Transactions that are ignored will bypass the result and not send the CSC details for authorisation.
           type: string
         currency:
@@ -2643,8 +3059,11 @@ components:
 
             Values are
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+
              `1` for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.
+
              `2` to bypass. Transactions that are bypassed will not be checked for duplication within the duplication window.
+
              `3` to ignore. Transactions that are ignored will have the same affect as bypass.
           type: string
         expmonth:
@@ -2658,7 +3077,7 @@ components:
         expyear:
           description: |
             The year of expiry of the card.
-          example: 2023
+          example: 2024
           format: int32
           maximum: 2100
           minimum: 2000
@@ -2685,11 +3104,13 @@ components:
           description: |
             A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.
 
-
             Values are
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+
              `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.
+
              `2` to bypass. Transactions that are bypassed will be allowed through even if the address did not match.
+
              `3` to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation.
           type: string
         mcc6012:
@@ -2752,6 +3173,181 @@ components:
           items:
             $ref: '#/components/schemas/Merchant'
           type: array
+      type: object
+    BatchReportResponseModel:
+      example:
+        amount: 3600
+        account_id: AC1
+        batch_id: 1975
+        batch_status: COMPLETE
+        transactions:
+        - authcode: 001245A
+          result: 1
+          identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          amount: 3600
+          account_id: aaabbb-cccddd-eee
+          maskedpan: 4***********0002
+          scheme: Visa
+          merchantid: 11223344
+          authorised: true
+          message: Approved 044332
+        - authcode: 001245A
+          result: 1
+          identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          amount: 3600
+          account_id: aaabbb-cccddd-eee
+          maskedpan: 4***********0002
+          scheme: Visa
+          merchantid: 11223344
+          authorised: true
+          message: Approved 044332
+        batch_date: 2020-01-02T18:32:28Z
+      properties:
+        account_id:
+          description: The batch account id that the batch was processed with.
+          example: AC1
+          maxLength: 20
+          minLength: 3
+          type: string
+        amount:
+          description: The total amount that the batch contains.
+          example: 3600
+          format: int32
+          maxLength: 12
+          minLength: 1
+          type: integer
+        batch_date:
+          description: The date and time of the batch in ISO-8601 format.
+          example: 2020-01-02T18:32:28Z
+          format: date-time
+          type: string
+        batch_id:
+          description: The batch id specified in the batch processing request.
+          example: 1975
+          format: int32
+          maxLength: 8
+          minimum: 1
+          type: integer
+        batch_status:
+          description: The status of the batch. Possible values are.
+          example: COMPLETE
+          type: string
+        transactions:
+          items:
+            $ref: '#/components/schemas/BatchTransactionResultModel'
+          type: array
+          x-description: Transactions associated with the batch.
+      required:
+      - account_id
+      - amount
+      - batch_date
+      - batch_id
+      - batch_status
+      - transactions
+      type: object
+    BatchTransactionResultModel:
+      example:
+        authcode: 001245A
+        result: 1
+        identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+        amount: 3600
+        account_id: aaabbb-cccddd-eee
+        maskedpan: 4***********0002
+        scheme: Visa
+        merchantid: 11223344
+        authorised: true
+        message: Approved 044332
+      properties:
+        account_id:
+          description: The card holder account id used for the transaction.
+          example: aaabbb-cccddd-eee
+          maxLength: 50
+          minLength: 5
+          type: string
+        amount:
+          description: The amount of the transaction processed.
+          example: 3600
+          format: int32
+          maxLength: 12
+          minLength: 1
+          type: integer
+        authcode:
+          description: The authorisation code of a successful transaction.
+          example: 001245A
+          type: string
+        authorised:
+          description: |
+            A boolean definition that indicates that the transaction was authorised. It will return false if the transaction
+             was declined, rejected or cancelled due to CSC matching failures.
+
+            Attention should be referenced to the AuthResult and Response code for accurate determination of the result.
+          example: true
+          type: boolean
+        identifier:
+          description: The identifier of the transaction.
+          example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          maxLength: 50
+          minLength: 4
+          type: string
+        maskedpan:
+          description: |
+            A masked value of the card number used for processing displaying limited values that can be used on a receipt.
+          example: 4***********0002
+          type: string
+        merchantid:
+          description: The merchant id of the transaction.
+          example: 11223344
+          format: int32
+          type: integer
+        message:
+          description: A response message pertaining to the transaction.
+          example: Approved 044332
+          type: string
+        result:
+          description: |
+            An integer result that indicates the outcome of the transaction. The Code value below maps to the result value
+
+            <table>
+            <tr>
+            <th>Code</th>
+            <th>Abbrev</th>
+            <th>Description</th>
+            </tr>
+            <tr><td>0</td><td>Declined</td><td>Declined</td></tr>
+            <tr><td>1</td><td>Accepted</td><td>Accepted</td></tr>
+            <tr><td>2</td><td>Rejected</td><td>Rejected</td></tr>
+            <tr><td>3</td><td>Not Attempted</td><td>Not Attempted</td></tr>
+            <tr><td>4</td><td>Referred</td><td>Referred</td></tr>
+            <tr><td>5</td><td>PinRetry</td><td>Perform PIN Retry</td></tr>
+            <tr><td>6</td><td>ForSigVer</td><td>Force Signature Verification</td></tr>
+            <tr><td>7</td><td>Hold</td><td>Hold</td></tr>
+            <tr><td>8</td><td>SecErr</td><td>Security Error</td></tr>
+            <tr><td>9</td><td>CallAcq</td><td>Call Acquirer</td></tr>
+            <tr><td>10</td><td>DNH</td><td>Do Not Honour</td></tr>
+            <tr><td>11</td><td>RtnCrd</td><td>Retain Card</td></tr>
+            <tr><td>12</td><td>ExprdCrd</td><td>Expired Card</td></tr>
+            <tr><td>13</td><td>InvldCrd</td><td>Invalid Card No</td></tr>
+            <tr><td>14</td><td>PinExcd</td><td>Pin Tries Exceeded</td></tr>
+            <tr><td>15</td><td>PinInvld</td><td>Pin Invalid</td></tr>
+            <tr><td>16</td><td>AuthReq</td><td>Authentication Required</td></tr>
+            <tr><td>17</td><td>AuthenFail</td><td>Authentication Failed</td></tr>
+            <tr><td>18</td><td>Verified</td><td>Card Verified</td></tr>
+            <tr><td>19</td><td>Cancelled</td><td>Cancelled</td></tr>
+            <tr><td>20</td><td>Un</td><td>Unknown</td></tr>
+            </table>
+          example: 1
+          format: int32
+          type: integer
+        scheme:
+          description: |
+            A name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard.
+          example: Visa
+          type: string
+      required:
+      - account_id
+      - identifier
+      - merchantid
+      - message
       type: object
     AccountCreate:
       example:
@@ -2902,6 +3498,28 @@ components:
       required:
       - exists
       type: object
+    CheckBatchStatus:
+      example:
+        account_id: AC1
+        batch_id: 1975
+      properties:
+        account_id:
+          description: The batch account id to obtain the batch for. Defaults to your
+            client id if not provided.
+          example: AC1
+          maxLength: 20
+          minLength: 3
+          type: string
+        batch_id:
+          description: The batch id to obtain the status for.
+          example: 1975
+          format: int32
+          maxLength: 8
+          minimum: 1
+          type: integer
+      required:
+      - batch_id
+      type: object
     VoidRequest:
       example:
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
@@ -2929,6 +3547,28 @@ components:
       required:
       - merchantid
       type: object
+    BatchReportRequest:
+      example:
+        account_id: AC1
+        batch_id: 1975
+      properties:
+        account_id:
+          description: The batch account id that the batch was processed for. Defaults
+            to your client id if not provided.
+          example: AC1
+          maxLength: 20
+          minLength: 3
+          type: string
+        batch_id:
+          description: The batch id specified in the batch processing request.
+          example: 1975
+          format: int32
+          maxLength: 8
+          minimum: 1
+          type: integer
+      required:
+      - batch_id
+      type: object
     AccountStatus:
       example:
         status: status
@@ -2942,11 +3582,11 @@ components:
       example:
         downgrade1: true
         accept_headers: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
-        merchant_termurl: merchant_termurl
+        merchant_termurl: https://mysite.com/acs/return
         tds_policy: tds_policy
         user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36
           (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
-        cp_bx: cp_bx
+        cp_bx: FjaW50b3NoOyBJbnRlbCBNYWMgT1MgWCAx...
       properties:
         accept_headers:
           description: |
@@ -2956,6 +3596,7 @@ components:
             The `cp_bx` value will override any value supplied to this field.
 
             The content of the HTTP accept header as sent to the merchant from the cardholder's user agent.
+
             This value will be validated by the ACS when the card holder authenticates themselves to verify that
             no intermediary is performing this action. Required for 3DSv1.
           example: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
@@ -2964,8 +3605,9 @@ components:
           description: |
             Required for 3DSv2.
 
-            Browser extension value produced by the citypay.js `bx` function. See https://sandbox.citypay.com/3dsv2/bx for
+            Browser extension value produced by the citypay.js `bx` function. See [https://sandbox.citypay.com/3dsv2/bx](https://sandbox.citypay.com/3dsv2/bx) for
              details.
+          example: FjaW50b3NoOyBJbnRlbCBNYWMgT1MgWCAx...
           type: string
         downgrade1:
           description: |
@@ -2981,6 +3623,7 @@ components:
 
             The controller should forward on the response from the URL back via this API for subsequent processing.
             Required if 3DSv1 or 3DSv2 is required.
+          example: https://mysite.com/acs/return
           type: string
         tds_policy:
           description: |
@@ -2991,8 +3634,11 @@ components:
             Note that this may affect the liability shift of transactions and may occur a higher fee with the acquiring bank.
 
             Values are
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+
              `1` for an enforced policy. Transactions will be enabled for 3DS processing
+
              `2` to bypass. Transactions that are bypassed will switch off 3DS processing.
           type: string
         user_agent:
@@ -3003,6 +3649,7 @@ components:
             The `cp_bx` value will override any value supplied to this field.
 
             The content of the HTTP user-agent header as sent to the merchant from the cardholder's user agent.
+
             This value will be validated by the ACS when the card holder authenticates themselves to verify that
             no intermediary is performing this action. Required for 3DSv1.
           example: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36
@@ -3017,6 +3664,7 @@ components:
         md:
           description: |
             The Merchant Data (MD) which is a unique ID to reference the authentication session.
+
             This value will be created by CityPay when required. When responding from the ACS,
             this value will be returned by the ACS.
           type: string
@@ -3103,6 +3751,7 @@ components:
         no_air_segments:
           description: |
             A value that indicates the number of air travel segments included on this ticket.
+
             Valid entries include the numerals “0” through “4”. Required only if the transaction type is TKT or EXC.
           example: 2
           format: int32
@@ -3163,8 +3812,11 @@ components:
             This field contains the Transaction Type code assigned to this transaction. Valid codes include:
 
              - `TKT` = Ticket Purchase
+
              - `REF` = Refund
+
              - `EXC` = Exchange Ticket
+
              - `MSC` = Miscellaneous (non-Ticket Purchase- and non-Exchange Ticket-related transactions only).
           example: TKT
           maxLength: 3
@@ -3184,7 +3836,7 @@ components:
       example:
         default: true
         expmonth: 9
-        expyear: 2023
+        expyear: 2024
         cardnumber: 4000 0000 0000 0002
       properties:
         cardnumber:
@@ -3205,7 +3857,7 @@ components:
           type: integer
         expyear:
           description: The expiry year of the card.
-          example: 2023
+          example: 2024
           format: int32
           maximum: 2100
           minimum: 2000
@@ -3291,6 +3943,7 @@ components:
             with a variable length to a maximum of 12 digits. No decimal points to be included. For example with
             GBP 75.45 use the value 7545. Please check that you do not supply divisional characters such as 1,024 in the
             request which may be caused by some number formatters.
+
             If no amount is supplied, the original processing amount is used.
           example: 3600
           format: int32

@@ -93,6 +93,7 @@ public class CardHolderAccountApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
         final String[] localVarAccepts = {
             "application/json", "text/xml"
         };
@@ -229,6 +230,7 @@ public class CardHolderAccountApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
         final String[] localVarAccepts = {
             "application/json", "text/xml"
         };
@@ -351,7 +353,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 200 </td><td> Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change.  </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> &lt;/br&gt;Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountCardStatusRequestCall(String accountid, String cardId, CardStatus cardStatus, final ApiCallback _callback) throws ApiException {
@@ -367,6 +369,7 @@ public class CardHolderAccountApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
         final String[] localVarAccepts = {
             "application/json", "text/xml"
         };
@@ -424,7 +427,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 200 </td><td> Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change.  </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> &lt;/br&gt;Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. </td><td>  -  </td></tr>
      </table>
      */
     public Acknowledgement accountCardStatusRequest(String accountid, String cardId, CardStatus cardStatus) throws ApiException {
@@ -447,7 +450,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 200 </td><td> Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change.  </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> &lt;/br&gt;Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Acknowledgement> accountCardStatusRequestWithHttpInfo(String accountid, String cardId, CardStatus cardStatus) throws ApiException {
@@ -472,7 +475,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 200 </td><td> Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change.  </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> &lt;/br&gt;Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountCardStatusRequestAsync(String accountid, String cardId, CardStatus cardStatus, final ApiCallback<Acknowledgement> _callback) throws ApiException {
@@ -511,6 +514,7 @@ public class CardHolderAccountApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
         final String[] localVarAccepts = {
             "application/json", "text/xml"
         };
@@ -645,6 +649,7 @@ public class CardHolderAccountApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
         final String[] localVarAccepts = {
             "application/json", "text/xml"
         };
@@ -772,6 +777,7 @@ public class CardHolderAccountApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
         final String[] localVarAccepts = {
             "application/json", "text/xml"
         };
@@ -899,6 +905,7 @@ public class CardHolderAccountApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
         final String[] localVarAccepts = {
             "application/json", "text/xml"
         };
@@ -933,7 +940,7 @@ public class CardHolderAccountApi {
 
     /**
      * Account Exists
-     * .
+     * Checks that an account exists and is active by providing the account id as a url parameter  Checks that an account exists and is active by providing the account id as a url parameter. 
      * @param accountid The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. (required)
      * @return Exists
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -954,7 +961,7 @@ public class CardHolderAccountApi {
 
     /**
      * Account Exists
-     * .
+     * Checks that an account exists and is active by providing the account id as a url parameter  Checks that an account exists and is active by providing the account id as a url parameter. 
      * @param accountid The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. (required)
      * @return ApiResponse&lt;Exists&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -976,7 +983,7 @@ public class CardHolderAccountApi {
 
     /**
      * Account Exists (asynchronously)
-     * .
+     * Checks that an account exists and is active by providing the account id as a url parameter  Checks that an account exists and is active by providing the account id as a url parameter. 
      * @param accountid The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1026,6 +1033,7 @@ public class CardHolderAccountApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
         final String[] localVarAccepts = {
             "application/json", "text/xml"
         };
@@ -1139,7 +1147,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 200 </td><td> An acknowledgment that the card holder account status has been updated. A response code of &#x60;001&#x60; is returned if the request was accepted or no change required. A response code of &#x60;000&#x60; is returned if the request contains invalid data.  </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> An acknowledgment that the card holder account status has been updated.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;001&#x60; is returned if the request was accepted or no change required.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;000&#x60; is returned if the request contains invalid data. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountStatusRequestCall(String accountid, AccountStatus accountStatus, final ApiCallback _callback) throws ApiException {
@@ -1154,6 +1162,7 @@ public class CardHolderAccountApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
         final String[] localVarAccepts = {
             "application/json", "text/xml"
         };
@@ -1205,7 +1214,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 200 </td><td> An acknowledgment that the card holder account status has been updated. A response code of &#x60;001&#x60; is returned if the request was accepted or no change required. A response code of &#x60;000&#x60; is returned if the request contains invalid data.  </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> An acknowledgment that the card holder account status has been updated.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;001&#x60; is returned if the request was accepted or no change required.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;000&#x60; is returned if the request contains invalid data. </td><td>  -  </td></tr>
      </table>
      */
     public Acknowledgement accountStatusRequest(String accountid, AccountStatus accountStatus) throws ApiException {
@@ -1227,7 +1236,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 200 </td><td> An acknowledgment that the card holder account status has been updated. A response code of &#x60;001&#x60; is returned if the request was accepted or no change required. A response code of &#x60;000&#x60; is returned if the request contains invalid data.  </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> An acknowledgment that the card holder account status has been updated.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;001&#x60; is returned if the request was accepted or no change required.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;000&#x60; is returned if the request contains invalid data. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Acknowledgement> accountStatusRequestWithHttpInfo(String accountid, AccountStatus accountStatus) throws ApiException {
@@ -1251,7 +1260,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 200 </td><td> An acknowledgment that the card holder account status has been updated. A response code of &#x60;001&#x60; is returned if the request was accepted or no change required. A response code of &#x60;000&#x60; is returned if the request contains invalid data.  </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> An acknowledgment that the card holder account status has been updated.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;001&#x60; is returned if the request was accepted or no change required.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;000&#x60; is returned if the request contains invalid data. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountStatusRequestAsync(String accountid, AccountStatus accountStatus, final ApiCallback<Acknowledgement> _callback) throws ApiException {
@@ -1288,6 +1297,7 @@ public class CardHolderAccountApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
         final String[] localVarAccepts = {
             "application/json", "text/xml"
         };

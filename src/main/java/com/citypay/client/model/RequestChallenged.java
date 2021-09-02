@@ -124,11 +124,11 @@ public class RequestChallenged {
   }
 
    /**
-   * The 3DSv2 trans id reference for the challenge process.
+   * The 3DSv2 trans id reference for the challenge process. May be used to create the ThreeDSSessionData value to send to the ACS.
    * @return threedserverTransId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The 3DSv2 trans id reference for the challenge process.")
+  @ApiModelProperty(value = "The 3DSv2 trans id reference for the challenge process. May be used to create the ThreeDSSessionData value to send to the ACS.")
 
   public String getThreedserverTransId() {
     return threedserverTransId;
@@ -164,7 +164,7 @@ public class RequestChallenged {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -184,7 +184,6 @@ public class RequestChallenged {
     return Objects.hash(acsUrl, creq, merchantid, threedserverTransId, transno);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -202,7 +201,7 @@ public class RequestChallenged {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

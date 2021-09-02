@@ -47,6 +47,7 @@ public class AccountCreate {
    * A card holder account id used for uniquely identifying the account. This value will be used for future referencing of the account oand to link your system to this API. This value is immutable and never changes. 
    * @return accountId
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "aaabbb-cccddd-eee", required = true, value = "A card holder account id used for uniquely identifying the account. This value will be used for future referencing of the account oand to link your system to this API. This value is immutable and never changes. ")
 
   public String getAccountId() {
@@ -83,7 +84,7 @@ public class AccountCreate {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -100,7 +101,6 @@ public class AccountCreate {
     return Objects.hash(accountId, contact);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -115,7 +115,7 @@ public class AccountCreate {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

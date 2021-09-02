@@ -2,6 +2,7 @@
 
 # ListMerchantsResponse
 
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -80,6 +80,7 @@ public class CardHolderAccount {
    * The account id of the card holder account provided by the merchant which uniquely identifies the account. 
    * @return accountId
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "aaabbb-cccddd-eee", required = true, value = "The account id of the card holder account provided by the merchant which uniquely identifies the account. ")
 
   public String getAccountId() {
@@ -133,6 +134,7 @@ public class CardHolderAccount {
    * Get contact
    * @return contact
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
   public ContactDetails getContact() {
@@ -244,11 +246,11 @@ public class CardHolderAccount {
   }
 
    /**
-   * Defines the status of the account for processing valid values are   - ACTIVE for active accounts that are able to process  - DISABLED for accounts that are currently disabled for processing. 
+   * Defines the status of the account for processing valid values are   - ACTIVE for active accounts that are able to process   - DISABLED for accounts that are currently disabled for processing. 
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Defines the status of the account for processing valid values are   - ACTIVE for active accounts that are able to process  - DISABLED for accounts that are currently disabled for processing. ")
+  @ApiModelProperty(value = "Defines the status of the account for processing valid values are   - ACTIVE for active accounts that are able to process   - DISABLED for accounts that are currently disabled for processing. ")
 
   public String getStatus() {
     return status;
@@ -284,7 +286,7 @@ public class CardHolderAccount {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -308,7 +310,6 @@ public class CardHolderAccount {
     return Objects.hash(accountId, cards, contact, dateCreated, defaultCardId, defaultCardIndex, lastModified, status, uniqueId);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -330,7 +331,7 @@ public class CardHolderAccount {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

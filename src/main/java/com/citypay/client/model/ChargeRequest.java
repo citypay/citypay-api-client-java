@@ -88,10 +88,11 @@ public class ChargeRequest {
   }
 
    /**
-   * The amount to authorise in the lowest unit of currency with a variable length to a maximum of 12 digits. No decimal points are to be included and no divisional characters such as 1,024. The amount should be the total amount required for the transaction. For example with GBP £1,021.95 the amount value is 102195. 
+   * The amount to authorise in the lowest unit of currency with a variable length to a maximum of 12 digits.  No decimal points are to be included and no divisional characters such as 1,024.  The amount should be the total amount required for the transaction.  For example with GBP £1,021.95 the amount value is 102195. 
    * @return amount
   **/
-  @ApiModelProperty(example = "3600", required = true, value = "The amount to authorise in the lowest unit of currency with a variable length to a maximum of 12 digits. No decimal points are to be included and no divisional characters such as 1,024. The amount should be the total amount required for the transaction. For example with GBP £1,021.95 the amount value is 102195. ")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "3600", required = true, value = "The amount to authorise in the lowest unit of currency with a variable length to a maximum of 12 digits.  No decimal points are to be included and no divisional characters such as 1,024.  The amount should be the total amount required for the transaction.  For example with GBP £1,021.95 the amount value is 102195. ")
 
   public Integer getAmount() {
     return amount;
@@ -110,11 +111,11 @@ public class ChargeRequest {
   }
 
    /**
-   * A policy value which determines whether an AVS postcode policy is enforced or bypassed.  Values are  &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.  &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.  &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.  &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation. 
+   * A policy value which determines whether an AVS postcode policy is enforced or bypassed.  Values are  &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation. 
    * @return avsPostcodePolicy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether an AVS postcode policy is enforced or bypassed.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.  `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.  `2` to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.  `3` to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation. ")
+  @ApiModelProperty(value = "A policy value which determines whether an AVS postcode policy is enforced or bypassed.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.   `2` to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.   `3` to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation. ")
 
   public String getAvsPostcodePolicy() {
     return avsPostcodePolicy;
@@ -133,11 +134,11 @@ public class ChargeRequest {
   }
 
    /**
-   * The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card (American Express has it on the front). The value helps to identify posession of the card as it is not available within the chip or magnetic swipe.  When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped out by any integer parsing.  The CSC number aids fraud prevention in Mail Order and Internet payments.   Business rules are available on your account to identify whether to accept or decline transactions based on mismatched results of the CSC.  The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored. This applies to all entities handling card data. It should also not be used in any hashing process. CityPay do not store the value and have no method of retrieving the value once the transaction has been processed. For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm. 
+   * The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card (American Express has it on the front). The value helps to identify posession of the card as it is not available within the chip or magnetic swipe.  When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped out by any integer parsing.  The CSC number aids fraud prevention in Mail Order and Internet payments.  Business rules are available on your account to identify whether to accept or decline transactions based on mismatched results of the CSC.  The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored.  This applies to all entities handling card data.  It should also not be used in any hashing process.  CityPay do not store the value and have no method of retrieving the value once the transaction has been processed. For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm. 
    * @return csc
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "12", value = "The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card (American Express has it on the front). The value helps to identify posession of the card as it is not available within the chip or magnetic swipe.  When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped out by any integer parsing.  The CSC number aids fraud prevention in Mail Order and Internet payments.   Business rules are available on your account to identify whether to accept or decline transactions based on mismatched results of the CSC.  The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored. This applies to all entities handling card data. It should also not be used in any hashing process. CityPay do not store the value and have no method of retrieving the value once the transaction has been processed. For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm. ")
+  @ApiModelProperty(example = "12", value = "The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card (American Express has it on the front). The value helps to identify posession of the card as it is not available within the chip or magnetic swipe.  When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped out by any integer parsing.  The CSC number aids fraud prevention in Mail Order and Internet payments.  Business rules are available on your account to identify whether to accept or decline transactions based on mismatched results of the CSC.  The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored.  This applies to all entities handling card data.  It should also not be used in any hashing process.  CityPay do not store the value and have no method of retrieving the value once the transaction has been processed. For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm. ")
 
   public String getCsc() {
     return csc;
@@ -156,11 +157,11 @@ public class ChargeRequest {
   }
 
    /**
-   * A policy value which determines whether a CSC policy is enforced or bypassed.  Values are  &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.  &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.  &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the CSC did not match.  &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send the CSC details for authorisation. 
+   * A policy value which determines whether a CSC policy is enforced or bypassed.  Values are  &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the CSC did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send the CSC details for authorisation. 
    * @return cscPolicy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether a CSC policy is enforced or bypassed.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.  `1` for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.  `2` to bypass. Transactions that are bypassed will be allowed through even if the CSC did not match.  `3` to ignore. Transactions that are ignored will bypass the result and not send the CSC details for authorisation. ")
+  @ApiModelProperty(value = "A policy value which determines whether a CSC policy is enforced or bypassed.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.   `2` to bypass. Transactions that are bypassed will be allowed through even if the CSC did not match.   `3` to ignore. Transactions that are ignored will bypass the result and not send the CSC details for authorisation. ")
 
   public String getCscPolicy() {
     return cscPolicy;
@@ -202,11 +203,11 @@ public class ChargeRequest {
   }
 
    /**
-   * A policy value which determines whether a duplication policy is enforced or bypassed. A duplication check has a window of time set against your account within which it can action. If a previous transaction with matching values occurred within the window, any subsequent transaction will result in a T001 result.  Values are  &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.  &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.  &#x60;2&#x60; to bypass. Transactions that are bypassed will not be checked for duplication within the duplication window.  &#x60;3&#x60; to ignore. Transactions that are ignored will have the same affect as bypass. 
+   * A policy value which determines whether a duplication policy is enforced or bypassed. A duplication check has a window of time set against your account within which it can action. If a previous transaction with matching values occurred within the window, any subsequent transaction will result in a T001 result.  Values are  &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.   &#x60;2&#x60; to bypass. Transactions that are bypassed will not be checked for duplication within the duplication window.   &#x60;3&#x60; to ignore. Transactions that are ignored will have the same affect as bypass. 
    * @return duplicatePolicy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether a duplication policy is enforced or bypassed. A duplication check has a window of time set against your account within which it can action. If a previous transaction with matching values occurred within the window, any subsequent transaction will result in a T001 result.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.  `1` for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.  `2` to bypass. Transactions that are bypassed will not be checked for duplication within the duplication window.  `3` to ignore. Transactions that are ignored will have the same affect as bypass. ")
+  @ApiModelProperty(value = "A policy value which determines whether a duplication policy is enforced or bypassed. A duplication check has a window of time set against your account within which it can action. If a previous transaction with matching values occurred within the window, any subsequent transaction will result in a T001 result.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.   `2` to bypass. Transactions that are bypassed will not be checked for duplication within the duplication window.   `3` to ignore. Transactions that are ignored will have the same affect as bypass. ")
 
   public String getDuplicatePolicy() {
     return duplicatePolicy;
@@ -228,6 +229,7 @@ public class ChargeRequest {
    * The identifier of the transaction to process. The value should be a valid reference and may be used to perform  post processing actions and to aid in reconciliation of transactions.  The value should be a valid printable string with ASCII character ranges from 0x32 to 0x127.  The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier) this will aid in ensuring each transaction is identifiable.  When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent request will ensure that a transaction is considered as different. 
    * @return identifier
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "95b857a1-5955-4b86-963c-5a6dbfc4fb95", required = true, value = "The identifier of the transaction to process. The value should be a valid reference and may be used to perform  post processing actions and to aid in reconciliation of transactions.  The value should be a valid printable string with ASCII character ranges from 0x32 to 0x127.  The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier) this will aid in ensuring each transaction is identifiable.  When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent request will ensure that a transaction is considered as different. ")
 
   public String getIdentifier() {
@@ -247,11 +249,11 @@ public class ChargeRequest {
   }
 
    /**
-   * A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.   Values are  &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.  &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.  &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the address did not match.  &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation. 
+   * A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.  Values are  &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the address did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation. 
    * @return matchAvsa
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.   Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.  `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.  `2` to bypass. Transactions that are bypassed will be allowed through even if the address did not match.  `3` to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation. ")
+  @ApiModelProperty(value = "A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.   `2` to bypass. Transactions that are bypassed will be allowed through even if the address did not match.   `3` to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation. ")
 
   public String getMatchAvsa() {
     return matchAvsa;
@@ -273,6 +275,7 @@ public class ChargeRequest {
    * Identifies the merchant account to perform processing for.
    * @return merchantid
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "11223344", required = true, value = "Identifies the merchant account to perform processing for.")
 
   public Integer getMerchantid() {
@@ -315,10 +318,11 @@ public class ChargeRequest {
   }
 
    /**
-   * A tokenised form of a card that belongs to a card holder&#39;s account and that has been previously registered. The token is time based and will only be active for a short duration. The value is therefore designed not to be stored remotely for future  use.  Tokens will start with ct and are resiliently tamper proof using HMacSHA-256. No sensitive card data is stored internally within the token.  Each card will contain a different token and the value may be different on any retrieval call.  The value can be presented for payment as a selection value to an end user in a web application. 
+   * A tokenised form of a card that belongs to a card holder&#39;s account and that has been previously registered. The token is time based and will only be active for a short duration. The value is therefore designed not to be stored remotely for future use.   Tokens will start with ct and are resiliently tamper proof using HMacSHA-256. No sensitive card data is stored internally within the token.   Each card will contain a different token and the value may be different on any retrieval call.   The value can be presented for payment as a selection value to an end user in a web application. 
    * @return token
   **/
-  @ApiModelProperty(example = "ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr", required = true, value = "A tokenised form of a card that belongs to a card holder's account and that has been previously registered. The token is time based and will only be active for a short duration. The value is therefore designed not to be stored remotely for future  use.  Tokens will start with ct and are resiliently tamper proof using HMacSHA-256. No sensitive card data is stored internally within the token.  Each card will contain a different token and the value may be different on any retrieval call.  The value can be presented for payment as a selection value to an end user in a web application. ")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr", required = true, value = "A tokenised form of a card that belongs to a card holder's account and that has been previously registered. The token is time based and will only be active for a short duration. The value is therefore designed not to be stored remotely for future use.   Tokens will start with ct and are resiliently tamper proof using HMacSHA-256. No sensitive card data is stored internally within the token.   Each card will contain a different token and the value may be different on any retrieval call.   The value can be presented for payment as a selection value to an end user in a web application. ")
 
   public String getToken() {
     return token;
@@ -377,7 +381,7 @@ public class ChargeRequest {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -405,7 +409,6 @@ public class ChargeRequest {
     return Objects.hash(amount, avsPostcodePolicy, csc, cscPolicy, currency, duplicatePolicy, identifier, matchAvsa, merchantid, threedsecure, token, transInfo, transType);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -431,7 +434,7 @@ public class ChargeRequest {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
