@@ -54,6 +54,7 @@ public class RegisterCard {
    * The primary number of the card.
    * @return cardnumber
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "4000 0000 0000 0002", required = true, value = "The primary number of the card.")
 
   public String getCardnumber() {
@@ -101,6 +102,7 @@ public class RegisterCard {
    * maximum: 12
    * @return expmonth
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "9", required = true, value = "The expiry month of the card.")
 
   public Integer getExpmonth() {
@@ -125,7 +127,8 @@ public class RegisterCard {
    * maximum: 2100
    * @return expyear
   **/
-  @ApiModelProperty(example = "2023", required = true, value = "The expiry year of the card.")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "2024", required = true, value = "The expiry year of the card.")
 
   public Integer getExpyear() {
     return expyear;
@@ -138,7 +141,7 @@ public class RegisterCard {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -157,7 +160,6 @@ public class RegisterCard {
     return Objects.hash(cardnumber, _default, expmonth, expyear);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -174,7 +176,7 @@ public class RegisterCard {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

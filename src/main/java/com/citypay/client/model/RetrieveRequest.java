@@ -73,6 +73,7 @@ public class RetrieveRequest {
    * The merchant account to retrieve data for.
    * @return merchantid
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "11223344", required = true, value = "The merchant account to retrieve data for.")
 
   public Integer getMerchantid() {
@@ -109,7 +110,7 @@ public class RetrieveRequest {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -127,7 +128,6 @@ public class RetrieveRequest {
     return Objects.hash(identifier, merchantid, transno);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -143,7 +143,7 @@ public class RetrieveRequest {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -59,11 +59,11 @@ public class ThreeDSecure {
   }
 
    /**
-   * Required for 3DSv1. Optional if the &#x60;cp_bx&#x60; value is provided otherwise required for 3Dv2 processing operating in browser authentication mode.  The &#x60;cp_bx&#x60; value will override any value supplied to this field.  The content of the HTTP accept header as sent to the merchant from the cardholder&#39;s user agent. This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. 
+   * Required for 3DSv1. Optional if the &#x60;cp_bx&#x60; value is provided otherwise required for 3Dv2 processing operating in browser authentication mode.  The &#x60;cp_bx&#x60; value will override any value supplied to this field.  The content of the HTTP accept header as sent to the merchant from the cardholder&#39;s user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. 
    * @return acceptHeaders
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*_/_*;q=0.8,application/signed-exchange;v=b3;q=0.9", value = "Required for 3DSv1. Optional if the `cp_bx` value is provided otherwise required for 3Dv2 processing operating in browser authentication mode.  The `cp_bx` value will override any value supplied to this field.  The content of the HTTP accept header as sent to the merchant from the cardholder's user agent. This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. ")
+  @ApiModelProperty(example = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*_/_*;q=0.8,application/signed-exchange;v=b3;q=0.9", value = "Required for 3DSv1. Optional if the `cp_bx` value is provided otherwise required for 3Dv2 processing operating in browser authentication mode.  The `cp_bx` value will override any value supplied to this field.  The content of the HTTP accept header as sent to the merchant from the cardholder's user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. ")
 
   public String getAcceptHeaders() {
     return acceptHeaders;
@@ -82,11 +82,11 @@ public class ThreeDSecure {
   }
 
    /**
-   * Required for 3DSv2.  Browser extension value produced by the citypay.js &#x60;bx&#x60; function. See https://sandbox.citypay.com/3dsv2/bx for  details. 
+   * Required for 3DSv2.  Browser extension value produced by the citypay.js &#x60;bx&#x60; function. See [https://sandbox.citypay.com/3dsv2/bx](https://sandbox.citypay.com/3dsv2/bx) for  details. 
    * @return cpBx
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Required for 3DSv2.  Browser extension value produced by the citypay.js `bx` function. See https://sandbox.citypay.com/3dsv2/bx for  details. ")
+  @ApiModelProperty(example = "FjaW50b3NoOyBJbnRlbCBNYWMgT1MgWCAx...", value = "Required for 3DSv2.  Browser extension value produced by the citypay.js `bx` function. See [https://sandbox.citypay.com/3dsv2/bx](https://sandbox.citypay.com/3dsv2/bx) for  details. ")
 
   public String getCpBx() {
     return cpBx;
@@ -132,7 +132,7 @@ public class ThreeDSecure {
    * @return merchantTermurl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Required for 3DSv1 and 3Dv2 processing.  A controller URL for 3D-Secure processing that any response from an authentication request or challenge request should be sent to.  The controller should forward on the response from the URL back via this API for subsequent processing. Required if 3DSv1 or 3DSv2 is required. ")
+  @ApiModelProperty(example = "https://mysite.com/acs/return", value = "Required for 3DSv1 and 3Dv2 processing.  A controller URL for 3D-Secure processing that any response from an authentication request or challenge request should be sent to.  The controller should forward on the response from the URL back via this API for subsequent processing. Required if 3DSv1 or 3DSv2 is required. ")
 
   public String getMerchantTermurl() {
     return merchantTermurl;
@@ -151,11 +151,11 @@ public class ThreeDSecure {
   }
 
    /**
-   * A policy value which determines whether ThreeDSecure is enforced or bypassed. Note that this will only work for e-commerce transactions and accounts that have 3DSecure enabled and fully registered with Visa, MasterCard or American Express. It is useful when transactions may be wanted to bypass processing rules.  Note that this may affect the liability shift of transactions and may occur a higher fee with the acquiring bank.  Values are  &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.  &#x60;1&#x60; for an enforced policy. Transactions will be enabled for 3DS processing  &#x60;2&#x60; to bypass. Transactions that are bypassed will switch off 3DS processing. 
+   * A policy value which determines whether ThreeDSecure is enforced or bypassed. Note that this will only work for e-commerce transactions and accounts that have 3DSecure enabled and fully registered with Visa, MasterCard or American Express. It is useful when transactions may be wanted to bypass processing rules.  Note that this may affect the liability shift of transactions and may occur a higher fee with the acquiring bank.  Values are   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions will be enabled for 3DS processing   &#x60;2&#x60; to bypass. Transactions that are bypassed will switch off 3DS processing. 
    * @return tdsPolicy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether ThreeDSecure is enforced or bypassed. Note that this will only work for e-commerce transactions and accounts that have 3DSecure enabled and fully registered with Visa, MasterCard or American Express. It is useful when transactions may be wanted to bypass processing rules.  Note that this may affect the liability shift of transactions and may occur a higher fee with the acquiring bank.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.  `1` for an enforced policy. Transactions will be enabled for 3DS processing  `2` to bypass. Transactions that are bypassed will switch off 3DS processing. ")
+  @ApiModelProperty(value = "A policy value which determines whether ThreeDSecure is enforced or bypassed. Note that this will only work for e-commerce transactions and accounts that have 3DSecure enabled and fully registered with Visa, MasterCard or American Express. It is useful when transactions may be wanted to bypass processing rules.  Note that this may affect the liability shift of transactions and may occur a higher fee with the acquiring bank.  Values are   `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions will be enabled for 3DS processing   `2` to bypass. Transactions that are bypassed will switch off 3DS processing. ")
 
   public String getTdsPolicy() {
     return tdsPolicy;
@@ -174,11 +174,11 @@ public class ThreeDSecure {
   }
 
    /**
-   * Required for 3DSv1. Optional if the &#x60;cp_bx&#x60; value is provided otherwise required 3Dv2 processing operating in browser authentication mode.  The &#x60;cp_bx&#x60; value will override any value supplied to this field.  The content of the HTTP user-agent header as sent to the merchant from the cardholder&#39;s user agent. This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. 
+   * Required for 3DSv1. Optional if the &#x60;cp_bx&#x60; value is provided otherwise required 3Dv2 processing operating in browser authentication mode.  The &#x60;cp_bx&#x60; value will override any value supplied to this field.  The content of the HTTP user-agent header as sent to the merchant from the cardholder&#39;s user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. 
    * @return userAgent
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36", value = "Required for 3DSv1. Optional if the `cp_bx` value is provided otherwise required 3Dv2 processing operating in browser authentication mode.  The `cp_bx` value will override any value supplied to this field.  The content of the HTTP user-agent header as sent to the merchant from the cardholder's user agent. This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. ")
+  @ApiModelProperty(example = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36", value = "Required for 3DSv1. Optional if the `cp_bx` value is provided otherwise required 3Dv2 processing operating in browser authentication mode.  The `cp_bx` value will override any value supplied to this field.  The content of the HTTP user-agent header as sent to the merchant from the cardholder's user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. ")
 
   public String getUserAgent() {
     return userAgent;
@@ -191,7 +191,7 @@ public class ThreeDSecure {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -212,7 +212,6 @@ public class ThreeDSecure {
     return Objects.hash(acceptHeaders, cpBx, downgrade1, merchantTermurl, tdsPolicy, userAgent);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -231,7 +230,7 @@ public class ThreeDSecure {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

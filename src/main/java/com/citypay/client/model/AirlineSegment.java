@@ -71,6 +71,7 @@ public class AirlineSegment {
    * A standard airline routing code (airport code or location identifier) applicable to the arrival portion of this segment. 
    * @return arrivalLocationCode
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "SOU", required = true, value = "A standard airline routing code (airport code or location identifier) applicable to the arrival portion of this segment. ")
 
   public String getArrivalLocationCode() {
@@ -93,6 +94,7 @@ public class AirlineSegment {
    * This field contains the two character airline designator code (air carrier code or airline code) that corresponds to the airline carrier applicable for up to four flight segments of this trip itinerary. 
    * @return carrierCode
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "ZZ", required = true, value = "This field contains the two character airline designator code (air carrier code or airline code) that corresponds to the airline carrier applicable for up to four flight segments of this trip itinerary. ")
 
   public String getCarrierCode() {
@@ -115,6 +117,7 @@ public class AirlineSegment {
    * This field contains a code that corresponds to the fare class (A, B, C, D, Premium, Discounted, etc.) within the overall class of service (e.g., First Class, Business, Economy) applicable to this travel segment, as specified in the IATA Standard Code allocation table. 
    * @return classServiceCode
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "CC", required = true, value = "This field contains a code that corresponds to the fare class (A, B, C, D, Premium, Discounted, etc.) within the overall class of service (e.g., First Class, Business, Economy) applicable to this travel segment, as specified in the IATA Standard Code allocation table. ")
 
   public String getClassServiceCode() {
@@ -137,7 +140,8 @@ public class AirlineSegment {
    * The Departure Date for the travel segment in ISO Date Format (yyyy-MM-dd).
    * @return departureDate
   **/
-  @ApiModelProperty(example = "Sat Aug 01 00:00:00 GMT 2020", required = true, value = "The Departure Date for the travel segment in ISO Date Format (yyyy-MM-dd).")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "Sat Aug 01 00:00:00 UTC 2020", required = true, value = "The Departure Date for the travel segment in ISO Date Format (yyyy-MM-dd).")
 
   public LocalDate getDepartureDate() {
     return departureDate;
@@ -182,6 +186,7 @@ public class AirlineSegment {
    * This field contains the carrier-assigned Flight Number for this travel segment.
    * @return flightNumber
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "772", required = true, value = "This field contains the carrier-assigned Flight Number for this travel segment.")
 
   public String getFlightNumber() {
@@ -241,7 +246,7 @@ public class AirlineSegment {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -264,7 +269,6 @@ public class AirlineSegment {
     return Objects.hash(arrivalLocationCode, carrierCode, classServiceCode, departureDate, departureLocationCode, flightNumber, segmentFare, stopOverIndicator);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -285,7 +289,7 @@ public class AirlineSegment {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

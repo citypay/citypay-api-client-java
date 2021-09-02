@@ -2,6 +2,7 @@
 
 # ContactDetails
 
+
 ## Properties
 
 Name | Type | Description | Notes

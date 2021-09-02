@@ -79,11 +79,11 @@ public class CaptureRequest {
   }
 
    /**
-   * The completion amount provided in the lowest unit of currency for the specific currency of the merchant, with a variable length to a maximum of 12 digits. No decimal points to be included. For example with GBP 75.45 use the value 7545. Please check that you do not supply divisional characters such as 1,024 in the request which may be caused by some number formatters. If no amount is supplied, the original processing amount is used. 
+   * The completion amount provided in the lowest unit of currency for the specific currency of the merchant, with a variable length to a maximum of 12 digits. No decimal points to be included. For example with GBP 75.45 use the value 7545. Please check that you do not supply divisional characters such as 1,024 in the request which may be caused by some number formatters.  If no amount is supplied, the original processing amount is used. 
    * @return amount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "3600", value = "The completion amount provided in the lowest unit of currency for the specific currency of the merchant, with a variable length to a maximum of 12 digits. No decimal points to be included. For example with GBP 75.45 use the value 7545. Please check that you do not supply divisional characters such as 1,024 in the request which may be caused by some number formatters. If no amount is supplied, the original processing amount is used. ")
+  @ApiModelProperty(example = "3600", value = "The completion amount provided in the lowest unit of currency for the specific currency of the merchant, with a variable length to a maximum of 12 digits. No decimal points to be included. For example with GBP 75.45 use the value 7545. Please check that you do not supply divisional characters such as 1,024 in the request which may be caused by some number formatters.  If no amount is supplied, the original processing amount is used. ")
 
   public Integer getAmount() {
     return amount;
@@ -128,6 +128,7 @@ public class CaptureRequest {
    * Identifies the merchant account to perform the capture for.
    * @return merchantid
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "11223344", required = true, value = "Identifies the merchant account to perform the capture for.")
 
   public Integer getMerchantid() {
@@ -164,7 +165,7 @@ public class CaptureRequest {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -184,7 +185,6 @@ public class CaptureRequest {
     return Objects.hash(airlineData, amount, identifier, merchantid, transno);
   }
 
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -202,7 +202,7 @@ public class CaptureRequest {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

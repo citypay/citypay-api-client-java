@@ -1,9 +1,10 @@
 # CityPay API Client for Java
 
 [![Build Status](https://travis-ci.org/citypay/citypay-api-client-java.svg?branch=master)](https://travis-ci.org/citypay/citypay-api-client-java)
+
 CityPay Payment API
-- API version: 6.0.12
-  - Build date: 2020-10-22T14:28:37.258Z[GMT]
+- API version: 6.2.2
+  - Build date: 2021-09-02T10:45:22.810268Z[Etc/UTC]
 
 
 This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It
@@ -68,7 +69,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.citypay</groupId>
   <artifactId>citypay-api-client-java</artifactId>
-  <version>1.0.4</version>
+  <version>1.0.5</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -82,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/citypay-api-client-java-1.0.4.jar`
+* `target/citypay-api-client-java-1.0.5.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -97,22 +98,21 @@ import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
 import com.citypay.client.models.*;
-import com.citypay.client.api.CardHolderAccountApi;
+import com.citypay.client.api.BatchProcessingApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://api.citypay.com/v6");
-defaultClient.setApiKey(ApiKey.create("CLIENT_ID", "LICENCE_KEY"));    
+    defaultClient.setApiKey(ApiKey.create("CLIENT_ID", "LICENCE_KEY"));    
 
-    CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
-    String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-    String cardId = "cardId_example"; // String | The id of the card that is presented by a call to retrieve a card holder account.
+    BatchProcessingApi apiInstance = new BatchProcessingApi(defaultClient);
+    ProcessBatchRequest processBatchRequest = new ProcessBatchRequest(); // ProcessBatchRequest | 
     try {
-      Acknowledgement result = apiInstance.accountCardDeleteRequest(accountid, cardId);
+      ProcessBatchResponse result = apiInstance.batchProcessRequest(processBatchRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling CardHolderAccountApi#accountCardDeleteRequest");
+      System.err.println("Exception when calling BatchProcessingApi#batchProcessRequest");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -129,6 +129,9 @@ All URIs are relative to *https://api.citypay.com/v6*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*BatchProcessingApi* | [**batchProcessRequest**](docs/BatchProcessingApi.md#batchProcessRequest) | **POST** /batch/process | Batch Process Request
+*BatchProcessingApi* | [**checkBatchStatusRequest**](docs/BatchProcessingApi.md#checkBatchStatusRequest) | **POST** /batch/status | CheckBatchStatus
+*BatchProcessingApi* | [**getBatchReportRequest**](docs/BatchProcessingApi.md#getBatchReportRequest) | **POST** /batch/retrieve | BatchReportRequest
 *CardHolderAccountApi* | [**accountCardDeleteRequest**](docs/CardHolderAccountApi.md#accountCardDeleteRequest) | **DELETE** /account/{accountid}/card/{cardId} | Card Deletion
 *CardHolderAccountApi* | [**accountCardRegisterRequest**](docs/CardHolderAccountApi.md#accountCardRegisterRequest) | **POST** /account/{accountid}/register | Card Registration
 *CardHolderAccountApi* | [**accountCardStatusRequest**](docs/CardHolderAccountApi.md#accountCardStatusRequest) | **POST** /account/{accountid}/card/{cardId}/status | Card Status
@@ -162,12 +165,18 @@ Class | Method | HTTP request | Description
  - [AuthRequest](docs/AuthRequest.md)
  - [AuthResponse](docs/AuthResponse.md)
  - [AuthenRequired](docs/AuthenRequired.md)
+ - [BatchReportRequest](docs/BatchReportRequest.md)
+ - [BatchReportResponseModel](docs/BatchReportResponseModel.md)
+ - [BatchTransaction](docs/BatchTransaction.md)
+ - [BatchTransactionResultModel](docs/BatchTransactionResultModel.md)
  - [CResAuthRequest](docs/CResAuthRequest.md)
  - [CaptureRequest](docs/CaptureRequest.md)
  - [Card](docs/Card.md)
  - [CardHolderAccount](docs/CardHolderAccount.md)
  - [CardStatus](docs/CardStatus.md)
  - [ChargeRequest](docs/ChargeRequest.md)
+ - [CheckBatchStatus](docs/CheckBatchStatus.md)
+ - [CheckBatchStatusResponse](docs/CheckBatchStatusResponse.md)
  - [ContactDetails](docs/ContactDetails.md)
  - [Decision](docs/Decision.md)
  - [Error](docs/Error.md)
@@ -178,6 +187,8 @@ Class | Method | HTTP request | Description
  - [Merchant](docs/Merchant.md)
  - [PaResAuthRequest](docs/PaResAuthRequest.md)
  - [Ping](docs/Ping.md)
+ - [ProcessBatchRequest](docs/ProcessBatchRequest.md)
+ - [ProcessBatchResponse](docs/ProcessBatchResponse.md)
  - [RefundRequest](docs/RefundRequest.md)
  - [RegisterCard](docs/RegisterCard.md)
  - [RequestChallenged](docs/RequestChallenged.md)

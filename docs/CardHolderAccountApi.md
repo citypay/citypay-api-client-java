@@ -241,7 +241,7 @@ Name | Type | Description  | Notes
 **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
 **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
-**200** | Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change.  |  -  |
+**200** | &lt;/br&gt;Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. |  -  |
 
 <a name="accountChangeContactRequest"></a>
 # **accountChangeContactRequest**
@@ -470,7 +470,7 @@ Name | Type | Description  | Notes
 
 Account Exists
 
-.
+Checks that an account exists and is active by providing the account id as a url parameter  Checks that an account exists and is active by providing the account id as a url parameter. 
 
 ### Example
 ```java
@@ -683,7 +683,7 @@ Name | Type | Description  | Notes
 **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
 **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
-**200** | An acknowledgment that the card holder account status has been updated. A response code of &#x60;001&#x60; is returned if the request was accepted or no change required. A response code of &#x60;000&#x60; is returned if the request contains invalid data.  |  -  |
+**200** | An acknowledgment that the card holder account status has been updated.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;001&#x60; is returned if the request was accepted or no change required.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;000&#x60; is returned if the request contains invalid data. |  -  |
 
 <a name="chargeRequest"></a>
 # **chargeRequest**
