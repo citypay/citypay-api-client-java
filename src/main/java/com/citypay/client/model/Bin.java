@@ -22,12 +22,11 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 
 /**
- * Card
+ * Bin
  */
-public class Card {
+public class Bin {
   public static final String SERIALIZED_NAME_BIN_COMMERCIAL = "bin_commercial";
   @SerializedName(SERIALIZED_NAME_BIN_COMMERCIAL)
   private Boolean binCommercial;
@@ -60,52 +59,12 @@ public class Card {
   @SerializedName(SERIALIZED_NAME_BIN_EU)
   private Boolean binEu;
 
-  public static final String SERIALIZED_NAME_CARD_ID = "card_id";
-  @SerializedName(SERIALIZED_NAME_CARD_ID)
-  private String cardId;
-
-  public static final String SERIALIZED_NAME_CARD_STATUS = "card_status";
-  @SerializedName(SERIALIZED_NAME_CARD_STATUS)
-  private String cardStatus;
-
-  public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
-  @SerializedName(SERIALIZED_NAME_DATE_CREATED)
-  private OffsetDateTime dateCreated;
-
-  public static final String SERIALIZED_NAME_DEFAULT = "default";
-  @SerializedName(SERIALIZED_NAME_DEFAULT)
-  private Boolean _default;
-
-  public static final String SERIALIZED_NAME_EXPMONTH = "expmonth";
-  @SerializedName(SERIALIZED_NAME_EXPMONTH)
-  private Integer expmonth;
-
-  public static final String SERIALIZED_NAME_EXPYEAR = "expyear";
-  @SerializedName(SERIALIZED_NAME_EXPYEAR)
-  private Integer expyear;
-
-  public static final String SERIALIZED_NAME_LABEL = "label";
-  @SerializedName(SERIALIZED_NAME_LABEL)
-  private String label;
-
-  public static final String SERIALIZED_NAME_LABEL2 = "label2";
-  @SerializedName(SERIALIZED_NAME_LABEL2)
-  private String label2;
-
-  public static final String SERIALIZED_NAME_LAST4DIGITS = "last4digits";
-  @SerializedName(SERIALIZED_NAME_LAST4DIGITS)
-  private String last4digits;
-
   public static final String SERIALIZED_NAME_SCHEME = "scheme";
   @SerializedName(SERIALIZED_NAME_SCHEME)
   private String scheme;
 
-  public static final String SERIALIZED_NAME_TOKEN = "token";
-  @SerializedName(SERIALIZED_NAME_TOKEN)
-  private String token;
 
-
-  public Card binCommercial(Boolean binCommercial) {
+  public Bin binCommercial(Boolean binCommercial) {
     
     this.binCommercial = binCommercial;
     return this;
@@ -128,7 +87,7 @@ public class Card {
   }
 
 
-  public Card binCorporate(Boolean binCorporate) {
+  public Bin binCorporate(Boolean binCorporate) {
     
     this.binCorporate = binCorporate;
     return this;
@@ -151,7 +110,7 @@ public class Card {
   }
 
 
-  public Card binCountryIssued(String binCountryIssued) {
+  public Bin binCountryIssued(String binCountryIssued) {
     
     this.binCountryIssued = binCountryIssued;
     return this;
@@ -174,7 +133,7 @@ public class Card {
   }
 
 
-  public Card binCredit(Boolean binCredit) {
+  public Bin binCredit(Boolean binCredit) {
     
     this.binCredit = binCredit;
     return this;
@@ -197,7 +156,7 @@ public class Card {
   }
 
 
-  public Card binCurrency(String binCurrency) {
+  public Bin binCurrency(String binCurrency) {
     
     this.binCurrency = binCurrency;
     return this;
@@ -220,7 +179,7 @@ public class Card {
   }
 
 
-  public Card binDebit(Boolean binDebit) {
+  public Bin binDebit(Boolean binDebit) {
     
     this.binDebit = binDebit;
     return this;
@@ -243,7 +202,7 @@ public class Card {
   }
 
 
-  public Card binDescription(String binDescription) {
+  public Bin binDescription(String binDescription) {
     
     this.binDescription = binDescription;
     return this;
@@ -266,7 +225,7 @@ public class Card {
   }
 
 
-  public Card binEu(Boolean binEu) {
+  public Bin binEu(Boolean binEu) {
     
     this.binEu = binEu;
     return this;
@@ -289,218 +248,7 @@ public class Card {
   }
 
 
-  public Card cardId(String cardId) {
-    
-    this.cardId = cardId;
-    return this;
-  }
-
-   /**
-   * The id of the card that is returned. Should be used for referencing the card when perform any changes.
-   * @return cardId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The id of the card that is returned. Should be used for referencing the card when perform any changes.")
-
-  public String getCardId() {
-    return cardId;
-  }
-
-
-  public void setCardId(String cardId) {
-    this.cardId = cardId;
-  }
-
-
-  public Card cardStatus(String cardStatus) {
-    
-    this.cardStatus = cardStatus;
-    return this;
-  }
-
-   /**
-   * The status of the card such, valid values are   - ACTIVE the card is active for processing   - INACTIVE the card is not active for processing   - EXPIRED for cards that have passed their expiry date. 
-   * @return cardStatus
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The status of the card such, valid values are   - ACTIVE the card is active for processing   - INACTIVE the card is not active for processing   - EXPIRED for cards that have passed their expiry date. ")
-
-  public String getCardStatus() {
-    return cardStatus;
-  }
-
-
-  public void setCardStatus(String cardStatus) {
-    this.cardStatus = cardStatus;
-  }
-
-
-  public Card dateCreated(OffsetDateTime dateCreated) {
-    
-    this.dateCreated = dateCreated;
-    return this;
-  }
-
-   /**
-   * The date time of when the card was created.
-   * @return dateCreated
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "2020-01-02T18:32:28Z", value = "The date time of when the card was created.")
-
-  public OffsetDateTime getDateCreated() {
-    return dateCreated;
-  }
-
-
-  public void setDateCreated(OffsetDateTime dateCreated) {
-    this.dateCreated = dateCreated;
-  }
-
-
-  public Card _default(Boolean _default) {
-    
-    this._default = _default;
-    return this;
-  }
-
-   /**
-   * Determines if the card is the default card for the account and should be regarded as the first option to be used for processing.
-   * @return _default
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Determines if the card is the default card for the account and should be regarded as the first option to be used for processing.")
-
-  public Boolean isDefault() {
-    return _default;
-  }
-
-
-  public void setDefault(Boolean _default) {
-    this._default = _default;
-  }
-
-
-  public Card expmonth(Integer expmonth) {
-    
-    this.expmonth = expmonth;
-    return this;
-  }
-
-   /**
-   * The expiry month of the card.
-   * minimum: 1
-   * maximum: 12
-   * @return expmonth
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "9", value = "The expiry month of the card.")
-
-  public Integer getExpmonth() {
-    return expmonth;
-  }
-
-
-  public void setExpmonth(Integer expmonth) {
-    this.expmonth = expmonth;
-  }
-
-
-  public Card expyear(Integer expyear) {
-    
-    this.expyear = expyear;
-    return this;
-  }
-
-   /**
-   * The expiry year of the card.
-   * minimum: 2000
-   * maximum: 2100
-   * @return expyear
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "2024", value = "The expiry year of the card.")
-
-  public Integer getExpyear() {
-    return expyear;
-  }
-
-
-  public void setExpyear(Integer expyear) {
-    this.expyear = expyear;
-  }
-
-
-  public Card label(String label) {
-    
-    this.label = label;
-    return this;
-  }
-
-   /**
-   * A label which identifies this card.
-   * @return label
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "Visa/0002", value = "A label which identifies this card.")
-
-  public String getLabel() {
-    return label;
-  }
-
-
-  public void setLabel(String label) {
-    this.label = label;
-  }
-
-
-  public Card label2(String label2) {
-    
-    this.label2 = label2;
-    return this;
-  }
-
-   /**
-   * A label which also provides the expiry date of the card.
-   * @return label2
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "Visa/0002,Exp:2304", value = "A label which also provides the expiry date of the card.")
-
-  public String getLabel2() {
-    return label2;
-  }
-
-
-  public void setLabel2(String label2) {
-    this.label2 = label2;
-  }
-
-
-  public Card last4digits(String last4digits) {
-    
-    this.last4digits = last4digits;
-    return this;
-  }
-
-   /**
-   * The last 4 digits of the card to aid in identification.
-   * @return last4digits
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "2", value = "The last 4 digits of the card to aid in identification.")
-
-  public String getLast4digits() {
-    return last4digits;
-  }
-
-
-  public void setLast4digits(String last4digits) {
-    this.last4digits = last4digits;
-  }
-
-
-  public Card scheme(String scheme) {
+  public Bin scheme(String scheme) {
     
     this.scheme = scheme;
     return this;
@@ -523,29 +271,6 @@ public class Card {
   }
 
 
-  public Card token(String token) {
-    
-    this.token = token;
-    return this;
-  }
-
-   /**
-   * A token that can be used to process against the card.
-   * @return token
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr", value = "A token that can be used to process against the card.")
-
-  public String getToken() {
-    return token;
-  }
-
-
-  public void setToken(String token) {
-    this.token = token;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -554,37 +279,27 @@ public class Card {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Card card = (Card) o;
-    return Objects.equals(this.binCommercial, card.binCommercial) &&
-        Objects.equals(this.binCorporate, card.binCorporate) &&
-        Objects.equals(this.binCountryIssued, card.binCountryIssued) &&
-        Objects.equals(this.binCredit, card.binCredit) &&
-        Objects.equals(this.binCurrency, card.binCurrency) &&
-        Objects.equals(this.binDebit, card.binDebit) &&
-        Objects.equals(this.binDescription, card.binDescription) &&
-        Objects.equals(this.binEu, card.binEu) &&
-        Objects.equals(this.cardId, card.cardId) &&
-        Objects.equals(this.cardStatus, card.cardStatus) &&
-        Objects.equals(this.dateCreated, card.dateCreated) &&
-        Objects.equals(this._default, card._default) &&
-        Objects.equals(this.expmonth, card.expmonth) &&
-        Objects.equals(this.expyear, card.expyear) &&
-        Objects.equals(this.label, card.label) &&
-        Objects.equals(this.label2, card.label2) &&
-        Objects.equals(this.last4digits, card.last4digits) &&
-        Objects.equals(this.scheme, card.scheme) &&
-        Objects.equals(this.token, card.token);
+    Bin bin = (Bin) o;
+    return Objects.equals(this.binCommercial, bin.binCommercial) &&
+        Objects.equals(this.binCorporate, bin.binCorporate) &&
+        Objects.equals(this.binCountryIssued, bin.binCountryIssued) &&
+        Objects.equals(this.binCredit, bin.binCredit) &&
+        Objects.equals(this.binCurrency, bin.binCurrency) &&
+        Objects.equals(this.binDebit, bin.binDebit) &&
+        Objects.equals(this.binDescription, bin.binDescription) &&
+        Objects.equals(this.binEu, bin.binEu) &&
+        Objects.equals(this.scheme, bin.scheme);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(binCommercial, binCorporate, binCountryIssued, binCredit, binCurrency, binDebit, binDescription, binEu, cardId, cardStatus, dateCreated, _default, expmonth, expyear, label, label2, last4digits, scheme, token);
+    return Objects.hash(binCommercial, binCorporate, binCountryIssued, binCredit, binCurrency, binDebit, binDescription, binEu, scheme);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Card {\n");
+    sb.append("class Bin {\n");
     sb.append("    binCommercial: ").append(toIndentedString(binCommercial)).append("\n");
     sb.append("    binCorporate: ").append(toIndentedString(binCorporate)).append("\n");
     sb.append("    binCountryIssued: ").append(toIndentedString(binCountryIssued)).append("\n");
@@ -593,17 +308,7 @@ public class Card {
     sb.append("    binDebit: ").append(toIndentedString(binDebit)).append("\n");
     sb.append("    binDescription: ").append(toIndentedString(binDescription)).append("\n");
     sb.append("    binEu: ").append(toIndentedString(binEu)).append("\n");
-    sb.append("    cardId: ").append(toIndentedString(cardId)).append("\n");
-    sb.append("    cardStatus: ").append(toIndentedString(cardStatus)).append("\n");
-    sb.append("    dateCreated: ").append(toIndentedString(dateCreated)).append("\n");
-    sb.append("    _default: ").append(toIndentedString(_default)).append("\n");
-    sb.append("    expmonth: ").append(toIndentedString(expmonth)).append("\n");
-    sb.append("    expyear: ").append(toIndentedString(expyear)).append("\n");
-    sb.append("    label: ").append(toIndentedString(label)).append("\n");
-    sb.append("    label2: ").append(toIndentedString(label2)).append("\n");
-    sb.append("    last4digits: ").append(toIndentedString(last4digits)).append("\n");
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
-    sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("}");
     return sb.toString();
   }

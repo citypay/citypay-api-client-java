@@ -355,7 +355,7 @@ public class AuthResponse {
    * @return binDescription
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A description of the bin range found for the card.")
+  @ApiModelProperty(example = "Platinum Card", value = "A description of the bin range found for the card.")
 
   public String getBinDescription() {
     return binDescription;

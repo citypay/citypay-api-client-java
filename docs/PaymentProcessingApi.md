@@ -5,6 +5,7 @@ All URIs are relative to *https://api.citypay.com/v6*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**authorisationRequest**](PaymentProcessingApi.md#authorisationRequest) | **POST** /authorise | Authorisation
+[**binRangeLookupRequest**](PaymentProcessingApi.md#binRangeLookupRequest) | **POST** /bin | Bin Lookup
 [**cResRequest**](PaymentProcessingApi.md#cResRequest) | **POST** /cres | CRes
 [**captureRequest**](PaymentProcessingApi.md#captureRequest) | **POST** /capture | Capture
 [**paResRequest**](PaymentProcessingApi.md#paResRequest) | **POST** /pares | PaRes
@@ -85,6 +86,79 @@ Name | Type | Description  | Notes
 **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 **200** | A decision made by the result of processing. |  -  |
+
+<a name="binRangeLookupRequest"></a>
+# **binRangeLookupRequest**
+> Bin binRangeLookupRequest(binLookup)
+
+Bin Lookup
+
+A bin range lookup service can be used to check what a card is, as seen by the gateway. Each card number&#39;s  leading digits help to identify who  0. the card scheme is such as Visa, MasterCard or American Express  1. the issuer of the card, such as the bank 2. it&#39;s country of origin 3. it&#39;s currency of origin  Our gateway has 450 thousand possible bin ranges and uses a number of algorithms to determine the likelihood of the bin data. The request requires a bin value of between 6 and 12 digits. The more digits provided may ensure a more accurate result. 
+
+### Example
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.PaymentProcessingApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.citypay.com/v6");
+    
+    // Configure API key authorization: cp-api-key
+    ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+    cp-api-key.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //cp-api-key.setApiKeyPrefix("Token");
+
+    PaymentProcessingApi apiInstance = new PaymentProcessingApi(defaultClient);
+    BinLookup binLookup = new BinLookup(); // BinLookup | 
+    try {
+      Bin result = apiInstance.binRangeLookupRequest(binLookup);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PaymentProcessingApi#binRangeLookupRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **binLookup** | [**BinLookup**](BinLookup.md)|  |
+
+### Return type
+
+[**Bin**](Bin.md)
+
+### Authorization
+
+[cp-api-key](../README.md#cp-api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/xml
+ - **Accept**: application/json, text/xml
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
+**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+**200** | A result of the bin lookup request returning a bin object determined by the gateway service. |  -  |
 
 <a name="cResRequest"></a>
 # **cResRequest**

@@ -30,6 +30,8 @@ import com.citypay.client.model.Acknowledgement;
 import com.citypay.client.model.AuthReferences;
 import com.citypay.client.model.AuthRequest;
 import com.citypay.client.model.AuthResponse;
+import com.citypay.client.model.Bin;
+import com.citypay.client.model.BinLookup;
 import com.citypay.client.model.CResAuthRequest;
 import com.citypay.client.model.CaptureRequest;
 import com.citypay.client.model.Decision;
@@ -188,6 +190,133 @@ public class PaymentProcessingApi {
 
         okhttp3.Call localVarCall = authorisationRequestValidateBeforeCall(authRequest, _callback);
         Type localVarReturnType = new TypeToken<Decision>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for binRangeLookupRequest
+     * @param binLookup  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A result of the bin lookup request returning a bin object determined by the gateway service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call binRangeLookupRequestCall(BinLookup binLookup, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = binLookup;
+
+        // create path and map variables
+        String localVarPath = "/bin";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json", "text/xml"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/xml"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "cp-api-key" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call binRangeLookupRequestValidateBeforeCall(BinLookup binLookup, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'binLookup' is set
+        if (binLookup == null) {
+            throw new ApiException("Missing the required parameter 'binLookup' when calling binRangeLookupRequest(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = binRangeLookupRequestCall(binLookup, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Bin Lookup
+     * A bin range lookup service can be used to check what a card is, as seen by the gateway. Each card number&#39;s  leading digits help to identify who  0. the card scheme is such as Visa, MasterCard or American Express  1. the issuer of the card, such as the bank 2. it&#39;s country of origin 3. it&#39;s currency of origin  Our gateway has 450 thousand possible bin ranges and uses a number of algorithms to determine the likelihood of the bin data. The request requires a bin value of between 6 and 12 digits. The more digits provided may ensure a more accurate result. 
+     * @param binLookup  (required)
+     * @return Bin
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A result of the bin lookup request returning a bin object determined by the gateway service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Bin binRangeLookupRequest(BinLookup binLookup) throws ApiException {
+        ApiResponse<Bin> localVarResp = binRangeLookupRequestWithHttpInfo(binLookup);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Bin Lookup
+     * A bin range lookup service can be used to check what a card is, as seen by the gateway. Each card number&#39;s  leading digits help to identify who  0. the card scheme is such as Visa, MasterCard or American Express  1. the issuer of the card, such as the bank 2. it&#39;s country of origin 3. it&#39;s currency of origin  Our gateway has 450 thousand possible bin ranges and uses a number of algorithms to determine the likelihood of the bin data. The request requires a bin value of between 6 and 12 digits. The more digits provided may ensure a more accurate result. 
+     * @param binLookup  (required)
+     * @return ApiResponse&lt;Bin&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A result of the bin lookup request returning a bin object determined by the gateway service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Bin> binRangeLookupRequestWithHttpInfo(BinLookup binLookup) throws ApiException {
+        okhttp3.Call localVarCall = binRangeLookupRequestValidateBeforeCall(binLookup, null);
+        Type localVarReturnType = new TypeToken<Bin>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Bin Lookup (asynchronously)
+     * A bin range lookup service can be used to check what a card is, as seen by the gateway. Each card number&#39;s  leading digits help to identify who  0. the card scheme is such as Visa, MasterCard or American Express  1. the issuer of the card, such as the bank 2. it&#39;s country of origin 3. it&#39;s currency of origin  Our gateway has 450 thousand possible bin ranges and uses a number of algorithms to determine the likelihood of the bin data. The request requires a bin value of between 6 and 12 digits. The more digits provided may ensure a more accurate result. 
+     * @param binLookup  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A result of the bin lookup request returning a bin object determined by the gateway service. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call binRangeLookupRequestAsync(BinLookup binLookup, final ApiCallback<Bin> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = binRangeLookupRequestValidateBeforeCall(binLookup, _callback);
+        Type localVarReturnType = new TypeToken<Bin>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
