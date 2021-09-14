@@ -32,7 +32,7 @@ info:
       address. Our application firewalls analyse data that may be an attempt to break a large number of security common
       security vulnerabilities.
   title: CityPay Payment API
-  version: 6.2.2
+  version: 6.2.3
 servers:
 - description: Production processing endpoint
   url: https://api.citypay.com/v6
@@ -301,13 +301,13 @@ paths:
         content:
           application/json:
             examples:
-              example1:
-                externalValue: CaptureRequest-example1.json
-                summary: Basic capture call for a merchant with a given identifier
               example2:
                 externalValue: CaptureRequest-example2.json
                 summary: Basic capture call for a merchant with a transno and final
                   amount
+              example1:
+                externalValue: CaptureRequest-example1.json
+                summary: Basic capture call for a merchant with a given identifier
               example3:
                 externalValue: CaptureRequest-example3.json
                 summary: Capture call for a merchant with identifier and airline data
@@ -316,13 +316,13 @@ paths:
               $ref: '#/components/schemas/CaptureRequest'
           text/xml:
             examples:
-              example1:
-                externalValue: CaptureRequest-example1.xml
-                summary: Basic capture call for a merchant with a given identifier
               example2:
                 externalValue: CaptureRequest-example2.xml
                 summary: Basic capture call for a merchant with a transno and final
                   amount
+              example1:
+                externalValue: CaptureRequest-example1.xml
+                summary: Basic capture call for a merchant with a given identifier
               example3:
                 externalValue: CaptureRequest-example3.xml
                 summary: Capture call for a merchant with identifier and airline data
@@ -466,6 +466,61 @@ paths:
       summary: Account Exists
       tags:
       - Card Holder Account
+      x-accepts: application/json
+  /bin:
+    post:
+      description: "A bin range lookup service can be used to check what a card is,\
+        \ as seen by the gateway. Each card number's \nleading digits help to identify\
+        \ who\n\n0. the card scheme is such as Visa, MasterCard or American Express\
+        \ \n1. the issuer of the card, such as the bank\n2. it's country of origin\n\
+        3. it's currency of origin\n\nOur gateway has 450 thousand possible bin ranges\
+        \ and uses a number of algorithms to determine the likelihood of the bin\n\
+        data. The request requires a bin value of between 6 and 12 digits. The more\
+        \ digits provided may ensure a more accurate\nresult.\n"
+      operationId: BinRangeLookupRequest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BinLookup'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/BinLookup'
+        required: true
+      responses:
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bin'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Bin'
+          description: A result of the bin lookup request returning a bin object determined
+            by the gateway service.
+      summary: Bin Lookup
+      tags:
+      - Payment Processing
+      x-contentType: application/json
       x-accepts: application/json
   /account/{accountid}/contact:
     post:
@@ -709,24 +764,24 @@ paths:
         content:
           application/json:
             examples:
-              example1:
-                externalValue: VoidRequest-example1.json
-                summary: Basic capture call for a merchant with a given identifier
               example2:
                 externalValue: VoidRequest-example2.json
                 summary: Basic capture call for a merchant with a transno and final
                   amount
+              example1:
+                externalValue: VoidRequest-example1.json
+                summary: Basic capture call for a merchant with a given identifier
             schema:
               $ref: '#/components/schemas/VoidRequest'
           text/xml:
             examples:
-              example1:
-                externalValue: VoidRequest-example1.xml
-                summary: Basic capture call for a merchant with a given identifier
               example2:
                 externalValue: VoidRequest-example2.xml
                 summary: Basic capture call for a merchant with a transno and final
                   amount
+              example1:
+                externalValue: VoidRequest-example1.xml
+                summary: Basic capture call for a merchant with a given identifier
             schema:
               $ref: '#/components/schemas/VoidRequest'
         required: true
@@ -1474,7 +1529,7 @@ components:
       example:
         account_id: aaabbb-cccddd-eee
         cards:
-        - bin_description: bin_description
+        - bin_description: Platinum Card
           bin_commercial: true
           scheme: Visa
           date_created: 2020-01-02T18:32:28Z
@@ -1493,7 +1548,7 @@ components:
           expmonth: 9
           bin_debit: true
           bin_eu: true
-        - bin_description: bin_description
+        - bin_description: Platinum Card
           bin_commercial: true
           scheme: Visa
           date_created: 2020-01-02T18:32:28Z
@@ -1596,7 +1651,7 @@ components:
         live: true
         trans_status: trans_status
         csc_result: csc_result
-        bin_description: bin_description
+        bin_description: Platinum Card
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
         amount: 3600
         bin_commercial: true
@@ -1710,6 +1765,7 @@ components:
           type: boolean
         bin_description:
           description: A description of the bin range found for the card.
+          example: Platinum Card
           type: string
         cavv:
           description: |
@@ -2302,7 +2358,7 @@ components:
       type: object
     Card:
       example:
-        bin_description: bin_description
+        bin_description: Platinum Card
         bin_commercial: true
         scheme: Visa
         date_created: 2020-01-02T18:32:28Z
@@ -2343,6 +2399,7 @@ components:
         bin_description:
           description: A description of the bin on the card to identify what type
             of product the card is.
+          example: Platinum Card
           type: string
         bin_eu:
           description: Defines whether the card is regulated within the EU.
@@ -2785,7 +2842,7 @@ components:
           live: true
           trans_status: trans_status
           csc_result: csc_result
-          bin_description: bin_description
+          bin_description: Platinum Card
           identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
           amount: 3600
           bin_commercial: true
@@ -2803,6 +2860,49 @@ components:
           $ref: '#/components/schemas/AuthResponse'
         RequestChallenged:
           $ref: '#/components/schemas/RequestChallenged'
+      type: object
+    Bin:
+      example:
+        bin_description: Platinum Card
+        bin_commercial: true
+        bin_country_issued: bin_country_issued
+        bin_credit: true
+        scheme: Visa
+        bin_corporate: true
+        bin_currency: bin_currency
+        bin_debit: true
+        bin_eu: true
+      properties:
+        bin_commercial:
+          description: Defines whether the card is a commercial card.
+          type: boolean
+        bin_corporate:
+          description: Defines whether the card is a corporate business card.
+          type: boolean
+        bin_country_issued:
+          description: The determined country where the card was issued.
+          type: string
+        bin_credit:
+          description: Defines whether the card is a credit card.
+          type: boolean
+        bin_currency:
+          description: The default currency determined for the card.
+          type: string
+        bin_debit:
+          description: Defines whether the card is a debit card.
+          type: boolean
+        bin_description:
+          description: A description of the bin on the card to identify what type
+            of product the card is.
+          example: Platinum Card
+          type: string
+        bin_eu:
+          description: Defines whether the card is regulated within the EU.
+          type: boolean
+        scheme:
+          description: The scheme that issued the card.
+          example: Visa
+          type: string
       type: object
     BatchTransaction:
       example:
@@ -3497,6 +3597,20 @@ components:
           type: date-time
       required:
       - exists
+      type: object
+    BinLookup:
+      example:
+        bin: 543712
+      properties:
+        bin:
+          description: A bin value to use for lookup.
+          example: 543712
+          format: int32
+          maxLength: 12
+          minLength: 6
+          type: integer
+      required:
+      - bin
       type: object
     CheckBatchStatus:
       example:
