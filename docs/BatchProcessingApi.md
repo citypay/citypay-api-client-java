@@ -76,11 +76,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
-**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
-**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
-**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 **200** | Request to process a batch provided in the request. |  -  |
+**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 
 <a name="checkBatchStatusRequest"></a>
 # **checkBatchStatusRequest**
@@ -149,11 +149,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
-**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
-**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
+**200** | The status of batches provided in the request. |  -  |
 **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
-**200** | The status of a batch provided in the request. |  -  |
+**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 
 <a name="getBatchReportRequest"></a>
 # **getBatchReportRequest**
@@ -222,9 +222,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
-**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
-**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
-**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 **200** | The report for a given batch. |  -  |
+**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 

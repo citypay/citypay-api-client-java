@@ -68,11 +68,11 @@ public class BatchProcessingApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 200 </td><td> Request to process a batch provided in the request. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call batchProcessRequestCall(ProcessBatchRequest processBatchRequest, final ApiCallback _callback) throws ApiException {
@@ -128,11 +128,11 @@ public class BatchProcessingApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 200 </td><td> Request to process a batch provided in the request. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public ProcessBatchResponse batchProcessRequest(ProcessBatchRequest processBatchRequest) throws ApiException {
@@ -149,11 +149,11 @@ public class BatchProcessingApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 200 </td><td> Request to process a batch provided in the request. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<ProcessBatchResponse> batchProcessRequestWithHttpInfo(ProcessBatchRequest processBatchRequest) throws ApiException {
@@ -172,11 +172,11 @@ public class BatchProcessingApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 200 </td><td> Request to process a batch provided in the request. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call batchProcessRequestAsync(ProcessBatchRequest processBatchRequest, final ApiCallback<ProcessBatchResponse> _callback) throws ApiException {
@@ -195,11 +195,11 @@ public class BatchProcessingApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The status of batches provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 200 </td><td> The status of a batch provided in the request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call checkBatchStatusRequestCall(CheckBatchStatus checkBatchStatus, final ApiCallback _callback) throws ApiException {
@@ -255,11 +255,11 @@ public class BatchProcessingApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The status of batches provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 200 </td><td> The status of a batch provided in the request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public CheckBatchStatusResponse checkBatchStatusRequest(CheckBatchStatus checkBatchStatus) throws ApiException {
@@ -276,11 +276,11 @@ public class BatchProcessingApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The status of batches provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 200 </td><td> The status of a batch provided in the request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<CheckBatchStatusResponse> checkBatchStatusRequestWithHttpInfo(CheckBatchStatus checkBatchStatus) throws ApiException {
@@ -299,11 +299,11 @@ public class BatchProcessingApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> The status of batches provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 200 </td><td> The status of a batch provided in the request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call checkBatchStatusRequestAsync(CheckBatchStatus checkBatchStatus, final ApiCallback<CheckBatchStatusResponse> _callback) throws ApiException {
@@ -322,11 +322,11 @@ public class BatchProcessingApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 200 </td><td> The report for a given batch. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getBatchReportRequestCall(BatchReportRequest batchReportRequest, final ApiCallback _callback) throws ApiException {
@@ -382,11 +382,11 @@ public class BatchProcessingApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 200 </td><td> The report for a given batch. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public BatchReportResponseModel getBatchReportRequest(BatchReportRequest batchReportRequest) throws ApiException {
@@ -403,11 +403,11 @@ public class BatchProcessingApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 200 </td><td> The report for a given batch. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<BatchReportResponseModel> getBatchReportRequestWithHttpInfo(BatchReportRequest batchReportRequest) throws ApiException {
@@ -426,11 +426,11 @@ public class BatchProcessingApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 200 </td><td> The report for a given batch. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getBatchReportRequestAsync(BatchReportRequest batchReportRequest, final ApiCallback<BatchReportResponseModel> _callback) throws ApiException {

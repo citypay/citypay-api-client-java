@@ -22,70 +22,117 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * CheckBatchStatus
+ * AclCheckResponseModel
  */
-public class CheckBatchStatus {
-  public static final String SERIALIZED_NAME_BATCH_ID = "batch_id";
-  @SerializedName(SERIALIZED_NAME_BATCH_ID)
-  private List<Integer> batchId = new ArrayList<>();
+public class AclCheckResponseModel {
+  public static final String SERIALIZED_NAME_ACL = "acl";
+  @SerializedName(SERIALIZED_NAME_ACL)
+  private String acl;
 
-  public static final String SERIALIZED_NAME_CLIENT_ACCOUNT_ID = "client_account_id";
-  @SerializedName(SERIALIZED_NAME_CLIENT_ACCOUNT_ID)
-  private String clientAccountId;
+  public static final String SERIALIZED_NAME_CACHE = "cache";
+  @SerializedName(SERIALIZED_NAME_CACHE)
+  private Boolean cache;
+
+  public static final String SERIALIZED_NAME_IP = "ip";
+  @SerializedName(SERIALIZED_NAME_IP)
+  private String ip;
+
+  public static final String SERIALIZED_NAME_PROVIDER = "provider";
+  @SerializedName(SERIALIZED_NAME_PROVIDER)
+  private String provider;
 
 
-  public CheckBatchStatus batchId(List<Integer> batchId) {
+  public AclCheckResponseModel acl(String acl) {
     
-    this.batchId = batchId;
-    return this;
-  }
-
-  public CheckBatchStatus addBatchIdItem(Integer batchIdItem) {
-    this.batchId.add(batchIdItem);
+    this.acl = acl;
     return this;
   }
 
    /**
-   * Get batchId
-   * @return batchId
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public List<Integer> getBatchId() {
-    return batchId;
-  }
-
-
-  public void setBatchId(List<Integer> batchId) {
-    this.batchId = batchId;
-  }
-
-
-  public CheckBatchStatus clientAccountId(String clientAccountId) {
-    
-    this.clientAccountId = clientAccountId;
-    return this;
-  }
-
-   /**
-   * The batch account id to obtain the batch for. Defaults to your client id if not provided.
-   * @return clientAccountId
+   * The name or value of the acl which was found to match the ip address.
+   * @return acl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "AC1", value = "The batch account id to obtain the batch for. Defaults to your client id if not provided.")
+  @ApiModelProperty(value = "The name or value of the acl which was found to match the ip address.")
 
-  public String getClientAccountId() {
-    return clientAccountId;
+  public String getAcl() {
+    return acl;
   }
 
 
-  public void setClientAccountId(String clientAccountId) {
-    this.clientAccountId = clientAccountId;
+  public void setAcl(String acl) {
+    this.acl = acl;
+  }
+
+
+  public AclCheckResponseModel cache(Boolean cache) {
+    
+    this.cache = cache;
+    return this;
+  }
+
+   /**
+   * Whether the ACL was returned via a cached instance.
+   * @return cache
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Whether the ACL was returned via a cached instance.")
+
+  public Boolean isCache() {
+    return cache;
+  }
+
+
+  public void setCache(Boolean cache) {
+    this.cache = cache;
+  }
+
+
+  public AclCheckResponseModel ip(String ip) {
+    
+    this.ip = ip;
+    return this;
+  }
+
+   /**
+   * The IP address used in the lookup.
+   * @return ip
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "8.8.8.8", value = "The IP address used in the lookup.")
+
+  public String getIp() {
+    return ip;
+  }
+
+
+  public void setIp(String ip) {
+    this.ip = ip;
+  }
+
+
+  public AclCheckResponseModel provider(String provider) {
+    
+    this.provider = provider;
+    return this;
+  }
+
+   /**
+   * The source provider of the ACL.
+   * @return provider
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The source provider of the ACL.")
+
+  public String getProvider() {
+    return provider;
+  }
+
+
+  public void setProvider(String provider) {
+    this.provider = provider;
   }
 
 
@@ -97,22 +144,26 @@ public class CheckBatchStatus {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CheckBatchStatus checkBatchStatus = (CheckBatchStatus) o;
-    return Objects.equals(this.batchId, checkBatchStatus.batchId) &&
-        Objects.equals(this.clientAccountId, checkBatchStatus.clientAccountId);
+    AclCheckResponseModel aclCheckResponseModel = (AclCheckResponseModel) o;
+    return Objects.equals(this.acl, aclCheckResponseModel.acl) &&
+        Objects.equals(this.cache, aclCheckResponseModel.cache) &&
+        Objects.equals(this.ip, aclCheckResponseModel.ip) &&
+        Objects.equals(this.provider, aclCheckResponseModel.provider);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(batchId, clientAccountId);
+    return Objects.hash(acl, cache, ip, provider);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CheckBatchStatus {\n");
-    sb.append("    batchId: ").append(toIndentedString(batchId)).append("\n");
-    sb.append("    clientAccountId: ").append(toIndentedString(clientAccountId)).append("\n");
+    sb.append("class AclCheckResponseModel {\n");
+    sb.append("    acl: ").append(toIndentedString(acl)).append("\n");
+    sb.append("    cache: ").append(toIndentedString(cache)).append("\n");
+    sb.append("    ip: ").append(toIndentedString(ip)).append("\n");
+    sb.append("    provider: ").append(toIndentedString(provider)).append("\n");
     sb.append("}");
     return sb.toString();
   }

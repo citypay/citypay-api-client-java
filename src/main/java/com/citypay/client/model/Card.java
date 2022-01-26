@@ -96,6 +96,10 @@ public class Card {
   @SerializedName(SERIALIZED_NAME_LAST4DIGITS)
   private String last4digits;
 
+  public static final String SERIALIZED_NAME_NAME_ON_CARD = "name_on_card";
+  @SerializedName(SERIALIZED_NAME_NAME_ON_CARD)
+  private String nameOnCard;
+
   public static final String SERIALIZED_NAME_SCHEME = "scheme";
   @SerializedName(SERIALIZED_NAME_SCHEME)
   private String scheme;
@@ -419,7 +423,7 @@ public class Card {
    * @return expyear
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2024", value = "The expiry year of the card.")
+  @ApiModelProperty(example = "2025", value = "The expiry year of the card.")
 
   public Integer getExpyear() {
     return expyear;
@@ -500,6 +504,29 @@ public class Card {
   }
 
 
+  public Card nameOnCard(String nameOnCard) {
+    
+    this.nameOnCard = nameOnCard;
+    return this;
+  }
+
+   /**
+   * The name on the card.
+   * @return nameOnCard
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "MR NE BODY", value = "The name on the card.")
+
+  public String getNameOnCard() {
+    return nameOnCard;
+  }
+
+
+  public void setNameOnCard(String nameOnCard) {
+    this.nameOnCard = nameOnCard;
+  }
+
+
   public Card scheme(String scheme) {
     
     this.scheme = scheme;
@@ -572,13 +599,14 @@ public class Card {
         Objects.equals(this.label, card.label) &&
         Objects.equals(this.label2, card.label2) &&
         Objects.equals(this.last4digits, card.last4digits) &&
+        Objects.equals(this.nameOnCard, card.nameOnCard) &&
         Objects.equals(this.scheme, card.scheme) &&
         Objects.equals(this.token, card.token);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(binCommercial, binCorporate, binCountryIssued, binCredit, binCurrency, binDebit, binDescription, binEu, cardId, cardStatus, dateCreated, _default, expmonth, expyear, label, label2, last4digits, scheme, token);
+    return Objects.hash(binCommercial, binCorporate, binCountryIssued, binCredit, binCurrency, binDebit, binDescription, binEu, cardId, cardStatus, dateCreated, _default, expmonth, expyear, label, label2, last4digits, nameOnCard, scheme, token);
   }
 
   @Override
@@ -602,6 +630,7 @@ public class Card {
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    label2: ").append(toIndentedString(label2)).append("\n");
     sb.append("    last4digits: ").append(toIndentedString(last4digits)).append("\n");
+    sb.append("    nameOnCard: ").append(toIndentedString(nameOnCard)).append("\n");
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("}");

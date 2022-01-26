@@ -27,6 +27,8 @@ import java.io.IOException;
 
 
 import com.citypay.client.model.Acknowledgement;
+import com.citypay.client.model.AclCheckRequest;
+import com.citypay.client.model.AclCheckResponseModel;
 import com.citypay.client.model.Error;
 import com.citypay.client.model.ListMerchantsResponse;
 import com.citypay.client.model.Ping;
@@ -57,6 +59,133 @@ public class OperationalApi {
     }
 
     /**
+     * Build call for aclCheckRequest
+     * @param aclCheckRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response to the ACL Check request. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call aclCheckRequestCall(AclCheckRequest aclCheckRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = aclCheckRequest;
+
+        // create path and map variables
+        String localVarPath = "/acl/check";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json", "text/xml"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/xml"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "cp-api-key" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call aclCheckRequestValidateBeforeCall(AclCheckRequest aclCheckRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'aclCheckRequest' is set
+        if (aclCheckRequest == null) {
+            throw new ApiException("Missing the required parameter 'aclCheckRequest' when calling aclCheckRequest(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = aclCheckRequestCall(aclCheckRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * ACL Check Request
+     * Allows the checking of IP addresses against configured ACLs. Requests can perform a lookup of addresses in subnets and services such as AWS or Azure to check that those addresses are listed in the ACLs. 
+     * @param aclCheckRequest  (required)
+     * @return AclCheckResponseModel
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response to the ACL Check request. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+     </table>
+     */
+    public AclCheckResponseModel aclCheckRequest(AclCheckRequest aclCheckRequest) throws ApiException {
+        ApiResponse<AclCheckResponseModel> localVarResp = aclCheckRequestWithHttpInfo(aclCheckRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * ACL Check Request
+     * Allows the checking of IP addresses against configured ACLs. Requests can perform a lookup of addresses in subnets and services such as AWS or Azure to check that those addresses are listed in the ACLs. 
+     * @param aclCheckRequest  (required)
+     * @return ApiResponse&lt;AclCheckResponseModel&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response to the ACL Check request. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<AclCheckResponseModel> aclCheckRequestWithHttpInfo(AclCheckRequest aclCheckRequest) throws ApiException {
+        okhttp3.Call localVarCall = aclCheckRequestValidateBeforeCall(aclCheckRequest, null);
+        Type localVarReturnType = new TypeToken<AclCheckResponseModel>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * ACL Check Request (asynchronously)
+     * Allows the checking of IP addresses against configured ACLs. Requests can perform a lookup of addresses in subnets and services such as AWS or Azure to check that those addresses are listed in the ACLs. 
+     * @param aclCheckRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Response to the ACL Check request. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call aclCheckRequestAsync(AclCheckRequest aclCheckRequest, final ApiCallback<AclCheckResponseModel> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = aclCheckRequestValidateBeforeCall(aclCheckRequest, _callback);
+        Type localVarReturnType = new TypeToken<AclCheckResponseModel>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for listMerchantsRequest
      * @param clientid The client id to return merchants for, specifying \&quot;default\&quot; will use the value in your api key. (required)
      * @param _callback Callback for upload/download progress
@@ -65,11 +194,11 @@ public class OperationalApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 200 </td><td> A list of merchants that are configured against the client id. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call listMerchantsRequestCall(String clientid, final ApiCallback _callback) throws ApiException {
@@ -126,11 +255,11 @@ public class OperationalApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 200 </td><td> A list of merchants that are configured against the client id. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public ListMerchantsResponse listMerchantsRequest(String clientid) throws ApiException {
@@ -147,11 +276,11 @@ public class OperationalApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 200 </td><td> A list of merchants that are configured against the client id. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<ListMerchantsResponse> listMerchantsRequestWithHttpInfo(String clientid) throws ApiException {
@@ -170,11 +299,11 @@ public class OperationalApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 200 </td><td> A list of merchants that are configured against the client id. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call listMerchantsRequestAsync(String clientid, final ApiCallback<ListMerchantsResponse> _callback) throws ApiException {
@@ -193,11 +322,11 @@ public class OperationalApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 200 </td><td> A result of the ping request, returning on 044 response code on successful receipt of the ping request. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call pingRequestCall(Ping ping, final ApiCallback _callback) throws ApiException {
@@ -253,11 +382,11 @@ public class OperationalApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 200 </td><td> A result of the ping request, returning on 044 response code on successful receipt of the ping request. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public Acknowledgement pingRequest(Ping ping) throws ApiException {
@@ -274,11 +403,11 @@ public class OperationalApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 200 </td><td> A result of the ping request, returning on 044 response code on successful receipt of the ping request. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Acknowledgement> pingRequestWithHttpInfo(Ping ping) throws ApiException {
@@ -297,11 +426,11 @@ public class OperationalApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 200 </td><td> A result of the ping request, returning on 044 response code on successful receipt of the ping request. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call pingRequestAsync(Ping ping, final ApiCallback<Acknowledgement> _callback) throws ApiException {

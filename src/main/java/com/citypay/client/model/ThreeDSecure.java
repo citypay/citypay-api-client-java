@@ -128,11 +128,11 @@ public class ThreeDSecure {
   }
 
    /**
-   * Required for 3DSv1 and 3Dv2 processing.  A controller URL for 3D-Secure processing that any response from an authentication request or challenge request should be sent to.  The controller should forward on the response from the URL back via this API for subsequent processing. Required if 3DSv1 or 3DSv2 is required. 
+   * A controller URL for 3D-Secure processing that any response from an authentication request or challenge request should be sent to.  The controller should forward on the response from the URL back via this API for subsequent processing. 
    * @return merchantTermurl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://mysite.com/acs/return", value = "Required for 3DSv1 and 3Dv2 processing.  A controller URL for 3D-Secure processing that any response from an authentication request or challenge request should be sent to.  The controller should forward on the response from the URL back via this API for subsequent processing. Required if 3DSv1 or 3DSv2 is required. ")
+  @ApiModelProperty(example = "https://mysite.com/acs/return", value = "A controller URL for 3D-Secure processing that any response from an authentication request or challenge request should be sent to.  The controller should forward on the response from the URL back via this API for subsequent processing. ")
 
   public String getMerchantTermurl() {
     return merchantTermurl;
@@ -174,11 +174,11 @@ public class ThreeDSecure {
   }
 
    /**
-   * Required for 3DSv1. Optional if the &#x60;cp_bx&#x60; value is provided otherwise required 3Dv2 processing operating in browser authentication mode.  The &#x60;cp_bx&#x60; value will override any value supplied to this field.  The content of the HTTP user-agent header as sent to the merchant from the cardholder&#39;s user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. 
+   * Required for 3DSv1.  Optional if the &#x60;cp_bx&#x60; value is provided otherwise required 3Dv2 processing operating in browser authentication mode.  The &#x60;cp_bx&#x60; value will override any value supplied to this field.  The content of the HTTP user-agent header as sent to the merchant from the cardholder&#39;s user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. 
    * @return userAgent
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36", value = "Required for 3DSv1. Optional if the `cp_bx` value is provided otherwise required 3Dv2 processing operating in browser authentication mode.  The `cp_bx` value will override any value supplied to this field.  The content of the HTTP user-agent header as sent to the merchant from the cardholder's user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. ")
+  @ApiModelProperty(example = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36", value = "Required for 3DSv1.  Optional if the `cp_bx` value is provided otherwise required 3Dv2 processing operating in browser authentication mode.  The `cp_bx` value will override any value supplied to this field.  The content of the HTTP user-agent header as sent to the merchant from the cardholder's user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. ")
 
   public String getUserAgent() {
     return userAgent;
