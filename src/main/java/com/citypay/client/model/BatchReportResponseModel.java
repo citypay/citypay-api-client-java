@@ -23,7 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,52 +31,29 @@ import java.util.List;
  * BatchReportResponseModel
  */
 public class BatchReportResponseModel {
-  public static final String SERIALIZED_NAME_ACCOUNT_ID = "account_id";
-  @SerializedName(SERIALIZED_NAME_ACCOUNT_ID)
-  private String accountId;
-
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
   private Integer amount;
 
   public static final String SERIALIZED_NAME_BATCH_DATE = "batch_date";
   @SerializedName(SERIALIZED_NAME_BATCH_DATE)
-  private OffsetDateTime batchDate;
+  private LocalDate batchDate;
 
   public static final String SERIALIZED_NAME_BATCH_ID = "batch_id";
   @SerializedName(SERIALIZED_NAME_BATCH_ID)
-  private Integer batchId;
+  private List<Integer> batchId = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_BATCH_STATUS = "batch_status";
   @SerializedName(SERIALIZED_NAME_BATCH_STATUS)
   private String batchStatus;
 
+  public static final String SERIALIZED_NAME_CLIENT_ACCOUNT_ID = "client_account_id";
+  @SerializedName(SERIALIZED_NAME_CLIENT_ACCOUNT_ID)
+  private String clientAccountId;
+
   public static final String SERIALIZED_NAME_TRANSACTIONS = "transactions";
   @SerializedName(SERIALIZED_NAME_TRANSACTIONS)
   private List<BatchTransactionResultModel> transactions = new ArrayList<>();
-
-
-  public BatchReportResponseModel accountId(String accountId) {
-    
-    this.accountId = accountId;
-    return this;
-  }
-
-   /**
-   * The batch account id that the batch was processed with.
-   * @return accountId
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "AC1", required = true, value = "The batch account id that the batch was processed with.")
-
-  public String getAccountId() {
-    return accountId;
-  }
-
-
-  public void setAccountId(String accountId) {
-    this.accountId = accountId;
-  }
 
 
   public BatchReportResponseModel amount(Integer amount) {
@@ -102,7 +79,7 @@ public class BatchReportResponseModel {
   }
 
 
-  public BatchReportResponseModel batchDate(OffsetDateTime batchDate) {
+  public BatchReportResponseModel batchDate(LocalDate batchDate) {
     
     this.batchDate = batchDate;
     return this;
@@ -113,38 +90,42 @@ public class BatchReportResponseModel {
    * @return batchDate
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2020-01-02T18:32:28Z", required = true, value = "The date and time of the batch in ISO-8601 format.")
+  @ApiModelProperty(example = "Thu Jan 02 00:00:00 UTC 2020", required = true, value = "The date and time of the batch in ISO-8601 format.")
 
-  public OffsetDateTime getBatchDate() {
+  public LocalDate getBatchDate() {
     return batchDate;
   }
 
 
-  public void setBatchDate(OffsetDateTime batchDate) {
+  public void setBatchDate(LocalDate batchDate) {
     this.batchDate = batchDate;
   }
 
 
-  public BatchReportResponseModel batchId(Integer batchId) {
+  public BatchReportResponseModel batchId(List<Integer> batchId) {
     
     this.batchId = batchId;
     return this;
   }
 
+  public BatchReportResponseModel addBatchIdItem(Integer batchIdItem) {
+    this.batchId.add(batchIdItem);
+    return this;
+  }
+
    /**
-   * The batch id specified in the batch processing request.
-   * minimum: 1
+   * Get batchId
    * @return batchId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1975", required = true, value = "The batch id specified in the batch processing request.")
+  @ApiModelProperty(required = true, value = "")
 
-  public Integer getBatchId() {
+  public List<Integer> getBatchId() {
     return batchId;
   }
 
 
-  public void setBatchId(Integer batchId) {
+  public void setBatchId(List<Integer> batchId) {
     this.batchId = batchId;
   }
 
@@ -156,11 +137,11 @@ public class BatchReportResponseModel {
   }
 
    /**
-   * The status of the batch. Possible values are.
+   * The status of the batch. Possible values are - CANCELLED. The file has been cancelled by an administrator or server process.  - COMPLETE. The file has passed through the processing cycle and is determined as being complete further information should be obtained on the results of the processing - ERROR_IN_PROCESSING. Errors have occurred in the processing that has deemed that processing can not continue. - INITIALISED. The file has been initialised and no action has yet been performed - LOCKED. The file has been locked for processing - QUEUED. The file has been queued for processing yet no processing has yet been performed - UNKNOWN. The file is of an unknown status, that is the file can either not be determined by the information requested of the file has not yet been received. 
    * @return batchStatus
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "COMPLETE", required = true, value = "The status of the batch. Possible values are.")
+  @ApiModelProperty(example = "COMPLETE", required = true, value = "The status of the batch. Possible values are - CANCELLED. The file has been cancelled by an administrator or server process.  - COMPLETE. The file has passed through the processing cycle and is determined as being complete further information should be obtained on the results of the processing - ERROR_IN_PROCESSING. Errors have occurred in the processing that has deemed that processing can not continue. - INITIALISED. The file has been initialised and no action has yet been performed - LOCKED. The file has been locked for processing - QUEUED. The file has been queued for processing yet no processing has yet been performed - UNKNOWN. The file is of an unknown status, that is the file can either not be determined by the information requested of the file has not yet been received. ")
 
   public String getBatchStatus() {
     return batchStatus;
@@ -169,6 +150,29 @@ public class BatchReportResponseModel {
 
   public void setBatchStatus(String batchStatus) {
     this.batchStatus = batchStatus;
+  }
+
+
+  public BatchReportResponseModel clientAccountId(String clientAccountId) {
+    
+    this.clientAccountId = clientAccountId;
+    return this;
+  }
+
+   /**
+   * The batch account id that the batch was processed with.
+   * @return clientAccountId
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "AC1", required = true, value = "The batch account id that the batch was processed with.")
+
+  public String getClientAccountId() {
+    return clientAccountId;
+  }
+
+
+  public void setClientAccountId(String clientAccountId) {
+    this.clientAccountId = clientAccountId;
   }
 
 
@@ -209,28 +213,28 @@ public class BatchReportResponseModel {
       return false;
     }
     BatchReportResponseModel batchReportResponseModel = (BatchReportResponseModel) o;
-    return Objects.equals(this.accountId, batchReportResponseModel.accountId) &&
-        Objects.equals(this.amount, batchReportResponseModel.amount) &&
+    return Objects.equals(this.amount, batchReportResponseModel.amount) &&
         Objects.equals(this.batchDate, batchReportResponseModel.batchDate) &&
         Objects.equals(this.batchId, batchReportResponseModel.batchId) &&
         Objects.equals(this.batchStatus, batchReportResponseModel.batchStatus) &&
+        Objects.equals(this.clientAccountId, batchReportResponseModel.clientAccountId) &&
         Objects.equals(this.transactions, batchReportResponseModel.transactions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, amount, batchDate, batchId, batchStatus, transactions);
+    return Objects.hash(amount, batchDate, batchId, batchStatus, clientAccountId, transactions);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class BatchReportResponseModel {\n");
-    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    batchDate: ").append(toIndentedString(batchDate)).append("\n");
     sb.append("    batchId: ").append(toIndentedString(batchId)).append("\n");
     sb.append("    batchStatus: ").append(toIndentedString(batchStatus)).append("\n");
+    sb.append("    clientAccountId: ").append(toIndentedString(clientAccountId)).append("\n");
     sb.append("    transactions: ").append(toIndentedString(transactions)).append("\n");
     sb.append("}");
     return sb.toString();

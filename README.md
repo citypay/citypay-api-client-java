@@ -1,10 +1,9 @@
 # CityPay API Client for Java
 
-[![Build Status](https://travis-ci.org/citypay/citypay-api-client-java.svg?branch=master)](https://travis-ci.org/citypay/citypay-api-client-java)
-
+[![Build Status](https://api.travis-ci.com/citypay/citypay-api-client-java.svg?branch=master)](https://app.travis-ci.com/github/citypay/citypay-api-client-java)
 CityPay Payment API
-- API version: 6.2.2
-  - Build date: 2021-09-02T10:45:22.810268Z[Etc/UTC]
+- API version: 6.2.9
+  - Build date: 2022-01-26T11:26:31.140753Z[Etc/UTC]
 
 
 This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It
@@ -69,7 +68,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.citypay</groupId>
   <artifactId>citypay-api-client-java</artifactId>
-  <version>1.0.5</version>
+  <version>1.0.7</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -83,7 +82,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/citypay-api-client-java-1.0.5.jar`
+* `target/citypay-api-client-java-1.0.7.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -142,9 +141,11 @@ Class | Method | HTTP request | Description
 *CardHolderAccountApi* | [**accountRetrieveRequest**](docs/CardHolderAccountApi.md#accountRetrieveRequest) | **GET** /account/{accountid} | Account Retrieval
 *CardHolderAccountApi* | [**accountStatusRequest**](docs/CardHolderAccountApi.md#accountStatusRequest) | **POST** /account/{accountid}/status | Account Status
 *CardHolderAccountApi* | [**chargeRequest**](docs/CardHolderAccountApi.md#chargeRequest) | **POST** /charge | Charge
+*OperationalApi* | [**aclCheckRequest**](docs/OperationalApi.md#aclCheckRequest) | **POST** /acl/check | ACL Check Request
 *OperationalApi* | [**listMerchantsRequest**](docs/OperationalApi.md#listMerchantsRequest) | **GET** /merchants/{clientid} | List Merchants Request
 *OperationalApi* | [**pingRequest**](docs/OperationalApi.md#pingRequest) | **POST** /ping | Ping Request
 *PaymentProcessingApi* | [**authorisationRequest**](docs/PaymentProcessingApi.md#authorisationRequest) | **POST** /authorise | Authorisation
+*PaymentProcessingApi* | [**binRangeLookupRequest**](docs/PaymentProcessingApi.md#binRangeLookupRequest) | **POST** /bin | Bin Lookup
 *PaymentProcessingApi* | [**cResRequest**](docs/PaymentProcessingApi.md#cResRequest) | **POST** /cres | CRes
 *PaymentProcessingApi* | [**captureRequest**](docs/PaymentProcessingApi.md#captureRequest) | **POST** /capture | Capture
 *PaymentProcessingApi* | [**paResRequest**](docs/PaymentProcessingApi.md#paResRequest) | **POST** /pares | PaRes
@@ -158,6 +159,8 @@ Class | Method | HTTP request | Description
  - [AccountCreate](docs/AccountCreate.md)
  - [AccountStatus](docs/AccountStatus.md)
  - [Acknowledgement](docs/Acknowledgement.md)
+ - [AclCheckRequest](docs/AclCheckRequest.md)
+ - [AclCheckResponseModel](docs/AclCheckResponseModel.md)
  - [AirlineAdvice](docs/AirlineAdvice.md)
  - [AirlineSegment](docs/AirlineSegment.md)
  - [AuthReference](docs/AuthReference.md)
@@ -165,10 +168,13 @@ Class | Method | HTTP request | Description
  - [AuthRequest](docs/AuthRequest.md)
  - [AuthResponse](docs/AuthResponse.md)
  - [AuthenRequired](docs/AuthenRequired.md)
+ - [Batch](docs/Batch.md)
  - [BatchReportRequest](docs/BatchReportRequest.md)
  - [BatchReportResponseModel](docs/BatchReportResponseModel.md)
  - [BatchTransaction](docs/BatchTransaction.md)
  - [BatchTransactionResultModel](docs/BatchTransactionResultModel.md)
+ - [Bin](docs/Bin.md)
+ - [BinLookup](docs/BinLookup.md)
  - [CResAuthRequest](docs/CResAuthRequest.md)
  - [CaptureRequest](docs/CaptureRequest.md)
  - [Card](docs/Card.md)

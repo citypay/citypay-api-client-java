@@ -1,13 +1,13 @@
 
 
-# CheckBatchStatusResponse
+# BinLookup
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**batches** | [**List&lt;Batch&gt;**](Batch.md) |  |  [optional]
+**bin** | **Integer** | A bin value to use for lookup. | 
 
 
 

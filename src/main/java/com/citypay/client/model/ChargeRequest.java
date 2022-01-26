@@ -36,6 +36,10 @@ public class ChargeRequest {
   @SerializedName(SERIALIZED_NAME_AVS_POSTCODE_POLICY)
   private String avsPostcodePolicy;
 
+  public static final String SERIALIZED_NAME_CARDHOLDER_AGREEMENT = "cardholder_agreement";
+  @SerializedName(SERIALIZED_NAME_CARDHOLDER_AGREEMENT)
+  private String cardholderAgreement;
+
   public static final String SERIALIZED_NAME_CSC = "csc";
   @SerializedName(SERIALIZED_NAME_CSC)
   private String csc;
@@ -55,6 +59,10 @@ public class ChargeRequest {
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
   private String identifier;
+
+  public static final String SERIALIZED_NAME_INITIATION = "initiation";
+  @SerializedName(SERIALIZED_NAME_INITIATION)
+  private String initiation;
 
   public static final String SERIALIZED_NAME_MATCH_AVSA = "match_avsa";
   @SerializedName(SERIALIZED_NAME_MATCH_AVSA)
@@ -124,6 +132,29 @@ public class ChargeRequest {
 
   public void setAvsPostcodePolicy(String avsPostcodePolicy) {
     this.avsPostcodePolicy = avsPostcodePolicy;
+  }
+
+
+  public ChargeRequest cardholderAgreement(String cardholderAgreement) {
+    
+    this.cardholderAgreement = cardholderAgreement;
+    return this;
+  }
+
+   /**
+   * Merchant-initiated transactions (MITs) are payments you trigger, where the cardholder has previously consented to you carrying out such payments. These may be scheduled (such as recurring payments and installments) or unscheduled (like account top-ups triggered by balance thresholds and no-show charges).  Scheduled --- These are regular payments using stored card details, like installments or a monthly subscription fee.  - &#x60;I&#x60; Instalment - A single purchase of goods or services billed to a cardholder in multiple transactions, over a period of time agreed by the cardholder and you.  - &#x60;R&#x60; Recurring - Transactions processed at fixed, regular intervals not to exceed one year between transactions, representing an agreement between a cardholder and you to purchase goods or services provided over a period of time.  Unscheduled --- These are payments using stored card details that do not occur on a regular schedule, like top-ups for a digital wallet triggered by the balance falling below a certain threshold.  - &#x60;A&#x60; Reauthorisation - a purchase made after the original purchase. A common scenario is delayed/split shipments.  - &#x60;C&#x60; Unscheduled Payment - A transaction using a stored credential for a fixed or variable amount that does not occur on a scheduled or regularly occurring transaction date. This includes account top-ups triggered by balance thresholds.  - &#x60;D&#x60; Delayed Charge - A delayed charge is typically used in hotel, cruise lines and vehicle rental environments to perform a supplemental account charge after original services are rendered.  - &#x60;L&#x60; Incremental - An incremental authorisation is typically found in hotel and car rental environments, where the cardholder has agreed to pay for any service incurred during the duration of the contract. An incremental authorisation is where you need to seek authorisation of further funds in addition to what you have originally requested. A common scenario is additional services charged to the contract, such as extending a stay in a hotel.  - &#x60;S&#x60; Resubmission - When the original purchase occurred, but you were not able to get authorisation at the time the goods or services were provided. It should be only used where the goods or services have already been provided, but the authorisation request is declined for insufficient funds.  - &#x60;X&#x60; No-show - A no-show is a transaction where you are enabled to charge for services which the cardholder entered into an agreement to purchase, but the cardholder did not meet the terms of the agreement. 
+   * @return cardholderAgreement
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Merchant-initiated transactions (MITs) are payments you trigger, where the cardholder has previously consented to you carrying out such payments. These may be scheduled (such as recurring payments and installments) or unscheduled (like account top-ups triggered by balance thresholds and no-show charges).  Scheduled --- These are regular payments using stored card details, like installments or a monthly subscription fee.  - `I` Instalment - A single purchase of goods or services billed to a cardholder in multiple transactions, over a period of time agreed by the cardholder and you.  - `R` Recurring - Transactions processed at fixed, regular intervals not to exceed one year between transactions, representing an agreement between a cardholder and you to purchase goods or services provided over a period of time.  Unscheduled --- These are payments using stored card details that do not occur on a regular schedule, like top-ups for a digital wallet triggered by the balance falling below a certain threshold.  - `A` Reauthorisation - a purchase made after the original purchase. A common scenario is delayed/split shipments.  - `C` Unscheduled Payment - A transaction using a stored credential for a fixed or variable amount that does not occur on a scheduled or regularly occurring transaction date. This includes account top-ups triggered by balance thresholds.  - `D` Delayed Charge - A delayed charge is typically used in hotel, cruise lines and vehicle rental environments to perform a supplemental account charge after original services are rendered.  - `L` Incremental - An incremental authorisation is typically found in hotel and car rental environments, where the cardholder has agreed to pay for any service incurred during the duration of the contract. An incremental authorisation is where you need to seek authorisation of further funds in addition to what you have originally requested. A common scenario is additional services charged to the contract, such as extending a stay in a hotel.  - `S` Resubmission - When the original purchase occurred, but you were not able to get authorisation at the time the goods or services were provided. It should be only used where the goods or services have already been provided, but the authorisation request is declined for insufficient funds.  - `X` No-show - A no-show is a transaction where you are enabled to charge for services which the cardholder entered into an agreement to purchase, but the cardholder did not meet the terms of the agreement. ")
+
+  public String getCardholderAgreement() {
+    return cardholderAgreement;
+  }
+
+
+  public void setCardholderAgreement(String cardholderAgreement) {
+    this.cardholderAgreement = cardholderAgreement;
   }
 
 
@@ -239,6 +270,29 @@ public class ChargeRequest {
 
   public void setIdentifier(String identifier) {
     this.identifier = identifier;
+  }
+
+
+  public ChargeRequest initiation(String initiation) {
+    
+    this.initiation = initiation;
+    return this;
+  }
+
+   /**
+   * Transactions charged using the API are defined as:  **Cardholder Initiated**: A _cardholder initiated transaction_ (CIT) is where the cardholder selects the card for use for a purchase using previously stored details. An example would be a customer buying an item from your website after being present with their saved card details at checkout.  **Merchant Intiated**: A _merchant initiated transaction_ (MIT) is an authorisation initiated where you as the  merchant submit a cardholders previously stored details without the cardholder&#39;s participation. An example would  be a subscription to a membership scheme to debit their card monthly.  MITs have different reasons such as reauthorisation, delayed, unscheduled, incremental, recurring, instalment, no-show or resubmission.  The following values apply   - &#x60;M&#x60; - specifies that the transaction is initiated by the merchant   - &#x60;C&#x60; - specifies that the transaction is initiated by the cardholder  Where transactions are merchant initiated, a valid cardholder agreement must be defined. 
+   * @return initiation
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Transactions charged using the API are defined as:  **Cardholder Initiated**: A _cardholder initiated transaction_ (CIT) is where the cardholder selects the card for use for a purchase using previously stored details. An example would be a customer buying an item from your website after being present with their saved card details at checkout.  **Merchant Intiated**: A _merchant initiated transaction_ (MIT) is an authorisation initiated where you as the  merchant submit a cardholders previously stored details without the cardholder's participation. An example would  be a subscription to a membership scheme to debit their card monthly.  MITs have different reasons such as reauthorisation, delayed, unscheduled, incremental, recurring, instalment, no-show or resubmission.  The following values apply   - `M` - specifies that the transaction is initiated by the merchant   - `C` - specifies that the transaction is initiated by the cardholder  Where transactions are merchant initiated, a valid cardholder agreement must be defined. ")
+
+  public String getInitiation() {
+    return initiation;
+  }
+
+
+  public void setInitiation(String initiation) {
+    this.initiation = initiation;
   }
 
 
@@ -391,11 +445,13 @@ public class ChargeRequest {
     ChargeRequest chargeRequest = (ChargeRequest) o;
     return Objects.equals(this.amount, chargeRequest.amount) &&
         Objects.equals(this.avsPostcodePolicy, chargeRequest.avsPostcodePolicy) &&
+        Objects.equals(this.cardholderAgreement, chargeRequest.cardholderAgreement) &&
         Objects.equals(this.csc, chargeRequest.csc) &&
         Objects.equals(this.cscPolicy, chargeRequest.cscPolicy) &&
         Objects.equals(this.currency, chargeRequest.currency) &&
         Objects.equals(this.duplicatePolicy, chargeRequest.duplicatePolicy) &&
         Objects.equals(this.identifier, chargeRequest.identifier) &&
+        Objects.equals(this.initiation, chargeRequest.initiation) &&
         Objects.equals(this.matchAvsa, chargeRequest.matchAvsa) &&
         Objects.equals(this.merchantid, chargeRequest.merchantid) &&
         Objects.equals(this.threedsecure, chargeRequest.threedsecure) &&
@@ -406,7 +462,7 @@ public class ChargeRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, avsPostcodePolicy, csc, cscPolicy, currency, duplicatePolicy, identifier, matchAvsa, merchantid, threedsecure, token, transInfo, transType);
+    return Objects.hash(amount, avsPostcodePolicy, cardholderAgreement, csc, cscPolicy, currency, duplicatePolicy, identifier, initiation, matchAvsa, merchantid, threedsecure, token, transInfo, transType);
   }
 
   @Override
@@ -415,11 +471,13 @@ public class ChargeRequest {
     sb.append("class ChargeRequest {\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    avsPostcodePolicy: ").append(toIndentedString(avsPostcodePolicy)).append("\n");
+    sb.append("    cardholderAgreement: ").append(toIndentedString(cardholderAgreement)).append("\n");
     sb.append("    csc: ").append(toIndentedString(csc)).append("\n");
     sb.append("    cscPolicy: ").append(toIndentedString(cscPolicy)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    duplicatePolicy: ").append(toIndentedString(duplicatePolicy)).append("\n");
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
+    sb.append("    initiation: ").append(toIndentedString(initiation)).append("\n");
     sb.append("    matchAvsa: ").append(toIndentedString(matchAvsa)).append("\n");
     sb.append("    merchantid: ").append(toIndentedString(merchantid)).append("\n");
     sb.append("    threedsecure: ").append(toIndentedString(threedsecure)).append("\n");
