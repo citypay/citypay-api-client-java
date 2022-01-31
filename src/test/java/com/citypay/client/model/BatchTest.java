@@ -12,9 +12,6 @@
 
 package com.citypay.client.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.citypay.client.model.Batch;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,85 +20,50 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+
 
 /**
- * CheckBatchStatusResponse
+ * Model tests for Batch
  */
-public class CheckBatchStatusResponse {
-  public static final String SERIALIZED_NAME_BATCHES = "batches";
-  @SerializedName(SERIALIZED_NAME_BATCHES)
-  private List<Batch> batches = null;
+public class BatchTest {
+    private final Batch model = new Batch();
 
-
-  public CheckBatchStatusResponse batches(List<Batch> batches) {
-    
-    this.batches = batches;
-    return this;
-  }
-
-  public CheckBatchStatusResponse addBatchesItem(Batch batchesItem) {
-    if (this.batches == null) {
-      this.batches = new ArrayList<>();
+    /**
+     * Model tests for Batch
+     */
+    @Test
+    public void testBatch() {
+        // TODO: test Batch
     }
-    this.batches.add(batchesItem);
-    return this;
-  }
 
-   /**
-   * Get batches
-   * @return batches
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public List<Batch> getBatches() {
-    return batches;
-  }
-
-
-  public void setBatches(List<Batch> batches) {
-    this.batches = batches;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    /**
+     * Test the property 'batchDate'
+     */
+    @Test
+    public void batchDateTest() {
+        // TODO: test batchDate
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Test the property 'batchId'
+     */
+    @Test
+    public void batchIdTest() {
+        // TODO: test batchId
     }
-    CheckBatchStatusResponse checkBatchStatusResponse = (CheckBatchStatusResponse) o;
-    return Objects.equals(this.batches, checkBatchStatusResponse.batches);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(batches);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CheckBatchStatusResponse {\n");
-    sb.append("    batches: ").append(toIndentedString(batches)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    /**
+     * Test the property 'batchStatus'
+     */
+    @Test
+    public void batchStatusTest() {
+        // TODO: test batchStatus
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
 }
-

@@ -85,11 +85,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
-**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
-**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
-**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 **200** | Acknowledges the card has been requested for deletion. A response code of &#x60;001&#x60; is returned if the account is available for deletion otherwise an error code is returned. |  -  |
+**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 
 <a name="accountCardRegisterRequest"></a>
 # **accountCardRegisterRequest**
@@ -160,11 +160,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
-**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
-**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
-**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 **200** | A successfully registered card provides a reload of the account including the new card. |  -  |
+**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 
 <a name="accountCardStatusRequest"></a>
 # **accountCardStatusRequest**
@@ -237,11 +237,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
-**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
-**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
-**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 **200** | &lt;/br&gt;Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. |  -  |
+**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 
 <a name="accountChangeContactRequest"></a>
 # **accountChangeContactRequest**
@@ -312,11 +312,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
-**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
-**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
-**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 **200** | A revised account with the new details set. |  -  |
+**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 
 <a name="accountCreate"></a>
 # **accountCreate**
@@ -385,11 +385,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
-**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
-**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
-**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 **200** | Provides an initialised account. |  -  |
+**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 
 <a name="accountDeleteRequest"></a>
 # **accountDeleteRequest**
@@ -458,11 +458,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
-**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
-**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
-**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 **200** | An acknowledgment code of &#x60;001&#x60; that the card holder account has been marked for deletion. |  -  |
+**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 
 <a name="accountExistsRequest"></a>
 # **accountExistsRequest**
@@ -531,11 +531,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
-**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
-**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
-**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 **200** | A response model determining whether the account exists, if exists is true, a last modified date of the account is also provided. |  -  |
+**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 
 <a name="accountRetrieveRequest"></a>
 # **accountRetrieveRequest**
@@ -604,11 +604,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
-**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
-**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
-**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 **200** | A card holder account that matches the account id provided in the request. |  -  |
+**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 
 <a name="accountStatusRequest"></a>
 # **accountStatusRequest**
@@ -679,11 +679,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
-**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
-**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
-**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 **200** | An acknowledgment that the card holder account status has been updated.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;001&#x60; is returned if the request was accepted or no change required.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;000&#x60; is returned if the request contains invalid data. |  -  |
+**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 
 <a name="chargeRequest"></a>
 # **chargeRequest**
@@ -691,7 +691,7 @@ Name | Type | Description  | Notes
 
 Charge
 
-A charge process obtains an authorisation using a tokenised value which represents a stored card  on a card holder account.  A card must previously be registered by calling &#x60;/account-register-card&#x60; with the card details  or retrieved using &#x60;/account-retrieve&#x60;  Tokens are generated whenever a previously registered list of cards are retrieved. Each token has, by design a  relatively short time to live of 30 minutes. This is both to safe guard the merchant and card holder from  replay attacks. Tokens are also restricted to your account, preventing malicious actors from stealing details for use elsewhere.    If a token is reused after it has expired it will be rejected and a new token will be required.   Tokenisation can be used for   - repeat authorisations on a previously stored card - easy authorisations just requiring CSC values to be entered - can be used for credential on file style payments - can require full 3-D Secure authentication to retain the liability shift - wallet style usage. 
+A charge process obtains an authorisation using a tokenised value which represents a stored card  on a card holder account.  A card must previously be registered by calling &#x60;/account-register-card&#x60; with the card details  or retrieved using &#x60;/account-retrieve&#x60;  Tokens are generated whenever a previously registered list of cards are retrieved. Each token has, by design a  relatively short time to live of 30 minutes. This is both to safe guard the merchant and card holder from  replay attacks. Tokens are also restricted to your account, preventing malicious actors from stealing details for use elsewhere.    If a token is reused after it has expired it will be rejected and a new token will be required.   Tokenisation can be used for   - repeat authorisations on a previously stored card - easy authorisations just requiring CSC values to be entered - can be used for credential on file style payments - can require full 3-D Secure authentication to retain the liability shift - wallet style usage    _Should an account be used with 3DSv2, the card holder name should also be stored alongside the card as this is a required field with both Visa and MasterCard for risk analysis._. 
 
 ### Example
 ```java
@@ -752,9 +752,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
-**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
-**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
-**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 **200** | A decision met by the result of the charge. |  -  |
+**400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+**401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+**403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+**422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 

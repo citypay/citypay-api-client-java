@@ -48,10 +48,6 @@ public class AuthRequest {
   @SerializedName(SERIALIZED_NAME_BILL_TO)
   private ContactDetails billTo;
 
-  public static final String SERIALIZED_NAME_CARD_HOLDER_NAME = "card_holder_name";
-  @SerializedName(SERIALIZED_NAME_CARD_HOLDER_NAME)
-  private String cardHolderName;
-
   public static final String SERIALIZED_NAME_CARDNUMBER = "cardnumber";
   @SerializedName(SERIALIZED_NAME_CARDNUMBER)
   private String cardnumber;
@@ -99,6 +95,10 @@ public class AuthRequest {
   public static final String SERIALIZED_NAME_MERCHANTID = "merchantid";
   @SerializedName(SERIALIZED_NAME_MERCHANTID)
   private Integer merchantid;
+
+  public static final String SERIALIZED_NAME_NAME_ON_CARD = "name_on_card";
+  @SerializedName(SERIALIZED_NAME_NAME_ON_CARD)
+  private String nameOnCard;
 
   public static final String SERIALIZED_NAME_SHIP_TO = "ship_to";
   @SerializedName(SERIALIZED_NAME_SHIP_TO)
@@ -206,29 +206,6 @@ public class AuthRequest {
 
   public void setBillTo(ContactDetails billTo) {
     this.billTo = billTo;
-  }
-
-
-  public AuthRequest cardHolderName(String cardHolderName) {
-    
-    this.cardHolderName = cardHolderName;
-    return this;
-  }
-
-   /**
-   * The card holder name as appears on the card such as MR N E BODY. Required for some acquirers. 
-   * @return cardHolderName
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The card holder name as appears on the card such as MR N E BODY. Required for some acquirers. ")
-
-  public String getCardHolderName() {
-    return cardHolderName;
-  }
-
-
-  public void setCardHolderName(String cardHolderName) {
-    this.cardHolderName = cardHolderName;
   }
 
 
@@ -385,7 +362,7 @@ public class AuthRequest {
    * @return expyear
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2024", required = true, value = "The year of expiry of the card. ")
+  @ApiModelProperty(example = "2025", required = true, value = "The year of expiry of the card. ")
 
   public Integer getExpyear() {
     return expyear;
@@ -512,6 +489,29 @@ public class AuthRequest {
   }
 
 
+  public AuthRequest nameOnCard(String nameOnCard) {
+    
+    this.nameOnCard = nameOnCard;
+    return this;
+  }
+
+   /**
+   * The card holder name as appears on the card such as MR N E BODY. Required for some acquirers. 
+   * @return nameOnCard
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "MR NE BODY", value = "The card holder name as appears on the card such as MR N E BODY. Required for some acquirers. ")
+
+  public String getNameOnCard() {
+    return nameOnCard;
+  }
+
+
+  public void setNameOnCard(String nameOnCard) {
+    this.nameOnCard = nameOnCard;
+  }
+
+
   public AuthRequest shipTo(ContactDetails shipTo) {
     
     this.shipTo = shipTo;
@@ -617,7 +617,6 @@ public class AuthRequest {
         Objects.equals(this.amount, authRequest.amount) &&
         Objects.equals(this.avsPostcodePolicy, authRequest.avsPostcodePolicy) &&
         Objects.equals(this.billTo, authRequest.billTo) &&
-        Objects.equals(this.cardHolderName, authRequest.cardHolderName) &&
         Objects.equals(this.cardnumber, authRequest.cardnumber) &&
         Objects.equals(this.csc, authRequest.csc) &&
         Objects.equals(this.cscPolicy, authRequest.cscPolicy) &&
@@ -630,6 +629,7 @@ public class AuthRequest {
         Objects.equals(this.matchAvsa, authRequest.matchAvsa) &&
         Objects.equals(this.mcc6012, authRequest.mcc6012) &&
         Objects.equals(this.merchantid, authRequest.merchantid) &&
+        Objects.equals(this.nameOnCard, authRequest.nameOnCard) &&
         Objects.equals(this.shipTo, authRequest.shipTo) &&
         Objects.equals(this.threedsecure, authRequest.threedsecure) &&
         Objects.equals(this.transInfo, authRequest.transInfo) &&
@@ -638,7 +638,7 @@ public class AuthRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(airlineData, amount, avsPostcodePolicy, billTo, cardHolderName, cardnumber, csc, cscPolicy, currency, duplicatePolicy, expmonth, expyear, externalMpi, identifier, matchAvsa, mcc6012, merchantid, shipTo, threedsecure, transInfo, transType);
+    return Objects.hash(airlineData, amount, avsPostcodePolicy, billTo, cardnumber, csc, cscPolicy, currency, duplicatePolicy, expmonth, expyear, externalMpi, identifier, matchAvsa, mcc6012, merchantid, nameOnCard, shipTo, threedsecure, transInfo, transType);
   }
 
   @Override
@@ -649,7 +649,6 @@ public class AuthRequest {
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    avsPostcodePolicy: ").append(toIndentedString(avsPostcodePolicy)).append("\n");
     sb.append("    billTo: ").append(toIndentedString(billTo)).append("\n");
-    sb.append("    cardHolderName: ").append(toIndentedString(cardHolderName)).append("\n");
     sb.append("    cardnumber: ").append(toIndentedString(cardnumber)).append("\n");
     sb.append("    csc: ").append(toIndentedString(csc)).append("\n");
     sb.append("    cscPolicy: ").append(toIndentedString(cscPolicy)).append("\n");
@@ -662,6 +661,7 @@ public class AuthRequest {
     sb.append("    matchAvsa: ").append(toIndentedString(matchAvsa)).append("\n");
     sb.append("    mcc6012: ").append(toIndentedString(mcc6012)).append("\n");
     sb.append("    merchantid: ").append(toIndentedString(merchantid)).append("\n");
+    sb.append("    nameOnCard: ").append(toIndentedString(nameOnCard)).append("\n");
     sb.append("    shipTo: ").append(toIndentedString(shipTo)).append("\n");
     sb.append("    threedsecure: ").append(toIndentedString(threedsecure)).append("\n");
     sb.append("    transInfo: ").append(toIndentedString(transInfo)).append("\n");

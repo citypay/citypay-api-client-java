@@ -22,29 +22,60 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * CheckBatchStatus
+ * Batch
  */
-public class CheckBatchStatus {
+public class Batch {
+  public static final String SERIALIZED_NAME_BATCH_DATE = "batch_date";
+  @SerializedName(SERIALIZED_NAME_BATCH_DATE)
+  private LocalDate batchDate;
+
   public static final String SERIALIZED_NAME_BATCH_ID = "batch_id";
   @SerializedName(SERIALIZED_NAME_BATCH_ID)
-  private List<Integer> batchId = new ArrayList<>();
+  private List<Integer> batchId = null;
 
-  public static final String SERIALIZED_NAME_CLIENT_ACCOUNT_ID = "client_account_id";
-  @SerializedName(SERIALIZED_NAME_CLIENT_ACCOUNT_ID)
-  private String clientAccountId;
+  public static final String SERIALIZED_NAME_BATCH_STATUS = "batch_status";
+  @SerializedName(SERIALIZED_NAME_BATCH_STATUS)
+  private String batchStatus;
 
 
-  public CheckBatchStatus batchId(List<Integer> batchId) {
+  public Batch batchDate(LocalDate batchDate) {
+    
+    this.batchDate = batchDate;
+    return this;
+  }
+
+   /**
+   * The date that the file was created in ISO-8601 format.
+   * @return batchDate
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "Thu Jan 02 00:00:00 UTC 2020", required = true, value = "The date that the file was created in ISO-8601 format.")
+
+  public LocalDate getBatchDate() {
+    return batchDate;
+  }
+
+
+  public void setBatchDate(LocalDate batchDate) {
+    this.batchDate = batchDate;
+  }
+
+
+  public Batch batchId(List<Integer> batchId) {
     
     this.batchId = batchId;
     return this;
   }
 
-  public CheckBatchStatus addBatchIdItem(Integer batchIdItem) {
+  public Batch addBatchIdItem(Integer batchIdItem) {
+    if (this.batchId == null) {
+      this.batchId = new ArrayList<>();
+    }
     this.batchId.add(batchIdItem);
     return this;
   }
@@ -53,8 +84,8 @@ public class CheckBatchStatus {
    * Get batchId
    * @return batchId
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<Integer> getBatchId() {
     return batchId;
@@ -66,26 +97,26 @@ public class CheckBatchStatus {
   }
 
 
-  public CheckBatchStatus clientAccountId(String clientAccountId) {
+  public Batch batchStatus(String batchStatus) {
     
-    this.clientAccountId = clientAccountId;
+    this.batchStatus = batchStatus;
     return this;
   }
 
    /**
-   * The batch account id to obtain the batch for. Defaults to your client id if not provided.
-   * @return clientAccountId
+   * The status of the batch. Possible values are - CANCELLED. The file has been cancelled by an administrator or server process.  - COMPLETE. The file has passed through the processing cycle and is determined as being complete further information should be obtained on the results of the processing - ERROR_IN_PROCESSING. Errors have occurred in the processing that has deemed that processing can not continue. - INITIALISED. The file has been initialised and no action has yet been performed - LOCKED. The file has been locked for processing - QUEUED. The file has been queued for processing yet no processing has yet been performed - UNKNOWN. The file is of an unknown status, that is the file can either not be determined by the information requested of the file has not yet been received. 
+   * @return batchStatus
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "AC1", value = "The batch account id to obtain the batch for. Defaults to your client id if not provided.")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "COMPLETE", required = true, value = "The status of the batch. Possible values are - CANCELLED. The file has been cancelled by an administrator or server process.  - COMPLETE. The file has passed through the processing cycle and is determined as being complete further information should be obtained on the results of the processing - ERROR_IN_PROCESSING. Errors have occurred in the processing that has deemed that processing can not continue. - INITIALISED. The file has been initialised and no action has yet been performed - LOCKED. The file has been locked for processing - QUEUED. The file has been queued for processing yet no processing has yet been performed - UNKNOWN. The file is of an unknown status, that is the file can either not be determined by the information requested of the file has not yet been received. ")
 
-  public String getClientAccountId() {
-    return clientAccountId;
+  public String getBatchStatus() {
+    return batchStatus;
   }
 
 
-  public void setClientAccountId(String clientAccountId) {
-    this.clientAccountId = clientAccountId;
+  public void setBatchStatus(String batchStatus) {
+    this.batchStatus = batchStatus;
   }
 
 
@@ -97,22 +128,24 @@ public class CheckBatchStatus {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CheckBatchStatus checkBatchStatus = (CheckBatchStatus) o;
-    return Objects.equals(this.batchId, checkBatchStatus.batchId) &&
-        Objects.equals(this.clientAccountId, checkBatchStatus.clientAccountId);
+    Batch batch = (Batch) o;
+    return Objects.equals(this.batchDate, batch.batchDate) &&
+        Objects.equals(this.batchId, batch.batchId) &&
+        Objects.equals(this.batchStatus, batch.batchStatus);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(batchId, clientAccountId);
+    return Objects.hash(batchDate, batchId, batchStatus);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CheckBatchStatus {\n");
+    sb.append("class Batch {\n");
+    sb.append("    batchDate: ").append(toIndentedString(batchDate)).append("\n");
     sb.append("    batchId: ").append(toIndentedString(batchId)).append("\n");
-    sb.append("    clientAccountId: ").append(toIndentedString(clientAccountId)).append("\n");
+    sb.append("    batchStatus: ").append(toIndentedString(batchStatus)).append("\n");
     sb.append("}");
     return sb.toString();
   }

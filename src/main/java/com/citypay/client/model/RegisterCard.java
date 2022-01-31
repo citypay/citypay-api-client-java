@@ -43,6 +43,10 @@ public class RegisterCard {
   @SerializedName(SERIALIZED_NAME_EXPYEAR)
   private Integer expyear;
 
+  public static final String SERIALIZED_NAME_NAME_ON_CARD = "name_on_card";
+  @SerializedName(SERIALIZED_NAME_NAME_ON_CARD)
+  private String nameOnCard;
+
 
   public RegisterCard cardnumber(String cardnumber) {
     
@@ -128,7 +132,7 @@ public class RegisterCard {
    * @return expyear
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2024", required = true, value = "The expiry year of the card.")
+  @ApiModelProperty(example = "2025", required = true, value = "The expiry year of the card.")
 
   public Integer getExpyear() {
     return expyear;
@@ -137,6 +141,29 @@ public class RegisterCard {
 
   public void setExpyear(Integer expyear) {
     this.expyear = expyear;
+  }
+
+
+  public RegisterCard nameOnCard(String nameOnCard) {
+    
+    this.nameOnCard = nameOnCard;
+    return this;
+  }
+
+   /**
+   * The card holder name as it appears on the card. The value is required if the account is to be used for 3dsv2 processing, otherwise it is optional.
+   * @return nameOnCard
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "MR NE BODY", value = "The card holder name as it appears on the card. The value is required if the account is to be used for 3dsv2 processing, otherwise it is optional.")
+
+  public String getNameOnCard() {
+    return nameOnCard;
+  }
+
+
+  public void setNameOnCard(String nameOnCard) {
+    this.nameOnCard = nameOnCard;
   }
 
 
@@ -152,12 +179,13 @@ public class RegisterCard {
     return Objects.equals(this.cardnumber, registerCard.cardnumber) &&
         Objects.equals(this._default, registerCard._default) &&
         Objects.equals(this.expmonth, registerCard.expmonth) &&
-        Objects.equals(this.expyear, registerCard.expyear);
+        Objects.equals(this.expyear, registerCard.expyear) &&
+        Objects.equals(this.nameOnCard, registerCard.nameOnCard);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cardnumber, _default, expmonth, expyear);
+    return Objects.hash(cardnumber, _default, expmonth, expyear, nameOnCard);
   }
 
   @Override
@@ -168,6 +196,7 @@ public class RegisterCard {
     sb.append("    _default: ").append(toIndentedString(_default)).append("\n");
     sb.append("    expmonth: ").append(toIndentedString(expmonth)).append("\n");
     sb.append("    expyear: ").append(toIndentedString(expyear)).append("\n");
+    sb.append("    nameOnCard: ").append(toIndentedString(nameOnCard)).append("\n");
     sb.append("}");
     return sb.toString();
   }

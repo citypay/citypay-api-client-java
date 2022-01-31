@@ -27,36 +27,13 @@ import java.io.IOException;
  * BatchReportRequest
  */
 public class BatchReportRequest {
-  public static final String SERIALIZED_NAME_ACCOUNT_ID = "account_id";
-  @SerializedName(SERIALIZED_NAME_ACCOUNT_ID)
-  private String accountId;
-
   public static final String SERIALIZED_NAME_BATCH_ID = "batch_id";
   @SerializedName(SERIALIZED_NAME_BATCH_ID)
   private Integer batchId;
 
-
-  public BatchReportRequest accountId(String accountId) {
-    
-    this.accountId = accountId;
-    return this;
-  }
-
-   /**
-   * The batch account id that the batch was processed for. Defaults to your client id if not provided.
-   * @return accountId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "AC1", value = "The batch account id that the batch was processed for. Defaults to your client id if not provided.")
-
-  public String getAccountId() {
-    return accountId;
-  }
-
-
-  public void setAccountId(String accountId) {
-    this.accountId = accountId;
-  }
+  public static final String SERIALIZED_NAME_CLIENT_ACCOUNT_ID = "client_account_id";
+  @SerializedName(SERIALIZED_NAME_CLIENT_ACCOUNT_ID)
+  private String clientAccountId;
 
 
   public BatchReportRequest batchId(Integer batchId) {
@@ -71,7 +48,7 @@ public class BatchReportRequest {
    * @return batchId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1975", required = true, value = "The batch id specified in the batch processing request.")
+  @ApiModelProperty(example = "35", required = true, value = "The batch id specified in the batch processing request.")
 
   public Integer getBatchId() {
     return batchId;
@@ -80,6 +57,29 @@ public class BatchReportRequest {
 
   public void setBatchId(Integer batchId) {
     this.batchId = batchId;
+  }
+
+
+  public BatchReportRequest clientAccountId(String clientAccountId) {
+    
+    this.clientAccountId = clientAccountId;
+    return this;
+  }
+
+   /**
+   * The batch account id that the batch was processed for. Defaults to your client id if not provided.
+   * @return clientAccountId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "AC1", value = "The batch account id that the batch was processed for. Defaults to your client id if not provided.")
+
+  public String getClientAccountId() {
+    return clientAccountId;
+  }
+
+
+  public void setClientAccountId(String clientAccountId) {
+    this.clientAccountId = clientAccountId;
   }
 
 
@@ -92,21 +92,21 @@ public class BatchReportRequest {
       return false;
     }
     BatchReportRequest batchReportRequest = (BatchReportRequest) o;
-    return Objects.equals(this.accountId, batchReportRequest.accountId) &&
-        Objects.equals(this.batchId, batchReportRequest.batchId);
+    return Objects.equals(this.batchId, batchReportRequest.batchId) &&
+        Objects.equals(this.clientAccountId, batchReportRequest.clientAccountId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, batchId);
+    return Objects.hash(batchId, clientAccountId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class BatchReportRequest {\n");
-    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    batchId: ").append(toIndentedString(batchId)).append("\n");
+    sb.append("    clientAccountId: ").append(toIndentedString(clientAccountId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

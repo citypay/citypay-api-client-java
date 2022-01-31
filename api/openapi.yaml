@@ -32,7 +32,7 @@ info:
       address. Our application firewalls analyse data that may be an attempt to break a large number of security common
       security vulnerabilities.
   title: CityPay Payment API
-  version: 6.2.3
+  version: 6.2.11
 servers:
 - description: Production processing endpoint
   url: https://api.citypay.com/v6
@@ -90,25 +90,6 @@ paths:
               $ref: '#/components/schemas/RegisterCard'
         required: true
       responses:
-        "403":
-          description: Forbidden. The api key was provided and understood but is either
-            incorrect or does not have permission to access the account provided on
-            the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unprocessable Entity. Should a failure occur that prevents
-            processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
         "200":
           content:
             application/json:
@@ -119,9 +100,77 @@ paths:
                 $ref: '#/components/schemas/CardHolderAccount'
           description: A successfully registered card provides a reload of the account
             including the new card.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
       summary: Card Registration
       tags:
       - Card Holder Account
+      x-contentType: application/json
+      x-accepts: application/json
+  /acl/check:
+    post:
+      description: |
+        Allows the checking of IP addresses against configured ACLs. Requests can perform a lookup of addresses in subnets and
+        services such as AWS or Azure to check that those addresses are listed in the ACLs.
+      operationId: AclCheckRequest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AclCheckRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/AclCheckRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AclCheckResponseModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/AclCheckResponseModel'
+          description: Response to the ACL Check request.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+      summary: ACL Check Request
+      tags:
+      - Operational
       x-contentType: application/json
       x-accepts: application/json
   /account/{accountid}:
@@ -141,25 +190,6 @@ paths:
           type: string
         style: simple
       responses:
-        "403":
-          description: Forbidden. The api key was provided and understood but is either
-            incorrect or does not have permission to access the account provided on
-            the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unprocessable Entity. Should a failure occur that prevents
-            processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
         "200":
           content:
             application/json:
@@ -170,6 +200,25 @@ paths:
                 $ref: '#/components/schemas/Acknowledgement'
           description: An acknowledgment code of `001` that the card holder account
             has been marked for deletion.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
       summary: Account Deletion
       tags:
       - Card Holder Account
@@ -194,25 +243,6 @@ paths:
           type: string
         style: simple
       responses:
-        "403":
-          description: Forbidden. The api key was provided and understood but is either
-            incorrect or does not have permission to access the account provided on
-            the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unprocessable Entity. Should a failure occur that prevents
-            processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
         "200":
           content:
             application/json:
@@ -223,6 +253,25 @@ paths:
                 $ref: '#/components/schemas/CardHolderAccount'
           description: A card holder account that matches the account id provided
             in the request.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
       summary: Account Retrieval
       tags:
       - Card Holder Account
@@ -246,25 +295,6 @@ paths:
               $ref: '#/components/schemas/Ping'
         required: true
       responses:
-        "403":
-          description: Forbidden. The api key was provided and understood but is either
-            incorrect or does not have permission to access the account provided on
-            the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unprocessable Entity. Should a failure occur that prevents
-            processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
         "200":
           content:
             application/json:
@@ -275,6 +305,25 @@ paths:
                 $ref: '#/components/schemas/Acknowledgement'
           description: A result of the ping request, returning on 044 response code
             on successful receipt of the ping request.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
       summary: Ping Request
       tags:
       - Operational
@@ -305,13 +354,13 @@ paths:
                 externalValue: CaptureRequest-example2.json
                 summary: Basic capture call for a merchant with a transno and final
                   amount
-              example1:
-                externalValue: CaptureRequest-example1.json
-                summary: Basic capture call for a merchant with a given identifier
               example3:
                 externalValue: CaptureRequest-example3.json
                 summary: Capture call for a merchant with identifier and airline data
                   once a ticket has been issued
+              example1:
+                externalValue: CaptureRequest-example1.json
+                summary: Basic capture call for a merchant with a given identifier
             schema:
               $ref: '#/components/schemas/CaptureRequest'
           text/xml:
@@ -320,36 +369,17 @@ paths:
                 externalValue: CaptureRequest-example2.xml
                 summary: Basic capture call for a merchant with a transno and final
                   amount
-              example1:
-                externalValue: CaptureRequest-example1.xml
-                summary: Basic capture call for a merchant with a given identifier
               example3:
                 externalValue: CaptureRequest-example3.xml
                 summary: Capture call for a merchant with identifier and airline data
                   once a ticket has been issued
+              example1:
+                externalValue: CaptureRequest-example1.xml
+                summary: Basic capture call for a merchant with a given identifier
             schema:
               $ref: '#/components/schemas/CaptureRequest'
         required: true
       responses:
-        "403":
-          description: Forbidden. The api key was provided and understood but is either
-            incorrect or does not have permission to access the account provided on
-            the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unprocessable Entity. Should a failure occur that prevents
-            processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
         "200":
           content:
             application/json:
@@ -361,6 +391,25 @@ paths:
           description: A result and acknowledgement of the capture request. The response
             will return a `000/001` response on a successful capture otherwise an
             error code response explaining the error.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
       summary: Capture
       tags:
       - Payment Processing
@@ -384,13 +433,24 @@ paths:
               $ref: '#/components/schemas/ProcessBatchRequest'
         required: true
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessBatchResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ProcessBatchResponse'
+          description: Request to process a batch provided in the request.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
         "403":
           description: Forbidden. The api key was provided and understood but is either
             incorrect or does not have permission to access the account provided on
             the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
         "422":
           content:
             application/json:
@@ -401,17 +461,6 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Unprocessable Entity. Should a failure occur that prevents
             processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProcessBatchResponse'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/ProcessBatchResponse'
-          description: Request to process a batch provided in the request.
       summary: Batch Process Request
       tags:
       - Batch Processing
@@ -434,25 +483,6 @@ paths:
           type: string
         style: simple
       responses:
-        "403":
-          description: Forbidden. The api key was provided and understood but is either
-            incorrect or does not have permission to access the account provided on
-            the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unprocessable Entity. Should a failure occur that prevents
-            processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
         "200":
           content:
             application/json:
@@ -463,6 +493,25 @@ paths:
                 $ref: '#/components/schemas/Exists'
           description: A response model determining whether the account exists, if
             exists is true, a last modified date of the account is also provided.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
       summary: Account Exists
       tags:
       - Card Holder Account
@@ -488,25 +537,6 @@ paths:
               $ref: '#/components/schemas/BinLookup'
         required: true
       responses:
-        "403":
-          description: Forbidden. The api key was provided and understood but is either
-            incorrect or does not have permission to access the account provided on
-            the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unprocessable Entity. Should a failure occur that prevents
-            processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
         "200":
           content:
             application/json:
@@ -517,6 +547,25 @@ paths:
                 $ref: '#/components/schemas/Bin'
           description: A result of the bin lookup request returning a bin object determined
             by the gateway service.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
       summary: Bin Lookup
       tags:
       - Payment Processing
@@ -546,13 +595,24 @@ paths:
               $ref: '#/components/schemas/ContactDetails'
         required: true
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardHolderAccount'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/CardHolderAccount'
+          description: A revised account with the new details set.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
         "403":
           description: Forbidden. The api key was provided and understood but is either
             incorrect or does not have permission to access the account provided on
             the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
         "422":
           content:
             application/json:
@@ -563,17 +623,6 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Unprocessable Entity. Should a failure occur that prevents
             processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardHolderAccount'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/CardHolderAccount'
-          description: A revised account with the new details set.
       summary: Contact Details Update
       tags:
       - Card Holder Account
@@ -618,25 +667,6 @@ paths:
               $ref: '#/components/schemas/CardStatus'
         required: true
       responses:
-        "403":
-          description: Forbidden. The api key was provided and understood but is either
-            incorrect or does not have permission to access the account provided on
-            the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unprocessable Entity. Should a failure occur that prevents
-            processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
         "200":
           content:
             application/json:
@@ -647,6 +677,25 @@ paths:
                 $ref: '#/components/schemas/Acknowledgement'
           description: </br>Acknowledges the card status has changed, returning a
             response code of `001` for a valid change or `000` for a non valid change.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
       summary: Card Status
       tags:
       - Card Holder Account
@@ -667,13 +716,24 @@ paths:
               $ref: '#/components/schemas/AccountCreate'
         required: true
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardHolderAccount'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/CardHolderAccount'
+          description: Provides an initialised account.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
         "403":
           description: Forbidden. The api key was provided and understood but is either
             incorrect or does not have permission to access the account provided on
             the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
         "422":
           content:
             application/json:
@@ -684,17 +744,6 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Unprocessable Entity. Should a failure occur that prevents
             processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardHolderAccount'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/CardHolderAccount'
-          description: Provides an initialised account.
       summary: Account Create
       tags:
       - Card Holder Account
@@ -716,13 +765,24 @@ paths:
               $ref: '#/components/schemas/RefundRequest'
         required: true
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+          description: A result of the refund of sale processing.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
         "403":
           description: Forbidden. The api key was provided and understood but is either
             incorrect or does not have permission to access the account provided on
             the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
         "422":
           content:
             application/json:
@@ -733,17 +793,6 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Unprocessable Entity. Should a failure occur that prevents
             processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthResponse'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/AuthResponse'
-          description: A result of the refund of sale processing.
       summary: Refund
       tags:
       - Payment Processing
@@ -786,25 +835,6 @@ paths:
               $ref: '#/components/schemas/VoidRequest'
         required: true
       responses:
-        "403":
-          description: Forbidden. The api key was provided and understood but is either
-            incorrect or does not have permission to access the account provided on
-            the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unprocessable Entity. Should a failure occur that prevents
-            processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
         "200":
           content:
             application/json:
@@ -816,6 +846,25 @@ paths:
           description: </br>A result and acknowledgement of the void request, returning
             an `080/003` response code on successful void/cancellation of the transaction.</br></br>If
             an error occurs an error code will be returned explaining the failure.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
       summary: Void
       tags:
       - Payment Processing
@@ -851,25 +900,6 @@ paths:
               $ref: '#/components/schemas/AccountStatus'
         required: true
       responses:
-        "403":
-          description: Forbidden. The api key was provided and understood but is either
-            incorrect or does not have permission to access the account provided on
-            the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unprocessable Entity. Should a failure occur that prevents
-            processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
         "200":
           content:
             application/json:
@@ -882,6 +912,25 @@ paths:
             updated.</br></br>A response code of `001` is returned if the request
             was accepted or no change required.</br></br>A response code of `000`
             is returned if the request contains invalid data.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
       summary: Account Status
       tags:
       - Card Holder Account
@@ -913,25 +962,6 @@ paths:
           type: string
         style: simple
       responses:
-        "403":
-          description: Forbidden. The api key was provided and understood but is either
-            incorrect or does not have permission to access the account provided on
-            the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unprocessable Entity. Should a failure occur that prevents
-            processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
         "200":
           content:
             application/json:
@@ -943,6 +973,25 @@ paths:
           description: Acknowledges the card has been requested for deletion. A response
             code of `001` is returned if the account is available for deletion otherwise
             an error code is returned.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
       summary: Card Deletion
       tags:
       - Card Holder Account
@@ -976,13 +1025,24 @@ paths:
               $ref: '#/components/schemas/CResAuthRequest'
         required: true
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+          description: A result of processing the 3DSv2 authorisation data.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
         "403":
           description: Forbidden. The api key was provided and understood but is either
             incorrect or does not have permission to access the account provided on
             the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
         "422":
           content:
             application/json:
@@ -993,17 +1053,6 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Unprocessable Entity. Should a failure occur that prevents
             processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthResponse'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/AuthResponse'
-          description: A result of processing the 3DSv2 authorisation data.
       summary: CRes
       tags:
       - Payment Processing
@@ -1023,98 +1072,119 @@ paths:
         \ transparently by the gateway. \n\nData properties that are required, may\
         \ depend on the environment you are conducting payment for. Our API aims to\
         \ be\n flexible enough to cater for these structures. Our integration team\
-        \ will aid you in providing the necessary data to \n transact. \n \n \n###\
-        \ E-commerce workflows\n \nFor E-commerce transactions requiring 3DSv1 and\
-        \ 3DSv2 transactions, the API contains a fully accredited in built mechanism\n\
-        to handle authentication.\n\nThe gateway has been accredited extensively with\
-        \ both Acquirers and Card Schemes and simplifies the nature of these calls\n\
-        into a simple structure for authentication, preventing integrators from performing\
-        \ lengthy and a costly accreditation with\nVisa and MasterCard.\n\n3D-secure\
-        \ has been around for a number of years and aims to shift the liability of\
-        \ a transaction away from a merchant back\nto the card holder. A *liability\
-        \ shift* determines whether a card holder can charge back a transaction as\
-        \ unknown. Effectively\nthe process asks for a card holder to authenticate\
-        \ the transaction prior to authorisation producing a Cardholder \nverification\
-        \ value (CAVV) as evidence of authorisation.\n \n#### 3DSv1\n\n```json\n{\
-        \ \n  \"AuthenticationRequired\": {\n    \"acsurl\": \"https://bank.com/3DS/ACS\"\
-        ,\n    \"pareq\": \"SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...\"\
-        ,\n    \"md\": \"WQgZXZlcnl0aGluZyBiZW\"\n  }               \n}\n```\n\n```xml\n\
-        <AuthenticationRequired>\n <acsurl>https://bank.com/3DS/ACS</acsurl>\n <pareq>SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...</pareq>\n\
-        \ <md>WQgZXZlcnl0aGluZyBiZW</md>\n</AuthenticationRequired>\n```\n\nFor E-commerce\
-        \ transactions requiring 3DSv1, the API contains a built in MPI which will\
-        \ be called to check whether the \ncard is participating in 3DSv1 with Verified\
-        \ by Visa or MasterCard SecureCode. We only support Amex SafeKey with 3DSv2.\
-        \ Should the card be enrolled, a payer \nrequest (PAReq) value will be created\
-        \ and returned back as an [authentication required](#authenticationrequired)\
-        \ response object. \n\nYour system will need to process this authentication\
-        \ packet and forward the user's browser to an authentication server (ACS)\
-        \ \nto gain the user's authentication. Once complete, the ACS will produce\
-        \ a HTTP `POST` call back to the URL supplied in \n the authentication request\
-        \ as `merchant_termurl`. This URL should behave as a controller and handle\
-        \ the post data from the\n  ACS and on a forked server to server HTTP request,\
-        \ forward this data to the [pares authentication url](#pares) for \n  subsequent\
-        \ authorisation processing. You may prefer to provide a processing page whilst\
-        \ this is being processed.\n  Processing with our systems should be relatively\
-        \ quick and be between 500ms - 3000ms however it is desirable to let\n  the\
-        \ user see that something is happening rather than a pending browser.\n  \n\
-        \  The main reason for ensuring that this controller is two fold:\n  \n  1.\
-        \ We are never in control of the user's browser in a server API call\n  2.\
-        \ The controller is actioned on your site to ensure that any post actions\
-        \ from authorisation can be executed in real time\n  \nTo forward the user\
-        \ to the ACS, we recommend a simple auto submit HTML form.\n\n> Simple auto\
-        \ submit HTML form\n\n```html\n<html lang=\"en\">\n<head>\n        <title>Forward\
-        \ to ACS</title>\n<script type=\"text/javascript\">\n        function onLoadEvent()\
-        \ { \n            document.acs.submit(); \n        }\n        </script>\n\
-        \        <noscript>You will require JavaScript to be enabled to complete this\
-        \ transaction</noscript>\n    </head>\n    <body onload=\"onLoadEvent();\"\
-        >\n        <form name=\"acs\" action=\"{{ACSURL from Response}}\" method=\"\
-        POST\">\n            <input type=\"hidden\" name=\"PaReq\" value=\"{{PaReq\
-        \ Packet from Response}}\" />\n            <input type=\"hidden\" name=\"\
-        TermUrl\" value=\"{{Your Controller}}\" />\n            <input type=\"hidden\"\
-        \ name=\"MD\" value=\"{{MD From Response}}\" />\n        </form>\n    </body>\n\
-        </html>\n```\n\nPlease note that 3DSv1 is being phased out due to changes\
-        \ to strong customer authentication mechanisms. 3DSv2 addresses\nthis and\
-        \ will solidify the authorisation and confirmation process.\n\nWe provide\
-        \ a Test ACS for full 3DSv1 integration testing that simulates an ACS. \n\n\
-        \n#### 3DSv2\n\n```json\n{ \n  \"RequestChallenged\": {\n    \"acsurl\": \"\
-        https://bank.com/3DS/ACS\",\n    \"creq\": \"SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...\"\
+        \ will aid you in providing the necessary data to \n transact. \n \n \n##\
+        \ E-commerce workflows\n \nFor E-commerce transactions requiring 3DS, the\
+        \ API contains a fully accredited in built mechanism to handle authentication.\n\
+        \nThe Api and gateway has been accredited extensively with both Acquirers\
+        \ and Card Schemes to simplify the nature of these calls\ninto a simple structure\
+        \ for authentication, preventing integrators from performing lengthy and a\
+        \ costly accreditations with\nVisa and MasterCard.\n\n3D-secure has been around\
+        \ for a number of years and aims to shift the liability of a transaction away\
+        \ from a merchant back\nto the card holder. A *liability shift* determines\
+        \ whether a card holder can charge back a transaction as unknown. Effectively\n\
+        the process asks for a card holder to authenticate the transaction prior to\
+        \ authorisation producing a Cardholder \nverification value (CAVV) and ecommerce\
+        \ indicator (ECI) as evidence of authorisation.\n\n3DS version 1 has now been\
+        \ replaced by 3DS version 2 to provide secure customer authentication (SCA)\
+        \ in line with EU regulation.\n3DSv2 is being phased out and any accounts\
+        \ using version 1 of the protocol is expected to be migrated by March 2022.\
+        \ \n\nAny new integrations should only consider 3DSv2 flows. \n\n### 3DSv2\n\
+        \n```json\n{ \n  \"RequestChallenged\": {\n    \"acsurl\": \"https://bank.com/3DS/ACS\"\
+        ,\n    \"creq\": \"SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...\"\
         ,\n    \"merchantid\": 12345,\n    \"transno\": 1,\n    \"threedserver_trans_id\"\
         : \"d652d8d2-d74a-4264-a051-a7862b10d5d6\"\n  }               \n}\n```\n\n\
         ```xml\n<RequestChallenged>\n  <acsurl>https://bank.com/3DS/ACS</acsurl>\n\
         \  <creq>SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...</creq>\n\
         \  <merchantid>12345</merchantid>\n  <transno>1</transno>\n  <threedserver_trans_id>d652d8d2-d74a-4264-a051-a7862b10d5d6</threedserver_trans_id>\n\
-        </RequestChallenged>\n```\n\nAll merchants in the EEC will require to migrate\
-        \ their E-commerce transactions to a secure customer authentication \nmodel\
-        \ (SCA) throughout 2020. This has been adopted by the payment's industry as\
-        \ a progressive move alongside the European \nUnions payments service directive.\n\
-        \nCityPay support 3DSv2 for Verified by Visa, MasterCard Identity Check and\
-        \ American Express SafeKey 2.0 and will be rolling\nout acquirers on the new\
-        \ platform from Q4 2020. The new enhancement to 3DSv2 will allow for CityPay\
-        \ to seamlessly authenticate\ntransactions in a \"frictionless\" flowed method\
-        \ which will authenticate low risk transactions with minimal impact to a \n\
-        standard authorisation flow. Our API simply performs this on behalf of the\
-        \ merchant and cardholder. For these transactions\nyou will not be required\
-        \ to change anything.\n\nHowever, should a transaction be \"challenged\" the\
-        \ API will return a [request challenge](#requestchallenged) which will \n\
-        require your integration to forward the cardholder's browser to the given\
-        \ [ACS url](#acsurl) by posting the [creq](#creq)\nvalue. Once complete, the\
+        </RequestChallenged>\n```\n\nCityPay support 3DS version 2.1 for Verified\
+        \ by Visa, MasterCard Identity Check and American Express SafeKey 2.1. Version\n\
+        2.2 is currently in development however this will be a seamless upgrade for\
+        \ all integrations.\n\n#### 3-D Secure - None\n\n![3DSv2 Frctionless Flow](/images/3dsv2-no3d.png)\n\
+        \nA basic flow may involve no 3-D secure processing. This could happen if\
+        \ there is no ability to perform authentication.\nAn enrollment check may\
+        \ apply an \"attempted\" resolution to processing. In this instance a transaction\
+        \ may not meet any\nliability shift. A transaction may result in a decline\
+        \ due to this. We are also able to prevent from transactions being\npresented\
+        \ for authorisation if this occurs. \n\n#### 3-D Secure - Frictionless\n\n\
+        ![3DSv2 Frctionless Flow](/images/3dsv2-frictionless.png)\n\nE-commerce transactions\
+        \ supporting 3DSv2 can benefit from seamlessly authenticated transactions\
+        \ which may perform a \n\"frictionless\" flow. This method will authenticate\
+        \ low risk transactions with minimal impact to a \nstandard authorisation\
+        \ flow. Our API simply performs this on behalf of you the developer, the merchant\
+        \ and cardholder.\n\nNo redirection occurs and hence the flow is called frictionless\
+        \ and will appear as though a simple transaction \nauthorisation has occurred.\n\
+        \n#### 3-D Secure - Challenge\n\n![3DSv2 Frctionless Flow](/images/3dsv2-challenge.png)\n\
+        \nA transaction that is deemed as higher risk my be \"challenged\". In this\
+        \ instance, the API will return a\n[request challenge](#requestchallenged)\
+        \ which will require your integration to forward the cardholder's browser\
+        \ to the \ngiven [ACS url](#acsurl). This should be performed by posting the\
+        \ [creq](#creq) value (the challenge request value). \n\nOnce complete, the\
         \ ACS will have already been in touch with our servers by sending us a result\
         \ of the authentication\nknown as `RReq`.\n\nTo maintain session state, a\
-        \ parameter `ThreeDSSessionData` can be posted to the ACS url and will be\
+        \ parameter `threeDSSessionData` can be posted to the ACS url and will be\
         \ returned alongside \nthe `CRes` value. This will ensure that any controller\
         \ code will be able to isolate state between calls. This field\nis to be used\
         \ by your own systems rather than ours and may be any value which can uniquely\
         \ identify your cardholder's\nsession. As an option, we do provide a `threedserver_trans_id`\
-        \ value in the `RequestChallenged` packet which can be used\nfor the `ThreeDSSessionData`\
-        \ value as it is used to uniquely identify the 3D-Secure session. \n\nOur\
-        \ servers however will await confirmation that the authorisation should continue\
-        \ and on receipt of a [cres](#cres)\nvalue, the flow will perform full authorisation\
+        \ value in the `RequestChallenged` packet which can be used\nfor the `threeDSSessionData`\
+        \ value as it is used to uniquely identify the 3D-Secure session. \n\nA common\
+        \ method of maintaining state is to provide a session related query string\
+        \ value in the `merchant_termurl` value\n(also known as the `notificationUrl`).\
+        \ For example providing a url of `https://mystore.com/checkout?token=asny2348w4561..`\n\
+        could return the user directly back to their session with your environment.\n\
+        \nOnce you have received a `cres` post from the ACS authentication service,\
+        \ this should be POSTed to the [cres](#cres) \nendpoint to perform full authorisation\
         \ processing. \n\nPlease note that the CRes returned to us is purely a mechanism\
         \ of acknowledging that transactions should be committed for\nauthorisation.\
         \ The ACS by this point will have sent us the verification value (CAVV) to\
         \ perform a liability shift. The CRes\nvalue will be validated for receipt\
-        \ of the CAVV and subsequently may return back response codes illustrating\
-        \ this. \n\nTo forward the user to the ACS, we recommend a simple auto submit\
+        \ of the CAVV and subsequently may return response codes illustrating this.\
+        \ \n\nTo forward the user to the ACS, we recommend a simple auto submit HTML\
+        \ form.\n\n> Simple auto submit HTML form\n\n```html\n<html lang=\"en\">\n\
+        <head>\n        <title>Forward to ACS</title>\n<script type=\"text/javascript\"\
+        >\n        function onLoadEvent() { \n            document.acs.submit(); \n\
+        \        }\n        </script>\n        <noscript>You will require JavaScript\
+        \ to be enabled to complete this transaction</noscript>\n    </head>\n   \
+        \ <body onload=\"onLoadEvent();\">\n        <form name=\"acs\" action=\"{{ACSURL\
+        \ from Response}}\" method=\"POST\">\n            <input type=\"hidden\" name=\"\
+        creq\" value=\"{{CReq Packet from Response}}\" />\n            <input type=\"\
+        hidden\" name=\"threeDSSessionData\" value=\"{{session-identifier}}\" />\n\
+        \        </form>\n    </body>\n</html>\n```\n\nA full ACS test suite is available\
+        \ for 3DSv2 testing.\n        \n### Testing 3DSv2 Integrations\n\nThe API\
+        \ provides a mock 3dsV2 handler which performs a number of scenarios based\
+        \ on the value of the CSC in the request.\n\n| CSC Value | Behaviour |\n|-----------|-----------|\n\
+        | 731       | Frictionless processing - Not authenticated |\n| 732       |\
+        \ Frictionless processing - Account verification count not be performed |\
+        \        \n| 733       | Frictionless processing - Verification Rejected |\
+        \        \n| 741       | Frictionless processing - Attempts Processing | \
+        \       \n| 750       | Frictionless processing - Authenticated  |       \
+        \ \n| 761       | Triggers an error message |  \n| Any       | Challenge Request\
+        \ |       \n\n\n#### 3DSv1\n\n**Please note that 3DSv1 should now be considered\
+        \ as deprecated.**\n\n```json\n{ \n  \"AuthenticationRequired\": {\n    \"\
+        acsurl\": \"https://bank.com/3DS/ACS\",\n    \"pareq\": \"SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...\"\
+        ,\n    \"md\": \"WQgZXZlcnl0aGluZyBiZW\"\n  }               \n}\n```\n\n```xml\n\
+        <AuthenticationRequired>\n <acsurl>https://bank.com/3DS/ACS</acsurl>\n <pareq>SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...</pareq>\n\
+        \ <md>WQgZXZlcnl0aGluZyBiZW</md>\n</AuthenticationRequired>\n```\n\nFor E-commerce\
+        \ transactions requiring 3DSv1, the API contains a built in MPI which will\
+        \ be called to check whether the\ncard is participating in 3DSv1 with Verified\
+        \ by Visa or MasterCard SecureCode. We only support Amex SafeKey with 3DSv2.\
+        \ Should the card be enrolled, a payer\nrequest (PAReq) value will be created\
+        \ and returned back as an [authentication required](#authenticationrequired)\
+        \ response object.\n\nYour system will need to process this authentication\
+        \ packet and forward the user's browser to an authentication server (ACS)\n\
+        to gain the user's authentication. Once complete, the ACS will produce a HTTP\
+        \ `POST` call back to the URL supplied in\nthe authentication request as `merchant_termurl`.\
+        \ This URL should behave as a controller and handle the post data from the\n\
+        ACS and on a forked server to server HTTP request, forward this data to the\
+        \ [pares authentication url](#pares) for\nsubsequent authorisation processing.\
+        \ You may prefer to provide a processing page whilst this is being processed.\n\
+        Processing with our systems should be relatively quick and be between 500ms\
+        \ - 3000ms however it is desirable to let\nthe user see that something is\
+        \ happening rather than a pending browser.\n\nThe main reason for ensuring\
+        \ that this controller is two fold:\n\n1. We are never in control of the user's\
+        \ browser in a server API call\n2. The controller is actioned on your site\
+        \ to ensure that any post actions from authorisation can be executed in real\
+        \ time\n\nTo forward the user to the ACS, we recommend a simple auto submit\
         \ HTML form.\n\n> Simple auto submit HTML form\n\n```html\n<html lang=\"en\"\
         >\n<head>\n        <title>Forward to ACS</title>\n<script type=\"text/javascript\"\
         >\n        function onLoadEvent() { \n            document.acs.submit(); \n\
@@ -1122,20 +1192,13 @@ paths:
         \ to be enabled to complete this transaction</noscript>\n    </head>\n   \
         \ <body onload=\"onLoadEvent();\">\n        <form name=\"acs\" action=\"{{ACSURL\
         \ from Response}}\" method=\"POST\">\n            <input type=\"hidden\" name=\"\
-        creq\" value=\"{{CReq Packet from Response}}\" />\n            <input type=\"\
-        hidden\" name=\"ThreeDSSessionData\" value=\"{{session-identifier}}\" />\n\
-        \        </form>\n    </body>\n</html>\n```\n\nWe are currently working on\
-        \ an integration test suite for 3DSv2 which will mock the ACS challenge process.\n\
-        \        \n### Testing 3DSv2 Integrations\n\nThe API provides a mock 3dsV2\
-        \ handler which performs a number of scenarios based on the value of the CSC\
-        \ in the request.\n\n| CSC Value | Behaviour |\n|-----------|-----------|\n\
-        | 731       | Frictionless processing - Not authenticated |\n| 732       |\
-        \ Frictionless processing - Account verification count not be performed |\
-        \        \n| 733       | Frictionless processing - Verification Rejected |\
-        \        \n| 741       | Frictionless processing - Attempts Processing | \
-        \       \n| 750       | Frictionless processing - Authenticated  |       \
-        \ \n| 761       | Triggers an error message |  \n| Any       | Challenge Request\
-        \ |\n"
+        PaReq\" value=\"{{PaReq Packet from Response}}\" />\n            <input type=\"\
+        hidden\" name=\"TermUrl\" value=\"{{Your Controller}}\" />\n            <input\
+        \ type=\"hidden\" name=\"MD\" value=\"{{MD From Response}}\" />\n        </form>\n\
+        \    </body>\n</html>\n```\n\nPlease note that 3DSv1 is being phased out due\
+        \ to changes to strong customer authentication mechanisms. 3DSv2 addresses\n\
+        this and will solidify the authorisation and confirmation process.\n\nWe provide\
+        \ a Test ACS for full 3DSv1 integration testing that simulates an ACS.\n"
       operationId: AuthorisationRequest
       requestBody:
         content:
@@ -1155,13 +1218,24 @@ paths:
               $ref: '#/components/schemas/AuthRequest'
         required: true
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Decision'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Decision'
+          description: A decision made by the result of processing.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
         "403":
           description: Forbidden. The api key was provided and understood but is either
             incorrect or does not have permission to access the account provided on
             the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
         "422":
           content:
             application/json:
@@ -1172,17 +1246,6 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Unprocessable Entity. Should a failure occur that prevents
             processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Decision'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/Decision'
-          description: A decision made by the result of processing.
       summary: Authorisation
       tags:
       - Payment Processing
@@ -1203,13 +1266,24 @@ paths:
               $ref: '#/components/schemas/BatchReportRequest'
         required: true
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchReportResponseModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/BatchReportResponseModel'
+          description: The report for a given batch.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
         "403":
           description: Forbidden. The api key was provided and understood but is either
             incorrect or does not have permission to access the account provided on
             the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
         "422":
           content:
             application/json:
@@ -1220,17 +1294,6 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Unprocessable Entity. Should a failure occur that prevents
             processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BatchReportResponseModel'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/BatchReportResponseModel'
-          description: The report for a given batch.
       summary: BatchReportRequest
       tags:
       - Batch Processing
@@ -1266,13 +1329,24 @@ paths:
               $ref: '#/components/schemas/RetrieveRequest'
         required: true
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthReferences'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/AuthReferences'
+          description: A result of the retrieval request.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
         "403":
           description: Forbidden. The api key was provided and understood but is either
             incorrect or does not have permission to access the account provided on
             the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
         "422":
           content:
             application/json:
@@ -1283,17 +1357,6 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Unprocessable Entity. Should a failure occur that prevents
             processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthReferences'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/AuthReferences'
-          description: A result of the retrieval request.
       summary: Retrieval
       tags:
       - Payment Processing
@@ -1314,7 +1377,10 @@ paths:
         \ be used for\n \n- repeat authorisations on a previously stored card\n- easy\
         \ authorisations just requiring CSC values to be entered\n- can be used for\
         \ credential on file style payments\n- can require full 3-D Secure authentication\
-        \ to retain the liability shift\n- wallet style usage.\n"
+        \ to retain the liability shift\n- wallet style usage\n \n\n_Should an account\
+        \ be used with 3DSv2, the card holder name should also be stored alongside\
+        \ the card as this is a\nrequired field with both Visa and MasterCard for\
+        \ risk analysis._.\n"
       operationId: ChargeRequest
       requestBody:
         content:
@@ -1326,13 +1392,24 @@ paths:
               $ref: '#/components/schemas/ChargeRequest'
         required: true
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Decision'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Decision'
+          description: A decision met by the result of the charge.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
         "403":
           description: Forbidden. The api key was provided and understood but is either
             incorrect or does not have permission to access the account provided on
             the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
         "422":
           content:
             application/json:
@@ -1343,17 +1420,6 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Unprocessable Entity. Should a failure occur that prevents
             processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Decision'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/Decision'
-          description: A decision met by the result of the charge.
       summary: Charge
       tags:
       - Card Holder Account
@@ -1381,25 +1447,6 @@ paths:
           type: string
         style: simple
       responses:
-        "403":
-          description: Forbidden. The api key was provided and understood but is either
-            incorrect or does not have permission to access the account provided on
-            the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unprocessable Entity. Should a failure occur that prevents
-            processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
         "200":
           content:
             application/json:
@@ -1410,6 +1457,25 @@ paths:
                 $ref: '#/components/schemas/ListMerchantsResponse'
           description: A list of merchants that are configured against the client
             id.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
       summary: List Merchants Request
       tags:
       - Operational
@@ -1428,13 +1494,24 @@ paths:
               $ref: '#/components/schemas/CheckBatchStatus'
         required: true
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckBatchStatusResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/CheckBatchStatusResponse'
+          description: The status of batches provided in the request.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
         "403":
           description: Forbidden. The api key was provided and understood but is either
             incorrect or does not have permission to access the account provided on
             the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
         "422":
           content:
             application/json:
@@ -1445,17 +1522,6 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Unprocessable Entity. Should a failure occur that prevents
             processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CheckBatchStatusResponse'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/CheckBatchStatusResponse'
-          description: The status of a batch provided in the request.
       summary: CheckBatchStatus
       tags:
       - Batch Processing
@@ -1490,13 +1556,24 @@ paths:
               $ref: '#/components/schemas/PaResAuthRequest'
         required: true
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+          description: A result of processing the 3DSv1 authorisation data.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
         "403":
           description: Forbidden. The api key was provided and understood but is either
             incorrect or does not have permission to access the account provided on
             the request.
-        "401":
-          description: Unauthorized. No api key has been provided and is required
-            for this operation.
         "422":
           content:
             application/json:
@@ -1507,17 +1584,6 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Unprocessable Entity. Should a failure occur that prevents
             processing of the API call.
-        "400":
-          description: Bad Request. Should the incoming data not be validly determined.
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthResponse'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/AuthResponse'
-          description: A result of processing the 3DSv1 authorisation data.
       summary: PaRes
       tags:
       - Payment Processing
@@ -1534,7 +1600,7 @@ components:
           scheme: Visa
           date_created: 2020-01-02T18:32:28Z
           bin_currency: bin_currency
-          expyear: 2024
+          expyear: 2025
           label: Visa/0002
           card_id: card_id
           label2: Visa/0002,Exp:2304
@@ -1548,12 +1614,13 @@ components:
           expmonth: 9
           bin_debit: true
           bin_eu: true
+          name_on_card: MR NE BODY
         - bin_description: Platinum Card
           bin_commercial: true
           scheme: Visa
           date_created: 2020-01-02T18:32:28Z
           bin_currency: bin_currency
-          expyear: 2024
+          expyear: 2025
           label: Visa/0002
           card_id: card_id
           label2: Visa/0002,Exp:2304
@@ -1567,6 +1634,7 @@ components:
           expmonth: 9
           bin_debit: true
           bin_eu: true
+          name_on_card: MR NE BODY
         unique_id: unique_id
         default_card_index: 0
         date_created: 2020-01-02T18:32:28Z
@@ -1667,8 +1735,6 @@ components:
           description: The amount of the transaction processed.
           example: 3600
           format: int32
-          maxLength: 12
-          minLength: 1
           type: integer
         atrn:
           description: |
@@ -1752,8 +1818,6 @@ components:
             <tr><td>S</td><td>AVS Service not supported by issuer or processor</td></tr>
             <tr><td>G</td><td>Issuer does not participate in AVS</td></tr>
             </table>
-          maxLength: 1
-          minLength: 1
           type: string
         bin_commercial:
           description: Determines whether the bin range was found to be a commercial
@@ -1795,15 +1859,11 @@ components:
             <tr><td>S</td><td>The card verification data should be on the card but the merchant indicates that it is not</td></tr>
             <tr><td>U</td><td>The card issuer is not certified</td></tr>
             </table>
-          maxLength: 1
-          minLength: 1
           type: string
         currency:
           description: The currency the transaction was processed in. This is an `ISO4217`
             alpha currency value.
           example: GBP
-          maxLength: 3
-          minLength: 3
           type: string
         datetime:
           description: |
@@ -1818,8 +1878,6 @@ components:
         identifier:
           description: The identifier provided within the request.
           example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-          maxLength: 50
-          minLength: 4
           type: string
         live:
           description: Used to identify that a transaction was processed on a live
@@ -1974,6 +2032,11 @@ components:
           example: 78416
           format: int32
           type: integer
+      required:
+      - merchantid
+      - result
+      - result_code
+      - result_message
       type: object
     ChargeRequest:
       example:
@@ -1992,6 +2055,8 @@ components:
         duplicate_policy: duplicate_policy
         token: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
         csc: "12"
+        initiation: initiation
+        cardholder_agreement: cardholder_agreement
         merchantid: 11223344
         match_avsa: match_avsa
         avs_postcode_policy: avs_postcode_policy
@@ -2024,6 +2089,38 @@ components:
              `2` to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.
 
              `3` to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation.
+          type: string
+        cardholder_agreement:
+          description: |
+            Merchant-initiated transactions (MITs) are payments you trigger, where the cardholder has previously consented
+            to you carrying out such payments. These may be scheduled (such as recurring payments and installments) or
+            unscheduled (like account top-ups triggered by balance thresholds and no-show charges).
+
+            Scheduled
+            ---
+            These are regular payments using stored card details, like installments or a monthly subscription fee.
+
+            - `I` Instalment - A single purchase of goods or services billed to a cardholder in multiple transactions, over a period of time agreed by the cardholder and you.
+
+            - `R` Recurring - Transactions processed at fixed, regular intervals not to exceed one year between transactions, representing an agreement between a cardholder and you to purchase goods or services provided over a period of time.
+
+            Unscheduled
+            ---
+            These are payments using stored card details that do not occur on a regular schedule, like top-ups for a
+            digital wallet triggered by the balance falling below a certain threshold.
+
+            - `A` Reauthorisation - a purchase made after the original purchase. A common scenario is delayed/split shipments.
+
+            - `C` Unscheduled Payment - A transaction using a stored credential for a fixed or variable amount that does not occur on a scheduled or regularly occurring transaction date. This includes account top-ups triggered by balance thresholds.
+
+            - `D` Delayed Charge - A delayed charge is typically used in hotel, cruise lines and vehicle rental environments to perform a supplemental account charge after original services are rendered.
+
+            - `L` Incremental - An incremental authorisation is typically found in hotel and car rental environments, where the cardholder has agreed to pay for any service incurred during the duration of the contract. An incremental authorisation is where you need to seek authorisation of further funds in addition to what you have originally requested. A common scenario is additional services charged to the contract, such as extending a stay in a hotel.
+
+            - `S` Resubmission - When the original purchase occurred, but you were not able to get authorisation at the time the goods or services were provided. It should be only used where the goods or services have already been provided, but the authorisation request is declined for insufficient funds.
+
+            - `X` No-show - A no-show is a transaction where you are enabled to charge for services which the cardholder entered into an agreement to purchase, but the cardholder did not meet the terms of the agreement.
+          maxLength: 1
           type: string
         csc:
           description: |
@@ -2102,6 +2199,29 @@ components:
           maxLength: 50
           minLength: 4
           type: string
+        initiation:
+          description: |
+            Transactions charged using the API are defined as:
+
+            **Cardholder Initiated**: A _cardholder initiated transaction_ (CIT) is where the cardholder selects the
+            card for use for a purchase using previously stored details. An example would be a customer buying an item from
+            your website after being present with their saved card details at checkout.
+
+            **Merchant Intiated**: A _merchant initiated transaction_ (MIT) is an authorisation initiated where you as the
+             merchant submit a cardholders previously stored details without the cardholder's participation. An example would
+             be a subscription to a membership scheme to debit their card monthly.
+
+            MITs have different reasons such as reauthorisation, delayed, unscheduled, incremental, recurring, instalment, no-show or resubmission.
+
+            The following values apply
+
+             - `M` - specifies that the transaction is initiated by the merchant
+
+             - `C` - specifies that the transaction is initiated by the cardholder
+
+            Where transactions are merchant initiated, a valid cardholder agreement must be defined.
+          maxLength: 1
+          type: string
         match_avsa:
           description: |
             A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.
@@ -2158,6 +2278,17 @@ components:
       - identifier
       - merchantid
       - token
+      type: object
+    AclCheckRequest:
+      example:
+        ip: 8.8.8.8
+      properties:
+        ip:
+          description: An ip address to check for an ACL against. The address should
+            be a publicly routable IPv4 address.
+          example: 8.8.8.8
+          format: ipv4
+          type: string
       type: object
     ProcessBatchResponse:
       example:
@@ -2363,7 +2494,7 @@ components:
         scheme: Visa
         date_created: 2020-01-02T18:32:28Z
         bin_currency: bin_currency
-        expyear: 2024
+        expyear: 2025
         label: Visa/0002
         card_id: card_id
         label2: Visa/0002,Exp:2304
@@ -2377,6 +2508,7 @@ components:
         expmonth: 9
         bin_debit: true
         bin_eu: true
+        name_on_card: MR NE BODY
       properties:
         bin_commercial:
           description: Defines whether the card is a commercial card.
@@ -2436,7 +2568,7 @@ components:
           type: integer
         expyear:
           description: The expiry year of the card.
-          example: 2024
+          example: 2025
           format: int32
           maximum: 2100
           minimum: 2000
@@ -2452,6 +2584,12 @@ components:
         last4digits:
           description: The last 4 digits of the card to aid in identification.
           example: "2"
+          type: string
+        name_on_card:
+          description: The name on the card.
+          example: MR NE BODY
+          maxLength: 45
+          minLength: 2
           type: string
         scheme:
           description: The scheme that issued the card.
@@ -2717,8 +2855,8 @@ components:
       type: object
     ProcessBatchRequest:
       example:
-        account_id: AC1
-        batch_id: 1975
+        client_account_id: AC1
+        batch_id: 35
         transactions:
         - identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
           amount: 3600
@@ -2728,30 +2866,30 @@ components:
           amount: 3600
           account_id: aaabbb-cccddd-eee
           merchantid: 11223344
-        batch_date: 2020-01-02T18:32:28Z
+        batch_date: 2020-01-02T00:00:00.000+0000
       properties:
-        account_id:
-          description: The batch account id to process the batch for. Defaults to
-            your client id if not provided.
-          example: AC1
-          maxLength: 20
-          minLength: 3
-          type: string
         batch_date:
           description: The date and time that the file was created in ISO-8601 format.
-          example: 2020-01-02T18:32:28Z
-          format: date-time
+          example: 2020-01-02
+          format: date
           type: string
         batch_id:
           description: |
             The id is a referencable id for the batch that should be generated by your integration.
             Its recommended to use an incremental id to help determine if a batch has been skipped or missed.
             The id is used by reporting systems to reference the unique batch alongside your client id.
-          example: 1975
+          example: 35
           format: int32
           maxLength: 8
           minimum: 1
           type: integer
+        client_account_id:
+          description: The batch account id to process the batch for. Defaults to
+            your client id if not provided.
+          example: AC1
+          maxLength: 20
+          minLength: 3
+          type: string
         transactions:
           items:
             $ref: '#/components/schemas/BatchTransaction'
@@ -2789,29 +2927,22 @@ components:
       type: object
     CheckBatchStatusResponse:
       example:
-        batch_id: 1975
-        batch_status: COMPLETE
-        batch_date: 2020-01-02T18:32:28Z
+        batches:
+        - batch_id:
+          - 78
+          - 78
+          batch_status: COMPLETE
+          batch_date: 2020-01-02T00:00:00.000+0000
+        - batch_id:
+          - 78
+          - 78
+          batch_status: COMPLETE
+          batch_date: 2020-01-02T00:00:00.000+0000
       properties:
-        batch_date:
-          description: The date and time that the file was created in ISO-8601 format.
-          example: 2020-01-02T18:32:28Z
-          format: date-time
-          type: string
-        batch_id:
-          description: The batch id requested.
-          example: 1975
-          format: int32
-          maxLength: 8
-          minimum: 1
-          type: integer
-        batch_status:
-          description: The status of the batch. Possible values are.
-          example: COMPLETE
-          type: string
-      required:
-      - batch_date
-      - batch_status
+        batches:
+          items:
+            $ref: '#/components/schemas/Batch'
+          type: array
       type: object
     Decision:
       example:
@@ -2904,6 +3035,29 @@ components:
           example: Visa
           type: string
       type: object
+    AclCheckResponseModel:
+      example:
+        cache: true
+        provider: provider
+        ip: 8.8.8.8
+        acl: acl
+      properties:
+        acl:
+          description: The name or value of the acl which was found to match the ip
+            address.
+          type: string
+        cache:
+          description: Whether the ACL was returned via a cached instance.
+          type: boolean
+        ip:
+          description: The IP address used in the lookup.
+          example: 8.8.8.8
+          format: ipv4
+          type: string
+        provider:
+          description: The source provider of the ACL.
+          type: string
+      type: object
     BatchTransaction:
       example:
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
@@ -2967,8 +3121,7 @@ components:
             (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
           cp_bx: FjaW50b3NoOyBJbnRlbCBNYWMgT1MgWCAx...
         amount: 3600
-        card_holder_name: card_holder_name
-        expyear: 2024
+        expyear: 2025
         csc_policy: csc_policy
         mcc6012:
           recipient_dob: recipient_dob
@@ -3053,6 +3206,7 @@ components:
           telephone_no: "442030123456"
           company: Acme Ltd
           email: card.holder@citypay.com
+        name_on_card: MR NE BODY
         trans_type: trans_type
       properties:
         airline_data:
@@ -3086,10 +3240,6 @@ components:
           type: string
         bill_to:
           $ref: '#/components/schemas/ContactDetails'
-        card_holder_name:
-          description: |
-            The card holder name as appears on the card such as MR N E BODY. Required for some acquirers.
-          type: string
         cardnumber:
           description: |
             The card number (PAN) with a variable length to a maximum of 21 digits in numerical form.
@@ -3177,7 +3327,7 @@ components:
         expyear:
           description: |
             The year of expiry of the card.
-          example: 2024
+          example: 2025
           format: int32
           maximum: 2100
           minimum: 2000
@@ -3220,6 +3370,13 @@ components:
           example: 11223344
           format: int32
           type: integer
+        name_on_card:
+          description: |
+            The card holder name as appears on the card such as MR N E BODY. Required for some acquirers.
+          example: MR NE BODY
+          maxLength: 45
+          minLength: 2
+          type: string
         ship_to:
           $ref: '#/components/schemas/ContactDetails'
         threedsecure:
@@ -3276,9 +3433,11 @@ components:
       type: object
     BatchReportResponseModel:
       example:
+        client_account_id: AC1
         amount: 3600
-        account_id: AC1
-        batch_id: 1975
+        batch_id:
+        - 78
+        - 78
         batch_status: COMPLETE
         transactions:
         - authcode: 001245A
@@ -3289,8 +3448,8 @@ components:
           maskedpan: 4***********0002
           scheme: Visa
           merchantid: 11223344
-          authorised: true
           message: Approved 044332
+          transno: 78416
         - authcode: 001245A
           result: 1
           identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
@@ -3299,16 +3458,10 @@ components:
           maskedpan: 4***********0002
           scheme: Visa
           merchantid: 11223344
-          authorised: true
           message: Approved 044332
-        batch_date: 2020-01-02T18:32:28Z
+          transno: 78416
+        batch_date: 2020-01-02T00:00:00.000+0000
       properties:
-        account_id:
-          description: The batch account id that the batch was processed with.
-          example: AC1
-          maxLength: 20
-          minLength: 3
-          type: string
         amount:
           description: The total amount that the batch contains.
           example: 3600
@@ -3318,19 +3471,38 @@ components:
           type: integer
         batch_date:
           description: The date and time of the batch in ISO-8601 format.
-          example: 2020-01-02T18:32:28Z
-          format: date-time
+          example: 2020-01-02
+          format: date
           type: string
         batch_id:
-          description: The batch id specified in the batch processing request.
-          example: 1975
-          format: int32
-          maxLength: 8
-          minimum: 1
-          type: integer
+          items:
+            description: The batch id specified in the batch processing request.
+            example: 78
+            format: int32
+            maxLength: 8
+            minimum: 1
+            type: integer
+          type: array
         batch_status:
-          description: The status of the batch. Possible values are.
+          description: "The status of the batch. Possible values are - CANCELLED.\
+            \ The file has been cancelled by an administrator or server process. \n\
+            - COMPLETE. The file has passed through the processing cycle and is determined\
+            \ as being complete further information should be obtained on the results\
+            \ of the processing\n- ERROR_IN_PROCESSING. Errors have occurred in the\
+            \ processing that has deemed that processing can not continue.\n- INITIALISED.\
+            \ The file has been initialised and no action has yet been performed\n\
+            - LOCKED. The file has been locked for processing\n- QUEUED. The file\
+            \ has been queued for processing yet no processing has yet been performed\n\
+            - UNKNOWN. The file is of an unknown status, that is the file can either\
+            \ not be determined by the information requested of the file has not yet\
+            \ been received.\n"
           example: COMPLETE
+          type: string
+        client_account_id:
+          description: The batch account id that the batch was processed with.
+          example: AC1
+          maxLength: 20
+          minLength: 3
           type: string
         transactions:
           items:
@@ -3338,11 +3510,11 @@ components:
           type: array
           x-description: Transactions associated with the batch.
       required:
-      - account_id
       - amount
       - batch_date
       - batch_id
       - batch_status
+      - client_account_id
       - transactions
       type: object
     BatchTransactionResultModel:
@@ -3355,8 +3527,8 @@ components:
         maskedpan: 4***********0002
         scheme: Visa
         merchantid: 11223344
-        authorised: true
         message: Approved 044332
+        transno: 78416
       properties:
         account_id:
           description: The card holder account id used for the transaction.
@@ -3375,14 +3547,6 @@ components:
           description: The authorisation code of a successful transaction.
           example: 001245A
           type: string
-        authorised:
-          description: |
-            A boolean definition that indicates that the transaction was authorised. It will return false if the transaction
-             was declined, rejected or cancelled due to CSC matching failures.
-
-            Attention should be referenced to the AuthResult and Response code for accurate determination of the result.
-          example: true
-          type: boolean
         identifier:
           description: The identifier of the transaction.
           example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
@@ -3443,11 +3607,19 @@ components:
             A name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard.
           example: Visa
           type: string
+        transno:
+          description: |
+            The resulting transaction number, ordered incrementally from 1 for every merchant_id. The value will default to less than 1
+            for transactions that do not have a transaction number issued.
+          example: 78416
+          format: int32
+          type: integer
       required:
       - account_id
       - identifier
       - merchantid
       - message
+      - result
       type: object
     AccountCreate:
       example:
@@ -3532,6 +3704,7 @@ components:
           description: The company name for the card holder if the contact is a corporate
             contact.
           example: Acme Ltd
+          maxLength: 50
           type: string
         country:
           description: |
@@ -3545,6 +3718,7 @@ components:
           description: An email address for the card holder which may be used for
             correspondence.
           example: card.holder@citypay.com
+          maxLength: 254
           type: string
         firstname:
           description: The first name  of the card holder.
@@ -3565,7 +3739,7 @@ components:
           description: The postcode or zip code of the address which may be used for
             fraud analysis.
           example: L1 789
-          maxLength: 10
+          maxLength: 16
           type: string
         telephone_no:
           description: A telephone number for the card holder.
@@ -3614,23 +3788,27 @@ components:
       type: object
     CheckBatchStatus:
       example:
-        account_id: AC1
-        batch_id: 1975
+        client_account_id: AC1
+        batch_id:
+        - 78
+        - 78
       properties:
-        account_id:
+        batch_id:
+          items:
+            description: The batch id to obtain the status for.
+            example: 78
+            format: int32
+            maxLength: 8
+            minimum: 1
+            type: integer
+          type: array
+        client_account_id:
           description: The batch account id to obtain the batch for. Defaults to your
             client id if not provided.
           example: AC1
           maxLength: 20
           minLength: 3
           type: string
-        batch_id:
-          description: The batch id to obtain the status for.
-          example: 1975
-          format: int32
-          maxLength: 8
-          minimum: 1
-          type: integer
       required:
       - batch_id
       type: object
@@ -3663,23 +3841,23 @@ components:
       type: object
     BatchReportRequest:
       example:
-        account_id: AC1
-        batch_id: 1975
+        client_account_id: AC1
+        batch_id: 35
       properties:
-        account_id:
+        batch_id:
+          description: The batch id specified in the batch processing request.
+          example: 35
+          format: int32
+          maxLength: 8
+          minimum: 1
+          type: integer
+        client_account_id:
           description: The batch account id that the batch was processed for. Defaults
             to your client id if not provided.
           example: AC1
           maxLength: 20
           minLength: 3
           type: string
-        batch_id:
-          description: The batch id specified in the batch processing request.
-          example: 1975
-          format: int32
-          maxLength: 8
-          minimum: 1
-          type: integer
       required:
       - batch_id
       type: object
@@ -3730,13 +3908,10 @@ components:
           type: boolean
         merchant_termurl:
           description: |
-            Required for 3DSv1 and 3Dv2 processing.
-
             A controller URL for 3D-Secure processing that any response from an authentication request or
             challenge request should be sent to.
 
             The controller should forward on the response from the URL back via this API for subsequent processing.
-            Required if 3DSv1 or 3DSv2 is required.
           example: https://mysite.com/acs/return
           type: string
         tds_policy:
@@ -3757,7 +3932,9 @@ components:
           type: string
         user_agent:
           description: |
-            Required for 3DSv1. Optional if the `cp_bx` value is provided otherwise required 3Dv2 processing operating in
+            Required for 3DSv1.
+
+            Optional if the `cp_bx` value is provided otherwise required 3Dv2 processing operating in
             browser authentication mode.
 
             The `cp_bx` value will override any value supplied to this field.
@@ -3793,6 +3970,47 @@ components:
       required:
       - md
       - pares
+      type: object
+    Batch:
+      example:
+        batch_id:
+        - 78
+        - 78
+        batch_status: COMPLETE
+        batch_date: 2020-01-02T00:00:00.000+0000
+      properties:
+        batch_date:
+          description: The date that the file was created in ISO-8601 format.
+          example: 2020-01-02
+          format: date
+          type: string
+        batch_id:
+          items:
+            description: The batch id requested.
+            example: 78
+            format: int32
+            maxLength: 8
+            minimum: 1
+            type: integer
+          type: array
+        batch_status:
+          description: "The status of the batch. Possible values are - CANCELLED.\
+            \ The file has been cancelled by an administrator or server process. \n\
+            - COMPLETE. The file has passed through the processing cycle and is determined\
+            \ as being complete further information should be obtained on the results\
+            \ of the processing\n- ERROR_IN_PROCESSING. Errors have occurred in the\
+            \ processing that has deemed that processing can not continue.\n- INITIALISED.\
+            \ The file has been initialised and no action has yet been performed\n\
+            - LOCKED. The file has been locked for processing\n- QUEUED. The file\
+            \ has been queued for processing yet no processing has yet been performed\n\
+            - UNKNOWN. The file is of an unknown status, that is the file can either\
+            \ not be determined by the information requested of the file has not yet\
+            \ been received.\n"
+          example: COMPLETE
+          type: string
+      required:
+      - batch_date
+      - batch_status
       type: object
     AirlineAdvice:
       example:
@@ -3950,8 +4168,9 @@ components:
       example:
         default: true
         expmonth: 9
-        expyear: 2024
+        expyear: 2025
         cardnumber: 4000 0000 0000 0002
+        name_on_card: MR NE BODY
       properties:
         cardnumber:
           description: The primary number of the card.
@@ -3971,11 +4190,19 @@ components:
           type: integer
         expyear:
           description: The expiry year of the card.
-          example: 2024
+          example: 2025
           format: int32
           maximum: 2100
           minimum: 2000
           type: integer
+        name_on_card:
+          description: The card holder name as it appears on the card. The value is
+            required if the account is to be used for 3dsv2 processing, otherwise
+            it is optional.
+          example: MR NE BODY
+          maxLength: 45
+          minLength: 2
+          type: string
       required:
       - cardnumber
       - expmonth

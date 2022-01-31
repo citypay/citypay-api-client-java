@@ -22,70 +22,36 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * CheckBatchStatus
+ * AclCheckRequest
  */
-public class CheckBatchStatus {
-  public static final String SERIALIZED_NAME_BATCH_ID = "batch_id";
-  @SerializedName(SERIALIZED_NAME_BATCH_ID)
-  private List<Integer> batchId = new ArrayList<>();
-
-  public static final String SERIALIZED_NAME_CLIENT_ACCOUNT_ID = "client_account_id";
-  @SerializedName(SERIALIZED_NAME_CLIENT_ACCOUNT_ID)
-  private String clientAccountId;
+public class AclCheckRequest {
+  public static final String SERIALIZED_NAME_IP = "ip";
+  @SerializedName(SERIALIZED_NAME_IP)
+  private String ip;
 
 
-  public CheckBatchStatus batchId(List<Integer> batchId) {
+  public AclCheckRequest ip(String ip) {
     
-    this.batchId = batchId;
-    return this;
-  }
-
-  public CheckBatchStatus addBatchIdItem(Integer batchIdItem) {
-    this.batchId.add(batchIdItem);
+    this.ip = ip;
     return this;
   }
 
    /**
-   * Get batchId
-   * @return batchId
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public List<Integer> getBatchId() {
-    return batchId;
-  }
-
-
-  public void setBatchId(List<Integer> batchId) {
-    this.batchId = batchId;
-  }
-
-
-  public CheckBatchStatus clientAccountId(String clientAccountId) {
-    
-    this.clientAccountId = clientAccountId;
-    return this;
-  }
-
-   /**
-   * The batch account id to obtain the batch for. Defaults to your client id if not provided.
-   * @return clientAccountId
+   * An ip address to check for an ACL against. The address should be a publicly routable IPv4 address.
+   * @return ip
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "AC1", value = "The batch account id to obtain the batch for. Defaults to your client id if not provided.")
+  @ApiModelProperty(example = "8.8.8.8", value = "An ip address to check for an ACL against. The address should be a publicly routable IPv4 address.")
 
-  public String getClientAccountId() {
-    return clientAccountId;
+  public String getIp() {
+    return ip;
   }
 
 
-  public void setClientAccountId(String clientAccountId) {
-    this.clientAccountId = clientAccountId;
+  public void setIp(String ip) {
+    this.ip = ip;
   }
 
 
@@ -97,22 +63,20 @@ public class CheckBatchStatus {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CheckBatchStatus checkBatchStatus = (CheckBatchStatus) o;
-    return Objects.equals(this.batchId, checkBatchStatus.batchId) &&
-        Objects.equals(this.clientAccountId, checkBatchStatus.clientAccountId);
+    AclCheckRequest aclCheckRequest = (AclCheckRequest) o;
+    return Objects.equals(this.ip, aclCheckRequest.ip);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(batchId, clientAccountId);
+    return Objects.hash(ip);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CheckBatchStatus {\n");
-    sb.append("    batchId: ").append(toIndentedString(batchId)).append("\n");
-    sb.append("    clientAccountId: ").append(toIndentedString(clientAccountId)).append("\n");
+    sb.append("class AclCheckRequest {\n");
+    sb.append("    ip: ").append(toIndentedString(ip)).append("\n");
     sb.append("}");
     return sb.toString();
   }
