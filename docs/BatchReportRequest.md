@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**batchId** | **List&lt;Integer&gt;** |  | 
+**batchId** | **Integer** | The batch id specified in the batch processing request. | 
 **clientAccountId** | **String** | The batch account id that the batch was processed for. Defaults to your client id if not provided. |  [optional]
 
 

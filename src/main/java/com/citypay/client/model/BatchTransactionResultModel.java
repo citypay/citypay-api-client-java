@@ -63,6 +63,10 @@ public class BatchTransactionResultModel {
   @SerializedName(SERIALIZED_NAME_SCHEME)
   private String scheme;
 
+  public static final String SERIALIZED_NAME_TRANSNO = "transno";
+  @SerializedName(SERIALIZED_NAME_TRANSNO)
+  private Integer transno;
+
 
   public BatchTransactionResultModel accountId(String accountId) {
     
@@ -271,6 +275,29 @@ public class BatchTransactionResultModel {
   }
 
 
+  public BatchTransactionResultModel transno(Integer transno) {
+    
+    this.transno = transno;
+    return this;
+  }
+
+   /**
+   * The resulting transaction number, ordered incrementally from 1 for every merchant_id. The value will default to less than 1 for transactions that do not have a transaction number issued. 
+   * @return transno
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "78416", value = "The resulting transaction number, ordered incrementally from 1 for every merchant_id. The value will default to less than 1 for transactions that do not have a transaction number issued. ")
+
+  public Integer getTransno() {
+    return transno;
+  }
+
+
+  public void setTransno(Integer transno) {
+    this.transno = transno;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -288,12 +315,13 @@ public class BatchTransactionResultModel {
         Objects.equals(this.merchantid, batchTransactionResultModel.merchantid) &&
         Objects.equals(this.message, batchTransactionResultModel.message) &&
         Objects.equals(this.result, batchTransactionResultModel.result) &&
-        Objects.equals(this.scheme, batchTransactionResultModel.scheme);
+        Objects.equals(this.scheme, batchTransactionResultModel.scheme) &&
+        Objects.equals(this.transno, batchTransactionResultModel.transno);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, amount, authcode, identifier, maskedpan, merchantid, message, result, scheme);
+    return Objects.hash(accountId, amount, authcode, identifier, maskedpan, merchantid, message, result, scheme, transno);
   }
 
   @Override
@@ -309,6 +337,7 @@ public class BatchTransactionResultModel {
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    result: ").append(toIndentedString(result)).append("\n");
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
+    sb.append("    transno: ").append(toIndentedString(transno)).append("\n");
     sb.append("}");
     return sb.toString();
   }

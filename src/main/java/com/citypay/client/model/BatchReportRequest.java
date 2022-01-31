@@ -22,8 +22,6 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * BatchReportRequest
@@ -31,37 +29,33 @@ import java.util.List;
 public class BatchReportRequest {
   public static final String SERIALIZED_NAME_BATCH_ID = "batch_id";
   @SerializedName(SERIALIZED_NAME_BATCH_ID)
-  private List<Integer> batchId = new ArrayList<>();
+  private Integer batchId;
 
   public static final String SERIALIZED_NAME_CLIENT_ACCOUNT_ID = "client_account_id";
   @SerializedName(SERIALIZED_NAME_CLIENT_ACCOUNT_ID)
   private String clientAccountId;
 
 
-  public BatchReportRequest batchId(List<Integer> batchId) {
+  public BatchReportRequest batchId(Integer batchId) {
     
     this.batchId = batchId;
     return this;
   }
 
-  public BatchReportRequest addBatchIdItem(Integer batchIdItem) {
-    this.batchId.add(batchIdItem);
-    return this;
-  }
-
    /**
-   * Get batchId
+   * The batch id specified in the batch processing request.
+   * minimum: 1
    * @return batchId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "35", required = true, value = "The batch id specified in the batch processing request.")
 
-  public List<Integer> getBatchId() {
+  public Integer getBatchId() {
     return batchId;
   }
 
 
-  public void setBatchId(List<Integer> batchId) {
+  public void setBatchId(Integer batchId) {
     this.batchId = batchId;
   }
 
