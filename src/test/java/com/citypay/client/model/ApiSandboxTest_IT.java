@@ -3,16 +3,21 @@ package com.citypay.client.model;
 import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
+
 import com.citypay.client.api.CardHolderAccountApi;
 import com.citypay.client.api.OperationalApi;
 import com.citypay.client.api.PaymentProcessingApi;
 import com.citypay.client.auth.ApiKeyAuth;
+
+import okhttp3.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+import java.util.Objects;
 import java.util.UUID;
 
 import static org.junit.Assert.*;
@@ -97,8 +102,13 @@ public class ApiSandboxTest_IT {
                 .expyear(2030)
                 .csc("012")
                 .identifier(id)
-                .merchantid(Integer.valueOf(merchantId));
+                .merchantid(Integer.valueOf(merchantId))
+                .threedsecure(new ThreeDSecure()
+                        .tdsPolicy("2")
+                );
+
         Decision result = null;
+
         try {
             result = apiInstance.authorisationRequest(authRequest);
         } catch (ApiException e) {
@@ -113,7 +123,90 @@ public class ApiSandboxTest_IT {
         assertEquals(id, result.getAuthResponse().getIdentifier());
         assertEquals("A12345", result.getAuthResponse().getAuthcode());
         assertEquals(Integer.valueOf(1395), result.getAuthResponse().getAmount());
+    }
 
+    class Cres implements java.io.Serializable
+    {
+        public String acsTransID;
+        public String messageType;
+        public String messageVersion;
+        public String threeDSServerTransID;
+        public String transStatus;
+
+        // Default constructor
+        public Cres(String acsTransID, String messageType, String messageVersion, String threeDSServerTransID, String transStatus)
+        {
+            this.acsTransID  = acsTransID;
+            this.messageType = messageType;
+            this.messageVersion = messageVersion;
+            this.threeDSServerTransID = threeDSServerTransID;
+            this.transStatus = transStatus;
+        }
+    }
+
+    @Test
+    public void testAuthorise3DSv2Test() throws IOException {
+        String id = String.valueOf(UUID.randomUUID());
+        PaymentProcessingApi apiInstance = new PaymentProcessingApi(defaultClient);
+        AuthRequest authRequest = new AuthRequest()
+                .amount(1396)
+                .cardnumber("4000 0000 0000 0002")
+                .expmonth(12)
+                .expyear(2030)
+                .csc("123")
+                .identifier(id)
+                .merchantid(Integer.valueOf(merchantId))
+                .transType("A")
+                .threedsecure(new ThreeDSecure()
+                        .merchantTermurl("https://citypay.com/acs/return")
+                        .cpBx("eyJhIjoiRkFwSCIsImMiOjI0LCJpIjoid3dIOTExTlBKSkdBRVhVZCIsImoiOmZhbHNlLCJsIjoiZW4tVVMiLCJoIjoxNDQwLCJ3IjoyNTYwLCJ0IjowLCJ1IjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTFfMl8zKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODkuMC40Mzg5LjgyIFNhZmFyaS81MzcuMzYiLCJ2IjoiMS4wLjAifQ")
+                );
+
+        Decision result = null;
+
+        try {
+            result = apiInstance.authorisationRequest(authRequest);
+        } catch (ApiException e) {
+            e.printStackTrace();
+        }
+        assert result != null;
+        assertNull(result.getAuthenRequired());
+        assertNotNull(result.getRequestChallenged());
+        assertNull(result.getAuthResponse());
+
+        assertNotNull(result.getRequestChallenged().getCreq());
+        assertNotNull(result.getRequestChallenged().getAcsUrl());
+        assertNotNull(result.getRequestChallenged().getThreedserverTransId());
+
+        OkHttpClient httpClient = new OkHttpClient();
+
+        String string = String.format("{\"creq\":\"%s\",\"threeDSSessionData\":\"%s\"}", result.getRequestChallenged().getCreq(),  result.getRequestChallenged().getThreedserverTransId());
+        MediaType JSON = MediaType.get("application/json");
+        RequestBody body = RequestBody.create(String.valueOf(string), JSON);
+
+        Request request = new Request.Builder()
+                .url("https://sandbox.citypay.com/3dsv2/acs")
+                .addHeader("Content-Type", "application/json")
+                .post(body)
+                .build();
+
+        try (Response response = httpClient.newCall(request).execute()) {
+
+            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+            //deserialize string to Cres object
+            CResAuthRequest cResAuthRequest = new CResAuthRequest().cres(Base64.getEncoder().encodeToString(Objects.requireNonNull(response.body()).string().getBytes()));
+
+            AuthResponse cResRequestResponse = apiInstance.cResRequest(cResAuthRequest);
+
+            assertEquals(Integer.valueOf(1396), cResRequestResponse.getAmount());
+            assertEquals("A12345", cResRequestResponse.getAuthcode());
+            assertEquals("Y", cResRequestResponse.getAuthenResult());
+            assertEquals(Boolean.TRUE, cResRequestResponse.isAuthorised());
+
+        } catch (ApiException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -197,7 +290,9 @@ public class ApiSandboxTest_IT {
                 .identifier(id)
                 .merchantid(Integer.valueOf(merchantId))
                 .token(result.getCards().get(0).getToken())
-                .csc("012"); // ChargeRequest |
+                .csc("012")
+                .threedsecure(new ThreeDSecure()
+                        .tdsPolicy("2")); // ChargeRequest |
 
         Decision decision = null;
         try {
