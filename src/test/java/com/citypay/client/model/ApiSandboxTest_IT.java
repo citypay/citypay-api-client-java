@@ -9,6 +9,7 @@ import com.citypay.client.api.OperationalApi;
 import com.citypay.client.api.PaymentProcessingApi;
 import com.citypay.client.auth.ApiKeyAuth;
 
+import com.citypay.client.utils.Digest;
 import okhttp3.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -118,11 +119,12 @@ public class ApiSandboxTest_IT {
         assertNull(result.getAuthenRequired());
         assertNull(result.getRequestChallenged());
         assertNotNull(result.getAuthResponse());
-
-        assertEquals("001", result.getAuthResponse().getResultCode());
-        assertEquals(id, result.getAuthResponse().getIdentifier());
-        assertEquals("A12345", result.getAuthResponse().getAuthcode());
-        assertEquals(Integer.valueOf(1395), result.getAuthResponse().getAmount());
+        AuthResponse authResponse = result.getAuthResponse();
+        assertEquals("001", authResponse.getResultCode());
+        assertEquals(id, authResponse.getIdentifier());
+        assertEquals("A12345", authResponse.getAuthcode());
+        assertEquals(Integer.valueOf(1395), authResponse.getAmount());
+        assertTrue(Digest.ValidateDigest(authResponse, licenceKey));
     }
 
     class Cres implements java.io.Serializable
