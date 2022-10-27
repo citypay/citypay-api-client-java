@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security <aside class=\"notice\">   Before we begin a reminder that your application will need to adhere to PCI-DSS standards to operate safely   and to meet requirements set out by Visa and MasterCard and the PCI Security Standards Council including: </aside>  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 
 /**
  * Error
@@ -42,6 +43,10 @@ public class Error {
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
   private String message;
+
+  public static final String SERIALIZED_NAME_RESPONSE_DT = "response_dt";
+  @SerializedName(SERIALIZED_NAME_RESPONSE_DT)
+  private OffsetDateTime responseDt;
 
 
   public Error code(String code) {
@@ -136,6 +141,29 @@ public class Error {
   }
 
 
+  public Error responseDt(OffsetDateTime responseDt) {
+    
+    this.responseDt = responseDt;
+    return this;
+  }
+
+   /**
+   * The ISO-8601 UTC date and time of the response data.
+   * @return responseDt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2020-01-02T18:32:28Z", value = "The ISO-8601 UTC date and time of the response data.")
+
+  public OffsetDateTime getResponseDt() {
+    return responseDt;
+  }
+
+
+  public void setResponseDt(OffsetDateTime responseDt) {
+    this.responseDt = responseDt;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -148,12 +176,13 @@ public class Error {
     return Objects.equals(this.code, error.code) &&
         Objects.equals(this.context, error.context) &&
         Objects.equals(this.identifier, error.identifier) &&
-        Objects.equals(this.message, error.message);
+        Objects.equals(this.message, error.message) &&
+        Objects.equals(this.responseDt, error.responseDt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, context, identifier, message);
+    return Objects.hash(code, context, identifier, message, responseDt);
   }
 
   @Override
@@ -164,6 +193,7 @@ public class Error {
     sb.append("    context: ").append(toIndentedString(context)).append("\n");
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    responseDt: ").append(toIndentedString(responseDt)).append("\n");
     sb.append("}");
     return sb.toString();
   }

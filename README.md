@@ -2,8 +2,8 @@
 
 [![Build Status](https://api.travis-ci.com/citypay/citypay-api-client-java.svg?branch=master)](https://app.travis-ci.com/github/citypay/citypay-api-client-java)
 CityPay Payment API
-- API version: 6.2.11
-  - Build date: 2022-01-31T14:39:00.083466Z[Etc/UTC]
+- API version: 6.4.7
+  - Build date: 2022-10-27T15:44:59.571031Z[Etc/UTC]
 
 
 This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It
@@ -12,10 +12,8 @@ provides a number of payment mechanisms including: Internet, MOTO, Continuous Au
 Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.
 
 ## Compliance and Security
-<aside class=\"notice\">
-  Before we begin a reminder that your application will need to adhere to PCI-DSS standards to operate safely
-  and to meet requirements set out by Visa and MasterCard and the PCI Security Standards Council including:
-</aside>
+Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by 
+Visa and MasterCard and the PCI Security Standards Council. These include
 
 * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at
   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments
@@ -68,7 +66,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.citypay</groupId>
   <artifactId>citypay-api-client-java</artifactId>
-  <version>1.0.8</version>
+  <version>1.1.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -82,7 +80,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/citypay-api-client-java-1.0.8.jar`
+* `target/citypay-api-client-java-1.1.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -97,21 +95,21 @@ import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
 import com.citypay.client.models.*;
-import com.citypay.client.api.BatchProcessingApi;
+import com.citypay.client.api.AuthorisationAndPaymentApiApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.citypay.com/v6");
-    defaultClient.setApiKey(ApiKey.create("CLIENT_ID", "LICENCE_KEY"));    
+    defaultClient.setBasePath("https://api.citypay.com");
+    
 
-    BatchProcessingApi apiInstance = new BatchProcessingApi(defaultClient);
-    ProcessBatchRequest processBatchRequest = new ProcessBatchRequest(); // ProcessBatchRequest | 
+    AuthorisationAndPaymentApiApi apiInstance = new AuthorisationAndPaymentApiApi(defaultClient);
+    AuthRequest authRequest = new AuthRequest(); // AuthRequest | 
     try {
-      ProcessBatchResponse result = apiInstance.batchProcessRequest(processBatchRequest);
+      Decision result = apiInstance.authorisationRequest(authRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling BatchProcessingApi#batchProcessRequest");
+      System.err.println("Exception when calling AuthorisationAndPaymentApiApi#authorisationRequest");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -124,34 +122,49 @@ public class Example {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.citypay.com/v6*
+All URIs are relative to *https://api.citypay.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BatchProcessingApi* | [**batchProcessRequest**](docs/BatchProcessingApi.md#batchProcessRequest) | **POST** /batch/process | Batch Process Request
-*BatchProcessingApi* | [**checkBatchStatusRequest**](docs/BatchProcessingApi.md#checkBatchStatusRequest) | **POST** /batch/status | CheckBatchStatus
-*BatchProcessingApi* | [**getBatchReportRequest**](docs/BatchProcessingApi.md#getBatchReportRequest) | **POST** /batch/retrieve | BatchReportRequest
-*CardHolderAccountApi* | [**accountCardDeleteRequest**](docs/CardHolderAccountApi.md#accountCardDeleteRequest) | **DELETE** /account/{accountid}/card/{cardId} | Card Deletion
-*CardHolderAccountApi* | [**accountCardRegisterRequest**](docs/CardHolderAccountApi.md#accountCardRegisterRequest) | **POST** /account/{accountid}/register | Card Registration
-*CardHolderAccountApi* | [**accountCardStatusRequest**](docs/CardHolderAccountApi.md#accountCardStatusRequest) | **POST** /account/{accountid}/card/{cardId}/status | Card Status
-*CardHolderAccountApi* | [**accountChangeContactRequest**](docs/CardHolderAccountApi.md#accountChangeContactRequest) | **POST** /account/{accountid}/contact | Contact Details Update
-*CardHolderAccountApi* | [**accountCreate**](docs/CardHolderAccountApi.md#accountCreate) | **POST** /account/create | Account Create
-*CardHolderAccountApi* | [**accountDeleteRequest**](docs/CardHolderAccountApi.md#accountDeleteRequest) | **DELETE** /account/{accountid} | Account Deletion
-*CardHolderAccountApi* | [**accountExistsRequest**](docs/CardHolderAccountApi.md#accountExistsRequest) | **GET** /account-exists/{accountid} | Account Exists
-*CardHolderAccountApi* | [**accountRetrieveRequest**](docs/CardHolderAccountApi.md#accountRetrieveRequest) | **GET** /account/{accountid} | Account Retrieval
-*CardHolderAccountApi* | [**accountStatusRequest**](docs/CardHolderAccountApi.md#accountStatusRequest) | **POST** /account/{accountid}/status | Account Status
-*CardHolderAccountApi* | [**chargeRequest**](docs/CardHolderAccountApi.md#chargeRequest) | **POST** /charge | Charge
-*OperationalApi* | [**aclCheckRequest**](docs/OperationalApi.md#aclCheckRequest) | **POST** /acl/check | ACL Check Request
-*OperationalApi* | [**listMerchantsRequest**](docs/OperationalApi.md#listMerchantsRequest) | **GET** /merchants/{clientid} | List Merchants Request
-*OperationalApi* | [**pingRequest**](docs/OperationalApi.md#pingRequest) | **POST** /ping | Ping Request
-*PaymentProcessingApi* | [**authorisationRequest**](docs/PaymentProcessingApi.md#authorisationRequest) | **POST** /authorise | Authorisation
-*PaymentProcessingApi* | [**binRangeLookupRequest**](docs/PaymentProcessingApi.md#binRangeLookupRequest) | **POST** /bin | Bin Lookup
-*PaymentProcessingApi* | [**cResRequest**](docs/PaymentProcessingApi.md#cResRequest) | **POST** /cres | CRes
-*PaymentProcessingApi* | [**captureRequest**](docs/PaymentProcessingApi.md#captureRequest) | **POST** /capture | Capture
-*PaymentProcessingApi* | [**paResRequest**](docs/PaymentProcessingApi.md#paResRequest) | **POST** /pares | PaRes
-*PaymentProcessingApi* | [**refundRequest**](docs/PaymentProcessingApi.md#refundRequest) | **POST** /refund | Refund
-*PaymentProcessingApi* | [**retrievalRequest**](docs/PaymentProcessingApi.md#retrievalRequest) | **POST** /retrieve | Retrieval
-*PaymentProcessingApi* | [**voidRequest**](docs/PaymentProcessingApi.md#voidRequest) | **POST** /void | Void
+*AuthorisationAndPaymentApiApi* | [**authorisationRequest**](docs/AuthorisationAndPaymentApiApi.md#authorisationRequest) | **POST** /v6/authorise | Authorisation
+*AuthorisationAndPaymentApiApi* | [**binRangeLookupRequest**](docs/AuthorisationAndPaymentApiApi.md#binRangeLookupRequest) | **POST** /v6/bin | Bin Lookup
+*AuthorisationAndPaymentApiApi* | [**cResRequest**](docs/AuthorisationAndPaymentApiApi.md#cResRequest) | **POST** /v6/cres | CRes
+*AuthorisationAndPaymentApiApi* | [**captureRequest**](docs/AuthorisationAndPaymentApiApi.md#captureRequest) | **POST** /v6/capture | Capture
+*AuthorisationAndPaymentApiApi* | [**paResRequest**](docs/AuthorisationAndPaymentApiApi.md#paResRequest) | **POST** /v6/pares | PaRes
+*AuthorisationAndPaymentApiApi* | [**refundRequest**](docs/AuthorisationAndPaymentApiApi.md#refundRequest) | **POST** /v6/refund | Refund
+*AuthorisationAndPaymentApiApi* | [**retrievalRequest**](docs/AuthorisationAndPaymentApiApi.md#retrievalRequest) | **POST** /v6/retrieve | Retrieval
+*AuthorisationAndPaymentApiApi* | [**voidRequest**](docs/AuthorisationAndPaymentApiApi.md#voidRequest) | **POST** /v6/void | Void
+*BatchProcessingApiApi* | [**batchProcessRequest**](docs/BatchProcessingApiApi.md#batchProcessRequest) | **POST** /v6/batch/process | Batch Process Request
+*BatchProcessingApiApi* | [**batchReportRequest**](docs/BatchProcessingApiApi.md#batchReportRequest) | **POST** /v6/batch/retrieve | BatchReportRequest
+*BatchProcessingApiApi* | [**checkBatchStatusRequest**](docs/BatchProcessingApiApi.md#checkBatchStatusRequest) | **POST** /v6/batch/status | CheckBatchStatus
+*CardHolderAccountApiApi* | [**accountCardDeleteRequest**](docs/CardHolderAccountApiApi.md#accountCardDeleteRequest) | **DELETE** /v6/account/{accountid}/card/{cardId} | Card Deletion
+*CardHolderAccountApiApi* | [**accountCardRegisterRequest**](docs/CardHolderAccountApiApi.md#accountCardRegisterRequest) | **POST** /v6/account/{accountid}/register | Card Registration
+*CardHolderAccountApiApi* | [**accountCardStatusRequest**](docs/CardHolderAccountApiApi.md#accountCardStatusRequest) | **POST** /v6/account/{accountid}/card/{cardId}/status | Card Status
+*CardHolderAccountApiApi* | [**accountChangeContactRequest**](docs/CardHolderAccountApiApi.md#accountChangeContactRequest) | **POST** /v6/account/{accountid}/contact | Contact Details Update
+*CardHolderAccountApiApi* | [**accountCreate**](docs/CardHolderAccountApiApi.md#accountCreate) | **POST** /v6/account/create | Account Create
+*CardHolderAccountApiApi* | [**accountDeleteRequest**](docs/CardHolderAccountApiApi.md#accountDeleteRequest) | **DELETE** /v6/account/{accountid} | Account Deletion
+*CardHolderAccountApiApi* | [**accountExistsRequest**](docs/CardHolderAccountApiApi.md#accountExistsRequest) | **GET** /v6/account-exists/{accountid} | Account Exists
+*CardHolderAccountApiApi* | [**accountRetrieveRequest**](docs/CardHolderAccountApiApi.md#accountRetrieveRequest) | **GET** /v6/account/{accountid} | Account Retrieval
+*CardHolderAccountApiApi* | [**accountStatusRequest**](docs/CardHolderAccountApiApi.md#accountStatusRequest) | **POST** /v6/account/{accountid}/status | Account Status
+*CardHolderAccountApiApi* | [**chargeRequest**](docs/CardHolderAccountApiApi.md#chargeRequest) | **POST** /v6/charge | Charge
+*DirectPostApiApi* | [**directCResAuthRequest**](docs/DirectPostApiApi.md#directCResAuthRequest) | **POST** /direct/cres/auth/{uuid} | Handles a CRes response from ACS, returning back the result of authorisation
+*DirectPostApiApi* | [**directCResTokeniseRequest**](docs/DirectPostApiApi.md#directCResTokeniseRequest) | **POST** /direct/cres/tokenise/{uuid} | Handles a CRes response from ACS, returning back a token for future authorisation
+*DirectPostApiApi* | [**directPostAuthRequest**](docs/DirectPostApiApi.md#directPostAuthRequest) | **POST** /direct/auth | Direct Post Auth Request
+*DirectPostApiApi* | [**directPostTokeniseRequest**](docs/DirectPostApiApi.md#directPostTokeniseRequest) | **POST** /direct/tokenise | Direct Post Tokenise Request
+*DirectPostApiApi* | [**tokenRequest**](docs/DirectPostApiApi.md#tokenRequest) | **POST** /direct/token | Direct Post Token Request
+*OperationalFunctionsApiApi* | [**aclCheckRequest**](docs/OperationalFunctionsApiApi.md#aclCheckRequest) | **POST** /v6/acl/check | ACL Check Request
+*OperationalFunctionsApiApi* | [**domainKeyCheckRequest**](docs/OperationalFunctionsApiApi.md#domainKeyCheckRequest) | **POST** /dk/check | Domain Key Check Request
+*OperationalFunctionsApiApi* | [**domainKeyGenRequest**](docs/OperationalFunctionsApiApi.md#domainKeyGenRequest) | **POST** /dk/gen | Domain Key Generation Request
+*OperationalFunctionsApiApi* | [**listMerchantsRequest**](docs/OperationalFunctionsApiApi.md#listMerchantsRequest) | **GET** /v6/merchants/{clientid} | List Merchants Request
+*OperationalFunctionsApiApi* | [**pingRequest**](docs/OperationalFunctionsApiApi.md#pingRequest) | **POST** /v6/ping | Ping Request
+*PaylinkApiApi* | [**tokenAdjustmentRequest**](docs/PaylinkApiApi.md#tokenAdjustmentRequest) | **POST** /paylink/{token}/adjustment | Paylink Token Adjustment
+*PaylinkApiApi* | [**tokenCloseRequest**](docs/PaylinkApiApi.md#tokenCloseRequest) | **PUT** /paylink/{token}/close | Close Paylink Token
+*PaylinkApiApi* | [**tokenCreateBillPaymentRequest**](docs/PaylinkApiApi.md#tokenCreateBillPaymentRequest) | **POST** /paylink/bill-payment | Create Bill Payment Paylink Token
+*PaylinkApiApi* | [**tokenCreateRequest**](docs/PaylinkApiApi.md#tokenCreateRequest) | **POST** /paylink/create | Create Paylink Token
+*PaylinkApiApi* | [**tokenReconciledRequest**](docs/PaylinkApiApi.md#tokenReconciledRequest) | **PUT** /paylink/{token}/reconciled | Reconcile Paylink Token
+*PaylinkApiApi* | [**tokenReopenRequest**](docs/PaylinkApiApi.md#tokenReopenRequest) | **PUT** /paylink/{token}/reopen | Reopen Paylink Token
+*PaylinkApiApi* | [**tokenStatusChangesRequest**](docs/PaylinkApiApi.md#tokenStatusChangesRequest) | **POST** /paylink/token/changes | Paylink Token Audit
+*PaylinkApiApi* | [**tokenStatusRequest**](docs/PaylinkApiApi.md#tokenStatusRequest) | **GET** /paylink/{token}/status | Paylink Token Status
 
 
 ## Documentation for Models
@@ -185,13 +198,41 @@ Class | Method | HTTP request | Description
  - [CheckBatchStatusResponse](docs/CheckBatchStatusResponse.md)
  - [ContactDetails](docs/ContactDetails.md)
  - [Decision](docs/Decision.md)
+ - [DirectPostRequest](docs/DirectPostRequest.md)
+ - [DirectTokenAuthRequest](docs/DirectTokenAuthRequest.md)
+ - [DomainKeyCheckRequest](docs/DomainKeyCheckRequest.md)
+ - [DomainKeyRequest](docs/DomainKeyRequest.md)
+ - [DomainKeyResponse](docs/DomainKeyResponse.md)
  - [Error](docs/Error.md)
+ - [EventDataModel](docs/EventDataModel.md)
  - [Exists](docs/Exists.md)
  - [ExternalMPI](docs/ExternalMPI.md)
  - [ListMerchantsResponse](docs/ListMerchantsResponse.md)
  - [MCC6012](docs/MCC6012.md)
  - [Merchant](docs/Merchant.md)
  - [PaResAuthRequest](docs/PaResAuthRequest.md)
+ - [PaylinkAddress](docs/PaylinkAddress.md)
+ - [PaylinkAdjustmentRequest](docs/PaylinkAdjustmentRequest.md)
+ - [PaylinkAttachmentRequest](docs/PaylinkAttachmentRequest.md)
+ - [PaylinkAttachmentResult](docs/PaylinkAttachmentResult.md)
+ - [PaylinkBillPaymentTokenRequest](docs/PaylinkBillPaymentTokenRequest.md)
+ - [PaylinkCardHolder](docs/PaylinkCardHolder.md)
+ - [PaylinkCart](docs/PaylinkCart.md)
+ - [PaylinkCartItemModel](docs/PaylinkCartItemModel.md)
+ - [PaylinkConfig](docs/PaylinkConfig.md)
+ - [PaylinkCustomParam](docs/PaylinkCustomParam.md)
+ - [PaylinkEmailNotificationPath](docs/PaylinkEmailNotificationPath.md)
+ - [PaylinkErrorCode](docs/PaylinkErrorCode.md)
+ - [PaylinkFieldGuardModel](docs/PaylinkFieldGuardModel.md)
+ - [PaylinkPartPayments](docs/PaylinkPartPayments.md)
+ - [PaylinkSMSNotificationPath](docs/PaylinkSMSNotificationPath.md)
+ - [PaylinkStateEvent](docs/PaylinkStateEvent.md)
+ - [PaylinkTokenCreated](docs/PaylinkTokenCreated.md)
+ - [PaylinkTokenRequestModel](docs/PaylinkTokenRequestModel.md)
+ - [PaylinkTokenStatus](docs/PaylinkTokenStatus.md)
+ - [PaylinkTokenStatusChangeRequest](docs/PaylinkTokenStatusChangeRequest.md)
+ - [PaylinkTokenStatusChangeResponse](docs/PaylinkTokenStatusChangeResponse.md)
+ - [PaylinkUI](docs/PaylinkUI.md)
  - [Ping](docs/Ping.md)
  - [ProcessBatchRequest](docs/ProcessBatchRequest.md)
  - [ProcessBatchResponse](docs/ProcessBatchResponse.md)
@@ -200,6 +241,7 @@ Class | Method | HTTP request | Description
  - [RequestChallenged](docs/RequestChallenged.md)
  - [RetrieveRequest](docs/RetrieveRequest.md)
  - [ThreeDSecure](docs/ThreeDSecure.md)
+ - [TokenisationResponseModel](docs/TokenisationResponseModel.md)
  - [VoidRequest](docs/VoidRequest.md)
 
 
@@ -211,6 +253,12 @@ Authentication schemes defined for the API:
 - **Type**: API key
 - **API key parameter name**: cp-api-key
 - **Location**: HTTP header
+
+### cp-domain-key
+
+- **Type**: API key
+- **API key parameter name**: cp-domain-key
+- **Location**: URL query string
 
 
 ## Recommendation
