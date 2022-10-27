@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security <aside class=\"notice\">   Before we begin a reminder that your application will need to adhere to PCI-DSS standards to operate safely   and to meet requirements set out by Visa and MasterCard and the PCI Security Standards Council including: </aside>  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -30,6 +30,34 @@ public class ThreeDSecure {
   public static final String SERIALIZED_NAME_ACCEPT_HEADERS = "accept_headers";
   @SerializedName(SERIALIZED_NAME_ACCEPT_HEADERS)
   private String acceptHeaders;
+
+  public static final String SERIALIZED_NAME_BROWSER_COLOR_DEPTH = "browserColorDepth";
+  @SerializedName(SERIALIZED_NAME_BROWSER_COLOR_DEPTH)
+  private String browserColorDepth;
+
+  public static final String SERIALIZED_NAME_BROWSER_I_P = "browserIP";
+  @SerializedName(SERIALIZED_NAME_BROWSER_I_P)
+  private String browserIP;
+
+  public static final String SERIALIZED_NAME_BROWSER_JAVA_ENABLED = "browserJavaEnabled";
+  @SerializedName(SERIALIZED_NAME_BROWSER_JAVA_ENABLED)
+  private String browserJavaEnabled;
+
+  public static final String SERIALIZED_NAME_BROWSER_LANGUAGE = "browserLanguage";
+  @SerializedName(SERIALIZED_NAME_BROWSER_LANGUAGE)
+  private String browserLanguage;
+
+  public static final String SERIALIZED_NAME_BROWSER_SCREEN_HEIGHT = "browserScreenHeight";
+  @SerializedName(SERIALIZED_NAME_BROWSER_SCREEN_HEIGHT)
+  private String browserScreenHeight;
+
+  public static final String SERIALIZED_NAME_BROWSER_SCREEN_WIDTH = "browserScreenWidth";
+  @SerializedName(SERIALIZED_NAME_BROWSER_SCREEN_WIDTH)
+  private String browserScreenWidth;
+
+  public static final String SERIALIZED_NAME_BROWSER_T_Z = "browserTZ";
+  @SerializedName(SERIALIZED_NAME_BROWSER_T_Z)
+  private String browserTZ;
 
   public static final String SERIALIZED_NAME_CP_BX = "cp_bx";
   @SerializedName(SERIALIZED_NAME_CP_BX)
@@ -72,6 +100,167 @@ public class ThreeDSecure {
 
   public void setAcceptHeaders(String acceptHeaders) {
     this.acceptHeaders = acceptHeaders;
+  }
+
+
+  public ThreeDSecure browserColorDepth(String browserColorDepth) {
+    
+    this.browserColorDepth = browserColorDepth;
+    return this;
+  }
+
+   /**
+   * BrowserColorDepth field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
+   * @return browserColorDepth
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "BrowserColorDepth field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the `bx` function to gather this value.")
+
+  public String getBrowserColorDepth() {
+    return browserColorDepth;
+  }
+
+
+  public void setBrowserColorDepth(String browserColorDepth) {
+    this.browserColorDepth = browserColorDepth;
+  }
+
+
+  public ThreeDSecure browserIP(String browserIP) {
+    
+    this.browserIP = browserIP;
+    return this;
+  }
+
+   /**
+   * BrowserIP field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
+   * @return browserIP
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "BrowserIP field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the `bx` function to gather this value.")
+
+  public String getBrowserIP() {
+    return browserIP;
+  }
+
+
+  public void setBrowserIP(String browserIP) {
+    this.browserIP = browserIP;
+  }
+
+
+  public ThreeDSecure browserJavaEnabled(String browserJavaEnabled) {
+    
+    this.browserJavaEnabled = browserJavaEnabled;
+    return this;
+  }
+
+   /**
+   * BrowserJavaEnabled field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
+   * @return browserJavaEnabled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "BrowserJavaEnabled field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the `bx` function to gather this value.")
+
+  public String getBrowserJavaEnabled() {
+    return browserJavaEnabled;
+  }
+
+
+  public void setBrowserJavaEnabled(String browserJavaEnabled) {
+    this.browserJavaEnabled = browserJavaEnabled;
+  }
+
+
+  public ThreeDSecure browserLanguage(String browserLanguage) {
+    
+    this.browserLanguage = browserLanguage;
+    return this;
+  }
+
+   /**
+   * BrowserLanguage field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
+   * @return browserLanguage
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "BrowserLanguage field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the `bx` function to gather this value.")
+
+  public String getBrowserLanguage() {
+    return browserLanguage;
+  }
+
+
+  public void setBrowserLanguage(String browserLanguage) {
+    this.browserLanguage = browserLanguage;
+  }
+
+
+  public ThreeDSecure browserScreenHeight(String browserScreenHeight) {
+    
+    this.browserScreenHeight = browserScreenHeight;
+    return this;
+  }
+
+   /**
+   * BrowserScreenHeight field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
+   * @return browserScreenHeight
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "BrowserScreenHeight field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the `bx` function to gather this value.")
+
+  public String getBrowserScreenHeight() {
+    return browserScreenHeight;
+  }
+
+
+  public void setBrowserScreenHeight(String browserScreenHeight) {
+    this.browserScreenHeight = browserScreenHeight;
+  }
+
+
+  public ThreeDSecure browserScreenWidth(String browserScreenWidth) {
+    
+    this.browserScreenWidth = browserScreenWidth;
+    return this;
+  }
+
+   /**
+   * BrowserScreenWidth field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
+   * @return browserScreenWidth
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "BrowserScreenWidth field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the `bx` function to gather this value.")
+
+  public String getBrowserScreenWidth() {
+    return browserScreenWidth;
+  }
+
+
+  public void setBrowserScreenWidth(String browserScreenWidth) {
+    this.browserScreenWidth = browserScreenWidth;
+  }
+
+
+  public ThreeDSecure browserTZ(String browserTZ) {
+    
+    this.browserTZ = browserTZ;
+    return this;
+  }
+
+   /**
+   * BrowserTZ field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
+   * @return browserTZ
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "BrowserTZ field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the `bx` function to gather this value.")
+
+  public String getBrowserTZ() {
+    return browserTZ;
+  }
+
+
+  public void setBrowserTZ(String browserTZ) {
+    this.browserTZ = browserTZ;
   }
 
 
@@ -200,6 +389,13 @@ public class ThreeDSecure {
     }
     ThreeDSecure threeDSecure = (ThreeDSecure) o;
     return Objects.equals(this.acceptHeaders, threeDSecure.acceptHeaders) &&
+        Objects.equals(this.browserColorDepth, threeDSecure.browserColorDepth) &&
+        Objects.equals(this.browserIP, threeDSecure.browserIP) &&
+        Objects.equals(this.browserJavaEnabled, threeDSecure.browserJavaEnabled) &&
+        Objects.equals(this.browserLanguage, threeDSecure.browserLanguage) &&
+        Objects.equals(this.browserScreenHeight, threeDSecure.browserScreenHeight) &&
+        Objects.equals(this.browserScreenWidth, threeDSecure.browserScreenWidth) &&
+        Objects.equals(this.browserTZ, threeDSecure.browserTZ) &&
         Objects.equals(this.cpBx, threeDSecure.cpBx) &&
         Objects.equals(this.downgrade1, threeDSecure.downgrade1) &&
         Objects.equals(this.merchantTermurl, threeDSecure.merchantTermurl) &&
@@ -209,7 +405,7 @@ public class ThreeDSecure {
 
   @Override
   public int hashCode() {
-    return Objects.hash(acceptHeaders, cpBx, downgrade1, merchantTermurl, tdsPolicy, userAgent);
+    return Objects.hash(acceptHeaders, browserColorDepth, browserIP, browserJavaEnabled, browserLanguage, browserScreenHeight, browserScreenWidth, browserTZ, cpBx, downgrade1, merchantTermurl, tdsPolicy, userAgent);
   }
 
   @Override
@@ -217,6 +413,13 @@ public class ThreeDSecure {
     StringBuilder sb = new StringBuilder();
     sb.append("class ThreeDSecure {\n");
     sb.append("    acceptHeaders: ").append(toIndentedString(acceptHeaders)).append("\n");
+    sb.append("    browserColorDepth: ").append(toIndentedString(browserColorDepth)).append("\n");
+    sb.append("    browserIP: ").append(toIndentedString(browserIP)).append("\n");
+    sb.append("    browserJavaEnabled: ").append(toIndentedString(browserJavaEnabled)).append("\n");
+    sb.append("    browserLanguage: ").append(toIndentedString(browserLanguage)).append("\n");
+    sb.append("    browserScreenHeight: ").append(toIndentedString(browserScreenHeight)).append("\n");
+    sb.append("    browserScreenWidth: ").append(toIndentedString(browserScreenWidth)).append("\n");
+    sb.append("    browserTZ: ").append(toIndentedString(browserTZ)).append("\n");
     sb.append("    cpBx: ").append(toIndentedString(cpBx)).append("\n");
     sb.append("    downgrade1: ").append(toIndentedString(downgrade1)).append("\n");
     sb.append("    merchantTermurl: ").append(toIndentedString(merchantTermurl)).append("\n");

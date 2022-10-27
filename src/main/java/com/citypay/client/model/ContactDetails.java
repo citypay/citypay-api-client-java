@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security <aside class=\"notice\">   Before we begin a reminder that your application will need to adhere to PCI-DSS standards to operate safely   and to meet requirements set out by Visa and MasterCard and the PCI Security Standards Council including: </aside>  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -87,11 +87,11 @@ public class ContactDetails {
   }
 
    /**
-   * The first line of the address for the card holder.
+   * The first line of the address for the shipping contact.
    * @return address1
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "79 Parliament St", value = "The first line of the address for the card holder.")
+  @ApiModelProperty(example = "79 Parliament St", value = "The first line of the address for the shipping contact.")
 
   public String getAddress1() {
     return address1;
@@ -110,11 +110,11 @@ public class ContactDetails {
   }
 
    /**
-   * The second line of the address for the card holder.
+   * The second line of the address for the shipping contact.
    * @return address2
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Westminster", value = "The second line of the address for the card holder.")
+  @ApiModelProperty(example = "Westminster", value = "The second line of the address for the shipping contact.")
 
   public String getAddress2() {
     return address2;
@@ -133,11 +133,11 @@ public class ContactDetails {
   }
 
    /**
-   * The third line of the address for the card holder.
+   * The third line of the address for the shipping contact.
    * @return address3
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The third line of the address for the card holder.")
+  @ApiModelProperty(value = "The third line of the address for the shipping contact.")
 
   public String getAddress3() {
     return address3;
@@ -156,11 +156,11 @@ public class ContactDetails {
   }
 
    /**
-   * The area such as city, department, parish for the card holder.
+   * The area such as city, department, parish for the shipping contact.
    * @return area
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "London", value = "The area such as city, department, parish for the card holder.")
+  @ApiModelProperty(example = "London", value = "The area such as city, department, parish for the shipping contact.")
 
   public String getArea() {
     return area;
@@ -179,11 +179,11 @@ public class ContactDetails {
   }
 
    /**
-   * The company name for the card holder if the contact is a corporate contact.
+   * The company name for the shipping contact if the contact is a corporate contact.
    * @return company
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Acme Ltd", value = "The company name for the card holder if the contact is a corporate contact.")
+  @ApiModelProperty(example = "Acme Ltd", value = "The company name for the shipping contact if the contact is a corporate contact.")
 
   public String getCompany() {
     return company;
@@ -225,11 +225,11 @@ public class ContactDetails {
   }
 
    /**
-   * An email address for the card holder which may be used for correspondence.
+   * An email address for the shipping contact which may be used for correspondence.
    * @return email
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "card.holder@citypay.com", value = "An email address for the card holder which may be used for correspondence.")
+  @ApiModelProperty(example = "card.holder@citypay.com", value = "An email address for the shipping contact which may be used for correspondence.")
 
   public String getEmail() {
     return email;
@@ -248,11 +248,11 @@ public class ContactDetails {
   }
 
    /**
-   * The first name  of the card holder.
+   * The first name  of the shipping contact.
    * @return firstname
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "John", value = "The first name  of the card holder.")
+  @ApiModelProperty(example = "John", value = "The first name  of the shipping contact.")
 
   public String getFirstname() {
     return firstname;
@@ -271,11 +271,11 @@ public class ContactDetails {
   }
 
    /**
-   * The last name or surname of the card holder.
+   * The last name or surname of the shipping contact.
    * @return lastname
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Smith", value = "The last name or surname of the card holder.")
+  @ApiModelProperty(example = "Smith", value = "The last name or surname of the shipping contact.")
 
   public String getLastname() {
     return lastname;
@@ -294,11 +294,11 @@ public class ContactDetails {
   }
 
    /**
-   * A mobile number for the card holder the mobile number is often required by delivery companies to ensure they are able to be in contact when required.
+   * A mobile number for the shipping contact the mobile number is often required by delivery companies to ensure they are able to be in contact when required.
    * @return mobileNo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "447790123456", value = "A mobile number for the card holder the mobile number is often required by delivery companies to ensure they are able to be in contact when required.")
+  @ApiModelProperty(example = "447790123456", value = "A mobile number for the shipping contact the mobile number is often required by delivery companies to ensure they are able to be in contact when required.")
 
   public String getMobileNo() {
     return mobileNo;
@@ -340,11 +340,11 @@ public class ContactDetails {
   }
 
    /**
-   * A telephone number for the card holder.
+   * A telephone number for the shipping contact.
    * @return telephoneNo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "442030123456", value = "A telephone number for the card holder.")
+  @ApiModelProperty(example = "442030123456", value = "A telephone number for the shipping contact.")
 
   public String getTelephoneNo() {
     return telephoneNo;
@@ -363,11 +363,11 @@ public class ContactDetails {
   }
 
    /**
-   * A title for the card holder such as Mr, Mrs, Ms, M. Mme. etc.
+   * A title for the shipping contact such as Mr, Mrs, Ms, M. Mme. etc.
    * @return title
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Mr", value = "A title for the card holder such as Mr, Mrs, Ms, M. Mme. etc.")
+  @ApiModelProperty(example = "Mr", value = "A title for the shipping contact such as Mr, Mrs, Ms, M. Mme. etc.")
 
   public String getTitle() {
     return title;

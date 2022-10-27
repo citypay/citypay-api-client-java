@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security <aside class=\"notice\">   Before we begin a reminder that your application will need to adhere to PCI-DSS standards to operate safely   and to meet requirements set out by Visa and MasterCard and the PCI Security Standards Council including: </aside>  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -15,6 +15,7 @@ package com.citypay.client.model;
 import java.util.Objects;
 import java.util.Arrays;
 import com.citypay.client.model.AirlineAdvice;
+import com.citypay.client.model.EventDataModel;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -35,6 +36,10 @@ public class CaptureRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
   private Integer amount;
+
+  public static final String SERIALIZED_NAME_EVENT_MANAGEMENT = "event_management";
+  @SerializedName(SERIALIZED_NAME_EVENT_MANAGEMENT)
+  private EventDataModel eventManagement;
 
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
@@ -92,6 +97,29 @@ public class CaptureRequest {
 
   public void setAmount(Integer amount) {
     this.amount = amount;
+  }
+
+
+  public CaptureRequest eventManagement(EventDataModel eventManagement) {
+    
+    this.eventManagement = eventManagement;
+    return this;
+  }
+
+   /**
+   * Get eventManagement
+   * @return eventManagement
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public EventDataModel getEventManagement() {
+    return eventManagement;
+  }
+
+
+  public void setEventManagement(EventDataModel eventManagement) {
+    this.eventManagement = eventManagement;
   }
 
 
@@ -175,6 +203,7 @@ public class CaptureRequest {
     CaptureRequest captureRequest = (CaptureRequest) o;
     return Objects.equals(this.airlineData, captureRequest.airlineData) &&
         Objects.equals(this.amount, captureRequest.amount) &&
+        Objects.equals(this.eventManagement, captureRequest.eventManagement) &&
         Objects.equals(this.identifier, captureRequest.identifier) &&
         Objects.equals(this.merchantid, captureRequest.merchantid) &&
         Objects.equals(this.transno, captureRequest.transno);
@@ -182,7 +211,7 @@ public class CaptureRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(airlineData, amount, identifier, merchantid, transno);
+    return Objects.hash(airlineData, amount, eventManagement, identifier, merchantid, transno);
   }
 
   @Override
@@ -191,6 +220,7 @@ public class CaptureRequest {
     sb.append("class CaptureRequest {\n");
     sb.append("    airlineData: ").append(toIndentedString(airlineData)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    eventManagement: ").append(toIndentedString(eventManagement)).append("\n");
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
     sb.append("    merchantid: ").append(toIndentedString(merchantid)).append("\n");
     sb.append("    transno: ").append(toIndentedString(transno)).append("\n");

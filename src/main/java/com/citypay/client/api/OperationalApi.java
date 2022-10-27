@@ -78,7 +78,7 @@ public class OperationalApi {
         Object localVarPostBody = aclCheckRequest;
 
         // create path and map variables
-        String localVarPath = "/acl/check";
+        String localVarPath = "/v6/acl/check";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -205,7 +205,7 @@ public class OperationalApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/merchants/{clientid}"
+        String localVarPath = "/v6/merchants/{clientid}"
             .replaceAll("\\{" + "clientid" + "\\}", localVarApiClient.escapeString(clientid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -333,7 +333,7 @@ public class OperationalApi {
         Object localVarPostBody = ping;
 
         // create path and map variables
-        String localVarPath = "/ping";
+        String localVarPath = "/v6/ping";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();

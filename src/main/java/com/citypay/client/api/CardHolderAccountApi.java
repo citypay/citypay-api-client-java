@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security <aside class=\"notice\">   Before we begin a reminder that your application will need to adhere to PCI-DSS standards to operate safely   and to meet requirements set out by Visa and MasterCard and the PCI Security Standards Council including: </aside>  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -78,13 +78,14 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountCardDeleteRequestCall(String accountid, String cardId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/account/{accountid}/card/{cardId}"
+        String localVarPath = "/v6/account/{accountid}/card/{cardId}"
             .replaceAll("\\{" + "accountid" + "\\}", localVarApiClient.escapeString(accountid.toString()))
             .replaceAll("\\{" + "cardId" + "\\}", localVarApiClient.escapeString(cardId.toString()));
 
@@ -146,6 +147,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public Acknowledgement accountCardDeleteRequest(String accountid, String cardId) throws ApiException {
@@ -168,6 +170,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Acknowledgement> accountCardDeleteRequestWithHttpInfo(String accountid, String cardId) throws ApiException {
@@ -192,6 +195,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountCardDeleteRequestAsync(String accountid, String cardId, final ApiCallback<Acknowledgement> _callback) throws ApiException {
@@ -216,13 +220,14 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountCardRegisterRequestCall(String accountid, RegisterCard registerCard, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = registerCard;
 
         // create path and map variables
-        String localVarPath = "/account/{accountid}/register"
+        String localVarPath = "/v6/account/{accountid}/register"
             .replaceAll("\\{" + "accountid" + "\\}", localVarApiClient.escapeString(accountid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -283,6 +288,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public CardHolderAccount accountCardRegisterRequest(String accountid, RegisterCard registerCard) throws ApiException {
@@ -305,6 +311,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<CardHolderAccount> accountCardRegisterRequestWithHttpInfo(String accountid, RegisterCard registerCard) throws ApiException {
@@ -329,6 +336,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountCardRegisterRequestAsync(String accountid, RegisterCard registerCard, final ApiCallback<CardHolderAccount> _callback) throws ApiException {
@@ -349,18 +357,19 @@ public class CardHolderAccountApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> &lt;/br&gt;Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountCardStatusRequestCall(String accountid, String cardId, CardStatus cardStatus, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = cardStatus;
 
         // create path and map variables
-        String localVarPath = "/account/{accountid}/card/{cardId}/status"
+        String localVarPath = "/v6/account/{accountid}/card/{cardId}/status"
             .replaceAll("\\{" + "accountid" + "\\}", localVarApiClient.escapeString(accountid.toString()))
             .replaceAll("\\{" + "cardId" + "\\}", localVarApiClient.escapeString(cardId.toString()));
 
@@ -423,11 +432,12 @@ public class CardHolderAccountApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> &lt;/br&gt;Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public Acknowledgement accountCardStatusRequest(String accountid, String cardId, CardStatus cardStatus) throws ApiException {
@@ -446,11 +456,12 @@ public class CardHolderAccountApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> &lt;/br&gt;Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Acknowledgement> accountCardStatusRequestWithHttpInfo(String accountid, String cardId, CardStatus cardStatus) throws ApiException {
@@ -471,11 +482,12 @@ public class CardHolderAccountApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> &lt;/br&gt;Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountCardStatusRequestAsync(String accountid, String cardId, CardStatus cardStatus, final ApiCallback<Acknowledgement> _callback) throws ApiException {
@@ -500,13 +512,14 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountChangeContactRequestCall(String accountid, ContactDetails contactDetails, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = contactDetails;
 
         // create path and map variables
-        String localVarPath = "/account/{accountid}/contact"
+        String localVarPath = "/v6/account/{accountid}/contact"
             .replaceAll("\\{" + "accountid" + "\\}", localVarApiClient.escapeString(accountid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -567,6 +580,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public CardHolderAccount accountChangeContactRequest(String accountid, ContactDetails contactDetails) throws ApiException {
@@ -589,6 +603,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<CardHolderAccount> accountChangeContactRequestWithHttpInfo(String accountid, ContactDetails contactDetails) throws ApiException {
@@ -613,6 +628,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountChangeContactRequestAsync(String accountid, ContactDetails contactDetails, final ApiCallback<CardHolderAccount> _callback) throws ApiException {
@@ -636,13 +652,14 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountCreateCall(AccountCreate accountCreate, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = accountCreate;
 
         // create path and map variables
-        String localVarPath = "/account/create";
+        String localVarPath = "/v6/account/create";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -696,6 +713,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public CardHolderAccount accountCreate(AccountCreate accountCreate) throws ApiException {
@@ -717,6 +735,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<CardHolderAccount> accountCreateWithHttpInfo(AccountCreate accountCreate) throws ApiException {
@@ -740,6 +759,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountCreateAsync(AccountCreate accountCreate, final ApiCallback<CardHolderAccount> _callback) throws ApiException {
@@ -763,13 +783,14 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountDeleteRequestCall(String accountid, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/account/{accountid}"
+        String localVarPath = "/v6/account/{accountid}"
             .replaceAll("\\{" + "accountid" + "\\}", localVarApiClient.escapeString(accountid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -824,6 +845,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public Acknowledgement accountDeleteRequest(String accountid) throws ApiException {
@@ -845,6 +867,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Acknowledgement> accountDeleteRequestWithHttpInfo(String accountid) throws ApiException {
@@ -868,6 +891,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountDeleteRequestAsync(String accountid, final ApiCallback<Acknowledgement> _callback) throws ApiException {
@@ -891,13 +915,14 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountExistsRequestCall(String accountid, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/account-exists/{accountid}"
+        String localVarPath = "/v6/account-exists/{accountid}"
             .replaceAll("\\{" + "accountid" + "\\}", localVarApiClient.escapeString(accountid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -940,7 +965,7 @@ public class CardHolderAccountApi {
 
     /**
      * Account Exists
-     * Checks that an account exists and is active by providing the account id as a url parameter  Checks that an account exists and is active by providing the account id as a url parameter. 
+     * Checks that an account exists and is active by providing the account id as a url parameter. 
      * @param accountid The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. (required)
      * @return Exists
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -952,6 +977,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public Exists accountExistsRequest(String accountid) throws ApiException {
@@ -961,7 +987,7 @@ public class CardHolderAccountApi {
 
     /**
      * Account Exists
-     * Checks that an account exists and is active by providing the account id as a url parameter  Checks that an account exists and is active by providing the account id as a url parameter. 
+     * Checks that an account exists and is active by providing the account id as a url parameter. 
      * @param accountid The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. (required)
      * @return ApiResponse&lt;Exists&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -973,6 +999,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Exists> accountExistsRequestWithHttpInfo(String accountid) throws ApiException {
@@ -983,7 +1010,7 @@ public class CardHolderAccountApi {
 
     /**
      * Account Exists (asynchronously)
-     * Checks that an account exists and is active by providing the account id as a url parameter  Checks that an account exists and is active by providing the account id as a url parameter. 
+     * Checks that an account exists and is active by providing the account id as a url parameter. 
      * @param accountid The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -996,6 +1023,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountExistsRequestAsync(String accountid, final ApiCallback<Exists> _callback) throws ApiException {
@@ -1019,13 +1047,14 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountRetrieveRequestCall(String accountid, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/account/{accountid}"
+        String localVarPath = "/v6/account/{accountid}"
             .replaceAll("\\{" + "accountid" + "\\}", localVarApiClient.escapeString(accountid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1080,6 +1109,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public CardHolderAccount accountRetrieveRequest(String accountid) throws ApiException {
@@ -1101,6 +1131,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<CardHolderAccount> accountRetrieveRequestWithHttpInfo(String accountid) throws ApiException {
@@ -1124,6 +1155,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountRetrieveRequestAsync(String accountid, final ApiCallback<CardHolderAccount> _callback) throws ApiException {
@@ -1148,13 +1180,14 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountStatusRequestCall(String accountid, AccountStatus accountStatus, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = accountStatus;
 
         // create path and map variables
-        String localVarPath = "/account/{accountid}/status"
+        String localVarPath = "/v6/account/{accountid}/status"
             .replaceAll("\\{" + "accountid" + "\\}", localVarApiClient.escapeString(accountid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1215,6 +1248,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public Acknowledgement accountStatusRequest(String accountid, AccountStatus accountStatus) throws ApiException {
@@ -1237,6 +1271,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Acknowledgement> accountStatusRequestWithHttpInfo(String accountid, AccountStatus accountStatus) throws ApiException {
@@ -1261,6 +1296,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call accountStatusRequestAsync(String accountid, AccountStatus accountStatus, final ApiCallback<Acknowledgement> _callback) throws ApiException {
@@ -1284,13 +1320,14 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call chargeRequestCall(ChargeRequest chargeRequest, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = chargeRequest;
 
         // create path and map variables
-        String localVarPath = "/charge";
+        String localVarPath = "/v6/charge";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1344,6 +1381,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public Decision chargeRequest(ChargeRequest chargeRequest) throws ApiException {
@@ -1365,6 +1403,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Decision> chargeRequestWithHttpInfo(ChargeRequest chargeRequest) throws ApiException {
@@ -1388,6 +1427,7 @@ public class CardHolderAccountApi {
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call chargeRequestAsync(ChargeRequest chargeRequest, final ApiCallback<Decision> _callback) throws ApiException {
