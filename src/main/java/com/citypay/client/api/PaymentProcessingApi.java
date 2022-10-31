@@ -86,7 +86,7 @@ public class PaymentProcessingApi {
         Object localVarPostBody = authRequest;
 
         // create path and map variables
-        String localVarPath = "/authorise";
+        String localVarPath = "/v6/authorise";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -213,7 +213,7 @@ public class PaymentProcessingApi {
         Object localVarPostBody = binLookup;
 
         // create path and map variables
-        String localVarPath = "/bin";
+        String localVarPath = "/v6/bin";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -340,7 +340,7 @@ public class PaymentProcessingApi {
         Object localVarPostBody = cresAuthRequest;
 
         // create path and map variables
-        String localVarPath = "/cres";
+        String localVarPath = "/v6/cres";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -467,7 +467,7 @@ public class PaymentProcessingApi {
         Object localVarPostBody = captureRequest;
 
         // create path and map variables
-        String localVarPath = "/capture";
+        String localVarPath = "/v6/capture";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -594,7 +594,7 @@ public class PaymentProcessingApi {
         Object localVarPostBody = paResAuthRequest;
 
         // create path and map variables
-        String localVarPath = "/pares";
+        String localVarPath = "/v6/pares";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -721,7 +721,7 @@ public class PaymentProcessingApi {
         Object localVarPostBody = refundRequest;
 
         // create path and map variables
-        String localVarPath = "/refund";
+        String localVarPath = "/v6/refund";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -848,7 +848,7 @@ public class PaymentProcessingApi {
         Object localVarPostBody = retrieveRequest;
 
         // create path and map variables
-        String localVarPath = "/retrieve";
+        String localVarPath = "/v6/retrieve";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -975,7 +975,7 @@ public class PaymentProcessingApi {
         Object localVarPostBody = voidRequest;
 
         // create path and map variables
-        String localVarPath = "/void";
+        String localVarPath = "/v6/void";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();

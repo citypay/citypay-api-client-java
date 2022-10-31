@@ -55,7 +55,7 @@ public class ApiSandboxTest_IT {
             }
         }
         defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://sandbox.citypay.com/v6");
+        defaultClient.setBasePath("https://sandbox.citypay.com");
 
         // Configure API key authorization: cp-api-key
         ApiKeyAuth cpApiKey = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");

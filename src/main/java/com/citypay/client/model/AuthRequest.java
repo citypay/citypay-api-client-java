@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security <aside class=\"notice\">   Before we begin a reminder that your application will need to adhere to PCI-DSS standards to operate safely   and to meet requirements set out by Visa and MasterCard and the PCI Security Standards Council including: </aside>  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -16,6 +16,7 @@ import java.util.Objects;
 import java.util.Arrays;
 import com.citypay.client.model.AirlineAdvice;
 import com.citypay.client.model.ContactDetails;
+import com.citypay.client.model.EventDataModel;
 import com.citypay.client.model.ExternalMPI;
 import com.citypay.client.model.MCC6012;
 import com.citypay.client.model.ThreeDSecure;
@@ -67,6 +68,10 @@ public class AuthRequest {
   public static final String SERIALIZED_NAME_DUPLICATE_POLICY = "duplicate_policy";
   @SerializedName(SERIALIZED_NAME_DUPLICATE_POLICY)
   private String duplicatePolicy;
+
+  public static final String SERIALIZED_NAME_EVENT_MANAGEMENT = "event_management";
+  @SerializedName(SERIALIZED_NAME_EVENT_MANAGEMENT)
+  private EventDataModel eventManagement;
 
   public static final String SERIALIZED_NAME_EXPMONTH = "expmonth";
   @SerializedName(SERIALIZED_NAME_EXPMONTH)
@@ -321,6 +326,29 @@ public class AuthRequest {
 
   public void setDuplicatePolicy(String duplicatePolicy) {
     this.duplicatePolicy = duplicatePolicy;
+  }
+
+
+  public AuthRequest eventManagement(EventDataModel eventManagement) {
+    
+    this.eventManagement = eventManagement;
+    return this;
+  }
+
+   /**
+   * Get eventManagement
+   * @return eventManagement
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public EventDataModel getEventManagement() {
+    return eventManagement;
+  }
+
+
+  public void setEventManagement(EventDataModel eventManagement) {
+    this.eventManagement = eventManagement;
   }
 
 
@@ -622,6 +650,7 @@ public class AuthRequest {
         Objects.equals(this.cscPolicy, authRequest.cscPolicy) &&
         Objects.equals(this.currency, authRequest.currency) &&
         Objects.equals(this.duplicatePolicy, authRequest.duplicatePolicy) &&
+        Objects.equals(this.eventManagement, authRequest.eventManagement) &&
         Objects.equals(this.expmonth, authRequest.expmonth) &&
         Objects.equals(this.expyear, authRequest.expyear) &&
         Objects.equals(this.externalMpi, authRequest.externalMpi) &&
@@ -638,7 +667,7 @@ public class AuthRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(airlineData, amount, avsPostcodePolicy, billTo, cardnumber, csc, cscPolicy, currency, duplicatePolicy, expmonth, expyear, externalMpi, identifier, matchAvsa, mcc6012, merchantid, nameOnCard, shipTo, threedsecure, transInfo, transType);
+    return Objects.hash(airlineData, amount, avsPostcodePolicy, billTo, cardnumber, csc, cscPolicy, currency, duplicatePolicy, eventManagement, expmonth, expyear, externalMpi, identifier, matchAvsa, mcc6012, merchantid, nameOnCard, shipTo, threedsecure, transInfo, transType);
   }
 
   @Override
@@ -654,6 +683,7 @@ public class AuthRequest {
     sb.append("    cscPolicy: ").append(toIndentedString(cscPolicy)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    duplicatePolicy: ").append(toIndentedString(duplicatePolicy)).append("\n");
+    sb.append("    eventManagement: ").append(toIndentedString(eventManagement)).append("\n");
     sb.append("    expmonth: ").append(toIndentedString(expmonth)).append("\n");
     sb.append("    expyear: ").append(toIndentedString(expyear)).append("\n");
     sb.append("    externalMpi: ").append(toIndentedString(externalMpi)).append("\n");
