@@ -29,6 +29,26 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.citypay.client.JSON;
+
 /**
  * AuthRequest
  */
@@ -121,6 +141,8 @@ public class AuthRequest {
   @SerializedName(SERIALIZED_NAME_TRANS_TYPE)
   private String transType;
 
+  public AuthRequest() {
+  }
 
   public AuthRequest airlineData(AirlineAdvice airlineData) {
     
@@ -248,7 +270,7 @@ public class AuthRequest {
    * @return csc
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "12", value = "The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card (American Express has it on the front). The value helps to identify posession of the card as it is not available within the chip or magnetic swipe.  When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped out by any integer parsing.  The CSC number aids fraud prevention in Mail Order and Internet payments.  Business rules are available on your account to identify whether to accept or decline transactions based on mismatched results of the CSC.  The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored.  This applies to all entities handling card data.  It should also not be used in any hashing process.  CityPay do not store the value and have no method of retrieving the value once the transaction has been processed. For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm. ")
+  @ApiModelProperty(example = "10", value = "The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card (American Express has it on the front). The value helps to identify posession of the card as it is not available within the chip or magnetic swipe.  When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped out by any integer parsing.  The CSC number aids fraud prevention in Mail Order and Internet payments.  Business rules are available on your account to identify whether to accept or decline transactions based on mismatched results of the CSC.  The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored.  This applies to all entities handling card data.  It should also not be used in any hashing process.  CityPay do not store the value and have no method of retrieving the value once the transaction has been processed. For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm. ")
 
   public String getCsc() {
     return csc;
@@ -632,6 +654,7 @@ public class AuthRequest {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -711,5 +734,185 @@ public class AuthRequest {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("airline_data");
+    openapiFields.add("amount");
+    openapiFields.add("avs_postcode_policy");
+    openapiFields.add("bill_to");
+    openapiFields.add("cardnumber");
+    openapiFields.add("csc");
+    openapiFields.add("csc_policy");
+    openapiFields.add("currency");
+    openapiFields.add("duplicate_policy");
+    openapiFields.add("event_management");
+    openapiFields.add("expmonth");
+    openapiFields.add("expyear");
+    openapiFields.add("external_mpi");
+    openapiFields.add("identifier");
+    openapiFields.add("match_avsa");
+    openapiFields.add("mcc6012");
+    openapiFields.add("merchantid");
+    openapiFields.add("name_on_card");
+    openapiFields.add("ship_to");
+    openapiFields.add("threedsecure");
+    openapiFields.add("trans_info");
+    openapiFields.add("trans_type");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("amount");
+    openapiRequiredFields.add("cardnumber");
+    openapiRequiredFields.add("expmonth");
+    openapiRequiredFields.add("expyear");
+    openapiRequiredFields.add("identifier");
+    openapiRequiredFields.add("merchantid");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to AuthRequest
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (AuthRequest.openapiRequiredFields.isEmpty()) {
+          return;
+        } else { // has required fields
+          throw new IllegalArgumentException(String.format("The required field(s) %s in AuthRequest is not found in the empty JSON string", AuthRequest.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!AuthRequest.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuthRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : AuthRequest.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      // validate the optional field `airline_data`
+      if (jsonObj.get("airline_data") != null && !jsonObj.get("airline_data").isJsonNull()) {
+        AirlineAdvice.validateJsonObject(jsonObj.getAsJsonObject("airline_data"));
+      }
+      if ((jsonObj.get("avs_postcode_policy") != null && !jsonObj.get("avs_postcode_policy").isJsonNull()) && !jsonObj.get("avs_postcode_policy").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `avs_postcode_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("avs_postcode_policy").toString()));
+      }
+      // validate the optional field `bill_to`
+      if (jsonObj.get("bill_to") != null && !jsonObj.get("bill_to").isJsonNull()) {
+        ContactDetails.validateJsonObject(jsonObj.getAsJsonObject("bill_to"));
+      }
+      if ((jsonObj.get("cardnumber") != null && !jsonObj.get("cardnumber").isJsonNull()) && !jsonObj.get("cardnumber").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cardnumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cardnumber").toString()));
+      }
+      if ((jsonObj.get("csc") != null && !jsonObj.get("csc").isJsonNull()) && !jsonObj.get("csc").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `csc` to be a primitive type in the JSON string but got `%s`", jsonObj.get("csc").toString()));
+      }
+      if ((jsonObj.get("csc_policy") != null && !jsonObj.get("csc_policy").isJsonNull()) && !jsonObj.get("csc_policy").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `csc_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("csc_policy").toString()));
+      }
+      if ((jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) && !jsonObj.get("currency").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
+      }
+      if ((jsonObj.get("duplicate_policy") != null && !jsonObj.get("duplicate_policy").isJsonNull()) && !jsonObj.get("duplicate_policy").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `duplicate_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("duplicate_policy").toString()));
+      }
+      // validate the optional field `event_management`
+      if (jsonObj.get("event_management") != null && !jsonObj.get("event_management").isJsonNull()) {
+        EventDataModel.validateJsonObject(jsonObj.getAsJsonObject("event_management"));
+      }
+      // validate the optional field `external_mpi`
+      if (jsonObj.get("external_mpi") != null && !jsonObj.get("external_mpi").isJsonNull()) {
+        ExternalMPI.validateJsonObject(jsonObj.getAsJsonObject("external_mpi"));
+      }
+      if ((jsonObj.get("identifier") != null && !jsonObj.get("identifier").isJsonNull()) && !jsonObj.get("identifier").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `identifier` to be a primitive type in the JSON string but got `%s`", jsonObj.get("identifier").toString()));
+      }
+      if ((jsonObj.get("match_avsa") != null && !jsonObj.get("match_avsa").isJsonNull()) && !jsonObj.get("match_avsa").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `match_avsa` to be a primitive type in the JSON string but got `%s`", jsonObj.get("match_avsa").toString()));
+      }
+      // validate the optional field `mcc6012`
+      if (jsonObj.get("mcc6012") != null && !jsonObj.get("mcc6012").isJsonNull()) {
+        MCC6012.validateJsonObject(jsonObj.getAsJsonObject("mcc6012"));
+      }
+      if ((jsonObj.get("name_on_card") != null && !jsonObj.get("name_on_card").isJsonNull()) && !jsonObj.get("name_on_card").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name_on_card` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name_on_card").toString()));
+      }
+      // validate the optional field `ship_to`
+      if (jsonObj.get("ship_to") != null && !jsonObj.get("ship_to").isJsonNull()) {
+        ContactDetails.validateJsonObject(jsonObj.getAsJsonObject("ship_to"));
+      }
+      // validate the optional field `threedsecure`
+      if (jsonObj.get("threedsecure") != null && !jsonObj.get("threedsecure").isJsonNull()) {
+        ThreeDSecure.validateJsonObject(jsonObj.getAsJsonObject("threedsecure"));
+      }
+      if ((jsonObj.get("trans_info") != null && !jsonObj.get("trans_info").isJsonNull()) && !jsonObj.get("trans_info").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `trans_info` to be a primitive type in the JSON string but got `%s`", jsonObj.get("trans_info").toString()));
+      }
+      if ((jsonObj.get("trans_type") != null && !jsonObj.get("trans_type").isJsonNull()) && !jsonObj.get("trans_type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `trans_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("trans_type").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!AuthRequest.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'AuthRequest' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<AuthRequest> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(AuthRequest.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<AuthRequest>() {
+           @Override
+           public void write(JsonWriter out, AuthRequest value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public AuthRequest read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of AuthRequest given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of AuthRequest
+  * @throws IOException if the JSON string is invalid with respect to AuthRequest
+  */
+  public static AuthRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AuthRequest.class);
+  }
+
+ /**
+  * Convert an instance of AuthRequest to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

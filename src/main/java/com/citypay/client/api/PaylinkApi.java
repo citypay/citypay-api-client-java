@@ -41,9 +41,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 
 public class PaylinkApi {
     private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
     public PaylinkApi() {
         this(Configuration.getDefaultApiClient());
@@ -59,6 +62,22 @@ public class PaylinkApi {
 
     public void setApiClient(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
     }
 
     /**
@@ -80,6 +99,19 @@ public class PaylinkApi {
      </table>
      */
     public okhttp3.Call tokenAdjustmentRequestCall(String token, PaylinkAdjustmentRequest paylinkAdjustmentRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = paylinkAdjustmentRequest;
 
         // create path and map variables
@@ -104,10 +136,12 @@ public class PaylinkApi {
             "application/json", "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
@@ -220,6 +254,19 @@ public class PaylinkApi {
      </table>
      */
     public okhttp3.Call tokenCloseRequestCall(String token, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -244,10 +291,12 @@ public class PaylinkApi {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
@@ -352,6 +401,19 @@ public class PaylinkApi {
      </table>
      */
     public okhttp3.Call tokenCreateBillPaymentRequestCall(PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = paylinkBillPaymentTokenRequest;
 
         // create path and map variables
@@ -375,10 +437,12 @@ public class PaylinkApi {
             "application/json", "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
@@ -397,7 +461,7 @@ public class PaylinkApi {
 
     /**
      * Create Bill Payment Paylink Token
-     * CityPay Paylink supports invoice and bill payment services by allowing merchants to raise an invoice in their systems and associate the invoice with a Paylink checkout token. CityPay will co-ordinate the checkout flow in relationship with your customer. Our bill payment solution may be used to streamline the payment flow with cardholders to allow your invoice to be paid promptly and via multiple payment channels such as Card Payment, Apple Pay or Google Pay.  The bill payment service allows  1. setting up notification paths to an end customer, such as SMS or Email 2. enabling attachments to be included with Paylink tokens 3. produce chaser notifications for unpaid invoices 4. provide callbacks for notification of the payment of an invoice 5. support part payments against an invoice 6. support of field guards to protect the payment screen 7. support of status reporting on tokens 8. URL short codes for SMS notifications  &lt;img src&#x3D;\&quot;../images/merchant-BPS-workflow.png\&quot; alt&#x3D;\&quot;Paylink BPSv2 Overview\&quot; width&#x3D;\&quot;50%\&quot;/&gt;    ### Notification Paths  Notification paths can be provided which identify the channels for communication of the invoice availability. Up to 3 notification paths may be provided per request.  Each notification uses a template to generate the body of the message. This allows for variable text to be sent out and customised for each call.  SMS messages use URL Short Codes (USC) as a payment link to the invoice payment page. This allows for a standard payment URL to be shortened for optimised usage in SMS. For instance a URL of &#x60;https://checkout.citypay.com/PL1234/s348yb8yna4a48n2f8nq2f3msgyng-psn348ynaw8ynaw/en&#x60; becomes &#x60;citypay.com/Za48na3x&#x60;. Each USC is unique however it is a requirement that each USC generated is protected with Field Guards to ensure that sensitive data (such as customer contact details and GDPR) is protected.  To send a notification path, append a &#x60;notification-path&#x60; property to the request.  &#x60;&#x60;&#x60;json  {   \&quot;notification-path\&quot;: [     {       \&quot;channel\&quot;: \&quot;sms\&quot;,       \&quot;to\&quot;: \&quot;+441534884000\&quot;     },     {       \&quot;channel\&quot;: \&quot;email\&quot;,       \&quot;to\&quot;: [\&quot;help-desk@citypay.com\&quot;],       \&quot;cc\&quot;: [\&quot;third-party@citypay.com\&quot;],       \&quot;reply\&quot;: [\&quot;help@my-company.com\&quot;]     }   ] }  &#x60;&#x60;&#x60;  Notification paths trigger a number of events which are stored as part of the timeline of events of a Paylink token  - &#x60;BillPaymentSmsNotificationQueued&#x60; - identifies when an SMS notification has been queued for delivery - &#x60;BillPaymentSmsNotificationSent&#x60; - identifies when an SMS notification has been sent to the upstream network - &#x60;BillPaymentSmsNotificationDelivered&#x60; - identifies when an SMS notification has been delivered as notified by the upstream network - &#x60;BillPaymentSmsNotificationUndelivered&#x60; - identifies when an SMS notification has undelivered notification is provided by the upstream network - &#x60;BillPaymentSmsNotificationFailure&#x60; - identifies when an SMS notification has failed - &#x60;BillPaymentEmailNotificationQueued&#x60; -  identifies when an email notification has been queued for delivery - &#x60;BillPaymentEmailNotificationSent&#x60; -  identifies when an email notification has been accepted by our SMS forwarder - &#x60;BillPaymentEmailNotificationFailure&#x60; - identifies when an email notification has failed delivery   #### SMS Notification Path  SMS originated from a CityPay pool of numbers and by default only sends to country codes where the service is registered. SMSs may contain a From field which is configured as part of you onboarding and have a name associated to identify the service origin. For example if your business is titled &#x60;Health Surgery Ltd&#x60; the SMS may be sent to originate from &#x60;Health Surgery&#x60;.   SMS is also configured for a \&quot;polite mode\&quot;. This mode ensures that SMSs aren&#39;t sent in the middle of the night when backend services ordinarily run. SMSs will be queued until the time range is deemed as polite. Normally this is between 8am and 9pm.  | Field    | Type     | Usage    | Description                                                                                     | |----------|----------|----------|-------------------------------------------------------------------------------------------------| | template | string   | Reserved | An optional template name to use a template other than the default.                             | | to       | string   | Reserved | The phone number in [E.164](https://en.wikipedia.org/wiki/E.164) format to send the message to. |  #### Email Notification Paths  | Field    | Type     | Usage    | Description                                                                                     | |----------|----------|----------|-------------------------------------------------------------------------------------------------| | template | string   | Reserved | An optional template name to use a template other than the default.                             | | to       | string[] | Required | An array of email addresses to be used for delivery. A maximum of 5 addresses can be added.     | | cc       | string[] | Required | An array of email addresses to be used for cc delivery. A maximum of 5 addresses can be added.  | | bcc      | string[] | Required | An array of email addresses to be used for bcc delivery. A maximum of 5 addresses can be added. | | reply_to | string[] | Required | An array of email addresses to be used for the Reply-To header of an email.     |   ### Field Guards  To ensure that invoices are paid by the intended recipient, Paylink supports the addition of Field Guards.  A Field Guard is an intended field which is to be used as a form of guarded authentication. More than 1 field can be requested.  &lt;img src&#x3D;\&quot;../images/paylink-field-guards.png\&quot; alt&#x3D;\&quot;Paylink Field Guards\&quot; width&#x3D;\&quot;50%\&quot;/&gt;  To determine the source value of the field, each field name is searched in the order of  - identifier - cardholder data such as name - custom parameters - pass through data  If no field values are found, the token request returns a D041 validation error.  #### Authentication and Validation  When values are entered by the user, resultant comparisons are performed by  1. Transliteration of both the source value and entered value. For example, names with accents (e.g. é will become e) 2. Only Alphanumeric values are retained any whitespace or special characters are ignored 3. Case is ignored  Should all values match, the user is authenticated and can continue to the payment form rendered by the Paylink server.  On successful login, an event will be added to include that the access guard validated access.  #### Access-Key  To ensure that a user does not need to re-enter these values multiple times, a cookie is pushed to the user’s browser with an access-key digest value. This value will be presented to the server on each refresh therefore allowing the guard to accept the call. Each value is uniquely stored per merchant account and cannot be shared cross merchant. The lifetime of the cookie is set to 24 hours.  #### Brute Force Prevention  To prevent multiple calls hitting the server, attempting a brute force attack, the login process  1. is fronted by a contemporary web application firewall 2. creates an event for each token when access was denied 3. should the number of failed events breach more than 5 in 30 minutes, the token is locked for an hour 4. should the number of events breach more than 20 the token is fully locked  ### Attachments  Attachments can be included in the request in 2 ways  1. Via a data element direct in the request 2. Via a URL upload to a provided pre-signed URL  The decision of which option is dependent on the size of the attachments. Should the attachment size be greater than 32kb a URL upload is required. Small attachments can be included in the JSON request. This is to prevent our web firewall from blocking your request and to also ensure efficiency of larger file uploads.  There is a maximum of 3 attachments that can be added to a request.  &#x60;&#x60;&#x60;json     [{       \&quot;filename\&quot;: \&quot;invoice1.pdf\&quot;,       \&quot;mime-type\&quot;: \&quot;application/pdf\&quot;     },{       \&quot;filename\&quot;: \&quot;invoice2.pdf\&quot;,       \&quot;data\&quot;: \&quot;b4sE64Enc0dEd...&#x3D;\&quot;,       \&quot;mime-type\&quot;: \&quot;application/pdf\&quot;     }] &#x60;&#x60;&#x60;  | Field     | Type   | Usage    | Description                                                                                                                                          | |-----------|--------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------| | filename  | string | Required | The name of the attachment normally taken from the filename. You should not include the filename path as appropriate                                 | | data      | string | Optional | base64 encoding of the file if less than 32kb in size                                                                                                | | mime-type | string | Required | The mime type of the attachment as defined in [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html). Currently only &#x60;application/pdf&#x60; is supported |   #### Attachment Result  A result of an attachment specifies whether the attachment was successfully added or whether a further upload is requried  | Field  | Type   | Usage    | Description                                                                                                                                       | |--------|--------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------| | result | string | Required | &#x60;OK&#x60; should the file have uploaded or &#x60;UPLOAD&#x60; if the file is required to be uploaded.                                                            | | name   | string | Required | The filename that was specified in the upload process                                                                                             | | url    | string | Optional | Should an upload be required, this URL is available for an upload to be issued. The URL is only available for uploads for 24 hours from creation. | 
+     * CityPay Paylink supports invoice and bill payment services by allowing merchants to raise an invoice in their systems and associate the invoice with a Paylink checkout token. CityPay will co-ordinate the checkout flow in relationship with your customer. Our bill payment solution may be used to streamline the payment flow with cardholders to allow your invoice to be paid promptly and via multiple payment channels such as Card Payment, Apple Pay or Google Pay.  The bill payment service allows  1. setting up notification paths to an end customer, such as SMS or Email 2. enabling attachments to be included with Paylink tokens 3. produce chaser notifications for unpaid invoices 4. provide callbacks for notification of the payment of an invoice 5. support part payments against an invoice 6. support of field guards to protect the payment screen 7. support of status reporting on tokens 8. URL short codes for SMS notifications  &lt;img src&#x3D;\&quot;../images/merchant-BPS-workflow.png\&quot; alt&#x3D;\&quot;Paylink BPSv2 Overview\&quot; width&#x3D;\&quot;50%\&quot;/&gt;    ### Notification Paths  Notification paths can be provided which identify the channels for communication of the invoice availability. Up to 3 notification paths may be provided per request.  Each notification uses a template to generate the body of the message. This allows for variable text to be sent out and customised for each call.  SMS messages use URL Short Codes (USC) as a payment link to the invoice payment page. This allows for a standard payment URL to be shortened for optimised usage in SMS. For instance a URL of &#x60;https://checkout.citypay.com/PL1234/s348yb8yna4a48n2f8nq2f3msgyng-psn348ynaw8ynaw/en&#x60; becomes &#x60;citypay.com/Za48na3x&#x60;. Each USC is unique however it is a requirement that each USC generated is protected with Field Guards to ensure that sensitive data (such as customer contact details and GDPR) is protected.  To send a notification path, append a &#x60;notification-path&#x60; property to the request.  &#x60;&#x60;&#x60;json  {   \&quot;sms_notification_path\&quot;: {       \&quot;to\&quot;: \&quot;+441534884000\&quot;   },   \&quot;email_notification_path\&quot;: {       \&quot;to\&quot;: [\&quot;help-desk@citypay.com\&quot;],       \&quot;cc\&quot;: [\&quot;third-party@citypay.com\&quot;],       \&quot;reply\&quot;: [\&quot;help@my-company.com\&quot;]   } } &#x60;&#x60;&#x60;  Notification paths trigger a number of events which are stored as part of the timeline of events of a Paylink token  - &#x60;BillPaymentSmsNotificationQueued&#x60; - identifies when an SMS notification has been queued for delivery - &#x60;BillPaymentSmsNotificationSent&#x60; - identifies when an SMS notification has been sent to the upstream network - &#x60;BillPaymentSmsNotificationDelivered&#x60; - identifies when an SMS notification has been delivered as notified by the upstream network - &#x60;BillPaymentSmsNotificationUndelivered&#x60; - identifies when an SMS notification has undelivered notification is provided by the upstream network - &#x60;BillPaymentSmsNotificationFailure&#x60; - identifies when an SMS notification has failed - &#x60;BillPaymentEmailNotificationQueued&#x60; -  identifies when an email notification has been queued for delivery - &#x60;BillPaymentEmailNotificationSent&#x60; -  identifies when an email notification has been accepted by our SMS forwarder - &#x60;BillPaymentEmailNotificationFailure&#x60; - identifies when an email notification has failed delivery   #### SMS Notification Path  SMS originated from a CityPay pool of numbers and by default only sends to country codes where the service is registered. SMSs may contain a From field which is configured as part of you onboarding and have a name associated to identify the service origin. For example if your business is titled &#x60;Health Surgery Ltd&#x60; the SMS may be sent to originate from &#x60;Health Surgery&#x60;.   SMS is also configured for a \&quot;polite mode\&quot;. This mode ensures that SMSs aren&#39;t sent in the middle of the night when backend services ordinarily run. SMSs will be queued until the time range is deemed as polite. Normally this is between 8am and 9pm.  | Field    | Type     | Usage    | Description                                                                                     | |----------|----------|----------|-------------------------------------------------------------------------------------------------| | template | string   | Reserved | An optional template name to use a template other than the default.                             | | to       | string   | Reserved | The phone number in [E.164](https://en.wikipedia.org/wiki/E.164) format to send the message to. |  #### Email Notification Paths  | Field    | Type     | Usage    | Description                                                                                     | |----------|----------|----------|-------------------------------------------------------------------------------------------------| | template | string   | Reserved | An optional template name to use a template other than the default.                             | | to       | string[] | Required | An array of email addresses to be used for delivery. A maximum of 5 addresses can be added.     | | cc       | string[] | Required | An array of email addresses to be used for cc delivery. A maximum of 5 addresses can be added.  | | bcc      | string[] | Required | An array of email addresses to be used for bcc delivery. A maximum of 5 addresses can be added. | | reply_to | string[] | Required | An array of email addresses to be used for the Reply-To header of an email.     |   ### Field Guards  To ensure that invoices are paid by the intended recipient, Paylink supports the addition of Field Guards.  A Field Guard is an intended field which is to be used as a form of guarded authentication. More than 1 field can be requested.  &lt;img src&#x3D;\&quot;../images/paylink-field-guards.png\&quot; alt&#x3D;\&quot;Paylink Field Guards\&quot; width&#x3D;\&quot;50%\&quot;/&gt;  To determine the source value of the field, each field name is searched in the order of  - identifier - cardholder data such as name - custom parameters - pass through data  If no field values are found, the token request returns a D041 validation error.  #### Authentication and Validation  When values are entered by the user, resultant comparisons are performed by  1. Transliteration of both the source value and entered value. For example, names with accents (e.g. é will become e) 2. Only Alphanumeric values are retained any whitespace or special characters are ignored 3. Case is ignored  Should all values match, the user is authenticated and can continue to the payment form rendered by the Paylink server.  On successful login, an event will be added to include that the access guard validated access.  #### Access-Key  To ensure that a user does not need to re-enter these values multiple times, a cookie is pushed to the user’s browser with an access-key digest value. This value will be presented to the server on each refresh therefore allowing the guard to accept the call. Each value is uniquely stored per merchant account and cannot be shared cross merchant. The lifetime of the cookie is set to 24 hours.  #### Brute Force Prevention  To prevent multiple calls hitting the server, attempting a brute force attack, the login process  1. is fronted by a contemporary web application firewall 2. creates an event for each token when access was denied 3. should the number of failed events breach more than 5 in 30 minutes, the token is locked for an hour 4. should the number of events breach more than 20 the token is fully locked  ### Attachments  Attachments can be included in the request in 2 ways  1. Via a data element direct in the request 2. Via a URL upload to a provided pre-signed URL  The decision of which option is dependent on the size of the attachments. Should the attachment size be greater than 32kb a URL upload is required. Small attachments can be included in the JSON request. This is to prevent our web firewall from blocking your request and to also ensure efficiency of larger file uploads.  There is a maximum of 3 attachments that can be added to a request.  &#x60;&#x60;&#x60;json     [{       \&quot;filename\&quot;: \&quot;invoice1.pdf\&quot;,       \&quot;mime-type\&quot;: \&quot;application/pdf\&quot;     },{       \&quot;filename\&quot;: \&quot;invoice2.pdf\&quot;,       \&quot;data\&quot;: \&quot;b4sE64Enc0dEd...&#x3D;\&quot;,       \&quot;mime-type\&quot;: \&quot;application/pdf\&quot;     }] &#x60;&#x60;&#x60;  | Field     | Type   | Usage    | Description                                                                                                                                          | |-----------|--------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------| | filename  | string | Required | The name of the attachment normally taken from the filename. You should not include the filename path as appropriate                                 | | data      | string | Optional | base64 encoding of the file if less than 32kb in size                                                                                                | | mime-type | string | Required | The mime type of the attachment as defined in [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html). Currently only &#x60;application/pdf&#x60; is supported |   #### Attachment Result  A result of an attachment specifies whether the attachment was successfully added or whether a further upload is requried  | Field  | Type   | Usage    | Description                                                                                                                                       | |--------|--------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------| | result | string | Required | &#x60;OK&#x60; should the file have uploaded or &#x60;UPLOAD&#x60; if the file is required to be uploaded.                                                            | | name   | string | Required | The filename that was specified in the upload process                                                                                             | | url    | string | Optional | Should an upload be required, this URL is available for an upload to be issued. The URL is only available for uploads for 24 hours from creation. | 
      * @param paylinkBillPaymentTokenRequest  (required)
      * @return PaylinkTokenCreated
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -419,7 +483,7 @@ public class PaylinkApi {
 
     /**
      * Create Bill Payment Paylink Token
-     * CityPay Paylink supports invoice and bill payment services by allowing merchants to raise an invoice in their systems and associate the invoice with a Paylink checkout token. CityPay will co-ordinate the checkout flow in relationship with your customer. Our bill payment solution may be used to streamline the payment flow with cardholders to allow your invoice to be paid promptly and via multiple payment channels such as Card Payment, Apple Pay or Google Pay.  The bill payment service allows  1. setting up notification paths to an end customer, such as SMS or Email 2. enabling attachments to be included with Paylink tokens 3. produce chaser notifications for unpaid invoices 4. provide callbacks for notification of the payment of an invoice 5. support part payments against an invoice 6. support of field guards to protect the payment screen 7. support of status reporting on tokens 8. URL short codes for SMS notifications  &lt;img src&#x3D;\&quot;../images/merchant-BPS-workflow.png\&quot; alt&#x3D;\&quot;Paylink BPSv2 Overview\&quot; width&#x3D;\&quot;50%\&quot;/&gt;    ### Notification Paths  Notification paths can be provided which identify the channels for communication of the invoice availability. Up to 3 notification paths may be provided per request.  Each notification uses a template to generate the body of the message. This allows for variable text to be sent out and customised for each call.  SMS messages use URL Short Codes (USC) as a payment link to the invoice payment page. This allows for a standard payment URL to be shortened for optimised usage in SMS. For instance a URL of &#x60;https://checkout.citypay.com/PL1234/s348yb8yna4a48n2f8nq2f3msgyng-psn348ynaw8ynaw/en&#x60; becomes &#x60;citypay.com/Za48na3x&#x60;. Each USC is unique however it is a requirement that each USC generated is protected with Field Guards to ensure that sensitive data (such as customer contact details and GDPR) is protected.  To send a notification path, append a &#x60;notification-path&#x60; property to the request.  &#x60;&#x60;&#x60;json  {   \&quot;notification-path\&quot;: [     {       \&quot;channel\&quot;: \&quot;sms\&quot;,       \&quot;to\&quot;: \&quot;+441534884000\&quot;     },     {       \&quot;channel\&quot;: \&quot;email\&quot;,       \&quot;to\&quot;: [\&quot;help-desk@citypay.com\&quot;],       \&quot;cc\&quot;: [\&quot;third-party@citypay.com\&quot;],       \&quot;reply\&quot;: [\&quot;help@my-company.com\&quot;]     }   ] }  &#x60;&#x60;&#x60;  Notification paths trigger a number of events which are stored as part of the timeline of events of a Paylink token  - &#x60;BillPaymentSmsNotificationQueued&#x60; - identifies when an SMS notification has been queued for delivery - &#x60;BillPaymentSmsNotificationSent&#x60; - identifies when an SMS notification has been sent to the upstream network - &#x60;BillPaymentSmsNotificationDelivered&#x60; - identifies when an SMS notification has been delivered as notified by the upstream network - &#x60;BillPaymentSmsNotificationUndelivered&#x60; - identifies when an SMS notification has undelivered notification is provided by the upstream network - &#x60;BillPaymentSmsNotificationFailure&#x60; - identifies when an SMS notification has failed - &#x60;BillPaymentEmailNotificationQueued&#x60; -  identifies when an email notification has been queued for delivery - &#x60;BillPaymentEmailNotificationSent&#x60; -  identifies when an email notification has been accepted by our SMS forwarder - &#x60;BillPaymentEmailNotificationFailure&#x60; - identifies when an email notification has failed delivery   #### SMS Notification Path  SMS originated from a CityPay pool of numbers and by default only sends to country codes where the service is registered. SMSs may contain a From field which is configured as part of you onboarding and have a name associated to identify the service origin. For example if your business is titled &#x60;Health Surgery Ltd&#x60; the SMS may be sent to originate from &#x60;Health Surgery&#x60;.   SMS is also configured for a \&quot;polite mode\&quot;. This mode ensures that SMSs aren&#39;t sent in the middle of the night when backend services ordinarily run. SMSs will be queued until the time range is deemed as polite. Normally this is between 8am and 9pm.  | Field    | Type     | Usage    | Description                                                                                     | |----------|----------|----------|-------------------------------------------------------------------------------------------------| | template | string   | Reserved | An optional template name to use a template other than the default.                             | | to       | string   | Reserved | The phone number in [E.164](https://en.wikipedia.org/wiki/E.164) format to send the message to. |  #### Email Notification Paths  | Field    | Type     | Usage    | Description                                                                                     | |----------|----------|----------|-------------------------------------------------------------------------------------------------| | template | string   | Reserved | An optional template name to use a template other than the default.                             | | to       | string[] | Required | An array of email addresses to be used for delivery. A maximum of 5 addresses can be added.     | | cc       | string[] | Required | An array of email addresses to be used for cc delivery. A maximum of 5 addresses can be added.  | | bcc      | string[] | Required | An array of email addresses to be used for bcc delivery. A maximum of 5 addresses can be added. | | reply_to | string[] | Required | An array of email addresses to be used for the Reply-To header of an email.     |   ### Field Guards  To ensure that invoices are paid by the intended recipient, Paylink supports the addition of Field Guards.  A Field Guard is an intended field which is to be used as a form of guarded authentication. More than 1 field can be requested.  &lt;img src&#x3D;\&quot;../images/paylink-field-guards.png\&quot; alt&#x3D;\&quot;Paylink Field Guards\&quot; width&#x3D;\&quot;50%\&quot;/&gt;  To determine the source value of the field, each field name is searched in the order of  - identifier - cardholder data such as name - custom parameters - pass through data  If no field values are found, the token request returns a D041 validation error.  #### Authentication and Validation  When values are entered by the user, resultant comparisons are performed by  1. Transliteration of both the source value and entered value. For example, names with accents (e.g. é will become e) 2. Only Alphanumeric values are retained any whitespace or special characters are ignored 3. Case is ignored  Should all values match, the user is authenticated and can continue to the payment form rendered by the Paylink server.  On successful login, an event will be added to include that the access guard validated access.  #### Access-Key  To ensure that a user does not need to re-enter these values multiple times, a cookie is pushed to the user’s browser with an access-key digest value. This value will be presented to the server on each refresh therefore allowing the guard to accept the call. Each value is uniquely stored per merchant account and cannot be shared cross merchant. The lifetime of the cookie is set to 24 hours.  #### Brute Force Prevention  To prevent multiple calls hitting the server, attempting a brute force attack, the login process  1. is fronted by a contemporary web application firewall 2. creates an event for each token when access was denied 3. should the number of failed events breach more than 5 in 30 minutes, the token is locked for an hour 4. should the number of events breach more than 20 the token is fully locked  ### Attachments  Attachments can be included in the request in 2 ways  1. Via a data element direct in the request 2. Via a URL upload to a provided pre-signed URL  The decision of which option is dependent on the size of the attachments. Should the attachment size be greater than 32kb a URL upload is required. Small attachments can be included in the JSON request. This is to prevent our web firewall from blocking your request and to also ensure efficiency of larger file uploads.  There is a maximum of 3 attachments that can be added to a request.  &#x60;&#x60;&#x60;json     [{       \&quot;filename\&quot;: \&quot;invoice1.pdf\&quot;,       \&quot;mime-type\&quot;: \&quot;application/pdf\&quot;     },{       \&quot;filename\&quot;: \&quot;invoice2.pdf\&quot;,       \&quot;data\&quot;: \&quot;b4sE64Enc0dEd...&#x3D;\&quot;,       \&quot;mime-type\&quot;: \&quot;application/pdf\&quot;     }] &#x60;&#x60;&#x60;  | Field     | Type   | Usage    | Description                                                                                                                                          | |-----------|--------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------| | filename  | string | Required | The name of the attachment normally taken from the filename. You should not include the filename path as appropriate                                 | | data      | string | Optional | base64 encoding of the file if less than 32kb in size                                                                                                | | mime-type | string | Required | The mime type of the attachment as defined in [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html). Currently only &#x60;application/pdf&#x60; is supported |   #### Attachment Result  A result of an attachment specifies whether the attachment was successfully added or whether a further upload is requried  | Field  | Type   | Usage    | Description                                                                                                                                       | |--------|--------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------| | result | string | Required | &#x60;OK&#x60; should the file have uploaded or &#x60;UPLOAD&#x60; if the file is required to be uploaded.                                                            | | name   | string | Required | The filename that was specified in the upload process                                                                                             | | url    | string | Optional | Should an upload be required, this URL is available for an upload to be issued. The URL is only available for uploads for 24 hours from creation. | 
+     * CityPay Paylink supports invoice and bill payment services by allowing merchants to raise an invoice in their systems and associate the invoice with a Paylink checkout token. CityPay will co-ordinate the checkout flow in relationship with your customer. Our bill payment solution may be used to streamline the payment flow with cardholders to allow your invoice to be paid promptly and via multiple payment channels such as Card Payment, Apple Pay or Google Pay.  The bill payment service allows  1. setting up notification paths to an end customer, such as SMS or Email 2. enabling attachments to be included with Paylink tokens 3. produce chaser notifications for unpaid invoices 4. provide callbacks for notification of the payment of an invoice 5. support part payments against an invoice 6. support of field guards to protect the payment screen 7. support of status reporting on tokens 8. URL short codes for SMS notifications  &lt;img src&#x3D;\&quot;../images/merchant-BPS-workflow.png\&quot; alt&#x3D;\&quot;Paylink BPSv2 Overview\&quot; width&#x3D;\&quot;50%\&quot;/&gt;    ### Notification Paths  Notification paths can be provided which identify the channels for communication of the invoice availability. Up to 3 notification paths may be provided per request.  Each notification uses a template to generate the body of the message. This allows for variable text to be sent out and customised for each call.  SMS messages use URL Short Codes (USC) as a payment link to the invoice payment page. This allows for a standard payment URL to be shortened for optimised usage in SMS. For instance a URL of &#x60;https://checkout.citypay.com/PL1234/s348yb8yna4a48n2f8nq2f3msgyng-psn348ynaw8ynaw/en&#x60; becomes &#x60;citypay.com/Za48na3x&#x60;. Each USC is unique however it is a requirement that each USC generated is protected with Field Guards to ensure that sensitive data (such as customer contact details and GDPR) is protected.  To send a notification path, append a &#x60;notification-path&#x60; property to the request.  &#x60;&#x60;&#x60;json  {   \&quot;sms_notification_path\&quot;: {       \&quot;to\&quot;: \&quot;+441534884000\&quot;   },   \&quot;email_notification_path\&quot;: {       \&quot;to\&quot;: [\&quot;help-desk@citypay.com\&quot;],       \&quot;cc\&quot;: [\&quot;third-party@citypay.com\&quot;],       \&quot;reply\&quot;: [\&quot;help@my-company.com\&quot;]   } } &#x60;&#x60;&#x60;  Notification paths trigger a number of events which are stored as part of the timeline of events of a Paylink token  - &#x60;BillPaymentSmsNotificationQueued&#x60; - identifies when an SMS notification has been queued for delivery - &#x60;BillPaymentSmsNotificationSent&#x60; - identifies when an SMS notification has been sent to the upstream network - &#x60;BillPaymentSmsNotificationDelivered&#x60; - identifies when an SMS notification has been delivered as notified by the upstream network - &#x60;BillPaymentSmsNotificationUndelivered&#x60; - identifies when an SMS notification has undelivered notification is provided by the upstream network - &#x60;BillPaymentSmsNotificationFailure&#x60; - identifies when an SMS notification has failed - &#x60;BillPaymentEmailNotificationQueued&#x60; -  identifies when an email notification has been queued for delivery - &#x60;BillPaymentEmailNotificationSent&#x60; -  identifies when an email notification has been accepted by our SMS forwarder - &#x60;BillPaymentEmailNotificationFailure&#x60; - identifies when an email notification has failed delivery   #### SMS Notification Path  SMS originated from a CityPay pool of numbers and by default only sends to country codes where the service is registered. SMSs may contain a From field which is configured as part of you onboarding and have a name associated to identify the service origin. For example if your business is titled &#x60;Health Surgery Ltd&#x60; the SMS may be sent to originate from &#x60;Health Surgery&#x60;.   SMS is also configured for a \&quot;polite mode\&quot;. This mode ensures that SMSs aren&#39;t sent in the middle of the night when backend services ordinarily run. SMSs will be queued until the time range is deemed as polite. Normally this is between 8am and 9pm.  | Field    | Type     | Usage    | Description                                                                                     | |----------|----------|----------|-------------------------------------------------------------------------------------------------| | template | string   | Reserved | An optional template name to use a template other than the default.                             | | to       | string   | Reserved | The phone number in [E.164](https://en.wikipedia.org/wiki/E.164) format to send the message to. |  #### Email Notification Paths  | Field    | Type     | Usage    | Description                                                                                     | |----------|----------|----------|-------------------------------------------------------------------------------------------------| | template | string   | Reserved | An optional template name to use a template other than the default.                             | | to       | string[] | Required | An array of email addresses to be used for delivery. A maximum of 5 addresses can be added.     | | cc       | string[] | Required | An array of email addresses to be used for cc delivery. A maximum of 5 addresses can be added.  | | bcc      | string[] | Required | An array of email addresses to be used for bcc delivery. A maximum of 5 addresses can be added. | | reply_to | string[] | Required | An array of email addresses to be used for the Reply-To header of an email.     |   ### Field Guards  To ensure that invoices are paid by the intended recipient, Paylink supports the addition of Field Guards.  A Field Guard is an intended field which is to be used as a form of guarded authentication. More than 1 field can be requested.  &lt;img src&#x3D;\&quot;../images/paylink-field-guards.png\&quot; alt&#x3D;\&quot;Paylink Field Guards\&quot; width&#x3D;\&quot;50%\&quot;/&gt;  To determine the source value of the field, each field name is searched in the order of  - identifier - cardholder data such as name - custom parameters - pass through data  If no field values are found, the token request returns a D041 validation error.  #### Authentication and Validation  When values are entered by the user, resultant comparisons are performed by  1. Transliteration of both the source value and entered value. For example, names with accents (e.g. é will become e) 2. Only Alphanumeric values are retained any whitespace or special characters are ignored 3. Case is ignored  Should all values match, the user is authenticated and can continue to the payment form rendered by the Paylink server.  On successful login, an event will be added to include that the access guard validated access.  #### Access-Key  To ensure that a user does not need to re-enter these values multiple times, a cookie is pushed to the user’s browser with an access-key digest value. This value will be presented to the server on each refresh therefore allowing the guard to accept the call. Each value is uniquely stored per merchant account and cannot be shared cross merchant. The lifetime of the cookie is set to 24 hours.  #### Brute Force Prevention  To prevent multiple calls hitting the server, attempting a brute force attack, the login process  1. is fronted by a contemporary web application firewall 2. creates an event for each token when access was denied 3. should the number of failed events breach more than 5 in 30 minutes, the token is locked for an hour 4. should the number of events breach more than 20 the token is fully locked  ### Attachments  Attachments can be included in the request in 2 ways  1. Via a data element direct in the request 2. Via a URL upload to a provided pre-signed URL  The decision of which option is dependent on the size of the attachments. Should the attachment size be greater than 32kb a URL upload is required. Small attachments can be included in the JSON request. This is to prevent our web firewall from blocking your request and to also ensure efficiency of larger file uploads.  There is a maximum of 3 attachments that can be added to a request.  &#x60;&#x60;&#x60;json     [{       \&quot;filename\&quot;: \&quot;invoice1.pdf\&quot;,       \&quot;mime-type\&quot;: \&quot;application/pdf\&quot;     },{       \&quot;filename\&quot;: \&quot;invoice2.pdf\&quot;,       \&quot;data\&quot;: \&quot;b4sE64Enc0dEd...&#x3D;\&quot;,       \&quot;mime-type\&quot;: \&quot;application/pdf\&quot;     }] &#x60;&#x60;&#x60;  | Field     | Type   | Usage    | Description                                                                                                                                          | |-----------|--------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------| | filename  | string | Required | The name of the attachment normally taken from the filename. You should not include the filename path as appropriate                                 | | data      | string | Optional | base64 encoding of the file if less than 32kb in size                                                                                                | | mime-type | string | Required | The mime type of the attachment as defined in [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html). Currently only &#x60;application/pdf&#x60; is supported |   #### Attachment Result  A result of an attachment specifies whether the attachment was successfully added or whether a further upload is requried  | Field  | Type   | Usage    | Description                                                                                                                                       | |--------|--------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------| | result | string | Required | &#x60;OK&#x60; should the file have uploaded or &#x60;UPLOAD&#x60; if the file is required to be uploaded.                                                            | | name   | string | Required | The filename that was specified in the upload process                                                                                             | | url    | string | Optional | Should an upload be required, this URL is available for an upload to be issued. The URL is only available for uploads for 24 hours from creation. | 
      * @param paylinkBillPaymentTokenRequest  (required)
      * @return ApiResponse&lt;PaylinkTokenCreated&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -442,7 +506,7 @@ public class PaylinkApi {
 
     /**
      * Create Bill Payment Paylink Token (asynchronously)
-     * CityPay Paylink supports invoice and bill payment services by allowing merchants to raise an invoice in their systems and associate the invoice with a Paylink checkout token. CityPay will co-ordinate the checkout flow in relationship with your customer. Our bill payment solution may be used to streamline the payment flow with cardholders to allow your invoice to be paid promptly and via multiple payment channels such as Card Payment, Apple Pay or Google Pay.  The bill payment service allows  1. setting up notification paths to an end customer, such as SMS or Email 2. enabling attachments to be included with Paylink tokens 3. produce chaser notifications for unpaid invoices 4. provide callbacks for notification of the payment of an invoice 5. support part payments against an invoice 6. support of field guards to protect the payment screen 7. support of status reporting on tokens 8. URL short codes for SMS notifications  &lt;img src&#x3D;\&quot;../images/merchant-BPS-workflow.png\&quot; alt&#x3D;\&quot;Paylink BPSv2 Overview\&quot; width&#x3D;\&quot;50%\&quot;/&gt;    ### Notification Paths  Notification paths can be provided which identify the channels for communication of the invoice availability. Up to 3 notification paths may be provided per request.  Each notification uses a template to generate the body of the message. This allows for variable text to be sent out and customised for each call.  SMS messages use URL Short Codes (USC) as a payment link to the invoice payment page. This allows for a standard payment URL to be shortened for optimised usage in SMS. For instance a URL of &#x60;https://checkout.citypay.com/PL1234/s348yb8yna4a48n2f8nq2f3msgyng-psn348ynaw8ynaw/en&#x60; becomes &#x60;citypay.com/Za48na3x&#x60;. Each USC is unique however it is a requirement that each USC generated is protected with Field Guards to ensure that sensitive data (such as customer contact details and GDPR) is protected.  To send a notification path, append a &#x60;notification-path&#x60; property to the request.  &#x60;&#x60;&#x60;json  {   \&quot;notification-path\&quot;: [     {       \&quot;channel\&quot;: \&quot;sms\&quot;,       \&quot;to\&quot;: \&quot;+441534884000\&quot;     },     {       \&quot;channel\&quot;: \&quot;email\&quot;,       \&quot;to\&quot;: [\&quot;help-desk@citypay.com\&quot;],       \&quot;cc\&quot;: [\&quot;third-party@citypay.com\&quot;],       \&quot;reply\&quot;: [\&quot;help@my-company.com\&quot;]     }   ] }  &#x60;&#x60;&#x60;  Notification paths trigger a number of events which are stored as part of the timeline of events of a Paylink token  - &#x60;BillPaymentSmsNotificationQueued&#x60; - identifies when an SMS notification has been queued for delivery - &#x60;BillPaymentSmsNotificationSent&#x60; - identifies when an SMS notification has been sent to the upstream network - &#x60;BillPaymentSmsNotificationDelivered&#x60; - identifies when an SMS notification has been delivered as notified by the upstream network - &#x60;BillPaymentSmsNotificationUndelivered&#x60; - identifies when an SMS notification has undelivered notification is provided by the upstream network - &#x60;BillPaymentSmsNotificationFailure&#x60; - identifies when an SMS notification has failed - &#x60;BillPaymentEmailNotificationQueued&#x60; -  identifies when an email notification has been queued for delivery - &#x60;BillPaymentEmailNotificationSent&#x60; -  identifies when an email notification has been accepted by our SMS forwarder - &#x60;BillPaymentEmailNotificationFailure&#x60; - identifies when an email notification has failed delivery   #### SMS Notification Path  SMS originated from a CityPay pool of numbers and by default only sends to country codes where the service is registered. SMSs may contain a From field which is configured as part of you onboarding and have a name associated to identify the service origin. For example if your business is titled &#x60;Health Surgery Ltd&#x60; the SMS may be sent to originate from &#x60;Health Surgery&#x60;.   SMS is also configured for a \&quot;polite mode\&quot;. This mode ensures that SMSs aren&#39;t sent in the middle of the night when backend services ordinarily run. SMSs will be queued until the time range is deemed as polite. Normally this is between 8am and 9pm.  | Field    | Type     | Usage    | Description                                                                                     | |----------|----------|----------|-------------------------------------------------------------------------------------------------| | template | string   | Reserved | An optional template name to use a template other than the default.                             | | to       | string   | Reserved | The phone number in [E.164](https://en.wikipedia.org/wiki/E.164) format to send the message to. |  #### Email Notification Paths  | Field    | Type     | Usage    | Description                                                                                     | |----------|----------|----------|-------------------------------------------------------------------------------------------------| | template | string   | Reserved | An optional template name to use a template other than the default.                             | | to       | string[] | Required | An array of email addresses to be used for delivery. A maximum of 5 addresses can be added.     | | cc       | string[] | Required | An array of email addresses to be used for cc delivery. A maximum of 5 addresses can be added.  | | bcc      | string[] | Required | An array of email addresses to be used for bcc delivery. A maximum of 5 addresses can be added. | | reply_to | string[] | Required | An array of email addresses to be used for the Reply-To header of an email.     |   ### Field Guards  To ensure that invoices are paid by the intended recipient, Paylink supports the addition of Field Guards.  A Field Guard is an intended field which is to be used as a form of guarded authentication. More than 1 field can be requested.  &lt;img src&#x3D;\&quot;../images/paylink-field-guards.png\&quot; alt&#x3D;\&quot;Paylink Field Guards\&quot; width&#x3D;\&quot;50%\&quot;/&gt;  To determine the source value of the field, each field name is searched in the order of  - identifier - cardholder data such as name - custom parameters - pass through data  If no field values are found, the token request returns a D041 validation error.  #### Authentication and Validation  When values are entered by the user, resultant comparisons are performed by  1. Transliteration of both the source value and entered value. For example, names with accents (e.g. é will become e) 2. Only Alphanumeric values are retained any whitespace or special characters are ignored 3. Case is ignored  Should all values match, the user is authenticated and can continue to the payment form rendered by the Paylink server.  On successful login, an event will be added to include that the access guard validated access.  #### Access-Key  To ensure that a user does not need to re-enter these values multiple times, a cookie is pushed to the user’s browser with an access-key digest value. This value will be presented to the server on each refresh therefore allowing the guard to accept the call. Each value is uniquely stored per merchant account and cannot be shared cross merchant. The lifetime of the cookie is set to 24 hours.  #### Brute Force Prevention  To prevent multiple calls hitting the server, attempting a brute force attack, the login process  1. is fronted by a contemporary web application firewall 2. creates an event for each token when access was denied 3. should the number of failed events breach more than 5 in 30 minutes, the token is locked for an hour 4. should the number of events breach more than 20 the token is fully locked  ### Attachments  Attachments can be included in the request in 2 ways  1. Via a data element direct in the request 2. Via a URL upload to a provided pre-signed URL  The decision of which option is dependent on the size of the attachments. Should the attachment size be greater than 32kb a URL upload is required. Small attachments can be included in the JSON request. This is to prevent our web firewall from blocking your request and to also ensure efficiency of larger file uploads.  There is a maximum of 3 attachments that can be added to a request.  &#x60;&#x60;&#x60;json     [{       \&quot;filename\&quot;: \&quot;invoice1.pdf\&quot;,       \&quot;mime-type\&quot;: \&quot;application/pdf\&quot;     },{       \&quot;filename\&quot;: \&quot;invoice2.pdf\&quot;,       \&quot;data\&quot;: \&quot;b4sE64Enc0dEd...&#x3D;\&quot;,       \&quot;mime-type\&quot;: \&quot;application/pdf\&quot;     }] &#x60;&#x60;&#x60;  | Field     | Type   | Usage    | Description                                                                                                                                          | |-----------|--------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------| | filename  | string | Required | The name of the attachment normally taken from the filename. You should not include the filename path as appropriate                                 | | data      | string | Optional | base64 encoding of the file if less than 32kb in size                                                                                                | | mime-type | string | Required | The mime type of the attachment as defined in [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html). Currently only &#x60;application/pdf&#x60; is supported |   #### Attachment Result  A result of an attachment specifies whether the attachment was successfully added or whether a further upload is requried  | Field  | Type   | Usage    | Description                                                                                                                                       | |--------|--------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------| | result | string | Required | &#x60;OK&#x60; should the file have uploaded or &#x60;UPLOAD&#x60; if the file is required to be uploaded.                                                            | | name   | string | Required | The filename that was specified in the upload process                                                                                             | | url    | string | Optional | Should an upload be required, this URL is available for an upload to be issued. The URL is only available for uploads for 24 hours from creation. | 
+     * CityPay Paylink supports invoice and bill payment services by allowing merchants to raise an invoice in their systems and associate the invoice with a Paylink checkout token. CityPay will co-ordinate the checkout flow in relationship with your customer. Our bill payment solution may be used to streamline the payment flow with cardholders to allow your invoice to be paid promptly and via multiple payment channels such as Card Payment, Apple Pay or Google Pay.  The bill payment service allows  1. setting up notification paths to an end customer, such as SMS or Email 2. enabling attachments to be included with Paylink tokens 3. produce chaser notifications for unpaid invoices 4. provide callbacks for notification of the payment of an invoice 5. support part payments against an invoice 6. support of field guards to protect the payment screen 7. support of status reporting on tokens 8. URL short codes for SMS notifications  &lt;img src&#x3D;\&quot;../images/merchant-BPS-workflow.png\&quot; alt&#x3D;\&quot;Paylink BPSv2 Overview\&quot; width&#x3D;\&quot;50%\&quot;/&gt;    ### Notification Paths  Notification paths can be provided which identify the channels for communication of the invoice availability. Up to 3 notification paths may be provided per request.  Each notification uses a template to generate the body of the message. This allows for variable text to be sent out and customised for each call.  SMS messages use URL Short Codes (USC) as a payment link to the invoice payment page. This allows for a standard payment URL to be shortened for optimised usage in SMS. For instance a URL of &#x60;https://checkout.citypay.com/PL1234/s348yb8yna4a48n2f8nq2f3msgyng-psn348ynaw8ynaw/en&#x60; becomes &#x60;citypay.com/Za48na3x&#x60;. Each USC is unique however it is a requirement that each USC generated is protected with Field Guards to ensure that sensitive data (such as customer contact details and GDPR) is protected.  To send a notification path, append a &#x60;notification-path&#x60; property to the request.  &#x60;&#x60;&#x60;json  {   \&quot;sms_notification_path\&quot;: {       \&quot;to\&quot;: \&quot;+441534884000\&quot;   },   \&quot;email_notification_path\&quot;: {       \&quot;to\&quot;: [\&quot;help-desk@citypay.com\&quot;],       \&quot;cc\&quot;: [\&quot;third-party@citypay.com\&quot;],       \&quot;reply\&quot;: [\&quot;help@my-company.com\&quot;]   } } &#x60;&#x60;&#x60;  Notification paths trigger a number of events which are stored as part of the timeline of events of a Paylink token  - &#x60;BillPaymentSmsNotificationQueued&#x60; - identifies when an SMS notification has been queued for delivery - &#x60;BillPaymentSmsNotificationSent&#x60; - identifies when an SMS notification has been sent to the upstream network - &#x60;BillPaymentSmsNotificationDelivered&#x60; - identifies when an SMS notification has been delivered as notified by the upstream network - &#x60;BillPaymentSmsNotificationUndelivered&#x60; - identifies when an SMS notification has undelivered notification is provided by the upstream network - &#x60;BillPaymentSmsNotificationFailure&#x60; - identifies when an SMS notification has failed - &#x60;BillPaymentEmailNotificationQueued&#x60; -  identifies when an email notification has been queued for delivery - &#x60;BillPaymentEmailNotificationSent&#x60; -  identifies when an email notification has been accepted by our SMS forwarder - &#x60;BillPaymentEmailNotificationFailure&#x60; - identifies when an email notification has failed delivery   #### SMS Notification Path  SMS originated from a CityPay pool of numbers and by default only sends to country codes where the service is registered. SMSs may contain a From field which is configured as part of you onboarding and have a name associated to identify the service origin. For example if your business is titled &#x60;Health Surgery Ltd&#x60; the SMS may be sent to originate from &#x60;Health Surgery&#x60;.   SMS is also configured for a \&quot;polite mode\&quot;. This mode ensures that SMSs aren&#39;t sent in the middle of the night when backend services ordinarily run. SMSs will be queued until the time range is deemed as polite. Normally this is between 8am and 9pm.  | Field    | Type     | Usage    | Description                                                                                     | |----------|----------|----------|-------------------------------------------------------------------------------------------------| | template | string   | Reserved | An optional template name to use a template other than the default.                             | | to       | string   | Reserved | The phone number in [E.164](https://en.wikipedia.org/wiki/E.164) format to send the message to. |  #### Email Notification Paths  | Field    | Type     | Usage    | Description                                                                                     | |----------|----------|----------|-------------------------------------------------------------------------------------------------| | template | string   | Reserved | An optional template name to use a template other than the default.                             | | to       | string[] | Required | An array of email addresses to be used for delivery. A maximum of 5 addresses can be added.     | | cc       | string[] | Required | An array of email addresses to be used for cc delivery. A maximum of 5 addresses can be added.  | | bcc      | string[] | Required | An array of email addresses to be used for bcc delivery. A maximum of 5 addresses can be added. | | reply_to | string[] | Required | An array of email addresses to be used for the Reply-To header of an email.     |   ### Field Guards  To ensure that invoices are paid by the intended recipient, Paylink supports the addition of Field Guards.  A Field Guard is an intended field which is to be used as a form of guarded authentication. More than 1 field can be requested.  &lt;img src&#x3D;\&quot;../images/paylink-field-guards.png\&quot; alt&#x3D;\&quot;Paylink Field Guards\&quot; width&#x3D;\&quot;50%\&quot;/&gt;  To determine the source value of the field, each field name is searched in the order of  - identifier - cardholder data such as name - custom parameters - pass through data  If no field values are found, the token request returns a D041 validation error.  #### Authentication and Validation  When values are entered by the user, resultant comparisons are performed by  1. Transliteration of both the source value and entered value. For example, names with accents (e.g. é will become e) 2. Only Alphanumeric values are retained any whitespace or special characters are ignored 3. Case is ignored  Should all values match, the user is authenticated and can continue to the payment form rendered by the Paylink server.  On successful login, an event will be added to include that the access guard validated access.  #### Access-Key  To ensure that a user does not need to re-enter these values multiple times, a cookie is pushed to the user’s browser with an access-key digest value. This value will be presented to the server on each refresh therefore allowing the guard to accept the call. Each value is uniquely stored per merchant account and cannot be shared cross merchant. The lifetime of the cookie is set to 24 hours.  #### Brute Force Prevention  To prevent multiple calls hitting the server, attempting a brute force attack, the login process  1. is fronted by a contemporary web application firewall 2. creates an event for each token when access was denied 3. should the number of failed events breach more than 5 in 30 minutes, the token is locked for an hour 4. should the number of events breach more than 20 the token is fully locked  ### Attachments  Attachments can be included in the request in 2 ways  1. Via a data element direct in the request 2. Via a URL upload to a provided pre-signed URL  The decision of which option is dependent on the size of the attachments. Should the attachment size be greater than 32kb a URL upload is required. Small attachments can be included in the JSON request. This is to prevent our web firewall from blocking your request and to also ensure efficiency of larger file uploads.  There is a maximum of 3 attachments that can be added to a request.  &#x60;&#x60;&#x60;json     [{       \&quot;filename\&quot;: \&quot;invoice1.pdf\&quot;,       \&quot;mime-type\&quot;: \&quot;application/pdf\&quot;     },{       \&quot;filename\&quot;: \&quot;invoice2.pdf\&quot;,       \&quot;data\&quot;: \&quot;b4sE64Enc0dEd...&#x3D;\&quot;,       \&quot;mime-type\&quot;: \&quot;application/pdf\&quot;     }] &#x60;&#x60;&#x60;  | Field     | Type   | Usage    | Description                                                                                                                                          | |-----------|--------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------| | filename  | string | Required | The name of the attachment normally taken from the filename. You should not include the filename path as appropriate                                 | | data      | string | Optional | base64 encoding of the file if less than 32kb in size                                                                                                | | mime-type | string | Required | The mime type of the attachment as defined in [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html). Currently only &#x60;application/pdf&#x60; is supported |   #### Attachment Result  A result of an attachment specifies whether the attachment was successfully added or whether a further upload is requried  | Field  | Type   | Usage    | Description                                                                                                                                       | |--------|--------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------| | result | string | Required | &#x60;OK&#x60; should the file have uploaded or &#x60;UPLOAD&#x60; if the file is required to be uploaded.                                                            | | name   | string | Required | The filename that was specified in the upload process                                                                                             | | url    | string | Optional | Should an upload be required, this URL is available for an upload to be issued. The URL is only available for uploads for 24 hours from creation. | 
      * @param paylinkBillPaymentTokenRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -483,6 +547,19 @@ public class PaylinkApi {
      </table>
      */
     public okhttp3.Call tokenCreateRequestCall(PaylinkTokenRequestModel paylinkTokenRequestModel, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = paylinkTokenRequestModel;
 
         // create path and map variables
@@ -506,10 +583,12 @@ public class PaylinkApi {
             "application/json", "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
@@ -597,6 +676,153 @@ public class PaylinkApi {
         return localVarCall;
     }
     /**
+     * Build call for tokenPurgeAttachmentsRequest
+     * @param token The token returned by the create token process. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Confirms that the attachments eiither did not exist or were purged. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call tokenPurgeAttachmentsRequestCall(String token, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/paylink/{token}/purge-attachments"
+            .replaceAll("\\{" + "token" + "\\}", localVarApiClient.escapeString(token.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json", "text/xml"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "cp-api-key" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call tokenPurgeAttachmentsRequestValidateBeforeCall(String token, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'token' is set
+        if (token == null) {
+            throw new ApiException("Missing the required parameter 'token' when calling tokenPurgeAttachmentsRequest(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = tokenPurgeAttachmentsRequestCall(token, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Purges any attachments for a Paylink Token
+     * Purges any attachments for a token for GDPR or DP reasons.
+     * @param token The token returned by the create token process. (required)
+     * @return Acknowledgement
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Confirms that the attachments eiither did not exist or were purged. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Acknowledgement tokenPurgeAttachmentsRequest(String token) throws ApiException {
+        ApiResponse<Acknowledgement> localVarResp = tokenPurgeAttachmentsRequestWithHttpInfo(token);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Purges any attachments for a Paylink Token
+     * Purges any attachments for a token for GDPR or DP reasons.
+     * @param token The token returned by the create token process. (required)
+     * @return ApiResponse&lt;Acknowledgement&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Confirms that the attachments eiither did not exist or were purged. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Acknowledgement> tokenPurgeAttachmentsRequestWithHttpInfo(String token) throws ApiException {
+        okhttp3.Call localVarCall = tokenPurgeAttachmentsRequestValidateBeforeCall(token, null);
+        Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Purges any attachments for a Paylink Token (asynchronously)
+     * Purges any attachments for a token for GDPR or DP reasons.
+     * @param token The token returned by the create token process. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Confirms that the attachments eiither did not exist or were purged. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call tokenPurgeAttachmentsRequestAsync(String token, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = tokenPurgeAttachmentsRequestValidateBeforeCall(token, _callback);
+        Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for tokenReconciledRequest
      * @param token The token returned by the create token process. (required)
      * @param _callback Callback for upload/download progress
@@ -614,6 +840,19 @@ public class PaylinkApi {
      </table>
      */
     public okhttp3.Call tokenReconciledRequestCall(String token, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -638,10 +877,12 @@ public class PaylinkApi {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
@@ -746,6 +987,19 @@ public class PaylinkApi {
      </table>
      */
     public okhttp3.Call tokenReopenRequestCall(String token, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -770,10 +1024,12 @@ public class PaylinkApi {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
@@ -878,6 +1134,19 @@ public class PaylinkApi {
      </table>
      */
     public okhttp3.Call tokenStatusChangesRequestCall(PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = paylinkTokenStatusChangeRequest;
 
         // create path and map variables
@@ -901,10 +1170,12 @@ public class PaylinkApi {
             "application/json", "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
@@ -1009,6 +1280,19 @@ public class PaylinkApi {
      </table>
      */
     public okhttp3.Call tokenStatusRequestCall(String token, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1033,10 +1317,12 @@ public class PaylinkApi {
             
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")

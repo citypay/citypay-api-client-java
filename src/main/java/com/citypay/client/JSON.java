@@ -23,7 +23,6 @@ import com.google.gson.JsonElement;
 import io.gsonfire.GsonFireBuilder;
 import io.gsonfire.TypeSelector;
 
-import com.citypay.client.model.*;
 import okio.ByteString;
 
 import java.io.IOException;
@@ -40,14 +39,20 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.HashMap;
 
+/*
+ * A JSON utility class
+ *
+ * NOTE: in the future, this class may be converted to static, which may break
+ *       backward-compatibility
+ */
 public class JSON {
-    private Gson gson;
-    private boolean isLenientOnJson = false;
-    private DateTypeAdapter dateTypeAdapter = new DateTypeAdapter();
-    private SqlDateTypeAdapter sqlDateTypeAdapter = new SqlDateTypeAdapter();
-    private OffsetDateTimeTypeAdapter offsetDateTimeTypeAdapter = new OffsetDateTimeTypeAdapter();
-    private LocalDateTypeAdapter localDateTypeAdapter = new LocalDateTypeAdapter();
-    private ByteArrayAdapter byteArrayAdapter = new ByteArrayAdapter();
+    private static Gson gson;
+    private static boolean isLenientOnJson = false;
+    private static DateTypeAdapter dateTypeAdapter = new DateTypeAdapter();
+    private static SqlDateTypeAdapter sqlDateTypeAdapter = new SqlDateTypeAdapter();
+    private static OffsetDateTimeTypeAdapter offsetDateTimeTypeAdapter = new OffsetDateTimeTypeAdapter();
+    private static LocalDateTypeAdapter localDateTypeAdapter = new LocalDateTypeAdapter();
+    private static ByteArrayAdapter byteArrayAdapter = new ByteArrayAdapter();
 
     @SuppressWarnings("unchecked")
     public static GsonBuilder createGson() {
@@ -80,14 +85,88 @@ public class JSON {
         return clazz;
     }
 
-    public JSON() {
-        gson = createGson()
-            .registerTypeAdapter(Date.class, dateTypeAdapter)
-            .registerTypeAdapter(java.sql.Date.class, sqlDateTypeAdapter)
-            .registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter)
-            .registerTypeAdapter(LocalDate.class, localDateTypeAdapter)
-            .registerTypeAdapter(byte[].class, byteArrayAdapter)
-            .create();
+    {
+        GsonBuilder gsonBuilder = createGson();
+        gsonBuilder.registerTypeAdapter(Date.class, dateTypeAdapter);
+        gsonBuilder.registerTypeAdapter(java.sql.Date.class, sqlDateTypeAdapter);
+        gsonBuilder.registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter);
+        gsonBuilder.registerTypeAdapter(LocalDate.class, localDateTypeAdapter);
+        gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AccountCreate.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AccountStatus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Acknowledgement.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AclCheckRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AclCheckResponseModel.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AirlineAdvice.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AirlineSegment.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AuthReference.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AuthReferences.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AuthRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AuthResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AuthenRequired.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Batch.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.BatchReportRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.BatchReportResponseModel.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.BatchTransaction.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.BatchTransactionResultModel.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Bin.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.BinLookup.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.CResAuthRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.CaptureRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Card.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.CardHolderAccount.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.CardStatus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.ChargeRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.CheckBatchStatus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.CheckBatchStatusResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.ContactDetails.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Decision.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.DirectPostRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.DirectTokenAuthRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.DomainKeyCheckRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.DomainKeyRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.DomainKeyResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Error.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.EventDataModel.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Exists.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.ExternalMPI.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.ListMerchantsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.MCC6012.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Merchant.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaResAuthRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkAddress.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkAdjustmentRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkAttachmentRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkAttachmentResult.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkBillPaymentTokenRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkCardHolder.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkCart.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkCartItemModel.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkConfig.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkCustomParam.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkEmailNotificationPath.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkErrorCode.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkFieldGuardModel.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkPartPayments.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkSMSNotificationPath.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkStateEvent.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkTokenCreated.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkTokenRequestModel.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkTokenStatus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkTokenStatusChangeRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkTokenStatusChangeResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkUI.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Ping.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.ProcessBatchRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.ProcessBatchResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.RefundRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.RegisterCard.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.RequestChallenged.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.RetrieveRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.ThreeDSecure.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.TokenisationResponseModel.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.VoidRequest.CustomTypeAdapterFactory());
+        gson = gsonBuilder.create();
     }
 
     /**
@@ -95,7 +174,7 @@ public class JSON {
      *
      * @return Gson
      */
-    public Gson getGson() {
+    public static Gson getGson() {
         return gson;
     }
 
@@ -103,16 +182,13 @@ public class JSON {
      * Set Gson.
      *
      * @param gson Gson
-     * @return JSON
      */
-    public JSON setGson(Gson gson) {
-        this.gson = gson;
-        return this;
+    public static void setGson(Gson gson) {
+        JSON.gson = gson;
     }
 
-    public JSON setLenientOnJson(boolean lenientOnJson) {
+    public static void setLenientOnJson(boolean lenientOnJson) {
         isLenientOnJson = lenientOnJson;
-        return this;
     }
 
     /**
@@ -121,7 +197,7 @@ public class JSON {
      * @param obj Object
      * @return String representation of the JSON
      */
-    public String serialize(Object obj) {
+    public static String serialize(Object obj) {
         return gson.toJson(obj);
     }
 
@@ -134,7 +210,7 @@ public class JSON {
      * @return The deserialized Java object
      */
     @SuppressWarnings("unchecked")
-    public <T> T deserialize(String body, Type returnType) {
+    public static <T> T deserialize(String body, Type returnType) {
         try {
             if (isLenientOnJson) {
                 JsonReader jsonReader = new JsonReader(new StringReader(body));
@@ -158,7 +234,7 @@ public class JSON {
     /**
      * Gson TypeAdapter for Byte Array type
      */
-    public class ByteArrayAdapter extends TypeAdapter<byte[]> {
+    public static class ByteArrayAdapter extends TypeAdapter<byte[]> {
 
         @Override
         public void write(JsonWriter out, byte[] value) throws IOException {
@@ -230,7 +306,7 @@ public class JSON {
     /**
      * Gson TypeAdapter for JSR310 LocalDate type
      */
-    public class LocalDateTypeAdapter extends TypeAdapter<LocalDate> {
+    public static class LocalDateTypeAdapter extends TypeAdapter<LocalDate> {
 
         private DateTimeFormatter formatter;
 
@@ -268,14 +344,12 @@ public class JSON {
         }
     }
 
-    public JSON setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
+    public static void setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
         offsetDateTimeTypeAdapter.setFormat(dateFormat);
-        return this;
     }
 
-    public JSON setLocalDateFormat(DateTimeFormatter dateFormat) {
+    public static void setLocalDateFormat(DateTimeFormatter dateFormat) {
         localDateTypeAdapter.setFormat(dateFormat);
-        return this;
     }
 
     /**
@@ -389,14 +463,11 @@ public class JSON {
         }
     }
 
-    public JSON setDateFormat(DateFormat dateFormat) {
+    public static void setDateFormat(DateFormat dateFormat) {
         dateTypeAdapter.setFormat(dateFormat);
-        return this;
     }
 
-    public JSON setSqlDateFormat(DateFormat dateFormat) {
+    public static void setSqlDateFormat(DateFormat dateFormat) {
         sqlDateTypeAdapter.setFormat(dateFormat);
-        return this;
     }
-
 }

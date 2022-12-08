@@ -37,9 +37,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 
 public class DirectPostApi {
     private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
     public DirectPostApi() {
         this(Configuration.getDefaultApiClient());
@@ -55,6 +58,22 @@ public class DirectPostApi {
 
     public void setApiClient(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
     }
 
     /**
@@ -79,6 +98,19 @@ public class DirectPostApi {
      </table>
      */
     public okhttp3.Call directCResAuthRequestCall(String uuid, String cres, String threeDSSessionData, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -111,10 +143,12 @@ public class DirectPostApi {
             "application/x-www-form-urlencoded"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
@@ -235,6 +269,19 @@ public class DirectPostApi {
      </table>
      */
     public okhttp3.Call directCResTokeniseRequestCall(String uuid, String cres, String threeDSSessionData, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -267,10 +314,12 @@ public class DirectPostApi {
             "application/x-www-form-urlencoded"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
@@ -389,6 +438,19 @@ public class DirectPostApi {
      </table>
      */
     public okhttp3.Call directPostAuthRequestCall(DirectPostRequest directPostRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = directPostRequest;
 
         // create path and map variables
@@ -412,10 +474,12 @@ public class DirectPostApi {
             "application/json", "application/x-www-form-urlencoded", "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key", "cp-domain-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
@@ -434,7 +498,7 @@ public class DirectPostApi {
 
     /**
      * Direct Post Auth Request
-     * Used to initiate a direct post request transaction flow.  &lt;pre class&#x3D;\&quot;inline-code language-bash\&quot;&gt; &lt;code&gt; curl https://api.citypay.com/v6/direct?cp-domain-key&#x3D;n834ytqp84y... \\  -d \&quot;amount&#x3D;7500&amp;identifier&#x3D;example_trans&amp;cardnumber&#x3D;4000000000000002&amp;expmonth&#x3D;9&amp;expyear&#x3D;2028&amp;bill_to_postcode&#x3D;L1+7ZW &lt;/code&gt; &lt;/pre&gt;. 
+     * Used to initiate a direct post request transaction flow.  &lt;pre class&#x3D;\&quot;inline-code language-bash\&quot;&gt; &lt;code&gt; curl https://api.citypay.com/direct/auth?cp-domain-key&#x3D;n834ytqp84y... \\  -d \&quot;amount&#x3D;7500&amp;identifier&#x3D;example_trans&amp;cardnumber&#x3D;4000000000000002&amp;expmonth&#x3D;9&amp;expyear&#x3D;2028&amp;bill_to_postcode&#x3D;L1+7ZW &lt;/code&gt; &lt;/pre&gt;. 
      * @param directPostRequest  (required)
      * @return AuthResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -458,7 +522,7 @@ public class DirectPostApi {
 
     /**
      * Direct Post Auth Request
-     * Used to initiate a direct post request transaction flow.  &lt;pre class&#x3D;\&quot;inline-code language-bash\&quot;&gt; &lt;code&gt; curl https://api.citypay.com/v6/direct?cp-domain-key&#x3D;n834ytqp84y... \\  -d \&quot;amount&#x3D;7500&amp;identifier&#x3D;example_trans&amp;cardnumber&#x3D;4000000000000002&amp;expmonth&#x3D;9&amp;expyear&#x3D;2028&amp;bill_to_postcode&#x3D;L1+7ZW &lt;/code&gt; &lt;/pre&gt;. 
+     * Used to initiate a direct post request transaction flow.  &lt;pre class&#x3D;\&quot;inline-code language-bash\&quot;&gt; &lt;code&gt; curl https://api.citypay.com/direct/auth?cp-domain-key&#x3D;n834ytqp84y... \\  -d \&quot;amount&#x3D;7500&amp;identifier&#x3D;example_trans&amp;cardnumber&#x3D;4000000000000002&amp;expmonth&#x3D;9&amp;expyear&#x3D;2028&amp;bill_to_postcode&#x3D;L1+7ZW &lt;/code&gt; &lt;/pre&gt;. 
      * @param directPostRequest  (required)
      * @return ApiResponse&lt;AuthResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -483,7 +547,7 @@ public class DirectPostApi {
 
     /**
      * Direct Post Auth Request (asynchronously)
-     * Used to initiate a direct post request transaction flow.  &lt;pre class&#x3D;\&quot;inline-code language-bash\&quot;&gt; &lt;code&gt; curl https://api.citypay.com/v6/direct?cp-domain-key&#x3D;n834ytqp84y... \\  -d \&quot;amount&#x3D;7500&amp;identifier&#x3D;example_trans&amp;cardnumber&#x3D;4000000000000002&amp;expmonth&#x3D;9&amp;expyear&#x3D;2028&amp;bill_to_postcode&#x3D;L1+7ZW &lt;/code&gt; &lt;/pre&gt;. 
+     * Used to initiate a direct post request transaction flow.  &lt;pre class&#x3D;\&quot;inline-code language-bash\&quot;&gt; &lt;code&gt; curl https://api.citypay.com/direct/auth?cp-domain-key&#x3D;n834ytqp84y... \\  -d \&quot;amount&#x3D;7500&amp;identifier&#x3D;example_trans&amp;cardnumber&#x3D;4000000000000002&amp;expmonth&#x3D;9&amp;expyear&#x3D;2028&amp;bill_to_postcode&#x3D;L1+7ZW &lt;/code&gt; &lt;/pre&gt;. 
      * @param directPostRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -528,6 +592,19 @@ public class DirectPostApi {
      </table>
      */
     public okhttp3.Call directPostTokeniseRequestCall(DirectPostRequest directPostRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = directPostRequest;
 
         // create path and map variables
@@ -551,10 +628,12 @@ public class DirectPostApi {
             "application/json", "application/x-www-form-urlencoded", "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key", "cp-domain-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
@@ -666,6 +745,19 @@ public class DirectPostApi {
      </table>
      */
     public okhttp3.Call tokenRequestCall(DirectTokenAuthRequest directTokenAuthRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = directTokenAuthRequest;
 
         // create path and map variables
@@ -689,10 +781,12 @@ public class DirectPostApi {
             "application/json", "application/x-www-form-urlencoded", "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key", "cp-domain-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")

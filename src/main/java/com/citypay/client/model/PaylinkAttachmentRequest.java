@@ -23,6 +23,26 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.citypay.client.JSON;
+
 /**
  * PaylinkAttachmentRequest
  */
@@ -39,6 +59,16 @@ public class PaylinkAttachmentRequest {
   @SerializedName(SERIALIZED_NAME_MIME_TYPE)
   private String mimeType;
 
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
+  public static final String SERIALIZED_NAME_RETENTION = "retention";
+  @SerializedName(SERIALIZED_NAME_RETENTION)
+  private Integer retention;
+
+  public PaylinkAttachmentRequest() {
+  }
 
   public PaylinkAttachmentRequest data(String data) {
     
@@ -109,6 +139,53 @@ public class PaylinkAttachmentRequest {
   }
 
 
+  public PaylinkAttachmentRequest name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * A name for the file to identify it to the card holder when it is displayed in the payment form. For example Invoice, Statement.
+   * @return name
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A name for the file to identify it to the card holder when it is displayed in the payment form. For example Invoice, Statement.")
+
+  public String getName() {
+    return name;
+  }
+
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  public PaylinkAttachmentRequest retention(Integer retention) {
+    
+    this.retention = retention;
+    return this;
+  }
+
+   /**
+   * The retention period in days of the attachment. Defaults to 180 days.
+   * @return retention
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The retention period in days of the attachment. Defaults to 180 days.")
+
+  public Integer getRetention() {
+    return retention;
+  }
+
+
+  public void setRetention(Integer retention) {
+    this.retention = retention;
+  }
+
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -120,12 +197,14 @@ public class PaylinkAttachmentRequest {
     PaylinkAttachmentRequest paylinkAttachmentRequest = (PaylinkAttachmentRequest) o;
     return Objects.equals(this.data, paylinkAttachmentRequest.data) &&
         Objects.equals(this.filename, paylinkAttachmentRequest.filename) &&
-        Objects.equals(this.mimeType, paylinkAttachmentRequest.mimeType);
+        Objects.equals(this.mimeType, paylinkAttachmentRequest.mimeType) &&
+        Objects.equals(this.name, paylinkAttachmentRequest.name) &&
+        Objects.equals(this.retention, paylinkAttachmentRequest.retention);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, filename, mimeType);
+    return Objects.hash(data, filename, mimeType, name, retention);
   }
 
   @Override
@@ -135,6 +214,8 @@ public class PaylinkAttachmentRequest {
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
     sb.append("    mimeType: ").append(toIndentedString(mimeType)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    retention: ").append(toIndentedString(retention)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -150,5 +231,115 @@ public class PaylinkAttachmentRequest {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("data");
+    openapiFields.add("filename");
+    openapiFields.add("mime_type");
+    openapiFields.add("name");
+    openapiFields.add("retention");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("filename");
+    openapiRequiredFields.add("mime_type");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to PaylinkAttachmentRequest
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (PaylinkAttachmentRequest.openapiRequiredFields.isEmpty()) {
+          return;
+        } else { // has required fields
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkAttachmentRequest is not found in the empty JSON string", PaylinkAttachmentRequest.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!PaylinkAttachmentRequest.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkAttachmentRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : PaylinkAttachmentRequest.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull()) && !jsonObj.get("data").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `data` to be a primitive type in the JSON string but got `%s`", jsonObj.get("data").toString()));
+      }
+      if ((jsonObj.get("filename") != null && !jsonObj.get("filename").isJsonNull()) && !jsonObj.get("filename").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `filename` to be a primitive type in the JSON string but got `%s`", jsonObj.get("filename").toString()));
+      }
+      if ((jsonObj.get("mime_type") != null && !jsonObj.get("mime_type").isJsonNull()) && !jsonObj.get("mime_type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `mime_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mime_type").toString()));
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PaylinkAttachmentRequest.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PaylinkAttachmentRequest' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PaylinkAttachmentRequest> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PaylinkAttachmentRequest.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PaylinkAttachmentRequest>() {
+           @Override
+           public void write(JsonWriter out, PaylinkAttachmentRequest value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PaylinkAttachmentRequest read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of PaylinkAttachmentRequest given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of PaylinkAttachmentRequest
+  * @throws IOException if the JSON string is invalid with respect to PaylinkAttachmentRequest
+  */
+  public static PaylinkAttachmentRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PaylinkAttachmentRequest.class);
+  }
+
+ /**
+  * Convert an instance of PaylinkAttachmentRequest to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

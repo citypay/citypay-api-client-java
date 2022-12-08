@@ -2,8 +2,8 @@
 
 [![Build Status](https://api.travis-ci.com/citypay/citypay-api-client-java.svg?branch=master)](https://app.travis-ci.com/github/citypay/citypay-api-client-java)
 CityPay Payment API
-- API version: 6.4.7
-  - Build date: 2022-10-27T16:02:29.322868Z[Etc/UTC]
+- API version: 6.4.18
+  - Build date: 2022-12-08T15:57:11.877488Z[Etc/UTC]
 
 
 This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It
@@ -40,7 +40,7 @@ Visa and MasterCard and the PCI Security Standards Council. These include
 
 Building the API client library requires:
 1. Java 1.8+
-2. Maven/Gradle
+2. Maven (3.8.3+)/Gradle (7.2+)
 
 ## Installation
 
@@ -161,6 +161,7 @@ Class | Method | HTTP request | Description
 *PaylinkApi* | [**tokenCloseRequest**](docs/PaylinkApi.md#tokenCloseRequest) | **PUT** /paylink/{token}/close | Close Paylink Token
 *PaylinkApi* | [**tokenCreateBillPaymentRequest**](docs/PaylinkApi.md#tokenCreateBillPaymentRequest) | **POST** /paylink/bill-payment | Create Bill Payment Paylink Token
 *PaylinkApi* | [**tokenCreateRequest**](docs/PaylinkApi.md#tokenCreateRequest) | **POST** /paylink/create | Create Paylink Token
+*PaylinkApi* | [**tokenPurgeAttachmentsRequest**](docs/PaylinkApi.md#tokenPurgeAttachmentsRequest) | **PUT** /paylink/{token}/purge-attachments | Purges any attachments for a Paylink Token
 *PaylinkApi* | [**tokenReconciledRequest**](docs/PaylinkApi.md#tokenReconciledRequest) | **PUT** /paylink/{token}/reconciled | Reconcile Paylink Token
 *PaylinkApi* | [**tokenReopenRequest**](docs/PaylinkApi.md#tokenReopenRequest) | **PUT** /paylink/{token}/reopen | Reopen Paylink Token
 *PaylinkApi* | [**tokenStatusChangesRequest**](docs/PaylinkApi.md#tokenStatusChangesRequest) | **POST** /paylink/token/changes | Paylink Token Audit

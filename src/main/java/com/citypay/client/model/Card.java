@@ -24,6 +24,26 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.citypay.client.JSON;
+
 /**
  * Card
  */
@@ -108,6 +128,8 @@ public class Card {
   @SerializedName(SERIALIZED_NAME_TOKEN)
   private String token;
 
+  public Card() {
+  }
 
   public Card binCommercial(Boolean binCommercial) {
     
@@ -573,6 +595,7 @@ public class Card {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -648,5 +671,142 @@ public class Card {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("bin_commercial");
+    openapiFields.add("bin_corporate");
+    openapiFields.add("bin_country_issued");
+    openapiFields.add("bin_credit");
+    openapiFields.add("bin_currency");
+    openapiFields.add("bin_debit");
+    openapiFields.add("bin_description");
+    openapiFields.add("bin_eu");
+    openapiFields.add("card_id");
+    openapiFields.add("card_status");
+    openapiFields.add("date_created");
+    openapiFields.add("default");
+    openapiFields.add("expmonth");
+    openapiFields.add("expyear");
+    openapiFields.add("label");
+    openapiFields.add("label2");
+    openapiFields.add("last4digits");
+    openapiFields.add("name_on_card");
+    openapiFields.add("scheme");
+    openapiFields.add("token");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to Card
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (Card.openapiRequiredFields.isEmpty()) {
+          return;
+        } else { // has required fields
+          throw new IllegalArgumentException(String.format("The required field(s) %s in Card is not found in the empty JSON string", Card.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!Card.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Card` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("bin_country_issued") != null && !jsonObj.get("bin_country_issued").isJsonNull()) && !jsonObj.get("bin_country_issued").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `bin_country_issued` to be a primitive type in the JSON string but got `%s`", jsonObj.get("bin_country_issued").toString()));
+      }
+      if ((jsonObj.get("bin_currency") != null && !jsonObj.get("bin_currency").isJsonNull()) && !jsonObj.get("bin_currency").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `bin_currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("bin_currency").toString()));
+      }
+      if ((jsonObj.get("bin_description") != null && !jsonObj.get("bin_description").isJsonNull()) && !jsonObj.get("bin_description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `bin_description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("bin_description").toString()));
+      }
+      if ((jsonObj.get("card_id") != null && !jsonObj.get("card_id").isJsonNull()) && !jsonObj.get("card_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `card_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("card_id").toString()));
+      }
+      if ((jsonObj.get("card_status") != null && !jsonObj.get("card_status").isJsonNull()) && !jsonObj.get("card_status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `card_status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("card_status").toString()));
+      }
+      if ((jsonObj.get("label") != null && !jsonObj.get("label").isJsonNull()) && !jsonObj.get("label").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `label` to be a primitive type in the JSON string but got `%s`", jsonObj.get("label").toString()));
+      }
+      if ((jsonObj.get("label2") != null && !jsonObj.get("label2").isJsonNull()) && !jsonObj.get("label2").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `label2` to be a primitive type in the JSON string but got `%s`", jsonObj.get("label2").toString()));
+      }
+      if ((jsonObj.get("last4digits") != null && !jsonObj.get("last4digits").isJsonNull()) && !jsonObj.get("last4digits").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `last4digits` to be a primitive type in the JSON string but got `%s`", jsonObj.get("last4digits").toString()));
+      }
+      if ((jsonObj.get("name_on_card") != null && !jsonObj.get("name_on_card").isJsonNull()) && !jsonObj.get("name_on_card").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name_on_card` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name_on_card").toString()));
+      }
+      if ((jsonObj.get("scheme") != null && !jsonObj.get("scheme").isJsonNull()) && !jsonObj.get("scheme").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `scheme` to be a primitive type in the JSON string but got `%s`", jsonObj.get("scheme").toString()));
+      }
+      if ((jsonObj.get("token") != null && !jsonObj.get("token").isJsonNull()) && !jsonObj.get("token").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("token").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!Card.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'Card' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<Card> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(Card.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<Card>() {
+           @Override
+           public void write(JsonWriter out, Card value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public Card read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of Card given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of Card
+  * @throws IOException if the JSON string is invalid with respect to Card
+  */
+  public static Card fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, Card.class);
+  }
+
+ /**
+  * Convert an instance of Card to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 
