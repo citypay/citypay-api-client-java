@@ -23,6 +23,26 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.citypay.client.JSON;
+
 /**
  * MCC6012
  */
@@ -43,6 +63,8 @@ public class MCC6012 {
   @SerializedName(SERIALIZED_NAME_RECIPIENT_POSTCODE)
   private String recipientPostcode;
 
+  public MCC6012() {
+  }
 
   public MCC6012 recipientAccount(String recipientAccount) {
     
@@ -136,6 +158,7 @@ public class MCC6012 {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -179,5 +202,105 @@ public class MCC6012 {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("recipient_account");
+    openapiFields.add("recipient_dob");
+    openapiFields.add("recipient_lastname");
+    openapiFields.add("recipient_postcode");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to MCC6012
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (MCC6012.openapiRequiredFields.isEmpty()) {
+          return;
+        } else { // has required fields
+          throw new IllegalArgumentException(String.format("The required field(s) %s in MCC6012 is not found in the empty JSON string", MCC6012.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!MCC6012.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MCC6012` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("recipient_account") != null && !jsonObj.get("recipient_account").isJsonNull()) && !jsonObj.get("recipient_account").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `recipient_account` to be a primitive type in the JSON string but got `%s`", jsonObj.get("recipient_account").toString()));
+      }
+      if ((jsonObj.get("recipient_dob") != null && !jsonObj.get("recipient_dob").isJsonNull()) && !jsonObj.get("recipient_dob").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `recipient_dob` to be a primitive type in the JSON string but got `%s`", jsonObj.get("recipient_dob").toString()));
+      }
+      if ((jsonObj.get("recipient_lastname") != null && !jsonObj.get("recipient_lastname").isJsonNull()) && !jsonObj.get("recipient_lastname").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `recipient_lastname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("recipient_lastname").toString()));
+      }
+      if ((jsonObj.get("recipient_postcode") != null && !jsonObj.get("recipient_postcode").isJsonNull()) && !jsonObj.get("recipient_postcode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `recipient_postcode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("recipient_postcode").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!MCC6012.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'MCC6012' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<MCC6012> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(MCC6012.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<MCC6012>() {
+           @Override
+           public void write(JsonWriter out, MCC6012 value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public MCC6012 read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of MCC6012 given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of MCC6012
+  * @throws IOException if the JSON string is invalid with respect to MCC6012
+  */
+  public static MCC6012 fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, MCC6012.class);
+  }
+
+ /**
+  * Convert an instance of MCC6012 to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

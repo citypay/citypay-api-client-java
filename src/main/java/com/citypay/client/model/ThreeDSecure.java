@@ -23,6 +23,26 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.citypay.client.JSON;
+
 /**
  * ThreeDSecure
  */
@@ -79,6 +99,8 @@ public class ThreeDSecure {
   @SerializedName(SERIALIZED_NAME_USER_AGENT)
   private String userAgent;
 
+  public ThreeDSecure() {
+  }
 
   public ThreeDSecure acceptHeaders(String acceptHeaders) {
     
@@ -379,6 +401,7 @@ public class ThreeDSecure {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -440,5 +463,138 @@ public class ThreeDSecure {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("accept_headers");
+    openapiFields.add("browserColorDepth");
+    openapiFields.add("browserIP");
+    openapiFields.add("browserJavaEnabled");
+    openapiFields.add("browserLanguage");
+    openapiFields.add("browserScreenHeight");
+    openapiFields.add("browserScreenWidth");
+    openapiFields.add("browserTZ");
+    openapiFields.add("cp_bx");
+    openapiFields.add("downgrade1");
+    openapiFields.add("merchant_termurl");
+    openapiFields.add("tds_policy");
+    openapiFields.add("user_agent");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to ThreeDSecure
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (ThreeDSecure.openapiRequiredFields.isEmpty()) {
+          return;
+        } else { // has required fields
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ThreeDSecure is not found in the empty JSON string", ThreeDSecure.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!ThreeDSecure.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ThreeDSecure` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("accept_headers") != null && !jsonObj.get("accept_headers").isJsonNull()) && !jsonObj.get("accept_headers").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `accept_headers` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accept_headers").toString()));
+      }
+      if ((jsonObj.get("browserColorDepth") != null && !jsonObj.get("browserColorDepth").isJsonNull()) && !jsonObj.get("browserColorDepth").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `browserColorDepth` to be a primitive type in the JSON string but got `%s`", jsonObj.get("browserColorDepth").toString()));
+      }
+      if ((jsonObj.get("browserIP") != null && !jsonObj.get("browserIP").isJsonNull()) && !jsonObj.get("browserIP").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `browserIP` to be a primitive type in the JSON string but got `%s`", jsonObj.get("browserIP").toString()));
+      }
+      if ((jsonObj.get("browserJavaEnabled") != null && !jsonObj.get("browserJavaEnabled").isJsonNull()) && !jsonObj.get("browserJavaEnabled").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `browserJavaEnabled` to be a primitive type in the JSON string but got `%s`", jsonObj.get("browserJavaEnabled").toString()));
+      }
+      if ((jsonObj.get("browserLanguage") != null && !jsonObj.get("browserLanguage").isJsonNull()) && !jsonObj.get("browserLanguage").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `browserLanguage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("browserLanguage").toString()));
+      }
+      if ((jsonObj.get("browserScreenHeight") != null && !jsonObj.get("browserScreenHeight").isJsonNull()) && !jsonObj.get("browserScreenHeight").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `browserScreenHeight` to be a primitive type in the JSON string but got `%s`", jsonObj.get("browserScreenHeight").toString()));
+      }
+      if ((jsonObj.get("browserScreenWidth") != null && !jsonObj.get("browserScreenWidth").isJsonNull()) && !jsonObj.get("browserScreenWidth").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `browserScreenWidth` to be a primitive type in the JSON string but got `%s`", jsonObj.get("browserScreenWidth").toString()));
+      }
+      if ((jsonObj.get("browserTZ") != null && !jsonObj.get("browserTZ").isJsonNull()) && !jsonObj.get("browserTZ").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `browserTZ` to be a primitive type in the JSON string but got `%s`", jsonObj.get("browserTZ").toString()));
+      }
+      if ((jsonObj.get("cp_bx") != null && !jsonObj.get("cp_bx").isJsonNull()) && !jsonObj.get("cp_bx").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cp_bx` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cp_bx").toString()));
+      }
+      if ((jsonObj.get("merchant_termurl") != null && !jsonObj.get("merchant_termurl").isJsonNull()) && !jsonObj.get("merchant_termurl").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `merchant_termurl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("merchant_termurl").toString()));
+      }
+      if ((jsonObj.get("tds_policy") != null && !jsonObj.get("tds_policy").isJsonNull()) && !jsonObj.get("tds_policy").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tds_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tds_policy").toString()));
+      }
+      if ((jsonObj.get("user_agent") != null && !jsonObj.get("user_agent").isJsonNull()) && !jsonObj.get("user_agent").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `user_agent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("user_agent").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ThreeDSecure.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ThreeDSecure' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ThreeDSecure> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ThreeDSecure.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ThreeDSecure>() {
+           @Override
+           public void write(JsonWriter out, ThreeDSecure value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ThreeDSecure read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of ThreeDSecure given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of ThreeDSecure
+  * @throws IOException if the JSON string is invalid with respect to ThreeDSecure
+  */
+  public static ThreeDSecure fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ThreeDSecure.class);
+  }
+
+ /**
+  * Convert an instance of ThreeDSecure to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

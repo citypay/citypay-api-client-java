@@ -31,6 +31,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.citypay.client.JSON;
+
 /**
  * PaylinkConfig
  */
@@ -123,6 +143,8 @@ public class PaylinkConfig {
   @SerializedName(SERIALIZED_NAME_UI)
   private PaylinkUI ui;
 
+  public PaylinkConfig() {
+  }
 
   public PaylinkConfig acsMode(String acsMode) {
     
@@ -678,6 +700,7 @@ public class PaylinkConfig {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -757,5 +780,187 @@ public class PaylinkConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("acs_mode");
+    openapiFields.add("custom_params");
+    openapiFields.add("descriptor");
+    openapiFields.add("expire_in");
+    openapiFields.add("field_guard");
+    openapiFields.add("lock_params");
+    openapiFields.add("merch_logo");
+    openapiFields.add("merch_terms");
+    openapiFields.add("options");
+    openapiFields.add("part_payments");
+    openapiFields.add("pass_through_data");
+    openapiFields.add("pass_through_headers");
+    openapiFields.add("postback");
+    openapiFields.add("postback_password");
+    openapiFields.add("postback_policy");
+    openapiFields.add("postback_username");
+    openapiFields.add("redirect_delay");
+    openapiFields.add("redirect_failure");
+    openapiFields.add("redirect_success");
+    openapiFields.add("renderer");
+    openapiFields.add("return_params");
+    openapiFields.add("ui");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to PaylinkConfig
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (PaylinkConfig.openapiRequiredFields.isEmpty()) {
+          return;
+        } else { // has required fields
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkConfig is not found in the empty JSON string", PaylinkConfig.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!PaylinkConfig.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("acs_mode") != null && !jsonObj.get("acs_mode").isJsonNull()) && !jsonObj.get("acs_mode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `acs_mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("acs_mode").toString()));
+      }
+      JsonArray jsonArraycustomParams = jsonObj.getAsJsonArray("custom_params");
+      if (jsonArraycustomParams != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("custom_params").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `custom_params` to be an array in the JSON string but got `%s`", jsonObj.get("custom_params").toString()));
+        }
+
+        // validate the optional field `custom_params` (array)
+        for (int i = 0; i < jsonArraycustomParams.size(); i++) {
+          PaylinkCustomParam.validateJsonObject(jsonArraycustomParams.get(i).getAsJsonObject());
+        };
+      }
+      if ((jsonObj.get("descriptor") != null && !jsonObj.get("descriptor").isJsonNull()) && !jsonObj.get("descriptor").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `descriptor` to be a primitive type in the JSON string but got `%s`", jsonObj.get("descriptor").toString()));
+      }
+      if ((jsonObj.get("expire_in") != null && !jsonObj.get("expire_in").isJsonNull()) && !jsonObj.get("expire_in").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `expire_in` to be a primitive type in the JSON string but got `%s`", jsonObj.get("expire_in").toString()));
+      }
+      JsonArray jsonArrayfieldGuard = jsonObj.getAsJsonArray("field_guard");
+      if (jsonArrayfieldGuard != null) {
+        // ensure the json data is an array
+        if (!jsonObj.get("field_guard").isJsonArray()) {
+          throw new IllegalArgumentException(String.format("Expected the field `field_guard` to be an array in the JSON string but got `%s`", jsonObj.get("field_guard").toString()));
+        }
+
+        // validate the optional field `field_guard` (array)
+        for (int i = 0; i < jsonArrayfieldGuard.size(); i++) {
+          PaylinkFieldGuardModel.validateJsonObject(jsonArrayfieldGuard.get(i).getAsJsonObject());
+        };
+      }
+      // ensure the json data is an array
+      if ((jsonObj.get("lock_params") != null && !jsonObj.get("lock_params").isJsonNull()) && !jsonObj.get("lock_params").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `lock_params` to be an array in the JSON string but got `%s`", jsonObj.get("lock_params").toString()));
+      }
+      if ((jsonObj.get("merch_logo") != null && !jsonObj.get("merch_logo").isJsonNull()) && !jsonObj.get("merch_logo").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `merch_logo` to be a primitive type in the JSON string but got `%s`", jsonObj.get("merch_logo").toString()));
+      }
+      if ((jsonObj.get("merch_terms") != null && !jsonObj.get("merch_terms").isJsonNull()) && !jsonObj.get("merch_terms").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `merch_terms` to be a primitive type in the JSON string but got `%s`", jsonObj.get("merch_terms").toString()));
+      }
+      // ensure the json data is an array
+      if ((jsonObj.get("options") != null && !jsonObj.get("options").isJsonNull()) && !jsonObj.get("options").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `options` to be an array in the JSON string but got `%s`", jsonObj.get("options").toString()));
+      }
+      // validate the optional field `part_payments`
+      if (jsonObj.get("part_payments") != null && !jsonObj.get("part_payments").isJsonNull()) {
+        PaylinkPartPayments.validateJsonObject(jsonObj.getAsJsonObject("part_payments"));
+      }
+      if ((jsonObj.get("postback") != null && !jsonObj.get("postback").isJsonNull()) && !jsonObj.get("postback").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `postback` to be a primitive type in the JSON string but got `%s`", jsonObj.get("postback").toString()));
+      }
+      if ((jsonObj.get("postback_password") != null && !jsonObj.get("postback_password").isJsonNull()) && !jsonObj.get("postback_password").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `postback_password` to be a primitive type in the JSON string but got `%s`", jsonObj.get("postback_password").toString()));
+      }
+      if ((jsonObj.get("postback_policy") != null && !jsonObj.get("postback_policy").isJsonNull()) && !jsonObj.get("postback_policy").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `postback_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("postback_policy").toString()));
+      }
+      if ((jsonObj.get("postback_username") != null && !jsonObj.get("postback_username").isJsonNull()) && !jsonObj.get("postback_username").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `postback_username` to be a primitive type in the JSON string but got `%s`", jsonObj.get("postback_username").toString()));
+      }
+      if ((jsonObj.get("redirect_failure") != null && !jsonObj.get("redirect_failure").isJsonNull()) && !jsonObj.get("redirect_failure").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `redirect_failure` to be a primitive type in the JSON string but got `%s`", jsonObj.get("redirect_failure").toString()));
+      }
+      if ((jsonObj.get("redirect_success") != null && !jsonObj.get("redirect_success").isJsonNull()) && !jsonObj.get("redirect_success").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `redirect_success` to be a primitive type in the JSON string but got `%s`", jsonObj.get("redirect_success").toString()));
+      }
+      if ((jsonObj.get("renderer") != null && !jsonObj.get("renderer").isJsonNull()) && !jsonObj.get("renderer").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `renderer` to be a primitive type in the JSON string but got `%s`", jsonObj.get("renderer").toString()));
+      }
+      // validate the optional field `ui`
+      if (jsonObj.get("ui") != null && !jsonObj.get("ui").isJsonNull()) {
+        PaylinkUI.validateJsonObject(jsonObj.getAsJsonObject("ui"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PaylinkConfig.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PaylinkConfig' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PaylinkConfig> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PaylinkConfig.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PaylinkConfig>() {
+           @Override
+           public void write(JsonWriter out, PaylinkConfig value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PaylinkConfig read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of PaylinkConfig given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of PaylinkConfig
+  * @throws IOException if the JSON string is invalid with respect to PaylinkConfig
+  */
+  public static PaylinkConfig fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PaylinkConfig.class);
+  }
+
+ /**
+  * Convert an instance of PaylinkConfig to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

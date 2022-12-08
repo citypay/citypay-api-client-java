@@ -4,9 +4,9 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 
+import com.citypay.client.api.AuthorisationAndPaymentApi;
 import com.citypay.client.api.CardHolderAccountApi;
-import com.citypay.client.api.OperationalApi;
-import com.citypay.client.api.PaymentProcessingApi;
+import com.citypay.client.api.OperationalFunctionsApi;
 import com.citypay.client.auth.ApiKeyAuth;
 
 import com.citypay.client.utils.Digest;
@@ -64,7 +64,7 @@ public class ApiSandboxTest_IT {
 
     @Test
     public void testPing() {
-        OperationalApi apiInstance = new OperationalApi(defaultClient);
+        OperationalFunctionsApi apiInstance = new OperationalFunctionsApi(defaultClient);
         Ping ping = new Ping().identifier("it_test"); // Ping |
         Acknowledgement result = null;
         try {
@@ -81,7 +81,7 @@ public class ApiSandboxTest_IT {
 
     @Test
     public void testListMerchants() {
-        OperationalApi apiInstance = new OperationalApi(defaultClient);
+        OperationalFunctionsApi apiInstance = new OperationalFunctionsApi(defaultClient);
         ListMerchantsResponse result = null;
         try {
             result = apiInstance.listMerchantsRequest(clientId);
@@ -95,7 +95,7 @@ public class ApiSandboxTest_IT {
     @Test
     public void testAuthorise() {
         String id = String.valueOf(UUID.randomUUID());
-        PaymentProcessingApi apiInstance = new PaymentProcessingApi(defaultClient);
+        AuthorisationAndPaymentApi apiInstance = new AuthorisationAndPaymentApi(defaultClient);
         AuthRequest authRequest = new AuthRequest()
                 .amount(1395)
                 .cardnumber("4000 0000 0000 0002")
@@ -149,7 +149,7 @@ public class ApiSandboxTest_IT {
     @Test
     public void testAuthorise3DSv2Test() throws IOException {
         String id = String.valueOf(UUID.randomUUID());
-        PaymentProcessingApi apiInstance = new PaymentProcessingApi(defaultClient);
+        AuthorisationAndPaymentApi apiInstance = new AuthorisationAndPaymentApi(defaultClient);
         AuthRequest authRequest = new AuthRequest()
                 .amount(1396)
                 .cardnumber("4000 0000 0000 0002")
