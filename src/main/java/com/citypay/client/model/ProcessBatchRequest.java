@@ -41,6 +41,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -239,9 +240,7 @@ public class ProcessBatchRequest {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (ProcessBatchRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!ProcessBatchRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ProcessBatchRequest is not found in the empty JSON string", ProcessBatchRequest.openapiRequiredFields.toString()));
         }
       }
@@ -263,18 +262,16 @@ public class ProcessBatchRequest {
       if ((jsonObj.get("client_account_id") != null && !jsonObj.get("client_account_id").isJsonNull()) && !jsonObj.get("client_account_id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `client_account_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("client_account_id").toString()));
       }
-      JsonArray jsonArraytransactions = jsonObj.getAsJsonArray("transactions");
-      if (jsonArraytransactions != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("transactions").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `transactions` to be an array in the JSON string but got `%s`", jsonObj.get("transactions").toString()));
-        }
-
-        // validate the optional field `transactions` (array)
-        for (int i = 0; i < jsonArraytransactions.size(); i++) {
-          BatchTransaction.validateJsonObject(jsonArraytransactions.get(i).getAsJsonObject());
-        };
+      // ensure the json data is an array
+      if (!jsonObj.get("transactions").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `transactions` to be an array in the JSON string but got `%s`", jsonObj.get("transactions").toString()));
       }
+
+      JsonArray jsonArraytransactions = jsonObj.getAsJsonArray("transactions");
+      // validate the required field `transactions` (array)
+      for (int i = 0; i < jsonArraytransactions.size(); i++) {
+        BatchTransaction.validateJsonObject(jsonArraytransactions.get(i).getAsJsonObject());
+      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

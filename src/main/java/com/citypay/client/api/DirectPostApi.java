@@ -115,7 +115,7 @@ public class DirectPostApi {
 
         // create path and map variables
         String localVarPath = "/direct/cres/auth/{uuid}"
-            .replaceAll("\\{" + "uuid" + "\\}", localVarApiClient.escapeString(uuid.toString()));
+            .replace("{" + "uuid" + "}", localVarApiClient.escapeString(uuid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -132,7 +132,9 @@ public class DirectPostApi {
         }
 
         final String[] localVarAccepts = {
-            "application/json", "application/xml", "application/x-www-form-urlencoded"
+            "application/json",
+            "application/xml",
+            "application/x-www-form-urlencoded"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -153,15 +155,12 @@ public class DirectPostApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call directCResAuthRequestValidateBeforeCall(String uuid, String cres, String threeDSSessionData, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'uuid' is set
         if (uuid == null) {
             throw new ApiException("Missing the required parameter 'uuid' when calling directCResAuthRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = directCResAuthRequestCall(uuid, cres, threeDSSessionData, _callback);
-        return localVarCall;
+        return directCResAuthRequestCall(uuid, cres, threeDSSessionData, _callback);
 
     }
 
@@ -286,7 +285,7 @@ public class DirectPostApi {
 
         // create path and map variables
         String localVarPath = "/direct/cres/tokenise/{uuid}"
-            .replaceAll("\\{" + "uuid" + "\\}", localVarApiClient.escapeString(uuid.toString()));
+            .replace("{" + "uuid" + "}", localVarApiClient.escapeString(uuid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -303,7 +302,9 @@ public class DirectPostApi {
         }
 
         final String[] localVarAccepts = {
-            "application/json", "application/xml", "application/x-www-form-urlencoded"
+            "application/json",
+            "application/xml",
+            "application/x-www-form-urlencoded"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -324,15 +325,12 @@ public class DirectPostApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call directCResTokeniseRequestValidateBeforeCall(String uuid, String cres, String threeDSSessionData, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'uuid' is set
         if (uuid == null) {
             throw new ApiException("Missing the required parameter 'uuid' when calling directCResTokeniseRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = directCResTokeniseRequestCall(uuid, cres, threeDSSessionData, _callback);
-        return localVarCall;
+        return directCResTokeniseRequestCall(uuid, cres, threeDSSessionData, _callback);
 
     }
 
@@ -463,7 +461,10 @@ public class DirectPostApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "application/xml", "application/x-www-form-urlencoded", "text/xml"
+            "application/json",
+            "application/xml",
+            "application/x-www-form-urlencoded",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -471,7 +472,9 @@ public class DirectPostApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "application/x-www-form-urlencoded", "text/xml"
+            "application/json",
+            "application/x-www-form-urlencoded",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -484,15 +487,12 @@ public class DirectPostApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call directPostAuthRequestValidateBeforeCall(DirectPostRequest directPostRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'directPostRequest' is set
         if (directPostRequest == null) {
             throw new ApiException("Missing the required parameter 'directPostRequest' when calling directPostAuthRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = directPostAuthRequestCall(directPostRequest, _callback);
-        return localVarCall;
+        return directPostAuthRequestCall(directPostRequest, _callback);
 
     }
 
@@ -617,7 +617,10 @@ public class DirectPostApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "application/xml", "application/x-www-form-urlencoded", "text/xml"
+            "application/json",
+            "application/xml",
+            "application/x-www-form-urlencoded",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -625,7 +628,9 @@ public class DirectPostApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "application/x-www-form-urlencoded", "text/xml"
+            "application/json",
+            "application/x-www-form-urlencoded",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -638,15 +643,12 @@ public class DirectPostApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call directPostTokeniseRequestValidateBeforeCall(DirectPostRequest directPostRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'directPostRequest' is set
         if (directPostRequest == null) {
             throw new ApiException("Missing the required parameter 'directPostRequest' when calling directPostTokeniseRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = directPostTokeniseRequestCall(directPostRequest, _callback);
-        return localVarCall;
+        return directPostTokeniseRequestCall(directPostRequest, _callback);
 
     }
 
@@ -770,7 +772,10 @@ public class DirectPostApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "application/xml", "application/x-www-form-urlencoded", "text/xml"
+            "application/json",
+            "application/xml",
+            "application/x-www-form-urlencoded",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -778,7 +783,9 @@ public class DirectPostApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "application/x-www-form-urlencoded", "text/xml"
+            "application/json",
+            "application/x-www-form-urlencoded",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -791,15 +798,12 @@ public class DirectPostApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call tokenRequestValidateBeforeCall(DirectTokenAuthRequest directTokenAuthRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'directTokenAuthRequest' is set
         if (directTokenAuthRequest == null) {
             throw new ApiException("Missing the required parameter 'directTokenAuthRequest' when calling tokenRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = tokenRequestCall(directTokenAuthRequest, _callback);
-        return localVarCall;
+        return tokenRequestCall(directTokenAuthRequest, _callback);
 
     }
 

@@ -40,6 +40,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -147,9 +148,7 @@ public class AuthReferences {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (AuthReferences.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!AuthReferences.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in AuthReferences is not found in the empty JSON string", AuthReferences.openapiRequiredFields.toString()));
         }
       }
@@ -161,17 +160,19 @@ public class AuthReferences {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuthReferences` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-      JsonArray jsonArrayauths = jsonObj.getAsJsonArray("auths");
-      if (jsonArrayauths != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("auths").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `auths` to be an array in the JSON string but got `%s`", jsonObj.get("auths").toString()));
-        }
+      if (jsonObj.get("auths") != null && !jsonObj.get("auths").isJsonNull()) {
+        JsonArray jsonArrayauths = jsonObj.getAsJsonArray("auths");
+        if (jsonArrayauths != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("auths").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `auths` to be an array in the JSON string but got `%s`", jsonObj.get("auths").toString()));
+          }
 
-        // validate the optional field `auths` (array)
-        for (int i = 0; i < jsonArrayauths.size(); i++) {
-          AuthReference.validateJsonObject(jsonArrayauths.get(i).getAsJsonObject());
-        };
+          // validate the optional field `auths` (array)
+          for (int i = 0; i < jsonArrayauths.size(); i++) {
+            AuthReference.validateJsonObject(jsonArrayauths.get(i).getAsJsonObject());
+          };
+        }
       }
   }
 

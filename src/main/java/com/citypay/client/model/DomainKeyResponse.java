@@ -40,6 +40,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -266,9 +267,7 @@ public class DomainKeyResponse {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (DomainKeyResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!DomainKeyResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in DomainKeyResponse is not found in the empty JSON string", DomainKeyResponse.openapiRequiredFields.toString()));
         }
       }
@@ -287,8 +286,10 @@ public class DomainKeyResponse {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      // ensure the json data is an array
-      if ((jsonObj.get("domain") != null && !jsonObj.get("domain").isJsonNull()) && !jsonObj.get("domain").isJsonArray()) {
+      // ensure the required json array is present
+      if (jsonObj.get("domain") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("domain").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `domain` to be an array in the JSON string but got `%s`", jsonObj.get("domain").toString()));
       }
       if ((jsonObj.get("domain_key") != null && !jsonObj.get("domain_key").isJsonNull()) && !jsonObj.get("domain_key").isJsonPrimitive()) {

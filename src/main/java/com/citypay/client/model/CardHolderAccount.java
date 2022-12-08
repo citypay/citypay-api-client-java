@@ -42,6 +42,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -391,9 +392,7 @@ public class CardHolderAccount {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (CardHolderAccount.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!CardHolderAccount.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CardHolderAccount is not found in the empty JSON string", CardHolderAccount.openapiRequiredFields.toString()));
         }
       }
@@ -412,25 +411,25 @@ public class CardHolderAccount {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("account_id") != null && !jsonObj.get("account_id").isJsonNull()) && !jsonObj.get("account_id").isJsonPrimitive()) {
+      if (!jsonObj.get("account_id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `account_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("account_id").toString()));
       }
-      JsonArray jsonArraycards = jsonObj.getAsJsonArray("cards");
-      if (jsonArraycards != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("cards").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `cards` to be an array in the JSON string but got `%s`", jsonObj.get("cards").toString()));
-        }
+      if (jsonObj.get("cards") != null && !jsonObj.get("cards").isJsonNull()) {
+        JsonArray jsonArraycards = jsonObj.getAsJsonArray("cards");
+        if (jsonArraycards != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("cards").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `cards` to be an array in the JSON string but got `%s`", jsonObj.get("cards").toString()));
+          }
 
-        // validate the optional field `cards` (array)
-        for (int i = 0; i < jsonArraycards.size(); i++) {
-          Card.validateJsonObject(jsonArraycards.get(i).getAsJsonObject());
-        };
+          // validate the optional field `cards` (array)
+          for (int i = 0; i < jsonArraycards.size(); i++) {
+            Card.validateJsonObject(jsonArraycards.get(i).getAsJsonObject());
+          };
+        }
       }
-      // validate the optional field `contact`
-      if (jsonObj.get("contact") != null && !jsonObj.get("contact").isJsonNull()) {
-        ContactDetails.validateJsonObject(jsonObj.getAsJsonObject("contact"));
-      }
+      // validate the required field `contact`
+      ContactDetails.validateJsonObject(jsonObj.getAsJsonObject("contact"));
       if ((jsonObj.get("default_card_id") != null && !jsonObj.get("default_card_id").isJsonNull()) && !jsonObj.get("default_card_id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `default_card_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("default_card_id").toString()));
       }

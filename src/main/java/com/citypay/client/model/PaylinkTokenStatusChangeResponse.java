@@ -40,6 +40,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -175,9 +176,7 @@ public class PaylinkTokenStatusChangeResponse {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (PaylinkTokenStatusChangeResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!PaylinkTokenStatusChangeResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkTokenStatusChangeResponse is not found in the empty JSON string", PaylinkTokenStatusChangeResponse.openapiRequiredFields.toString()));
         }
       }
@@ -199,18 +198,16 @@ public class PaylinkTokenStatusChangeResponse {
       if ((jsonObj.get("nextToken") != null && !jsonObj.get("nextToken").isJsonNull()) && !jsonObj.get("nextToken").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `nextToken` to be a primitive type in the JSON string but got `%s`", jsonObj.get("nextToken").toString()));
       }
-      JsonArray jsonArraytokens = jsonObj.getAsJsonArray("tokens");
-      if (jsonArraytokens != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("tokens").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `tokens` to be an array in the JSON string but got `%s`", jsonObj.get("tokens").toString()));
-        }
-
-        // validate the optional field `tokens` (array)
-        for (int i = 0; i < jsonArraytokens.size(); i++) {
-          PaylinkTokenStatus.validateJsonObject(jsonArraytokens.get(i).getAsJsonObject());
-        };
+      // ensure the json data is an array
+      if (!jsonObj.get("tokens").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tokens` to be an array in the JSON string but got `%s`", jsonObj.get("tokens").toString()));
       }
+
+      JsonArray jsonArraytokens = jsonObj.getAsJsonArray("tokens");
+      // validate the required field `tokens` (array)
+      for (int i = 0; i < jsonArraytokens.size(); i++) {
+        PaylinkTokenStatus.validateJsonObject(jsonArraytokens.get(i).getAsJsonObject());
+      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

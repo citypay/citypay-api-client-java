@@ -41,6 +41,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -958,9 +959,7 @@ public class PaylinkTokenStatus {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (PaylinkTokenStatus.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!PaylinkTokenStatus.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkTokenStatus is not found in the empty JSON string", PaylinkTokenStatus.openapiRequiredFields.toString()));
         }
       }
@@ -987,17 +986,19 @@ public class PaylinkTokenStatus {
       if ((jsonObj.get("mid") != null && !jsonObj.get("mid").isJsonNull()) && !jsonObj.get("mid").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `mid` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mid").toString()));
       }
-      JsonArray jsonArraystateHistory = jsonObj.getAsJsonArray("state_history");
-      if (jsonArraystateHistory != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("state_history").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `state_history` to be an array in the JSON string but got `%s`", jsonObj.get("state_history").toString()));
-        }
+      if (jsonObj.get("state_history") != null && !jsonObj.get("state_history").isJsonNull()) {
+        JsonArray jsonArraystateHistory = jsonObj.getAsJsonArray("state_history");
+        if (jsonArraystateHistory != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("state_history").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `state_history` to be an array in the JSON string but got `%s`", jsonObj.get("state_history").toString()));
+          }
 
-        // validate the optional field `state_history` (array)
-        for (int i = 0; i < jsonArraystateHistory.size(); i++) {
-          PaylinkStateEvent.validateJsonObject(jsonArraystateHistory.get(i).getAsJsonObject());
-        };
+          // validate the optional field `state_history` (array)
+          for (int i = 0; i < jsonArraystateHistory.size(); i++) {
+            PaylinkStateEvent.validateJsonObject(jsonArraystateHistory.get(i).getAsJsonObject());
+          };
+        }
       }
       if ((jsonObj.get("token") != null && !jsonObj.get("token").isJsonNull()) && !jsonObj.get("token").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("token").toString()));

@@ -128,7 +128,8 @@ public class AuthorisationAndPaymentApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -136,7 +137,8 @@ public class AuthorisationAndPaymentApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -149,15 +151,12 @@ public class AuthorisationAndPaymentApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call authorisationRequestValidateBeforeCall(AuthRequest authRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'authRequest' is set
         if (authRequest == null) {
             throw new ApiException("Missing the required parameter 'authRequest' when calling authorisationRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = authorisationRequestCall(authRequest, _callback);
-        return localVarCall;
+        return authorisationRequestCall(authRequest, _callback);
 
     }
 
@@ -274,7 +273,8 @@ public class AuthorisationAndPaymentApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -282,7 +282,8 @@ public class AuthorisationAndPaymentApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -295,15 +296,12 @@ public class AuthorisationAndPaymentApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call binRangeLookupRequestValidateBeforeCall(BinLookup binLookup, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'binLookup' is set
         if (binLookup == null) {
             throw new ApiException("Missing the required parameter 'binLookup' when calling binRangeLookupRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = binRangeLookupRequestCall(binLookup, _callback);
-        return localVarCall;
+        return binRangeLookupRequestCall(binLookup, _callback);
 
     }
 
@@ -420,7 +418,8 @@ public class AuthorisationAndPaymentApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -428,7 +427,8 @@ public class AuthorisationAndPaymentApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -441,15 +441,12 @@ public class AuthorisationAndPaymentApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call cResRequestValidateBeforeCall(CResAuthRequest cresAuthRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'cresAuthRequest' is set
         if (cresAuthRequest == null) {
             throw new ApiException("Missing the required parameter 'cresAuthRequest' when calling cResRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = cResRequestCall(cresAuthRequest, _callback);
-        return localVarCall;
+        return cResRequestCall(cresAuthRequest, _callback);
 
     }
 
@@ -566,7 +563,8 @@ public class AuthorisationAndPaymentApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -574,7 +572,8 @@ public class AuthorisationAndPaymentApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -587,15 +586,12 @@ public class AuthorisationAndPaymentApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call captureRequestValidateBeforeCall(CaptureRequest captureRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'captureRequest' is set
         if (captureRequest == null) {
             throw new ApiException("Missing the required parameter 'captureRequest' when calling captureRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = captureRequestCall(captureRequest, _callback);
-        return localVarCall;
+        return captureRequestCall(captureRequest, _callback);
 
     }
 
@@ -712,7 +708,8 @@ public class AuthorisationAndPaymentApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -720,7 +717,8 @@ public class AuthorisationAndPaymentApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -733,15 +731,12 @@ public class AuthorisationAndPaymentApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call paResRequestValidateBeforeCall(PaResAuthRequest paResAuthRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'paResAuthRequest' is set
         if (paResAuthRequest == null) {
             throw new ApiException("Missing the required parameter 'paResAuthRequest' when calling paResRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = paResRequestCall(paResAuthRequest, _callback);
-        return localVarCall;
+        return paResRequestCall(paResAuthRequest, _callback);
 
     }
 
@@ -858,7 +853,8 @@ public class AuthorisationAndPaymentApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -866,7 +862,8 @@ public class AuthorisationAndPaymentApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -879,15 +876,12 @@ public class AuthorisationAndPaymentApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call refundRequestValidateBeforeCall(RefundRequest refundRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'refundRequest' is set
         if (refundRequest == null) {
             throw new ApiException("Missing the required parameter 'refundRequest' when calling refundRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = refundRequestCall(refundRequest, _callback);
-        return localVarCall;
+        return refundRequestCall(refundRequest, _callback);
 
     }
 
@@ -1004,7 +998,8 @@ public class AuthorisationAndPaymentApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1012,7 +1007,8 @@ public class AuthorisationAndPaymentApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1025,15 +1021,12 @@ public class AuthorisationAndPaymentApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call retrievalRequestValidateBeforeCall(RetrieveRequest retrieveRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'retrieveRequest' is set
         if (retrieveRequest == null) {
             throw new ApiException("Missing the required parameter 'retrieveRequest' when calling retrievalRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = retrievalRequestCall(retrieveRequest, _callback);
-        return localVarCall;
+        return retrievalRequestCall(retrieveRequest, _callback);
 
     }
 
@@ -1150,7 +1143,8 @@ public class AuthorisationAndPaymentApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1158,7 +1152,8 @@ public class AuthorisationAndPaymentApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1171,15 +1166,12 @@ public class AuthorisationAndPaymentApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call voidRequestValidateBeforeCall(VoidRequest voidRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'voidRequest' is set
         if (voidRequest == null) {
             throw new ApiException("Missing the required parameter 'voidRequest' when calling voidRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = voidRequestCall(voidRequest, _callback);
-        return localVarCall;
+        return voidRequestCall(voidRequest, _callback);
 
     }
 

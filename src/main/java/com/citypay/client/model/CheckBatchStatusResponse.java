@@ -40,6 +40,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -147,9 +148,7 @@ public class CheckBatchStatusResponse {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (CheckBatchStatusResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!CheckBatchStatusResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CheckBatchStatusResponse is not found in the empty JSON string", CheckBatchStatusResponse.openapiRequiredFields.toString()));
         }
       }
@@ -161,17 +160,19 @@ public class CheckBatchStatusResponse {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CheckBatchStatusResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-      JsonArray jsonArraybatches = jsonObj.getAsJsonArray("batches");
-      if (jsonArraybatches != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("batches").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `batches` to be an array in the JSON string but got `%s`", jsonObj.get("batches").toString()));
-        }
+      if (jsonObj.get("batches") != null && !jsonObj.get("batches").isJsonNull()) {
+        JsonArray jsonArraybatches = jsonObj.getAsJsonArray("batches");
+        if (jsonArraybatches != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("batches").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `batches` to be an array in the JSON string but got `%s`", jsonObj.get("batches").toString()));
+          }
 
-        // validate the optional field `batches` (array)
-        for (int i = 0; i < jsonArraybatches.size(); i++) {
-          Batch.validateJsonObject(jsonArraybatches.get(i).getAsJsonObject());
-        };
+          // validate the optional field `batches` (array)
+          for (int i = 0; i < jsonArraybatches.size(); i++) {
+            Batch.validateJsonObject(jsonArraybatches.get(i).getAsJsonObject());
+          };
+        }
       }
   }
 

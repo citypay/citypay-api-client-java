@@ -121,7 +121,8 @@ public class BatchProcessingApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -129,7 +130,8 @@ public class BatchProcessingApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -142,15 +144,12 @@ public class BatchProcessingApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call batchProcessRequestValidateBeforeCall(ProcessBatchRequest processBatchRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'processBatchRequest' is set
         if (processBatchRequest == null) {
             throw new ApiException("Missing the required parameter 'processBatchRequest' when calling batchProcessRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = batchProcessRequestCall(processBatchRequest, _callback);
-        return localVarCall;
+        return batchProcessRequestCall(processBatchRequest, _callback);
 
     }
 
@@ -267,7 +266,8 @@ public class BatchProcessingApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -275,7 +275,8 @@ public class BatchProcessingApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -288,15 +289,12 @@ public class BatchProcessingApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call batchReportRequestValidateBeforeCall(BatchReportRequest batchReportRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'batchReportRequest' is set
         if (batchReportRequest == null) {
             throw new ApiException("Missing the required parameter 'batchReportRequest' when calling batchReportRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = batchReportRequestCall(batchReportRequest, _callback);
-        return localVarCall;
+        return batchReportRequestCall(batchReportRequest, _callback);
 
     }
 
@@ -413,7 +411,8 @@ public class BatchProcessingApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -421,7 +420,8 @@ public class BatchProcessingApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -434,15 +434,12 @@ public class BatchProcessingApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call checkBatchStatusRequestValidateBeforeCall(CheckBatchStatus checkBatchStatus, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'checkBatchStatus' is set
         if (checkBatchStatus == null) {
             throw new ApiException("Missing the required parameter 'checkBatchStatus' when calling checkBatchStatusRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = checkBatchStatusRequestCall(checkBatchStatus, _callback);
-        return localVarCall;
+        return checkBatchStatusRequestCall(checkBatchStatus, _callback);
 
     }
 

@@ -116,7 +116,7 @@ public class PaylinkApi {
 
         // create path and map variables
         String localVarPath = "/paylink/{token}/adjustment"
-            .replaceAll("\\{" + "token" + "\\}", localVarApiClient.escapeString(token.toString()));
+            .replace("{" + "token" + "}", localVarApiClient.escapeString(token.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -125,7 +125,8 @@ public class PaylinkApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -133,7 +134,8 @@ public class PaylinkApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -146,20 +148,17 @@ public class PaylinkApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call tokenAdjustmentRequestValidateBeforeCall(String token, PaylinkAdjustmentRequest paylinkAdjustmentRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'token' is set
         if (token == null) {
             throw new ApiException("Missing the required parameter 'token' when calling tokenAdjustmentRequest(Async)");
         }
-        
+
         // verify the required parameter 'paylinkAdjustmentRequest' is set
         if (paylinkAdjustmentRequest == null) {
             throw new ApiException("Missing the required parameter 'paylinkAdjustmentRequest' when calling tokenAdjustmentRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = tokenAdjustmentRequestCall(token, paylinkAdjustmentRequest, _callback);
-        return localVarCall;
+        return tokenAdjustmentRequestCall(token, paylinkAdjustmentRequest, _callback);
 
     }
 
@@ -271,7 +270,7 @@ public class PaylinkApi {
 
         // create path and map variables
         String localVarPath = "/paylink/{token}/close"
-            .replaceAll("\\{" + "token" + "\\}", localVarApiClient.escapeString(token.toString()));
+            .replace("{" + "token" + "}", localVarApiClient.escapeString(token.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -280,7 +279,8 @@ public class PaylinkApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -288,7 +288,6 @@ public class PaylinkApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -301,15 +300,12 @@ public class PaylinkApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call tokenCloseRequestValidateBeforeCall(String token, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'token' is set
         if (token == null) {
             throw new ApiException("Missing the required parameter 'token' when calling tokenCloseRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = tokenCloseRequestCall(token, _callback);
-        return localVarCall;
+        return tokenCloseRequestCall(token, _callback);
 
     }
 
@@ -426,7 +422,8 @@ public class PaylinkApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -434,7 +431,8 @@ public class PaylinkApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -447,15 +445,12 @@ public class PaylinkApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call tokenCreateBillPaymentRequestValidateBeforeCall(PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'paylinkBillPaymentTokenRequest' is set
         if (paylinkBillPaymentTokenRequest == null) {
             throw new ApiException("Missing the required parameter 'paylinkBillPaymentTokenRequest' when calling tokenCreateBillPaymentRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = tokenCreateBillPaymentRequestCall(paylinkBillPaymentTokenRequest, _callback);
-        return localVarCall;
+        return tokenCreateBillPaymentRequestCall(paylinkBillPaymentTokenRequest, _callback);
 
     }
 
@@ -572,7 +567,8 @@ public class PaylinkApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -580,7 +576,8 @@ public class PaylinkApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -593,15 +590,12 @@ public class PaylinkApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call tokenCreateRequestValidateBeforeCall(PaylinkTokenRequestModel paylinkTokenRequestModel, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'paylinkTokenRequestModel' is set
         if (paylinkTokenRequestModel == null) {
             throw new ApiException("Missing the required parameter 'paylinkTokenRequestModel' when calling tokenCreateRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = tokenCreateRequestCall(paylinkTokenRequestModel, _callback);
-        return localVarCall;
+        return tokenCreateRequestCall(paylinkTokenRequestModel, _callback);
 
     }
 
@@ -710,7 +704,7 @@ public class PaylinkApi {
 
         // create path and map variables
         String localVarPath = "/paylink/{token}/purge-attachments"
-            .replaceAll("\\{" + "token" + "\\}", localVarApiClient.escapeString(token.toString()));
+            .replace("{" + "token" + "}", localVarApiClient.escapeString(token.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -719,7 +713,8 @@ public class PaylinkApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -727,7 +722,6 @@ public class PaylinkApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -740,15 +734,12 @@ public class PaylinkApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call tokenPurgeAttachmentsRequestValidateBeforeCall(String token, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'token' is set
         if (token == null) {
             throw new ApiException("Missing the required parameter 'token' when calling tokenPurgeAttachmentsRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = tokenPurgeAttachmentsRequestCall(token, _callback);
-        return localVarCall;
+        return tokenPurgeAttachmentsRequestCall(token, _callback);
 
     }
 
@@ -857,7 +848,7 @@ public class PaylinkApi {
 
         // create path and map variables
         String localVarPath = "/paylink/{token}/reconciled"
-            .replaceAll("\\{" + "token" + "\\}", localVarApiClient.escapeString(token.toString()));
+            .replace("{" + "token" + "}", localVarApiClient.escapeString(token.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -866,7 +857,8 @@ public class PaylinkApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -874,7 +866,6 @@ public class PaylinkApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -887,15 +878,12 @@ public class PaylinkApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call tokenReconciledRequestValidateBeforeCall(String token, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'token' is set
         if (token == null) {
             throw new ApiException("Missing the required parameter 'token' when calling tokenReconciledRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = tokenReconciledRequestCall(token, _callback);
-        return localVarCall;
+        return tokenReconciledRequestCall(token, _callback);
 
     }
 
@@ -1004,7 +992,7 @@ public class PaylinkApi {
 
         // create path and map variables
         String localVarPath = "/paylink/{token}/reopen"
-            .replaceAll("\\{" + "token" + "\\}", localVarApiClient.escapeString(token.toString()));
+            .replace("{" + "token" + "}", localVarApiClient.escapeString(token.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1013,7 +1001,8 @@ public class PaylinkApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1021,7 +1010,6 @@ public class PaylinkApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1034,15 +1022,12 @@ public class PaylinkApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call tokenReopenRequestValidateBeforeCall(String token, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'token' is set
         if (token == null) {
             throw new ApiException("Missing the required parameter 'token' when calling tokenReopenRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = tokenReopenRequestCall(token, _callback);
-        return localVarCall;
+        return tokenReopenRequestCall(token, _callback);
 
     }
 
@@ -1159,7 +1144,8 @@ public class PaylinkApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1167,7 +1153,8 @@ public class PaylinkApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1180,15 +1167,12 @@ public class PaylinkApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call tokenStatusChangesRequestValidateBeforeCall(PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'paylinkTokenStatusChangeRequest' is set
         if (paylinkTokenStatusChangeRequest == null) {
             throw new ApiException("Missing the required parameter 'paylinkTokenStatusChangeRequest' when calling tokenStatusChangesRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = tokenStatusChangesRequestCall(paylinkTokenStatusChangeRequest, _callback);
-        return localVarCall;
+        return tokenStatusChangesRequestCall(paylinkTokenStatusChangeRequest, _callback);
 
     }
 
@@ -1297,7 +1281,7 @@ public class PaylinkApi {
 
         // create path and map variables
         String localVarPath = "/paylink/{token}/status"
-            .replaceAll("\\{" + "token" + "\\}", localVarApiClient.escapeString(token.toString()));
+            .replace("{" + "token" + "}", localVarApiClient.escapeString(token.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1306,7 +1290,8 @@ public class PaylinkApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1314,7 +1299,6 @@ public class PaylinkApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1327,15 +1311,12 @@ public class PaylinkApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call tokenStatusRequestValidateBeforeCall(String token, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'token' is set
         if (token == null) {
             throw new ApiException("Missing the required parameter 'token' when calling tokenStatusRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = tokenStatusRequestCall(token, _callback);
-        return localVarCall;
+        return tokenStatusRequestCall(token, _callback);
 
     }
 

@@ -40,6 +40,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -327,9 +328,7 @@ public class PaylinkCart {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (PaylinkCart.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!PaylinkCart.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkCart is not found in the empty JSON string", PaylinkCart.openapiRequiredFields.toString()));
         }
       }
@@ -341,17 +340,19 @@ public class PaylinkCart {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkCart` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-      JsonArray jsonArraycontents = jsonObj.getAsJsonArray("contents");
-      if (jsonArraycontents != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("contents").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `contents` to be an array in the JSON string but got `%s`", jsonObj.get("contents").toString()));
-        }
+      if (jsonObj.get("contents") != null && !jsonObj.get("contents").isJsonNull()) {
+        JsonArray jsonArraycontents = jsonObj.getAsJsonArray("contents");
+        if (jsonArraycontents != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("contents").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `contents` to be an array in the JSON string but got `%s`", jsonObj.get("contents").toString()));
+          }
 
-        // validate the optional field `contents` (array)
-        for (int i = 0; i < jsonArraycontents.size(); i++) {
-          PaylinkCartItemModel.validateJsonObject(jsonArraycontents.get(i).getAsJsonObject());
-        };
+          // validate the optional field `contents` (array)
+          for (int i = 0; i < jsonArraycontents.size(); i++) {
+            PaylinkCartItemModel.validateJsonObject(jsonArraycontents.get(i).getAsJsonObject());
+          };
+        }
       }
       if ((jsonObj.get("coupon") != null && !jsonObj.get("coupon").isJsonNull()) && !jsonObj.get("coupon").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `coupon` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coupon").toString()));

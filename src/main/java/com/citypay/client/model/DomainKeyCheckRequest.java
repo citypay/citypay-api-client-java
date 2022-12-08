@@ -37,6 +37,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -137,9 +138,7 @@ public class DomainKeyCheckRequest {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (DomainKeyCheckRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!DomainKeyCheckRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in DomainKeyCheckRequest is not found in the empty JSON string", DomainKeyCheckRequest.openapiRequiredFields.toString()));
         }
       }
@@ -158,7 +157,7 @@ public class DomainKeyCheckRequest {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("domain_key") != null && !jsonObj.get("domain_key").isJsonNull()) && !jsonObj.get("domain_key").isJsonPrimitive()) {
+      if (!jsonObj.get("domain_key").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `domain_key` to be a primitive type in the JSON string but got `%s`", jsonObj.get("domain_key").toString()));
       }
   }

@@ -39,6 +39,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -174,9 +175,7 @@ public class CheckBatchStatus {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (CheckBatchStatus.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!CheckBatchStatus.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CheckBatchStatus is not found in the empty JSON string", CheckBatchStatus.openapiRequiredFields.toString()));
         }
       }
@@ -195,8 +194,10 @@ public class CheckBatchStatus {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      // ensure the json data is an array
-      if ((jsonObj.get("batch_id") != null && !jsonObj.get("batch_id").isJsonNull()) && !jsonObj.get("batch_id").isJsonArray()) {
+      // ensure the required json array is present
+      if (jsonObj.get("batch_id") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("batch_id").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `batch_id` to be an array in the JSON string but got `%s`", jsonObj.get("batch_id").toString()));
       }
       if ((jsonObj.get("client_account_id") != null && !jsonObj.get("client_account_id").isJsonNull()) && !jsonObj.get("client_account_id").isJsonPrimitive()) {

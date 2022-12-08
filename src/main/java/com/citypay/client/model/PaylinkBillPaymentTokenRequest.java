@@ -44,6 +44,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -362,9 +363,7 @@ public class PaylinkBillPaymentTokenRequest {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (PaylinkBillPaymentTokenRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!PaylinkBillPaymentTokenRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkBillPaymentTokenRequest is not found in the empty JSON string", PaylinkBillPaymentTokenRequest.openapiRequiredFields.toString()));
         }
       }
@@ -386,17 +385,19 @@ public class PaylinkBillPaymentTokenRequest {
       if ((jsonObj.get("addressee") != null && !jsonObj.get("addressee").isJsonNull()) && !jsonObj.get("addressee").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `addressee` to be a primitive type in the JSON string but got `%s`", jsonObj.get("addressee").toString()));
       }
-      JsonArray jsonArrayattachments = jsonObj.getAsJsonArray("attachments");
-      if (jsonArrayattachments != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("attachments").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `attachments` to be an array in the JSON string but got `%s`", jsonObj.get("attachments").toString()));
-        }
+      if (jsonObj.get("attachments") != null && !jsonObj.get("attachments").isJsonNull()) {
+        JsonArray jsonArrayattachments = jsonObj.getAsJsonArray("attachments");
+        if (jsonArrayattachments != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("attachments").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `attachments` to be an array in the JSON string but got `%s`", jsonObj.get("attachments").toString()));
+          }
 
-        // validate the optional field `attachments` (array)
-        for (int i = 0; i < jsonArrayattachments.size(); i++) {
-          PaylinkAttachmentRequest.validateJsonObject(jsonArrayattachments.get(i).getAsJsonObject());
-        };
+          // validate the optional field `attachments` (array)
+          for (int i = 0; i < jsonArrayattachments.size(); i++) {
+            PaylinkAttachmentRequest.validateJsonObject(jsonArrayattachments.get(i).getAsJsonObject());
+          };
+        }
       }
       if ((jsonObj.get("descriptor") != null && !jsonObj.get("descriptor").isJsonNull()) && !jsonObj.get("descriptor").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `descriptor` to be a primitive type in the JSON string but got `%s`", jsonObj.get("descriptor").toString()));
@@ -408,10 +409,8 @@ public class PaylinkBillPaymentTokenRequest {
       if ((jsonObj.get("memo") != null && !jsonObj.get("memo").isJsonNull()) && !jsonObj.get("memo").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `memo` to be a primitive type in the JSON string but got `%s`", jsonObj.get("memo").toString()));
       }
-      // validate the optional field `request`
-      if (jsonObj.get("request") != null && !jsonObj.get("request").isJsonNull()) {
-        PaylinkTokenRequestModel.validateJsonObject(jsonObj.getAsJsonObject("request"));
-      }
+      // validate the required field `request`
+      PaylinkTokenRequestModel.validateJsonObject(jsonObj.getAsJsonObject("request"));
       // validate the optional field `sms_notification_path`
       if (jsonObj.get("sms_notification_path") != null && !jsonObj.get("sms_notification_path").isJsonNull()) {
         PaylinkSMSNotificationPath.validateJsonObject(jsonObj.getAsJsonObject("sms_notification_path"));

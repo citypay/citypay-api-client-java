@@ -38,6 +38,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -200,9 +201,7 @@ public class Batch {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (Batch.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!Batch.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Batch is not found in the empty JSON string", Batch.openapiRequiredFields.toString()));
         }
       }
@@ -221,7 +220,7 @@ public class Batch {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("batch_status") != null && !jsonObj.get("batch_status").isJsonNull()) && !jsonObj.get("batch_status").isJsonPrimitive()) {
+      if (!jsonObj.get("batch_status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `batch_status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("batch_status").toString()));
       }
   }

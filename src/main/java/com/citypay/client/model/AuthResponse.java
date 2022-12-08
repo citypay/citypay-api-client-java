@@ -38,6 +38,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -921,9 +922,7 @@ public class AuthResponse {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (AuthResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!AuthResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in AuthResponse is not found in the empty JSON string", AuthResponse.openapiRequiredFields.toString()));
         }
       }
@@ -981,10 +980,10 @@ public class AuthResponse {
       if ((jsonObj.get("maskedpan") != null && !jsonObj.get("maskedpan").isJsonNull()) && !jsonObj.get("maskedpan").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `maskedpan` to be a primitive type in the JSON string but got `%s`", jsonObj.get("maskedpan").toString()));
       }
-      if ((jsonObj.get("result_code") != null && !jsonObj.get("result_code").isJsonNull()) && !jsonObj.get("result_code").isJsonPrimitive()) {
+      if (!jsonObj.get("result_code").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `result_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("result_code").toString()));
       }
-      if ((jsonObj.get("result_message") != null && !jsonObj.get("result_message").isJsonNull()) && !jsonObj.get("result_message").isJsonPrimitive()) {
+      if (!jsonObj.get("result_message").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `result_message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("result_message").toString()));
       }
       if ((jsonObj.get("scheme") != null && !jsonObj.get("scheme").isJsonNull()) && !jsonObj.get("scheme").isJsonPrimitive()) {

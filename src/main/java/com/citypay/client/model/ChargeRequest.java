@@ -38,6 +38,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -561,9 +562,7 @@ public class ChargeRequest {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (ChargeRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!ChargeRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ChargeRequest is not found in the empty JSON string", ChargeRequest.openapiRequiredFields.toString()));
         }
       }
@@ -600,7 +599,7 @@ public class ChargeRequest {
       if ((jsonObj.get("duplicate_policy") != null && !jsonObj.get("duplicate_policy").isJsonNull()) && !jsonObj.get("duplicate_policy").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `duplicate_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("duplicate_policy").toString()));
       }
-      if ((jsonObj.get("identifier") != null && !jsonObj.get("identifier").isJsonNull()) && !jsonObj.get("identifier").isJsonPrimitive()) {
+      if (!jsonObj.get("identifier").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `identifier` to be a primitive type in the JSON string but got `%s`", jsonObj.get("identifier").toString()));
       }
       if ((jsonObj.get("initiation") != null && !jsonObj.get("initiation").isJsonNull()) && !jsonObj.get("initiation").isJsonPrimitive()) {
@@ -613,7 +612,7 @@ public class ChargeRequest {
       if (jsonObj.get("threedsecure") != null && !jsonObj.get("threedsecure").isJsonNull()) {
         ThreeDSecure.validateJsonObject(jsonObj.getAsJsonObject("threedsecure"));
       }
-      if ((jsonObj.get("token") != null && !jsonObj.get("token").isJsonNull()) && !jsonObj.get("token").isJsonPrimitive()) {
+      if (!jsonObj.get("token").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("token").toString()));
       }
       if ((jsonObj.get("trans_info") != null && !jsonObj.get("trans_info").isJsonNull()) && !jsonObj.get("trans_info").isJsonPrimitive()) {

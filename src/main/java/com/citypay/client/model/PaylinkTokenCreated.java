@@ -42,6 +42,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -542,9 +543,7 @@ public class PaylinkTokenCreated {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (PaylinkTokenCreated.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!PaylinkTokenCreated.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkTokenCreated is not found in the empty JSON string", PaylinkTokenCreated.openapiRequiredFields.toString()));
         }
       }
@@ -570,19 +569,21 @@ public class PaylinkTokenCreated {
       if ((jsonObj.get("bps") != null && !jsonObj.get("bps").isJsonNull()) && !jsonObj.get("bps").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `bps` to be a primitive type in the JSON string but got `%s`", jsonObj.get("bps").toString()));
       }
-      JsonArray jsonArrayerrors = jsonObj.getAsJsonArray("errors");
-      if (jsonArrayerrors != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("errors").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `errors` to be an array in the JSON string but got `%s`", jsonObj.get("errors").toString()));
-        }
+      if (jsonObj.get("errors") != null && !jsonObj.get("errors").isJsonNull()) {
+        JsonArray jsonArrayerrors = jsonObj.getAsJsonArray("errors");
+        if (jsonArrayerrors != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("errors").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `errors` to be an array in the JSON string but got `%s`", jsonObj.get("errors").toString()));
+          }
 
-        // validate the optional field `errors` (array)
-        for (int i = 0; i < jsonArrayerrors.size(); i++) {
-          PaylinkErrorCode.validateJsonObject(jsonArrayerrors.get(i).getAsJsonObject());
-        };
+          // validate the optional field `errors` (array)
+          for (int i = 0; i < jsonArrayerrors.size(); i++) {
+            PaylinkErrorCode.validateJsonObject(jsonArrayerrors.get(i).getAsJsonObject());
+          };
+        }
       }
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+      if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
       if ((jsonObj.get("identifier") != null && !jsonObj.get("identifier").isJsonNull()) && !jsonObj.get("identifier").isJsonPrimitive()) {
@@ -600,7 +601,7 @@ public class PaylinkTokenCreated {
       if ((jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull()) && !jsonObj.get("source").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `source` to be a primitive type in the JSON string but got `%s`", jsonObj.get("source").toString()));
       }
-      if ((jsonObj.get("token") != null && !jsonObj.get("token").isJsonNull()) && !jsonObj.get("token").isJsonPrimitive()) {
+      if (!jsonObj.get("token").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("token").toString()));
       }
       if ((jsonObj.get("url") != null && !jsonObj.get("url").isJsonNull()) && !jsonObj.get("url").isJsonPrimitive()) {

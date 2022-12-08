@@ -123,7 +123,8 @@ public class OperationalFunctionsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -131,7 +132,8 @@ public class OperationalFunctionsApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -144,15 +146,12 @@ public class OperationalFunctionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call aclCheckRequestValidateBeforeCall(AclCheckRequest aclCheckRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'aclCheckRequest' is set
         if (aclCheckRequest == null) {
             throw new ApiException("Missing the required parameter 'aclCheckRequest' when calling aclCheckRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = aclCheckRequestCall(aclCheckRequest, _callback);
-        return localVarCall;
+        return aclCheckRequestCall(aclCheckRequest, _callback);
 
     }
 
@@ -269,7 +268,8 @@ public class OperationalFunctionsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -277,7 +277,8 @@ public class OperationalFunctionsApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -290,15 +291,12 @@ public class OperationalFunctionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call domainKeyCheckRequestValidateBeforeCall(DomainKeyCheckRequest domainKeyCheckRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'domainKeyCheckRequest' is set
         if (domainKeyCheckRequest == null) {
             throw new ApiException("Missing the required parameter 'domainKeyCheckRequest' when calling domainKeyCheckRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = domainKeyCheckRequestCall(domainKeyCheckRequest, _callback);
-        return localVarCall;
+        return domainKeyCheckRequestCall(domainKeyCheckRequest, _callback);
 
     }
 
@@ -415,7 +413,8 @@ public class OperationalFunctionsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -423,7 +422,8 @@ public class OperationalFunctionsApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -436,15 +436,12 @@ public class OperationalFunctionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call domainKeyGenRequestValidateBeforeCall(DomainKeyRequest domainKeyRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'domainKeyRequest' is set
         if (domainKeyRequest == null) {
             throw new ApiException("Missing the required parameter 'domainKeyRequest' when calling domainKeyGenRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = domainKeyGenRequestCall(domainKeyRequest, _callback);
-        return localVarCall;
+        return domainKeyGenRequestCall(domainKeyRequest, _callback);
 
     }
 
@@ -553,7 +550,7 @@ public class OperationalFunctionsApi {
 
         // create path and map variables
         String localVarPath = "/v6/merchants/{clientid}"
-            .replaceAll("\\{" + "clientid" + "\\}", localVarApiClient.escapeString(clientid.toString()));
+            .replace("{" + "clientid" + "}", localVarApiClient.escapeString(clientid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -562,7 +559,8 @@ public class OperationalFunctionsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -570,7 +568,6 @@ public class OperationalFunctionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -583,15 +580,12 @@ public class OperationalFunctionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call listMerchantsRequestValidateBeforeCall(String clientid, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'clientid' is set
         if (clientid == null) {
             throw new ApiException("Missing the required parameter 'clientid' when calling listMerchantsRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = listMerchantsRequestCall(clientid, _callback);
-        return localVarCall;
+        return listMerchantsRequestCall(clientid, _callback);
 
     }
 
@@ -708,7 +702,9 @@ public class OperationalFunctionsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/x-www-form-urlencoded", "application/json", "text/xml"
+            "application/x-www-form-urlencoded",
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -716,7 +712,9 @@ public class OperationalFunctionsApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "application/x-www-form-urlencoded", "text/xml"
+            "application/json",
+            "application/x-www-form-urlencoded",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -729,15 +727,12 @@ public class OperationalFunctionsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call pingRequestValidateBeforeCall(Ping ping, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'ping' is set
         if (ping == null) {
             throw new ApiException("Missing the required parameter 'ping' when calling pingRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = pingRequestCall(ping, _callback);
-        return localVarCall;
+        return pingRequestCall(ping, _callback);
 
     }
 

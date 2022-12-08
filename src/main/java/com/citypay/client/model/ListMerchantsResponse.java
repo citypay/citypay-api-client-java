@@ -40,6 +40,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -207,9 +208,7 @@ public class ListMerchantsResponse {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (ListMerchantsResponse.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!ListMerchantsResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ListMerchantsResponse is not found in the empty JSON string", ListMerchantsResponse.openapiRequiredFields.toString()));
         }
       }
@@ -227,17 +226,19 @@ public class ListMerchantsResponse {
       if ((jsonObj.get("clientid") != null && !jsonObj.get("clientid").isJsonNull()) && !jsonObj.get("clientid").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `clientid` to be a primitive type in the JSON string but got `%s`", jsonObj.get("clientid").toString()));
       }
-      JsonArray jsonArraymerchants = jsonObj.getAsJsonArray("merchants");
-      if (jsonArraymerchants != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("merchants").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `merchants` to be an array in the JSON string but got `%s`", jsonObj.get("merchants").toString()));
-        }
+      if (jsonObj.get("merchants") != null && !jsonObj.get("merchants").isJsonNull()) {
+        JsonArray jsonArraymerchants = jsonObj.getAsJsonArray("merchants");
+        if (jsonArraymerchants != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("merchants").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `merchants` to be an array in the JSON string but got `%s`", jsonObj.get("merchants").toString()));
+          }
 
-        // validate the optional field `merchants` (array)
-        for (int i = 0; i < jsonArraymerchants.size(); i++) {
-          Merchant.validateJsonObject(jsonArraymerchants.get(i).getAsJsonObject());
-        };
+          // validate the optional field `merchants` (array)
+          for (int i = 0; i < jsonArraymerchants.size(); i++) {
+            Merchant.validateJsonObject(jsonArraymerchants.get(i).getAsJsonObject());
+          };
+        }
       }
   }
 

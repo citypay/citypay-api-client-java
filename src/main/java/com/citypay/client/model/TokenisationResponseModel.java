@@ -37,6 +37,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -406,9 +407,7 @@ public class TokenisationResponseModel {
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (TokenisationResponseModel.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+        if (!TokenisationResponseModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in TokenisationResponseModel is not found in the empty JSON string", TokenisationResponseModel.openapiRequiredFields.toString()));
         }
       }
