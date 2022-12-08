@@ -24,6 +24,27 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.citypay.client.JSON;
+
 /**
  * AuthResponse
  */
@@ -136,6 +157,8 @@ public class AuthResponse {
   @SerializedName(SERIALIZED_NAME_TRANSNO)
   private Integer transno;
 
+  public AuthResponse() {
+  }
 
   public AuthResponse amount(Integer amount) {
     
@@ -758,6 +781,7 @@ public class AuthResponse {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -847,5 +871,179 @@ public class AuthResponse {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("amount");
+    openapiFields.add("atrn");
+    openapiFields.add("atsd");
+    openapiFields.add("authcode");
+    openapiFields.add("authen_result");
+    openapiFields.add("authorised");
+    openapiFields.add("avs_result");
+    openapiFields.add("bin_commercial");
+    openapiFields.add("bin_debit");
+    openapiFields.add("bin_description");
+    openapiFields.add("cavv");
+    openapiFields.add("context");
+    openapiFields.add("csc_result");
+    openapiFields.add("currency");
+    openapiFields.add("datetime");
+    openapiFields.add("eci");
+    openapiFields.add("identifier");
+    openapiFields.add("live");
+    openapiFields.add("maskedpan");
+    openapiFields.add("merchantid");
+    openapiFields.add("result");
+    openapiFields.add("result_code");
+    openapiFields.add("result_message");
+    openapiFields.add("scheme");
+    openapiFields.add("sha256");
+    openapiFields.add("trans_status");
+    openapiFields.add("transno");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("merchantid");
+    openapiRequiredFields.add("result");
+    openapiRequiredFields.add("result_code");
+    openapiRequiredFields.add("result_message");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to AuthResponse
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!AuthResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in AuthResponse is not found in the empty JSON string", AuthResponse.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!AuthResponse.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuthResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : AuthResponse.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("atrn") != null && !jsonObj.get("atrn").isJsonNull()) && !jsonObj.get("atrn").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `atrn` to be a primitive type in the JSON string but got `%s`", jsonObj.get("atrn").toString()));
+      }
+      if ((jsonObj.get("atsd") != null && !jsonObj.get("atsd").isJsonNull()) && !jsonObj.get("atsd").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `atsd` to be a primitive type in the JSON string but got `%s`", jsonObj.get("atsd").toString()));
+      }
+      if ((jsonObj.get("authcode") != null && !jsonObj.get("authcode").isJsonNull()) && !jsonObj.get("authcode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `authcode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("authcode").toString()));
+      }
+      if ((jsonObj.get("authen_result") != null && !jsonObj.get("authen_result").isJsonNull()) && !jsonObj.get("authen_result").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `authen_result` to be a primitive type in the JSON string but got `%s`", jsonObj.get("authen_result").toString()));
+      }
+      if ((jsonObj.get("avs_result") != null && !jsonObj.get("avs_result").isJsonNull()) && !jsonObj.get("avs_result").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `avs_result` to be a primitive type in the JSON string but got `%s`", jsonObj.get("avs_result").toString()));
+      }
+      if ((jsonObj.get("bin_description") != null && !jsonObj.get("bin_description").isJsonNull()) && !jsonObj.get("bin_description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `bin_description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("bin_description").toString()));
+      }
+      if ((jsonObj.get("cavv") != null && !jsonObj.get("cavv").isJsonNull()) && !jsonObj.get("cavv").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cavv` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cavv").toString()));
+      }
+      if ((jsonObj.get("context") != null && !jsonObj.get("context").isJsonNull()) && !jsonObj.get("context").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `context` to be a primitive type in the JSON string but got `%s`", jsonObj.get("context").toString()));
+      }
+      if ((jsonObj.get("csc_result") != null && !jsonObj.get("csc_result").isJsonNull()) && !jsonObj.get("csc_result").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `csc_result` to be a primitive type in the JSON string but got `%s`", jsonObj.get("csc_result").toString()));
+      }
+      if ((jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) && !jsonObj.get("currency").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
+      }
+      if ((jsonObj.get("eci") != null && !jsonObj.get("eci").isJsonNull()) && !jsonObj.get("eci").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `eci` to be a primitive type in the JSON string but got `%s`", jsonObj.get("eci").toString()));
+      }
+      if ((jsonObj.get("identifier") != null && !jsonObj.get("identifier").isJsonNull()) && !jsonObj.get("identifier").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `identifier` to be a primitive type in the JSON string but got `%s`", jsonObj.get("identifier").toString()));
+      }
+      if ((jsonObj.get("maskedpan") != null && !jsonObj.get("maskedpan").isJsonNull()) && !jsonObj.get("maskedpan").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `maskedpan` to be a primitive type in the JSON string but got `%s`", jsonObj.get("maskedpan").toString()));
+      }
+      if (!jsonObj.get("result_code").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `result_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("result_code").toString()));
+      }
+      if (!jsonObj.get("result_message").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `result_message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("result_message").toString()));
+      }
+      if ((jsonObj.get("scheme") != null && !jsonObj.get("scheme").isJsonNull()) && !jsonObj.get("scheme").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `scheme` to be a primitive type in the JSON string but got `%s`", jsonObj.get("scheme").toString()));
+      }
+      if ((jsonObj.get("sha256") != null && !jsonObj.get("sha256").isJsonNull()) && !jsonObj.get("sha256").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `sha256` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sha256").toString()));
+      }
+      if ((jsonObj.get("trans_status") != null && !jsonObj.get("trans_status").isJsonNull()) && !jsonObj.get("trans_status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `trans_status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("trans_status").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!AuthResponse.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'AuthResponse' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<AuthResponse> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(AuthResponse.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<AuthResponse>() {
+           @Override
+           public void write(JsonWriter out, AuthResponse value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public AuthResponse read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of AuthResponse given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of AuthResponse
+  * @throws IOException if the JSON string is invalid with respect to AuthResponse
+  */
+  public static AuthResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AuthResponse.class);
+  }
+
+ /**
+  * Convert an instance of AuthResponse to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

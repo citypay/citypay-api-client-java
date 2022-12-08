@@ -29,14 +29,17 @@ info:
     \ data that may be an attempt to break a large number of security common\n  security\
     \ vulnerabilities.\n"
   title: CityPay Payment API
-  version: 6.4.7
+  version: 6.4.18
 servers:
 - description: Production processing endpoint
   url: https://api.citypay.com
 - description: Testing service returning test results for all transactions
   url: https://sandbox.citypay.com
 tags:
-- description: "."
+- description: |
+    The Payment Processing API offers standard and enhanced payment processing for MOTO, e-commerce
+    and continuous authority transactions that include fraud and risk checking, 3D-Secure flows
+    and payment querying.
   name: Authorisation and Payment Api
 - description: "Batch processing uses the Batch and Instalment Service (BIS) which\
     \ allows for transaction processing against cardholder \naccounts using a dynamic\
@@ -105,7 +108,8 @@ tags:
     initial direct post call and must be run on a pre-registered host. Our validation processes will check the `Origin` or
     `Referer`   HTTP headers to ensure that the domain keys are valid. A domain key can be registered for 1 or more domains.
   name: Direct Post Api
-- description: "."
+- description: Operations that are for operational purposes only such as checking
+    connectivity to the API.
   name: Operational Functions Api
 - description: |
     CityPay Paylink makes online e-commerce easier to implement by handling the card payment process directly with the cardholder's browser and CityPay's payment processing servers, allowing you to concentrate on your business whilst allowing us to manage the payment process.
@@ -129,7 +133,7 @@ paths:
 
         <pre class="inline-code language-bash">
         <code>
-        curl https://api.citypay.com/v6/direct?cp-domain-key=n834ytqp84y... \
+        curl https://api.citypay.com/direct/auth?cp-domain-key=n834ytqp84y... \
          -d "amount=7500&identifier=example_trans&cardnumber=4000000000000002&expmonth=9&expyear=2028&bill_to_postcode=L1+7ZW
         </code>
         </pre>.
@@ -162,15 +166,15 @@ paths:
             application/x-www-form-urlencoded:
               schema:
                 $ref: '#/components/schemas/AuthResponse'
-          description: Redirect. A result of a successful tokenisation or authorisation
-            process, redirecting to the success URL.
+          description: "Redirect. A result of a successful tokenisation or authorisation\
+            \ process, redirecting to the success URL."
         "307":
           content:
             application/x-www-form-urlencoded:
               schema:
                 $ref: '#/components/schemas/Error'
-          description: Redirect. A result of a non-successful tokenisation or authorisation
-            process, redirecting to the failure URL.
+          description: "Redirect. A result of a non-successful tokenisation or authorisation\
+            \ process, redirecting to the failure URL."
         "401":
           description: Unauthorized. No domain key has been provided and is required
             for this operation.
@@ -202,7 +206,7 @@ paths:
       summary: Direct Post Auth Request
       tags:
       - Direct Post Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /direct/cres/auth/{uuid}:
     post:
@@ -242,15 +246,15 @@ paths:
             application/x-www-form-urlencoded:
               schema:
                 $ref: '#/components/schemas/AuthResponse'
-          description: Redirect. A result of a successful tokenisation or authorisation
-            process, redirecting to the success URL.
+          description: "Redirect. A result of a successful tokenisation or authorisation\
+            \ process, redirecting to the success URL."
         "307":
           content:
             application/x-www-form-urlencoded:
               schema:
                 $ref: '#/components/schemas/Error'
-          description: Redirect. A result of a non-successful tokenisation or authorisation
-            process, redirecting to the failure URL.
+          description: "Redirect. A result of a non-successful tokenisation or authorisation\
+            \ process, redirecting to the failure URL."
         "401":
           description: Unauthorized. No domain key has been provided and is required
             for this operation.
@@ -270,10 +274,10 @@ paths:
         "500":
           description: Server Error. Server Error. The server was unable to complete
             the request.
-      summary: Handles a CRes response from ACS, returning back the result of authorisation
+      summary: "Handles a CRes response from ACS, returning back the result of authorisation"
       tags:
       - Direct Post Api
-      x-contentType: application/x-www-form-urlencoded
+      x-content-type: application/x-www-form-urlencoded
       x-accepts: application/json
   /direct/cres/tokenise/{uuid}:
     post:
@@ -313,15 +317,15 @@ paths:
             application/x-www-form-urlencoded:
               schema:
                 $ref: '#/components/schemas/TokenisationResponseModel'
-          description: Redirect. A result of a successful tokenisation or authorisation
-            process, redirecting to the success URL.
+          description: "Redirect. A result of a successful tokenisation or authorisation\
+            \ process, redirecting to the success URL."
         "307":
           content:
             application/x-www-form-urlencoded:
               schema:
                 $ref: '#/components/schemas/Error'
-          description: Redirect. A result of a non-successful tokenisation or authorisation
-            process, redirecting to the failure URL.
+          description: "Redirect. A result of a non-successful tokenisation or authorisation\
+            \ process, redirecting to the failure URL."
         "401":
           description: Unauthorized. No domain key has been provided and is required
             for this operation.
@@ -341,11 +345,11 @@ paths:
         "500":
           description: Server Error. Server Error. The server was unable to complete
             the request.
-      summary: Handles a CRes response from ACS, returning back a token for future
-        authorisation
+      summary: "Handles a CRes response from ACS, returning back a token for future\
+        \ authorisation"
       tags:
       - Direct Post Api
-      x-contentType: application/x-www-form-urlencoded
+      x-content-type: application/x-www-form-urlencoded
       x-accepts: application/json
   /direct/token:
     post:
@@ -380,15 +384,15 @@ paths:
             application/x-www-form-urlencoded:
               schema:
                 $ref: '#/components/schemas/AuthResponse'
-          description: Redirect. A result of a successful tokenisation or authorisation
-            process, redirecting to the success URL.
+          description: "Redirect. A result of a successful tokenisation or authorisation\
+            \ process, redirecting to the success URL."
         "307":
           content:
             application/x-www-form-urlencoded:
               schema:
                 $ref: '#/components/schemas/Error'
-          description: Redirect. A result of a non-successful tokenisation or authorisation
-            process, redirecting to the failure URL.
+          description: "Redirect. A result of a non-successful tokenisation or authorisation\
+            \ process, redirecting to the failure URL."
         "401":
           description: Unauthorized. No domain key has been provided and is required
             for this operation.
@@ -417,7 +421,7 @@ paths:
       summary: Direct Post Token Request
       tags:
       - Direct Post Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /direct/tokenise:
     post:
@@ -459,15 +463,15 @@ paths:
             application/x-www-form-urlencoded:
               schema:
                 $ref: '#/components/schemas/AuthResponse'
-          description: Redirect. A result of a successful tokenisation or authorisation
-            process, redirecting to the success URL.
+          description: "Redirect. A result of a successful tokenisation or authorisation\
+            \ process, redirecting to the success URL."
         "307":
           content:
             application/x-www-form-urlencoded:
               schema:
                 $ref: '#/components/schemas/Error'
-          description: Redirect. A result of a non-successful tokenisation or authorisation
-            process, redirecting to the failure URL.
+          description: "Redirect. A result of a non-successful tokenisation or authorisation\
+            \ process, redirecting to the failure URL."
         "401":
           description: Unauthorized. No domain key has been provided and is required
             for this operation.
@@ -499,7 +503,7 @@ paths:
       summary: Direct Post Tokenise Request
       tags:
       - Direct Post Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /dk/check:
     post:
@@ -551,7 +555,7 @@ paths:
       summary: Domain Key Check Request
       tags:
       - Operational Functions Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /dk/gen:
     post:
@@ -604,7 +608,7 @@ paths:
       summary: Domain Key Generation Request
       tags:
       - Operational Functions Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /paylink/bill-payment:
     post:
@@ -634,13 +638,12 @@ paths:
         \ that each USC generated is protected\nwith Field Guards to ensure that sensitive\
         \ data (such as customer contact details and GDPR) is protected.\n\nTo send\
         \ a notification path, append a `notification-path` property to the request.\n\
-        \n```json\n {\n  \"notification-path\": [\n    {\n      \"channel\": \"sms\"\
-        ,\n      \"to\": \"+441534884000\"\n    },\n    {\n      \"channel\": \"email\"\
-        ,\n      \"to\": [\"help-desk@citypay.com\"],\n      \"cc\": [\"third-party@citypay.com\"\
-        ],\n      \"reply\": [\"help@my-company.com\"]\n    }\n  ]\n}\n\n```\n\nNotification\
-        \ paths trigger a number of events which are stored as part of the timeline\
-        \ of events of a Paylink token\n\n- `BillPaymentSmsNotificationQueued` - identifies\
-        \ when an SMS notification has been queued for delivery\n- `BillPaymentSmsNotificationSent`\
+        \n```json\n {\n  \"sms_notification_path\": {\n      \"to\": \"+441534884000\"\
+        \n  },\n  \"email_notification_path\": {\n      \"to\": [\"help-desk@citypay.com\"\
+        ],\n      \"cc\": [\"third-party@citypay.com\"],\n      \"reply\": [\"help@my-company.com\"\
+        ]\n  }\n}\n```\n\nNotification paths trigger a number of events which are\
+        \ stored as part of the timeline of events of a Paylink token\n\n- `BillPaymentSmsNotificationQueued`\
+        \ - identifies when an SMS notification has been queued for delivery\n- `BillPaymentSmsNotificationSent`\
         \ - identifies when an SMS notification has been sent to the upstream network\n\
         - `BillPaymentSmsNotificationDelivered` - identifies when an SMS notification\
         \ has been delivered as notified by the upstream network\n- `BillPaymentSmsNotificationUndelivered`\
@@ -784,7 +787,7 @@ paths:
       summary: Create Bill Payment Paylink Token
       tags:
       - Paylink Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /paylink/create:
     post:
@@ -835,7 +838,7 @@ paths:
       summary: Create Paylink Token
       tags:
       - Paylink Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /paylink/token/changes:
     post:
@@ -891,7 +894,7 @@ paths:
       summary: Paylink Token Audit
       tags:
       - Paylink Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /paylink/{token}/adjustment:
     post:
@@ -953,7 +956,7 @@ paths:
       summary: Paylink Token Adjustment
       tags:
       - Paylink Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /paylink/{token}/close:
     put:
@@ -1004,6 +1007,57 @@ paths:
       security:
       - cp-api-key: []
       summary: Close Paylink Token
+      tags:
+      - Paylink Api
+      x-accepts: application/json
+  /paylink/{token}/purge-attachments:
+    put:
+      description: Purges any attachments for a token for GDPR or DP reasons.
+      operationId: TokenPurgeAttachmentsRequest
+      parameters:
+      - description: The token returned by the create token process.
+        explode: false
+        in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+          description: Confirms that the attachments eiither did not exist or were
+            purged.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "500":
+          description: Server Error. The server was unable to complete the request.
+      security:
+      - cp-api-key: []
+      summary: Purges any attachments for a Paylink Token
       tags:
       - Paylink Api
       x-accepts: application/json
@@ -1183,8 +1237,8 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Exists'
-          description: A response model determining whether the account exists, if
-            exists is true, a last modified date of the account is also provided.
+          description: "A response model determining whether the account exists, if\
+            \ exists is true, a last modified date of the account is also provided."
         "400":
           description: Bad Request. Should the incoming data not be validly determined.
         "401":
@@ -1262,7 +1316,7 @@ paths:
       summary: Account Create
       tags:
       - Card Holder Account Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/account/{accountid}:
     delete:
@@ -1486,8 +1540,8 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Acknowledgement'
-          description: Acknowledges the card status has changed, returning a response
-            code of `001` for a valid change or `000` for a non valid change.
+          description: "Acknowledges the card status has changed, returning a response\
+            \ code of `001` for a valid change or `000` for a non valid change."
         "400":
           description: Bad Request. Should the incoming data not be validly determined.
         "401":
@@ -1514,7 +1568,7 @@ paths:
       summary: Card Status
       tags:
       - Card Holder Account Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/account/{accountid}/contact:
     post:
@@ -1575,7 +1629,7 @@ paths:
       summary: Contact Details Update
       tags:
       - Card Holder Account Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/account/{accountid}/register:
     post:
@@ -1641,7 +1695,7 @@ paths:
       summary: Card Registration
       tags:
       - Card Holder Account Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/account/{accountid}/status:
     post:
@@ -1711,7 +1765,7 @@ paths:
       summary: Account Status
       tags:
       - Card Holder Account Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/acl/check:
     post:
@@ -1764,7 +1818,7 @@ paths:
       summary: ACL Check Request
       tags:
       - Operational Functions Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/authorise:
     post:
@@ -1961,7 +2015,7 @@ paths:
       summary: Authorisation
       tags:
       - Authorisation and Payment Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/batch/process:
     post:
@@ -2016,7 +2070,7 @@ paths:
       summary: Batch Process Request
       tags:
       - Batch Processing Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/batch/retrieve:
     post:
@@ -2068,7 +2122,7 @@ paths:
       summary: BatchReportRequest
       tags:
       - Batch Processing Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/batch/status:
     post:
@@ -2119,7 +2173,7 @@ paths:
       summary: CheckBatchStatus
       tags:
       - Batch Processing Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/bin:
     post:
@@ -2178,7 +2232,7 @@ paths:
       summary: Bin Lookup
       tags:
       - Authorisation and Payment Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/capture:
     post:
@@ -2201,32 +2255,32 @@ paths:
         content:
           application/json:
             examples:
-              example1:
-                externalValue: CaptureRequest-example1.json
-                summary: Basic capture call for a merchant with a given identifier
-              example3:
-                externalValue: CaptureRequest-example3.json
-                summary: Capture call for a merchant with identifier and airline data
-                  once a ticket has been issued
               example2:
                 externalValue: CaptureRequest-example2.json
                 summary: Basic capture call for a merchant with a transno and final
                   amount
+              example3:
+                externalValue: CaptureRequest-example3.json
+                summary: Capture call for a merchant with identifier and airline data
+                  once a ticket has been issued
+              example1:
+                externalValue: CaptureRequest-example1.json
+                summary: Basic capture call for a merchant with a given identifier
             schema:
               $ref: '#/components/schemas/CaptureRequest'
           text/xml:
             examples:
-              example1:
-                externalValue: CaptureRequest-example1.xml
-                summary: Basic capture call for a merchant with a given identifier
-              example3:
-                externalValue: CaptureRequest-example3.xml
-                summary: Capture call for a merchant with identifier and airline data
-                  once a ticket has been issued
               example2:
                 externalValue: CaptureRequest-example2.xml
                 summary: Basic capture call for a merchant with a transno and final
                   amount
+              example3:
+                externalValue: CaptureRequest-example3.xml
+                summary: Capture call for a merchant with identifier and airline data
+                  once a ticket has been issued
+              example1:
+                externalValue: CaptureRequest-example1.xml
+                summary: Basic capture call for a merchant with a given identifier
             schema:
               $ref: '#/components/schemas/CaptureRequest'
         required: true
@@ -2268,7 +2322,7 @@ paths:
       summary: Capture
       tags:
       - Authorisation and Payment Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/charge:
     post:
@@ -2335,7 +2389,7 @@ paths:
       summary: Charge
       tags:
       - Card Holder Account Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/cres:
     post:
@@ -2401,7 +2455,7 @@ paths:
       summary: CRes
       tags:
       - Authorisation and Payment Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/merchants/{clientid}:
     get:
@@ -2415,8 +2469,8 @@ paths:
         Fields that can be sorted are `merchantid` or `name`.
       operationId: ListMerchantsRequest
       parameters:
-      - description: The client id to return merchants for, specifying "default" will
-          use the value in your api key.
+      - description: "The client id to return merchants for, specifying \"default\"\
+          \ will use the value in your api key."
         explode: false
         in: path
         name: clientid
@@ -2526,7 +2580,7 @@ paths:
       summary: PaRes
       tags:
       - Authorisation and Payment Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/ping:
     post:
@@ -2561,8 +2615,8 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Acknowledgement'
-          description: A result of the ping request, returning on 044 response code
-            on successful receipt of the ping request.
+          description: "A result of the ping request, returning on 044 response code\
+            \ on successful receipt of the ping request."
         "400":
           description: Bad Request. Should the incoming data not be validly determined.
         "401":
@@ -2593,7 +2647,7 @@ paths:
       summary: Ping Request
       tags:
       - Operational Functions Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/refund:
     post:
@@ -2646,7 +2700,7 @@ paths:
       summary: Refund
       tags:
       - Authorisation and Payment Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/retrieve:
     post:
@@ -2713,7 +2767,7 @@ paths:
       summary: Retrieval
       tags:
       - Authorisation and Payment Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /v6/void:
     post:
@@ -2730,24 +2784,24 @@ paths:
         content:
           application/json:
             examples:
-              example1:
-                externalValue: VoidRequest-example1.json
-                summary: Basic capture call for a merchant with a given identifier
               example2:
                 externalValue: VoidRequest-example2.json
                 summary: Basic capture call for a merchant with a transno and final
                   amount
+              example1:
+                externalValue: VoidRequest-example1.json
+                summary: Basic capture call for a merchant with a given identifier
             schema:
               $ref: '#/components/schemas/VoidRequest'
           text/xml:
             examples:
-              example1:
-                externalValue: VoidRequest-example1.xml
-                summary: Basic capture call for a merchant with a given identifier
               example2:
                 externalValue: VoidRequest-example2.xml
                 summary: Basic capture call for a merchant with a transno and final
                   amount
+              example1:
+                externalValue: VoidRequest-example1.xml
+                summary: Basic capture call for a merchant with a given identifier
             schema:
               $ref: '#/components/schemas/VoidRequest'
         required: true
@@ -2760,9 +2814,9 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Acknowledgement'
-          description: </br>A result and acknowledgement of the void request, returning
-            an `080/003` response code on successful void/cancellation of the transaction.</br></br>If
-            an error occurs an error code will be returned explaining the failure.
+          description: "</br>A result and acknowledgement of the void request, returning\
+            \ an `080/003` response code on successful void/cancellation of the transaction.</br></br>If\
+            \ an error occurs an error code will be returned explaining the failure."
         "400":
           description: Bad Request. Should the incoming data not be validly determined.
         "401":
@@ -2789,7 +2843,7 @@ paths:
       summary: Void
       tags:
       - Authorisation and Payment Api
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
 components:
   schemas:
@@ -2830,8 +2884,8 @@ components:
         status: status
       properties:
         status:
-          description: The status of the account to set, valid values are ACTIVE or
-            DISABLED.
+          description: "The status of the account to set, valid values are ACTIVE\
+            \ or DISABLED."
           type: string
       type: object
     Acknowledgement:
@@ -2915,17 +2969,17 @@ components:
           flight_number: "772"
           stop_over_indicator: "1"
           class_service_code: CC
-          departure_date: 2020-08-01T00:00:00.000+0000
+          departure_date: 2020-08-01T00:00:00.000+00:00
           departure_location_code: JER
           arrival_location_code: SOU
           carrier_code: ZZ
-        ticket_issue_date: 2020-08-01T00:00:00.000+0000
+        ticket_issue_date: 2020-08-01T00:00:00.000+00:00
         segment3:
           segment_fare: 7500
           flight_number: "772"
           stop_over_indicator: "1"
           class_service_code: CC
-          departure_date: 2020-08-01T00:00:00.000+0000
+          departure_date: 2020-08-01T00:00:00.000+00:00
           departure_location_code: JER
           arrival_location_code: SOU
           carrier_code: ZZ
@@ -2934,7 +2988,7 @@ components:
           flight_number: "772"
           stop_over_indicator: "1"
           class_service_code: CC
-          departure_date: 2020-08-01T00:00:00.000+0000
+          departure_date: 2020-08-01T00:00:00.000+00:00
           departure_location_code: JER
           arrival_location_code: SOU
           carrier_code: ZZ
@@ -2943,7 +2997,7 @@ components:
           flight_number: "772"
           stop_over_indicator: "1"
           class_service_code: CC
-          departure_date: 2020-08-01T00:00:00.000+0000
+          departure_date: 2020-08-01T00:00:00.000+00:00
           departure_location_code: JER
           arrival_location_code: SOU
           carrier_code: ZZ
@@ -2964,8 +3018,8 @@ components:
           example: false
           type: boolean
         eticket_indicator:
-          description: The Electronic Ticket Indicator, a code that indicates if an
-            electronic ticket was issued.  Defaults to true.
+          description: "The Electronic Ticket Indicator, a code that indicates if\
+            \ an electronic ticket was issued.  Defaults to true."
           example: true
           type: boolean
         no_air_segments:
@@ -3012,7 +3066,6 @@ components:
           description: The date the ticket was issued in ISO Date format (yyyy-MM-dd).
           example: 2020-08-01
           format: date
-          maxLength: 10
           type: string
         ticket_issue_name:
           description: The name of the agency generating the ticket.
@@ -3058,7 +3111,7 @@ components:
         flight_number: "772"
         stop_over_indicator: "1"
         class_service_code: CC
-        departure_date: 2020-08-01T00:00:00.000+0000
+        departure_date: 2020-08-01T00:00:00.000+00:00
         departure_location_code: JER
         arrival_location_code: SOU
         carrier_code: ZZ
@@ -3110,7 +3163,7 @@ components:
           format: int32
           type: integer
         stop_over_indicator:
-          description: O = Stopover allowed, X = Stopover not allowed.
+          description: "O = Stopover allowed, X = Stopover not allowed."
           example: "1"
           maxLength: 1
           type: string
@@ -3269,12 +3322,12 @@ components:
           browserTZ: browserTZ
           cp_bx: FjaW50b3NoOyBJbnRlbCBNYWMgT1MgWCAx...
           downgrade1: true
-          accept_headers: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          accept_headers: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
           browserScreenHeight: browserScreenHeight
           merchant_termurl: https://mysite.com/acs/return
           browserScreenWidth: browserScreenWidth
-          user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36
-            (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
+          user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36\
+            \ (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
         amount: 3600
         expyear: 2025
         csc_policy: csc_policy
@@ -3285,7 +3338,7 @@ components:
           recipient_lastname: recipient_lastname
         trans_info: trans_info
         duplicate_policy: duplicate_policy
-        csc: "12"
+        csc: "10"
         merchantid: 11223344
         expmonth: 9
         airline_data:
@@ -3302,17 +3355,17 @@ components:
             flight_number: "772"
             stop_over_indicator: "1"
             class_service_code: CC
-            departure_date: 2020-08-01T00:00:00.000+0000
+            departure_date: 2020-08-01T00:00:00.000+00:00
             departure_location_code: JER
             arrival_location_code: SOU
             carrier_code: ZZ
-          ticket_issue_date: 2020-08-01T00:00:00.000+0000
+          ticket_issue_date: 2020-08-01T00:00:00.000+00:00
           segment3:
             segment_fare: 7500
             flight_number: "772"
             stop_over_indicator: "1"
             class_service_code: CC
-            departure_date: 2020-08-01T00:00:00.000+0000
+            departure_date: 2020-08-01T00:00:00.000+00:00
             departure_location_code: JER
             arrival_location_code: SOU
             carrier_code: ZZ
@@ -3321,7 +3374,7 @@ components:
             flight_number: "772"
             stop_over_indicator: "1"
             class_service_code: CC
-            departure_date: 2020-08-01T00:00:00.000+0000
+            departure_date: 2020-08-01T00:00:00.000+00:00
             departure_location_code: JER
             arrival_location_code: SOU
             carrier_code: ZZ
@@ -3330,7 +3383,7 @@ components:
             flight_number: "772"
             stop_over_indicator: "1"
             class_service_code: CC
-            departure_date: 2020-08-01T00:00:00.000+0000
+            departure_date: 2020-08-01T00:00:00.000+00:00
             departure_location_code: JER
             arrival_location_code: SOU
             carrier_code: ZZ
@@ -3438,7 +3491,7 @@ components:
 
             CityPay do not store the value and have no method of retrieving the value once the transaction has been processed.
             For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm.
-          example: "12"
+          example: "10"
           maxLength: 4
           minLength: 3
           type: string
@@ -3700,8 +3753,8 @@ components:
              transaction for dispute realisation.
           type: string
         context:
-          description: The context which processed the transaction, can be used for
-            support purposes to trace transactions.
+          description: "The context which processed the transaction, can be used for\
+            \ support purposes to trace transactions."
           example: aspiu352908ns47n343598bads
           type: string
         csc_result:
@@ -3832,6 +3885,7 @@ components:
 
              * licence_key - which is not provided in the response.
           type: string
+          example: null
         trans_status:
           description: |
             Used to identify the status of a transaction. The status is used to track a transaction through its life cycle.
@@ -3933,7 +3987,7 @@ components:
       example:
         batch_id: 35
         batch_status: COMPLETE
-        batch_date: 2020-01-02T00:00:00.000+0000
+        batch_date: 2020-01-02T00:00:00.000+00:00
       properties:
         batch_date:
           description: The date that the file was created in ISO-8601 format.
@@ -4019,7 +4073,7 @@ components:
           result_code: "0"
           message: Approved 044332
           transno: 78416
-        batch_date: 2020-01-02T00:00:00.000+0000
+        batch_date: 2020-01-02T00:00:00.000+00:00
       properties:
         amount:
           description: The total amount that the batch contains.
@@ -4207,8 +4261,8 @@ components:
           format: int32
           type: integer
         result_code:
-          description: A result code of the transaction identifying the result of
-            the transaction for success, rejection or decline.
+          description: "A result code of the transaction identifying the result of\
+            \ the transaction for success, rejection or decline."
           example: "0"
           type: string
         scheme:
@@ -4330,17 +4384,17 @@ components:
             flight_number: "772"
             stop_over_indicator: "1"
             class_service_code: CC
-            departure_date: 2020-08-01T00:00:00.000+0000
+            departure_date: 2020-08-01T00:00:00.000+00:00
             departure_location_code: JER
             arrival_location_code: SOU
             carrier_code: ZZ
-          ticket_issue_date: 2020-08-01T00:00:00.000+0000
+          ticket_issue_date: 2020-08-01T00:00:00.000+00:00
           segment3:
             segment_fare: 7500
             flight_number: "772"
             stop_over_indicator: "1"
             class_service_code: CC
-            departure_date: 2020-08-01T00:00:00.000+0000
+            departure_date: 2020-08-01T00:00:00.000+00:00
             departure_location_code: JER
             arrival_location_code: SOU
             carrier_code: ZZ
@@ -4349,7 +4403,7 @@ components:
             flight_number: "772"
             stop_over_indicator: "1"
             class_service_code: CC
-            departure_date: 2020-08-01T00:00:00.000+0000
+            departure_date: 2020-08-01T00:00:00.000+00:00
             departure_location_code: JER
             arrival_location_code: SOU
             carrier_code: ZZ
@@ -4358,7 +4412,7 @@ components:
             flight_number: "772"
             stop_over_indicator: "1"
             class_service_code: CC
-            departure_date: 2020-08-01T00:00:00.000+0000
+            departure_date: 2020-08-01T00:00:00.000+00:00
             departure_location_code: JER
             arrival_location_code: SOU
             carrier_code: ZZ
@@ -4421,7 +4475,7 @@ components:
         expyear: 2025
         label: Visa/0002
         card_id: card_id
-        label2: Visa/0002,Exp:2304
+        label2: "Visa/0002,Exp:2304"
         token: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
         card_status: card_status
         bin_country_issued: bin_country_issued
@@ -4503,7 +4557,7 @@ components:
           type: string
         label2:
           description: A label which also provides the expiry date of the card.
-          example: Visa/0002,Exp:2304
+          example: "Visa/0002,Exp:2304"
           type: string
         last4digits:
           description: The last 4 digits of the card to aid in identification.
@@ -4537,7 +4591,7 @@ components:
           expyear: 2025
           label: Visa/0002
           card_id: card_id
-          label2: Visa/0002,Exp:2304
+          label2: "Visa/0002,Exp:2304"
           token: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
           card_status: card_status
           bin_country_issued: bin_country_issued
@@ -4557,7 +4611,7 @@ components:
           expyear: 2025
           label: Visa/0002
           card_id: card_id
-          label2: Visa/0002,Exp:2304
+          label2: "Visa/0002,Exp:2304"
           token: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
           card_status: card_status
           bin_country_issued: bin_country_issued
@@ -4642,7 +4696,8 @@ components:
         default: true
       properties:
         card_status:
-          description: The status of the card to set, valid values are ACTIVE or INACTIVE.
+          description: "The status of the card to set, valid values are ACTIVE or\
+            \ INACTIVE."
           type: string
         default:
           description: Defines if the card is set as the default.
@@ -4660,18 +4715,18 @@ components:
           browserTZ: browserTZ
           cp_bx: FjaW50b3NoOyBJbnRlbCBNYWMgT1MgWCAx...
           downgrade1: true
-          accept_headers: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          accept_headers: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
           browserScreenHeight: browserScreenHeight
           merchant_termurl: https://mysite.com/acs/return
           browserScreenWidth: browserScreenWidth
-          user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36
-            (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
+          user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36\
+            \ (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
         amount: 3600
         csc_policy: csc_policy
         trans_info: trans_info
         duplicate_policy: duplicate_policy
         token: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
-        csc: "12"
+        csc: "10"
         initiation: initiation
         cardholder_agreement: cardholder_agreement
         merchantid: 11223344
@@ -4761,7 +4816,7 @@ components:
 
             CityPay do not store the value and have no method of retrieving the value once the transaction has been processed.
             For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm.
-          example: "12"
+          example: "10"
           maxLength: 4
           minLength: 3
           type: string
@@ -4927,10 +4982,10 @@ components:
         batches:
         - batch_id: 35
           batch_status: COMPLETE
-          batch_date: 2020-01-02T00:00:00.000+0000
+          batch_date: 2020-01-02T00:00:00.000+00:00
         - batch_id: 35
           batch_status: COMPLETE
-          batch_date: 2020-01-02T00:00:00.000+0000
+          batch_date: 2020-01-02T00:00:00.000+00:00
       properties:
         batches:
           items:
@@ -4967,9 +5022,10 @@ components:
           description: The third line of the address for the shipping contact.
           maxLength: 50
           type: string
+          example: null
         area:
-          description: The area such as city, department, parish for the shipping
-            contact.
+          description: "The area such as city, department, parish for the shipping\
+            \ contact."
           example: London
           maxLength: 50
           type: string
@@ -5020,8 +5076,8 @@ components:
           maxLength: 20
           type: string
         title:
-          description: A title for the shipping contact such as Mr, Mrs, Ms, M. Mme.
-            etc.
+          description: "A title for the shipping contact such as Mr, Mrs, Ms, M. Mme.\
+            \ etc."
           example: Mr
           type: string
       type: object
@@ -5099,12 +5155,12 @@ components:
           browserTZ: browserTZ
           cp_bx: FjaW50b3NoOyBJbnRlbCBNYWMgT1MgWCAx...
           downgrade1: true
-          accept_headers: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          accept_headers: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
           browserScreenHeight: browserScreenHeight
           merchant_termurl: https://mysite.com/acs/return
           browserScreenWidth: browserScreenWidth
-          user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36
-            (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
+          user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36\
+            \ (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
         amount: 3600
         expyear: 2025
         csc_policy: csc_policy
@@ -5113,7 +5169,7 @@ components:
         nonce: 0123456789ABCDEF
         mac: 3896FBC43674AF59478DAF7F546FA4D4CB89981A936E6AAE997E43B55DF6C39D
         duplicate_policy: duplicate_policy
-        csc: "12"
+        csc: "10"
         expmonth: 9
         redirect_failure: https://pay.mystore.com/continue_failure
         match_avsa: match_avsa
@@ -5203,7 +5259,7 @@ components:
 
             CityPay do not store the value and have no method of retrieving the value once the transaction has been processed.
             For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm.
-          example: "12"
+          example: "10"
           maxLength: 4
           minLength: 3
           type: string
@@ -5710,8 +5766,9 @@ components:
           description: The third line of the address.
           maxLength: 50
           type: string
+          example: null
         area:
-          description: The area such as city, department, town or parish.
+          description: "The area such as city, department, town or parish."
           example: London
           maxLength: 50
           type: string
@@ -5723,7 +5780,7 @@ components:
           minLength: 2
           type: string
         label:
-          description: A label for the address such as Head Office, Home Address.
+          description: "A label for the address such as Head Office, Home Address."
           example: Head Office
           maxLength: 20
           minLength: 2
@@ -5762,6 +5819,8 @@ components:
         filename: filename
         data: data
         mime_type: mime_type
+        name: name
+        retention: 0
       properties:
         data:
           description: base64 encoding of the file if less than 32kb in size.
@@ -5771,9 +5830,18 @@ components:
             You should not include the filename path as appropriate.
           type: string
         mime_type:
-          description: The mime type of the attachment as defined in [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html).
-            Currently only `application/pdf` is supported.
+          description: "The mime type of the attachment as defined in [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html).\
+            \ Currently only `application/pdf` is supported."
           type: string
+        name:
+          description: "A name for the file to identify it to the card holder when\
+            \ it is displayed in the payment form. For example Invoice, Statement."
+          type: string
+        retention:
+          description: The retention period in days of the attachment. Defaults to
+            180 days.
+          format: int32
+          type: integer
       required:
       - filename
       - mime_type
@@ -5791,8 +5859,8 @@ components:
           description: The result of an uploaded attachment such as `OK` or `UPLOAD`.
           type: string
         url:
-          description: If the attachment is to be uploaded, a URL that can be used
-            for Multipart upload of the attachment.
+          description: "If the attachment is to be uploaded, a URL that can be used\
+            \ for Multipart upload of the attachment."
           type: string
       required:
       - name
@@ -5803,7 +5871,7 @@ components:
         request:
           subscription_id: subscription_id
           identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-          amount: 0
+          amount: 6
           merchantid: 11223344
           accountno: accountno
           cardholder:
@@ -5839,12 +5907,20 @@ components:
               enabled: enabled
               min_rate: min_rate
             field_guard:
-            - name: name
+            - regex: regex
+              minlen: 4
+              name: name
               label: label
-              type: type
-            - name: name
+              field_type: field_type
+              value: value
+              maxlen: 2
+            - regex: regex
+              minlen: 4
+              name: name
               label: label
-              type: type
+              field_type: field_type
+              value: value
+              maxlen: 2
             redirect_success: http://example.com/aeiou
             descriptor: descriptor
             expire_in: expire_in
@@ -5852,7 +5928,7 @@ components:
               key: pass_through_data
             pass_through_headers:
               key: pass_through_headers
-            redirect_delay: 3
+            redirect_delay: 7
             custom_params:
             - name: name
               pattern: pattern
@@ -5863,7 +5939,7 @@ components:
               value: value
               required: true
               group: group
-              order: 9
+              order: 3
             - name: name
               pattern: pattern
               label: label
@@ -5873,12 +5949,12 @@ components:
               value: value
               required: true
               group: group
-              order: 9
+              order: 3
             merch_logo: http://example.com/aeiou
             ui:
               form_auto_complete: "true"
               postcode_mandatory: true
-              ordering: 2
+              ordering: 1
               address_mandatory: true
             redirect_failure: http://example.com/aeiou
             acs_mode: acs_mode
@@ -5892,27 +5968,27 @@ components:
             postback_password: postback_password
             postback_policy: postback_policy
           cart:
-            mode: 5
+            mode: 2
             coupon: coupon
-            shipping: 2
+            shipping: 7
             contents:
-            - amount: 6
+            - amount: 1
               max: 5
-              count: 1
+              count: 5
               variant: variant
               label: label
               category: category
               sku: sku
               brand: brand
-            - amount: 6
+            - amount: 1
               max: 5
-              count: 1
+              count: 5
               variant: variant
               label: label
               category: category
               sku: sku
               brand: brand
-            tax: 7
+            tax: 9
             product_description: product_description
             product_information: product_information
           email: card.holder@citypay.com
@@ -5920,13 +5996,19 @@ components:
         - filename: filename
           data: data
           mime_type: mime_type
+          name: name
+          retention: 0
         - filename: filename
           data: data
           mime_type: mime_type
+          name: name
+          retention: 0
+        addressee: addressee
         sms_notification_path:
           template: template
           to: to
         due: 2000-01-23
+        memo: memo
         descriptor: descriptor
         email_notification_path:
           cc:
@@ -5943,6 +6025,10 @@ components:
           - to
           - to
       properties:
+        addressee:
+          description: Who the bill payment request intended for. This should be a
+            readable name such as a person or company.
+          type: string
         attachments:
           items:
             $ref: '#/components/schemas/PaylinkAttachmentRequest'
@@ -5963,6 +6049,10 @@ components:
           type: string
         email_notification_path:
           $ref: '#/components/schemas/PaylinkEmailNotificationPath'
+        memo:
+          description: A memo that can be added to the payment page and email to provide
+            to the customer.
+          type: string
         request:
           $ref: '#/components/schemas/PaylinkTokenRequestModel'
         sms_notification_path:
@@ -6004,9 +6094,9 @@ components:
           maxLength: 50
           type: string
         email:
-          description: The cardholder's email address. This field can be used to send
-            a receipt to the payment cardholder. If this value is not supplied, no
-            email will be sent.
+          description: "The cardholder's email address. This field can be used to\
+            \ send a receipt to the payment cardholder. If this value is not supplied,\
+            \ no email will be sent."
           example: card.holder@citypay.com
           maxLength: 254
           type: string
@@ -6027,45 +6117,45 @@ components:
           maxLength: 20
           type: string
         remote_addr:
-          description: Specifies the remote IP address of the customer's browser.
-            This field may be used to lock the payment form to the customer's IP address.
-            Should the address change or a malicious third party attempted to hijack
-            the transaction, an error will be generated.
+          description: "Specifies the remote IP address of the customer's browser.\
+            \ This field may be used to lock the payment form to the customer's IP\
+            \ address. Should the address change or a malicious third party attempted\
+            \ to hijack the transaction, an error will be generated."
           type: string
         title:
-          description: A title for the card holder such as Mr, Mrs, Ms, M. Mme. etc.
+          description: "A title for the card holder such as Mr, Mrs, Ms, M. Mme. etc."
           example: Mr
           type: string
         user_agent:
-          description: Specifies the user agent string of the Customer Browser. This
-            field may be used to lock the payment form to the browser. Should a different
-            user agent attempt to process the transaction or a malicious third party
-            attempted to hijack the transaction, an error is generated.
+          description: "Specifies the user agent string of the Customer Browser. This\
+            \ field may be used to lock the payment form to the browser. Should a\
+            \ different user agent attempt to process the transaction or a malicious\
+            \ third party attempted to hijack the transaction, an error is generated."
           type: string
       type: object
     PaylinkCart:
       example:
-        mode: 5
+        mode: 2
         coupon: coupon
-        shipping: 2
+        shipping: 7
         contents:
-        - amount: 6
+        - amount: 1
           max: 5
-          count: 1
+          count: 5
           variant: variant
           label: label
           category: category
           sku: sku
           brand: brand
-        - amount: 6
+        - amount: 1
           max: 5
-          count: 1
+          count: 5
           variant: variant
           label: label
           category: category
           sku: sku
           brand: brand
-        tax: 7
+        tax: 9
         product_description: product_description
         product_information: product_information
       properties:
@@ -6113,9 +6203,9 @@ components:
       type: object
     PaylinkCartItemModel:
       example:
-        amount: 6
+        amount: 1
         max: 5
-        count: 1
+        count: 5
         variant: variant
         label: label
         category: category
@@ -6123,11 +6213,11 @@ components:
         brand: brand
       properties:
         amount:
-          description: The net amount of the item. The Paylink Payment Form does not
-            multiply this figure by the value provided by the count value for the
-            cart item, this is principally to avoid rounding errors to introduce discrepancies
-            between the value of the goods charged for and the total amount represented
-            by the collection of cart items.
+          description: "The net amount of the item. The Paylink Payment Form does\
+            \ not multiply this figure by the value provided by the count value for\
+            \ the cart item, this is principally to avoid rounding errors to introduce\
+            \ discrepancies between the value of the goods charged for and the total\
+            \ amount represented by the collection of cart items."
           format: int32
           type: integer
         brand:
@@ -6137,29 +6227,29 @@ components:
           description: The category of the item such as shoes.
           type: string
         count:
-          description: The count of how many of this item is being purchased, should
-            the cart be editable, this value should be the default count required.
-            The Paylink Payment Form assumes a count of 1 in the event that no value
-            for the count field is provided for a cart item.
+          description: "The count of how many of this item is being purchased, should\
+            \ the cart be editable, this value should be the default count required.\
+            \ The Paylink Payment Form assumes a count of 1 in the event that no value\
+            \ for the count field is provided for a cart item."
           format: int32
           type: integer
         label:
           description: The label which describes the item.
           type: string
         max:
-          description: For an editable cart, the maximum number of items that can
-            be purchased, defaults to 5.
+          description: "For an editable cart, the maximum number of items that can\
+            \ be purchased, defaults to 5."
           format: int32
           type: integer
         sku:
           description: The stock control unit value.
           type: string
         variant:
-          description: The variant field refers to the variant of the cart item to
-            enable similar items to be distinguished according to certain criteria.
-            For example, similar items may be distinguished in terms of size, weight
-            and power. The Paylink Payment Form does not constrain the value of the
-            variant field to a particular set of metrics.
+          description: "The variant field refers to the variant of the cart item to\
+            \ enable similar items to be distinguished according to certain criteria.\
+            \ For example, similar items may be distinguished in terms of size, weight\
+            \ and power. The Paylink Payment Form does not constrain the value of\
+            \ the variant field to a particular set of metrics."
           type: string
       type: object
     PaylinkConfig:
@@ -6176,12 +6266,20 @@ components:
           enabled: enabled
           min_rate: min_rate
         field_guard:
-        - name: name
+        - regex: regex
+          minlen: 4
+          name: name
           label: label
-          type: type
-        - name: name
+          field_type: field_type
+          value: value
+          maxlen: 2
+        - regex: regex
+          minlen: 4
+          name: name
           label: label
-          type: type
+          field_type: field_type
+          value: value
+          maxlen: 2
         redirect_success: http://example.com/aeiou
         descriptor: descriptor
         expire_in: expire_in
@@ -6189,7 +6287,7 @@ components:
           key: pass_through_data
         pass_through_headers:
           key: pass_through_headers
-        redirect_delay: 3
+        redirect_delay: 7
         custom_params:
         - name: name
           pattern: pattern
@@ -6200,7 +6298,7 @@ components:
           value: value
           required: true
           group: group
-          order: 9
+          order: 3
         - name: name
           pattern: pattern
           label: label
@@ -6210,12 +6308,12 @@ components:
           value: value
           required: true
           group: group
-          order: 9
+          order: 3
         merch_logo: http://example.com/aeiou
         ui:
           form_auto_complete: "true"
           postcode_mandatory: true
-          ordering: 2
+          ordering: 1
           address_mandatory: true
         redirect_failure: http://example.com/aeiou
         acs_mode: acs_mode
@@ -6265,20 +6363,20 @@ components:
           items:
             type: string
           type: array
-          x-description: string[]OptionalMay be used to lock fields which are displayed
-            in the form. For example, if the cardholder.address.postcode field were
-            to be specified this would will prevent the customer amending the postal
-            code for the cardholder postcode field.
+          x-description: "string[]OptionalMay be used to lock fields which are displayed\
+            \ in the form. For example, if the cardholder.address.postcode field were\
+            \ to be specified this would will prevent the customer amending the postal\
+            \ code for the cardholder postcode field."
         merch_logo:
           description: A URL of a logo to include in the form. The URL should be delivered
             using HTTPS.
           format: url
           type: string
         merch_terms:
-          description: A URL of the merchant terms and conditions for payment. If
-            a value is supplied, a checkbox will be required to be completed to confirm
-            that the cardholder agrees to these conditions before payment. A modal
-            dialogue is displayed with the content of the conditions displayed.
+          description: "A URL of the merchant terms and conditions for payment. If\
+            \ a value is supplied, a checkbox will be required to be completed to\
+            \ confirm that the cardholder agrees to these conditions before payment.\
+            \ A modal dialogue is displayed with the content of the conditions displayed."
           format: url
           type: string
         options:
@@ -6298,8 +6396,8 @@ components:
             type: string
           type: object
         postback:
-          description: Specifies a URL to use for a call back when the payment is
-            completed. see Postback Handling }.
+          description: "Specifies a URL to use for a call back when the payment is\
+            \ completed. see Postback Handling }."
           format: url
           type: string
         postback_password:
@@ -6330,9 +6428,9 @@ components:
           description: The Paylink renderer engine to use.
           type: string
         return_params:
-          description: If a value of true is specified, any redirection will include
-            the transaction result in parameters. It is recommended to use the postback
-            integration rather than redirection parameters.
+          description: "If a value of true is specified, any redirection will include\
+            \ the transaction result in parameters. It is recommended to use the postback\
+            \ integration rather than redirection parameters."
           type: boolean
         ui:
           $ref: '#/components/schemas/PaylinkUI'
@@ -6348,14 +6446,14 @@ components:
         value: value
         required: true
         group: group
-        order: 9
+        order: 3
       properties:
         field_type:
-          description: the type of html5 field, defaults to 'text'.
+          description: "the type of html5 field, defaults to 'text'."
           type: string
         group:
-          description: a group the parameter is linked with, allows for grouping with
-            a title.
+          description: "a group the parameter is linked with, allows for grouping\
+            \ with a title."
           type: string
         label:
           description: a label to show alongside the input.
@@ -6450,20 +6548,43 @@ components:
       type: object
     PaylinkFieldGuardModel:
       example:
+        regex: regex
+        minlen: 4
         name: name
         label: label
-        type: type
+        field_type: field_type
+        value: value
+        maxlen: 2
       properties:
+        field_type:
+          description: "A type of HTML element that should be displayed such as text,\
+            \ password, url. Any HTML5 input type value may be supplied."
+          type: string
         label:
           description: A label for the field guard to display on the authentication
             page.
           type: string
+        maxlen:
+          description: A maximum length of any value supplied in the field guard form.
+            Used for validating entry.
+          format: int32
+          type: integer
+        minlen:
+          description: A minimum length of any value supplied in the field guard form.
+            Used for validating entry.
+          format: int32
+          type: integer
         name:
           description: A field name which is used to refer to a field which is guarded.
           type: string
-        type:
-          description: A type of HTML element that should be displayed such as text,
-            password, url. Any HTML5 input type value may be supplied.
+        regex:
+          description: A JavaScript regular expression value which can be used to
+            validate the data provided in the field guard entry form. Used for validating
+            entry.
+          type: string
+        value:
+          description: A value directly associated with the field guard. Any value
+            provided at this level will be considered as sensitive and not logged.
           type: string
       type: object
     PaylinkPartPayments:
@@ -6505,8 +6626,8 @@ components:
             default.
           type: string
         to:
-          description: The phone number in [E.164](https://en.wikipedia.org/wiki/E.164)
-            format to send the message to.
+          description: "The phone number in [E.164](https://en.wikipedia.org/wiki/E.164)\
+            \ format to send the message to."
           type: string
       required:
       - to
@@ -6613,7 +6734,7 @@ components:
       example:
         subscription_id: subscription_id
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-        amount: 0
+        amount: 6
         merchantid: 11223344
         accountno: accountno
         cardholder:
@@ -6649,12 +6770,20 @@ components:
             enabled: enabled
             min_rate: min_rate
           field_guard:
-          - name: name
+          - regex: regex
+            minlen: 4
+            name: name
             label: label
-            type: type
-          - name: name
+            field_type: field_type
+            value: value
+            maxlen: 2
+          - regex: regex
+            minlen: 4
+            name: name
             label: label
-            type: type
+            field_type: field_type
+            value: value
+            maxlen: 2
           redirect_success: http://example.com/aeiou
           descriptor: descriptor
           expire_in: expire_in
@@ -6662,7 +6791,7 @@ components:
             key: pass_through_data
           pass_through_headers:
             key: pass_through_headers
-          redirect_delay: 3
+          redirect_delay: 7
           custom_params:
           - name: name
             pattern: pattern
@@ -6673,7 +6802,7 @@ components:
             value: value
             required: true
             group: group
-            order: 9
+            order: 3
           - name: name
             pattern: pattern
             label: label
@@ -6683,12 +6812,12 @@ components:
             value: value
             required: true
             group: group
-            order: 9
+            order: 3
           merch_logo: http://example.com/aeiou
           ui:
             form_auto_complete: "true"
             postcode_mandatory: true
-            ordering: 2
+            ordering: 1
             address_mandatory: true
           redirect_failure: http://example.com/aeiou
           acs_mode: acs_mode
@@ -6702,27 +6831,27 @@ components:
           postback_password: postback_password
           postback_policy: postback_policy
         cart:
-          mode: 5
+          mode: 2
           coupon: coupon
-          shipping: 2
+          shipping: 7
           contents:
-          - amount: 6
+          - amount: 1
             max: 5
-            count: 1
+            count: 5
             variant: variant
             label: label
             category: category
             sku: sku
             brand: brand
-          - amount: 6
+          - amount: 1
             max: 5
-            count: 1
+            count: 5
             variant: variant
             label: label
             category: category
             sku: sku
             brand: brand
-          tax: 7
+          tax: 9
           product_description: product_description
           product_information: product_information
         email: card.holder@citypay.com
@@ -6744,10 +6873,10 @@ components:
         cart:
           $ref: '#/components/schemas/PaylinkCart'
         client_version:
-          description: The clientVersion field is used to specify the version of your
-            application that has invoked the Paylink payment process. This feature
-            is typically used for tracing issues relating to application deployments,
-            or any Paylink integration module or plugin.
+          description: "The clientVersion field is used to specify the version of\
+            \ your application that has invoked the Paylink payment process. This\
+            \ feature is typically used for tracing issues relating to application\
+            \ deployments, or any Paylink integration module or plugin."
           type: string
         config:
           $ref: '#/components/schemas/PaylinkConfig'
@@ -6840,7 +6969,7 @@ components:
           format: date-time
           type: string
         identifier:
-          description: the merchant identifier, to help identifying the token.
+          description: "the merchant identifier, to help identifying the token."
           type: string
         is_attachment:
           description: true if an attachment exists.
@@ -7049,16 +7178,16 @@ components:
       example:
         form_auto_complete: "true"
         postcode_mandatory: true
-        ordering: 2
+        ordering: 1
         address_mandatory: true
       properties:
         address_mandatory:
           description: whether the address is forced as mandatory.
           type: boolean
         form_auto_complete:
-          description: specify the form autocomplete setting, default to on. If set
-            to off the UI will set autocomplete="off" on the form level and prevent
-            elements from adding it.
+          description: "specify the form autocomplete setting, default to on. If set\
+            \ to off the UI will set autocomplete=\"off\" on the form level and prevent\
+            \ elements from adding it."
           example: "true"
           type: string
         ordering:
@@ -7094,7 +7223,7 @@ components:
           amount: 3600
           account_id: aaabbb-cccddd-eee
           merchantid: 11223344
-        batch_date: 2020-01-02T00:00:00.000+0000
+        batch_date: 2020-01-02T00:00:00.000+00:00
       properties:
         batch_date:
           description: The date and time that the file was created in ISO-8601 format.
@@ -7241,9 +7370,9 @@ components:
           minimum: 2000
           type: integer
         name_on_card:
-          description: The card holder name as it appears on the card. The value is
-            required if the account is to be used for 3dsv2 processing, otherwise
-            it is optional.
+          description: "The card holder name as it appears on the card. The value\
+            \ is required if the account is to be used for 3dsv2 processing, otherwise\
+            \ it is optional."
           example: MR NE BODY
           maxLength: 45
           minLength: 2
@@ -7324,12 +7453,12 @@ components:
         browserTZ: browserTZ
         cp_bx: FjaW50b3NoOyBJbnRlbCBNYWMgT1MgWCAx...
         downgrade1: true
-        accept_headers: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+        accept_headers: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
         browserScreenHeight: browserScreenHeight
         merchant_termurl: https://mysite.com/acs/return
         browserScreenWidth: browserScreenWidth
-        user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36
-          (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
+        user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36\
+          \ (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
       properties:
         accept_headers:
           description: |
@@ -7342,7 +7471,7 @@ components:
 
             This value will be validated by the ACS when the card holder authenticates themselves to verify that
             no intermediary is performing this action. Required for 3DSv1.
-          example: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          example: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
           type: string
         browserColorDepth:
           description: BrowserColorDepth field used for 3DSv2 browser enablement.
@@ -7426,8 +7555,8 @@ components:
 
             This value will be validated by the ACS when the card holder authenticates themselves to verify that
             no intermediary is performing this action. Required for 3DSv1.
-          example: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36
-            (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
+          example: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36\
+            \ (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
           type: string
       type: object
     TokenisationResponseModel:

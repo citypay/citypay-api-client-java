@@ -39,9 +39,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 
 public class BatchProcessingApi {
     private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
     public BatchProcessingApi() {
         this(Configuration.getDefaultApiClient());
@@ -57,6 +60,22 @@ public class BatchProcessingApi {
 
     public void setApiClient(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
     }
 
     /**
@@ -77,6 +96,19 @@ public class BatchProcessingApi {
      </table>
      */
     public okhttp3.Call batchProcessRequestCall(ProcessBatchRequest processBatchRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = processBatchRequest;
 
         // create path and map variables
@@ -89,7 +121,8 @@ public class BatchProcessingApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -97,26 +130,26 @@ public class BatchProcessingApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call batchProcessRequestValidateBeforeCall(ProcessBatchRequest processBatchRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'processBatchRequest' is set
         if (processBatchRequest == null) {
             throw new ApiException("Missing the required parameter 'processBatchRequest' when calling batchProcessRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = batchProcessRequestCall(processBatchRequest, _callback);
-        return localVarCall;
+        return batchProcessRequestCall(processBatchRequest, _callback);
 
     }
 
@@ -208,6 +241,19 @@ public class BatchProcessingApi {
      </table>
      */
     public okhttp3.Call batchReportRequestCall(BatchReportRequest batchReportRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = batchReportRequest;
 
         // create path and map variables
@@ -220,7 +266,8 @@ public class BatchProcessingApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -228,26 +275,26 @@ public class BatchProcessingApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call batchReportRequestValidateBeforeCall(BatchReportRequest batchReportRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'batchReportRequest' is set
         if (batchReportRequest == null) {
             throw new ApiException("Missing the required parameter 'batchReportRequest' when calling batchReportRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = batchReportRequestCall(batchReportRequest, _callback);
-        return localVarCall;
+        return batchReportRequestCall(batchReportRequest, _callback);
 
     }
 
@@ -339,6 +386,19 @@ public class BatchProcessingApi {
      </table>
      */
     public okhttp3.Call checkBatchStatusRequestCall(CheckBatchStatus checkBatchStatus, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = checkBatchStatus;
 
         // create path and map variables
@@ -351,7 +411,8 @@ public class BatchProcessingApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -359,26 +420,26 @@ public class BatchProcessingApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call checkBatchStatusRequestValidateBeforeCall(CheckBatchStatus checkBatchStatus, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'checkBatchStatus' is set
         if (checkBatchStatus == null) {
             throw new ApiException("Missing the required parameter 'checkBatchStatus' when calling checkBatchStatusRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = checkBatchStatusRequestCall(checkBatchStatus, _callback);
-        return localVarCall;
+        return checkBatchStatusRequestCall(checkBatchStatus, _callback);
 
     }
 

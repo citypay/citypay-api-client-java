@@ -25,6 +25,27 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.citypay.client.JSON;
+
 /**
  * AirlineAdvice
  */
@@ -93,6 +114,8 @@ public class AirlineAdvice {
   @SerializedName(SERIALIZED_NAME_TRANSACTION_TYPE)
   private String transactionType;
 
+  public AirlineAdvice() {
+  }
 
   public AirlineAdvice carrierName(String carrierName) {
     
@@ -464,6 +487,7 @@ public class AirlineAdvice {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -531,5 +555,153 @@ public class AirlineAdvice {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("carrier_name");
+    openapiFields.add("conjunction_ticket_indicator");
+    openapiFields.add("eticket_indicator");
+    openapiFields.add("no_air_segments");
+    openapiFields.add("number_in_party");
+    openapiFields.add("original_ticket_no");
+    openapiFields.add("passenger_name");
+    openapiFields.add("segment1");
+    openapiFields.add("segment2");
+    openapiFields.add("segment3");
+    openapiFields.add("segment4");
+    openapiFields.add("ticket_issue_city");
+    openapiFields.add("ticket_issue_date");
+    openapiFields.add("ticket_issue_name");
+    openapiFields.add("ticket_no");
+    openapiFields.add("transaction_type");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("carrier_name");
+    openapiRequiredFields.add("number_in_party");
+    openapiRequiredFields.add("segment1");
+    openapiRequiredFields.add("ticket_issue_city");
+    openapiRequiredFields.add("ticket_issue_date");
+    openapiRequiredFields.add("ticket_issue_name");
+    openapiRequiredFields.add("ticket_no");
+    openapiRequiredFields.add("transaction_type");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to AirlineAdvice
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!AirlineAdvice.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in AirlineAdvice is not found in the empty JSON string", AirlineAdvice.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!AirlineAdvice.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AirlineAdvice` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : AirlineAdvice.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      if (!jsonObj.get("carrier_name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `carrier_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("carrier_name").toString()));
+      }
+      if ((jsonObj.get("original_ticket_no") != null && !jsonObj.get("original_ticket_no").isJsonNull()) && !jsonObj.get("original_ticket_no").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `original_ticket_no` to be a primitive type in the JSON string but got `%s`", jsonObj.get("original_ticket_no").toString()));
+      }
+      if ((jsonObj.get("passenger_name") != null && !jsonObj.get("passenger_name").isJsonNull()) && !jsonObj.get("passenger_name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `passenger_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("passenger_name").toString()));
+      }
+      // validate the required field `segment1`
+      AirlineSegment.validateJsonObject(jsonObj.getAsJsonObject("segment1"));
+      // validate the optional field `segment2`
+      if (jsonObj.get("segment2") != null && !jsonObj.get("segment2").isJsonNull()) {
+        AirlineSegment.validateJsonObject(jsonObj.getAsJsonObject("segment2"));
+      }
+      // validate the optional field `segment3`
+      if (jsonObj.get("segment3") != null && !jsonObj.get("segment3").isJsonNull()) {
+        AirlineSegment.validateJsonObject(jsonObj.getAsJsonObject("segment3"));
+      }
+      // validate the optional field `segment4`
+      if (jsonObj.get("segment4") != null && !jsonObj.get("segment4").isJsonNull()) {
+        AirlineSegment.validateJsonObject(jsonObj.getAsJsonObject("segment4"));
+      }
+      if (!jsonObj.get("ticket_issue_city").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ticket_issue_city` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ticket_issue_city").toString()));
+      }
+      if (!jsonObj.get("ticket_issue_name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ticket_issue_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ticket_issue_name").toString()));
+      }
+      if (!jsonObj.get("ticket_no").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ticket_no` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ticket_no").toString()));
+      }
+      if (!jsonObj.get("transaction_type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `transaction_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("transaction_type").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!AirlineAdvice.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'AirlineAdvice' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<AirlineAdvice> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(AirlineAdvice.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<AirlineAdvice>() {
+           @Override
+           public void write(JsonWriter out, AirlineAdvice value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public AirlineAdvice read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of AirlineAdvice given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of AirlineAdvice
+  * @throws IOException if the JSON string is invalid with respect to AirlineAdvice
+  */
+  public static AirlineAdvice fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AirlineAdvice.class);
+  }
+
+ /**
+  * Convert an instance of AirlineAdvice to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

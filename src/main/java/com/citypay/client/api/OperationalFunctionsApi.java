@@ -41,9 +41,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 
 public class OperationalFunctionsApi {
     private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
     public OperationalFunctionsApi() {
         this(Configuration.getDefaultApiClient());
@@ -59,6 +62,22 @@ public class OperationalFunctionsApi {
 
     public void setApiClient(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
     }
 
     /**
@@ -79,6 +98,19 @@ public class OperationalFunctionsApi {
      </table>
      */
     public okhttp3.Call aclCheckRequestCall(AclCheckRequest aclCheckRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = aclCheckRequest;
 
         // create path and map variables
@@ -91,7 +123,8 @@ public class OperationalFunctionsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -99,26 +132,26 @@ public class OperationalFunctionsApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call aclCheckRequestValidateBeforeCall(AclCheckRequest aclCheckRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'aclCheckRequest' is set
         if (aclCheckRequest == null) {
             throw new ApiException("Missing the required parameter 'aclCheckRequest' when calling aclCheckRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = aclCheckRequestCall(aclCheckRequest, _callback);
-        return localVarCall;
+        return aclCheckRequestCall(aclCheckRequest, _callback);
 
     }
 
@@ -210,6 +243,19 @@ public class OperationalFunctionsApi {
      </table>
      */
     public okhttp3.Call domainKeyCheckRequestCall(DomainKeyCheckRequest domainKeyCheckRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = domainKeyCheckRequest;
 
         // create path and map variables
@@ -222,7 +268,8 @@ public class OperationalFunctionsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -230,26 +277,26 @@ public class OperationalFunctionsApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call domainKeyCheckRequestValidateBeforeCall(DomainKeyCheckRequest domainKeyCheckRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'domainKeyCheckRequest' is set
         if (domainKeyCheckRequest == null) {
             throw new ApiException("Missing the required parameter 'domainKeyCheckRequest' when calling domainKeyCheckRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = domainKeyCheckRequestCall(domainKeyCheckRequest, _callback);
-        return localVarCall;
+        return domainKeyCheckRequestCall(domainKeyCheckRequest, _callback);
 
     }
 
@@ -341,6 +388,19 @@ public class OperationalFunctionsApi {
      </table>
      */
     public okhttp3.Call domainKeyGenRequestCall(DomainKeyRequest domainKeyRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = domainKeyRequest;
 
         // create path and map variables
@@ -353,7 +413,8 @@ public class OperationalFunctionsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -361,26 +422,26 @@ public class OperationalFunctionsApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call domainKeyGenRequestValidateBeforeCall(DomainKeyRequest domainKeyRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'domainKeyRequest' is set
         if (domainKeyRequest == null) {
             throw new ApiException("Missing the required parameter 'domainKeyRequest' when calling domainKeyGenRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = domainKeyGenRequestCall(domainKeyRequest, _callback);
-        return localVarCall;
+        return domainKeyGenRequestCall(domainKeyRequest, _callback);
 
     }
 
@@ -472,11 +533,24 @@ public class OperationalFunctionsApi {
      </table>
      */
     public okhttp3.Call listMerchantsRequestCall(String clientid, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/v6/merchants/{clientid}"
-            .replaceAll("\\{" + "clientid" + "\\}", localVarApiClient.escapeString(clientid.toString()));
+            .replace("{" + "clientid" + "}", localVarApiClient.escapeString(clientid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -485,7 +559,8 @@ public class OperationalFunctionsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -493,26 +568,24 @@ public class OperationalFunctionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call listMerchantsRequestValidateBeforeCall(String clientid, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'clientid' is set
         if (clientid == null) {
             throw new ApiException("Missing the required parameter 'clientid' when calling listMerchantsRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = listMerchantsRequestCall(clientid, _callback);
-        return localVarCall;
+        return listMerchantsRequestCall(clientid, _callback);
 
     }
 
@@ -604,6 +677,19 @@ public class OperationalFunctionsApi {
      </table>
      */
     public okhttp3.Call pingRequestCall(Ping ping, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = ping;
 
         // create path and map variables
@@ -616,7 +702,9 @@ public class OperationalFunctionsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/x-www-form-urlencoded", "application/json", "text/xml"
+            "application/x-www-form-urlencoded",
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -624,26 +712,27 @@ public class OperationalFunctionsApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "application/x-www-form-urlencoded", "text/xml"
+            "application/json",
+            "application/x-www-form-urlencoded",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key", "cp-domain-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call pingRequestValidateBeforeCall(Ping ping, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'ping' is set
         if (ping == null) {
             throw new ApiException("Missing the required parameter 'ping' when calling pingRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = pingRequestCall(ping, _callback);
-        return localVarCall;
+        return pingRequestCall(ping, _callback);
 
     }
 

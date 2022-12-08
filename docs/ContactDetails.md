@@ -5,21 +5,21 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**address1** | **String** | The first line of the address for the shipping contact. |  [optional]
-**address2** | **String** | The second line of the address for the shipping contact. |  [optional]
-**address3** | **String** | The third line of the address for the shipping contact. |  [optional]
-**area** | **String** | The area such as city, department, parish for the shipping contact. |  [optional]
-**company** | **String** | The company name for the shipping contact if the contact is a corporate contact. |  [optional]
-**country** | **String** | The country code in ISO 3166 format. The country value may be used for fraud analysis and for   acceptance of the transaction.  |  [optional]
-**email** | **String** | An email address for the shipping contact which may be used for correspondence. |  [optional]
-**firstname** | **String** | The first name  of the shipping contact. |  [optional]
-**lastname** | **String** | The last name or surname of the shipping contact. |  [optional]
-**mobileNo** | **String** | A mobile number for the shipping contact the mobile number is often required by delivery companies to ensure they are able to be in contact when required. |  [optional]
-**postcode** | **String** | The postcode or zip code of the address which may be used for fraud analysis. |  [optional]
-**telephoneNo** | **String** | A telephone number for the shipping contact. |  [optional]
-**title** | **String** | A title for the shipping contact such as Mr, Mrs, Ms, M. Mme. etc. |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**address1** | **String** | The first line of the address for the shipping contact. |  [optional] |
+|**address2** | **String** | The second line of the address for the shipping contact. |  [optional] |
+|**address3** | **String** | The third line of the address for the shipping contact. |  [optional] |
+|**area** | **String** | The area such as city, department, parish for the shipping contact. |  [optional] |
+|**company** | **String** | The company name for the shipping contact if the contact is a corporate contact. |  [optional] |
+|**country** | **String** | The country code in ISO 3166 format. The country value may be used for fraud analysis and for   acceptance of the transaction.  |  [optional] |
+|**email** | **String** | An email address for the shipping contact which may be used for correspondence. |  [optional] |
+|**firstname** | **String** | The first name  of the shipping contact. |  [optional] |
+|**lastname** | **String** | The last name or surname of the shipping contact. |  [optional] |
+|**mobileNo** | **String** | A mobile number for the shipping contact the mobile number is often required by delivery companies to ensure they are able to be in contact when required. |  [optional] |
+|**postcode** | **String** | The postcode or zip code of the address which may be used for fraud analysis. |  [optional] |
+|**telephoneNo** | **String** | A telephone number for the shipping contact. |  [optional] |
+|**title** | **String** | A title for the shipping contact such as Mr, Mrs, Ms, M. Mme. etc. |  [optional] |
 
 
 

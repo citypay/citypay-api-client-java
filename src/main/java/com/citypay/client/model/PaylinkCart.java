@@ -26,6 +26,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.citypay.client.JSON;
+
 /**
  * PaylinkCart
  */
@@ -58,6 +79,8 @@ public class PaylinkCart {
   @SerializedName(SERIALIZED_NAME_TAX)
   private Integer tax;
 
+  public PaylinkCart() {
+  }
 
   public PaylinkCart contents(List<PaylinkCartItemModel> contents) {
     
@@ -228,6 +251,7 @@ public class PaylinkCart {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -277,5 +301,117 @@ public class PaylinkCart {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("contents");
+    openapiFields.add("coupon");
+    openapiFields.add("mode");
+    openapiFields.add("product_description");
+    openapiFields.add("product_information");
+    openapiFields.add("shipping");
+    openapiFields.add("tax");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to PaylinkCart
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!PaylinkCart.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkCart is not found in the empty JSON string", PaylinkCart.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!PaylinkCart.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkCart` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      if (jsonObj.get("contents") != null && !jsonObj.get("contents").isJsonNull()) {
+        JsonArray jsonArraycontents = jsonObj.getAsJsonArray("contents");
+        if (jsonArraycontents != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("contents").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `contents` to be an array in the JSON string but got `%s`", jsonObj.get("contents").toString()));
+          }
+
+          // validate the optional field `contents` (array)
+          for (int i = 0; i < jsonArraycontents.size(); i++) {
+            PaylinkCartItemModel.validateJsonObject(jsonArraycontents.get(i).getAsJsonObject());
+          };
+        }
+      }
+      if ((jsonObj.get("coupon") != null && !jsonObj.get("coupon").isJsonNull()) && !jsonObj.get("coupon").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `coupon` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coupon").toString()));
+      }
+      if ((jsonObj.get("product_description") != null && !jsonObj.get("product_description").isJsonNull()) && !jsonObj.get("product_description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `product_description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("product_description").toString()));
+      }
+      if ((jsonObj.get("product_information") != null && !jsonObj.get("product_information").isJsonNull()) && !jsonObj.get("product_information").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `product_information` to be a primitive type in the JSON string but got `%s`", jsonObj.get("product_information").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PaylinkCart.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PaylinkCart' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PaylinkCart> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PaylinkCart.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PaylinkCart>() {
+           @Override
+           public void write(JsonWriter out, PaylinkCart value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PaylinkCart read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of PaylinkCart given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of PaylinkCart
+  * @throws IOException if the JSON string is invalid with respect to PaylinkCart
+  */
+  public static PaylinkCart fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PaylinkCart.class);
+  }
+
+ /**
+  * Convert an instance of PaylinkCart to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

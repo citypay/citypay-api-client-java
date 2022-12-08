@@ -24,6 +24,27 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.citypay.client.JSON;
+
 /**
  * PaylinkCardHolder
  */
@@ -68,6 +89,8 @@ public class PaylinkCardHolder {
   @SerializedName(SERIALIZED_NAME_USER_AGENT)
   private String userAgent;
 
+  public PaylinkCardHolder() {
+  }
 
   public PaylinkCardHolder acceptHeaders(String acceptHeaders) {
     
@@ -299,6 +322,7 @@ public class PaylinkCardHolder {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -354,5 +378,128 @@ public class PaylinkCardHolder {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("accept_headers");
+    openapiFields.add("address");
+    openapiFields.add("company");
+    openapiFields.add("email");
+    openapiFields.add("firstname");
+    openapiFields.add("lastname");
+    openapiFields.add("mobile_no");
+    openapiFields.add("remote_addr");
+    openapiFields.add("title");
+    openapiFields.add("user_agent");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to PaylinkCardHolder
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!PaylinkCardHolder.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkCardHolder is not found in the empty JSON string", PaylinkCardHolder.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!PaylinkCardHolder.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkCardHolder` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("accept_headers") != null && !jsonObj.get("accept_headers").isJsonNull()) && !jsonObj.get("accept_headers").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `accept_headers` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accept_headers").toString()));
+      }
+      // validate the optional field `address`
+      if (jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) {
+        PaylinkAddress.validateJsonObject(jsonObj.getAsJsonObject("address"));
+      }
+      if ((jsonObj.get("company") != null && !jsonObj.get("company").isJsonNull()) && !jsonObj.get("company").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `company` to be a primitive type in the JSON string but got `%s`", jsonObj.get("company").toString()));
+      }
+      if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
+      }
+      if ((jsonObj.get("firstname") != null && !jsonObj.get("firstname").isJsonNull()) && !jsonObj.get("firstname").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `firstname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("firstname").toString()));
+      }
+      if ((jsonObj.get("lastname") != null && !jsonObj.get("lastname").isJsonNull()) && !jsonObj.get("lastname").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `lastname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("lastname").toString()));
+      }
+      if ((jsonObj.get("mobile_no") != null && !jsonObj.get("mobile_no").isJsonNull()) && !jsonObj.get("mobile_no").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `mobile_no` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mobile_no").toString()));
+      }
+      if ((jsonObj.get("remote_addr") != null && !jsonObj.get("remote_addr").isJsonNull()) && !jsonObj.get("remote_addr").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `remote_addr` to be a primitive type in the JSON string but got `%s`", jsonObj.get("remote_addr").toString()));
+      }
+      if ((jsonObj.get("title") != null && !jsonObj.get("title").isJsonNull()) && !jsonObj.get("title").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("title").toString()));
+      }
+      if ((jsonObj.get("user_agent") != null && !jsonObj.get("user_agent").isJsonNull()) && !jsonObj.get("user_agent").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `user_agent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("user_agent").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PaylinkCardHolder.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PaylinkCardHolder' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PaylinkCardHolder> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PaylinkCardHolder.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PaylinkCardHolder>() {
+           @Override
+           public void write(JsonWriter out, PaylinkCardHolder value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PaylinkCardHolder read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of PaylinkCardHolder given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of PaylinkCardHolder
+  * @throws IOException if the JSON string is invalid with respect to PaylinkCardHolder
+  */
+  public static PaylinkCardHolder fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PaylinkCardHolder.class);
+  }
+
+ /**
+  * Convert an instance of PaylinkCardHolder to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

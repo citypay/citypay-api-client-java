@@ -43,9 +43,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 
 public class CardHolderAccountApi {
     private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
     public CardHolderAccountApi() {
         this(Configuration.getDefaultApiClient());
@@ -61,6 +64,22 @@ public class CardHolderAccountApi {
 
     public void setApiClient(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
     }
 
     /**
@@ -82,12 +101,25 @@ public class CardHolderAccountApi {
      </table>
      */
     public okhttp3.Call accountCardDeleteRequestCall(String accountid, String cardId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/v6/account/{accountid}/card/{cardId}"
-            .replaceAll("\\{" + "accountid" + "\\}", localVarApiClient.escapeString(accountid.toString()))
-            .replaceAll("\\{" + "cardId" + "\\}", localVarApiClient.escapeString(cardId.toString()));
+            .replace("{" + "accountid" + "}", localVarApiClient.escapeString(accountid.toString()))
+            .replace("{" + "cardId" + "}", localVarApiClient.escapeString(cardId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -96,7 +128,8 @@ public class CardHolderAccountApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -104,31 +137,29 @@ public class CardHolderAccountApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call accountCardDeleteRequestValidateBeforeCall(String accountid, String cardId, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountCardDeleteRequest(Async)");
         }
-        
+
         // verify the required parameter 'cardId' is set
         if (cardId == null) {
             throw new ApiException("Missing the required parameter 'cardId' when calling accountCardDeleteRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = accountCardDeleteRequestCall(accountid, cardId, _callback);
-        return localVarCall;
+        return accountCardDeleteRequestCall(accountid, cardId, _callback);
 
     }
 
@@ -224,11 +255,24 @@ public class CardHolderAccountApi {
      </table>
      */
     public okhttp3.Call accountCardRegisterRequestCall(String accountid, RegisterCard registerCard, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = registerCard;
 
         // create path and map variables
         String localVarPath = "/v6/account/{accountid}/register"
-            .replaceAll("\\{" + "accountid" + "\\}", localVarApiClient.escapeString(accountid.toString()));
+            .replace("{" + "accountid" + "}", localVarApiClient.escapeString(accountid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -237,7 +281,8 @@ public class CardHolderAccountApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -245,31 +290,31 @@ public class CardHolderAccountApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call accountCardRegisterRequestValidateBeforeCall(String accountid, RegisterCard registerCard, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountCardRegisterRequest(Async)");
         }
-        
+
         // verify the required parameter 'registerCard' is set
         if (registerCard == null) {
             throw new ApiException("Missing the required parameter 'registerCard' when calling accountCardRegisterRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = accountCardRegisterRequestCall(accountid, registerCard, _callback);
-        return localVarCall;
+        return accountCardRegisterRequestCall(accountid, registerCard, _callback);
 
     }
 
@@ -366,12 +411,25 @@ public class CardHolderAccountApi {
      </table>
      */
     public okhttp3.Call accountCardStatusRequestCall(String accountid, String cardId, CardStatus cardStatus, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = cardStatus;
 
         // create path and map variables
         String localVarPath = "/v6/account/{accountid}/card/{cardId}/status"
-            .replaceAll("\\{" + "accountid" + "\\}", localVarApiClient.escapeString(accountid.toString()))
-            .replaceAll("\\{" + "cardId" + "\\}", localVarApiClient.escapeString(cardId.toString()));
+            .replace("{" + "accountid" + "}", localVarApiClient.escapeString(accountid.toString()))
+            .replace("{" + "cardId" + "}", localVarApiClient.escapeString(cardId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -380,7 +438,8 @@ public class CardHolderAccountApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -388,36 +447,36 @@ public class CardHolderAccountApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call accountCardStatusRequestValidateBeforeCall(String accountid, String cardId, CardStatus cardStatus, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountCardStatusRequest(Async)");
         }
-        
+
         // verify the required parameter 'cardId' is set
         if (cardId == null) {
             throw new ApiException("Missing the required parameter 'cardId' when calling accountCardStatusRequest(Async)");
         }
-        
+
         // verify the required parameter 'cardStatus' is set
         if (cardStatus == null) {
             throw new ApiException("Missing the required parameter 'cardStatus' when calling accountCardStatusRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = accountCardStatusRequestCall(accountid, cardId, cardStatus, _callback);
-        return localVarCall;
+        return accountCardStatusRequestCall(accountid, cardId, cardStatus, _callback);
 
     }
 
@@ -516,11 +575,24 @@ public class CardHolderAccountApi {
      </table>
      */
     public okhttp3.Call accountChangeContactRequestCall(String accountid, ContactDetails contactDetails, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = contactDetails;
 
         // create path and map variables
         String localVarPath = "/v6/account/{accountid}/contact"
-            .replaceAll("\\{" + "accountid" + "\\}", localVarApiClient.escapeString(accountid.toString()));
+            .replace("{" + "accountid" + "}", localVarApiClient.escapeString(accountid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -529,7 +601,8 @@ public class CardHolderAccountApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -537,31 +610,31 @@ public class CardHolderAccountApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call accountChangeContactRequestValidateBeforeCall(String accountid, ContactDetails contactDetails, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountChangeContactRequest(Async)");
         }
-        
+
         // verify the required parameter 'contactDetails' is set
         if (contactDetails == null) {
             throw new ApiException("Missing the required parameter 'contactDetails' when calling accountChangeContactRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = accountChangeContactRequestCall(accountid, contactDetails, _callback);
-        return localVarCall;
+        return accountChangeContactRequestCall(accountid, contactDetails, _callback);
 
     }
 
@@ -656,6 +729,19 @@ public class CardHolderAccountApi {
      </table>
      */
     public okhttp3.Call accountCreateCall(AccountCreate accountCreate, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = accountCreate;
 
         // create path and map variables
@@ -668,7 +754,8 @@ public class CardHolderAccountApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -676,26 +763,26 @@ public class CardHolderAccountApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call accountCreateValidateBeforeCall(AccountCreate accountCreate, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'accountCreate' is set
         if (accountCreate == null) {
             throw new ApiException("Missing the required parameter 'accountCreate' when calling accountCreate(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = accountCreateCall(accountCreate, _callback);
-        return localVarCall;
+        return accountCreateCall(accountCreate, _callback);
 
     }
 
@@ -787,11 +874,24 @@ public class CardHolderAccountApi {
      </table>
      */
     public okhttp3.Call accountDeleteRequestCall(String accountid, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/v6/account/{accountid}"
-            .replaceAll("\\{" + "accountid" + "\\}", localVarApiClient.escapeString(accountid.toString()));
+            .replace("{" + "accountid" + "}", localVarApiClient.escapeString(accountid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -800,7 +900,8 @@ public class CardHolderAccountApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -808,26 +909,24 @@ public class CardHolderAccountApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call accountDeleteRequestValidateBeforeCall(String accountid, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountDeleteRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = accountDeleteRequestCall(accountid, _callback);
-        return localVarCall;
+        return accountDeleteRequestCall(accountid, _callback);
 
     }
 
@@ -919,11 +1018,24 @@ public class CardHolderAccountApi {
      </table>
      */
     public okhttp3.Call accountExistsRequestCall(String accountid, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/v6/account-exists/{accountid}"
-            .replaceAll("\\{" + "accountid" + "\\}", localVarApiClient.escapeString(accountid.toString()));
+            .replace("{" + "accountid" + "}", localVarApiClient.escapeString(accountid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -932,7 +1044,8 @@ public class CardHolderAccountApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -940,26 +1053,24 @@ public class CardHolderAccountApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call accountExistsRequestValidateBeforeCall(String accountid, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountExistsRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = accountExistsRequestCall(accountid, _callback);
-        return localVarCall;
+        return accountExistsRequestCall(accountid, _callback);
 
     }
 
@@ -1051,11 +1162,24 @@ public class CardHolderAccountApi {
      </table>
      */
     public okhttp3.Call accountRetrieveRequestCall(String accountid, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/v6/account/{accountid}"
-            .replaceAll("\\{" + "accountid" + "\\}", localVarApiClient.escapeString(accountid.toString()));
+            .replace("{" + "accountid" + "}", localVarApiClient.escapeString(accountid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1064,7 +1188,8 @@ public class CardHolderAccountApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1072,26 +1197,24 @@ public class CardHolderAccountApi {
         }
 
         final String[] localVarContentTypes = {
-            
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call accountRetrieveRequestValidateBeforeCall(String accountid, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountRetrieveRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = accountRetrieveRequestCall(accountid, _callback);
-        return localVarCall;
+        return accountRetrieveRequestCall(accountid, _callback);
 
     }
 
@@ -1184,11 +1307,24 @@ public class CardHolderAccountApi {
      </table>
      */
     public okhttp3.Call accountStatusRequestCall(String accountid, AccountStatus accountStatus, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = accountStatus;
 
         // create path and map variables
         String localVarPath = "/v6/account/{accountid}/status"
-            .replaceAll("\\{" + "accountid" + "\\}", localVarApiClient.escapeString(accountid.toString()));
+            .replace("{" + "accountid" + "}", localVarApiClient.escapeString(accountid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1197,7 +1333,8 @@ public class CardHolderAccountApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1205,31 +1342,31 @@ public class CardHolderAccountApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call accountStatusRequestValidateBeforeCall(String accountid, AccountStatus accountStatus, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountStatusRequest(Async)");
         }
-        
+
         // verify the required parameter 'accountStatus' is set
         if (accountStatus == null) {
             throw new ApiException("Missing the required parameter 'accountStatus' when calling accountStatusRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = accountStatusRequestCall(accountid, accountStatus, _callback);
-        return localVarCall;
+        return accountStatusRequestCall(accountid, accountStatus, _callback);
 
     }
 
@@ -1324,6 +1461,19 @@ public class CardHolderAccountApi {
      </table>
      */
     public okhttp3.Call chargeRequestCall(ChargeRequest chargeRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
         Object localVarPostBody = chargeRequest;
 
         // create path and map variables
@@ -1336,7 +1486,8 @@ public class CardHolderAccountApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1344,26 +1495,26 @@ public class CardHolderAccountApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json", "text/xml"
+            "application/json",
+            "text/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
         String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call chargeRequestValidateBeforeCall(ChargeRequest chargeRequest, final ApiCallback _callback) throws ApiException {
-        
         // verify the required parameter 'chargeRequest' is set
         if (chargeRequest == null) {
             throw new ApiException("Missing the required parameter 'chargeRequest' when calling chargeRequest(Async)");
         }
-        
 
-        okhttp3.Call localVarCall = chargeRequestCall(chargeRequest, _callback);
-        return localVarCall;
+        return chargeRequestCall(chargeRequest, _callback);
 
     }
 

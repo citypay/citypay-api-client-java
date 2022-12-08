@@ -23,6 +23,27 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.citypay.client.JSON;
+
 /**
  * ExternalMPI
  */
@@ -47,6 +68,8 @@ public class ExternalMPI {
   @SerializedName(SERIALIZED_NAME_XID)
   private String xid;
 
+  public ExternalMPI() {
+  }
 
   public ExternalMPI authenResult(String authenResult) {
     
@@ -163,6 +186,7 @@ public class ExternalMPI {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -208,5 +232,104 @@ public class ExternalMPI {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("authen_result");
+    openapiFields.add("cavv");
+    openapiFields.add("eci");
+    openapiFields.add("enrolled");
+    openapiFields.add("xid");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to ExternalMPI
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!ExternalMPI.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ExternalMPI is not found in the empty JSON string", ExternalMPI.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!ExternalMPI.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ExternalMPI` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("authen_result") != null && !jsonObj.get("authen_result").isJsonNull()) && !jsonObj.get("authen_result").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `authen_result` to be a primitive type in the JSON string but got `%s`", jsonObj.get("authen_result").toString()));
+      }
+      if ((jsonObj.get("cavv") != null && !jsonObj.get("cavv").isJsonNull()) && !jsonObj.get("cavv").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cavv` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cavv").toString()));
+      }
+      if ((jsonObj.get("enrolled") != null && !jsonObj.get("enrolled").isJsonNull()) && !jsonObj.get("enrolled").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `enrolled` to be a primitive type in the JSON string but got `%s`", jsonObj.get("enrolled").toString()));
+      }
+      if ((jsonObj.get("xid") != null && !jsonObj.get("xid").isJsonNull()) && !jsonObj.get("xid").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `xid` to be a primitive type in the JSON string but got `%s`", jsonObj.get("xid").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ExternalMPI.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ExternalMPI' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ExternalMPI> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ExternalMPI.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ExternalMPI>() {
+           @Override
+           public void write(JsonWriter out, ExternalMPI value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ExternalMPI read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of ExternalMPI given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of ExternalMPI
+  * @throws IOException if the JSON string is invalid with respect to ExternalMPI
+  */
+  public static ExternalMPI fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ExternalMPI.class);
+  }
+
+ /**
+  * Convert an instance of ExternalMPI to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

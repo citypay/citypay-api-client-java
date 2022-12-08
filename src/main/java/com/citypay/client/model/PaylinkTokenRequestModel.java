@@ -26,6 +26,27 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.citypay.client.JSON;
+
 /**
  * PaylinkTokenRequestModel
  */
@@ -74,6 +95,8 @@ public class PaylinkTokenRequestModel {
   @SerializedName(SERIALIZED_NAME_TX_TYPE)
   private String txType;
 
+  public PaylinkTokenRequestModel() {
+  }
 
   public PaylinkTokenRequestModel accountno(String accountno) {
     
@@ -328,6 +351,7 @@ public class PaylinkTokenRequestModel {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -385,5 +409,138 @@ public class PaylinkTokenRequestModel {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("accountno");
+    openapiFields.add("amount");
+    openapiFields.add("cardholder");
+    openapiFields.add("cart");
+    openapiFields.add("client_version");
+    openapiFields.add("config");
+    openapiFields.add("email");
+    openapiFields.add("identifier");
+    openapiFields.add("merchantid");
+    openapiFields.add("subscription_id");
+    openapiFields.add("tx_type");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("amount");
+    openapiRequiredFields.add("identifier");
+    openapiRequiredFields.add("merchantid");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to PaylinkTokenRequestModel
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!PaylinkTokenRequestModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkTokenRequestModel is not found in the empty JSON string", PaylinkTokenRequestModel.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!PaylinkTokenRequestModel.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkTokenRequestModel` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : PaylinkTokenRequestModel.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("accountno") != null && !jsonObj.get("accountno").isJsonNull()) && !jsonObj.get("accountno").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `accountno` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountno").toString()));
+      }
+      // validate the optional field `cardholder`
+      if (jsonObj.get("cardholder") != null && !jsonObj.get("cardholder").isJsonNull()) {
+        PaylinkCardHolder.validateJsonObject(jsonObj.getAsJsonObject("cardholder"));
+      }
+      // validate the optional field `cart`
+      if (jsonObj.get("cart") != null && !jsonObj.get("cart").isJsonNull()) {
+        PaylinkCart.validateJsonObject(jsonObj.getAsJsonObject("cart"));
+      }
+      if ((jsonObj.get("client_version") != null && !jsonObj.get("client_version").isJsonNull()) && !jsonObj.get("client_version").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `client_version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("client_version").toString()));
+      }
+      // validate the optional field `config`
+      if (jsonObj.get("config") != null && !jsonObj.get("config").isJsonNull()) {
+        PaylinkConfig.validateJsonObject(jsonObj.getAsJsonObject("config"));
+      }
+      if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
+      }
+      if (!jsonObj.get("identifier").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `identifier` to be a primitive type in the JSON string but got `%s`", jsonObj.get("identifier").toString()));
+      }
+      if ((jsonObj.get("subscription_id") != null && !jsonObj.get("subscription_id").isJsonNull()) && !jsonObj.get("subscription_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `subscription_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subscription_id").toString()));
+      }
+      if ((jsonObj.get("tx_type") != null && !jsonObj.get("tx_type").isJsonNull()) && !jsonObj.get("tx_type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tx_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tx_type").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PaylinkTokenRequestModel.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PaylinkTokenRequestModel' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PaylinkTokenRequestModel> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PaylinkTokenRequestModel.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PaylinkTokenRequestModel>() {
+           @Override
+           public void write(JsonWriter out, PaylinkTokenRequestModel value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PaylinkTokenRequestModel read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of PaylinkTokenRequestModel given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of PaylinkTokenRequestModel
+  * @throws IOException if the JSON string is invalid with respect to PaylinkTokenRequestModel
+  */
+  public static PaylinkTokenRequestModel fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PaylinkTokenRequestModel.class);
+  }
+
+ /**
+  * Convert an instance of PaylinkTokenRequestModel to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

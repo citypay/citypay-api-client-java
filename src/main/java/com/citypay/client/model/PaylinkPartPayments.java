@@ -23,6 +23,27 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.citypay.client.JSON;
+
 /**
  * PaylinkPartPayments
  */
@@ -51,6 +72,8 @@ public class PaylinkPartPayments {
   @SerializedName(SERIALIZED_NAME_MIN_RATE)
   private String minRate;
 
+  public PaylinkPartPayments() {
+  }
 
   public PaylinkPartPayments enabled(String enabled) {
     
@@ -190,6 +213,7 @@ public class PaylinkPartPayments {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -237,5 +261,111 @@ public class PaylinkPartPayments {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("enabled");
+    openapiFields.add("floor");
+    openapiFields.add("max");
+    openapiFields.add("max_rate");
+    openapiFields.add("min");
+    openapiFields.add("min_rate");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to PaylinkPartPayments
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!PaylinkPartPayments.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkPartPayments is not found in the empty JSON string", PaylinkPartPayments.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!PaylinkPartPayments.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkPartPayments` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("enabled") != null && !jsonObj.get("enabled").isJsonNull()) && !jsonObj.get("enabled").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `enabled` to be a primitive type in the JSON string but got `%s`", jsonObj.get("enabled").toString()));
+      }
+      if ((jsonObj.get("floor") != null && !jsonObj.get("floor").isJsonNull()) && !jsonObj.get("floor").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `floor` to be a primitive type in the JSON string but got `%s`", jsonObj.get("floor").toString()));
+      }
+      if ((jsonObj.get("max") != null && !jsonObj.get("max").isJsonNull()) && !jsonObj.get("max").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `max` to be a primitive type in the JSON string but got `%s`", jsonObj.get("max").toString()));
+      }
+      if ((jsonObj.get("max_rate") != null && !jsonObj.get("max_rate").isJsonNull()) && !jsonObj.get("max_rate").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `max_rate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("max_rate").toString()));
+      }
+      if ((jsonObj.get("min") != null && !jsonObj.get("min").isJsonNull()) && !jsonObj.get("min").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `min` to be a primitive type in the JSON string but got `%s`", jsonObj.get("min").toString()));
+      }
+      if ((jsonObj.get("min_rate") != null && !jsonObj.get("min_rate").isJsonNull()) && !jsonObj.get("min_rate").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `min_rate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("min_rate").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PaylinkPartPayments.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PaylinkPartPayments' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PaylinkPartPayments> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PaylinkPartPayments.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PaylinkPartPayments>() {
+           @Override
+           public void write(JsonWriter out, PaylinkPartPayments value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PaylinkPartPayments read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of PaylinkPartPayments given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of PaylinkPartPayments
+  * @throws IOException if the JSON string is invalid with respect to PaylinkPartPayments
+  */
+  public static PaylinkPartPayments fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PaylinkPartPayments.class);
+  }
+
+ /**
+  * Convert an instance of PaylinkPartPayments to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

@@ -30,10 +30,35 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.citypay.client.JSON;
+
 /**
  * PaylinkBillPaymentTokenRequest
  */
 public class PaylinkBillPaymentTokenRequest {
+  public static final String SERIALIZED_NAME_ADDRESSEE = "addressee";
+  @SerializedName(SERIALIZED_NAME_ADDRESSEE)
+  private String addressee;
+
   public static final String SERIALIZED_NAME_ATTACHMENTS = "attachments";
   @SerializedName(SERIALIZED_NAME_ATTACHMENTS)
   private List<PaylinkAttachmentRequest> attachments = null;
@@ -50,6 +75,10 @@ public class PaylinkBillPaymentTokenRequest {
   @SerializedName(SERIALIZED_NAME_EMAIL_NOTIFICATION_PATH)
   private PaylinkEmailNotificationPath emailNotificationPath;
 
+  public static final String SERIALIZED_NAME_MEMO = "memo";
+  @SerializedName(SERIALIZED_NAME_MEMO)
+  private String memo;
+
   public static final String SERIALIZED_NAME_REQUEST = "request";
   @SerializedName(SERIALIZED_NAME_REQUEST)
   private PaylinkTokenRequestModel request;
@@ -57,6 +86,31 @@ public class PaylinkBillPaymentTokenRequest {
   public static final String SERIALIZED_NAME_SMS_NOTIFICATION_PATH = "sms_notification_path";
   @SerializedName(SERIALIZED_NAME_SMS_NOTIFICATION_PATH)
   private PaylinkSMSNotificationPath smsNotificationPath;
+
+  public PaylinkBillPaymentTokenRequest() {
+  }
+
+  public PaylinkBillPaymentTokenRequest addressee(String addressee) {
+    
+    this.addressee = addressee;
+    return this;
+  }
+
+   /**
+   * Who the bill payment request intended for. This should be a readable name such as a person or company.
+   * @return addressee
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Who the bill payment request intended for. This should be a readable name such as a person or company.")
+
+  public String getAddressee() {
+    return addressee;
+  }
+
+
+  public void setAddressee(String addressee) {
+    this.addressee = addressee;
+  }
 
 
   public PaylinkBillPaymentTokenRequest attachments(List<PaylinkAttachmentRequest> attachments) {
@@ -159,6 +213,29 @@ public class PaylinkBillPaymentTokenRequest {
   }
 
 
+  public PaylinkBillPaymentTokenRequest memo(String memo) {
+    
+    this.memo = memo;
+    return this;
+  }
+
+   /**
+   * A memo that can be added to the payment page and email to provide to the customer.
+   * @return memo
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A memo that can be added to the payment page and email to provide to the customer.")
+
+  public String getMemo() {
+    return memo;
+  }
+
+
+  public void setMemo(String memo) {
+    this.memo = memo;
+  }
+
+
   public PaylinkBillPaymentTokenRequest request(PaylinkTokenRequestModel request) {
     
     this.request = request;
@@ -205,6 +282,7 @@ public class PaylinkBillPaymentTokenRequest {
   }
 
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -214,27 +292,31 @@ public class PaylinkBillPaymentTokenRequest {
       return false;
     }
     PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest = (PaylinkBillPaymentTokenRequest) o;
-    return Objects.equals(this.attachments, paylinkBillPaymentTokenRequest.attachments) &&
+    return Objects.equals(this.addressee, paylinkBillPaymentTokenRequest.addressee) &&
+        Objects.equals(this.attachments, paylinkBillPaymentTokenRequest.attachments) &&
         Objects.equals(this.descriptor, paylinkBillPaymentTokenRequest.descriptor) &&
         Objects.equals(this.due, paylinkBillPaymentTokenRequest.due) &&
         Objects.equals(this.emailNotificationPath, paylinkBillPaymentTokenRequest.emailNotificationPath) &&
+        Objects.equals(this.memo, paylinkBillPaymentTokenRequest.memo) &&
         Objects.equals(this.request, paylinkBillPaymentTokenRequest.request) &&
         Objects.equals(this.smsNotificationPath, paylinkBillPaymentTokenRequest.smsNotificationPath);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(attachments, descriptor, due, emailNotificationPath, request, smsNotificationPath);
+    return Objects.hash(addressee, attachments, descriptor, due, emailNotificationPath, memo, request, smsNotificationPath);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaylinkBillPaymentTokenRequest {\n");
+    sb.append("    addressee: ").append(toIndentedString(addressee)).append("\n");
     sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("    descriptor: ").append(toIndentedString(descriptor)).append("\n");
     sb.append("    due: ").append(toIndentedString(due)).append("\n");
     sb.append("    emailNotificationPath: ").append(toIndentedString(emailNotificationPath)).append("\n");
+    sb.append("    memo: ").append(toIndentedString(memo)).append("\n");
     sb.append("    request: ").append(toIndentedString(request)).append("\n");
     sb.append("    smsNotificationPath: ").append(toIndentedString(smsNotificationPath)).append("\n");
     sb.append("}");
@@ -252,5 +334,136 @@ public class PaylinkBillPaymentTokenRequest {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("addressee");
+    openapiFields.add("attachments");
+    openapiFields.add("descriptor");
+    openapiFields.add("due");
+    openapiFields.add("email_notification_path");
+    openapiFields.add("memo");
+    openapiFields.add("request");
+    openapiFields.add("sms_notification_path");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("request");
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to PaylinkBillPaymentTokenRequest
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!PaylinkBillPaymentTokenRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkBillPaymentTokenRequest is not found in the empty JSON string", PaylinkBillPaymentTokenRequest.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!PaylinkBillPaymentTokenRequest.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkBillPaymentTokenRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : PaylinkBillPaymentTokenRequest.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("addressee") != null && !jsonObj.get("addressee").isJsonNull()) && !jsonObj.get("addressee").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `addressee` to be a primitive type in the JSON string but got `%s`", jsonObj.get("addressee").toString()));
+      }
+      if (jsonObj.get("attachments") != null && !jsonObj.get("attachments").isJsonNull()) {
+        JsonArray jsonArrayattachments = jsonObj.getAsJsonArray("attachments");
+        if (jsonArrayattachments != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("attachments").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `attachments` to be an array in the JSON string but got `%s`", jsonObj.get("attachments").toString()));
+          }
+
+          // validate the optional field `attachments` (array)
+          for (int i = 0; i < jsonArrayattachments.size(); i++) {
+            PaylinkAttachmentRequest.validateJsonObject(jsonArrayattachments.get(i).getAsJsonObject());
+          };
+        }
+      }
+      if ((jsonObj.get("descriptor") != null && !jsonObj.get("descriptor").isJsonNull()) && !jsonObj.get("descriptor").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `descriptor` to be a primitive type in the JSON string but got `%s`", jsonObj.get("descriptor").toString()));
+      }
+      // validate the optional field `email_notification_path`
+      if (jsonObj.get("email_notification_path") != null && !jsonObj.get("email_notification_path").isJsonNull()) {
+        PaylinkEmailNotificationPath.validateJsonObject(jsonObj.getAsJsonObject("email_notification_path"));
+      }
+      if ((jsonObj.get("memo") != null && !jsonObj.get("memo").isJsonNull()) && !jsonObj.get("memo").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `memo` to be a primitive type in the JSON string but got `%s`", jsonObj.get("memo").toString()));
+      }
+      // validate the required field `request`
+      PaylinkTokenRequestModel.validateJsonObject(jsonObj.getAsJsonObject("request"));
+      // validate the optional field `sms_notification_path`
+      if (jsonObj.get("sms_notification_path") != null && !jsonObj.get("sms_notification_path").isJsonNull()) {
+        PaylinkSMSNotificationPath.validateJsonObject(jsonObj.getAsJsonObject("sms_notification_path"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PaylinkBillPaymentTokenRequest.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PaylinkBillPaymentTokenRequest' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PaylinkBillPaymentTokenRequest> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PaylinkBillPaymentTokenRequest.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PaylinkBillPaymentTokenRequest>() {
+           @Override
+           public void write(JsonWriter out, PaylinkBillPaymentTokenRequest value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PaylinkBillPaymentTokenRequest read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of PaylinkBillPaymentTokenRequest given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of PaylinkBillPaymentTokenRequest
+  * @throws IOException if the JSON string is invalid with respect to PaylinkBillPaymentTokenRequest
+  */
+  public static PaylinkBillPaymentTokenRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PaylinkBillPaymentTokenRequest.class);
+  }
+
+ /**
+  * Convert an instance of PaylinkBillPaymentTokenRequest to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

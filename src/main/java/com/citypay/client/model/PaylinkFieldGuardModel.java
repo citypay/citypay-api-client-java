@@ -23,21 +23,83 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.citypay.client.JSON;
+
 /**
  * PaylinkFieldGuardModel
  */
 public class PaylinkFieldGuardModel {
+  public static final String SERIALIZED_NAME_FIELD_TYPE = "field_type";
+  @SerializedName(SERIALIZED_NAME_FIELD_TYPE)
+  private String fieldType;
+
   public static final String SERIALIZED_NAME_LABEL = "label";
   @SerializedName(SERIALIZED_NAME_LABEL)
   private String label;
+
+  public static final String SERIALIZED_NAME_MAXLEN = "maxlen";
+  @SerializedName(SERIALIZED_NAME_MAXLEN)
+  private Integer maxlen;
+
+  public static final String SERIALIZED_NAME_MINLEN = "minlen";
+  @SerializedName(SERIALIZED_NAME_MINLEN)
+  private Integer minlen;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  private String type;
+  public static final String SERIALIZED_NAME_REGEX = "regex";
+  @SerializedName(SERIALIZED_NAME_REGEX)
+  private String regex;
+
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private String value;
+
+  public PaylinkFieldGuardModel() {
+  }
+
+  public PaylinkFieldGuardModel fieldType(String fieldType) {
+    
+    this.fieldType = fieldType;
+    return this;
+  }
+
+   /**
+   * A type of HTML element that should be displayed such as text, password, url. Any HTML5 input type value may be supplied.
+   * @return fieldType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A type of HTML element that should be displayed such as text, password, url. Any HTML5 input type value may be supplied.")
+
+  public String getFieldType() {
+    return fieldType;
+  }
+
+
+  public void setFieldType(String fieldType) {
+    this.fieldType = fieldType;
+  }
 
 
   public PaylinkFieldGuardModel label(String label) {
@@ -60,6 +122,52 @@ public class PaylinkFieldGuardModel {
 
   public void setLabel(String label) {
     this.label = label;
+  }
+
+
+  public PaylinkFieldGuardModel maxlen(Integer maxlen) {
+    
+    this.maxlen = maxlen;
+    return this;
+  }
+
+   /**
+   * A maximum length of any value supplied in the field guard form. Used for validating entry.
+   * @return maxlen
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A maximum length of any value supplied in the field guard form. Used for validating entry.")
+
+  public Integer getMaxlen() {
+    return maxlen;
+  }
+
+
+  public void setMaxlen(Integer maxlen) {
+    this.maxlen = maxlen;
+  }
+
+
+  public PaylinkFieldGuardModel minlen(Integer minlen) {
+    
+    this.minlen = minlen;
+    return this;
+  }
+
+   /**
+   * A minimum length of any value supplied in the field guard form. Used for validating entry.
+   * @return minlen
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A minimum length of any value supplied in the field guard form. Used for validating entry.")
+
+  public Integer getMinlen() {
+    return minlen;
+  }
+
+
+  public void setMinlen(Integer minlen) {
+    this.minlen = minlen;
   }
 
 
@@ -86,27 +194,51 @@ public class PaylinkFieldGuardModel {
   }
 
 
-  public PaylinkFieldGuardModel type(String type) {
+  public PaylinkFieldGuardModel regex(String regex) {
     
-    this.type = type;
+    this.regex = regex;
     return this;
   }
 
    /**
-   * A type of HTML element that should be displayed such as text, password, url. Any HTML5 input type value may be supplied.
-   * @return type
+   * A JavaScript regular expression value which can be used to validate the data provided in the field guard entry form. Used for validating entry.
+   * @return regex
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A type of HTML element that should be displayed such as text, password, url. Any HTML5 input type value may be supplied.")
+  @ApiModelProperty(value = "A JavaScript regular expression value which can be used to validate the data provided in the field guard entry form. Used for validating entry.")
 
-  public String getType() {
-    return type;
+  public String getRegex() {
+    return regex;
   }
 
 
-  public void setType(String type) {
-    this.type = type;
+  public void setRegex(String regex) {
+    this.regex = regex;
   }
+
+
+  public PaylinkFieldGuardModel value(String value) {
+    
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * A value directly associated with the field guard. Any value provided at this level will be considered as sensitive and not logged.
+   * @return value
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A value directly associated with the field guard. Any value provided at this level will be considered as sensitive and not logged.")
+
+  public String getValue() {
+    return value;
+  }
+
+
+  public void setValue(String value) {
+    this.value = value;
+  }
+
 
 
   @Override
@@ -118,23 +250,31 @@ public class PaylinkFieldGuardModel {
       return false;
     }
     PaylinkFieldGuardModel paylinkFieldGuardModel = (PaylinkFieldGuardModel) o;
-    return Objects.equals(this.label, paylinkFieldGuardModel.label) &&
+    return Objects.equals(this.fieldType, paylinkFieldGuardModel.fieldType) &&
+        Objects.equals(this.label, paylinkFieldGuardModel.label) &&
+        Objects.equals(this.maxlen, paylinkFieldGuardModel.maxlen) &&
+        Objects.equals(this.minlen, paylinkFieldGuardModel.minlen) &&
         Objects.equals(this.name, paylinkFieldGuardModel.name) &&
-        Objects.equals(this.type, paylinkFieldGuardModel.type);
+        Objects.equals(this.regex, paylinkFieldGuardModel.regex) &&
+        Objects.equals(this.value, paylinkFieldGuardModel.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(label, name, type);
+    return Objects.hash(fieldType, label, maxlen, minlen, name, regex, value);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaylinkFieldGuardModel {\n");
+    sb.append("    fieldType: ").append(toIndentedString(fieldType)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
+    sb.append("    maxlen: ").append(toIndentedString(maxlen)).append("\n");
+    sb.append("    minlen: ").append(toIndentedString(minlen)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    regex: ").append(toIndentedString(regex)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -150,5 +290,109 @@ public class PaylinkFieldGuardModel {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("field_type");
+    openapiFields.add("label");
+    openapiFields.add("maxlen");
+    openapiFields.add("minlen");
+    openapiFields.add("name");
+    openapiFields.add("regex");
+    openapiFields.add("value");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Object and throws an exception if issues found
+  *
+  * @param jsonObj JSON Object
+  * @throws IOException if the JSON Object is invalid with respect to PaylinkFieldGuardModel
+  */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (!PaylinkFieldGuardModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkFieldGuardModel is not found in the empty JSON string", PaylinkFieldGuardModel.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Entry<String, JsonElement> entry : entries) {
+        if (!PaylinkFieldGuardModel.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkFieldGuardModel` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        }
+      }
+      if ((jsonObj.get("field_type") != null && !jsonObj.get("field_type").isJsonNull()) && !jsonObj.get("field_type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `field_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("field_type").toString()));
+      }
+      if ((jsonObj.get("label") != null && !jsonObj.get("label").isJsonNull()) && !jsonObj.get("label").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `label` to be a primitive type in the JSON string but got `%s`", jsonObj.get("label").toString()));
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("regex") != null && !jsonObj.get("regex").isJsonNull()) && !jsonObj.get("regex").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `regex` to be a primitive type in the JSON string but got `%s`", jsonObj.get("regex").toString()));
+      }
+      if ((jsonObj.get("value") != null && !jsonObj.get("value").isJsonNull()) && !jsonObj.get("value").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PaylinkFieldGuardModel.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PaylinkFieldGuardModel' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PaylinkFieldGuardModel> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PaylinkFieldGuardModel.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PaylinkFieldGuardModel>() {
+           @Override
+           public void write(JsonWriter out, PaylinkFieldGuardModel value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PaylinkFieldGuardModel read(JsonReader in) throws IOException {
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of PaylinkFieldGuardModel given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of PaylinkFieldGuardModel
+  * @throws IOException if the JSON string is invalid with respect to PaylinkFieldGuardModel
+  */
+  public static PaylinkFieldGuardModel fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PaylinkFieldGuardModel.class);
+  }
+
+ /**
+  * Convert an instance of PaylinkFieldGuardModel to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 
