@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,7 +13,6 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.citypay.client.model.PaylinkCardHolder;
 import com.citypay.client.model.PaylinkCart;
 import com.citypay.client.model.PaylinkConfig;
@@ -22,9 +21,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -36,13 +34,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -75,6 +76,10 @@ public class PaylinkTokenRequestModel {
   @SerializedName(SERIALIZED_NAME_CONFIG)
   private PaylinkConfig config;
 
+  public static final String SERIALIZED_NAME_CURRENCY = "currency";
+  @SerializedName(SERIALIZED_NAME_CURRENCY)
+  private String currency;
+
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)
   private String email;
@@ -86,6 +91,10 @@ public class PaylinkTokenRequestModel {
   public static final String SERIALIZED_NAME_MERCHANTID = "merchantid";
   @SerializedName(SERIALIZED_NAME_MERCHANTID)
   private Integer merchantid;
+
+  public static final String SERIALIZED_NAME_RECURRING = "recurring";
+  @SerializedName(SERIALIZED_NAME_RECURRING)
+  private Boolean recurring;
 
   public static final String SERIALIZED_NAME_SUBSCRIPTION_ID = "subscription_id";
   @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_ID)
@@ -99,7 +108,6 @@ public class PaylinkTokenRequestModel {
   }
 
   public PaylinkTokenRequestModel accountno(String accountno) {
-    
     this.accountno = accountno;
     return this;
   }
@@ -109,12 +117,9 @@ public class PaylinkTokenRequestModel {
    * @return accountno
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Specifies an alpha-numeric account number that the Paylink service uses when creating a Cardholder Account. The value should be no longer than 20 characters in length.")
-
   public String getAccountno() {
     return accountno;
   }
-
 
   public void setAccountno(String accountno) {
     this.accountno = accountno;
@@ -122,7 +127,6 @@ public class PaylinkTokenRequestModel {
 
 
   public PaylinkTokenRequestModel amount(Integer amount) {
-    
     this.amount = amount;
     return this;
   }
@@ -132,12 +136,9 @@ public class PaylinkTokenRequestModel {
    * @return amount
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Specifies the intended value of the transaction in the lowest denomination with no spacing characters or decimal point. This is the net total to be processed. An example of £74.95 would be presented as 7495.")
-
   public Integer getAmount() {
     return amount;
   }
-
 
   public void setAmount(Integer amount) {
     this.amount = amount;
@@ -145,7 +146,6 @@ public class PaylinkTokenRequestModel {
 
 
   public PaylinkTokenRequestModel cardholder(PaylinkCardHolder cardholder) {
-    
     this.cardholder = cardholder;
     return this;
   }
@@ -155,12 +155,9 @@ public class PaylinkTokenRequestModel {
    * @return cardholder
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public PaylinkCardHolder getCardholder() {
     return cardholder;
   }
-
 
   public void setCardholder(PaylinkCardHolder cardholder) {
     this.cardholder = cardholder;
@@ -168,7 +165,6 @@ public class PaylinkTokenRequestModel {
 
 
   public PaylinkTokenRequestModel cart(PaylinkCart cart) {
-    
     this.cart = cart;
     return this;
   }
@@ -178,12 +174,9 @@ public class PaylinkTokenRequestModel {
    * @return cart
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public PaylinkCart getCart() {
     return cart;
   }
-
 
   public void setCart(PaylinkCart cart) {
     this.cart = cart;
@@ -191,7 +184,6 @@ public class PaylinkTokenRequestModel {
 
 
   public PaylinkTokenRequestModel clientVersion(String clientVersion) {
-    
     this.clientVersion = clientVersion;
     return this;
   }
@@ -201,12 +193,9 @@ public class PaylinkTokenRequestModel {
    * @return clientVersion
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The clientVersion field is used to specify the version of your application that has invoked the Paylink payment process. This feature is typically used for tracing issues relating to application deployments, or any Paylink integration module or plugin.")
-
   public String getClientVersion() {
     return clientVersion;
   }
-
 
   public void setClientVersion(String clientVersion) {
     this.clientVersion = clientVersion;
@@ -214,7 +203,6 @@ public class PaylinkTokenRequestModel {
 
 
   public PaylinkTokenRequestModel config(PaylinkConfig config) {
-    
     this.config = config;
     return this;
   }
@@ -224,20 +212,35 @@ public class PaylinkTokenRequestModel {
    * @return config
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public PaylinkConfig getConfig() {
     return config;
   }
-
 
   public void setConfig(PaylinkConfig config) {
     this.config = config;
   }
 
 
+  public PaylinkTokenRequestModel currency(String currency) {
+    this.currency = currency;
+    return this;
+  }
+
+   /**
+   * A currency for the token. This value should be only used on multi-currency accounts and be an appropriate currency which the account is configured for.
+   * @return currency
+  **/
+  @javax.annotation.Nullable
+  public String getCurrency() {
+    return currency;
+  }
+
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
+
+
   public PaylinkTokenRequestModel email(String email) {
-    
     this.email = email;
     return this;
   }
@@ -247,12 +250,9 @@ public class PaylinkTokenRequestModel {
    * @return email
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "card.holder@citypay.com", value = "The email field is used for the Merchant to be notified on completion of the transaction . The value may be supplied to override the default stored value. Emails sent to this address by the Paylink service should not be forwarded on to the cardholder as it may contain certain information that is used by the Paylink service to validate and authenticate Paylink Token Requests: for example, the Merchant ID and the licence key. ")
-
   public String getEmail() {
     return email;
   }
-
 
   public void setEmail(String email) {
     this.email = email;
@@ -260,7 +260,6 @@ public class PaylinkTokenRequestModel {
 
 
   public PaylinkTokenRequestModel identifier(String identifier) {
-    
     this.identifier = identifier;
     return this;
   }
@@ -270,12 +269,9 @@ public class PaylinkTokenRequestModel {
    * @return identifier
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "95b857a1-5955-4b86-963c-5a6dbfc4fb95", required = true, value = "Identifies a particular transaction linked to a Merchant account. It enables accurate duplicate checking within a pre-configured time period, as well as transaction reporting and tracing. The identifier should be unique to prevent payment card processing attempts from being rejected due to duplication. ")
-
   public String getIdentifier() {
     return identifier;
   }
-
 
   public void setIdentifier(String identifier) {
     this.identifier = identifier;
@@ -283,7 +279,6 @@ public class PaylinkTokenRequestModel {
 
 
   public PaylinkTokenRequestModel merchantid(Integer merchantid) {
-    
     this.merchantid = merchantid;
     return this;
   }
@@ -293,20 +288,35 @@ public class PaylinkTokenRequestModel {
    * @return merchantid
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "11223344", required = true, value = "The merchant id you wish to process this transaction with.")
-
   public Integer getMerchantid() {
     return merchantid;
   }
-
 
   public void setMerchantid(Integer merchantid) {
     this.merchantid = merchantid;
   }
 
 
+  public PaylinkTokenRequestModel recurring(Boolean recurring) {
+    this.recurring = recurring;
+    return this;
+  }
+
+   /**
+   * True if the intent of this cardholder initiated transaction is to establish a recurring payment model, processable as merchant initiated transactions.
+   * @return recurring
+  **/
+  @javax.annotation.Nullable
+  public Boolean isRecurring() {
+    return recurring;
+  }
+
+  public void setRecurring(Boolean recurring) {
+    this.recurring = recurring;
+  }
+
+
   public PaylinkTokenRequestModel subscriptionId(String subscriptionId) {
-    
     this.subscriptionId = subscriptionId;
     return this;
   }
@@ -316,12 +326,9 @@ public class PaylinkTokenRequestModel {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "an id associated with a subscription to link the token request against.")
-
   public String getSubscriptionId() {
     return subscriptionId;
   }
-
 
   public void setSubscriptionId(String subscriptionId) {
     this.subscriptionId = subscriptionId;
@@ -329,7 +336,6 @@ public class PaylinkTokenRequestModel {
 
 
   public PaylinkTokenRequestModel txType(String txType) {
-    
     this.txType = txType;
     return this;
   }
@@ -339,12 +345,9 @@ public class PaylinkTokenRequestModel {
    * @return txType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A value to override the transaction type if requested by your account manager.")
-
   public String getTxType() {
     return txType;
   }
-
 
   public void setTxType(String txType) {
     this.txType = txType;
@@ -367,16 +370,18 @@ public class PaylinkTokenRequestModel {
         Objects.equals(this.cart, paylinkTokenRequestModel.cart) &&
         Objects.equals(this.clientVersion, paylinkTokenRequestModel.clientVersion) &&
         Objects.equals(this.config, paylinkTokenRequestModel.config) &&
+        Objects.equals(this.currency, paylinkTokenRequestModel.currency) &&
         Objects.equals(this.email, paylinkTokenRequestModel.email) &&
         Objects.equals(this.identifier, paylinkTokenRequestModel.identifier) &&
         Objects.equals(this.merchantid, paylinkTokenRequestModel.merchantid) &&
+        Objects.equals(this.recurring, paylinkTokenRequestModel.recurring) &&
         Objects.equals(this.subscriptionId, paylinkTokenRequestModel.subscriptionId) &&
         Objects.equals(this.txType, paylinkTokenRequestModel.txType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountno, amount, cardholder, cart, clientVersion, config, email, identifier, merchantid, subscriptionId, txType);
+    return Objects.hash(accountno, amount, cardholder, cart, clientVersion, config, currency, email, identifier, merchantid, recurring, subscriptionId, txType);
   }
 
   @Override
@@ -389,9 +394,11 @@ public class PaylinkTokenRequestModel {
     sb.append("    cart: ").append(toIndentedString(cart)).append("\n");
     sb.append("    clientVersion: ").append(toIndentedString(clientVersion)).append("\n");
     sb.append("    config: ").append(toIndentedString(config)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
     sb.append("    merchantid: ").append(toIndentedString(merchantid)).append("\n");
+    sb.append("    recurring: ").append(toIndentedString(recurring)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("    txType: ").append(toIndentedString(txType)).append("\n");
     sb.append("}");
@@ -422,9 +429,11 @@ public class PaylinkTokenRequestModel {
     openapiFields.add("cart");
     openapiFields.add("client_version");
     openapiFields.add("config");
+    openapiFields.add("currency");
     openapiFields.add("email");
     openapiFields.add("identifier");
     openapiFields.add("merchantid");
+    openapiFields.add("recurring");
     openapiFields.add("subscription_id");
     openapiFields.add("tx_type");
 
@@ -436,49 +445,53 @@ public class PaylinkTokenRequestModel {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to PaylinkTokenRequestModel
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to PaylinkTokenRequestModel
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!PaylinkTokenRequestModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PaylinkTokenRequestModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkTokenRequestModel is not found in the empty JSON string", PaylinkTokenRequestModel.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!PaylinkTokenRequestModel.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkTokenRequestModel` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkTokenRequestModel` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : PaylinkTokenRequestModel.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("accountno") != null && !jsonObj.get("accountno").isJsonNull()) && !jsonObj.get("accountno").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `accountno` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountno").toString()));
       }
       // validate the optional field `cardholder`
       if (jsonObj.get("cardholder") != null && !jsonObj.get("cardholder").isJsonNull()) {
-        PaylinkCardHolder.validateJsonObject(jsonObj.getAsJsonObject("cardholder"));
+        PaylinkCardHolder.validateJsonElement(jsonObj.get("cardholder"));
       }
       // validate the optional field `cart`
       if (jsonObj.get("cart") != null && !jsonObj.get("cart").isJsonNull()) {
-        PaylinkCart.validateJsonObject(jsonObj.getAsJsonObject("cart"));
+        PaylinkCart.validateJsonElement(jsonObj.get("cart"));
       }
       if ((jsonObj.get("client_version") != null && !jsonObj.get("client_version").isJsonNull()) && !jsonObj.get("client_version").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `client_version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("client_version").toString()));
       }
       // validate the optional field `config`
       if (jsonObj.get("config") != null && !jsonObj.get("config").isJsonNull()) {
-        PaylinkConfig.validateJsonObject(jsonObj.getAsJsonObject("config"));
+        PaylinkConfig.validateJsonElement(jsonObj.get("config"));
+      }
+      if ((jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) && !jsonObj.get("currency").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
       }
       if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
@@ -514,9 +527,9 @@ public class PaylinkTokenRequestModel {
 
            @Override
            public PaylinkTokenRequestModel read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

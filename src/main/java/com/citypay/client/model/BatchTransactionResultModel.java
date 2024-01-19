@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,16 +13,14 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,13 +32,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -93,6 +94,14 @@ public class BatchTransactionResultModel {
   @SerializedName(SERIALIZED_NAME_SCHEME)
   private String scheme;
 
+  public static final String SERIALIZED_NAME_SCHEME_ID = "scheme_id";
+  @SerializedName(SERIALIZED_NAME_SCHEME_ID)
+  private String schemeId;
+
+  public static final String SERIALIZED_NAME_SCHEME_LOGO = "scheme_logo";
+  @SerializedName(SERIALIZED_NAME_SCHEME_LOGO)
+  private String schemeLogo;
+
   public static final String SERIALIZED_NAME_TRANSNO = "transno";
   @SerializedName(SERIALIZED_NAME_TRANSNO)
   private Integer transno;
@@ -101,7 +110,6 @@ public class BatchTransactionResultModel {
   }
 
   public BatchTransactionResultModel accountId(String accountId) {
-    
     this.accountId = accountId;
     return this;
   }
@@ -111,12 +119,9 @@ public class BatchTransactionResultModel {
    * @return accountId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "aaabbb-cccddd-eee", required = true, value = "The card holder account id used for the transaction.")
-
   public String getAccountId() {
     return accountId;
   }
-
 
   public void setAccountId(String accountId) {
     this.accountId = accountId;
@@ -124,7 +129,6 @@ public class BatchTransactionResultModel {
 
 
   public BatchTransactionResultModel amount(Integer amount) {
-    
     this.amount = amount;
     return this;
   }
@@ -134,12 +138,9 @@ public class BatchTransactionResultModel {
    * @return amount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "3600", value = "The amount of the transaction processed.")
-
   public Integer getAmount() {
     return amount;
   }
-
 
   public void setAmount(Integer amount) {
     this.amount = amount;
@@ -147,7 +148,6 @@ public class BatchTransactionResultModel {
 
 
   public BatchTransactionResultModel authcode(String authcode) {
-    
     this.authcode = authcode;
     return this;
   }
@@ -157,12 +157,9 @@ public class BatchTransactionResultModel {
    * @return authcode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "001245A", value = "The authorisation code of a successful transaction.")
-
   public String getAuthcode() {
     return authcode;
   }
-
 
   public void setAuthcode(String authcode) {
     this.authcode = authcode;
@@ -170,7 +167,6 @@ public class BatchTransactionResultModel {
 
 
   public BatchTransactionResultModel datetime(OffsetDateTime datetime) {
-    
     this.datetime = datetime;
     return this;
   }
@@ -180,12 +176,9 @@ public class BatchTransactionResultModel {
    * @return datetime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2020-01-02T18:32:28Z", value = "The datetime that the transaction was processed.")
-
   public OffsetDateTime getDatetime() {
     return datetime;
   }
-
 
   public void setDatetime(OffsetDateTime datetime) {
     this.datetime = datetime;
@@ -193,7 +186,6 @@ public class BatchTransactionResultModel {
 
 
   public BatchTransactionResultModel identifier(String identifier) {
-    
     this.identifier = identifier;
     return this;
   }
@@ -203,12 +195,9 @@ public class BatchTransactionResultModel {
    * @return identifier
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "95b857a1-5955-4b86-963c-5a6dbfc4fb95", required = true, value = "The identifier of the transaction.")
-
   public String getIdentifier() {
     return identifier;
   }
-
 
   public void setIdentifier(String identifier) {
     this.identifier = identifier;
@@ -216,7 +205,6 @@ public class BatchTransactionResultModel {
 
 
   public BatchTransactionResultModel maskedpan(String maskedpan) {
-    
     this.maskedpan = maskedpan;
     return this;
   }
@@ -226,12 +214,9 @@ public class BatchTransactionResultModel {
    * @return maskedpan
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "4***********0002", value = "A masked value of the card number used for processing displaying limited values that can be used on a receipt. ")
-
   public String getMaskedpan() {
     return maskedpan;
   }
-
 
   public void setMaskedpan(String maskedpan) {
     this.maskedpan = maskedpan;
@@ -239,7 +224,6 @@ public class BatchTransactionResultModel {
 
 
   public BatchTransactionResultModel merchantid(Integer merchantid) {
-    
     this.merchantid = merchantid;
     return this;
   }
@@ -249,12 +233,9 @@ public class BatchTransactionResultModel {
    * @return merchantid
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "11223344", required = true, value = "The merchant id of the transaction.")
-
   public Integer getMerchantid() {
     return merchantid;
   }
-
 
   public void setMerchantid(Integer merchantid) {
     this.merchantid = merchantid;
@@ -262,7 +243,6 @@ public class BatchTransactionResultModel {
 
 
   public BatchTransactionResultModel message(String message) {
-    
     this.message = message;
     return this;
   }
@@ -272,12 +252,9 @@ public class BatchTransactionResultModel {
    * @return message
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "Approved 044332", required = true, value = "A response message pertaining to the transaction.")
-
   public String getMessage() {
     return message;
   }
-
 
   public void setMessage(String message) {
     this.message = message;
@@ -285,7 +262,6 @@ public class BatchTransactionResultModel {
 
 
   public BatchTransactionResultModel result(Integer result) {
-    
     this.result = result;
     return this;
   }
@@ -295,12 +271,9 @@ public class BatchTransactionResultModel {
    * @return result
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1", required = true, value = "An integer result that indicates the outcome of the transaction. The Code value below maps to the result value  <table> <tr> <th>Code</th> <th>Abbrev</th> <th>Description</th> </tr> <tr><td>0</td><td>Declined</td><td>Declined</td></tr> <tr><td>1</td><td>Accepted</td><td>Accepted</td></tr> <tr><td>2</td><td>Rejected</td><td>Rejected</td></tr> <tr><td>3</td><td>Not Attempted</td><td>Not Attempted</td></tr> <tr><td>4</td><td>Referred</td><td>Referred</td></tr> <tr><td>5</td><td>PinRetry</td><td>Perform PIN Retry</td></tr> <tr><td>6</td><td>ForSigVer</td><td>Force Signature Verification</td></tr> <tr><td>7</td><td>Hold</td><td>Hold</td></tr> <tr><td>8</td><td>SecErr</td><td>Security Error</td></tr> <tr><td>9</td><td>CallAcq</td><td>Call Acquirer</td></tr> <tr><td>10</td><td>DNH</td><td>Do Not Honour</td></tr> <tr><td>11</td><td>RtnCrd</td><td>Retain Card</td></tr> <tr><td>12</td><td>ExprdCrd</td><td>Expired Card</td></tr> <tr><td>13</td><td>InvldCrd</td><td>Invalid Card No</td></tr> <tr><td>14</td><td>PinExcd</td><td>Pin Tries Exceeded</td></tr> <tr><td>15</td><td>PinInvld</td><td>Pin Invalid</td></tr> <tr><td>16</td><td>AuthReq</td><td>Authentication Required</td></tr> <tr><td>17</td><td>AuthenFail</td><td>Authentication Failed</td></tr> <tr><td>18</td><td>Verified</td><td>Card Verified</td></tr> <tr><td>19</td><td>Cancelled</td><td>Cancelled</td></tr> <tr><td>20</td><td>Un</td><td>Unknown</td></tr> <tr><td>21</td><td>Challenged</td><td>Challenged</td></tr> <tr><td>22</td><td>Decoupled</td><td>Decoupled</td></tr> <tr><td>23</td><td>Denied</td><td>Permission Denied</td></tr> </table> ")
-
   public Integer getResult() {
     return result;
   }
-
 
   public void setResult(Integer result) {
     this.result = result;
@@ -308,7 +281,6 @@ public class BatchTransactionResultModel {
 
 
   public BatchTransactionResultModel resultCode(String resultCode) {
-    
     this.resultCode = resultCode;
     return this;
   }
@@ -318,12 +290,9 @@ public class BatchTransactionResultModel {
    * @return resultCode
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "0", required = true, value = "A result code of the transaction identifying the result of the transaction for success, rejection or decline.")
-
   public String getResultCode() {
     return resultCode;
   }
-
 
   public void setResultCode(String resultCode) {
     this.resultCode = resultCode;
@@ -331,30 +300,63 @@ public class BatchTransactionResultModel {
 
 
   public BatchTransactionResultModel scheme(String scheme) {
-    
     this.scheme = scheme;
     return this;
   }
 
    /**
-   * A name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard. 
+   * The name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard. 
    * @return scheme
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Visa", value = "A name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard. ")
-
   public String getScheme() {
     return scheme;
   }
-
 
   public void setScheme(String scheme) {
     this.scheme = scheme;
   }
 
 
+  public BatchTransactionResultModel schemeId(String schemeId) {
+    this.schemeId = schemeId;
+    return this;
+  }
+
+   /**
+   * The name of the card scheme of the transaction such as VI or MC. 
+   * @return schemeId
+  **/
+  @javax.annotation.Nullable
+  public String getSchemeId() {
+    return schemeId;
+  }
+
+  public void setSchemeId(String schemeId) {
+    this.schemeId = schemeId;
+  }
+
+
+  public BatchTransactionResultModel schemeLogo(String schemeLogo) {
+    this.schemeLogo = schemeLogo;
+    return this;
+  }
+
+   /**
+   * A url containing a logo of the card scheme. 
+   * @return schemeLogo
+  **/
+  @javax.annotation.Nullable
+  public String getSchemeLogo() {
+    return schemeLogo;
+  }
+
+  public void setSchemeLogo(String schemeLogo) {
+    this.schemeLogo = schemeLogo;
+  }
+
+
   public BatchTransactionResultModel transno(Integer transno) {
-    
     this.transno = transno;
     return this;
   }
@@ -364,12 +366,9 @@ public class BatchTransactionResultModel {
    * @return transno
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "78416", value = "The resulting transaction number, ordered incrementally from 1 for every merchant_id. The value will default to less than 1 for transactions that do not have a transaction number issued. ")
-
   public Integer getTransno() {
     return transno;
   }
-
 
   public void setTransno(Integer transno) {
     this.transno = transno;
@@ -397,12 +396,14 @@ public class BatchTransactionResultModel {
         Objects.equals(this.result, batchTransactionResultModel.result) &&
         Objects.equals(this.resultCode, batchTransactionResultModel.resultCode) &&
         Objects.equals(this.scheme, batchTransactionResultModel.scheme) &&
+        Objects.equals(this.schemeId, batchTransactionResultModel.schemeId) &&
+        Objects.equals(this.schemeLogo, batchTransactionResultModel.schemeLogo) &&
         Objects.equals(this.transno, batchTransactionResultModel.transno);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, amount, authcode, datetime, identifier, maskedpan, merchantid, message, result, resultCode, scheme, transno);
+    return Objects.hash(accountId, amount, authcode, datetime, identifier, maskedpan, merchantid, message, result, resultCode, scheme, schemeId, schemeLogo, transno);
   }
 
   @Override
@@ -420,6 +421,8 @@ public class BatchTransactionResultModel {
     sb.append("    result: ").append(toIndentedString(result)).append("\n");
     sb.append("    resultCode: ").append(toIndentedString(resultCode)).append("\n");
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
+    sb.append("    schemeId: ").append(toIndentedString(schemeId)).append("\n");
+    sb.append("    schemeLogo: ").append(toIndentedString(schemeLogo)).append("\n");
     sb.append("    transno: ").append(toIndentedString(transno)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -454,6 +457,8 @@ public class BatchTransactionResultModel {
     openapiFields.add("result");
     openapiFields.add("result_code");
     openapiFields.add("scheme");
+    openapiFields.add("scheme_id");
+    openapiFields.add("scheme_logo");
     openapiFields.add("transno");
 
     // a set of required properties/fields (JSON key names)
@@ -467,32 +472,33 @@ public class BatchTransactionResultModel {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to BatchTransactionResultModel
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to BatchTransactionResultModel
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!BatchTransactionResultModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!BatchTransactionResultModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in BatchTransactionResultModel is not found in the empty JSON string", BatchTransactionResultModel.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!BatchTransactionResultModel.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `BatchTransactionResultModel` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `BatchTransactionResultModel` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : BatchTransactionResultModel.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("account_id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `account_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("account_id").toString()));
       }
@@ -513,6 +519,12 @@ public class BatchTransactionResultModel {
       }
       if ((jsonObj.get("scheme") != null && !jsonObj.get("scheme").isJsonNull()) && !jsonObj.get("scheme").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `scheme` to be a primitive type in the JSON string but got `%s`", jsonObj.get("scheme").toString()));
+      }
+      if ((jsonObj.get("scheme_id") != null && !jsonObj.get("scheme_id").isJsonNull()) && !jsonObj.get("scheme_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `scheme_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("scheme_id").toString()));
+      }
+      if ((jsonObj.get("scheme_logo") != null && !jsonObj.get("scheme_logo").isJsonNull()) && !jsonObj.get("scheme_logo").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `scheme_logo` to be a primitive type in the JSON string but got `%s`", jsonObj.get("scheme_logo").toString()));
       }
   }
 
@@ -536,9 +548,9 @@ public class BatchTransactionResultModel {
 
            @Override
            public BatchTransactionResultModel read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

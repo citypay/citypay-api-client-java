@@ -1,23 +1,25 @@
-# .com.citypay.client.api.CardHolderAccountApi
+# CardHolderAccountApi
 
 All URIs are relative to *https://api.citypay.com*
 
 | Method | HTTP request | Description |
-|--------|--------------|-------------|
-| [**accountCardDeleteRequest**](CardHolderAccountApi.md#accountcarddeleterequest) | **DELETE** /v6/account/{accountid}/card/{cardId} | Card Deletion |
-| [**accountCardRegisterRequest**](CardHolderAccountApi.md#accountcardregisterrequest) | **POST** /v6/account/{accountid}/register | Card Registration |
-| [**accountCardStatusRequest**](CardHolderAccountApi.md#accountcardstatusrequest) | **POST** /v6/account/{accountid}/card/{cardId}/status | Card Status |
-| [**accountChangeContactRequest**](CardHolderAccountApi.md#accountchangecontactrequest) | **POST** /v6/account/{accountid}/contact | Contact Details Update |
-| [**accountCreate**](CardHolderAccountApi.md#accountcreate) | **POST** /v6/account/create | Account Create |
-| [**accountDeleteRequest**](CardHolderAccountApi.md#accountdeleterequest) | **DELETE** /v6/account/{accountid} | Account Deletion |
-| [**accountExistsRequest**](CardHolderAccountApi.md#accountexistsrequest) | **GET** /v6/account-exists/{accountid} | Account Exists |
-| [**accountRetrieveRequest**](CardHolderAccountApi.md#accountretrieverequest) | **GET** /v6/account/{accountid} | Account Retrieval |
-| [**accountStatusRequest**](CardHolderAccountApi.md#accountstatusrequest) | **POST** /v6/account/{accountid}/status | Account Status |
-| [**chargeRequest**](CardHolderAccountApi.md#chargerequest) | **POST** /v6/charge | Charge |
+|------------- | ------------- | -------------|
+| [**accountCardDeleteRequest**](CardHolderAccountApi.md#accountCardDeleteRequest) | **DELETE** /v6/account/{accountid}/card/{cardId} | Card Deletion |
+| [**accountCardRegisterRequest**](CardHolderAccountApi.md#accountCardRegisterRequest) | **POST** /v6/account/{accountid}/register | Card Registration |
+| [**accountCardStatusRequest**](CardHolderAccountApi.md#accountCardStatusRequest) | **POST** /v6/account/{accountid}/card/{cardId}/status | Card Status |
+| [**accountChangeContactRequest**](CardHolderAccountApi.md#accountChangeContactRequest) | **POST** /v6/account/{accountid}/contact | Contact Details Update |
+| [**accountCreate**](CardHolderAccountApi.md#accountCreate) | **POST** /v6/account/create | Account Create |
+| [**accountDeleteRequest**](CardHolderAccountApi.md#accountDeleteRequest) | **DELETE** /v6/account/{accountid} | Account Deletion |
+| [**accountExistsRequest**](CardHolderAccountApi.md#accountExistsRequest) | **GET** /v6/account-exists/{accountid} | Account Exists |
+| [**accountRetrieveRequest**](CardHolderAccountApi.md#accountRetrieveRequest) | **GET** /v6/account/{accountid} | Account Retrieval |
+| [**accountStatusRequest**](CardHolderAccountApi.md#accountStatusRequest) | **POST** /v6/account/{accountid}/status | Account Status |
+| [**chargeRequest**](CardHolderAccountApi.md#chargeRequest) | **POST** /v6/charge | Charge |
 
-<a name="accountcarddeleterequest"></a>
-# **accountCardDeleteRequest**
-> Acknowledgement accountCardDeleteRequest (String accountid, String cardId)
+
+
+## accountCardDeleteRequest
+
+> Acknowledgement accountCardDeleteRequest(accountid, cardId)
 
 Card Deletion
 
@@ -26,73 +28,51 @@ purge will clear the card permanently.
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class accountCardDeleteRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.CardHolderAccountApi;
 
-            var apiInstance = new CardHolderAccountApi(config);
-            var accountid = "accountid_example";  // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-            var cardId = "cardId_example";  // String | The id of the card that is presented by a call to retrieve a card holder account.
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Card Deletion
-                Acknowledgement result = apiInstance.accountCardDeleteRequest(accountid, cardId);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CardHolderAccountApi.accountCardDeleteRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+        String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+        String cardId = "cardId_example"; // String | The id of the card that is presented by a call to retrieve a card holder account.
+        try {
+            Acknowledgement result = apiInstance.accountCardDeleteRequest(accountid, cardId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CardHolderAccountApi#accountCardDeleteRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the accountCardDeleteRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Card Deletion
-    ApiResponse<Acknowledgement> response = apiInstance.accountCardDeleteRequestWithHttpInfo(accountid, cardId);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CardHolderAccountApi.accountCardDeleteRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **accountid** | **String** | The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |  |
-| **cardId** | **String** | The id of the card that is presented by a call to retrieve a card holder account. |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountid** | **String**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
+| **cardId** | **String**| The id of the card that is presented by a call to retrieve a card holder account. | |
 
 ### Return type
 
@@ -104,8 +84,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json, text/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -118,11 +98,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="accountcardregisterrequest"></a>
-# **accountCardRegisterRequest**
-> CardHolderAccount accountCardRegisterRequest (String accountid, RegisterCard registerCard)
+## accountCardRegisterRequest
+
+> CardHolderAccount accountCardRegisterRequest(accountid, registerCard)
 
 Card Registration
 
@@ -137,73 +116,51 @@ The card will be validated for
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class accountCardRegisterRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.CardHolderAccountApi;
 
-            var apiInstance = new CardHolderAccountApi(config);
-            var accountid = "accountid_example";  // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-            var registerCard = new RegisterCard(); // RegisterCard | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Card Registration
-                CardHolderAccount result = apiInstance.accountCardRegisterRequest(accountid, registerCard);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CardHolderAccountApi.accountCardRegisterRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+        String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+        RegisterCard registerCard = new RegisterCard(); // RegisterCard | 
+        try {
+            CardHolderAccount result = apiInstance.accountCardRegisterRequest(accountid, registerCard);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CardHolderAccountApi#accountCardRegisterRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the accountCardRegisterRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Card Registration
-    ApiResponse<CardHolderAccount> response = apiInstance.accountCardRegisterRequestWithHttpInfo(accountid, registerCard);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CardHolderAccountApi.accountCardRegisterRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **accountid** | **String** | The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |  |
-| **registerCard** | [**RegisterCard**](RegisterCard.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountid** | **String**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
+| **registerCard** | [**RegisterCard**](RegisterCard.md)|  | |
 
 ### Return type
 
@@ -215,8 +172,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -229,11 +186,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="accountcardstatusrequest"></a>
-# **accountCardStatusRequest**
-> Acknowledgement accountCardStatusRequest (String accountid, String cardId, CardStatus cardStatus)
+## accountCardStatusRequest
+
+> Acknowledgement accountCardStatusRequest(accountid, cardId, cardStatus)
 
 Card Status
 
@@ -247,75 +203,53 @@ Updates the status of a card for processing. The following values are available
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class accountCardStatusRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.CardHolderAccountApi;
 
-            var apiInstance = new CardHolderAccountApi(config);
-            var accountid = "accountid_example";  // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-            var cardId = "cardId_example";  // String | The id of the card that is presented by a call to retrieve a card holder account.
-            var cardStatus = new CardStatus(); // CardStatus | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Card Status
-                Acknowledgement result = apiInstance.accountCardStatusRequest(accountid, cardId, cardStatus);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CardHolderAccountApi.accountCardStatusRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+        String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+        String cardId = "cardId_example"; // String | The id of the card that is presented by a call to retrieve a card holder account.
+        CardStatus cardStatus = new CardStatus(); // CardStatus | 
+        try {
+            Acknowledgement result = apiInstance.accountCardStatusRequest(accountid, cardId, cardStatus);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CardHolderAccountApi#accountCardStatusRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the accountCardStatusRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Card Status
-    ApiResponse<Acknowledgement> response = apiInstance.accountCardStatusRequestWithHttpInfo(accountid, cardId, cardStatus);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CardHolderAccountApi.accountCardStatusRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **accountid** | **String** | The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |  |
-| **cardId** | **String** | The id of the card that is presented by a call to retrieve a card holder account. |  |
-| **cardStatus** | [**CardStatus**](CardStatus.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountid** | **String**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
+| **cardId** | **String**| The id of the card that is presented by a call to retrieve a card holder account. | |
+| **cardStatus** | [**CardStatus**](CardStatus.md)|  | |
 
 ### Return type
 
@@ -327,8 +261,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -341,84 +275,61 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="accountchangecontactrequest"></a>
-# **accountChangeContactRequest**
-> CardHolderAccount accountChangeContactRequest (String accountid, ContactDetails contactDetails)
+## accountChangeContactRequest
+
+> CardHolderAccount accountChangeContactRequest(accountid, contactDetails)
 
 Contact Details Update
 
 Allows for the ability to change the contact details for an account.
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class accountChangeContactRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.CardHolderAccountApi;
 
-            var apiInstance = new CardHolderAccountApi(config);
-            var accountid = "accountid_example";  // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-            var contactDetails = new ContactDetails(); // ContactDetails | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Contact Details Update
-                CardHolderAccount result = apiInstance.accountChangeContactRequest(accountid, contactDetails);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CardHolderAccountApi.accountChangeContactRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+        String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+        ContactDetails contactDetails = new ContactDetails(); // ContactDetails | 
+        try {
+            CardHolderAccount result = apiInstance.accountChangeContactRequest(accountid, contactDetails);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CardHolderAccountApi#accountChangeContactRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the accountChangeContactRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Contact Details Update
-    ApiResponse<CardHolderAccount> response = apiInstance.accountChangeContactRequestWithHttpInfo(accountid, contactDetails);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CardHolderAccountApi.accountChangeContactRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **accountid** | **String** | The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |  |
-| **contactDetails** | [**ContactDetails**](ContactDetails.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountid** | **String**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
+| **contactDetails** | [**ContactDetails**](ContactDetails.md)|  | |
 
 ### Return type
 
@@ -430,8 +341,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -444,82 +355,59 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="accountcreate"></a>
-# **accountCreate**
-> CardHolderAccount accountCreate (AccountCreate accountCreate)
+## accountCreate
+
+> CardHolderAccount accountCreate(accountCreate)
 
 Account Create
 
 Creates a new card holder account and initialises the account ready for adding cards.
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class accountCreateExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.CardHolderAccountApi;
 
-            var apiInstance = new CardHolderAccountApi(config);
-            var accountCreate = new AccountCreate(); // AccountCreate | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Account Create
-                CardHolderAccount result = apiInstance.accountCreate(accountCreate);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CardHolderAccountApi.accountCreate: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+        AccountCreate accountCreate = new AccountCreate(); // AccountCreate | 
+        try {
+            CardHolderAccount result = apiInstance.accountCreate(accountCreate);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CardHolderAccountApi#accountCreate");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the accountCreateWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Account Create
-    ApiResponse<CardHolderAccount> response = apiInstance.accountCreateWithHttpInfo(accountCreate);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CardHolderAccountApi.accountCreateWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **accountCreate** | [**AccountCreate**](AccountCreate.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountCreate** | [**AccountCreate**](AccountCreate.md)|  | |
 
 ### Return type
 
@@ -531,8 +419,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -545,11 +433,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="accountdeleterequest"></a>
-# **accountDeleteRequest**
-> Acknowledgement accountDeleteRequest (String accountid)
+## accountDeleteRequest
+
+> Acknowledgement accountDeleteRequest(accountid)
 
 Account Deletion
 
@@ -558,71 +445,49 @@ transactions will be alowed to be processed or actioned against this account.
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class accountDeleteRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.CardHolderAccountApi;
 
-            var apiInstance = new CardHolderAccountApi(config);
-            var accountid = "accountid_example";  // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Account Deletion
-                Acknowledgement result = apiInstance.accountDeleteRequest(accountid);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CardHolderAccountApi.accountDeleteRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+        String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+        try {
+            Acknowledgement result = apiInstance.accountDeleteRequest(accountid);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CardHolderAccountApi#accountDeleteRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the accountDeleteRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Account Deletion
-    ApiResponse<Acknowledgement> response = apiInstance.accountDeleteRequestWithHttpInfo(accountid);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CardHolderAccountApi.accountDeleteRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **accountid** | **String** | The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountid** | **String**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
 
 ### Return type
 
@@ -634,8 +499,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json, text/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -648,11 +513,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="accountexistsrequest"></a>
-# **accountExistsRequest**
-> Exists accountExistsRequest (String accountid)
+## accountExistsRequest
+
+> Exists accountExistsRequest(accountid)
 
 Account Exists
 
@@ -660,71 +524,49 @@ Checks that an account exists and is active by providing the account id as a url
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class accountExistsRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.CardHolderAccountApi;
 
-            var apiInstance = new CardHolderAccountApi(config);
-            var accountid = "accountid_example";  // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Account Exists
-                Exists result = apiInstance.accountExistsRequest(accountid);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CardHolderAccountApi.accountExistsRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+        String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+        try {
+            Exists result = apiInstance.accountExistsRequest(accountid);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CardHolderAccountApi#accountExistsRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the accountExistsRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Account Exists
-    ApiResponse<Exists> response = apiInstance.accountExistsRequestWithHttpInfo(accountid);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CardHolderAccountApi.accountExistsRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **accountid** | **String** | The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountid** | **String**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
 
 ### Return type
 
@@ -736,8 +578,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json, text/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -750,11 +592,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="accountretrieverequest"></a>
-# **accountRetrieveRequest**
-> CardHolderAccount accountRetrieveRequest (String accountid)
+## accountRetrieveRequest
+
+> CardHolderAccount accountRetrieveRequest(accountid)
 
 Account Retrieval
 
@@ -767,71 +608,49 @@ enable a card holder to view their wallet and make constructive choices on which
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class accountRetrieveRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.CardHolderAccountApi;
 
-            var apiInstance = new CardHolderAccountApi(config);
-            var accountid = "accountid_example";  // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Account Retrieval
-                CardHolderAccount result = apiInstance.accountRetrieveRequest(accountid);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CardHolderAccountApi.accountRetrieveRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+        String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+        try {
+            CardHolderAccount result = apiInstance.accountRetrieveRequest(accountid);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CardHolderAccountApi#accountRetrieveRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the accountRetrieveRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Account Retrieval
-    ApiResponse<CardHolderAccount> response = apiInstance.accountRetrieveRequestWithHttpInfo(accountid);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CardHolderAccountApi.accountRetrieveRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **accountid** | **String** | The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountid** | **String**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
 
 ### Return type
 
@@ -843,8 +662,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json, text/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -857,11 +676,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="accountstatusrequest"></a>
-# **accountStatusRequest**
-> Acknowledgement accountStatusRequest (String accountid, AccountStatus accountStatus)
+## accountStatusRequest
+
+> Acknowledgement accountStatusRequest(accountid, accountStatus)
 
 Account Status
 
@@ -874,73 +692,51 @@ Updates the status of an account. An account can have the following statuses app
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class accountStatusRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.CardHolderAccountApi;
 
-            var apiInstance = new CardHolderAccountApi(config);
-            var accountid = "accountid_example";  // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-            var accountStatus = new AccountStatus(); // AccountStatus | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Account Status
-                Acknowledgement result = apiInstance.accountStatusRequest(accountid, accountStatus);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CardHolderAccountApi.accountStatusRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+        String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+        AccountStatus accountStatus = new AccountStatus(); // AccountStatus | 
+        try {
+            Acknowledgement result = apiInstance.accountStatusRequest(accountid, accountStatus);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CardHolderAccountApi#accountStatusRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the accountStatusRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Account Status
-    ApiResponse<Acknowledgement> response = apiInstance.accountStatusRequestWithHttpInfo(accountid, accountStatus);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CardHolderAccountApi.accountStatusRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **accountid** | **String** | The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |  |
-| **accountStatus** | [**AccountStatus**](AccountStatus.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountid** | **String**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
+| **accountStatus** | [**AccountStatus**](AccountStatus.md)|  | |
 
 ### Return type
 
@@ -952,8 +748,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -966,11 +762,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="chargerequest"></a>
-# **chargeRequest**
-> Decision chargeRequest (ChargeRequest chargeRequest)
+## chargeRequest
+
+> Decision chargeRequest(chargeRequest)
 
 Charge
 
@@ -1000,71 +795,49 @@ required field with both Visa and MasterCard for risk analysis._.
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class chargeRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.CardHolderAccountApi;
 
-            var apiInstance = new CardHolderAccountApi(config);
-            var chargeRequest = new ChargeRequest(); // ChargeRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Charge
-                Decision result = apiInstance.chargeRequest(chargeRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CardHolderAccountApi.chargeRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+        ChargeRequest chargeRequest = new ChargeRequest(); // ChargeRequest | 
+        try {
+            Decision result = apiInstance.chargeRequest(chargeRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CardHolderAccountApi#chargeRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the chargeRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Charge
-    ApiResponse<Decision> response = apiInstance.chargeRequestWithHttpInfo(chargeRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CardHolderAccountApi.chargeRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **chargeRequest** | [**ChargeRequest**](ChargeRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **chargeRequest** | [**ChargeRequest**](ChargeRequest.md)|  | |
 
 ### Return type
 
@@ -1076,8 +849,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -1089,6 +862,4 @@ catch (ApiException e)
 | **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

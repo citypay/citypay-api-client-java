@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,16 +13,14 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,13 +32,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -133,7 +134,6 @@ public class Card {
   }
 
   public Card binCommercial(Boolean binCommercial) {
-    
     this.binCommercial = binCommercial;
     return this;
   }
@@ -143,12 +143,9 @@ public class Card {
    * @return binCommercial
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Defines whether the card is a commercial card.")
-
   public Boolean isBinCommercial() {
     return binCommercial;
   }
-
 
   public void setBinCommercial(Boolean binCommercial) {
     this.binCommercial = binCommercial;
@@ -156,7 +153,6 @@ public class Card {
 
 
   public Card binCorporate(Boolean binCorporate) {
-    
     this.binCorporate = binCorporate;
     return this;
   }
@@ -166,12 +162,9 @@ public class Card {
    * @return binCorporate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Defines whether the card is a corporate business card.")
-
   public Boolean isBinCorporate() {
     return binCorporate;
   }
-
 
   public void setBinCorporate(Boolean binCorporate) {
     this.binCorporate = binCorporate;
@@ -179,7 +172,6 @@ public class Card {
 
 
   public Card binCountryIssued(String binCountryIssued) {
-    
     this.binCountryIssued = binCountryIssued;
     return this;
   }
@@ -189,12 +181,9 @@ public class Card {
    * @return binCountryIssued
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The determined country where the card was issued.")
-
   public String getBinCountryIssued() {
     return binCountryIssued;
   }
-
 
   public void setBinCountryIssued(String binCountryIssued) {
     this.binCountryIssued = binCountryIssued;
@@ -202,7 +191,6 @@ public class Card {
 
 
   public Card binCredit(Boolean binCredit) {
-    
     this.binCredit = binCredit;
     return this;
   }
@@ -212,12 +200,9 @@ public class Card {
    * @return binCredit
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Defines whether the card is a credit card.")
-
   public Boolean isBinCredit() {
     return binCredit;
   }
-
 
   public void setBinCredit(Boolean binCredit) {
     this.binCredit = binCredit;
@@ -225,7 +210,6 @@ public class Card {
 
 
   public Card binCurrency(String binCurrency) {
-    
     this.binCurrency = binCurrency;
     return this;
   }
@@ -235,12 +219,9 @@ public class Card {
    * @return binCurrency
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The default currency determined for the card.")
-
   public String getBinCurrency() {
     return binCurrency;
   }
-
 
   public void setBinCurrency(String binCurrency) {
     this.binCurrency = binCurrency;
@@ -248,7 +229,6 @@ public class Card {
 
 
   public Card binDebit(Boolean binDebit) {
-    
     this.binDebit = binDebit;
     return this;
   }
@@ -258,12 +238,9 @@ public class Card {
    * @return binDebit
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Defines whether the card is a debit card.")
-
   public Boolean isBinDebit() {
     return binDebit;
   }
-
 
   public void setBinDebit(Boolean binDebit) {
     this.binDebit = binDebit;
@@ -271,7 +248,6 @@ public class Card {
 
 
   public Card binDescription(String binDescription) {
-    
     this.binDescription = binDescription;
     return this;
   }
@@ -281,12 +257,9 @@ public class Card {
    * @return binDescription
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Platinum Card", value = "A description of the bin on the card to identify what type of product the card is.")
-
   public String getBinDescription() {
     return binDescription;
   }
-
 
   public void setBinDescription(String binDescription) {
     this.binDescription = binDescription;
@@ -294,7 +267,6 @@ public class Card {
 
 
   public Card binEu(Boolean binEu) {
-    
     this.binEu = binEu;
     return this;
   }
@@ -304,12 +276,9 @@ public class Card {
    * @return binEu
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Defines whether the card is regulated within the EU.")
-
   public Boolean isBinEu() {
     return binEu;
   }
-
 
   public void setBinEu(Boolean binEu) {
     this.binEu = binEu;
@@ -317,7 +286,6 @@ public class Card {
 
 
   public Card cardId(String cardId) {
-    
     this.cardId = cardId;
     return this;
   }
@@ -327,12 +295,9 @@ public class Card {
    * @return cardId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The id of the card that is returned. Should be used for referencing the card when perform any changes.")
-
   public String getCardId() {
     return cardId;
   }
-
 
   public void setCardId(String cardId) {
     this.cardId = cardId;
@@ -340,7 +305,6 @@ public class Card {
 
 
   public Card cardStatus(String cardStatus) {
-    
     this.cardStatus = cardStatus;
     return this;
   }
@@ -350,12 +314,9 @@ public class Card {
    * @return cardStatus
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The status of the card such, valid values are   - ACTIVE the card is active for processing   - INACTIVE the card is not active for processing   - EXPIRED for cards that have passed their expiry date. ")
-
   public String getCardStatus() {
     return cardStatus;
   }
-
 
   public void setCardStatus(String cardStatus) {
     this.cardStatus = cardStatus;
@@ -363,7 +324,6 @@ public class Card {
 
 
   public Card dateCreated(OffsetDateTime dateCreated) {
-    
     this.dateCreated = dateCreated;
     return this;
   }
@@ -373,12 +333,9 @@ public class Card {
    * @return dateCreated
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2020-01-02T18:32:28Z", value = "The date time of when the card was created.")
-
   public OffsetDateTime getDateCreated() {
     return dateCreated;
   }
-
 
   public void setDateCreated(OffsetDateTime dateCreated) {
     this.dateCreated = dateCreated;
@@ -386,7 +343,6 @@ public class Card {
 
 
   public Card _default(Boolean _default) {
-    
     this._default = _default;
     return this;
   }
@@ -396,12 +352,9 @@ public class Card {
    * @return _default
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Determines if the card is the default card for the account and should be regarded as the first option to be used for processing.")
-
   public Boolean isDefault() {
     return _default;
   }
-
 
   public void setDefault(Boolean _default) {
     this._default = _default;
@@ -409,7 +362,6 @@ public class Card {
 
 
   public Card expmonth(Integer expmonth) {
-    
     this.expmonth = expmonth;
     return this;
   }
@@ -421,12 +373,9 @@ public class Card {
    * @return expmonth
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "9", value = "The expiry month of the card.")
-
   public Integer getExpmonth() {
     return expmonth;
   }
-
 
   public void setExpmonth(Integer expmonth) {
     this.expmonth = expmonth;
@@ -434,7 +383,6 @@ public class Card {
 
 
   public Card expyear(Integer expyear) {
-    
     this.expyear = expyear;
     return this;
   }
@@ -446,12 +394,9 @@ public class Card {
    * @return expyear
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2025", value = "The expiry year of the card.")
-
   public Integer getExpyear() {
     return expyear;
   }
-
 
   public void setExpyear(Integer expyear) {
     this.expyear = expyear;
@@ -459,7 +404,6 @@ public class Card {
 
 
   public Card label(String label) {
-    
     this.label = label;
     return this;
   }
@@ -469,12 +413,9 @@ public class Card {
    * @return label
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Visa/0002", value = "A label which identifies this card.")
-
   public String getLabel() {
     return label;
   }
-
 
   public void setLabel(String label) {
     this.label = label;
@@ -482,7 +423,6 @@ public class Card {
 
 
   public Card label2(String label2) {
-    
     this.label2 = label2;
     return this;
   }
@@ -492,12 +432,9 @@ public class Card {
    * @return label2
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Visa/0002,Exp:2304", value = "A label which also provides the expiry date of the card.")
-
   public String getLabel2() {
     return label2;
   }
-
 
   public void setLabel2(String label2) {
     this.label2 = label2;
@@ -505,7 +442,6 @@ public class Card {
 
 
   public Card last4digits(String last4digits) {
-    
     this.last4digits = last4digits;
     return this;
   }
@@ -515,12 +451,9 @@ public class Card {
    * @return last4digits
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2", value = "The last 4 digits of the card to aid in identification.")
-
   public String getLast4digits() {
     return last4digits;
   }
-
 
   public void setLast4digits(String last4digits) {
     this.last4digits = last4digits;
@@ -528,7 +461,6 @@ public class Card {
 
 
   public Card nameOnCard(String nameOnCard) {
-    
     this.nameOnCard = nameOnCard;
     return this;
   }
@@ -538,12 +470,9 @@ public class Card {
    * @return nameOnCard
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "MR NE BODY", value = "The name on the card.")
-
   public String getNameOnCard() {
     return nameOnCard;
   }
-
 
   public void setNameOnCard(String nameOnCard) {
     this.nameOnCard = nameOnCard;
@@ -551,7 +480,6 @@ public class Card {
 
 
   public Card scheme(String scheme) {
-    
     this.scheme = scheme;
     return this;
   }
@@ -561,12 +489,9 @@ public class Card {
    * @return scheme
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Visa", value = "The scheme that issued the card.")
-
   public String getScheme() {
     return scheme;
   }
-
 
   public void setScheme(String scheme) {
     this.scheme = scheme;
@@ -574,7 +499,6 @@ public class Card {
 
 
   public Card token(String token) {
-    
     this.token = token;
     return this;
   }
@@ -584,12 +508,9 @@ public class Card {
    * @return token
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr", value = "A token that can be used to process against the card.")
-
   public String getToken() {
     return token;
   }
-
 
   public void setToken(String token) {
     this.token = token;
@@ -705,25 +626,26 @@ public class Card {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to Card
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to Card
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!Card.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Card.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Card is not found in the empty JSON string", Card.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!Card.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Card` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Card` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("bin_country_issued") != null && !jsonObj.get("bin_country_issued").isJsonNull()) && !jsonObj.get("bin_country_issued").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `bin_country_issued` to be a primitive type in the JSON string but got `%s`", jsonObj.get("bin_country_issued").toString()));
       }
@@ -779,9 +701,9 @@ public class Card {
 
            @Override
            public Card read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,15 +13,13 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -33,13 +31,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -104,7 +105,6 @@ public class ThreeDSecure {
   }
 
   public ThreeDSecure acceptHeaders(String acceptHeaders) {
-    
     this.acceptHeaders = acceptHeaders;
     return this;
   }
@@ -114,12 +114,9 @@ public class ThreeDSecure {
    * @return acceptHeaders
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*_/_*;q=0.8,application/signed-exchange;v=b3;q=0.9", value = "Required for 3DSv1. Optional if the `cp_bx` value is provided otherwise required for 3Dv2 processing operating in browser authentication mode.  The `cp_bx` value will override any value supplied to this field.  The content of the HTTP accept header as sent to the merchant from the cardholder's user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. ")
-
   public String getAcceptHeaders() {
     return acceptHeaders;
   }
-
 
   public void setAcceptHeaders(String acceptHeaders) {
     this.acceptHeaders = acceptHeaders;
@@ -127,7 +124,6 @@ public class ThreeDSecure {
 
 
   public ThreeDSecure browserColorDepth(String browserColorDepth) {
-    
     this.browserColorDepth = browserColorDepth;
     return this;
   }
@@ -137,12 +133,9 @@ public class ThreeDSecure {
    * @return browserColorDepth
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "BrowserColorDepth field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the `bx` function to gather this value.")
-
   public String getBrowserColorDepth() {
     return browserColorDepth;
   }
-
 
   public void setBrowserColorDepth(String browserColorDepth) {
     this.browserColorDepth = browserColorDepth;
@@ -150,7 +143,6 @@ public class ThreeDSecure {
 
 
   public ThreeDSecure browserIP(String browserIP) {
-    
     this.browserIP = browserIP;
     return this;
   }
@@ -160,12 +152,9 @@ public class ThreeDSecure {
    * @return browserIP
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "BrowserIP field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the `bx` function to gather this value.")
-
   public String getBrowserIP() {
     return browserIP;
   }
-
 
   public void setBrowserIP(String browserIP) {
     this.browserIP = browserIP;
@@ -173,7 +162,6 @@ public class ThreeDSecure {
 
 
   public ThreeDSecure browserJavaEnabled(String browserJavaEnabled) {
-    
     this.browserJavaEnabled = browserJavaEnabled;
     return this;
   }
@@ -183,12 +171,9 @@ public class ThreeDSecure {
    * @return browserJavaEnabled
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "BrowserJavaEnabled field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the `bx` function to gather this value.")
-
   public String getBrowserJavaEnabled() {
     return browserJavaEnabled;
   }
-
 
   public void setBrowserJavaEnabled(String browserJavaEnabled) {
     this.browserJavaEnabled = browserJavaEnabled;
@@ -196,7 +181,6 @@ public class ThreeDSecure {
 
 
   public ThreeDSecure browserLanguage(String browserLanguage) {
-    
     this.browserLanguage = browserLanguage;
     return this;
   }
@@ -206,12 +190,9 @@ public class ThreeDSecure {
    * @return browserLanguage
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "BrowserLanguage field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the `bx` function to gather this value.")
-
   public String getBrowserLanguage() {
     return browserLanguage;
   }
-
 
   public void setBrowserLanguage(String browserLanguage) {
     this.browserLanguage = browserLanguage;
@@ -219,7 +200,6 @@ public class ThreeDSecure {
 
 
   public ThreeDSecure browserScreenHeight(String browserScreenHeight) {
-    
     this.browserScreenHeight = browserScreenHeight;
     return this;
   }
@@ -229,12 +209,9 @@ public class ThreeDSecure {
    * @return browserScreenHeight
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "BrowserScreenHeight field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the `bx` function to gather this value.")
-
   public String getBrowserScreenHeight() {
     return browserScreenHeight;
   }
-
 
   public void setBrowserScreenHeight(String browserScreenHeight) {
     this.browserScreenHeight = browserScreenHeight;
@@ -242,7 +219,6 @@ public class ThreeDSecure {
 
 
   public ThreeDSecure browserScreenWidth(String browserScreenWidth) {
-    
     this.browserScreenWidth = browserScreenWidth;
     return this;
   }
@@ -252,12 +228,9 @@ public class ThreeDSecure {
    * @return browserScreenWidth
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "BrowserScreenWidth field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the `bx` function to gather this value.")
-
   public String getBrowserScreenWidth() {
     return browserScreenWidth;
   }
-
 
   public void setBrowserScreenWidth(String browserScreenWidth) {
     this.browserScreenWidth = browserScreenWidth;
@@ -265,22 +238,18 @@ public class ThreeDSecure {
 
 
   public ThreeDSecure browserTZ(String browserTZ) {
-    
     this.browserTZ = browserTZ;
     return this;
   }
 
    /**
-   * BrowserTZ field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
+   * BrowserTZ offset field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
    * @return browserTZ
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "BrowserTZ field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the `bx` function to gather this value.")
-
   public String getBrowserTZ() {
     return browserTZ;
   }
-
 
   public void setBrowserTZ(String browserTZ) {
     this.browserTZ = browserTZ;
@@ -288,7 +257,6 @@ public class ThreeDSecure {
 
 
   public ThreeDSecure cpBx(String cpBx) {
-    
     this.cpBx = cpBx;
     return this;
   }
@@ -298,12 +266,9 @@ public class ThreeDSecure {
    * @return cpBx
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "FjaW50b3NoOyBJbnRlbCBNYWMgT1MgWCAx...", value = "Required for 3DSv2.  Browser extension value produced by the citypay.js `bx` function. See [https://sandbox.citypay.com/3dsv2/bx](https://sandbox.citypay.com/3dsv2/bx) for  details. ")
-
   public String getCpBx() {
     return cpBx;
   }
-
 
   public void setCpBx(String cpBx) {
     this.cpBx = cpBx;
@@ -311,7 +276,6 @@ public class ThreeDSecure {
 
 
   public ThreeDSecure downgrade1(Boolean downgrade1) {
-    
     this.downgrade1 = downgrade1;
     return this;
   }
@@ -321,12 +285,9 @@ public class ThreeDSecure {
    * @return downgrade1
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Where a merchant is configured for 3DSv2, setting this option will attempt to downgrade the transaction to  3DSv1. ")
-
   public Boolean isDowngrade1() {
     return downgrade1;
   }
-
 
   public void setDowngrade1(Boolean downgrade1) {
     this.downgrade1 = downgrade1;
@@ -334,7 +295,6 @@ public class ThreeDSecure {
 
 
   public ThreeDSecure merchantTermurl(String merchantTermurl) {
-    
     this.merchantTermurl = merchantTermurl;
     return this;
   }
@@ -344,12 +304,9 @@ public class ThreeDSecure {
    * @return merchantTermurl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://mysite.com/acs/return", value = "A controller URL for 3D-Secure processing that any response from an authentication request or challenge request should be sent to.  The controller should forward on the response from the URL back via this API for subsequent processing. ")
-
   public String getMerchantTermurl() {
     return merchantTermurl;
   }
-
 
   public void setMerchantTermurl(String merchantTermurl) {
     this.merchantTermurl = merchantTermurl;
@@ -357,7 +314,6 @@ public class ThreeDSecure {
 
 
   public ThreeDSecure tdsPolicy(String tdsPolicy) {
-    
     this.tdsPolicy = tdsPolicy;
     return this;
   }
@@ -367,12 +323,9 @@ public class ThreeDSecure {
    * @return tdsPolicy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether ThreeDSecure is enforced or bypassed. Note that this will only work for e-commerce transactions and accounts that have 3DSecure enabled and fully registered with Visa, MasterCard or American Express. It is useful when transactions may be wanted to bypass processing rules.  Note that this may affect the liability shift of transactions and may occur a higher fee with the acquiring bank.  Values are   `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions will be enabled for 3DS processing   `2` to bypass. Transactions that are bypassed will switch off 3DS processing. ")
-
   public String getTdsPolicy() {
     return tdsPolicy;
   }
-
 
   public void setTdsPolicy(String tdsPolicy) {
     this.tdsPolicy = tdsPolicy;
@@ -380,7 +333,6 @@ public class ThreeDSecure {
 
 
   public ThreeDSecure userAgent(String userAgent) {
-    
     this.userAgent = userAgent;
     return this;
   }
@@ -390,12 +342,9 @@ public class ThreeDSecure {
    * @return userAgent
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36", value = "Required for 3DSv1.  Optional if the `cp_bx` value is provided otherwise required 3Dv2 processing operating in browser authentication mode.  The `cp_bx` value will override any value supplied to this field.  The content of the HTTP user-agent header as sent to the merchant from the cardholder's user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. ")
-
   public String getUserAgent() {
     return userAgent;
   }
-
 
   public void setUserAgent(String userAgent) {
     this.userAgent = userAgent;
@@ -490,25 +439,26 @@ public class ThreeDSecure {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to ThreeDSecure
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to ThreeDSecure
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!ThreeDSecure.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ThreeDSecure.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ThreeDSecure is not found in the empty JSON string", ThreeDSecure.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!ThreeDSecure.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ThreeDSecure` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ThreeDSecure` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("accept_headers") != null && !jsonObj.get("accept_headers").isJsonNull()) && !jsonObj.get("accept_headers").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `accept_headers` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accept_headers").toString()));
       }
@@ -567,9 +517,9 @@ public class ThreeDSecure {
 
            @Override
            public ThreeDSecure read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

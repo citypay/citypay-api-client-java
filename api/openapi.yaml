@@ -3,20 +3,20 @@ info:
   contact:
     email: support@citypay.com
     name: CityPay Support
-    url: https://citypay.com/customer-centre/technical-support.html
-  description: "\nThis CityPay API is a HTTP RESTful payment API used for direct server\
-    \ to server transactional processing. It\nprovides a number of payment mechanisms\
-    \ including: Internet, MOTO, Continuous Authority transaction processing,\n3-D\
-    \ Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation,\
-    \ Cancellation/Voids and\nCompletion processing. The API is also capable of tokinsed\
-    \ payments using Card Holder Accounts.\n\n## Compliance and Security\nYour application\
+    url: https://www.citypay.com/contacts/
+  description: "\nThis CityPay API is an HTTP RESTful payment API used for direct\
+    \ server to server transactional processing. It\nprovides a number of payment\
+    \ mechanisms including: Internet, MOTO, Continuous Authority transaction processing,\n\
+    3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation,\
+    \ Cancellation/Voids and\nCompletion processing. The API is also capable of tokenized\
+    \ payments using cardholder Accounts.\n\n## Compliance and Security\nYour application\
     \ will need to adhere to PCI-DSS standards to operate safely and to meet requirements\
     \ set out by \nVisa and MasterCard and the PCI Security Standards Council. These\
-    \ include\n\n* Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers).\
+    \ include\n\n* Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers).\
     \ We will not accept calls to our API at\n  lower grade encryption levels. We\
     \ regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments\n\
     \  as part of our compliance program.\n* The application must not store sensitive\
-    \ card holder data (CHD) such as the card security code (CSC) or\n  primary access\
+    \ cardholder data (CHD) such as the card security code (CSC) or\n  primary access\
     \ number (PAN)\n* The application must not display the full card number on receipts,\
     \ it is recommended to mask the PAN\n  and show the last 4 digits. The API will\
     \ return this for you for ease of receipt creation\n* If you are developing a\
@@ -29,7 +29,7 @@ info:
     \ data that may be an attempt to break a large number of security common\n  security\
     \ vulnerabilities.\n"
   title: CityPay Payment API
-  version: 6.4.18
+  version: 6.6.23
 servers:
 - description: Production processing endpoint
   url: https://api.citypay.com
@@ -77,7 +77,7 @@ tags:
        challenges
     3. The merchant receives a HTTP 303 redirect, containing the result of the transaction as query parameters
 
-    <img src="../../images/direct-post-flow.png" width="600" />
+    <img src="images/direct-post-flow.png" width="600" />
 
     #### Tokenisation Authorisation Flow
 
@@ -625,7 +625,7 @@ paths:
         \ of the payment of an invoice\n5. support part payments against an invoice\n\
         6. support of field guards to protect the payment screen\n7. support of status\
         \ reporting on tokens\n8. URL short codes for SMS notifications\n\n<img src=\"\
-        ../images/merchant-BPS-workflow.png\" alt=\"Paylink BPSv2 Overview\" width=\"\
+        images/merchant-BPS-workflow.png\" alt=\"Paylink BPSv2 Overview\" width=\"\
         50%\"/> \n\n\n### Notification Paths\n\nNotification paths can be provided\
         \ which identify the channels for communication of the invoice availability.\n\
         Up to 3 notification paths may be provided per request.\n\nEach notification\
@@ -683,7 +683,7 @@ paths:
         \ that invoices are paid by the intended recipient, Paylink supports the addition\
         \ of Field Guards.\n\nA Field Guard is an intended field which is to be used\
         \ as a form of guarded authentication. More than 1 field can be\nrequested.\n\
-        \n<img src=\"../images/paylink-field-guards.png\" alt=\"Paylink Field Guards\"\
+        \n<img src=\"images/paylink-field-guards.png\" alt=\"Paylink Field Guards\"\
         \ width=\"50%\"/>\n\nTo determine the source value of the field, each field\
         \ name is searched in the order of\n\n- identifier\n- cardholder data such\
         \ as name\n- custom parameters\n- pass through data\n\nIf no field values\
@@ -842,12 +842,8 @@ paths:
       x-accepts: application/json
   /paylink/token/changes:
     post:
-      description: "Obtains any changes on Paylink Tokens since a given date and time.\
-        \ This allows for a merchant to regularly check on \nactivity over a collection\
-        \ of Paylink Tokens and to check on any events that may have occurred. If\
-        \ a Token is `Closed` \nit is not considered.\n\nOnly statuses that have been\
-        \ appended since the given date and time is returned.\n"
-      operationId: TokenStatusChangesRequest
+      description: Allows for the changes to a pre-existing token.
+      operationId: TokenChangesRequest
       requestBody:
         content:
           application/json:
@@ -1063,7 +1059,7 @@ paths:
       x-accepts: application/json
   /paylink/{token}/reconciled:
     put:
-      description: Marks a Paylink Token as reconciled when reconcilation is performed
+      description: Marks a Paylink Token as reconciled when reconciliation is performed
         on the merchant's side.
       operationId: TokenReconciledRequest
       parameters:
@@ -1834,15 +1830,19 @@ paths:
         \ transparently by the gateway. \n\nData properties that are required, may\
         \ depend on the environment you are conducting payment for. Our API aims to\
         \ be\n flexible enough to cater for these structures. Our integration team\
-        \ will aid you in providing the necessary data to \n transact. \n \n \n##\
-        \ E-commerce workflows\n \nFor E-commerce transactions requiring 3DS, the\
+        \ will aid you in providing the necessary data to \n transact. \n\n```json\n\
+        { \n  \"RequestChallenged\": {\n    \"acsurl\": \"https://bank.com/3DS/ACS\"\
+        ,\n    \"creq\": \"SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...\"\
+        ,\n    \"merchantid\": 12345,\n    \"transno\": 1,\n    \"threedserver_trans_id\"\
+        : \"d652d8d2-d74a-4264-a051-a7862b10d5d6\"\n  }               \n}\n```\n \n\
+        ## E-commerce workflows\n \nFor E-commerce transactions requiring 3DS, the\
         \ API contains a fully accredited in built mechanism to handle authentication.\n\
         \nThe Api and gateway has been accredited extensively with both Acquirers\
         \ and Card Schemes to simplify the nature of these calls\ninto a simple structure\
         \ for authentication, preventing integrators from performing lengthy and a\
         \ costly accreditations with\nVisa and MasterCard.\n\n3D-secure has been around\
         \ for a number of years and aims to shift the liability of a transaction away\
-        \ from a merchant back\nto the card holder. A *liability shift* determines\
+        \ from a merchant back\nto the cardholder. A *liability shift* determines\
         \ whether a card holder can charge back a transaction as unknown. Effectively\n\
         the process asks for a card holder to authenticate the transaction prior to\
         \ authorisation producing a Cardholder \nverification value (CAVV) and ecommerce\
@@ -1861,21 +1861,21 @@ paths:
         </RequestChallenged>\n```\n\nCityPay support 3DS version 2.1 for Verified\
         \ by Visa, MasterCard Identity Check and American Express SafeKey 2.1. Version\n\
         2.2 is currently in development however this will be a seamless upgrade for\
-        \ all integrations.\n\n#### 3-D Secure - None\n\n![3DSv2 Frctionless Flow](/images/3dsv2-no3d.png)\n\
+        \ all integrations.\n\n#### 3-D Secure - None\n\n![3DSv2 Frctionless Flow](images/3dsv2-no3d.png)\n\
         \nA basic flow may involve no 3-D secure processing. This could happen if\
         \ there is no ability to perform authentication.\nAn enrollment check may\
         \ apply an \"attempted\" resolution to processing. In this instance a transaction\
         \ may not meet any\nliability shift. A transaction may result in a decline\
         \ due to this. We are also able to prevent from transactions being\npresented\
         \ for authorisation if this occurs. \n\n#### 3-D Secure - Frictionless\n\n\
-        ![3DSv2 Frctionless Flow](/images/3dsv2-frictionless.png)\n\nE-commerce transactions\
+        ![3DSv2 Frctionless Flow](images/3dsv2-frictionless.png)\n\nE-commerce transactions\
         \ supporting 3DSv2 can benefit from seamlessly authenticated transactions\
         \ which may perform a \n\"frictionless\" flow. This method will authenticate\
         \ low risk transactions with minimal impact to a \nstandard authorisation\
         \ flow. Our API simply performs this on behalf of you the developer, the merchant\
         \ and cardholder.\n\nNo redirection occurs and hence the flow is called frictionless\
         \ and will appear as though a simple transaction \nauthorisation has occurred.\n\
-        \n#### 3-D Secure - Challenge\n\n![3DSv2 Frctionless Flow](/images/3dsv2-challenge.png)\n\
+        \n#### 3-D Secure - Challenge\n\n![3DSv2 Frctionless Flow](images/3dsv2-challenge.png)\n\
         \nA transaction that is deemed as higher risk my be \"challenged\". In this\
         \ instance, the API will return a\n[request challenge](#requestchallenged)\
         \ which will require your integration to forward the cardholder's browser\
@@ -1903,7 +1903,7 @@ paths:
         \ of the CAVV and subsequently may return response codes illustrating this.\
         \ \n\nTo forward the user to the ACS, we recommend a simple auto submit HTML\
         \ form.\n\n> Simple auto submit HTML form\n\n```html\n<html lang=\"en\">\n\
-        <head>\n        <title>Forward to ACS</title>\n<script type=\"text/javascript\"\
+        \t<head>\n        <title>Forward to ACS</title>\n\t\t<script type=\"text/javascript\"\
         >\n        function onLoadEvent() { \n            document.acs.submit(); \n\
         \        }\n        </script>\n        <noscript>You will require JavaScript\
         \ to be enabled to complete this transaction</noscript>\n    </head>\n   \
@@ -1948,7 +1948,7 @@ paths:
         \ to ensure that any post actions from authorisation can be executed in real\
         \ time\n\nTo forward the user to the ACS, we recommend a simple auto submit\
         \ HTML form.\n\n> Simple auto submit HTML form\n\n```html\n<html lang=\"en\"\
-        >\n<head>\n        <title>Forward to ACS</title>\n<script type=\"text/javascript\"\
+        >\n\t<head>\n        <title>Forward to ACS</title>\n\t\t<script type=\"text/javascript\"\
         >\n        function onLoadEvent() { \n            document.acs.submit(); \n\
         \        }\n        </script>\n        <noscript>You will require JavaScript\
         \ to be enabled to complete this transaction</noscript>\n    </head>\n   \
@@ -2074,9 +2074,8 @@ paths:
       x-accepts: application/json
   /v6/batch/retrieve:
     post:
-      description: The operation is used to retrieve a report of the result of a batch
-        process.
-      operationId: BatchReportRequest
+      description: The report for a given batch.
+      operationId: BatchRetrieveRequest
       requestBody:
         content:
           application/json:
@@ -2255,32 +2254,32 @@ paths:
         content:
           application/json:
             examples:
-              example2:
-                externalValue: CaptureRequest-example2.json
-                summary: Basic capture call for a merchant with a transno and final
-                  amount
+              example1:
+                externalValue: CaptureRequest-example1.json
+                summary: Basic capture call for a merchant with a given identifier
               example3:
                 externalValue: CaptureRequest-example3.json
                 summary: Capture call for a merchant with identifier and airline data
                   once a ticket has been issued
-              example1:
-                externalValue: CaptureRequest-example1.json
-                summary: Basic capture call for a merchant with a given identifier
+              example2:
+                externalValue: CaptureRequest-example2.json
+                summary: Basic capture call for a merchant with a transno and final
+                  amount
             schema:
               $ref: '#/components/schemas/CaptureRequest'
           text/xml:
             examples:
-              example2:
-                externalValue: CaptureRequest-example2.xml
-                summary: Basic capture call for a merchant with a transno and final
-                  amount
+              example1:
+                externalValue: CaptureRequest-example1.xml
+                summary: Basic capture call for a merchant with a given identifier
               example3:
                 externalValue: CaptureRequest-example3.xml
                 summary: Capture call for a merchant with identifier and airline data
                   once a ticket has been issued
-              example1:
-                externalValue: CaptureRequest-example1.xml
-                summary: Basic capture call for a merchant with a given identifier
+              example2:
+                externalValue: CaptureRequest-example2.xml
+                summary: Basic capture call for a merchant with a transno and final
+                  amount
             schema:
               $ref: '#/components/schemas/CaptureRequest'
         required: true
@@ -2784,24 +2783,24 @@ paths:
         content:
           application/json:
             examples:
+              example1:
+                externalValue: VoidRequest-example1.json
+                summary: Basic capture call for a merchant with a given identifier
               example2:
                 externalValue: VoidRequest-example2.json
                 summary: Basic capture call for a merchant with a transno and final
                   amount
-              example1:
-                externalValue: VoidRequest-example1.json
-                summary: Basic capture call for a merchant with a given identifier
             schema:
               $ref: '#/components/schemas/VoidRequest'
           text/xml:
             examples:
+              example1:
+                externalValue: VoidRequest-example1.xml
+                summary: Basic capture call for a merchant with a given identifier
               example2:
                 externalValue: VoidRequest-example2.xml
                 summary: Basic capture call for a merchant with a transno and final
                   amount
-              example1:
-                externalValue: VoidRequest-example1.xml
-                summary: Basic capture call for a merchant with a given identifier
             schema:
               $ref: '#/components/schemas/VoidRequest'
         required: true
@@ -3097,7 +3096,6 @@ components:
           type: string
       required:
       - carrier_name
-      - number_in_party
       - segment1
       - ticket_issue_city
       - ticket_issue_date
@@ -3329,7 +3327,7 @@ components:
           user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36\
             \ (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
         amount: 3600
-        expyear: 2025
+        expyear: 2027
         csc_policy: csc_policy
         mcc6012:
           recipient_dob: recipient_dob
@@ -3406,6 +3404,7 @@ components:
           xid: xid
           eci: 0
           enrolled: enrolled
+        tag: tag
         ship_to:
           area: London
           country: GB
@@ -3543,7 +3542,7 @@ components:
         expyear:
           description: |
             The year of expiry of the card.
-          example: 2025
+          example: 2027
           format: int32
           maximum: 2100
           minimum: 2000
@@ -3595,6 +3594,32 @@ components:
           type: string
         ship_to:
           $ref: '#/components/schemas/ContactDetails'
+        tag:
+          description: |
+            A "tag" is a label that you can attach to a payment authorization.
+            Tags can help you group transactions together based on certain criteria, like a work job or a ticket number.
+            They can also assist in filtering transactions when you're generating reports.
+
+            Multiple Tags
+            You can add more than one tag to a transaction by separating them with commas.
+
+            Limitations
+            There is a maximum limit of 3 tags that can be added to a single transaction. Each tag can be no longer than 20
+            characters and alphanumeric with no spaces.
+
+            Example:
+            Let's say you're a software company and you have different teams working on various projects. When a team makes
+            a purchase or incurs an expense, they can tag the transaction with the project name, the team name, and the
+            type of expense.
+
+            Project Name: Project_X
+            Team Name: Team_A
+            Type of Expense: Hardware
+            So, the tag for a transaction might look like: Project_X,Team_A,Hardware
+
+            This way, when you're looking at your financial reports, you can easily filter transactions based on these
+            tags to see how much each project or team is spending on different types of expenses.
+          type: string
         threedsecure:
           $ref: '#/components/schemas/ThreeDSecure'
         trans_info:
@@ -3627,7 +3652,9 @@ components:
         eci: eci
         transno: 78416
         result: 1
+        scheme_logo: https://cdn.citypay.com/img/cs/visa-logo.svg
         datetime: 2020-01-02T18:32:28Z
+        scheme_id: MC
         authorised: true
         context: aspiu352908ns47n343598bads
         currency: GBP
@@ -3863,8 +3890,19 @@ components:
           type: string
         scheme:
           description: |
-            A name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard.
+            The name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard.
           example: Visa
+          type: string
+        scheme_id:
+          description: |
+            The name of the card scheme of the transaction such as VI or MC.
+          example: MC
+          type: string
+        scheme_logo:
+          description: |
+            A url containing a logo of the card scheme.
+          example: https://cdn.citypay.com/img/cs/visa-logo.svg
+          format: url
           type: string
         sha256:
           description: |
@@ -4049,30 +4087,34 @@ components:
         batch_id: 35
         batch_status: COMPLETE
         transactions:
-        - authcode: 001245A
-          result: 1
-          identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+        - identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
           amount: 3600
-          datetime: 2020-01-02T18:32:28Z
-          account_id: aaabbb-cccddd-eee
           maskedpan: 4***********0002
           scheme: Visa
-          merchantid: 11223344
-          result_code: "0"
           message: Approved 044332
           transno: 78416
-        - authcode: 001245A
+          authcode: 001245A
           result: 1
-          identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-          amount: 3600
+          scheme_logo: https://cdn.citypay.com/img/cs/visa-logo.svg
           datetime: 2020-01-02T18:32:28Z
           account_id: aaabbb-cccddd-eee
+          merchantid: 11223344
+          scheme_id: MC
+          result_code: "0"
+        - identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          amount: 3600
           maskedpan: 4***********0002
           scheme: Visa
-          merchantid: 11223344
-          result_code: "0"
           message: Approved 044332
           transno: 78416
+          authcode: 001245A
+          result: 1
+          scheme_logo: https://cdn.citypay.com/img/cs/visa-logo.svg
+          datetime: 2020-01-02T18:32:28Z
+          account_id: aaabbb-cccddd-eee
+          merchantid: 11223344
+          scheme_id: MC
+          result_code: "0"
         batch_date: 2020-01-02T00:00:00.000+00:00
       properties:
         amount:
@@ -4167,18 +4209,20 @@ components:
       type: object
     BatchTransactionResultModel:
       example:
-        authcode: 001245A
-        result: 1
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
         amount: 3600
-        datetime: 2020-01-02T18:32:28Z
-        account_id: aaabbb-cccddd-eee
         maskedpan: 4***********0002
         scheme: Visa
-        merchantid: 11223344
-        result_code: "0"
         message: Approved 044332
         transno: 78416
+        authcode: 001245A
+        result: 1
+        scheme_logo: https://cdn.citypay.com/img/cs/visa-logo.svg
+        datetime: 2020-01-02T18:32:28Z
+        account_id: aaabbb-cccddd-eee
+        merchantid: 11223344
+        scheme_id: MC
+        result_code: "0"
       properties:
         account_id:
           description: The card holder account id used for the transaction.
@@ -4267,8 +4311,19 @@ components:
           type: string
         scheme:
           description: |
-            A name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard.
+            The name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard.
           example: Visa
+          type: string
+        scheme_id:
+          description: |
+            The name of the card scheme of the transaction such as VI or MC.
+          example: MC
+          type: string
+        scheme_logo:
+          description: |
+            A url containing a logo of the card scheme.
+          example: https://cdn.citypay.com/img/cs/visa-logo.svg
+          format: url
           type: string
         transno:
           description: |
@@ -4472,7 +4527,7 @@ components:
         scheme: Visa
         date_created: 2020-01-02T18:32:28Z
         bin_currency: bin_currency
-        expyear: 2025
+        expyear: 2027
         label: Visa/0002
         card_id: card_id
         label2: "Visa/0002,Exp:2304"
@@ -4546,7 +4601,7 @@ components:
           type: integer
         expyear:
           description: The expiry year of the card.
-          example: 2025
+          example: 2027
           format: int32
           maximum: 2100
           minimum: 2000
@@ -4588,7 +4643,7 @@ components:
           scheme: Visa
           date_created: 2020-01-02T18:32:28Z
           bin_currency: bin_currency
-          expyear: 2025
+          expyear: 2027
           label: Visa/0002
           card_id: card_id
           label2: "Visa/0002,Exp:2304"
@@ -4608,7 +4663,7 @@ components:
           scheme: Visa
           date_created: 2020-01-02T18:32:28Z
           bin_currency: bin_currency
-          expyear: 2025
+          expyear: 2027
           label: Visa/0002
           card_id: card_id
           label2: "Visa/0002,Exp:2304"
@@ -4733,6 +4788,7 @@ components:
         match_avsa: match_avsa
         avs_postcode_policy: avs_postcode_policy
         currency: GBP
+        tag: tag
         trans_type: trans_type
       properties:
         amount:
@@ -4912,6 +4968,32 @@ components:
           example: 11223344
           format: int32
           type: integer
+        tag:
+          description: |
+            A "tag" is a label that you can attach to a payment authorization.
+            Tags can help you group transactions together based on certain criteria, like a work job or a ticket number.
+            They can also assist in filtering transactions when you're generating reports.
+
+            Multiple Tags
+            You can add more than one tag to a transaction by separating them with commas.
+
+            Limitations
+            There is a maximum limit of 3 tags that can be added to a single transaction. Each tag can be no longer than 20
+            characters and alphanumeric with no spaces.
+
+            Example:
+            Let's say you're a software company and you have different teams working on various projects. When a team makes
+            a purchase or incurs an expense, they can tag the transaction with the project name, the team name, and the
+            type of expense.
+
+            Project Name: Project_X
+            Team Name: Team_A
+            Type of Expense: Hardware
+            So, the tag for a transaction might look like: Project_X,Team_A,Hardware
+
+            This way, when you're looking at your financial reports, you can easily filter transactions based on these
+            tags to see how much each project or team is spending on different types of expenses.
+          type: string
         threedsecure:
           $ref: '#/components/schemas/ThreeDSecure'
         token:
@@ -5009,29 +5091,28 @@ components:
         email: card.holder@citypay.com
       properties:
         address1:
-          description: The first line of the address for the shipping contact.
+          description: The first line of the address for the card holder.
           example: 79 Parliament St
           maxLength: 50
           type: string
         address2:
-          description: The second line of the address for the shipping contact.
+          description: The second line of the address for the card holder.
           example: Westminster
           maxLength: 50
           type: string
         address3:
-          description: The third line of the address for the shipping contact.
+          description: The third line of the address for the card holder.
           maxLength: 50
           type: string
           example: null
         area:
-          description: "The area such as city, department, parish for the shipping\
-            \ contact."
+          description: "The area such as city, department, parish for the card holder."
           example: London
           maxLength: 50
           type: string
         company:
-          description: The company name for the shipping contact if the contact is
-            a corporate contact.
+          description: The company name for the card holder if the contact is a corporate
+            contact.
           example: Acme Ltd
           maxLength: 50
           type: string
@@ -5044,23 +5125,23 @@ components:
           minLength: 2
           type: string
         email:
-          description: An email address for the shipping contact which may be used
-            for correspondence.
+          description: An email address for the card holder which may be used for
+            correspondence.
           example: card.holder@citypay.com
           maxLength: 254
           type: string
         firstname:
-          description: The first name  of the shipping contact.
+          description: The first name  of the card holder.
           example: John
           type: string
         lastname:
-          description: The last name or surname of the shipping contact.
+          description: The last name or surname of the card holder.
           example: Smith
           type: string
         mobile_no:
-          description: A mobile number for the shipping contact the mobile number
-            is often required by delivery companies to ensure they are able to be
-            in contact when required.
+          description: A mobile number for the card holder the mobile number is often
+            required by delivery companies to ensure they are able to be in contact
+            when required.
           example: "447790123456"
           maxLength: 20
           type: string
@@ -5071,13 +5152,12 @@ components:
           maxLength: 16
           type: string
         telephone_no:
-          description: A telephone number for the shipping contact.
+          description: A telephone number for the card holder.
           example: "442030123456"
           maxLength: 20
           type: string
         title:
-          description: "A title for the shipping contact such as Mr, Mrs, Ms, M. Mme.\
-            \ etc."
+          description: "A title for the card holder such as Mr, Mrs, Ms, M. Mme. etc."
           example: Mr
           type: string
       type: object
@@ -5102,7 +5182,9 @@ components:
           eci: eci
           transno: 78416
           result: 1
+          scheme_logo: https://cdn.citypay.com/img/cs/visa-logo.svg
           datetime: 2020-01-02T18:32:28Z
+          scheme_id: MC
           authorised: true
           context: aspiu352908ns47n343598bads
           currency: GBP
@@ -5162,7 +5244,7 @@ components:
           user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36\
             \ (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
         amount: 3600
-        expyear: 2025
+        expyear: 2027
         csc_policy: csc_policy
         redirect_success: https://pay.mystore.com/continue_success
         trans_info: trans_info
@@ -5176,6 +5258,7 @@ components:
         avs_postcode_policy: avs_postcode_policy
         currency: GBP
         cardnumber: 4000 0000 0000 0002
+        tag: tag
         ship_to:
           area: London
           country: GB
@@ -5309,7 +5392,7 @@ components:
         expyear:
           description: |
             The year of expiry of the card.
-          example: 2025
+          example: 2027
           format: int32
           maximum: 2100
           minimum: 2000
@@ -5385,6 +5468,32 @@ components:
           type: string
         ship_to:
           $ref: '#/components/schemas/ContactDetails'
+        tag:
+          description: |
+            A "tag" is a label that you can attach to a payment authorization.
+            Tags can help you group transactions together based on certain criteria, like a work job or a ticket number.
+            They can also assist in filtering transactions when you're generating reports.
+
+            Multiple Tags
+            You can add more than one tag to a transaction by separating them with commas.
+
+            Limitations
+            There is a maximum limit of 3 tags that can be added to a single transaction. Each tag can be no longer than 20
+            characters and alphanumeric with no spaces.
+
+            Example:
+            Let's say you're a software company and you have different teams working on various projects. When a team makes
+            a purchase or incurs an expense, they can tag the transaction with the project name, the team name, and the
+            type of expense.
+
+            Project Name: Project_X
+            Team Name: Team_A
+            Type of Expense: Hardware
+            So, the tag for a transaction might look like: Project_X,Team_A,Hardware
+
+            This way, when you're looking at your financial reports, you can easily filter transactions based on these
+            tags to see how much each project or team is spending on different types of expenses.
+          type: string
         threedsecure:
           $ref: '#/components/schemas/ThreeDSecure'
         trans_info:
@@ -5869,11 +5978,9 @@ components:
     PaylinkBillPaymentTokenRequest:
       example:
         request:
-          subscription_id: subscription_id
           identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
           amount: 6
-          merchantid: 11223344
-          accountno: accountno
+          recurring: true
           cardholder:
             remote_addr: remote_addr
             accept_headers: accept_headers
@@ -5892,6 +5999,34 @@ components:
             email: card.holder@citypay.com
             user_agent: user_agent
             lastname: Smith
+          cart:
+            mode: 2
+            coupon: coupon
+            shipping: 7
+            contents:
+            - amount: 1
+              max: 5
+              count: 5
+              variant: variant
+              label: label
+              category: category
+              sku: sku
+              brand: brand
+            - amount: 1
+              max: 5
+              count: 5
+              variant: variant
+              label: label
+              category: category
+              sku: sku
+              brand: brand
+            tax: 9
+            product_description: product_description
+            product_information: product_information
+          subscription_id: subscription_id
+          merchantid: 11223344
+          accountno: accountno
+          currency: GBP
           client_version: client_version
           tx_type: tx_type
           config:
@@ -5930,7 +6065,8 @@ components:
               key: pass_through_headers
             redirect_delay: 7
             custom_params:
-            - name: name
+            - entry_mode: entry_mode
+              name: name
               pattern: pattern
               label: label
               placeholder: placeholder
@@ -5940,7 +6076,8 @@ components:
               required: true
               group: group
               order: 3
-            - name: name
+            - entry_mode: entry_mode
+              name: name
               pattern: pattern
               label: label
               placeholder: placeholder
@@ -5967,30 +6104,6 @@ components:
             merch_terms: http://example.com/aeiou
             postback_password: postback_password
             postback_policy: postback_policy
-          cart:
-            mode: 2
-            coupon: coupon
-            shipping: 7
-            contents:
-            - amount: 1
-              max: 5
-              count: 5
-              variant: variant
-              label: label
-              category: category
-              sku: sku
-              brand: brand
-            - amount: 1
-              max: 5
-              count: 5
-              variant: variant
-              label: label
-              category: category
-              sku: sku
-              brand: brand
-            tax: 9
-            product_description: product_description
-            product_information: product_information
           email: card.holder@citypay.com
         attachments:
         - filename: filename
@@ -6289,7 +6402,8 @@ components:
           key: pass_through_headers
         redirect_delay: 7
         custom_params:
-        - name: name
+        - entry_mode: entry_mode
+          name: name
           pattern: pattern
           label: label
           placeholder: placeholder
@@ -6299,7 +6413,8 @@ components:
           required: true
           group: group
           order: 3
-        - name: name
+        - entry_mode: entry_mode
+          name: name
           pattern: pattern
           label: label
           placeholder: placeholder
@@ -6363,10 +6478,10 @@ components:
           items:
             type: string
           type: array
-          x-description: "string[]OptionalMay be used to lock fields which are displayed\
-            \ in the form. For example, if the cardholder.address.postcode field were\
-            \ to be specified this would will prevent the customer amending the postal\
-            \ code for the cardholder postcode field."
+          x-description: "string[]\tOptional\tMay be used to lock fields which are\
+            \ displayed in the form. For example, if the cardholder.address.postcode\
+            \ field were to be specified this would will prevent the customer amending\
+            \ the postal code for the cardholder postcode field."
         merch_logo:
           description: A URL of a logo to include in the form. The URL should be delivered
             using HTTPS.
@@ -6437,6 +6552,7 @@ components:
       type: object
     PaylinkCustomParam:
       example:
+        entry_mode: entry_mode
         name: name
         pattern: pattern
         label: label
@@ -6448,8 +6564,14 @@ components:
         group: group
         order: 3
       properties:
+        entry_mode:
+          description: The type of entry mode. A value of 'pre' will pre-render the
+            custom parameter before the payment screen. Any other value will result
+            in the custom parameter being displayed on the payment screen.
+          type: string
         field_type:
-          description: "the type of html5 field, defaults to 'text'."
+          description: "the type of html5 field, defaults to 'text'. Other options\
+            \ are 'dob' for a date of birth series of select list entry."
           type: string
         group:
           description: "a group the parameter is linked with, allows for grouping\
@@ -6557,8 +6679,11 @@ components:
         maxlen: 2
       properties:
         field_type:
-          description: "A type of HTML element that should be displayed such as text,\
-            \ password, url. Any HTML5 input type value may be supplied."
+          description: |
+            A type of HTML element that should be displayed such as text, password, url. Any HTML5 input type value may be supplied.
+
+            If a value of `date` is supplied the value format should be an ISO format YYYY-MM-DD format date i.e. 2024-03-01
+            If a value of `datetime-local` is supplied, the value format should be an ISO format YYYY-MM-DDTHH:mm i.e. 2024-06-01T19:30.
           type: string
         label:
           description: A label for the field guard to display on the authentication
@@ -6732,11 +6857,9 @@ components:
       type: object
     PaylinkTokenRequestModel:
       example:
-        subscription_id: subscription_id
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
         amount: 6
-        merchantid: 11223344
-        accountno: accountno
+        recurring: true
         cardholder:
           remote_addr: remote_addr
           accept_headers: accept_headers
@@ -6755,6 +6878,34 @@ components:
           email: card.holder@citypay.com
           user_agent: user_agent
           lastname: Smith
+        cart:
+          mode: 2
+          coupon: coupon
+          shipping: 7
+          contents:
+          - amount: 1
+            max: 5
+            count: 5
+            variant: variant
+            label: label
+            category: category
+            sku: sku
+            brand: brand
+          - amount: 1
+            max: 5
+            count: 5
+            variant: variant
+            label: label
+            category: category
+            sku: sku
+            brand: brand
+          tax: 9
+          product_description: product_description
+          product_information: product_information
+        subscription_id: subscription_id
+        merchantid: 11223344
+        accountno: accountno
+        currency: GBP
         client_version: client_version
         tx_type: tx_type
         config:
@@ -6793,7 +6944,8 @@ components:
             key: pass_through_headers
           redirect_delay: 7
           custom_params:
-          - name: name
+          - entry_mode: entry_mode
+            name: name
             pattern: pattern
             label: label
             placeholder: placeholder
@@ -6803,7 +6955,8 @@ components:
             required: true
             group: group
             order: 3
-          - name: name
+          - entry_mode: entry_mode
+            name: name
             pattern: pattern
             label: label
             placeholder: placeholder
@@ -6830,30 +6983,6 @@ components:
           merch_terms: http://example.com/aeiou
           postback_password: postback_password
           postback_policy: postback_policy
-        cart:
-          mode: 2
-          coupon: coupon
-          shipping: 7
-          contents:
-          - amount: 1
-            max: 5
-            count: 5
-            variant: variant
-            label: label
-            category: category
-            sku: sku
-            brand: brand
-          - amount: 1
-            max: 5
-            count: 5
-            variant: variant
-            label: label
-            category: category
-            sku: sku
-            brand: brand
-          tax: 9
-          product_description: product_description
-          product_information: product_information
         email: card.holder@citypay.com
       properties:
         accountno:
@@ -6880,6 +7009,14 @@ components:
           type: string
         config:
           $ref: '#/components/schemas/PaylinkConfig'
+        currency:
+          description: A currency for the token. This value should be only used on
+            multi-currency accounts and be an appropriate currency which the account
+            is configured for.
+          example: GBP
+          maxLength: 3
+          minLength: 3
+          type: string
         email:
           description: |
             The email field is used for the Merchant to be notified on completion of the transaction . The value may be supplied to override the default stored value.
@@ -6899,6 +7036,11 @@ components:
           example: 11223344
           format: int32
           type: integer
+        recurring:
+          description: "True if the intent of this cardholder initiated transaction\
+            \ is to establish a recurring payment model, processable as merchant initiated\
+            \ transactions."
+          type: boolean
         subscription_id:
           description: an id associated with a subscription to link the token request
             against.
@@ -7081,7 +7223,7 @@ components:
           type: array
           x-description: |
             an orderBy array should the search require ordering. The following fields may be specified:
-            `token`, `identifier`, `created`.
+            `created`.
             The default order by fields are `created`.
       required:
       - after
@@ -7342,7 +7484,7 @@ components:
       example:
         default: true
         expmonth: 9
-        expyear: 2025
+        expyear: 2027
         cardnumber: 4000 0000 0000 0002
         name_on_card: MR NE BODY
       properties:
@@ -7364,7 +7506,7 @@ components:
           type: integer
         expyear:
           description: The expiry year of the card.
-          example: 2025
+          example: 2027
           format: int32
           maximum: 2100
           minimum: 2000
@@ -7502,7 +7644,7 @@ components:
             value.
           type: string
         browserTZ:
-          description: BrowserTZ field used for 3DSv2 browser enablement. Recommendation
+          description: BrowserTZ offset field used for 3DSv2 browser enablement. Recommendation
             is to use citypay.js and the `bx` function to gather this value.
           type: string
         cp_bx:
@@ -7628,7 +7770,7 @@ components:
           type: string
         scheme:
           description: |
-            A name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard.
+            The name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard.
           example: Visa
           type: string
         sig_id:
@@ -7638,7 +7780,7 @@ components:
           type: string
         token:
           description: The token used for presentment to authorisation later in the
-            procsesing flow.
+            processing flow.
           example: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
           format: base58
           type: string

@@ -1,16 +1,18 @@
-# .com.citypay.client.api.BatchProcessingApi
+# BatchProcessingApi
 
 All URIs are relative to *https://api.citypay.com*
 
 | Method | HTTP request | Description |
-|--------|--------------|-------------|
-| [**batchProcessRequest**](BatchProcessingApi.md#batchprocessrequest) | **POST** /v6/batch/process | Batch Process Request |
-| [**batchReportRequest**](BatchProcessingApi.md#batchreportrequest) | **POST** /v6/batch/retrieve | BatchReportRequest |
-| [**checkBatchStatusRequest**](BatchProcessingApi.md#checkbatchstatusrequest) | **POST** /v6/batch/status | CheckBatchStatus |
+|------------- | ------------- | -------------|
+| [**batchProcessRequest**](BatchProcessingApi.md#batchProcessRequest) | **POST** /v6/batch/process | Batch Process Request |
+| [**batchRetrieveRequest**](BatchProcessingApi.md#batchRetrieveRequest) | **POST** /v6/batch/retrieve | BatchReportRequest |
+| [**checkBatchStatusRequest**](BatchProcessingApi.md#checkBatchStatusRequest) | **POST** /v6/batch/status | CheckBatchStatus |
 
-<a name="batchprocessrequest"></a>
-# **batchProcessRequest**
-> ProcessBatchResponse batchProcessRequest (ProcessBatchRequest processBatchRequest)
+
+
+## batchProcessRequest
+
+> ProcessBatchResponse batchProcessRequest(processBatchRequest)
 
 Batch Process Request
 
@@ -21,71 +23,49 @@ status.
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class batchProcessRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.BatchProcessingApi;
 
-            var apiInstance = new BatchProcessingApi(config);
-            var processBatchRequest = new ProcessBatchRequest(); // ProcessBatchRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Batch Process Request
-                ProcessBatchResponse result = apiInstance.batchProcessRequest(processBatchRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BatchProcessingApi.batchProcessRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        BatchProcessingApi apiInstance = new BatchProcessingApi(defaultClient);
+        ProcessBatchRequest processBatchRequest = new ProcessBatchRequest(); // ProcessBatchRequest | 
+        try {
+            ProcessBatchResponse result = apiInstance.batchProcessRequest(processBatchRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling BatchProcessingApi#batchProcessRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the batchProcessRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Batch Process Request
-    ApiResponse<ProcessBatchResponse> response = apiInstance.batchProcessRequestWithHttpInfo(processBatchRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BatchProcessingApi.batchProcessRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **processBatchRequest** | [**ProcessBatchRequest**](ProcessBatchRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **processBatchRequest** | [**ProcessBatchRequest**](ProcessBatchRequest.md)|  | |
 
 ### Return type
 
@@ -97,8 +77,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -111,82 +91,59 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="batchreportrequest"></a>
-# **batchReportRequest**
-> BatchReportResponseModel batchReportRequest (BatchReportRequest batchReportRequest)
+## batchRetrieveRequest
+
+> BatchReportResponseModel batchRetrieveRequest(batchReportRequest)
 
 BatchReportRequest
 
-The operation is used to retrieve a report of the result of a batch process.
+The report for a given batch.
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class batchReportRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.BatchProcessingApi;
 
-            var apiInstance = new BatchProcessingApi(config);
-            var batchReportRequest = new BatchReportRequest(); // BatchReportRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // BatchReportRequest
-                BatchReportResponseModel result = apiInstance.batchReportRequest(batchReportRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BatchProcessingApi.batchReportRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        BatchProcessingApi apiInstance = new BatchProcessingApi(defaultClient);
+        BatchReportRequest batchReportRequest = new BatchReportRequest(); // BatchReportRequest | 
+        try {
+            BatchReportResponseModel result = apiInstance.batchRetrieveRequest(batchReportRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling BatchProcessingApi#batchRetrieveRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the batchReportRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // BatchReportRequest
-    ApiResponse<BatchReportResponseModel> response = apiInstance.batchReportRequestWithHttpInfo(batchReportRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BatchProcessingApi.batchReportRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **batchReportRequest** | [**BatchReportRequest**](BatchReportRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **batchReportRequest** | [**BatchReportRequest**](BatchReportRequest.md)|  | |
 
 ### Return type
 
@@ -198,8 +155,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -212,82 +169,59 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="checkbatchstatusrequest"></a>
-# **checkBatchStatusRequest**
-> CheckBatchStatusResponse checkBatchStatusRequest (CheckBatchStatus checkBatchStatus)
+## checkBatchStatusRequest
+
+> CheckBatchStatusResponse checkBatchStatusRequest(checkBatchStatus)
 
 CheckBatchStatus
 
 The operation is used to retrieve the status of a batch process.
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class checkBatchStatusRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.BatchProcessingApi;
 
-            var apiInstance = new BatchProcessingApi(config);
-            var checkBatchStatus = new CheckBatchStatus(); // CheckBatchStatus | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // CheckBatchStatus
-                CheckBatchStatusResponse result = apiInstance.checkBatchStatusRequest(checkBatchStatus);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BatchProcessingApi.checkBatchStatusRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        BatchProcessingApi apiInstance = new BatchProcessingApi(defaultClient);
+        CheckBatchStatus checkBatchStatus = new CheckBatchStatus(); // CheckBatchStatus | 
+        try {
+            CheckBatchStatusResponse result = apiInstance.checkBatchStatusRequest(checkBatchStatus);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling BatchProcessingApi#checkBatchStatusRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the checkBatchStatusRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // CheckBatchStatus
-    ApiResponse<CheckBatchStatusResponse> response = apiInstance.checkBatchStatusRequestWithHttpInfo(checkBatchStatus);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BatchProcessingApi.checkBatchStatusRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **checkBatchStatus** | [**CheckBatchStatus**](CheckBatchStatus.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **checkBatchStatus** | [**CheckBatchStatus**](CheckBatchStatus.md)|  | |
 
 ### Return type
 
@@ -299,8 +233,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -312,6 +246,4 @@ catch (ApiException e)
 | **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

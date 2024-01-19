@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,15 +13,13 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -33,13 +31,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -104,22 +105,18 @@ public class ContactDetails {
   }
 
   public ContactDetails address1(String address1) {
-    
     this.address1 = address1;
     return this;
   }
 
    /**
-   * The first line of the address for the shipping contact.
+   * The first line of the address for the card holder.
    * @return address1
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "79 Parliament St", value = "The first line of the address for the shipping contact.")
-
   public String getAddress1() {
     return address1;
   }
-
 
   public void setAddress1(String address1) {
     this.address1 = address1;
@@ -127,22 +124,18 @@ public class ContactDetails {
 
 
   public ContactDetails address2(String address2) {
-    
     this.address2 = address2;
     return this;
   }
 
    /**
-   * The second line of the address for the shipping contact.
+   * The second line of the address for the card holder.
    * @return address2
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Westminster", value = "The second line of the address for the shipping contact.")
-
   public String getAddress2() {
     return address2;
   }
-
 
   public void setAddress2(String address2) {
     this.address2 = address2;
@@ -150,22 +143,18 @@ public class ContactDetails {
 
 
   public ContactDetails address3(String address3) {
-    
     this.address3 = address3;
     return this;
   }
 
    /**
-   * The third line of the address for the shipping contact.
+   * The third line of the address for the card holder.
    * @return address3
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The third line of the address for the shipping contact.")
-
   public String getAddress3() {
     return address3;
   }
-
 
   public void setAddress3(String address3) {
     this.address3 = address3;
@@ -173,22 +162,18 @@ public class ContactDetails {
 
 
   public ContactDetails area(String area) {
-    
     this.area = area;
     return this;
   }
 
    /**
-   * The area such as city, department, parish for the shipping contact.
+   * The area such as city, department, parish for the card holder.
    * @return area
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "London", value = "The area such as city, department, parish for the shipping contact.")
-
   public String getArea() {
     return area;
   }
-
 
   public void setArea(String area) {
     this.area = area;
@@ -196,22 +181,18 @@ public class ContactDetails {
 
 
   public ContactDetails company(String company) {
-    
     this.company = company;
     return this;
   }
 
    /**
-   * The company name for the shipping contact if the contact is a corporate contact.
+   * The company name for the card holder if the contact is a corporate contact.
    * @return company
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Acme Ltd", value = "The company name for the shipping contact if the contact is a corporate contact.")
-
   public String getCompany() {
     return company;
   }
-
 
   public void setCompany(String company) {
     this.company = company;
@@ -219,7 +200,6 @@ public class ContactDetails {
 
 
   public ContactDetails country(String country) {
-    
     this.country = country;
     return this;
   }
@@ -229,12 +209,9 @@ public class ContactDetails {
    * @return country
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "GB", value = "The country code in ISO 3166 format. The country value may be used for fraud analysis and for   acceptance of the transaction. ")
-
   public String getCountry() {
     return country;
   }
-
 
   public void setCountry(String country) {
     this.country = country;
@@ -242,22 +219,18 @@ public class ContactDetails {
 
 
   public ContactDetails email(String email) {
-    
     this.email = email;
     return this;
   }
 
    /**
-   * An email address for the shipping contact which may be used for correspondence.
+   * An email address for the card holder which may be used for correspondence.
    * @return email
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "card.holder@citypay.com", value = "An email address for the shipping contact which may be used for correspondence.")
-
   public String getEmail() {
     return email;
   }
-
 
   public void setEmail(String email) {
     this.email = email;
@@ -265,22 +238,18 @@ public class ContactDetails {
 
 
   public ContactDetails firstname(String firstname) {
-    
     this.firstname = firstname;
     return this;
   }
 
    /**
-   * The first name  of the shipping contact.
+   * The first name  of the card holder.
    * @return firstname
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "John", value = "The first name  of the shipping contact.")
-
   public String getFirstname() {
     return firstname;
   }
-
 
   public void setFirstname(String firstname) {
     this.firstname = firstname;
@@ -288,22 +257,18 @@ public class ContactDetails {
 
 
   public ContactDetails lastname(String lastname) {
-    
     this.lastname = lastname;
     return this;
   }
 
    /**
-   * The last name or surname of the shipping contact.
+   * The last name or surname of the card holder.
    * @return lastname
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Smith", value = "The last name or surname of the shipping contact.")
-
   public String getLastname() {
     return lastname;
   }
-
 
   public void setLastname(String lastname) {
     this.lastname = lastname;
@@ -311,22 +276,18 @@ public class ContactDetails {
 
 
   public ContactDetails mobileNo(String mobileNo) {
-    
     this.mobileNo = mobileNo;
     return this;
   }
 
    /**
-   * A mobile number for the shipping contact the mobile number is often required by delivery companies to ensure they are able to be in contact when required.
+   * A mobile number for the card holder the mobile number is often required by delivery companies to ensure they are able to be in contact when required.
    * @return mobileNo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "447790123456", value = "A mobile number for the shipping contact the mobile number is often required by delivery companies to ensure they are able to be in contact when required.")
-
   public String getMobileNo() {
     return mobileNo;
   }
-
 
   public void setMobileNo(String mobileNo) {
     this.mobileNo = mobileNo;
@@ -334,7 +295,6 @@ public class ContactDetails {
 
 
   public ContactDetails postcode(String postcode) {
-    
     this.postcode = postcode;
     return this;
   }
@@ -344,12 +304,9 @@ public class ContactDetails {
    * @return postcode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "L1 789", value = "The postcode or zip code of the address which may be used for fraud analysis.")
-
   public String getPostcode() {
     return postcode;
   }
-
 
   public void setPostcode(String postcode) {
     this.postcode = postcode;
@@ -357,22 +314,18 @@ public class ContactDetails {
 
 
   public ContactDetails telephoneNo(String telephoneNo) {
-    
     this.telephoneNo = telephoneNo;
     return this;
   }
 
    /**
-   * A telephone number for the shipping contact.
+   * A telephone number for the card holder.
    * @return telephoneNo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "442030123456", value = "A telephone number for the shipping contact.")
-
   public String getTelephoneNo() {
     return telephoneNo;
   }
-
 
   public void setTelephoneNo(String telephoneNo) {
     this.telephoneNo = telephoneNo;
@@ -380,22 +333,18 @@ public class ContactDetails {
 
 
   public ContactDetails title(String title) {
-    
     this.title = title;
     return this;
   }
 
    /**
-   * A title for the shipping contact such as Mr, Mrs, Ms, M. Mme. etc.
+   * A title for the card holder such as Mr, Mrs, Ms, M. Mme. etc.
    * @return title
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Mr", value = "A title for the shipping contact such as Mr, Mrs, Ms, M. Mme. etc.")
-
   public String getTitle() {
     return title;
   }
-
 
   public void setTitle(String title) {
     this.title = title;
@@ -490,25 +439,26 @@ public class ContactDetails {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to ContactDetails
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to ContactDetails
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!ContactDetails.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ContactDetails.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ContactDetails is not found in the empty JSON string", ContactDetails.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!ContactDetails.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContactDetails` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContactDetails` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("address1") != null && !jsonObj.get("address1").isJsonNull()) && !jsonObj.get("address1").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `address1` to be a primitive type in the JSON string but got `%s`", jsonObj.get("address1").toString()));
       }
@@ -570,9 +520,9 @@ public class ContactDetails {
 
            @Override
            public ContactDetails read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

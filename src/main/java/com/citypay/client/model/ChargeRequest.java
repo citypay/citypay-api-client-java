@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,16 +13,14 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.citypay.client.model.ThreeDSecure;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,13 +32,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -93,6 +94,10 @@ public class ChargeRequest {
   @SerializedName(SERIALIZED_NAME_MERCHANTID)
   private Integer merchantid;
 
+  public static final String SERIALIZED_NAME_TAG = "tag";
+  @SerializedName(SERIALIZED_NAME_TAG)
+  private String tag;
+
   public static final String SERIALIZED_NAME_THREEDSECURE = "threedsecure";
   @SerializedName(SERIALIZED_NAME_THREEDSECURE)
   private ThreeDSecure threedsecure;
@@ -113,7 +118,6 @@ public class ChargeRequest {
   }
 
   public ChargeRequest amount(Integer amount) {
-    
     this.amount = amount;
     return this;
   }
@@ -123,12 +127,9 @@ public class ChargeRequest {
    * @return amount
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "3600", required = true, value = "The amount to authorise in the lowest unit of currency with a variable length to a maximum of 12 digits.  No decimal points are to be included and no divisional characters such as 1,024.  The amount should be the total amount required for the transaction.  For example with GBP £1,021.95 the amount value is 102195. ")
-
   public Integer getAmount() {
     return amount;
   }
-
 
   public void setAmount(Integer amount) {
     this.amount = amount;
@@ -136,7 +137,6 @@ public class ChargeRequest {
 
 
   public ChargeRequest avsPostcodePolicy(String avsPostcodePolicy) {
-    
     this.avsPostcodePolicy = avsPostcodePolicy;
     return this;
   }
@@ -146,12 +146,9 @@ public class ChargeRequest {
    * @return avsPostcodePolicy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether an AVS postcode policy is enforced or bypassed.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.   `2` to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.   `3` to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation. ")
-
   public String getAvsPostcodePolicy() {
     return avsPostcodePolicy;
   }
-
 
   public void setAvsPostcodePolicy(String avsPostcodePolicy) {
     this.avsPostcodePolicy = avsPostcodePolicy;
@@ -159,7 +156,6 @@ public class ChargeRequest {
 
 
   public ChargeRequest cardholderAgreement(String cardholderAgreement) {
-    
     this.cardholderAgreement = cardholderAgreement;
     return this;
   }
@@ -169,12 +165,9 @@ public class ChargeRequest {
    * @return cardholderAgreement
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Merchant-initiated transactions (MITs) are payments you trigger, where the cardholder has previously consented to you carrying out such payments. These may be scheduled (such as recurring payments and installments) or unscheduled (like account top-ups triggered by balance thresholds and no-show charges).  Scheduled --- These are regular payments using stored card details, like installments or a monthly subscription fee.  - `I` Instalment - A single purchase of goods or services billed to a cardholder in multiple transactions, over a period of time agreed by the cardholder and you.  - `R` Recurring - Transactions processed at fixed, regular intervals not to exceed one year between transactions, representing an agreement between a cardholder and you to purchase goods or services provided over a period of time.  Unscheduled --- These are payments using stored card details that do not occur on a regular schedule, like top-ups for a digital wallet triggered by the balance falling below a certain threshold.  - `A` Reauthorisation - a purchase made after the original purchase. A common scenario is delayed/split shipments.  - `C` Unscheduled Payment - A transaction using a stored credential for a fixed or variable amount that does not occur on a scheduled or regularly occurring transaction date. This includes account top-ups triggered by balance thresholds.  - `D` Delayed Charge - A delayed charge is typically used in hotel, cruise lines and vehicle rental environments to perform a supplemental account charge after original services are rendered.  - `L` Incremental - An incremental authorisation is typically found in hotel and car rental environments, where the cardholder has agreed to pay for any service incurred during the duration of the contract. An incremental authorisation is where you need to seek authorisation of further funds in addition to what you have originally requested. A common scenario is additional services charged to the contract, such as extending a stay in a hotel.  - `S` Resubmission - When the original purchase occurred, but you were not able to get authorisation at the time the goods or services were provided. It should be only used where the goods or services have already been provided, but the authorisation request is declined for insufficient funds.  - `X` No-show - A no-show is a transaction where you are enabled to charge for services which the cardholder entered into an agreement to purchase, but the cardholder did not meet the terms of the agreement. ")
-
   public String getCardholderAgreement() {
     return cardholderAgreement;
   }
-
 
   public void setCardholderAgreement(String cardholderAgreement) {
     this.cardholderAgreement = cardholderAgreement;
@@ -182,7 +175,6 @@ public class ChargeRequest {
 
 
   public ChargeRequest csc(String csc) {
-    
     this.csc = csc;
     return this;
   }
@@ -192,12 +184,9 @@ public class ChargeRequest {
    * @return csc
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "10", value = "The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card (American Express has it on the front). The value helps to identify posession of the card as it is not available within the chip or magnetic swipe.  When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped out by any integer parsing.  The CSC number aids fraud prevention in Mail Order and Internet payments.  Business rules are available on your account to identify whether to accept or decline transactions based on mismatched results of the CSC.  The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored.  This applies to all entities handling card data.  It should also not be used in any hashing process.  CityPay do not store the value and have no method of retrieving the value once the transaction has been processed. For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm. ")
-
   public String getCsc() {
     return csc;
   }
-
 
   public void setCsc(String csc) {
     this.csc = csc;
@@ -205,7 +194,6 @@ public class ChargeRequest {
 
 
   public ChargeRequest cscPolicy(String cscPolicy) {
-    
     this.cscPolicy = cscPolicy;
     return this;
   }
@@ -215,12 +203,9 @@ public class ChargeRequest {
    * @return cscPolicy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether a CSC policy is enforced or bypassed.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.   `2` to bypass. Transactions that are bypassed will be allowed through even if the CSC did not match.   `3` to ignore. Transactions that are ignored will bypass the result and not send the CSC details for authorisation. ")
-
   public String getCscPolicy() {
     return cscPolicy;
   }
-
 
   public void setCscPolicy(String cscPolicy) {
     this.cscPolicy = cscPolicy;
@@ -228,7 +213,6 @@ public class ChargeRequest {
 
 
   public ChargeRequest currency(String currency) {
-    
     this.currency = currency;
     return this;
   }
@@ -238,12 +222,9 @@ public class ChargeRequest {
    * @return currency
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "GBP", value = "The processing currency for the transaction. Will default to the merchant account currency.")
-
   public String getCurrency() {
     return currency;
   }
-
 
   public void setCurrency(String currency) {
     this.currency = currency;
@@ -251,7 +232,6 @@ public class ChargeRequest {
 
 
   public ChargeRequest duplicatePolicy(String duplicatePolicy) {
-    
     this.duplicatePolicy = duplicatePolicy;
     return this;
   }
@@ -261,12 +241,9 @@ public class ChargeRequest {
    * @return duplicatePolicy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether a duplication policy is enforced or bypassed. A duplication check has a window of time set against your account within which it can action. If a previous transaction with matching values occurred within the window, any subsequent transaction will result in a T001 result.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.   `2` to bypass. Transactions that are bypassed will not be checked for duplication within the duplication window.   `3` to ignore. Transactions that are ignored will have the same affect as bypass. ")
-
   public String getDuplicatePolicy() {
     return duplicatePolicy;
   }
-
 
   public void setDuplicatePolicy(String duplicatePolicy) {
     this.duplicatePolicy = duplicatePolicy;
@@ -274,7 +251,6 @@ public class ChargeRequest {
 
 
   public ChargeRequest identifier(String identifier) {
-    
     this.identifier = identifier;
     return this;
   }
@@ -284,12 +260,9 @@ public class ChargeRequest {
    * @return identifier
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "95b857a1-5955-4b86-963c-5a6dbfc4fb95", required = true, value = "The identifier of the transaction to process. The value should be a valid reference and may be used to perform  post processing actions and to aid in reconciliation of transactions.  The value should be a valid printable string with ASCII character ranges from 0x32 to 0x127.  The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier) this will aid in ensuring each transaction is identifiable.  When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent request will ensure that a transaction is considered as different. ")
-
   public String getIdentifier() {
     return identifier;
   }
-
 
   public void setIdentifier(String identifier) {
     this.identifier = identifier;
@@ -297,7 +270,6 @@ public class ChargeRequest {
 
 
   public ChargeRequest initiation(String initiation) {
-    
     this.initiation = initiation;
     return this;
   }
@@ -307,12 +279,9 @@ public class ChargeRequest {
    * @return initiation
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Transactions charged using the API are defined as:  **Cardholder Initiated**: A _cardholder initiated transaction_ (CIT) is where the cardholder selects the card for use for a purchase using previously stored details. An example would be a customer buying an item from your website after being present with their saved card details at checkout.  **Merchant Intiated**: A _merchant initiated transaction_ (MIT) is an authorisation initiated where you as the  merchant submit a cardholders previously stored details without the cardholder's participation. An example would  be a subscription to a membership scheme to debit their card monthly.  MITs have different reasons such as reauthorisation, delayed, unscheduled, incremental, recurring, instalment, no-show or resubmission.  The following values apply   - `M` - specifies that the transaction is initiated by the merchant   - `C` - specifies that the transaction is initiated by the cardholder  Where transactions are merchant initiated, a valid cardholder agreement must be defined. ")
-
   public String getInitiation() {
     return initiation;
   }
-
 
   public void setInitiation(String initiation) {
     this.initiation = initiation;
@@ -320,7 +289,6 @@ public class ChargeRequest {
 
 
   public ChargeRequest matchAvsa(String matchAvsa) {
-    
     this.matchAvsa = matchAvsa;
     return this;
   }
@@ -330,12 +298,9 @@ public class ChargeRequest {
    * @return matchAvsa
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.   `2` to bypass. Transactions that are bypassed will be allowed through even if the address did not match.   `3` to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation. ")
-
   public String getMatchAvsa() {
     return matchAvsa;
   }
-
 
   public void setMatchAvsa(String matchAvsa) {
     this.matchAvsa = matchAvsa;
@@ -343,7 +308,6 @@ public class ChargeRequest {
 
 
   public ChargeRequest merchantid(Integer merchantid) {
-    
     this.merchantid = merchantid;
     return this;
   }
@@ -353,20 +317,35 @@ public class ChargeRequest {
    * @return merchantid
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "11223344", required = true, value = "Identifies the merchant account to perform processing for.")
-
   public Integer getMerchantid() {
     return merchantid;
   }
-
 
   public void setMerchantid(Integer merchantid) {
     this.merchantid = merchantid;
   }
 
 
+  public ChargeRequest tag(String tag) {
+    this.tag = tag;
+    return this;
+  }
+
+   /**
+   * A \&quot;tag\&quot; is a label that you can attach to a payment authorization. Tags can help you group transactions together based on certain criteria, like a work job or a ticket number. They can also assist in filtering transactions when you&#39;re generating reports.  Multiple Tags You can add more than one tag to a transaction by separating them with commas.  Limitations There is a maximum limit of 3 tags that can be added to a single transaction. Each tag can be no longer than 20 characters and alphanumeric with no spaces.  Example: Let&#39;s say you&#39;re a software company and you have different teams working on various projects. When a team makes a purchase or incurs an expense, they can tag the transaction with the project name, the team name, and the type of expense.  Project Name: Project_X Team Name: Team_A Type of Expense: Hardware So, the tag for a transaction might look like: Project_X,Team_A,Hardware  This way, when you&#39;re looking at your financial reports, you can easily filter transactions based on these tags to see how much each project or team is spending on different types of expenses. 
+   * @return tag
+  **/
+  @javax.annotation.Nullable
+  public String getTag() {
+    return tag;
+  }
+
+  public void setTag(String tag) {
+    this.tag = tag;
+  }
+
+
   public ChargeRequest threedsecure(ThreeDSecure threedsecure) {
-    
     this.threedsecure = threedsecure;
     return this;
   }
@@ -376,12 +355,9 @@ public class ChargeRequest {
    * @return threedsecure
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public ThreeDSecure getThreedsecure() {
     return threedsecure;
   }
-
 
   public void setThreedsecure(ThreeDSecure threedsecure) {
     this.threedsecure = threedsecure;
@@ -389,7 +365,6 @@ public class ChargeRequest {
 
 
   public ChargeRequest token(String token) {
-    
     this.token = token;
     return this;
   }
@@ -399,12 +374,9 @@ public class ChargeRequest {
    * @return token
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr", required = true, value = "A tokenised form of a card that belongs to a card holder's account and that has been previously registered. The token is time based and will only be active for a short duration. The value is therefore designed not to be stored remotely for future use.   Tokens will start with ct and are resiliently tamper proof using HMacSHA-256. No sensitive card data is stored internally within the token.   Each card will contain a different token and the value may be different on any retrieval call.   The value can be presented for payment as a selection value to an end user in a web application. ")
-
   public String getToken() {
     return token;
   }
-
 
   public void setToken(String token) {
     this.token = token;
@@ -412,7 +384,6 @@ public class ChargeRequest {
 
 
   public ChargeRequest transInfo(String transInfo) {
-    
     this.transInfo = transInfo;
     return this;
   }
@@ -422,12 +393,9 @@ public class ChargeRequest {
    * @return transInfo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Further information that can be added to the transaction will display in reporting. Can be used for flexible values such as operator id.")
-
   public String getTransInfo() {
     return transInfo;
   }
-
 
   public void setTransInfo(String transInfo) {
     this.transInfo = transInfo;
@@ -435,7 +403,6 @@ public class ChargeRequest {
 
 
   public ChargeRequest transType(String transType) {
-    
     this.transType = transType;
     return this;
   }
@@ -445,12 +412,9 @@ public class ChargeRequest {
    * @return transType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The type of transaction being submitted. Normally this value is not required and your account manager may request that you set this field.")
-
   public String getTransType() {
     return transType;
   }
-
 
   public void setTransType(String transType) {
     this.transType = transType;
@@ -478,6 +442,7 @@ public class ChargeRequest {
         Objects.equals(this.initiation, chargeRequest.initiation) &&
         Objects.equals(this.matchAvsa, chargeRequest.matchAvsa) &&
         Objects.equals(this.merchantid, chargeRequest.merchantid) &&
+        Objects.equals(this.tag, chargeRequest.tag) &&
         Objects.equals(this.threedsecure, chargeRequest.threedsecure) &&
         Objects.equals(this.token, chargeRequest.token) &&
         Objects.equals(this.transInfo, chargeRequest.transInfo) &&
@@ -486,7 +451,7 @@ public class ChargeRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, avsPostcodePolicy, cardholderAgreement, csc, cscPolicy, currency, duplicatePolicy, identifier, initiation, matchAvsa, merchantid, threedsecure, token, transInfo, transType);
+    return Objects.hash(amount, avsPostcodePolicy, cardholderAgreement, csc, cscPolicy, currency, duplicatePolicy, identifier, initiation, matchAvsa, merchantid, tag, threedsecure, token, transInfo, transType);
   }
 
   @Override
@@ -504,6 +469,7 @@ public class ChargeRequest {
     sb.append("    initiation: ").append(toIndentedString(initiation)).append("\n");
     sb.append("    matchAvsa: ").append(toIndentedString(matchAvsa)).append("\n");
     sb.append("    merchantid: ").append(toIndentedString(merchantid)).append("\n");
+    sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
     sb.append("    threedsecure: ").append(toIndentedString(threedsecure)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("    transInfo: ").append(toIndentedString(transInfo)).append("\n");
@@ -541,6 +507,7 @@ public class ChargeRequest {
     openapiFields.add("initiation");
     openapiFields.add("match_avsa");
     openapiFields.add("merchantid");
+    openapiFields.add("tag");
     openapiFields.add("threedsecure");
     openapiFields.add("token");
     openapiFields.add("trans_info");
@@ -555,32 +522,33 @@ public class ChargeRequest {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to ChargeRequest
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to ChargeRequest
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!ChargeRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ChargeRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ChargeRequest is not found in the empty JSON string", ChargeRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!ChargeRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ChargeRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ChargeRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : ChargeRequest.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("avs_postcode_policy") != null && !jsonObj.get("avs_postcode_policy").isJsonNull()) && !jsonObj.get("avs_postcode_policy").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `avs_postcode_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("avs_postcode_policy").toString()));
       }
@@ -608,9 +576,12 @@ public class ChargeRequest {
       if ((jsonObj.get("match_avsa") != null && !jsonObj.get("match_avsa").isJsonNull()) && !jsonObj.get("match_avsa").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `match_avsa` to be a primitive type in the JSON string but got `%s`", jsonObj.get("match_avsa").toString()));
       }
+      if ((jsonObj.get("tag") != null && !jsonObj.get("tag").isJsonNull()) && !jsonObj.get("tag").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tag` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tag").toString()));
+      }
       // validate the optional field `threedsecure`
       if (jsonObj.get("threedsecure") != null && !jsonObj.get("threedsecure").isJsonNull()) {
-        ThreeDSecure.validateJsonObject(jsonObj.getAsJsonObject("threedsecure"));
+        ThreeDSecure.validateJsonElement(jsonObj.get("threedsecure"));
       }
       if (!jsonObj.get("token").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("token").toString()));
@@ -643,9 +614,9 @@ public class ChargeRequest {
 
            @Override
            public ChargeRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

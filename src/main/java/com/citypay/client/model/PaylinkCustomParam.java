@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,15 +13,13 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -33,13 +31,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -48,6 +49,10 @@ import com.citypay.client.JSON;
  * PaylinkCustomParam
  */
 public class PaylinkCustomParam {
+  public static final String SERIALIZED_NAME_ENTRY_MODE = "entry_mode";
+  @SerializedName(SERIALIZED_NAME_ENTRY_MODE)
+  private String entryMode;
+
   public static final String SERIALIZED_NAME_FIELD_TYPE = "field_type";
   @SerializedName(SERIALIZED_NAME_FIELD_TYPE)
   private String fieldType;
@@ -91,23 +96,38 @@ public class PaylinkCustomParam {
   public PaylinkCustomParam() {
   }
 
+  public PaylinkCustomParam entryMode(String entryMode) {
+    this.entryMode = entryMode;
+    return this;
+  }
+
+   /**
+   * The type of entry mode. A value of &#39;pre&#39; will pre-render the custom parameter before the payment screen. Any other value will result in the custom parameter being displayed on the payment screen.
+   * @return entryMode
+  **/
+  @javax.annotation.Nullable
+  public String getEntryMode() {
+    return entryMode;
+  }
+
+  public void setEntryMode(String entryMode) {
+    this.entryMode = entryMode;
+  }
+
+
   public PaylinkCustomParam fieldType(String fieldType) {
-    
     this.fieldType = fieldType;
     return this;
   }
 
    /**
-   * the type of html5 field, defaults to &#39;text&#39;.
+   * the type of html5 field, defaults to &#39;text&#39;. Other options are &#39;dob&#39; for a date of birth series of select list entry.
    * @return fieldType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "the type of html5 field, defaults to 'text'.")
-
   public String getFieldType() {
     return fieldType;
   }
-
 
   public void setFieldType(String fieldType) {
     this.fieldType = fieldType;
@@ -115,7 +135,6 @@ public class PaylinkCustomParam {
 
 
   public PaylinkCustomParam group(String group) {
-    
     this.group = group;
     return this;
   }
@@ -125,12 +144,9 @@ public class PaylinkCustomParam {
    * @return group
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "a group the parameter is linked with, allows for grouping with a title.")
-
   public String getGroup() {
     return group;
   }
-
 
   public void setGroup(String group) {
     this.group = group;
@@ -138,7 +154,6 @@ public class PaylinkCustomParam {
 
 
   public PaylinkCustomParam label(String label) {
-    
     this.label = label;
     return this;
   }
@@ -148,12 +163,9 @@ public class PaylinkCustomParam {
    * @return label
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "a label to show alongside the input.")
-
   public String getLabel() {
     return label;
   }
-
 
   public void setLabel(String label) {
     this.label = label;
@@ -161,7 +173,6 @@ public class PaylinkCustomParam {
 
 
   public PaylinkCustomParam locked(Boolean locked) {
-    
     this.locked = locked;
     return this;
   }
@@ -171,12 +182,9 @@ public class PaylinkCustomParam {
    * @return locked
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "whether the parameter is locked from entry.")
-
   public Boolean isLocked() {
     return locked;
   }
-
 
   public void setLocked(Boolean locked) {
     this.locked = locked;
@@ -184,7 +192,6 @@ public class PaylinkCustomParam {
 
 
   public PaylinkCustomParam name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -194,12 +201,9 @@ public class PaylinkCustomParam {
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "the name of the custom parameter used to converse with the submitter.")
-
   public String getName() {
     return name;
   }
-
 
   public void setName(String name) {
     this.name = name;
@@ -207,7 +211,6 @@ public class PaylinkCustomParam {
 
 
   public PaylinkCustomParam order(Integer order) {
-    
     this.order = order;
     return this;
   }
@@ -217,12 +220,9 @@ public class PaylinkCustomParam {
    * @return order
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "an index order for the parameter.")
-
   public Integer getOrder() {
     return order;
   }
-
 
   public void setOrder(Integer order) {
     this.order = order;
@@ -230,7 +230,6 @@ public class PaylinkCustomParam {
 
 
   public PaylinkCustomParam pattern(String pattern) {
-    
     this.pattern = pattern;
     return this;
   }
@@ -240,12 +239,9 @@ public class PaylinkCustomParam {
    * @return pattern
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "a regex pattern to validate the custom parameter with.")
-
   public String getPattern() {
     return pattern;
   }
-
 
   public void setPattern(String pattern) {
     this.pattern = pattern;
@@ -253,7 +249,6 @@ public class PaylinkCustomParam {
 
 
   public PaylinkCustomParam placeholder(String placeholder) {
-    
     this.placeholder = placeholder;
     return this;
   }
@@ -263,12 +258,9 @@ public class PaylinkCustomParam {
    * @return placeholder
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "a placehold value to display in the input.")
-
   public String getPlaceholder() {
     return placeholder;
   }
-
 
   public void setPlaceholder(String placeholder) {
     this.placeholder = placeholder;
@@ -276,7 +268,6 @@ public class PaylinkCustomParam {
 
 
   public PaylinkCustomParam required(Boolean required) {
-    
     this.required = required;
     return this;
   }
@@ -286,12 +277,9 @@ public class PaylinkCustomParam {
    * @return required
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "whether the field is required.")
-
   public Boolean isRequired() {
     return required;
   }
-
 
   public void setRequired(Boolean required) {
     this.required = required;
@@ -299,7 +287,6 @@ public class PaylinkCustomParam {
 
 
   public PaylinkCustomParam value(String value) {
-    
     this.value = value;
     return this;
   }
@@ -309,12 +296,9 @@ public class PaylinkCustomParam {
    * @return value
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "a default value for the field.")
-
   public String getValue() {
     return value;
   }
-
 
   public void setValue(String value) {
     this.value = value;
@@ -331,7 +315,8 @@ public class PaylinkCustomParam {
       return false;
     }
     PaylinkCustomParam paylinkCustomParam = (PaylinkCustomParam) o;
-    return Objects.equals(this.fieldType, paylinkCustomParam.fieldType) &&
+    return Objects.equals(this.entryMode, paylinkCustomParam.entryMode) &&
+        Objects.equals(this.fieldType, paylinkCustomParam.fieldType) &&
         Objects.equals(this.group, paylinkCustomParam.group) &&
         Objects.equals(this.label, paylinkCustomParam.label) &&
         Objects.equals(this.locked, paylinkCustomParam.locked) &&
@@ -345,13 +330,14 @@ public class PaylinkCustomParam {
 
   @Override
   public int hashCode() {
-    return Objects.hash(fieldType, group, label, locked, name, order, pattern, placeholder, required, value);
+    return Objects.hash(entryMode, fieldType, group, label, locked, name, order, pattern, placeholder, required, value);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaylinkCustomParam {\n");
+    sb.append("    entryMode: ").append(toIndentedString(entryMode)).append("\n");
     sb.append("    fieldType: ").append(toIndentedString(fieldType)).append("\n");
     sb.append("    group: ").append(toIndentedString(group)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
@@ -384,6 +370,7 @@ public class PaylinkCustomParam {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("entry_mode");
     openapiFields.add("field_type");
     openapiFields.add("group");
     openapiFields.add("label");
@@ -401,31 +388,35 @@ public class PaylinkCustomParam {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to PaylinkCustomParam
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to PaylinkCustomParam
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!PaylinkCustomParam.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PaylinkCustomParam.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkCustomParam is not found in the empty JSON string", PaylinkCustomParam.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!PaylinkCustomParam.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkCustomParam` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkCustomParam` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : PaylinkCustomParam.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("entry_mode") != null && !jsonObj.get("entry_mode").isJsonNull()) && !jsonObj.get("entry_mode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `entry_mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("entry_mode").toString()));
       }
       if ((jsonObj.get("field_type") != null && !jsonObj.get("field_type").isJsonNull()) && !jsonObj.get("field_type").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `field_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("field_type").toString()));
@@ -470,9 +461,9 @@ public class PaylinkCustomParam {
 
            @Override
            public PaylinkCustomParam read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

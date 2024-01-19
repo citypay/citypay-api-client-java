@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,7 +13,6 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.citypay.client.model.ContactDetails;
 import com.citypay.client.model.ThreeDSecure;
 import com.google.gson.TypeAdapter;
@@ -21,9 +20,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,13 +33,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -122,6 +123,10 @@ public class DirectPostRequest {
   @SerializedName(SERIALIZED_NAME_SHIP_TO)
   private ContactDetails shipTo;
 
+  public static final String SERIALIZED_NAME_TAG = "tag";
+  @SerializedName(SERIALIZED_NAME_TAG)
+  private String tag;
+
   public static final String SERIALIZED_NAME_THREEDSECURE = "threedsecure";
   @SerializedName(SERIALIZED_NAME_THREEDSECURE)
   private ThreeDSecure threedsecure;
@@ -138,7 +143,6 @@ public class DirectPostRequest {
   }
 
   public DirectPostRequest amount(Integer amount) {
-    
     this.amount = amount;
     return this;
   }
@@ -148,12 +152,9 @@ public class DirectPostRequest {
    * @return amount
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "3600", required = true, value = "The amount to authorise in the lowest unit of currency with a variable length to a maximum of 12 digits.  No decimal points are to be included and no divisional characters such as 1,024.  The amount should be the total amount required for the transaction.  For example with GBP £1,021.95 the amount value is 102195. ")
-
   public Integer getAmount() {
     return amount;
   }
-
 
   public void setAmount(Integer amount) {
     this.amount = amount;
@@ -161,7 +162,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest avsPostcodePolicy(String avsPostcodePolicy) {
-    
     this.avsPostcodePolicy = avsPostcodePolicy;
     return this;
   }
@@ -171,12 +171,9 @@ public class DirectPostRequest {
    * @return avsPostcodePolicy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether an AVS postcode policy is enforced or bypassed.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.   `2` to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.   `3` to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation. ")
-
   public String getAvsPostcodePolicy() {
     return avsPostcodePolicy;
   }
-
 
   public void setAvsPostcodePolicy(String avsPostcodePolicy) {
     this.avsPostcodePolicy = avsPostcodePolicy;
@@ -184,7 +181,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest billTo(ContactDetails billTo) {
-    
     this.billTo = billTo;
     return this;
   }
@@ -194,12 +190,9 @@ public class DirectPostRequest {
    * @return billTo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public ContactDetails getBillTo() {
     return billTo;
   }
-
 
   public void setBillTo(ContactDetails billTo) {
     this.billTo = billTo;
@@ -207,7 +200,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest cardnumber(String cardnumber) {
-    
     this.cardnumber = cardnumber;
     return this;
   }
@@ -217,12 +209,9 @@ public class DirectPostRequest {
    * @return cardnumber
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "4000 0000 0000 0002", required = true, value = "The card number (PAN) with a variable length to a maximum of 21 digits in numerical form. Any non numeric characters will be stripped out of the card number, this includes whitespace or separators internal of the provided value.  The card number must be treated as sensitive data. We only provide an obfuscated value in logging and reporting.  The plaintext value is encrypted in our database using AES 256 GMC bit encryption for settlement or refund purposes.  When providing the card number to our gateway through the authorisation API you will be handling the card data on your application. This will require further PCI controls to be in place and this value must never be stored. ")
-
   public String getCardnumber() {
     return cardnumber;
   }
-
 
   public void setCardnumber(String cardnumber) {
     this.cardnumber = cardnumber;
@@ -230,7 +219,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest csc(String csc) {
-    
     this.csc = csc;
     return this;
   }
@@ -240,12 +228,9 @@ public class DirectPostRequest {
    * @return csc
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "10", value = "The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card (American Express has it on the front). The value helps to identify posession of the card as it is not available within the chip or magnetic swipe.  When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped out by any integer parsing.  The CSC number aids fraud prevention in Mail Order and Internet payments.  Business rules are available on your account to identify whether to accept or decline transactions based on mismatched results of the CSC.  The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored.  This applies to all entities handling card data.  It should also not be used in any hashing process.  CityPay do not store the value and have no method of retrieving the value once the transaction has been processed. For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm. ")
-
   public String getCsc() {
     return csc;
   }
-
 
   public void setCsc(String csc) {
     this.csc = csc;
@@ -253,7 +238,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest cscPolicy(String cscPolicy) {
-    
     this.cscPolicy = cscPolicy;
     return this;
   }
@@ -263,12 +247,9 @@ public class DirectPostRequest {
    * @return cscPolicy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether a CSC policy is enforced or bypassed.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.   `2` to bypass. Transactions that are bypassed will be allowed through even if the CSC did not match.   `3` to ignore. Transactions that are ignored will bypass the result and not send the CSC details for authorisation. ")
-
   public String getCscPolicy() {
     return cscPolicy;
   }
-
 
   public void setCscPolicy(String cscPolicy) {
     this.cscPolicy = cscPolicy;
@@ -276,7 +257,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest currency(String currency) {
-    
     this.currency = currency;
     return this;
   }
@@ -286,12 +266,9 @@ public class DirectPostRequest {
    * @return currency
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "GBP", value = "The processing currency for the transaction. Will default to the merchant account currency.")
-
   public String getCurrency() {
     return currency;
   }
-
 
   public void setCurrency(String currency) {
     this.currency = currency;
@@ -299,7 +276,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest duplicatePolicy(String duplicatePolicy) {
-    
     this.duplicatePolicy = duplicatePolicy;
     return this;
   }
@@ -309,12 +285,9 @@ public class DirectPostRequest {
    * @return duplicatePolicy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether a duplication policy is enforced or bypassed. A duplication check has a window of time set against your account within which it can action. If a previous transaction with matching values occurred within the window, any subsequent transaction will result in a T001 result.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.   `2` to bypass. Transactions that are bypassed will not be checked for duplication within the duplication window.   `3` to ignore. Transactions that are ignored will have the same affect as bypass. ")
-
   public String getDuplicatePolicy() {
     return duplicatePolicy;
   }
-
 
   public void setDuplicatePolicy(String duplicatePolicy) {
     this.duplicatePolicy = duplicatePolicy;
@@ -322,7 +295,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest expmonth(Integer expmonth) {
-    
     this.expmonth = expmonth;
     return this;
   }
@@ -334,12 +306,9 @@ public class DirectPostRequest {
    * @return expmonth
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "9", required = true, value = "The month of expiry of the card. The month value should be a numerical value between 1 and 12. ")
-
   public Integer getExpmonth() {
     return expmonth;
   }
-
 
   public void setExpmonth(Integer expmonth) {
     this.expmonth = expmonth;
@@ -347,7 +316,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest expyear(Integer expyear) {
-    
     this.expyear = expyear;
     return this;
   }
@@ -359,12 +327,9 @@ public class DirectPostRequest {
    * @return expyear
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2025", required = true, value = "The year of expiry of the card. ")
-
   public Integer getExpyear() {
     return expyear;
   }
-
 
   public void setExpyear(Integer expyear) {
     this.expyear = expyear;
@@ -372,7 +337,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest identifier(String identifier) {
-    
     this.identifier = identifier;
     return this;
   }
@@ -382,12 +346,9 @@ public class DirectPostRequest {
    * @return identifier
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "95b857a1-5955-4b86-963c-5a6dbfc4fb95", required = true, value = "The identifier of the transaction to process. The value should be a valid reference and may be used to perform  post processing actions and to aid in reconciliation of transactions.  The value should be a valid printable string with ASCII character ranges from 0x32 to 0x127.  The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier) this will aid in ensuring each transaction is identifiable.  When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent request will ensure that a transaction is considered as different. ")
-
   public String getIdentifier() {
     return identifier;
   }
-
 
   public void setIdentifier(String identifier) {
     this.identifier = identifier;
@@ -395,7 +356,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest mac(String mac) {
-    
     this.mac = mac;
     return this;
   }
@@ -405,12 +365,9 @@ public class DirectPostRequest {
    * @return mac
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "3896FBC43674AF59478DAF7F546FA4D4CB89981A936E6AAE997E43B55DF6C39D", required = true, value = "A message authentication code ensures the data is authentic and that the intended amount has not been tampered with. The mac value is generated using a hash-based mac value. The following algorithm is used. - A key (k) is derived from your licence key - A value (v) is produced by concatenating the nonce, amount value and identifier, such as a purchase   with nonce `0123456789ABCDEF` an amount of £275.95 and an identifier of OD-12345678 would become   `0123456789ABCDEF27595OD-12345678` and extracting the UTF-8 byte values - The result from HMAC_SHA256(k, v) is hex-encoded (upper-case) - For instance, a licence key of `LK123456789`, a nonce of `0123456789ABCDEF`, an amount of `27595` and an identifier of `OD-12345678`  would generate a MAC of `163DBAB194D743866A9BCC7FC9C8A88FCD99C6BBBF08D619291212D1B91EE12E`. ")
-
   public String getMac() {
     return mac;
   }
-
 
   public void setMac(String mac) {
     this.mac = mac;
@@ -418,7 +375,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest matchAvsa(String matchAvsa) {
-    
     this.matchAvsa = matchAvsa;
     return this;
   }
@@ -428,12 +384,9 @@ public class DirectPostRequest {
    * @return matchAvsa
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.   `2` to bypass. Transactions that are bypassed will be allowed through even if the address did not match.   `3` to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation. ")
-
   public String getMatchAvsa() {
     return matchAvsa;
   }
-
 
   public void setMatchAvsa(String matchAvsa) {
     this.matchAvsa = matchAvsa;
@@ -441,7 +394,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest nameOnCard(String nameOnCard) {
-    
     this.nameOnCard = nameOnCard;
     return this;
   }
@@ -451,12 +403,9 @@ public class DirectPostRequest {
    * @return nameOnCard
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "MR NE BODY", value = "The card holder name as appears on the card such as MR N E BODY. Required for some acquirers. ")
-
   public String getNameOnCard() {
     return nameOnCard;
   }
-
 
   public void setNameOnCard(String nameOnCard) {
     this.nameOnCard = nameOnCard;
@@ -464,7 +413,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest nonce(String nonce) {
-    
     this.nonce = nonce;
     return this;
   }
@@ -474,12 +422,9 @@ public class DirectPostRequest {
    * @return nonce
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "0123456789ABCDEF", value = "A random value Hex string (uppercase) which is provided to the API to perform a digest. The value will be used in any digest function. ")
-
   public String getNonce() {
     return nonce;
   }
-
 
   public void setNonce(String nonce) {
     this.nonce = nonce;
@@ -487,7 +432,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest redirectFailure(String redirectFailure) {
-    
     this.redirectFailure = redirectFailure;
     return this;
   }
@@ -497,12 +441,9 @@ public class DirectPostRequest {
    * @return redirectFailure
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://pay.mystore.com/continue_failure", value = "The URL used to redirect back to your site when a transaction has been rejected or declined. Required if a url-encoded request. ")
-
   public String getRedirectFailure() {
     return redirectFailure;
   }
-
 
   public void setRedirectFailure(String redirectFailure) {
     this.redirectFailure = redirectFailure;
@@ -510,7 +451,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest redirectSuccess(String redirectSuccess) {
-    
     this.redirectSuccess = redirectSuccess;
     return this;
   }
@@ -520,12 +460,9 @@ public class DirectPostRequest {
    * @return redirectSuccess
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://pay.mystore.com/continue_success", value = "The URL used to redirect back to your site when a transaction has been tokenised or authorised. Required if a url-encoded request. ")
-
   public String getRedirectSuccess() {
     return redirectSuccess;
   }
-
 
   public void setRedirectSuccess(String redirectSuccess) {
     this.redirectSuccess = redirectSuccess;
@@ -533,7 +470,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest shipTo(ContactDetails shipTo) {
-    
     this.shipTo = shipTo;
     return this;
   }
@@ -543,20 +479,35 @@ public class DirectPostRequest {
    * @return shipTo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public ContactDetails getShipTo() {
     return shipTo;
   }
-
 
   public void setShipTo(ContactDetails shipTo) {
     this.shipTo = shipTo;
   }
 
 
+  public DirectPostRequest tag(String tag) {
+    this.tag = tag;
+    return this;
+  }
+
+   /**
+   * A \&quot;tag\&quot; is a label that you can attach to a payment authorization. Tags can help you group transactions together based on certain criteria, like a work job or a ticket number. They can also assist in filtering transactions when you&#39;re generating reports.  Multiple Tags You can add more than one tag to a transaction by separating them with commas.  Limitations There is a maximum limit of 3 tags that can be added to a single transaction. Each tag can be no longer than 20 characters and alphanumeric with no spaces.  Example: Let&#39;s say you&#39;re a software company and you have different teams working on various projects. When a team makes a purchase or incurs an expense, they can tag the transaction with the project name, the team name, and the type of expense.  Project Name: Project_X Team Name: Team_A Type of Expense: Hardware So, the tag for a transaction might look like: Project_X,Team_A,Hardware  This way, when you&#39;re looking at your financial reports, you can easily filter transactions based on these tags to see how much each project or team is spending on different types of expenses. 
+   * @return tag
+  **/
+  @javax.annotation.Nullable
+  public String getTag() {
+    return tag;
+  }
+
+  public void setTag(String tag) {
+    this.tag = tag;
+  }
+
+
   public DirectPostRequest threedsecure(ThreeDSecure threedsecure) {
-    
     this.threedsecure = threedsecure;
     return this;
   }
@@ -566,12 +517,9 @@ public class DirectPostRequest {
    * @return threedsecure
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public ThreeDSecure getThreedsecure() {
     return threedsecure;
   }
-
 
   public void setThreedsecure(ThreeDSecure threedsecure) {
     this.threedsecure = threedsecure;
@@ -579,7 +527,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest transInfo(String transInfo) {
-    
     this.transInfo = transInfo;
     return this;
   }
@@ -589,12 +536,9 @@ public class DirectPostRequest {
    * @return transInfo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Further information that can be added to the transaction will display in reporting. Can be used for flexible values such as operator id.")
-
   public String getTransInfo() {
     return transInfo;
   }
-
 
   public void setTransInfo(String transInfo) {
     this.transInfo = transInfo;
@@ -602,7 +546,6 @@ public class DirectPostRequest {
 
 
   public DirectPostRequest transType(String transType) {
-    
     this.transType = transType;
     return this;
   }
@@ -612,12 +555,9 @@ public class DirectPostRequest {
    * @return transType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The type of transaction being submitted. Normally this value is not required and your account manager may request that you set this field.")
-
   public String getTransType() {
     return transType;
   }
-
 
   public void setTransType(String transType) {
     this.transType = transType;
@@ -652,6 +592,7 @@ public class DirectPostRequest {
         Objects.equals(this.redirectFailure, directPostRequest.redirectFailure) &&
         Objects.equals(this.redirectSuccess, directPostRequest.redirectSuccess) &&
         Objects.equals(this.shipTo, directPostRequest.shipTo) &&
+        Objects.equals(this.tag, directPostRequest.tag) &&
         Objects.equals(this.threedsecure, directPostRequest.threedsecure) &&
         Objects.equals(this.transInfo, directPostRequest.transInfo) &&
         Objects.equals(this.transType, directPostRequest.transType);
@@ -659,7 +600,7 @@ public class DirectPostRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, avsPostcodePolicy, billTo, cardnumber, csc, cscPolicy, currency, duplicatePolicy, expmonth, expyear, identifier, mac, matchAvsa, nameOnCard, nonce, redirectFailure, redirectSuccess, shipTo, threedsecure, transInfo, transType);
+    return Objects.hash(amount, avsPostcodePolicy, billTo, cardnumber, csc, cscPolicy, currency, duplicatePolicy, expmonth, expyear, identifier, mac, matchAvsa, nameOnCard, nonce, redirectFailure, redirectSuccess, shipTo, tag, threedsecure, transInfo, transType);
   }
 
   @Override
@@ -684,6 +625,7 @@ public class DirectPostRequest {
     sb.append("    redirectFailure: ").append(toIndentedString(redirectFailure)).append("\n");
     sb.append("    redirectSuccess: ").append(toIndentedString(redirectSuccess)).append("\n");
     sb.append("    shipTo: ").append(toIndentedString(shipTo)).append("\n");
+    sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
     sb.append("    threedsecure: ").append(toIndentedString(threedsecure)).append("\n");
     sb.append("    transInfo: ").append(toIndentedString(transInfo)).append("\n");
     sb.append("    transType: ").append(toIndentedString(transType)).append("\n");
@@ -727,6 +669,7 @@ public class DirectPostRequest {
     openapiFields.add("redirect_failure");
     openapiFields.add("redirect_success");
     openapiFields.add("ship_to");
+    openapiFields.add("tag");
     openapiFields.add("threedsecure");
     openapiFields.add("trans_info");
     openapiFields.add("trans_type");
@@ -742,38 +685,39 @@ public class DirectPostRequest {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to DirectPostRequest
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to DirectPostRequest
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!DirectPostRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!DirectPostRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in DirectPostRequest is not found in the empty JSON string", DirectPostRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!DirectPostRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DirectPostRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DirectPostRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : DirectPostRequest.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("avs_postcode_policy") != null && !jsonObj.get("avs_postcode_policy").isJsonNull()) && !jsonObj.get("avs_postcode_policy").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `avs_postcode_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("avs_postcode_policy").toString()));
       }
       // validate the optional field `bill_to`
       if (jsonObj.get("bill_to") != null && !jsonObj.get("bill_to").isJsonNull()) {
-        ContactDetails.validateJsonObject(jsonObj.getAsJsonObject("bill_to"));
+        ContactDetails.validateJsonElement(jsonObj.get("bill_to"));
       }
       if (!jsonObj.get("cardnumber").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `cardnumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cardnumber").toString()));
@@ -813,11 +757,14 @@ public class DirectPostRequest {
       }
       // validate the optional field `ship_to`
       if (jsonObj.get("ship_to") != null && !jsonObj.get("ship_to").isJsonNull()) {
-        ContactDetails.validateJsonObject(jsonObj.getAsJsonObject("ship_to"));
+        ContactDetails.validateJsonElement(jsonObj.get("ship_to"));
+      }
+      if ((jsonObj.get("tag") != null && !jsonObj.get("tag").isJsonNull()) && !jsonObj.get("tag").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tag` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tag").toString()));
       }
       // validate the optional field `threedsecure`
       if (jsonObj.get("threedsecure") != null && !jsonObj.get("threedsecure").isJsonNull()) {
-        ThreeDSecure.validateJsonObject(jsonObj.getAsJsonObject("threedsecure"));
+        ThreeDSecure.validateJsonElement(jsonObj.get("threedsecure"));
       }
       if ((jsonObj.get("trans_info") != null && !jsonObj.get("trans_info").isJsonNull()) && !jsonObj.get("trans_info").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `trans_info` to be a primitive type in the JSON string but got `%s`", jsonObj.get("trans_info").toString()));
@@ -847,9 +794,9 @@ public class DirectPostRequest {
 
            @Override
            public DirectPostRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

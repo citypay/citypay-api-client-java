@@ -1,18 +1,20 @@
-# .com.citypay.client.api.OperationalFunctionsApi
+# OperationalFunctionsApi
 
 All URIs are relative to *https://api.citypay.com*
 
 | Method | HTTP request | Description |
-|--------|--------------|-------------|
-| [**aclCheckRequest**](OperationalFunctionsApi.md#aclcheckrequest) | **POST** /v6/acl/check | ACL Check Request |
-| [**domainKeyCheckRequest**](OperationalFunctionsApi.md#domainkeycheckrequest) | **POST** /dk/check | Domain Key Check Request |
-| [**domainKeyGenRequest**](OperationalFunctionsApi.md#domainkeygenrequest) | **POST** /dk/gen | Domain Key Generation Request |
-| [**listMerchantsRequest**](OperationalFunctionsApi.md#listmerchantsrequest) | **GET** /v6/merchants/{clientid} | List Merchants Request |
-| [**pingRequest**](OperationalFunctionsApi.md#pingrequest) | **POST** /v6/ping | Ping Request |
+|------------- | ------------- | -------------|
+| [**aclCheckRequest**](OperationalFunctionsApi.md#aclCheckRequest) | **POST** /v6/acl/check | ACL Check Request |
+| [**domainKeyCheckRequest**](OperationalFunctionsApi.md#domainKeyCheckRequest) | **POST** /dk/check | Domain Key Check Request |
+| [**domainKeyGenRequest**](OperationalFunctionsApi.md#domainKeyGenRequest) | **POST** /dk/gen | Domain Key Generation Request |
+| [**listMerchantsRequest**](OperationalFunctionsApi.md#listMerchantsRequest) | **GET** /v6/merchants/{clientid} | List Merchants Request |
+| [**pingRequest**](OperationalFunctionsApi.md#pingRequest) | **POST** /v6/ping | Ping Request |
 
-<a name="aclcheckrequest"></a>
-# **aclCheckRequest**
-> AclCheckResponseModel aclCheckRequest (AclCheckRequest aclCheckRequest)
+
+
+## aclCheckRequest
+
+> AclCheckResponseModel aclCheckRequest(aclCheckRequest)
 
 ACL Check Request
 
@@ -21,71 +23,49 @@ services such as AWS or Azure to check that those addresses are listed in the AC
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class aclCheckRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.OperationalFunctionsApi;
 
-            var apiInstance = new OperationalFunctionsApi(config);
-            var aclCheckRequest = new AclCheckRequest(); // AclCheckRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // ACL Check Request
-                AclCheckResponseModel result = apiInstance.aclCheckRequest(aclCheckRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling OperationalFunctionsApi.aclCheckRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        OperationalFunctionsApi apiInstance = new OperationalFunctionsApi(defaultClient);
+        AclCheckRequest aclCheckRequest = new AclCheckRequest(); // AclCheckRequest | 
+        try {
+            AclCheckResponseModel result = apiInstance.aclCheckRequest(aclCheckRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OperationalFunctionsApi#aclCheckRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the aclCheckRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // ACL Check Request
-    ApiResponse<AclCheckResponseModel> response = apiInstance.aclCheckRequestWithHttpInfo(aclCheckRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling OperationalFunctionsApi.aclCheckRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **aclCheckRequest** | [**AclCheckRequest**](AclCheckRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **aclCheckRequest** | [**AclCheckRequest**](AclCheckRequest.md)|  | |
 
 ### Return type
 
@@ -97,8 +77,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -111,11 +91,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="domainkeycheckrequest"></a>
-# **domainKeyCheckRequest**
-> DomainKeyResponse domainKeyCheckRequest (DomainKeyCheckRequest domainKeyCheckRequest)
+## domainKeyCheckRequest
+
+> DomainKeyResponse domainKeyCheckRequest(domainKeyCheckRequest)
 
 Domain Key Check Request
 
@@ -124,71 +103,49 @@ domain key meet their expectations.
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class domainKeyCheckRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.OperationalFunctionsApi;
 
-            var apiInstance = new OperationalFunctionsApi(config);
-            var domainKeyCheckRequest = new DomainKeyCheckRequest(); // DomainKeyCheckRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Domain Key Check Request
-                DomainKeyResponse result = apiInstance.domainKeyCheckRequest(domainKeyCheckRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling OperationalFunctionsApi.domainKeyCheckRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        OperationalFunctionsApi apiInstance = new OperationalFunctionsApi(defaultClient);
+        DomainKeyCheckRequest domainKeyCheckRequest = new DomainKeyCheckRequest(); // DomainKeyCheckRequest | 
+        try {
+            DomainKeyResponse result = apiInstance.domainKeyCheckRequest(domainKeyCheckRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OperationalFunctionsApi#domainKeyCheckRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the domainKeyCheckRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Domain Key Check Request
-    ApiResponse<DomainKeyResponse> response = apiInstance.domainKeyCheckRequestWithHttpInfo(domainKeyCheckRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling OperationalFunctionsApi.domainKeyCheckRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **domainKeyCheckRequest** | [**DomainKeyCheckRequest**](DomainKeyCheckRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **domainKeyCheckRequest** | [**DomainKeyCheckRequest**](DomainKeyCheckRequest.md)|  | |
 
 ### Return type
 
@@ -200,8 +157,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -214,11 +171,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="domainkeygenrequest"></a>
-# **domainKeyGenRequest**
-> DomainKeyResponse domainKeyGenRequest (DomainKeyRequest domainKeyRequest)
+## domainKeyGenRequest
+
+> DomainKeyResponse domainKeyGenRequest(domainKeyRequest)
 
 Domain Key Generation Request
 
@@ -227,71 +183,49 @@ Generates a domain key based on the permissions of the calling `api-key`. Domain
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class domainKeyGenRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.OperationalFunctionsApi;
 
-            var apiInstance = new OperationalFunctionsApi(config);
-            var domainKeyRequest = new DomainKeyRequest(); // DomainKeyRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Domain Key Generation Request
-                DomainKeyResponse result = apiInstance.domainKeyGenRequest(domainKeyRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling OperationalFunctionsApi.domainKeyGenRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        OperationalFunctionsApi apiInstance = new OperationalFunctionsApi(defaultClient);
+        DomainKeyRequest domainKeyRequest = new DomainKeyRequest(); // DomainKeyRequest | 
+        try {
+            DomainKeyResponse result = apiInstance.domainKeyGenRequest(domainKeyRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OperationalFunctionsApi#domainKeyGenRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the domainKeyGenRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Domain Key Generation Request
-    ApiResponse<DomainKeyResponse> response = apiInstance.domainKeyGenRequestWithHttpInfo(domainKeyRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling OperationalFunctionsApi.domainKeyGenRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **domainKeyRequest** | [**DomainKeyRequest**](DomainKeyRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **domainKeyRequest** | [**DomainKeyRequest**](DomainKeyRequest.md)|  | |
 
 ### Return type
 
@@ -303,8 +237,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -317,11 +251,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listmerchantsrequest"></a>
-# **listMerchantsRequest**
-> ListMerchantsResponse listMerchantsRequest (String clientid)
+## listMerchantsRequest
+
+> ListMerchantsResponse listMerchantsRequest(clientid)
 
 List Merchants Request
 
@@ -335,71 +268,49 @@ Fields that can be sorted are `merchantid` or `name`.
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class listMerchantsRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.OperationalFunctionsApi;
 
-            var apiInstance = new OperationalFunctionsApi(config);
-            var clientid = "clientid_example";  // String | The client id to return merchants for, specifying \"default\" will use the value in your api key.
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // List Merchants Request
-                ListMerchantsResponse result = apiInstance.listMerchantsRequest(clientid);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling OperationalFunctionsApi.listMerchantsRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        OperationalFunctionsApi apiInstance = new OperationalFunctionsApi(defaultClient);
+        String clientid = "clientid_example"; // String | The client id to return merchants for, specifying \"default\" will use the value in your api key.
+        try {
+            ListMerchantsResponse result = apiInstance.listMerchantsRequest(clientid);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OperationalFunctionsApi#listMerchantsRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the listMerchantsRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // List Merchants Request
-    ApiResponse<ListMerchantsResponse> response = apiInstance.listMerchantsRequestWithHttpInfo(clientid);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling OperationalFunctionsApi.listMerchantsRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **clientid** | **String** | The client id to return merchants for, specifying \&quot;default\&quot; will use the value in your api key. |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **clientid** | **String**| The client id to return merchants for, specifying \&quot;default\&quot; will use the value in your api key. | |
 
 ### Return type
 
@@ -411,8 +322,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json, text/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -425,11 +336,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="pingrequest"></a>
-# **pingRequest**
-> Acknowledgement pingRequest (Ping ping)
+## pingRequest
+
+> Acknowledgement pingRequest(ping)
 
 Ping Request
 
@@ -443,75 +353,55 @@ model is granting access from your source.
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class pingRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
-            // Configure API key authorization: cp-domain-key
-            config.AddApiKey("cp-domain-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-domain-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.OperationalFunctionsApi;
 
-            var apiInstance = new OperationalFunctionsApi(config);
-            var ping = new Ping(); // Ping | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-domain-key
+        ApiKeyAuth cp-domain-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-domain-key");
+        cp-domain-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-domain-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Ping Request
-                Acknowledgement result = apiInstance.pingRequest(ping);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling OperationalFunctionsApi.pingRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
+
+        OperationalFunctionsApi apiInstance = new OperationalFunctionsApi(defaultClient);
+        Ping ping = new Ping(); // Ping | 
+        try {
+            Acknowledgement result = apiInstance.pingRequest(ping);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OperationalFunctionsApi#pingRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the pingRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Ping Request
-    ApiResponse<Acknowledgement> response = apiInstance.pingRequestWithHttpInfo(ping);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling OperationalFunctionsApi.pingRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **ping** | [**Ping**](Ping.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **ping** | [**Ping**](Ping.md)|  | |
 
 ### Return type
 
@@ -519,12 +409,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[cp-api-key](../README.md#cp-api-key), [cp-domain-key](../README.md#cp-domain-key)
+[cp-domain-key](../README.md#cp-domain-key), [cp-api-key](../README.md#cp-api-key)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded, text/xml
- - **Accept**: application/x-www-form-urlencoded, application/json, text/xml
+- **Content-Type**: application/json, application/x-www-form-urlencoded, text/xml
+- **Accept**: application/x-www-form-urlencoded, application/json, text/xml
 
 
 ### HTTP response details
@@ -536,6 +426,4 @@ catch (ApiException e)
 | **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

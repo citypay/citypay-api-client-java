@@ -1,22 +1,24 @@
-# .com.citypay.client.api.PaylinkApi
+# PaylinkApi
 
 All URIs are relative to *https://api.citypay.com*
 
 | Method | HTTP request | Description |
-|--------|--------------|-------------|
-| [**tokenAdjustmentRequest**](PaylinkApi.md#tokenadjustmentrequest) | **POST** /paylink/{token}/adjustment | Paylink Token Adjustment |
-| [**tokenCloseRequest**](PaylinkApi.md#tokencloserequest) | **PUT** /paylink/{token}/close | Close Paylink Token |
-| [**tokenCreateBillPaymentRequest**](PaylinkApi.md#tokencreatebillpaymentrequest) | **POST** /paylink/bill-payment | Create Bill Payment Paylink Token |
-| [**tokenCreateRequest**](PaylinkApi.md#tokencreaterequest) | **POST** /paylink/create | Create Paylink Token |
-| [**tokenPurgeAttachmentsRequest**](PaylinkApi.md#tokenpurgeattachmentsrequest) | **PUT** /paylink/{token}/purge-attachments | Purges any attachments for a Paylink Token |
-| [**tokenReconciledRequest**](PaylinkApi.md#tokenreconciledrequest) | **PUT** /paylink/{token}/reconciled | Reconcile Paylink Token |
-| [**tokenReopenRequest**](PaylinkApi.md#tokenreopenrequest) | **PUT** /paylink/{token}/reopen | Reopen Paylink Token |
-| [**tokenStatusChangesRequest**](PaylinkApi.md#tokenstatuschangesrequest) | **POST** /paylink/token/changes | Paylink Token Audit |
-| [**tokenStatusRequest**](PaylinkApi.md#tokenstatusrequest) | **GET** /paylink/{token}/status | Paylink Token Status |
+|------------- | ------------- | -------------|
+| [**tokenAdjustmentRequest**](PaylinkApi.md#tokenAdjustmentRequest) | **POST** /paylink/{token}/adjustment | Paylink Token Adjustment |
+| [**tokenChangesRequest**](PaylinkApi.md#tokenChangesRequest) | **POST** /paylink/token/changes | Paylink Token Audit |
+| [**tokenCloseRequest**](PaylinkApi.md#tokenCloseRequest) | **PUT** /paylink/{token}/close | Close Paylink Token |
+| [**tokenCreateBillPaymentRequest**](PaylinkApi.md#tokenCreateBillPaymentRequest) | **POST** /paylink/bill-payment | Create Bill Payment Paylink Token |
+| [**tokenCreateRequest**](PaylinkApi.md#tokenCreateRequest) | **POST** /paylink/create | Create Paylink Token |
+| [**tokenPurgeAttachmentsRequest**](PaylinkApi.md#tokenPurgeAttachmentsRequest) | **PUT** /paylink/{token}/purge-attachments | Purges any attachments for a Paylink Token |
+| [**tokenReconciledRequest**](PaylinkApi.md#tokenReconciledRequest) | **PUT** /paylink/{token}/reconciled | Reconcile Paylink Token |
+| [**tokenReopenRequest**](PaylinkApi.md#tokenReopenRequest) | **PUT** /paylink/{token}/reopen | Reopen Paylink Token |
+| [**tokenStatusRequest**](PaylinkApi.md#tokenStatusRequest) | **GET** /paylink/{token}/status | Paylink Token Status |
 
-<a name="tokenadjustmentrequest"></a>
-# **tokenAdjustmentRequest**
-> Acknowledgement tokenAdjustmentRequest (String token, PaylinkAdjustmentRequest paylinkAdjustmentRequest)
+
+
+## tokenAdjustmentRequest
+
+> Acknowledgement tokenAdjustmentRequest(token, paylinkAdjustmentRequest)
 
 Paylink Token Adjustment
 
@@ -27,73 +29,51 @@ Adjusts a TokenRequest's amount value when for instance
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class tokenAdjustmentRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.PaylinkApi;
 
-            var apiInstance = new PaylinkApi(config);
-            var token = "token_example";  // String | The token returned by the create token process.
-            var paylinkAdjustmentRequest = new PaylinkAdjustmentRequest(); // PaylinkAdjustmentRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Paylink Token Adjustment
-                Acknowledgement result = apiInstance.tokenAdjustmentRequest(token, paylinkAdjustmentRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling PaylinkApi.tokenAdjustmentRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        PaylinkApi apiInstance = new PaylinkApi(defaultClient);
+        String token = "token_example"; // String | The token returned by the create token process.
+        PaylinkAdjustmentRequest paylinkAdjustmentRequest = new PaylinkAdjustmentRequest(); // PaylinkAdjustmentRequest | 
+        try {
+            Acknowledgement result = apiInstance.tokenAdjustmentRequest(token, paylinkAdjustmentRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PaylinkApi#tokenAdjustmentRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the tokenAdjustmentRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Paylink Token Adjustment
-    ApiResponse<Acknowledgement> response = apiInstance.tokenAdjustmentRequestWithHttpInfo(token, paylinkAdjustmentRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling PaylinkApi.tokenAdjustmentRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **token** | **String** | The token returned by the create token process. |  |
-| **paylinkAdjustmentRequest** | [**PaylinkAdjustmentRequest**](PaylinkAdjustmentRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| The token returned by the create token process. | |
+| **paylinkAdjustmentRequest** | [**PaylinkAdjustmentRequest**](PaylinkAdjustmentRequest.md)|  | |
 
 ### Return type
 
@@ -105,8 +85,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -119,11 +99,88 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="tokencloserequest"></a>
-# **tokenCloseRequest**
-> Acknowledgement tokenCloseRequest (String token)
+## tokenChangesRequest
+
+> PaylinkTokenStatusChangeResponse tokenChangesRequest(paylinkTokenStatusChangeRequest)
+
+Paylink Token Audit
+
+Allows for the changes to a pre-existing token.
+
+### Example
+
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.PaylinkApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
+
+        PaylinkApi apiInstance = new PaylinkApi(defaultClient);
+        PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest = new PaylinkTokenStatusChangeRequest(); // PaylinkTokenStatusChangeRequest | 
+        try {
+            PaylinkTokenStatusChangeResponse result = apiInstance.tokenChangesRequest(paylinkTokenStatusChangeRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PaylinkApi#tokenChangesRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **paylinkTokenStatusChangeRequest** | [**PaylinkTokenStatusChangeRequest**](PaylinkTokenStatusChangeRequest.md)|  | |
+
+### Return type
+
+[**PaylinkTokenStatusChangeResponse**](PaylinkTokenStatusChangeResponse.md)
+
+### Authorization
+
+[cp-api-key](../README.md#cp-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Changes from tokens actioned after the pivotal date provided in the request. |  -  |
+| **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+| **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+| **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+| **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
+| **500** | Server Error. The server was unable to complete the request. |  -  |
+
+
+## tokenCloseRequest
+
+> Acknowledgement tokenCloseRequest(token)
 
 Close Paylink Token
 
@@ -132,71 +189,49 @@ request calls.
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class tokenCloseRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.PaylinkApi;
 
-            var apiInstance = new PaylinkApi(config);
-            var token = "token_example";  // String | The token returned by the create token process.
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Close Paylink Token
-                Acknowledgement result = apiInstance.tokenCloseRequest(token);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling PaylinkApi.tokenCloseRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        PaylinkApi apiInstance = new PaylinkApi(defaultClient);
+        String token = "token_example"; // String | The token returned by the create token process.
+        try {
+            Acknowledgement result = apiInstance.tokenCloseRequest(token);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PaylinkApi#tokenCloseRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the tokenCloseRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Close Paylink Token
-    ApiResponse<Acknowledgement> response = apiInstance.tokenCloseRequestWithHttpInfo(token);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling PaylinkApi.tokenCloseRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **token** | **String** | The token returned by the create token process. |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| The token returned by the create token process. | |
 
 ### Return type
 
@@ -208,8 +243,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json, text/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -222,11 +257,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="tokencreatebillpaymentrequest"></a>
-# **tokenCreateBillPaymentRequest**
-> PaylinkTokenCreated tokenCreateBillPaymentRequest (PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest)
+## tokenCreateBillPaymentRequest
+
+> PaylinkTokenCreated tokenCreateBillPaymentRequest(paylinkBillPaymentTokenRequest)
 
 Create Bill Payment Paylink Token
 
@@ -246,7 +280,7 @@ The bill payment service allows
 7. support of status reporting on tokens
 8. URL short codes for SMS notifications
 
-<img src="../images/merchant-BPS-workflow.png" alt="Paylink BPSv2 Overview" width="50%"/> 
+<img src="images/merchant-BPS-workflow.png" alt="Paylink BPSv2 Overview" width="50%"/> 
 
 
 ### Notification Paths
@@ -321,7 +355,7 @@ To ensure that invoices are paid by the intended recipient, Paylink supports the
 A Field Guard is an intended field which is to be used as a form of guarded authentication. More than 1 field can be
 requested.
 
-<img src="../images/paylink-field-guards.png" alt="Paylink Field Guards" width="50%"/>
+<img src="images/paylink-field-guards.png" alt="Paylink Field Guards" width="50%"/>
 
 To determine the source value of the field, each field name is searched in the order of
 
@@ -403,71 +437,49 @@ A result of an attachment specifies whether the attachment was successfully adde
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class tokenCreateBillPaymentRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.PaylinkApi;
 
-            var apiInstance = new PaylinkApi(config);
-            var paylinkBillPaymentTokenRequest = new PaylinkBillPaymentTokenRequest(); // PaylinkBillPaymentTokenRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Create Bill Payment Paylink Token
-                PaylinkTokenCreated result = apiInstance.tokenCreateBillPaymentRequest(paylinkBillPaymentTokenRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling PaylinkApi.tokenCreateBillPaymentRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        PaylinkApi apiInstance = new PaylinkApi(defaultClient);
+        PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest = new PaylinkBillPaymentTokenRequest(); // PaylinkBillPaymentTokenRequest | 
+        try {
+            PaylinkTokenCreated result = apiInstance.tokenCreateBillPaymentRequest(paylinkBillPaymentTokenRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PaylinkApi#tokenCreateBillPaymentRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the tokenCreateBillPaymentRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Create Bill Payment Paylink Token
-    ApiResponse<PaylinkTokenCreated> response = apiInstance.tokenCreateBillPaymentRequestWithHttpInfo(paylinkBillPaymentTokenRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling PaylinkApi.tokenCreateBillPaymentRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **paylinkBillPaymentTokenRequest** | [**PaylinkBillPaymentTokenRequest**](PaylinkBillPaymentTokenRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **paylinkBillPaymentTokenRequest** | [**PaylinkBillPaymentTokenRequest**](PaylinkBillPaymentTokenRequest.md)|  | |
 
 ### Return type
 
@@ -479,8 +491,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -493,82 +505,59 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="tokencreaterequest"></a>
-# **tokenCreateRequest**
-> PaylinkTokenCreated tokenCreateRequest (PaylinkTokenRequestModel paylinkTokenRequestModel)
+## tokenCreateRequest
+
+> PaylinkTokenCreated tokenCreateRequest(paylinkTokenRequestModel)
 
 Create Paylink Token
 
 Creates a Paylink token from the CityPay API.
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class tokenCreateRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.PaylinkApi;
 
-            var apiInstance = new PaylinkApi(config);
-            var paylinkTokenRequestModel = new PaylinkTokenRequestModel(); // PaylinkTokenRequestModel | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Create Paylink Token
-                PaylinkTokenCreated result = apiInstance.tokenCreateRequest(paylinkTokenRequestModel);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling PaylinkApi.tokenCreateRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        PaylinkApi apiInstance = new PaylinkApi(defaultClient);
+        PaylinkTokenRequestModel paylinkTokenRequestModel = new PaylinkTokenRequestModel(); // PaylinkTokenRequestModel | 
+        try {
+            PaylinkTokenCreated result = apiInstance.tokenCreateRequest(paylinkTokenRequestModel);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PaylinkApi#tokenCreateRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the tokenCreateRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Create Paylink Token
-    ApiResponse<PaylinkTokenCreated> response = apiInstance.tokenCreateRequestWithHttpInfo(paylinkTokenRequestModel);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling PaylinkApi.tokenCreateRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **paylinkTokenRequestModel** | [**PaylinkTokenRequestModel**](PaylinkTokenRequestModel.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **paylinkTokenRequestModel** | [**PaylinkTokenRequestModel**](PaylinkTokenRequestModel.md)|  | |
 
 ### Return type
 
@@ -580,8 +569,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -594,82 +583,59 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="tokenpurgeattachmentsrequest"></a>
-# **tokenPurgeAttachmentsRequest**
-> Acknowledgement tokenPurgeAttachmentsRequest (String token)
+## tokenPurgeAttachmentsRequest
+
+> Acknowledgement tokenPurgeAttachmentsRequest(token)
 
 Purges any attachments for a Paylink Token
 
 Purges any attachments for a token for GDPR or DP reasons.
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class tokenPurgeAttachmentsRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.PaylinkApi;
 
-            var apiInstance = new PaylinkApi(config);
-            var token = "token_example";  // String | The token returned by the create token process.
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Purges any attachments for a Paylink Token
-                Acknowledgement result = apiInstance.tokenPurgeAttachmentsRequest(token);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling PaylinkApi.tokenPurgeAttachmentsRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        PaylinkApi apiInstance = new PaylinkApi(defaultClient);
+        String token = "token_example"; // String | The token returned by the create token process.
+        try {
+            Acknowledgement result = apiInstance.tokenPurgeAttachmentsRequest(token);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PaylinkApi#tokenPurgeAttachmentsRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the tokenPurgeAttachmentsRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Purges any attachments for a Paylink Token
-    ApiResponse<Acknowledgement> response = apiInstance.tokenPurgeAttachmentsRequestWithHttpInfo(token);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling PaylinkApi.tokenPurgeAttachmentsRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **token** | **String** | The token returned by the create token process. |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| The token returned by the create token process. | |
 
 ### Return type
 
@@ -681,8 +647,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json, text/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -695,82 +661,59 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="tokenreconciledrequest"></a>
-# **tokenReconciledRequest**
-> Acknowledgement tokenReconciledRequest (String token)
+## tokenReconciledRequest
+
+> Acknowledgement tokenReconciledRequest(token)
 
 Reconcile Paylink Token
 
-Marks a Paylink Token as reconciled when reconcilation is performed on the merchant's side.
+Marks a Paylink Token as reconciled when reconciliation is performed on the merchant's side.
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class tokenReconciledRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.PaylinkApi;
 
-            var apiInstance = new PaylinkApi(config);
-            var token = "token_example";  // String | The token returned by the create token process.
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Reconcile Paylink Token
-                Acknowledgement result = apiInstance.tokenReconciledRequest(token);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling PaylinkApi.tokenReconciledRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        PaylinkApi apiInstance = new PaylinkApi(defaultClient);
+        String token = "token_example"; // String | The token returned by the create token process.
+        try {
+            Acknowledgement result = apiInstance.tokenReconciledRequest(token);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PaylinkApi#tokenReconciledRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the tokenReconciledRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Reconcile Paylink Token
-    ApiResponse<Acknowledgement> response = apiInstance.tokenReconciledRequestWithHttpInfo(token);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling PaylinkApi.tokenReconciledRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **token** | **String** | The token returned by the create token process. |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| The token returned by the create token process. | |
 
 ### Return type
 
@@ -782,8 +725,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json, text/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -796,82 +739,59 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="tokenreopenrequest"></a>
-# **tokenReopenRequest**
-> Acknowledgement tokenReopenRequest (String token)
+## tokenReopenRequest
+
+> Acknowledgement tokenReopenRequest(token)
 
 Reopen Paylink Token
 
 Allows for a Paylink Token to be reopened if a Token has been previously closed and payment has not yet been made.
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class tokenReopenRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.PaylinkApi;
 
-            var apiInstance = new PaylinkApi(config);
-            var token = "token_example";  // String | The token returned by the create token process.
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Reopen Paylink Token
-                Acknowledgement result = apiInstance.tokenReopenRequest(token);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling PaylinkApi.tokenReopenRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        PaylinkApi apiInstance = new PaylinkApi(defaultClient);
+        String token = "token_example"; // String | The token returned by the create token process.
+        try {
+            Acknowledgement result = apiInstance.tokenReopenRequest(token);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PaylinkApi#tokenReopenRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the tokenReopenRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Reopen Paylink Token
-    ApiResponse<Acknowledgement> response = apiInstance.tokenReopenRequestWithHttpInfo(token);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling PaylinkApi.tokenReopenRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **token** | **String** | The token returned by the create token process. |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| The token returned by the create token process. | |
 
 ### Return type
 
@@ -883,8 +803,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json, text/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -897,188 +817,59 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="tokenstatuschangesrequest"></a>
-# **tokenStatusChangesRequest**
-> PaylinkTokenStatusChangeResponse tokenStatusChangesRequest (PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest)
+## tokenStatusRequest
 
-Paylink Token Audit
-
-Obtains any changes on Paylink Tokens since a given date and time. This allows for a merchant to regularly check on 
-activity over a collection of Paylink Tokens and to check on any events that may have occurred. If a Token is `Closed` 
-it is not considered.
-
-Only statuses that have been appended since the given date and time is returned.
-
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
-
-namespace Example
-{
-    public class tokenStatusChangesRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
-
-            var apiInstance = new PaylinkApi(config);
-            var paylinkTokenStatusChangeRequest = new PaylinkTokenStatusChangeRequest(); // PaylinkTokenStatusChangeRequest | 
-
-            try
-            {
-                // Paylink Token Audit
-                PaylinkTokenStatusChangeResponse result = apiInstance.tokenStatusChangesRequest(paylinkTokenStatusChangeRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling PaylinkApi.tokenStatusChangesRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the tokenStatusChangesRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Paylink Token Audit
-    ApiResponse<PaylinkTokenStatusChangeResponse> response = apiInstance.tokenStatusChangesRequestWithHttpInfo(paylinkTokenStatusChangeRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling PaylinkApi.tokenStatusChangesRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **paylinkTokenStatusChangeRequest** | [**PaylinkTokenStatusChangeRequest**](PaylinkTokenStatusChangeRequest.md) |  |  |
-
-### Return type
-
-[**PaylinkTokenStatusChangeResponse**](PaylinkTokenStatusChangeResponse.md)
-
-### Authorization
-
-[cp-api-key](../README.md#cp-api-key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Changes from tokens actioned after the pivotal date provided in the request. |  -  |
-| **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
-| **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
-| **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
-| **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
-| **500** | Server Error. The server was unable to complete the request. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="tokenstatusrequest"></a>
-# **tokenStatusRequest**
-> PaylinkTokenStatus tokenStatusRequest (String token)
+> PaylinkTokenStatus tokenStatusRequest(token)
 
 Paylink Token Status
 
 Obtains the full status of a given Paylink Token.
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class tokenStatusRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.PaylinkApi;
 
-            var apiInstance = new PaylinkApi(config);
-            var token = "token_example";  // String | The token returned by the create token process.
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Paylink Token Status
-                PaylinkTokenStatus result = apiInstance.tokenStatusRequest(token);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling PaylinkApi.tokenStatusRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        PaylinkApi apiInstance = new PaylinkApi(defaultClient);
+        String token = "token_example"; // String | The token returned by the create token process.
+        try {
+            PaylinkTokenStatus result = apiInstance.tokenStatusRequest(token);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PaylinkApi#tokenStatusRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the tokenStatusRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Paylink Token Status
-    ApiResponse<PaylinkTokenStatus> response = apiInstance.tokenStatusRequestWithHttpInfo(token);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling PaylinkApi.tokenStatusRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **token** | **String** | The token returned by the create token process. |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| The token returned by the create token process. | |
 
 ### Return type
 
@@ -1090,8 +881,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json, text/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -1103,6 +894,4 @@ catch (ApiException e)
 | **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

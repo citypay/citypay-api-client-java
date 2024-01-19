@@ -1,21 +1,23 @@
-# .com.citypay.client.api.AuthorisationAndPaymentApi
+# AuthorisationAndPaymentApi
 
 All URIs are relative to *https://api.citypay.com*
 
 | Method | HTTP request | Description |
-|--------|--------------|-------------|
-| [**authorisationRequest**](AuthorisationAndPaymentApi.md#authorisationrequest) | **POST** /v6/authorise | Authorisation |
-| [**binRangeLookupRequest**](AuthorisationAndPaymentApi.md#binrangelookuprequest) | **POST** /v6/bin | Bin Lookup |
-| [**cResRequest**](AuthorisationAndPaymentApi.md#cresrequest) | **POST** /v6/cres | CRes |
-| [**captureRequest**](AuthorisationAndPaymentApi.md#capturerequest) | **POST** /v6/capture | Capture |
-| [**paResRequest**](AuthorisationAndPaymentApi.md#paresrequest) | **POST** /v6/pares | PaRes |
-| [**refundRequest**](AuthorisationAndPaymentApi.md#refundrequest) | **POST** /v6/refund | Refund |
-| [**retrievalRequest**](AuthorisationAndPaymentApi.md#retrievalrequest) | **POST** /v6/retrieve | Retrieval |
-| [**voidRequest**](AuthorisationAndPaymentApi.md#voidrequest) | **POST** /v6/void | Void |
+|------------- | ------------- | -------------|
+| [**authorisationRequest**](AuthorisationAndPaymentApi.md#authorisationRequest) | **POST** /v6/authorise | Authorisation |
+| [**binRangeLookupRequest**](AuthorisationAndPaymentApi.md#binRangeLookupRequest) | **POST** /v6/bin | Bin Lookup |
+| [**cResRequest**](AuthorisationAndPaymentApi.md#cResRequest) | **POST** /v6/cres | CRes |
+| [**captureRequest**](AuthorisationAndPaymentApi.md#captureRequest) | **POST** /v6/capture | Capture |
+| [**paResRequest**](AuthorisationAndPaymentApi.md#paResRequest) | **POST** /v6/pares | PaRes |
+| [**refundRequest**](AuthorisationAndPaymentApi.md#refundRequest) | **POST** /v6/refund | Refund |
+| [**retrievalRequest**](AuthorisationAndPaymentApi.md#retrievalRequest) | **POST** /v6/retrieve | Retrieval |
+| [**voidRequest**](AuthorisationAndPaymentApi.md#voidRequest) | **POST** /v6/void | Void |
 
-<a name="authorisationrequest"></a>
-# **authorisationRequest**
-> Decision authorisationRequest (AuthRequest authRequest)
+
+
+## authorisationRequest
+
+> Decision authorisationRequest(authRequest)
 
 Authorisation
 
@@ -32,7 +34,18 @@ the appropriate coding and this will perform transparently by the gateway.
 Data properties that are required, may depend on the environment you are conducting payment for. Our API aims to be
  flexible enough to cater for these structures. Our integration team will aid you in providing the necessary data to 
  transact. 
- 
+
+```json
+{ 
+  "RequestChallenged": {
+    "acsurl": "https://bank.com/3DS/ACS",
+    "creq": "SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...",
+    "merchantid": 12345,
+    "transno": 1,
+    "threedserver_trans_id": "d652d8d2-d74a-4264-a051-a7862b10d5d6"
+  }               
+}
+```
  
 ## E-commerce workflows
  
@@ -43,7 +56,7 @@ into a simple structure for authentication, preventing integrators from performi
 Visa and MasterCard.
 
 3D-secure has been around for a number of years and aims to shift the liability of a transaction away from a merchant back
-to the card holder. A *liability shift* determines whether a card holder can charge back a transaction as unknown. Effectively
+to the cardholder. A *liability shift* determines whether a card holder can charge back a transaction as unknown. Effectively
 the process asks for a card holder to authenticate the transaction prior to authorisation producing a Cardholder 
 verification value (CAVV) and ecommerce indicator (ECI) as evidence of authorisation.
 
@@ -81,7 +94,7 @@ CityPay support 3DS version 2.1 for Verified by Visa, MasterCard Identity Check 
 
 #### 3-D Secure - None
 
-![3DSv2 Frctionless Flow](/images/3dsv2-no3d.png)
+![3DSv2 Frctionless Flow](images/3dsv2-no3d.png)
 
 A basic flow may involve no 3-D secure processing. This could happen if there is no ability to perform authentication.
 An enrollment check may apply an "attempted" resolution to processing. In this instance a transaction may not meet any
@@ -90,7 +103,7 @@ presented for authorisation if this occurs.
 
 #### 3-D Secure - Frictionless
 
-![3DSv2 Frctionless Flow](/images/3dsv2-frictionless.png)
+![3DSv2 Frctionless Flow](images/3dsv2-frictionless.png)
 
 E-commerce transactions supporting 3DSv2 can benefit from seamlessly authenticated transactions which may perform a 
 "frictionless" flow. This method will authenticate low risk transactions with minimal impact to a 
@@ -101,7 +114,7 @@ authorisation has occurred.
 
 #### 3-D Secure - Challenge
 
-![3DSv2 Frctionless Flow](/images/3dsv2-challenge.png)
+![3DSv2 Frctionless Flow](images/3dsv2-challenge.png)
 
 A transaction that is deemed as higher risk my be "challenged". In this instance, the API will return a
 [request challenge](#requestchallenged) which will require your integration to forward the cardholder's browser to the 
@@ -133,9 +146,9 @@ To forward the user to the ACS, we recommend a simple auto submit HTML form.
 
 ```html
 <html lang="en">
-<head>
+	<head>
         <title>Forward to ACS</title>
-<script type="text/javascript">
+		<script type="text/javascript">
         function onLoadEvent() { 
             document.acs.submit(); 
         }
@@ -213,9 +226,9 @@ To forward the user to the ACS, we recommend a simple auto submit HTML form.
 
 ```html
 <html lang="en">
-<head>
+	<head>
         <title>Forward to ACS</title>
-<script type="text/javascript">
+		<script type="text/javascript">
         function onLoadEvent() { 
             document.acs.submit(); 
         }
@@ -239,71 +252,49 @@ We provide a Test ACS for full 3DSv1 integration testing that simulates an ACS.
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class authorisationRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.AuthorisationAndPaymentApi;
 
-            var apiInstance = new AuthorisationAndPaymentApi(config);
-            var authRequest = new AuthRequest(); // AuthRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Authorisation
-                Decision result = apiInstance.authorisationRequest(authRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling AuthorisationAndPaymentApi.authorisationRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        AuthorisationAndPaymentApi apiInstance = new AuthorisationAndPaymentApi(defaultClient);
+        AuthRequest authRequest = new AuthRequest(); // AuthRequest | 
+        try {
+            Decision result = apiInstance.authorisationRequest(authRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthorisationAndPaymentApi#authorisationRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the authorisationRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Authorisation
-    ApiResponse<Decision> response = apiInstance.authorisationRequestWithHttpInfo(authRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling AuthorisationAndPaymentApi.authorisationRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **authRequest** | [**AuthRequest**](AuthRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **authRequest** | [**AuthRequest**](AuthRequest.md)|  | |
 
 ### Return type
 
@@ -315,8 +306,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -329,11 +320,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="binrangelookuprequest"></a>
-# **binRangeLookupRequest**
-> Bin binRangeLookupRequest (BinLookup binLookup)
+## binRangeLookupRequest
+
+> Bin binRangeLookupRequest(binLookup)
 
 Bin Lookup
 
@@ -351,71 +341,49 @@ result.
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class binRangeLookupRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.AuthorisationAndPaymentApi;
 
-            var apiInstance = new AuthorisationAndPaymentApi(config);
-            var binLookup = new BinLookup(); // BinLookup | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Bin Lookup
-                Bin result = apiInstance.binRangeLookupRequest(binLookup);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling AuthorisationAndPaymentApi.binRangeLookupRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        AuthorisationAndPaymentApi apiInstance = new AuthorisationAndPaymentApi(defaultClient);
+        BinLookup binLookup = new BinLookup(); // BinLookup | 
+        try {
+            Bin result = apiInstance.binRangeLookupRequest(binLookup);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthorisationAndPaymentApi#binRangeLookupRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the binRangeLookupRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Bin Lookup
-    ApiResponse<Bin> response = apiInstance.binRangeLookupRequestWithHttpInfo(binLookup);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling AuthorisationAndPaymentApi.binRangeLookupRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **binLookup** | [**BinLookup**](BinLookup.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **binLookup** | [**BinLookup**](BinLookup.md)|  | |
 
 ### Return type
 
@@ -427,8 +395,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -441,11 +409,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="cresrequest"></a>
-# **cResRequest**
-> AuthResponse cResRequest (CResAuthRequest cresAuthRequest)
+## cResRequest
+
+> AuthResponse cResRequest(cresAuthRequest)
 
 CRes
 
@@ -459,71 +426,49 @@ on its own without a previous [request challenge](#requestchallenged) being obta
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class cResRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.AuthorisationAndPaymentApi;
 
-            var apiInstance = new AuthorisationAndPaymentApi(config);
-            var cresAuthRequest = new CResAuthRequest(); // CResAuthRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // CRes
-                AuthResponse result = apiInstance.cResRequest(cresAuthRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling AuthorisationAndPaymentApi.cResRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        AuthorisationAndPaymentApi apiInstance = new AuthorisationAndPaymentApi(defaultClient);
+        CResAuthRequest cresAuthRequest = new CResAuthRequest(); // CResAuthRequest | 
+        try {
+            AuthResponse result = apiInstance.cResRequest(cresAuthRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthorisationAndPaymentApi#cResRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the cResRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // CRes
-    ApiResponse<AuthResponse> response = apiInstance.cResRequestWithHttpInfo(cresAuthRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling AuthorisationAndPaymentApi.cResRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **cresAuthRequest** | [**CResAuthRequest**](CResAuthRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **cresAuthRequest** | [**CResAuthRequest**](CResAuthRequest.md)|  | |
 
 ### Return type
 
@@ -535,8 +480,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -549,11 +494,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="capturerequest"></a>
-# **captureRequest**
-> Acknowledgement captureRequest (CaptureRequest captureRequest)
+## captureRequest
+
+> Acknowledgement captureRequest(captureRequest)
 
 Capture
 
@@ -577,71 +521,49 @@ be available for the settlement and completed at the end of the day.
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class captureRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.AuthorisationAndPaymentApi;
 
-            var apiInstance = new AuthorisationAndPaymentApi(config);
-            var captureRequest = new CaptureRequest(); // CaptureRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Capture
-                Acknowledgement result = apiInstance.captureRequest(captureRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling AuthorisationAndPaymentApi.captureRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        AuthorisationAndPaymentApi apiInstance = new AuthorisationAndPaymentApi(defaultClient);
+        CaptureRequest captureRequest = new CaptureRequest(); // CaptureRequest | 
+        try {
+            Acknowledgement result = apiInstance.captureRequest(captureRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthorisationAndPaymentApi#captureRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the captureRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Capture
-    ApiResponse<Acknowledgement> response = apiInstance.captureRequestWithHttpInfo(captureRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling AuthorisationAndPaymentApi.captureRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **captureRequest** | [**CaptureRequest**](CaptureRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **captureRequest** | [**CaptureRequest**](CaptureRequest.md)|  | |
 
 ### Return type
 
@@ -653,8 +575,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -667,11 +589,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="paresrequest"></a>
-# **paResRequest**
-> AuthResponse paResRequest (PaResAuthRequest paResAuthRequest)
+## paResRequest
+
+> AuthResponse paResRequest(paResAuthRequest)
 
 PaRes
 
@@ -685,71 +606,49 @@ on its own without a previous [authentication required](#authenticationrequired)
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class paResRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.AuthorisationAndPaymentApi;
 
-            var apiInstance = new AuthorisationAndPaymentApi(config);
-            var paResAuthRequest = new PaResAuthRequest(); // PaResAuthRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // PaRes
-                AuthResponse result = apiInstance.paResRequest(paResAuthRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling AuthorisationAndPaymentApi.paResRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        AuthorisationAndPaymentApi apiInstance = new AuthorisationAndPaymentApi(defaultClient);
+        PaResAuthRequest paResAuthRequest = new PaResAuthRequest(); // PaResAuthRequest | 
+        try {
+            AuthResponse result = apiInstance.paResRequest(paResAuthRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthorisationAndPaymentApi#paResRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the paResRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // PaRes
-    ApiResponse<AuthResponse> response = apiInstance.paResRequestWithHttpInfo(paResAuthRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling AuthorisationAndPaymentApi.paResRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **paResAuthRequest** | [**PaResAuthRequest**](PaResAuthRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **paResAuthRequest** | [**PaResAuthRequest**](PaResAuthRequest.md)|  | |
 
 ### Return type
 
@@ -761,8 +660,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -775,11 +674,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="refundrequest"></a>
-# **refundRequest**
-> AuthResponse refundRequest (RefundRequest refundRequest)
+## refundRequest
+
+> AuthResponse refundRequest(refundRequest)
 
 Refund
 
@@ -789,71 +687,49 @@ original card used to process the transaction.
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class refundRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.AuthorisationAndPaymentApi;
 
-            var apiInstance = new AuthorisationAndPaymentApi(config);
-            var refundRequest = new RefundRequest(); // RefundRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Refund
-                AuthResponse result = apiInstance.refundRequest(refundRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling AuthorisationAndPaymentApi.refundRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        AuthorisationAndPaymentApi apiInstance = new AuthorisationAndPaymentApi(defaultClient);
+        RefundRequest refundRequest = new RefundRequest(); // RefundRequest | 
+        try {
+            AuthResponse result = apiInstance.refundRequest(refundRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthorisationAndPaymentApi#refundRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the refundRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Refund
-    ApiResponse<AuthResponse> response = apiInstance.refundRequestWithHttpInfo(refundRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling AuthorisationAndPaymentApi.refundRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **refundRequest** | [**RefundRequest**](RefundRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **refundRequest** | [**RefundRequest**](RefundRequest.md)|  | |
 
 ### Return type
 
@@ -865,8 +741,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -879,11 +755,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="retrievalrequest"></a>
-# **retrievalRequest**
-> AuthReferences retrievalRequest (RetrieveRequest retrieveRequest)
+## retrievalRequest
+
+> AuthReferences retrievalRequest(retrieveRequest)
 
 Retrieval
 
@@ -900,71 +775,49 @@ information to be returned.
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class retrievalRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.AuthorisationAndPaymentApi;
 
-            var apiInstance = new AuthorisationAndPaymentApi(config);
-            var retrieveRequest = new RetrieveRequest(); // RetrieveRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Retrieval
-                AuthReferences result = apiInstance.retrievalRequest(retrieveRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling AuthorisationAndPaymentApi.retrievalRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        AuthorisationAndPaymentApi apiInstance = new AuthorisationAndPaymentApi(defaultClient);
+        RetrieveRequest retrieveRequest = new RetrieveRequest(); // RetrieveRequest | 
+        try {
+            AuthReferences result = apiInstance.retrievalRequest(retrieveRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthorisationAndPaymentApi#retrievalRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the retrievalRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Retrieval
-    ApiResponse<AuthReferences> response = apiInstance.retrievalRequestWithHttpInfo(retrieveRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling AuthorisationAndPaymentApi.retrievalRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **retrieveRequest** | [**RetrieveRequest**](RetrieveRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **retrieveRequest** | [**RetrieveRequest**](RetrieveRequest.md)|  | |
 
 ### Return type
 
@@ -976,8 +829,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -990,11 +843,10 @@ catch (ApiException e)
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="voidrequest"></a>
-# **voidRequest**
-> Acknowledgement voidRequest (VoidRequest voidRequest)
+## voidRequest
+
+> Acknowledgement voidRequest(voidRequest)
 
 Void
 
@@ -1009,71 +861,49 @@ outlining the result of the transaction.
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class voidRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.AuthorisationAndPaymentApi;
 
-            var apiInstance = new AuthorisationAndPaymentApi(config);
-            var voidRequest = new VoidRequest(); // VoidRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Void
-                Acknowledgement result = apiInstance.voidRequest(voidRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling AuthorisationAndPaymentApi.voidRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        AuthorisationAndPaymentApi apiInstance = new AuthorisationAndPaymentApi(defaultClient);
+        VoidRequest voidRequest = new VoidRequest(); // VoidRequest | 
+        try {
+            Acknowledgement result = apiInstance.voidRequest(voidRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthorisationAndPaymentApi#voidRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the voidRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Void
-    ApiResponse<Acknowledgement> response = apiInstance.voidRequestWithHttpInfo(voidRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling AuthorisationAndPaymentApi.voidRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **voidRequest** | [**VoidRequest**](VoidRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **voidRequest** | [**VoidRequest**](VoidRequest.md)|  | |
 
 ### Return type
 
@@ -1085,8 +915,8 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/xml
- - **Accept**: application/json, text/xml
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
 
 
 ### HTTP response details
@@ -1098,6 +928,4 @@ catch (ApiException e)
 | **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

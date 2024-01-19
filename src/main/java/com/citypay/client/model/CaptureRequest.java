@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,7 +13,6 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.citypay.client.model.AirlineAdvice;
 import com.citypay.client.model.EventDataModel;
 import com.google.gson.TypeAdapter;
@@ -21,9 +20,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,13 +33,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -78,7 +79,6 @@ public class CaptureRequest {
   }
 
   public CaptureRequest airlineData(AirlineAdvice airlineData) {
-    
     this.airlineData = airlineData;
     return this;
   }
@@ -88,12 +88,9 @@ public class CaptureRequest {
    * @return airlineData
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public AirlineAdvice getAirlineData() {
     return airlineData;
   }
-
 
   public void setAirlineData(AirlineAdvice airlineData) {
     this.airlineData = airlineData;
@@ -101,7 +98,6 @@ public class CaptureRequest {
 
 
   public CaptureRequest amount(Integer amount) {
-    
     this.amount = amount;
     return this;
   }
@@ -111,12 +107,9 @@ public class CaptureRequest {
    * @return amount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "3600", value = "The completion amount provided in the lowest unit of currency for the specific currency of the merchant, with a variable length to a maximum of 12 digits. No decimal points to be included. For example with GBP 75.45 use the value 7545. Please check that you do not supply divisional characters such as 1,024 in the request which may be caused by some number formatters.  If no amount is supplied, the original processing amount is used. ")
-
   public Integer getAmount() {
     return amount;
   }
-
 
   public void setAmount(Integer amount) {
     this.amount = amount;
@@ -124,7 +117,6 @@ public class CaptureRequest {
 
 
   public CaptureRequest eventManagement(EventDataModel eventManagement) {
-    
     this.eventManagement = eventManagement;
     return this;
   }
@@ -134,12 +126,9 @@ public class CaptureRequest {
    * @return eventManagement
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public EventDataModel getEventManagement() {
     return eventManagement;
   }
-
 
   public void setEventManagement(EventDataModel eventManagement) {
     this.eventManagement = eventManagement;
@@ -147,7 +136,6 @@ public class CaptureRequest {
 
 
   public CaptureRequest identifier(String identifier) {
-    
     this.identifier = identifier;
     return this;
   }
@@ -157,12 +145,9 @@ public class CaptureRequest {
    * @return identifier
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "95b857a1-5955-4b86-963c-5a6dbfc4fb95", value = "The identifier of the transaction to capture. If an empty value is supplied then a `trans_no` value must be supplied.")
-
   public String getIdentifier() {
     return identifier;
   }
-
 
   public void setIdentifier(String identifier) {
     this.identifier = identifier;
@@ -170,7 +155,6 @@ public class CaptureRequest {
 
 
   public CaptureRequest merchantid(Integer merchantid) {
-    
     this.merchantid = merchantid;
     return this;
   }
@@ -180,12 +164,9 @@ public class CaptureRequest {
    * @return merchantid
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "11223344", required = true, value = "Identifies the merchant account to perform the capture for.")
-
   public Integer getMerchantid() {
     return merchantid;
   }
-
 
   public void setMerchantid(Integer merchantid) {
     this.merchantid = merchantid;
@@ -193,7 +174,6 @@ public class CaptureRequest {
 
 
   public CaptureRequest transno(Integer transno) {
-    
     this.transno = transno;
     return this;
   }
@@ -203,12 +183,9 @@ public class CaptureRequest {
    * @return transno
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "78416", value = "The transaction number of the transaction to look up and capture. If an empty value is supplied then an identifier value must be supplied.")
-
   public Integer getTransno() {
     return transno;
   }
-
 
   public void setTransno(Integer transno) {
     this.transno = transno;
@@ -283,39 +260,40 @@ public class CaptureRequest {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CaptureRequest
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to CaptureRequest
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!CaptureRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CaptureRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CaptureRequest is not found in the empty JSON string", CaptureRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!CaptureRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CaptureRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CaptureRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : CaptureRequest.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `airline_data`
       if (jsonObj.get("airline_data") != null && !jsonObj.get("airline_data").isJsonNull()) {
-        AirlineAdvice.validateJsonObject(jsonObj.getAsJsonObject("airline_data"));
+        AirlineAdvice.validateJsonElement(jsonObj.get("airline_data"));
       }
       // validate the optional field `event_management`
       if (jsonObj.get("event_management") != null && !jsonObj.get("event_management").isJsonNull()) {
-        EventDataModel.validateJsonObject(jsonObj.getAsJsonObject("event_management"));
+        EventDataModel.validateJsonElement(jsonObj.get("event_management"));
       }
       if ((jsonObj.get("identifier") != null && !jsonObj.get("identifier").isJsonNull()) && !jsonObj.get("identifier").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `identifier` to be a primitive type in the JSON string but got `%s`", jsonObj.get("identifier").toString()));
@@ -342,9 +320,9 @@ public class CaptureRequest {
 
            @Override
            public CaptureRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();
