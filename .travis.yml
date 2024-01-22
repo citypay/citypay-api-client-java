@@ -10,6 +10,7 @@ script:
   # test using maven
   #- mvn test
   # test using gradle
+  - gradle init
   - gradle test
   # test using sbt
   # - sbt test
