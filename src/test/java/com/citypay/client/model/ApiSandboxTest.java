@@ -23,7 +23,7 @@ import java.util.UUID;
 
 import static org.junit.Assert.*;
 
-public class ApiSandboxTest_IT {
+public class ApiSandboxTest {
 
     public static String clientId = System.getenv("CP_CLIENT_ID");
     public static String licenceKey = System.getenv("CP_LICENCE_KEY");
