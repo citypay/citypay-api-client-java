@@ -21,7 +21,7 @@ jobs:
       CP_MERCHANT_ID: ${{ secrets.CP_MERCHANT_ID }}
     strategy:
       matrix:
-        java: [ '8' ]
+        java: [ '21', '17', '12', '11', '10', '8' ]
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK
