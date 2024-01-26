@@ -1,6 +1,6 @@
 # CityPay API Client for Java
 
-[![Build Status](https://api.travis-ci.com/citypay/citypay-api-client-java.svg?branch=master)](https://app.travis-ci.com/github/citypay/citypay-api-client-java)
+[![Build Status](https://github.com/citypay/citypay-api-client-java/actions/workflows/maven.yml/badge.svg)](https://github.com/citypay/citypay-api-client-java/actions/workflows/maven.yml)
 CityPay Payment API
 - API version: 6.6.23
   - Build date: 2024-01-19T13:41:32.016415052Z[Etc/UTC]
