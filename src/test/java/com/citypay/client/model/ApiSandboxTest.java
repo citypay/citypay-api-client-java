@@ -10,6 +10,8 @@ import com.citypay.client.api.OperationalFunctionsApi;
 import com.citypay.client.auth.ApiKeyAuth;
 
 import com.citypay.client.utils.Digest;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import okhttp3.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -196,8 +198,14 @@ public class ApiSandboxTest {
 
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
+            assert response.body() != null;
+
+            String json = response.body().string();
+            JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+            String elementCres = jsonObject.get("cres").getAsString();
+
             //deserialize string to Cres object
-            CResAuthRequest cResAuthRequest = new CResAuthRequest().cres(Base64.getEncoder().encodeToString(Objects.requireNonNull(response.body()).string().getBytes()));
+            CResAuthRequest cResAuthRequest = new CResAuthRequest().cres(elementCres);
 
             AuthResponse cResRequestResponse = apiInstance.cResRequest(cResAuthRequest);
 
