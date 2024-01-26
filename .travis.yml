@@ -5,6 +5,11 @@
 #
 language: java
 jdk:
+  - openjdk21
+  - openjdk12
+  - openjdk11
+  - openjdk10
+  - openjdk9
   - openjdk8
 script:
   # test using maven
