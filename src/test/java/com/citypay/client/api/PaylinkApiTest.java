@@ -147,7 +147,7 @@ public class PaylinkApiTest {
     @Test
     public void tokenStatusChangesRequestTest() throws ApiException {
         PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest = null;
-        PaylinkTokenStatusChangeResponse response = api.tokenStatusChangesRequest(paylinkTokenStatusChangeRequest);
+        PaylinkTokenStatusChangeResponse response = api.tokenChangesRequest(paylinkTokenStatusChangeRequest);
 
         // TODO: test validations
     }

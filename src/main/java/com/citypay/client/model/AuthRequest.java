@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,7 +13,6 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.citypay.client.model.AirlineAdvice;
 import com.citypay.client.model.ContactDetails;
 import com.citypay.client.model.EventDataModel;
@@ -25,9 +24,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -39,13 +37,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -130,6 +131,10 @@ public class AuthRequest {
   @SerializedName(SERIALIZED_NAME_SHIP_TO)
   private ContactDetails shipTo;
 
+  public static final String SERIALIZED_NAME_TAG = "tag";
+  @SerializedName(SERIALIZED_NAME_TAG)
+  private String tag;
+
   public static final String SERIALIZED_NAME_THREEDSECURE = "threedsecure";
   @SerializedName(SERIALIZED_NAME_THREEDSECURE)
   private ThreeDSecure threedsecure;
@@ -146,7 +151,6 @@ public class AuthRequest {
   }
 
   public AuthRequest airlineData(AirlineAdvice airlineData) {
-    
     this.airlineData = airlineData;
     return this;
   }
@@ -156,12 +160,9 @@ public class AuthRequest {
    * @return airlineData
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public AirlineAdvice getAirlineData() {
     return airlineData;
   }
-
 
   public void setAirlineData(AirlineAdvice airlineData) {
     this.airlineData = airlineData;
@@ -169,7 +170,6 @@ public class AuthRequest {
 
 
   public AuthRequest amount(Integer amount) {
-    
     this.amount = amount;
     return this;
   }
@@ -179,12 +179,9 @@ public class AuthRequest {
    * @return amount
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "3600", required = true, value = "The amount to authorise in the lowest unit of currency with a variable length to a maximum of 12 digits.  No decimal points are to be included and no divisional characters such as 1,024.  The amount should be the total amount required for the transaction.  For example with GBP £1,021.95 the amount value is 102195. ")
-
   public Integer getAmount() {
     return amount;
   }
-
 
   public void setAmount(Integer amount) {
     this.amount = amount;
@@ -192,7 +189,6 @@ public class AuthRequest {
 
 
   public AuthRequest avsPostcodePolicy(String avsPostcodePolicy) {
-    
     this.avsPostcodePolicy = avsPostcodePolicy;
     return this;
   }
@@ -202,12 +198,9 @@ public class AuthRequest {
    * @return avsPostcodePolicy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether an AVS postcode policy is enforced or bypassed.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.   `2` to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.   `3` to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation. ")
-
   public String getAvsPostcodePolicy() {
     return avsPostcodePolicy;
   }
-
 
   public void setAvsPostcodePolicy(String avsPostcodePolicy) {
     this.avsPostcodePolicy = avsPostcodePolicy;
@@ -215,7 +208,6 @@ public class AuthRequest {
 
 
   public AuthRequest billTo(ContactDetails billTo) {
-    
     this.billTo = billTo;
     return this;
   }
@@ -225,12 +217,9 @@ public class AuthRequest {
    * @return billTo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public ContactDetails getBillTo() {
     return billTo;
   }
-
 
   public void setBillTo(ContactDetails billTo) {
     this.billTo = billTo;
@@ -238,7 +227,6 @@ public class AuthRequest {
 
 
   public AuthRequest cardnumber(String cardnumber) {
-    
     this.cardnumber = cardnumber;
     return this;
   }
@@ -248,12 +236,9 @@ public class AuthRequest {
    * @return cardnumber
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "4000 0000 0000 0002", required = true, value = "The card number (PAN) with a variable length to a maximum of 21 digits in numerical form. Any non numeric characters will be stripped out of the card number, this includes whitespace or separators internal of the provided value.  The card number must be treated as sensitive data. We only provide an obfuscated value in logging and reporting.  The plaintext value is encrypted in our database using AES 256 GMC bit encryption for settlement or refund purposes.  When providing the card number to our gateway through the authorisation API you will be handling the card data on your application. This will require further PCI controls to be in place and this value must never be stored. ")
-
   public String getCardnumber() {
     return cardnumber;
   }
-
 
   public void setCardnumber(String cardnumber) {
     this.cardnumber = cardnumber;
@@ -261,7 +246,6 @@ public class AuthRequest {
 
 
   public AuthRequest csc(String csc) {
-    
     this.csc = csc;
     return this;
   }
@@ -271,12 +255,9 @@ public class AuthRequest {
    * @return csc
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "10", value = "The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card (American Express has it on the front). The value helps to identify posession of the card as it is not available within the chip or magnetic swipe.  When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped out by any integer parsing.  The CSC number aids fraud prevention in Mail Order and Internet payments.  Business rules are available on your account to identify whether to accept or decline transactions based on mismatched results of the CSC.  The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored.  This applies to all entities handling card data.  It should also not be used in any hashing process.  CityPay do not store the value and have no method of retrieving the value once the transaction has been processed. For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm. ")
-
   public String getCsc() {
     return csc;
   }
-
 
   public void setCsc(String csc) {
     this.csc = csc;
@@ -284,7 +265,6 @@ public class AuthRequest {
 
 
   public AuthRequest cscPolicy(String cscPolicy) {
-    
     this.cscPolicy = cscPolicy;
     return this;
   }
@@ -294,12 +274,9 @@ public class AuthRequest {
    * @return cscPolicy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether a CSC policy is enforced or bypassed.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.   `2` to bypass. Transactions that are bypassed will be allowed through even if the CSC did not match.   `3` to ignore. Transactions that are ignored will bypass the result and not send the CSC details for authorisation. ")
-
   public String getCscPolicy() {
     return cscPolicy;
   }
-
 
   public void setCscPolicy(String cscPolicy) {
     this.cscPolicy = cscPolicy;
@@ -307,7 +284,6 @@ public class AuthRequest {
 
 
   public AuthRequest currency(String currency) {
-    
     this.currency = currency;
     return this;
   }
@@ -317,12 +293,9 @@ public class AuthRequest {
    * @return currency
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "GBP", value = "The processing currency for the transaction. Will default to the merchant account currency.")
-
   public String getCurrency() {
     return currency;
   }
-
 
   public void setCurrency(String currency) {
     this.currency = currency;
@@ -330,7 +303,6 @@ public class AuthRequest {
 
 
   public AuthRequest duplicatePolicy(String duplicatePolicy) {
-    
     this.duplicatePolicy = duplicatePolicy;
     return this;
   }
@@ -340,12 +312,9 @@ public class AuthRequest {
    * @return duplicatePolicy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether a duplication policy is enforced or bypassed. A duplication check has a window of time set against your account within which it can action. If a previous transaction with matching values occurred within the window, any subsequent transaction will result in a T001 result.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.   `2` to bypass. Transactions that are bypassed will not be checked for duplication within the duplication window.   `3` to ignore. Transactions that are ignored will have the same affect as bypass. ")
-
   public String getDuplicatePolicy() {
     return duplicatePolicy;
   }
-
 
   public void setDuplicatePolicy(String duplicatePolicy) {
     this.duplicatePolicy = duplicatePolicy;
@@ -353,7 +322,6 @@ public class AuthRequest {
 
 
   public AuthRequest eventManagement(EventDataModel eventManagement) {
-    
     this.eventManagement = eventManagement;
     return this;
   }
@@ -363,12 +331,9 @@ public class AuthRequest {
    * @return eventManagement
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public EventDataModel getEventManagement() {
     return eventManagement;
   }
-
 
   public void setEventManagement(EventDataModel eventManagement) {
     this.eventManagement = eventManagement;
@@ -376,7 +341,6 @@ public class AuthRequest {
 
 
   public AuthRequest expmonth(Integer expmonth) {
-    
     this.expmonth = expmonth;
     return this;
   }
@@ -388,12 +352,9 @@ public class AuthRequest {
    * @return expmonth
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "9", required = true, value = "The month of expiry of the card. The month value should be a numerical value between 1 and 12. ")
-
   public Integer getExpmonth() {
     return expmonth;
   }
-
 
   public void setExpmonth(Integer expmonth) {
     this.expmonth = expmonth;
@@ -401,7 +362,6 @@ public class AuthRequest {
 
 
   public AuthRequest expyear(Integer expyear) {
-    
     this.expyear = expyear;
     return this;
   }
@@ -413,12 +373,9 @@ public class AuthRequest {
    * @return expyear
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2025", required = true, value = "The year of expiry of the card. ")
-
   public Integer getExpyear() {
     return expyear;
   }
-
 
   public void setExpyear(Integer expyear) {
     this.expyear = expyear;
@@ -426,7 +383,6 @@ public class AuthRequest {
 
 
   public AuthRequest externalMpi(ExternalMPI externalMpi) {
-    
     this.externalMpi = externalMpi;
     return this;
   }
@@ -436,12 +392,9 @@ public class AuthRequest {
    * @return externalMpi
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public ExternalMPI getExternalMpi() {
     return externalMpi;
   }
-
 
   public void setExternalMpi(ExternalMPI externalMpi) {
     this.externalMpi = externalMpi;
@@ -449,7 +402,6 @@ public class AuthRequest {
 
 
   public AuthRequest identifier(String identifier) {
-    
     this.identifier = identifier;
     return this;
   }
@@ -459,12 +411,9 @@ public class AuthRequest {
    * @return identifier
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "95b857a1-5955-4b86-963c-5a6dbfc4fb95", required = true, value = "The identifier of the transaction to process. The value should be a valid reference and may be used to perform  post processing actions and to aid in reconciliation of transactions.  The value should be a valid printable string with ASCII character ranges from 0x32 to 0x127.  The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier) this will aid in ensuring each transaction is identifiable.  When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent request will ensure that a transaction is considered as different. ")
-
   public String getIdentifier() {
     return identifier;
   }
-
 
   public void setIdentifier(String identifier) {
     this.identifier = identifier;
@@ -472,7 +421,6 @@ public class AuthRequest {
 
 
   public AuthRequest matchAvsa(String matchAvsa) {
-    
     this.matchAvsa = matchAvsa;
     return this;
   }
@@ -482,12 +430,9 @@ public class AuthRequest {
    * @return matchAvsa
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.  Values are  `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.   `2` to bypass. Transactions that are bypassed will be allowed through even if the address did not match.   `3` to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation. ")
-
   public String getMatchAvsa() {
     return matchAvsa;
   }
-
 
   public void setMatchAvsa(String matchAvsa) {
     this.matchAvsa = matchAvsa;
@@ -495,7 +440,6 @@ public class AuthRequest {
 
 
   public AuthRequest mcc6012(MCC6012 mcc6012) {
-    
     this.mcc6012 = mcc6012;
     return this;
   }
@@ -505,12 +449,9 @@ public class AuthRequest {
    * @return mcc6012
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public MCC6012 getMcc6012() {
     return mcc6012;
   }
-
 
   public void setMcc6012(MCC6012 mcc6012) {
     this.mcc6012 = mcc6012;
@@ -518,7 +459,6 @@ public class AuthRequest {
 
 
   public AuthRequest merchantid(Integer merchantid) {
-    
     this.merchantid = merchantid;
     return this;
   }
@@ -528,12 +468,9 @@ public class AuthRequest {
    * @return merchantid
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "11223344", required = true, value = "Identifies the merchant account to perform processing for.")
-
   public Integer getMerchantid() {
     return merchantid;
   }
-
 
   public void setMerchantid(Integer merchantid) {
     this.merchantid = merchantid;
@@ -541,7 +478,6 @@ public class AuthRequest {
 
 
   public AuthRequest nameOnCard(String nameOnCard) {
-    
     this.nameOnCard = nameOnCard;
     return this;
   }
@@ -551,12 +487,9 @@ public class AuthRequest {
    * @return nameOnCard
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "MR NE BODY", value = "The card holder name as appears on the card such as MR N E BODY. Required for some acquirers. ")
-
   public String getNameOnCard() {
     return nameOnCard;
   }
-
 
   public void setNameOnCard(String nameOnCard) {
     this.nameOnCard = nameOnCard;
@@ -564,7 +497,6 @@ public class AuthRequest {
 
 
   public AuthRequest shipTo(ContactDetails shipTo) {
-    
     this.shipTo = shipTo;
     return this;
   }
@@ -574,20 +506,35 @@ public class AuthRequest {
    * @return shipTo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public ContactDetails getShipTo() {
     return shipTo;
   }
-
 
   public void setShipTo(ContactDetails shipTo) {
     this.shipTo = shipTo;
   }
 
 
+  public AuthRequest tag(String tag) {
+    this.tag = tag;
+    return this;
+  }
+
+   /**
+   * A \&quot;tag\&quot; is a label that you can attach to a payment authorization. Tags can help you group transactions together based on certain criteria, like a work job or a ticket number. They can also assist in filtering transactions when you&#39;re generating reports.  Multiple Tags You can add more than one tag to a transaction by separating them with commas.  Limitations There is a maximum limit of 3 tags that can be added to a single transaction. Each tag can be no longer than 20 characters and alphanumeric with no spaces.  Example: Let&#39;s say you&#39;re a software company and you have different teams working on various projects. When a team makes a purchase or incurs an expense, they can tag the transaction with the project name, the team name, and the type of expense.  Project Name: Project_X Team Name: Team_A Type of Expense: Hardware So, the tag for a transaction might look like: Project_X,Team_A,Hardware  This way, when you&#39;re looking at your financial reports, you can easily filter transactions based on these tags to see how much each project or team is spending on different types of expenses. 
+   * @return tag
+  **/
+  @javax.annotation.Nullable
+  public String getTag() {
+    return tag;
+  }
+
+  public void setTag(String tag) {
+    this.tag = tag;
+  }
+
+
   public AuthRequest threedsecure(ThreeDSecure threedsecure) {
-    
     this.threedsecure = threedsecure;
     return this;
   }
@@ -597,12 +544,9 @@ public class AuthRequest {
    * @return threedsecure
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public ThreeDSecure getThreedsecure() {
     return threedsecure;
   }
-
 
   public void setThreedsecure(ThreeDSecure threedsecure) {
     this.threedsecure = threedsecure;
@@ -610,7 +554,6 @@ public class AuthRequest {
 
 
   public AuthRequest transInfo(String transInfo) {
-    
     this.transInfo = transInfo;
     return this;
   }
@@ -620,12 +563,9 @@ public class AuthRequest {
    * @return transInfo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Further information that can be added to the transaction will display in reporting. Can be used for flexible values such as operator id.")
-
   public String getTransInfo() {
     return transInfo;
   }
-
 
   public void setTransInfo(String transInfo) {
     this.transInfo = transInfo;
@@ -633,7 +573,6 @@ public class AuthRequest {
 
 
   public AuthRequest transType(String transType) {
-    
     this.transType = transType;
     return this;
   }
@@ -643,12 +582,9 @@ public class AuthRequest {
    * @return transType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The type of transaction being submitted. Normally this value is not required and your account manager may request that you set this field.")
-
   public String getTransType() {
     return transType;
   }
-
 
   public void setTransType(String transType) {
     this.transType = transType;
@@ -684,6 +620,7 @@ public class AuthRequest {
         Objects.equals(this.merchantid, authRequest.merchantid) &&
         Objects.equals(this.nameOnCard, authRequest.nameOnCard) &&
         Objects.equals(this.shipTo, authRequest.shipTo) &&
+        Objects.equals(this.tag, authRequest.tag) &&
         Objects.equals(this.threedsecure, authRequest.threedsecure) &&
         Objects.equals(this.transInfo, authRequest.transInfo) &&
         Objects.equals(this.transType, authRequest.transType);
@@ -691,7 +628,7 @@ public class AuthRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(airlineData, amount, avsPostcodePolicy, billTo, cardnumber, csc, cscPolicy, currency, duplicatePolicy, eventManagement, expmonth, expyear, externalMpi, identifier, matchAvsa, mcc6012, merchantid, nameOnCard, shipTo, threedsecure, transInfo, transType);
+    return Objects.hash(airlineData, amount, avsPostcodePolicy, billTo, cardnumber, csc, cscPolicy, currency, duplicatePolicy, eventManagement, expmonth, expyear, externalMpi, identifier, matchAvsa, mcc6012, merchantid, nameOnCard, shipTo, tag, threedsecure, transInfo, transType);
   }
 
   @Override
@@ -717,6 +654,7 @@ public class AuthRequest {
     sb.append("    merchantid: ").append(toIndentedString(merchantid)).append("\n");
     sb.append("    nameOnCard: ").append(toIndentedString(nameOnCard)).append("\n");
     sb.append("    shipTo: ").append(toIndentedString(shipTo)).append("\n");
+    sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
     sb.append("    threedsecure: ").append(toIndentedString(threedsecure)).append("\n");
     sb.append("    transInfo: ").append(toIndentedString(transInfo)).append("\n");
     sb.append("    transType: ").append(toIndentedString(transType)).append("\n");
@@ -761,6 +699,7 @@ public class AuthRequest {
     openapiFields.add("merchantid");
     openapiFields.add("name_on_card");
     openapiFields.add("ship_to");
+    openapiFields.add("tag");
     openapiFields.add("threedsecure");
     openapiFields.add("trans_info");
     openapiFields.add("trans_type");
@@ -776,42 +715,43 @@ public class AuthRequest {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to AuthRequest
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to AuthRequest
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!AuthRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!AuthRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in AuthRequest is not found in the empty JSON string", AuthRequest.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!AuthRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuthRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuthRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : AuthRequest.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `airline_data`
       if (jsonObj.get("airline_data") != null && !jsonObj.get("airline_data").isJsonNull()) {
-        AirlineAdvice.validateJsonObject(jsonObj.getAsJsonObject("airline_data"));
+        AirlineAdvice.validateJsonElement(jsonObj.get("airline_data"));
       }
       if ((jsonObj.get("avs_postcode_policy") != null && !jsonObj.get("avs_postcode_policy").isJsonNull()) && !jsonObj.get("avs_postcode_policy").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `avs_postcode_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("avs_postcode_policy").toString()));
       }
       // validate the optional field `bill_to`
       if (jsonObj.get("bill_to") != null && !jsonObj.get("bill_to").isJsonNull()) {
-        ContactDetails.validateJsonObject(jsonObj.getAsJsonObject("bill_to"));
+        ContactDetails.validateJsonElement(jsonObj.get("bill_to"));
       }
       if (!jsonObj.get("cardnumber").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `cardnumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cardnumber").toString()));
@@ -830,11 +770,11 @@ public class AuthRequest {
       }
       // validate the optional field `event_management`
       if (jsonObj.get("event_management") != null && !jsonObj.get("event_management").isJsonNull()) {
-        EventDataModel.validateJsonObject(jsonObj.getAsJsonObject("event_management"));
+        EventDataModel.validateJsonElement(jsonObj.get("event_management"));
       }
       // validate the optional field `external_mpi`
       if (jsonObj.get("external_mpi") != null && !jsonObj.get("external_mpi").isJsonNull()) {
-        ExternalMPI.validateJsonObject(jsonObj.getAsJsonObject("external_mpi"));
+        ExternalMPI.validateJsonElement(jsonObj.get("external_mpi"));
       }
       if (!jsonObj.get("identifier").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `identifier` to be a primitive type in the JSON string but got `%s`", jsonObj.get("identifier").toString()));
@@ -844,18 +784,21 @@ public class AuthRequest {
       }
       // validate the optional field `mcc6012`
       if (jsonObj.get("mcc6012") != null && !jsonObj.get("mcc6012").isJsonNull()) {
-        MCC6012.validateJsonObject(jsonObj.getAsJsonObject("mcc6012"));
+        MCC6012.validateJsonElement(jsonObj.get("mcc6012"));
       }
       if ((jsonObj.get("name_on_card") != null && !jsonObj.get("name_on_card").isJsonNull()) && !jsonObj.get("name_on_card").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name_on_card` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name_on_card").toString()));
       }
       // validate the optional field `ship_to`
       if (jsonObj.get("ship_to") != null && !jsonObj.get("ship_to").isJsonNull()) {
-        ContactDetails.validateJsonObject(jsonObj.getAsJsonObject("ship_to"));
+        ContactDetails.validateJsonElement(jsonObj.get("ship_to"));
+      }
+      if ((jsonObj.get("tag") != null && !jsonObj.get("tag").isJsonNull()) && !jsonObj.get("tag").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tag` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tag").toString()));
       }
       // validate the optional field `threedsecure`
       if (jsonObj.get("threedsecure") != null && !jsonObj.get("threedsecure").isJsonNull()) {
-        ThreeDSecure.validateJsonObject(jsonObj.getAsJsonObject("threedsecure"));
+        ThreeDSecure.validateJsonElement(jsonObj.get("threedsecure"));
       }
       if ((jsonObj.get("trans_info") != null && !jsonObj.get("trans_info").isJsonNull()) && !jsonObj.get("trans_info").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `trans_info` to be a primitive type in the JSON string but got `%s`", jsonObj.get("trans_info").toString()));
@@ -885,9 +828,9 @@ public class AuthRequest {
 
            @Override
            public AuthRequest read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

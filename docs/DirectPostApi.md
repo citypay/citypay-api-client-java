@@ -1,18 +1,20 @@
-# .com.citypay.client.api.DirectPostApi
+# DirectPostApi
 
 All URIs are relative to *https://api.citypay.com*
 
 | Method | HTTP request | Description |
-|--------|--------------|-------------|
-| [**directCResAuthRequest**](DirectPostApi.md#directcresauthrequest) | **POST** /direct/cres/auth/{uuid} | Handles a CRes response from ACS, returning back the result of authorisation |
-| [**directCResTokeniseRequest**](DirectPostApi.md#directcrestokeniserequest) | **POST** /direct/cres/tokenise/{uuid} | Handles a CRes response from ACS, returning back a token for future authorisation |
-| [**directPostAuthRequest**](DirectPostApi.md#directpostauthrequest) | **POST** /direct/auth | Direct Post Auth Request |
-| [**directPostTokeniseRequest**](DirectPostApi.md#directposttokeniserequest) | **POST** /direct/tokenise | Direct Post Tokenise Request |
-| [**tokenRequest**](DirectPostApi.md#tokenrequest) | **POST** /direct/token | Direct Post Token Request |
+|------------- | ------------- | -------------|
+| [**directCResAuthRequest**](DirectPostApi.md#directCResAuthRequest) | **POST** /direct/cres/auth/{uuid} | Handles a CRes response from ACS, returning back the result of authorisation |
+| [**directCResTokeniseRequest**](DirectPostApi.md#directCResTokeniseRequest) | **POST** /direct/cres/tokenise/{uuid} | Handles a CRes response from ACS, returning back a token for future authorisation |
+| [**directPostAuthRequest**](DirectPostApi.md#directPostAuthRequest) | **POST** /direct/auth | Direct Post Auth Request |
+| [**directPostTokeniseRequest**](DirectPostApi.md#directPostTokeniseRequest) | **POST** /direct/tokenise | Direct Post Tokenise Request |
+| [**tokenRequest**](DirectPostApi.md#tokenRequest) | **POST** /direct/token | Direct Post Token Request |
 
-<a name="directcresauthrequest"></a>
-# **directCResAuthRequest**
-> AuthResponse directCResAuthRequest (String uuid, String cres, String threeDSSessionData)
+
+
+## directCResAuthRequest
+
+> AuthResponse directCResAuthRequest(uuid, cres, threeDSSessionData)
 
 Handles a CRes response from ACS, returning back the result of authorisation
 
@@ -22,70 +24,46 @@ perform a `Direct Post` integration who wish to handle the challenge flow themse
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class directCResAuthRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            var apiInstance = new DirectPostApi(config);
-            var uuid = "uuid_example";  // String | An identifier used to track the CReq/CRes cycle.
-            var cres = "cres_example";  // String | The CRES from the ACS. (optional) 
-            var threeDSSessionData = "threeDSSessionData_example";  // String | The session data from the ACS. (optional) 
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.models.*;
+import com.citypay.client.api.DirectPostApi;
 
-            try
-            {
-                // Handles a CRes response from ACS, returning back the result of authorisation
-                AuthResponse result = apiInstance.directCResAuthRequest(uuid, cres, threeDSSessionData);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling DirectPostApi.directCResAuthRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+
+        DirectPostApi apiInstance = new DirectPostApi(defaultClient);
+        String uuid = "uuid_example"; // String | An identifier used to track the CReq/CRes cycle.
+        String cres = "cres_example"; // String | The CRES from the ACS.
+        String threeDSSessionData = "threeDSSessionData_example"; // String | The session data from the ACS.
+        try {
+            AuthResponse result = apiInstance.directCResAuthRequest(uuid, cres, threeDSSessionData);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DirectPostApi#directCResAuthRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the directCResAuthRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Handles a CRes response from ACS, returning back the result of authorisation
-    ApiResponse<AuthResponse> response = apiInstance.directCResAuthRequestWithHttpInfo(uuid, cres, threeDSSessionData);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling DirectPostApi.directCResAuthRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **uuid** | **String** | An identifier used to track the CReq/CRes cycle. |  |
-| **cres** | **String** | The CRES from the ACS. | [optional]  |
-| **threeDSSessionData** | **String** | The session data from the ACS. | [optional]  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **uuid** | **String**| An identifier used to track the CReq/CRes cycle. | |
+| **cres** | **String**| The CRES from the ACS. | [optional] |
+| **threeDSSessionData** | **String**| The session data from the ACS. | [optional] |
 
 ### Return type
 
@@ -97,8 +75,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, application/x-www-form-urlencoded
+- **Content-Type**: application/x-www-form-urlencoded
+- **Accept**: application/json, application/xml, application/x-www-form-urlencoded
 
 
 ### HTTP response details
@@ -113,11 +91,10 @@ No authorization required
 | **412** | Bad Request. Should the incoming data not be validly determined and an error code results. |  -  |
 | **500** | Server Error. Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="directcrestokeniserequest"></a>
-# **directCResTokeniseRequest**
-> TokenisationResponseModel directCResTokeniseRequest (String uuid, String cres, String threeDSSessionData)
+## directCResTokeniseRequest
+
+> TokenisationResponseModel directCResTokeniseRequest(uuid, cres, threeDSSessionData)
 
 Handles a CRes response from ACS, returning back a token for future authorisation
 
@@ -127,70 +104,46 @@ perform a `Direct Post` integration who wish to handle the challenge flow themse
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class directCResTokeniseRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            var apiInstance = new DirectPostApi(config);
-            var uuid = "uuid_example";  // String | An identifier used to track the CReq/CRes cycle.
-            var cres = "cres_example";  // String | The CRES from the ACS. (optional) 
-            var threeDSSessionData = "threeDSSessionData_example";  // String | The session data from the ACS. (optional) 
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.models.*;
+import com.citypay.client.api.DirectPostApi;
 
-            try
-            {
-                // Handles a CRes response from ACS, returning back a token for future authorisation
-                TokenisationResponseModel result = apiInstance.directCResTokeniseRequest(uuid, cres, threeDSSessionData);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling DirectPostApi.directCResTokeniseRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+
+        DirectPostApi apiInstance = new DirectPostApi(defaultClient);
+        String uuid = "uuid_example"; // String | An identifier used to track the CReq/CRes cycle.
+        String cres = "cres_example"; // String | The CRES from the ACS.
+        String threeDSSessionData = "threeDSSessionData_example"; // String | The session data from the ACS.
+        try {
+            TokenisationResponseModel result = apiInstance.directCResTokeniseRequest(uuid, cres, threeDSSessionData);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DirectPostApi#directCResTokeniseRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the directCResTokeniseRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Handles a CRes response from ACS, returning back a token for future authorisation
-    ApiResponse<TokenisationResponseModel> response = apiInstance.directCResTokeniseRequestWithHttpInfo(uuid, cres, threeDSSessionData);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling DirectPostApi.directCResTokeniseRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **uuid** | **String** | An identifier used to track the CReq/CRes cycle. |  |
-| **cres** | **String** | The CRES from the ACS. | [optional]  |
-| **threeDSSessionData** | **String** | The session data from the ACS. | [optional]  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **uuid** | **String**| An identifier used to track the CReq/CRes cycle. | |
+| **cres** | **String**| The CRES from the ACS. | [optional] |
+| **threeDSSessionData** | **String**| The session data from the ACS. | [optional] |
 
 ### Return type
 
@@ -202,8 +155,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, application/x-www-form-urlencoded
+- **Content-Type**: application/x-www-form-urlencoded
+- **Accept**: application/json, application/xml, application/x-www-form-urlencoded
 
 
 ### HTTP response details
@@ -218,11 +171,10 @@ No authorization required
 | **412** | Bad Request. Should the incoming data not be validly determined and an error code results. |  -  |
 | **500** | Server Error. Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="directpostauthrequest"></a>
-# **directPostAuthRequest**
-> AuthResponse directPostAuthRequest (DirectPostRequest directPostRequest)
+## directPostAuthRequest
+
+> AuthResponse directPostAuthRequest(directPostRequest)
 
 Direct Post Auth Request
 
@@ -237,75 +189,55 @@ curl https://api.citypay.com/direct/auth?cp-domain-key=n834ytqp84y... \
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class directPostAuthRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
-            // Configure API key authorization: cp-domain-key
-            config.AddApiKey("cp-domain-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-domain-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.DirectPostApi;
 
-            var apiInstance = new DirectPostApi(config);
-            var directPostRequest = new DirectPostRequest(); // DirectPostRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-domain-key
+        ApiKeyAuth cp-domain-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-domain-key");
+        cp-domain-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-domain-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Direct Post Auth Request
-                AuthResponse result = apiInstance.directPostAuthRequest(directPostRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling DirectPostApi.directPostAuthRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
+
+        DirectPostApi apiInstance = new DirectPostApi(defaultClient);
+        DirectPostRequest directPostRequest = new DirectPostRequest(); // DirectPostRequest | 
+        try {
+            AuthResponse result = apiInstance.directPostAuthRequest(directPostRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DirectPostApi#directPostAuthRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the directPostAuthRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Direct Post Auth Request
-    ApiResponse<AuthResponse> response = apiInstance.directPostAuthRequestWithHttpInfo(directPostRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling DirectPostApi.directPostAuthRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **directPostRequest** | [**DirectPostRequest**](DirectPostRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **directPostRequest** | [**DirectPostRequest**](DirectPostRequest.md)|  | |
 
 ### Return type
 
@@ -313,12 +245,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[cp-api-key](../README.md#cp-api-key), [cp-domain-key](../README.md#cp-domain-key)
+[cp-domain-key](../README.md#cp-domain-key), [cp-api-key](../README.md#cp-api-key)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded, text/xml
- - **Accept**: application/json, application/xml, application/x-www-form-urlencoded, text/xml
+- **Content-Type**: application/json, application/x-www-form-urlencoded, text/xml
+- **Accept**: application/json, application/xml, application/x-www-form-urlencoded, text/xml
 
 
 ### HTTP response details
@@ -333,11 +265,10 @@ catch (ApiException e)
 | **412** | Bad Request. Should the incoming data not be validly determined and an error code results. |  -  |
 | **500** | Server Error. Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="directposttokeniserequest"></a>
-# **directPostTokeniseRequest**
-> AuthResponse directPostTokeniseRequest (DirectPostRequest directPostRequest)
+## directPostTokeniseRequest
+
+> AuthResponse directPostTokeniseRequest(directPostRequest)
 
 Direct Post Tokenise Request
 
@@ -352,75 +283,55 @@ curl https://api.citypay.com/v6/direct?cp-domain-key=n834ytqp84y... \
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class directPostTokeniseRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
-            // Configure API key authorization: cp-domain-key
-            config.AddApiKey("cp-domain-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-domain-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.DirectPostApi;
 
-            var apiInstance = new DirectPostApi(config);
-            var directPostRequest = new DirectPostRequest(); // DirectPostRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-domain-key
+        ApiKeyAuth cp-domain-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-domain-key");
+        cp-domain-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-domain-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Direct Post Tokenise Request
-                AuthResponse result = apiInstance.directPostTokeniseRequest(directPostRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling DirectPostApi.directPostTokeniseRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
+
+        DirectPostApi apiInstance = new DirectPostApi(defaultClient);
+        DirectPostRequest directPostRequest = new DirectPostRequest(); // DirectPostRequest | 
+        try {
+            AuthResponse result = apiInstance.directPostTokeniseRequest(directPostRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DirectPostApi#directPostTokeniseRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the directPostTokeniseRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Direct Post Tokenise Request
-    ApiResponse<AuthResponse> response = apiInstance.directPostTokeniseRequestWithHttpInfo(directPostRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling DirectPostApi.directPostTokeniseRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **directPostRequest** | [**DirectPostRequest**](DirectPostRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **directPostRequest** | [**DirectPostRequest**](DirectPostRequest.md)|  | |
 
 ### Return type
 
@@ -428,12 +339,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[cp-api-key](../README.md#cp-api-key), [cp-domain-key](../README.md#cp-domain-key)
+[cp-domain-key](../README.md#cp-domain-key), [cp-api-key](../README.md#cp-api-key)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded, text/xml
- - **Accept**: application/json, application/xml, application/x-www-form-urlencoded, text/xml
+- **Content-Type**: application/json, application/x-www-form-urlencoded, text/xml
+- **Accept**: application/json, application/xml, application/x-www-form-urlencoded, text/xml
 
 
 ### HTTP response details
@@ -448,11 +359,10 @@ catch (ApiException e)
 | **412** | Bad Request. Should the incoming data not be validly determined and an error code results. |  -  |
 | **500** | Server Error. Server Error. The server was unable to complete the request. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="tokenrequest"></a>
-# **tokenRequest**
-> AuthResponse tokenRequest (DirectTokenAuthRequest directTokenAuthRequest)
+## tokenRequest
+
+> AuthResponse tokenRequest(directTokenAuthRequest)
 
 Direct Post Token Request
 
@@ -461,75 +371,55 @@ response stating that the transaction was approved or declined.
 
 
 ### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using .com.citypay.client.api;
-using .Client;
-using .com.citypay.client.model;
 
-namespace Example
-{
-    public class tokenRequestExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.citypay.com";
-            // Configure API key authorization: cp-api-key
-            config.AddApiKey("cp-api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-api-key", "Bearer");
-            // Configure API key authorization: cp-domain-key
-            config.AddApiKey("cp-domain-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("cp-domain-key", "Bearer");
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.models.*;
+import com.citypay.client.api.DirectPostApi;
 
-            var apiInstance = new DirectPostApi(config);
-            var directTokenAuthRequest = new DirectTokenAuthRequest(); // DirectTokenAuthRequest | 
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-domain-key
+        ApiKeyAuth cp-domain-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-domain-key");
+        cp-domain-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-domain-key.setApiKeyPrefix("Token");
 
-            try
-            {
-                // Direct Post Token Request
-                AuthResponse result = apiInstance.tokenRequest(directTokenAuthRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling DirectPostApi.tokenRequest: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
+
+        DirectPostApi apiInstance = new DirectPostApi(defaultClient);
+        DirectTokenAuthRequest directTokenAuthRequest = new DirectTokenAuthRequest(); // DirectTokenAuthRequest | 
+        try {
+            AuthResponse result = apiInstance.tokenRequest(directTokenAuthRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DirectPostApi#tokenRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
         }
     }
 }
 ```
 
-#### Using the tokenRequestWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Direct Post Token Request
-    ApiResponse<AuthResponse> response = apiInstance.tokenRequestWithHttpInfo(directTokenAuthRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling DirectPostApi.tokenRequestWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
 ### Parameters
 
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **directTokenAuthRequest** | [**DirectTokenAuthRequest**](DirectTokenAuthRequest.md) |  |  |
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **directTokenAuthRequest** | [**DirectTokenAuthRequest**](DirectTokenAuthRequest.md)|  | |
 
 ### Return type
 
@@ -537,12 +427,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[cp-api-key](../README.md#cp-api-key), [cp-domain-key](../README.md#cp-domain-key)
+[cp-domain-key](../README.md#cp-domain-key), [cp-api-key](../README.md#cp-api-key)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded, text/xml
- - **Accept**: application/json, application/xml, application/x-www-form-urlencoded, text/xml
+- **Content-Type**: application/json, application/x-www-form-urlencoded, text/xml
+- **Accept**: application/json, application/xml, application/x-www-form-urlencoded, text/xml
 
 
 ### HTTP response details
@@ -555,6 +445,4 @@ catch (ApiException e)
 | **403** | Forbidden. The domain key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
 | **406** | Not Acceptable. Should the incoming data not be validly determined. |  -  |
 | **412** | Bad Request. Should the incoming data not be validly determined and an error code results. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

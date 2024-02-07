@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -39,7 +39,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.ws.rs.core.GenericType;
 
 public class BatchProcessingApi {
     private ApiClient localVarApiClient;
@@ -224,7 +223,7 @@ public class BatchProcessingApi {
         return localVarCall;
     }
     /**
-     * Build call for batchReportRequest
+     * Build call for batchRetrieveRequest
      * @param batchReportRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -240,7 +239,7 @@ public class BatchProcessingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call batchReportRequestCall(BatchReportRequest batchReportRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call batchRetrieveRequestCall(BatchReportRequest batchReportRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -288,19 +287,19 @@ public class BatchProcessingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call batchReportRequestValidateBeforeCall(BatchReportRequest batchReportRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call batchRetrieveRequestValidateBeforeCall(BatchReportRequest batchReportRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'batchReportRequest' is set
         if (batchReportRequest == null) {
-            throw new ApiException("Missing the required parameter 'batchReportRequest' when calling batchReportRequest(Async)");
+            throw new ApiException("Missing the required parameter 'batchReportRequest' when calling batchRetrieveRequest(Async)");
         }
 
-        return batchReportRequestCall(batchReportRequest, _callback);
+        return batchRetrieveRequestCall(batchReportRequest, _callback);
 
     }
 
     /**
      * BatchReportRequest
-     * The operation is used to retrieve a report of the result of a batch process.
+     * The report for a given batch.
      * @param batchReportRequest  (required)
      * @return BatchReportResponseModel
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -315,14 +314,14 @@ public class BatchProcessingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public BatchReportResponseModel batchReportRequest(BatchReportRequest batchReportRequest) throws ApiException {
-        ApiResponse<BatchReportResponseModel> localVarResp = batchReportRequestWithHttpInfo(batchReportRequest);
+    public BatchReportResponseModel batchRetrieveRequest(BatchReportRequest batchReportRequest) throws ApiException {
+        ApiResponse<BatchReportResponseModel> localVarResp = batchRetrieveRequestWithHttpInfo(batchReportRequest);
         return localVarResp.getData();
     }
 
     /**
      * BatchReportRequest
-     * The operation is used to retrieve a report of the result of a batch process.
+     * The report for a given batch.
      * @param batchReportRequest  (required)
      * @return ApiResponse&lt;BatchReportResponseModel&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -337,15 +336,15 @@ public class BatchProcessingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<BatchReportResponseModel> batchReportRequestWithHttpInfo(BatchReportRequest batchReportRequest) throws ApiException {
-        okhttp3.Call localVarCall = batchReportRequestValidateBeforeCall(batchReportRequest, null);
+    public ApiResponse<BatchReportResponseModel> batchRetrieveRequestWithHttpInfo(BatchReportRequest batchReportRequest) throws ApiException {
+        okhttp3.Call localVarCall = batchRetrieveRequestValidateBeforeCall(batchReportRequest, null);
         Type localVarReturnType = new TypeToken<BatchReportResponseModel>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * BatchReportRequest (asynchronously)
-     * The operation is used to retrieve a report of the result of a batch process.
+     * The report for a given batch.
      * @param batchReportRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -361,9 +360,9 @@ public class BatchProcessingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call batchReportRequestAsync(BatchReportRequest batchReportRequest, final ApiCallback<BatchReportResponseModel> _callback) throws ApiException {
+    public okhttp3.Call batchRetrieveRequestAsync(BatchReportRequest batchReportRequest, final ApiCallback<BatchReportResponseModel> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = batchReportRequestValidateBeforeCall(batchReportRequest, _callback);
+        okhttp3.Call localVarCall = batchRetrieveRequestValidateBeforeCall(batchReportRequest, _callback);
         Type localVarReturnType = new TypeToken<BatchReportResponseModel>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

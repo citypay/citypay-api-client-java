@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,7 +13,6 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.citypay.client.model.PaylinkCustomParam;
 import com.citypay.client.model.PaylinkFieldGuardModel;
 import com.citypay.client.model.PaylinkPartPayments;
@@ -23,10 +22,9 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,13 +39,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -62,7 +63,7 @@ public class PaylinkConfig {
 
   public static final String SERIALIZED_NAME_CUSTOM_PARAMS = "custom_params";
   @SerializedName(SERIALIZED_NAME_CUSTOM_PARAMS)
-  private List<PaylinkCustomParam> customParams = null;
+  private List<PaylinkCustomParam> customParams;
 
   public static final String SERIALIZED_NAME_DESCRIPTOR = "descriptor";
   @SerializedName(SERIALIZED_NAME_DESCRIPTOR)
@@ -74,11 +75,11 @@ public class PaylinkConfig {
 
   public static final String SERIALIZED_NAME_FIELD_GUARD = "field_guard";
   @SerializedName(SERIALIZED_NAME_FIELD_GUARD)
-  private List<PaylinkFieldGuardModel> fieldGuard = null;
+  private List<PaylinkFieldGuardModel> fieldGuard;
 
   public static final String SERIALIZED_NAME_LOCK_PARAMS = "lock_params";
   @SerializedName(SERIALIZED_NAME_LOCK_PARAMS)
-  private List<String> lockParams = null;
+  private List<String> lockParams;
 
   public static final String SERIALIZED_NAME_MERCH_LOGO = "merch_logo";
   @SerializedName(SERIALIZED_NAME_MERCH_LOGO)
@@ -90,7 +91,7 @@ public class PaylinkConfig {
 
   public static final String SERIALIZED_NAME_OPTIONS = "options";
   @SerializedName(SERIALIZED_NAME_OPTIONS)
-  private List<String> options = null;
+  private List<String> options;
 
   public static final String SERIALIZED_NAME_PART_PAYMENTS = "part_payments";
   @SerializedName(SERIALIZED_NAME_PART_PAYMENTS)
@@ -98,11 +99,11 @@ public class PaylinkConfig {
 
   public static final String SERIALIZED_NAME_PASS_THROUGH_DATA = "pass_through_data";
   @SerializedName(SERIALIZED_NAME_PASS_THROUGH_DATA)
-  private Map<String, String> passThroughData = null;
+  private Map<String, String> passThroughData = new HashMap<>();
 
   public static final String SERIALIZED_NAME_PASS_THROUGH_HEADERS = "pass_through_headers";
   @SerializedName(SERIALIZED_NAME_PASS_THROUGH_HEADERS)
-  private Map<String, String> passThroughHeaders = null;
+  private Map<String, String> passThroughHeaders = new HashMap<>();
 
   public static final String SERIALIZED_NAME_POSTBACK = "postback";
   @SerializedName(SERIALIZED_NAME_POSTBACK)
@@ -148,7 +149,6 @@ public class PaylinkConfig {
   }
 
   public PaylinkConfig acsMode(String acsMode) {
-    
     this.acsMode = acsMode;
     return this;
   }
@@ -158,12 +158,9 @@ public class PaylinkConfig {
    * @return acsMode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Specifies the approach to be adopted by the Paylink form when displaying a 3-D Secure challenge window. The values may be  iframe: shows the 3-D Secure ACS in an iframe dialog, neatly embedding it in Paylink. This provides a more seamless flow for the cardholder who is able to validate and authenticate their card using a dialog provided by their card issuer.  inline: an inline mode transfers the full browser window to the authentication server, allowing the payment cardholder to see their payment card issuer's URL and the certificate status in the browser. If you request an iframe mode and the browser width is deemed as being small (< 768px) then an inline mode will be enforced. This is to ensure that mobile users have an improved user experience. ")
-
   public String getAcsMode() {
     return acsMode;
   }
-
 
   public void setAcsMode(String acsMode) {
     this.acsMode = acsMode;
@@ -171,7 +168,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig customParams(List<PaylinkCustomParam> customParams) {
-    
     this.customParams = customParams;
     return this;
   }
@@ -189,12 +185,9 @@ public class PaylinkConfig {
    * @return customParams
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public List<PaylinkCustomParam> getCustomParams() {
     return customParams;
   }
-
 
   public void setCustomParams(List<PaylinkCustomParam> customParams) {
     this.customParams = customParams;
@@ -202,7 +195,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig descriptor(String descriptor) {
-    
     this.descriptor = descriptor;
     return this;
   }
@@ -212,12 +204,9 @@ public class PaylinkConfig {
    * @return descriptor
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Directly specify the merchant descriptor used for the transaction to be displayed on the payment page.")
-
   public String getDescriptor() {
     return descriptor;
   }
-
 
   public void setDescriptor(String descriptor) {
     this.descriptor = descriptor;
@@ -225,7 +214,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig expireIn(String expireIn) {
-    
     this.expireIn = expireIn;
     return this;
   }
@@ -235,12 +223,9 @@ public class PaylinkConfig {
    * @return expireIn
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Specifies a period of time in seconds after which the token cannot be used. A value of 0 defines that the token will never expire. The API will convert an expiry time based on a string value. For instance:   s - Time in seconds, for example 90s.   m - Time in minutes, for example 20m.   h - Time in hours, for example 4h.   w - Time in weeks, for example 4w.   M - Time in months, for example 6M.   y - Time in years, for example 1y.   Defaults to 30 minutes. ")
-
   public String getExpireIn() {
     return expireIn;
   }
-
 
   public void setExpireIn(String expireIn) {
     this.expireIn = expireIn;
@@ -248,7 +233,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig fieldGuard(List<PaylinkFieldGuardModel> fieldGuard) {
-    
     this.fieldGuard = fieldGuard;
     return this;
   }
@@ -266,12 +250,9 @@ public class PaylinkConfig {
    * @return fieldGuard
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public List<PaylinkFieldGuardModel> getFieldGuard() {
     return fieldGuard;
   }
-
 
   public void setFieldGuard(List<PaylinkFieldGuardModel> fieldGuard) {
     this.fieldGuard = fieldGuard;
@@ -279,7 +260,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig lockParams(List<String> lockParams) {
-    
     this.lockParams = lockParams;
     return this;
   }
@@ -297,12 +277,9 @@ public class PaylinkConfig {
    * @return lockParams
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public List<String> getLockParams() {
     return lockParams;
   }
-
 
   public void setLockParams(List<String> lockParams) {
     this.lockParams = lockParams;
@@ -310,7 +287,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig merchLogo(String merchLogo) {
-    
     this.merchLogo = merchLogo;
     return this;
   }
@@ -320,12 +296,9 @@ public class PaylinkConfig {
    * @return merchLogo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A URL of a logo to include in the form. The URL should be delivered using HTTPS.")
-
   public String getMerchLogo() {
     return merchLogo;
   }
-
 
   public void setMerchLogo(String merchLogo) {
     this.merchLogo = merchLogo;
@@ -333,7 +306,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig merchTerms(String merchTerms) {
-    
     this.merchTerms = merchTerms;
     return this;
   }
@@ -343,12 +315,9 @@ public class PaylinkConfig {
    * @return merchTerms
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A URL of the merchant terms and conditions for payment. If a value is supplied, a checkbox will be required to be completed to confirm that the cardholder agrees to these conditions before payment. A modal dialogue is displayed with the content of the conditions displayed.")
-
   public String getMerchTerms() {
     return merchTerms;
   }
-
 
   public void setMerchTerms(String merchTerms) {
     this.merchTerms = merchTerms;
@@ -356,7 +325,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig options(List<String> options) {
-    
     this.options = options;
     return this;
   }
@@ -374,12 +342,9 @@ public class PaylinkConfig {
    * @return options
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public List<String> getOptions() {
     return options;
   }
-
 
   public void setOptions(List<String> options) {
     this.options = options;
@@ -387,7 +352,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig partPayments(PaylinkPartPayments partPayments) {
-    
     this.partPayments = partPayments;
     return this;
   }
@@ -397,12 +361,9 @@ public class PaylinkConfig {
    * @return partPayments
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public PaylinkPartPayments getPartPayments() {
     return partPayments;
   }
-
 
   public void setPartPayments(PaylinkPartPayments partPayments) {
     this.partPayments = partPayments;
@@ -410,7 +371,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig passThroughData(Map<String, String> passThroughData) {
-    
     this.passThroughData = passThroughData;
     return this;
   }
@@ -428,12 +388,9 @@ public class PaylinkConfig {
    * @return passThroughData
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public Map<String, String> getPassThroughData() {
     return passThroughData;
   }
-
 
   public void setPassThroughData(Map<String, String> passThroughData) {
     this.passThroughData = passThroughData;
@@ -441,7 +398,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig passThroughHeaders(Map<String, String> passThroughHeaders) {
-    
     this.passThroughHeaders = passThroughHeaders;
     return this;
   }
@@ -459,12 +415,9 @@ public class PaylinkConfig {
    * @return passThroughHeaders
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public Map<String, String> getPassThroughHeaders() {
     return passThroughHeaders;
   }
-
 
   public void setPassThroughHeaders(Map<String, String> passThroughHeaders) {
     this.passThroughHeaders = passThroughHeaders;
@@ -472,7 +425,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig postback(String postback) {
-    
     this.postback = postback;
     return this;
   }
@@ -482,12 +434,9 @@ public class PaylinkConfig {
    * @return postback
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Specifies a URL to use for a call back when the payment is completed. see Postback Handling }.")
-
   public String getPostback() {
     return postback;
   }
-
 
   public void setPostback(String postback) {
     this.postback = postback;
@@ -495,7 +444,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig postbackPassword(String postbackPassword) {
-    
     this.postbackPassword = postbackPassword;
     return this;
   }
@@ -505,12 +453,9 @@ public class PaylinkConfig {
    * @return postbackPassword
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A password to be added to the postback for HTTP Basic Authentication.")
-
   public String getPostbackPassword() {
     return postbackPassword;
   }
-
 
   public void setPostbackPassword(String postbackPassword) {
     this.postbackPassword = postbackPassword;
@@ -518,7 +463,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig postbackPolicy(String postbackPolicy) {
-    
     this.postbackPolicy = postbackPolicy;
     return this;
   }
@@ -528,12 +472,9 @@ public class PaylinkConfig {
    * @return postbackPolicy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The policy setting for the postback see Postback Handling.")
-
   public String getPostbackPolicy() {
     return postbackPolicy;
   }
-
 
   public void setPostbackPolicy(String postbackPolicy) {
     this.postbackPolicy = postbackPolicy;
@@ -541,7 +482,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig postbackUsername(String postbackUsername) {
-    
     this.postbackUsername = postbackUsername;
     return this;
   }
@@ -551,12 +491,9 @@ public class PaylinkConfig {
    * @return postbackUsername
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A username to be added to the postback for HTTP Basic Authentication.")
-
   public String getPostbackUsername() {
     return postbackUsername;
   }
-
 
   public void setPostbackUsername(String postbackUsername) {
     this.postbackUsername = postbackUsername;
@@ -564,7 +501,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig redirectDelay(Integer redirectDelay) {
-    
     this.redirectDelay = redirectDelay;
     return this;
   }
@@ -574,12 +510,9 @@ public class PaylinkConfig {
    * @return redirectDelay
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A value which can delay the redirection in seconds. A value of 0 will redirect immediately.")
-
   public Integer getRedirectDelay() {
     return redirectDelay;
   }
-
 
   public void setRedirectDelay(Integer redirectDelay) {
     this.redirectDelay = redirectDelay;
@@ -587,7 +520,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig redirectFailure(String redirectFailure) {
-    
     this.redirectFailure = redirectFailure;
     return this;
   }
@@ -597,12 +529,9 @@ public class PaylinkConfig {
    * @return redirectFailure
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A URL which the browser is redirected to on non-completion of a transaction.")
-
   public String getRedirectFailure() {
     return redirectFailure;
   }
-
 
   public void setRedirectFailure(String redirectFailure) {
     this.redirectFailure = redirectFailure;
@@ -610,7 +539,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig redirectSuccess(String redirectSuccess) {
-    
     this.redirectSuccess = redirectSuccess;
     return this;
   }
@@ -620,12 +548,9 @@ public class PaylinkConfig {
    * @return redirectSuccess
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A URL which the browser is redirected to on authorisation of a transaction.")
-
   public String getRedirectSuccess() {
     return redirectSuccess;
   }
-
 
   public void setRedirectSuccess(String redirectSuccess) {
     this.redirectSuccess = redirectSuccess;
@@ -633,7 +558,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig renderer(String renderer) {
-    
     this.renderer = renderer;
     return this;
   }
@@ -643,12 +567,9 @@ public class PaylinkConfig {
    * @return renderer
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The Paylink renderer engine to use.")
-
   public String getRenderer() {
     return renderer;
   }
-
 
   public void setRenderer(String renderer) {
     this.renderer = renderer;
@@ -656,7 +577,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig returnParams(Boolean returnParams) {
-    
     this.returnParams = returnParams;
     return this;
   }
@@ -666,12 +586,9 @@ public class PaylinkConfig {
    * @return returnParams
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "If a value of true is specified, any redirection will include the transaction result in parameters. It is recommended to use the postback integration rather than redirection parameters.")
-
   public Boolean isReturnParams() {
     return returnParams;
   }
-
 
   public void setReturnParams(Boolean returnParams) {
     this.returnParams = returnParams;
@@ -679,7 +596,6 @@ public class PaylinkConfig {
 
 
   public PaylinkConfig ui(PaylinkUI ui) {
-    
     this.ui = ui;
     return this;
   }
@@ -689,12 +605,9 @@ public class PaylinkConfig {
    * @return ui
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public PaylinkUI getUi() {
     return ui;
   }
-
 
   public void setUi(PaylinkUI ui) {
     this.ui = ui;
@@ -816,25 +729,26 @@ public class PaylinkConfig {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to PaylinkConfig
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to PaylinkConfig
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!PaylinkConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PaylinkConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkConfig is not found in the empty JSON string", PaylinkConfig.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!PaylinkConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("acs_mode") != null && !jsonObj.get("acs_mode").isJsonNull()) && !jsonObj.get("acs_mode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `acs_mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("acs_mode").toString()));
       }
@@ -848,7 +762,7 @@ public class PaylinkConfig {
 
           // validate the optional field `custom_params` (array)
           for (int i = 0; i < jsonArraycustomParams.size(); i++) {
-            PaylinkCustomParam.validateJsonObject(jsonArraycustomParams.get(i).getAsJsonObject());
+            PaylinkCustomParam.validateJsonElement(jsonArraycustomParams.get(i));
           };
         }
       }
@@ -868,12 +782,12 @@ public class PaylinkConfig {
 
           // validate the optional field `field_guard` (array)
           for (int i = 0; i < jsonArrayfieldGuard.size(); i++) {
-            PaylinkFieldGuardModel.validateJsonObject(jsonArrayfieldGuard.get(i).getAsJsonObject());
+            PaylinkFieldGuardModel.validateJsonElement(jsonArrayfieldGuard.get(i));
           };
         }
       }
       // ensure the optional json data is an array if present
-      if (jsonObj.get("lock_params") != null && !jsonObj.get("lock_params").isJsonArray()) {
+      if (jsonObj.get("lock_params") != null && !jsonObj.get("lock_params").isJsonNull() && !jsonObj.get("lock_params").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `lock_params` to be an array in the JSON string but got `%s`", jsonObj.get("lock_params").toString()));
       }
       if ((jsonObj.get("merch_logo") != null && !jsonObj.get("merch_logo").isJsonNull()) && !jsonObj.get("merch_logo").isJsonPrimitive()) {
@@ -883,12 +797,12 @@ public class PaylinkConfig {
         throw new IllegalArgumentException(String.format("Expected the field `merch_terms` to be a primitive type in the JSON string but got `%s`", jsonObj.get("merch_terms").toString()));
       }
       // ensure the optional json data is an array if present
-      if (jsonObj.get("options") != null && !jsonObj.get("options").isJsonArray()) {
+      if (jsonObj.get("options") != null && !jsonObj.get("options").isJsonNull() && !jsonObj.get("options").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `options` to be an array in the JSON string but got `%s`", jsonObj.get("options").toString()));
       }
       // validate the optional field `part_payments`
       if (jsonObj.get("part_payments") != null && !jsonObj.get("part_payments").isJsonNull()) {
-        PaylinkPartPayments.validateJsonObject(jsonObj.getAsJsonObject("part_payments"));
+        PaylinkPartPayments.validateJsonElement(jsonObj.get("part_payments"));
       }
       if ((jsonObj.get("postback") != null && !jsonObj.get("postback").isJsonNull()) && !jsonObj.get("postback").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `postback` to be a primitive type in the JSON string but got `%s`", jsonObj.get("postback").toString()));
@@ -913,7 +827,7 @@ public class PaylinkConfig {
       }
       // validate the optional field `ui`
       if (jsonObj.get("ui") != null && !jsonObj.get("ui").isJsonNull()) {
-        PaylinkUI.validateJsonObject(jsonObj.getAsJsonObject("ui"));
+        PaylinkUI.validateJsonElement(jsonObj.get("ui"));
       }
   }
 
@@ -937,9 +851,9 @@ public class PaylinkConfig {
 
            @Override
            public PaylinkConfig read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,15 +13,13 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -33,13 +31,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -80,22 +81,18 @@ public class PaylinkFieldGuardModel {
   }
 
   public PaylinkFieldGuardModel fieldType(String fieldType) {
-    
     this.fieldType = fieldType;
     return this;
   }
 
    /**
-   * A type of HTML element that should be displayed such as text, password, url. Any HTML5 input type value may be supplied.
+   * A type of HTML element that should be displayed such as text, password, url. Any HTML5 input type value may be supplied.  If a value of &#x60;date&#x60; is supplied the value format should be an ISO format YYYY-MM-DD format date i.e. 2024-03-01 If a value of &#x60;datetime-local&#x60; is supplied, the value format should be an ISO format YYYY-MM-DDTHH:mm i.e. 2024-06-01T19:30. 
    * @return fieldType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A type of HTML element that should be displayed such as text, password, url. Any HTML5 input type value may be supplied.")
-
   public String getFieldType() {
     return fieldType;
   }
-
 
   public void setFieldType(String fieldType) {
     this.fieldType = fieldType;
@@ -103,7 +100,6 @@ public class PaylinkFieldGuardModel {
 
 
   public PaylinkFieldGuardModel label(String label) {
-    
     this.label = label;
     return this;
   }
@@ -113,12 +109,9 @@ public class PaylinkFieldGuardModel {
    * @return label
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A label for the field guard to display on the authentication page.")
-
   public String getLabel() {
     return label;
   }
-
 
   public void setLabel(String label) {
     this.label = label;
@@ -126,7 +119,6 @@ public class PaylinkFieldGuardModel {
 
 
   public PaylinkFieldGuardModel maxlen(Integer maxlen) {
-    
     this.maxlen = maxlen;
     return this;
   }
@@ -136,12 +128,9 @@ public class PaylinkFieldGuardModel {
    * @return maxlen
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A maximum length of any value supplied in the field guard form. Used for validating entry.")
-
   public Integer getMaxlen() {
     return maxlen;
   }
-
 
   public void setMaxlen(Integer maxlen) {
     this.maxlen = maxlen;
@@ -149,7 +138,6 @@ public class PaylinkFieldGuardModel {
 
 
   public PaylinkFieldGuardModel minlen(Integer minlen) {
-    
     this.minlen = minlen;
     return this;
   }
@@ -159,12 +147,9 @@ public class PaylinkFieldGuardModel {
    * @return minlen
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A minimum length of any value supplied in the field guard form. Used for validating entry.")
-
   public Integer getMinlen() {
     return minlen;
   }
-
 
   public void setMinlen(Integer minlen) {
     this.minlen = minlen;
@@ -172,7 +157,6 @@ public class PaylinkFieldGuardModel {
 
 
   public PaylinkFieldGuardModel name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -182,12 +166,9 @@ public class PaylinkFieldGuardModel {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A field name which is used to refer to a field which is guarded.")
-
   public String getName() {
     return name;
   }
-
 
   public void setName(String name) {
     this.name = name;
@@ -195,7 +176,6 @@ public class PaylinkFieldGuardModel {
 
 
   public PaylinkFieldGuardModel regex(String regex) {
-    
     this.regex = regex;
     return this;
   }
@@ -205,12 +185,9 @@ public class PaylinkFieldGuardModel {
    * @return regex
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A JavaScript regular expression value which can be used to validate the data provided in the field guard entry form. Used for validating entry.")
-
   public String getRegex() {
     return regex;
   }
-
 
   public void setRegex(String regex) {
     this.regex = regex;
@@ -218,7 +195,6 @@ public class PaylinkFieldGuardModel {
 
 
   public PaylinkFieldGuardModel value(String value) {
-    
     this.value = value;
     return this;
   }
@@ -228,12 +204,9 @@ public class PaylinkFieldGuardModel {
    * @return value
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A value directly associated with the field guard. Any value provided at this level will be considered as sensitive and not logged.")
-
   public String getValue() {
     return value;
   }
-
 
   public void setValue(String value) {
     this.value = value;
@@ -310,25 +283,26 @@ public class PaylinkFieldGuardModel {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to PaylinkFieldGuardModel
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to PaylinkFieldGuardModel
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!PaylinkFieldGuardModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PaylinkFieldGuardModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkFieldGuardModel is not found in the empty JSON string", PaylinkFieldGuardModel.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!PaylinkFieldGuardModel.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkFieldGuardModel` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkFieldGuardModel` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("field_type") != null && !jsonObj.get("field_type").isJsonNull()) && !jsonObj.get("field_type").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `field_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("field_type").toString()));
       }
@@ -366,9 +340,9 @@ public class PaylinkFieldGuardModel {
 
            @Override
            public PaylinkFieldGuardModel read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

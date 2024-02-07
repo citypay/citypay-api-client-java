@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,7 +13,6 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.citypay.client.model.AuthResponse;
 import com.citypay.client.model.AuthenRequired;
 import com.citypay.client.model.RequestChallenged;
@@ -22,9 +21,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -36,13 +34,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -67,7 +68,6 @@ public class Decision {
   }
 
   public Decision authenRequired(AuthenRequired authenRequired) {
-    
     this.authenRequired = authenRequired;
     return this;
   }
@@ -77,12 +77,9 @@ public class Decision {
    * @return authenRequired
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public AuthenRequired getAuthenRequired() {
     return authenRequired;
   }
-
 
   public void setAuthenRequired(AuthenRequired authenRequired) {
     this.authenRequired = authenRequired;
@@ -90,7 +87,6 @@ public class Decision {
 
 
   public Decision authResponse(AuthResponse authResponse) {
-    
     this.authResponse = authResponse;
     return this;
   }
@@ -100,12 +96,9 @@ public class Decision {
    * @return authResponse
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public AuthResponse getAuthResponse() {
     return authResponse;
   }
-
 
   public void setAuthResponse(AuthResponse authResponse) {
     this.authResponse = authResponse;
@@ -113,7 +106,6 @@ public class Decision {
 
 
   public Decision requestChallenged(RequestChallenged requestChallenged) {
-    
     this.requestChallenged = requestChallenged;
     return this;
   }
@@ -123,12 +115,9 @@ public class Decision {
    * @return requestChallenged
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public RequestChallenged getRequestChallenged() {
     return requestChallenged;
   }
-
 
   public void setRequestChallenged(RequestChallenged requestChallenged) {
     this.requestChallenged = requestChallenged;
@@ -193,36 +182,37 @@ public class Decision {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to Decision
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to Decision
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!Decision.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Decision.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Decision is not found in the empty JSON string", Decision.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!Decision.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Decision` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Decision` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `AuthenRequired`
       if (jsonObj.get("AuthenRequired") != null && !jsonObj.get("AuthenRequired").isJsonNull()) {
-        AuthenRequired.validateJsonObject(jsonObj.getAsJsonObject("AuthenRequired"));
+        AuthenRequired.validateJsonElement(jsonObj.get("AuthenRequired"));
       }
       // validate the optional field `AuthResponse`
       if (jsonObj.get("AuthResponse") != null && !jsonObj.get("AuthResponse").isJsonNull()) {
-        AuthResponse.validateJsonObject(jsonObj.getAsJsonObject("AuthResponse"));
+        AuthResponse.validateJsonElement(jsonObj.get("AuthResponse"));
       }
       // validate the optional field `RequestChallenged`
       if (jsonObj.get("RequestChallenged") != null && !jsonObj.get("RequestChallenged").isJsonNull()) {
-        RequestChallenged.validateJsonObject(jsonObj.getAsJsonObject("RequestChallenged"));
+        RequestChallenged.validateJsonElement(jsonObj.get("RequestChallenged"));
       }
   }
 
@@ -246,9 +236,9 @@ public class Decision {
 
            @Override
            public Decision read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

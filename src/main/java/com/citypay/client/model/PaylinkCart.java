@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,17 +13,15 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.citypay.client.model.PaylinkCartItemModel;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -36,13 +34,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -53,7 +54,7 @@ import com.citypay.client.JSON;
 public class PaylinkCart {
   public static final String SERIALIZED_NAME_CONTENTS = "contents";
   @SerializedName(SERIALIZED_NAME_CONTENTS)
-  private List<PaylinkCartItemModel> contents = null;
+  private List<PaylinkCartItemModel> contents;
 
   public static final String SERIALIZED_NAME_COUPON = "coupon";
   @SerializedName(SERIALIZED_NAME_COUPON)
@@ -83,7 +84,6 @@ public class PaylinkCart {
   }
 
   public PaylinkCart contents(List<PaylinkCartItemModel> contents) {
-    
     this.contents = contents;
     return this;
   }
@@ -101,12 +101,9 @@ public class PaylinkCart {
    * @return contents
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public List<PaylinkCartItemModel> getContents() {
     return contents;
   }
-
 
   public void setContents(List<PaylinkCartItemModel> contents) {
     this.contents = contents;
@@ -114,7 +111,6 @@ public class PaylinkCart {
 
 
   public PaylinkCart coupon(String coupon) {
-    
     this.coupon = coupon;
     return this;
   }
@@ -124,12 +120,9 @@ public class PaylinkCart {
    * @return coupon
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A coupon redeemed with the transaction.")
-
   public String getCoupon() {
     return coupon;
   }
-
 
   public void setCoupon(String coupon) {
     this.coupon = coupon;
@@ -137,7 +130,6 @@ public class PaylinkCart {
 
 
   public PaylinkCart mode(Integer mode) {
-    
     this.mode = mode;
     return this;
   }
@@ -147,12 +139,9 @@ public class PaylinkCart {
    * @return mode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The mode field specifies the behaviour or functionality of the cart.  Valid values are:   0 - No cart - No cart is shown  1 - Read-only - The cart is shown with a breakdown of the item details provided by objects in the contents array.  2 - Selection cart - The cart is shown as a drop-down box of available cart items that the customer can a single item select from.  3 - Dynamic cart - a text box is rendered to enable the operator to input an amount.  4 - Multi cart - The cart is displayed with items rendered with selectable quantities. ")
-
   public Integer getMode() {
     return mode;
   }
-
 
   public void setMode(Integer mode) {
     this.mode = mode;
@@ -160,7 +149,6 @@ public class PaylinkCart {
 
 
   public PaylinkCart productDescription(String productDescription) {
-    
     this.productDescription = productDescription;
     return this;
   }
@@ -170,12 +158,9 @@ public class PaylinkCart {
    * @return productDescription
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Specifies a description about the product or service that is the subject of the transaction. It will be rendered in the header of the page with no labels.")
-
   public String getProductDescription() {
     return productDescription;
   }
-
 
   public void setProductDescription(String productDescription) {
     this.productDescription = productDescription;
@@ -183,7 +168,6 @@ public class PaylinkCart {
 
 
   public PaylinkCart productInformation(String productInformation) {
-    
     this.productInformation = productInformation;
     return this;
   }
@@ -193,12 +177,9 @@ public class PaylinkCart {
    * @return productInformation
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Specifies information about the product or service that is the subject of the transaction. It will be rendered in the header of the page.")
-
   public String getProductInformation() {
     return productInformation;
   }
-
 
   public void setProductInformation(String productInformation) {
     this.productInformation = productInformation;
@@ -206,7 +187,6 @@ public class PaylinkCart {
 
 
   public PaylinkCart shipping(Integer shipping) {
-    
     this.shipping = shipping;
     return this;
   }
@@ -216,12 +196,9 @@ public class PaylinkCart {
    * @return shipping
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The shipping amount of the transaction in the lowest denomination of currency.")
-
   public Integer getShipping() {
     return shipping;
   }
-
 
   public void setShipping(Integer shipping) {
     this.shipping = shipping;
@@ -229,7 +206,6 @@ public class PaylinkCart {
 
 
   public PaylinkCart tax(Integer tax) {
-    
     this.tax = tax;
     return this;
   }
@@ -239,12 +215,9 @@ public class PaylinkCart {
    * @return tax
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The tax amount of the transaction in the lowest denomination of currency.")
-
   public Integer getTax() {
     return tax;
   }
-
 
   public void setTax(Integer tax) {
     this.tax = tax;
@@ -321,25 +294,26 @@ public class PaylinkCart {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to PaylinkCart
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to PaylinkCart
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!PaylinkCart.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PaylinkCart.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkCart is not found in the empty JSON string", PaylinkCart.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!PaylinkCart.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkCart` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkCart` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (jsonObj.get("contents") != null && !jsonObj.get("contents").isJsonNull()) {
         JsonArray jsonArraycontents = jsonObj.getAsJsonArray("contents");
         if (jsonArraycontents != null) {
@@ -350,7 +324,7 @@ public class PaylinkCart {
 
           // validate the optional field `contents` (array)
           for (int i = 0; i < jsonArraycontents.size(); i++) {
-            PaylinkCartItemModel.validateJsonObject(jsonArraycontents.get(i).getAsJsonObject());
+            PaylinkCartItemModel.validateJsonElement(jsonArraycontents.get(i));
           };
         }
       }
@@ -385,9 +359,9 @@ public class PaylinkCart {
 
            @Override
            public PaylinkCart read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

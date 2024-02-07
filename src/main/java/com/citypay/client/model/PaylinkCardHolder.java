@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,16 +13,14 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.citypay.client.model.PaylinkAddress;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,13 +32,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -93,7 +94,6 @@ public class PaylinkCardHolder {
   }
 
   public PaylinkCardHolder acceptHeaders(String acceptHeaders) {
-    
     this.acceptHeaders = acceptHeaders;
     return this;
   }
@@ -103,12 +103,9 @@ public class PaylinkCardHolder {
    * @return acceptHeaders
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The accept headers string generated by the Customer Browser. This field may be used to lock the payment process to the customer's browser. If the customer were to attempt to use a different browser an error will be generated.")
-
   public String getAcceptHeaders() {
     return acceptHeaders;
   }
-
 
   public void setAcceptHeaders(String acceptHeaders) {
     this.acceptHeaders = acceptHeaders;
@@ -116,7 +113,6 @@ public class PaylinkCardHolder {
 
 
   public PaylinkCardHolder address(PaylinkAddress address) {
-    
     this.address = address;
     return this;
   }
@@ -126,12 +122,9 @@ public class PaylinkCardHolder {
    * @return address
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public PaylinkAddress getAddress() {
     return address;
   }
-
 
   public void setAddress(PaylinkAddress address) {
     this.address = address;
@@ -139,7 +132,6 @@ public class PaylinkCardHolder {
 
 
   public PaylinkCardHolder company(String company) {
-    
     this.company = company;
     return this;
   }
@@ -149,12 +141,9 @@ public class PaylinkCardHolder {
    * @return company
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Acme Ltd", value = "The company name for the card holder.")
-
   public String getCompany() {
     return company;
   }
-
 
   public void setCompany(String company) {
     this.company = company;
@@ -162,7 +151,6 @@ public class PaylinkCardHolder {
 
 
   public PaylinkCardHolder email(String email) {
-    
     this.email = email;
     return this;
   }
@@ -172,12 +160,9 @@ public class PaylinkCardHolder {
    * @return email
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "card.holder@citypay.com", value = "The cardholder's email address. This field can be used to send a receipt to the payment cardholder. If this value is not supplied, no email will be sent.")
-
   public String getEmail() {
     return email;
   }
-
 
   public void setEmail(String email) {
     this.email = email;
@@ -185,7 +170,6 @@ public class PaylinkCardHolder {
 
 
   public PaylinkCardHolder firstname(String firstname) {
-    
     this.firstname = firstname;
     return this;
   }
@@ -195,12 +179,9 @@ public class PaylinkCardHolder {
    * @return firstname
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "John", value = "The first name of the card holder.")
-
   public String getFirstname() {
     return firstname;
   }
-
 
   public void setFirstname(String firstname) {
     this.firstname = firstname;
@@ -208,7 +189,6 @@ public class PaylinkCardHolder {
 
 
   public PaylinkCardHolder lastname(String lastname) {
-    
     this.lastname = lastname;
     return this;
   }
@@ -218,12 +198,9 @@ public class PaylinkCardHolder {
    * @return lastname
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Smith", value = "The last name or surname of the card holder.")
-
   public String getLastname() {
     return lastname;
   }
-
 
   public void setLastname(String lastname) {
     this.lastname = lastname;
@@ -231,7 +208,6 @@ public class PaylinkCardHolder {
 
 
   public PaylinkCardHolder mobileNo(String mobileNo) {
-    
     this.mobileNo = mobileNo;
     return this;
   }
@@ -241,12 +217,9 @@ public class PaylinkCardHolder {
    * @return mobileNo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "447790123456", value = "The mobile number of the cardholder. This can be used for data collection via the Paylink Payment Form or to send an SMS on completion of a transaction. This feature is a licensable option and is not configured by default.")
-
   public String getMobileNo() {
     return mobileNo;
   }
-
 
   public void setMobileNo(String mobileNo) {
     this.mobileNo = mobileNo;
@@ -254,7 +227,6 @@ public class PaylinkCardHolder {
 
 
   public PaylinkCardHolder remoteAddr(String remoteAddr) {
-    
     this.remoteAddr = remoteAddr;
     return this;
   }
@@ -264,12 +236,9 @@ public class PaylinkCardHolder {
    * @return remoteAddr
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Specifies the remote IP address of the customer's browser. This field may be used to lock the payment form to the customer's IP address. Should the address change or a malicious third party attempted to hijack the transaction, an error will be generated.")
-
   public String getRemoteAddr() {
     return remoteAddr;
   }
-
 
   public void setRemoteAddr(String remoteAddr) {
     this.remoteAddr = remoteAddr;
@@ -277,7 +246,6 @@ public class PaylinkCardHolder {
 
 
   public PaylinkCardHolder title(String title) {
-    
     this.title = title;
     return this;
   }
@@ -287,12 +255,9 @@ public class PaylinkCardHolder {
    * @return title
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Mr", value = "A title for the card holder such as Mr, Mrs, Ms, M. Mme. etc.")
-
   public String getTitle() {
     return title;
   }
-
 
   public void setTitle(String title) {
     this.title = title;
@@ -300,7 +265,6 @@ public class PaylinkCardHolder {
 
 
   public PaylinkCardHolder userAgent(String userAgent) {
-    
     this.userAgent = userAgent;
     return this;
   }
@@ -310,12 +274,9 @@ public class PaylinkCardHolder {
    * @return userAgent
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Specifies the user agent string of the Customer Browser. This field may be used to lock the payment form to the browser. Should a different user agent attempt to process the transaction or a malicious third party attempted to hijack the transaction, an error is generated.")
-
   public String getUserAgent() {
     return userAgent;
   }
-
 
   public void setUserAgent(String userAgent) {
     this.userAgent = userAgent;
@@ -401,31 +362,32 @@ public class PaylinkCardHolder {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to PaylinkCardHolder
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to PaylinkCardHolder
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!PaylinkCardHolder.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PaylinkCardHolder.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkCardHolder is not found in the empty JSON string", PaylinkCardHolder.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!PaylinkCardHolder.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkCardHolder` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkCardHolder` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("accept_headers") != null && !jsonObj.get("accept_headers").isJsonNull()) && !jsonObj.get("accept_headers").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `accept_headers` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accept_headers").toString()));
       }
       // validate the optional field `address`
       if (jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) {
-        PaylinkAddress.validateJsonObject(jsonObj.getAsJsonObject("address"));
+        PaylinkAddress.validateJsonElement(jsonObj.get("address"));
       }
       if ((jsonObj.get("company") != null && !jsonObj.get("company").isJsonNull()) && !jsonObj.get("company").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `company` to be a primitive type in the JSON string but got `%s`", jsonObj.get("company").toString()));
@@ -473,9 +435,9 @@ public class PaylinkCardHolder {
 
            @Override
            public PaylinkCardHolder read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,16 +13,14 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,13 +32,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -145,6 +146,14 @@ public class AuthResponse {
   @SerializedName(SERIALIZED_NAME_SCHEME)
   private String scheme;
 
+  public static final String SERIALIZED_NAME_SCHEME_ID = "scheme_id";
+  @SerializedName(SERIALIZED_NAME_SCHEME_ID)
+  private String schemeId;
+
+  public static final String SERIALIZED_NAME_SCHEME_LOGO = "scheme_logo";
+  @SerializedName(SERIALIZED_NAME_SCHEME_LOGO)
+  private String schemeLogo;
+
   public static final String SERIALIZED_NAME_SHA256 = "sha256";
   @SerializedName(SERIALIZED_NAME_SHA256)
   private String sha256;
@@ -161,7 +170,6 @@ public class AuthResponse {
   }
 
   public AuthResponse amount(Integer amount) {
-    
     this.amount = amount;
     return this;
   }
@@ -171,12 +179,9 @@ public class AuthResponse {
    * @return amount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "3600", value = "The amount of the transaction processed.")
-
   public Integer getAmount() {
     return amount;
   }
-
 
   public void setAmount(Integer amount) {
     this.amount = amount;
@@ -184,7 +189,6 @@ public class AuthResponse {
 
 
   public AuthResponse atrn(String atrn) {
-    
     this.atrn = atrn;
     return this;
   }
@@ -194,12 +198,9 @@ public class AuthResponse {
    * @return atrn
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A reference number provided by the acquirer for a transaction it can be used to cross reference transactions with an Acquirers reporting panel. ")
-
   public String getAtrn() {
     return atrn;
   }
-
 
   public void setAtrn(String atrn) {
     this.atrn = atrn;
@@ -207,7 +208,6 @@ public class AuthResponse {
 
 
   public AuthResponse atsd(String atsd) {
-    
     this.atsd = atsd;
     return this;
   }
@@ -217,12 +217,9 @@ public class AuthResponse {
    * @return atsd
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Additional Transaction Security Data used for ecommerce transactions to decipher security capabilities and attempts against a transaction.")
-
   public String getAtsd() {
     return atsd;
   }
-
 
   public void setAtsd(String atsd) {
     this.atsd = atsd;
@@ -230,7 +227,6 @@ public class AuthResponse {
 
 
   public AuthResponse authcode(String authcode) {
-    
     this.authcode = authcode;
     return this;
   }
@@ -240,12 +236,9 @@ public class AuthResponse {
    * @return authcode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "001245A", value = "The authorisation code as returned by the card issuer or acquiring bank when a transaction has successfully   been authorised. Authorisation codes contain alphanumeric values. Whilst the code confirms authorisation it   should not be used to determine whether a transaction was successfully processed. For instance an auth code   may be returned when a transaction has been subsequently declined due to a CSC mismatch. ")
-
   public String getAuthcode() {
     return authcode;
   }
-
 
   public void setAuthcode(String authcode) {
     this.authcode = authcode;
@@ -253,7 +246,6 @@ public class AuthResponse {
 
 
   public AuthResponse authenResult(String authenResult) {
-    
     this.authenResult = authenResult;
     return this;
   }
@@ -263,12 +255,9 @@ public class AuthResponse {
    * @return authenResult
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The result of any authentication using 3d_secure authorisation against ecommerce transactions. Values are:  <table> <tr> <th>Value</th> <th>Description</th> </tr> <tr> <td>Y</td> <td>Authentication Successful. The Cardholder's password was successfully validated.</td> </tr> <tr> <td>N</td> <td>Authentication Failed. Customer failed or cancelled authentication, transaction denied.</td> </tr> <tr> <td>A</td> <td>Attempts Processing Performed Authentication could not be completed but a proof of authentication attempt (CAVV) was generated.</td> </tr> <tr> <td>U</td> <td>Authentication Could Not Be Performed Authentication could not be completed, due to technical or other problem.</td> </tr> </table> ")
-
   public String getAuthenResult() {
     return authenResult;
   }
-
 
   public void setAuthenResult(String authenResult) {
     this.authenResult = authenResult;
@@ -276,7 +265,6 @@ public class AuthResponse {
 
 
   public AuthResponse authorised(Boolean authorised) {
-    
     this.authorised = authorised;
     return this;
   }
@@ -286,12 +274,9 @@ public class AuthResponse {
    * @return authorised
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "A boolean definition that indicates that the transaction was authorised. It will return false if the transaction  was declined, rejected or cancelled due to CSC matching failures.  Attention should be referenced to the AuthResult and Response code for accurate determination of the result. ")
-
   public Boolean isAuthorised() {
     return authorised;
   }
-
 
   public void setAuthorised(Boolean authorised) {
     this.authorised = authorised;
@@ -299,7 +284,6 @@ public class AuthResponse {
 
 
   public AuthResponse avsResult(String avsResult) {
-    
     this.avsResult = avsResult;
     return this;
   }
@@ -309,12 +293,9 @@ public class AuthResponse {
    * @return avsResult
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The AVS result codes determine the result of checking the AVS values within the Address Verification fraud system. If a transaction is declined due to the AVS code not matching, this value can help determine the reason for the decline.  <table> <tr> <th>Code</th> <th>Description</th> </tr> <tr><td>Y</td><td>Address and 5 digit post code match</td></tr> <tr><td>M</td><td>Street address and Postal codes match for international transaction</td></tr> <tr><td>U</td><td>No AVS data available from issuer auth system</td></tr> <tr><td>A</td><td>Addres matches, post code does not</td></tr> <tr><td>I</td><td>Address information verified for international transaction</td></tr> <tr><td>Z</td><td>5 digit post code matches, Address does not</td></tr> <tr><td>W</td><td>9 digit post code matches, Address does not</td></tr> <tr><td>X</td><td>Postcode and address match</td></tr> <tr><td>B</td><td>Postal code not verified due to incompatible formats</td></tr> <tr><td>P</td><td>Postal codes match. Street address not verified due to to incompatible formats</td></tr> <tr><td>E</td><td>AVS Error</td></tr> <tr><td>C</td><td>Street address and Postal code not verified due to incompatible formats</td></tr> <tr><td>D</td><td>Street address and postal codes match</td></tr> <tr><td> </td><td>No information</td></tr> <tr><td>N</td><td>Neither postcode nor address match</td></tr> <tr><td>R</td><td>Retry, System unavailble or Timed Out</td></tr> <tr><td>S</td><td>AVS Service not supported by issuer or processor</td></tr> <tr><td>G</td><td>Issuer does not participate in AVS</td></tr> </table> ")
-
   public String getAvsResult() {
     return avsResult;
   }
-
 
   public void setAvsResult(String avsResult) {
     this.avsResult = avsResult;
@@ -322,7 +303,6 @@ public class AuthResponse {
 
 
   public AuthResponse binCommercial(Boolean binCommercial) {
-    
     this.binCommercial = binCommercial;
     return this;
   }
@@ -332,12 +312,9 @@ public class AuthResponse {
    * @return binCommercial
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Determines whether the bin range was found to be a commercial or business card.")
-
   public Boolean isBinCommercial() {
     return binCommercial;
   }
-
 
   public void setBinCommercial(Boolean binCommercial) {
     this.binCommercial = binCommercial;
@@ -345,7 +322,6 @@ public class AuthResponse {
 
 
   public AuthResponse binDebit(Boolean binDebit) {
-    
     this.binDebit = binDebit;
     return this;
   }
@@ -355,12 +331,9 @@ public class AuthResponse {
    * @return binDebit
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Determines whether the bin range was found to be a debit card. If false the card was considered as a credit card.")
-
   public Boolean isBinDebit() {
     return binDebit;
   }
-
 
   public void setBinDebit(Boolean binDebit) {
     this.binDebit = binDebit;
@@ -368,7 +341,6 @@ public class AuthResponse {
 
 
   public AuthResponse binDescription(String binDescription) {
-    
     this.binDescription = binDescription;
     return this;
   }
@@ -378,12 +350,9 @@ public class AuthResponse {
    * @return binDescription
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Platinum Card", value = "A description of the bin range found for the card.")
-
   public String getBinDescription() {
     return binDescription;
   }
-
 
   public void setBinDescription(String binDescription) {
     this.binDescription = binDescription;
@@ -391,7 +360,6 @@ public class AuthResponse {
 
 
   public AuthResponse cavv(String cavv) {
-    
     this.cavv = cavv;
     return this;
   }
@@ -401,12 +369,9 @@ public class AuthResponse {
    * @return cavv
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The cardholder authentication verification value which can be returned for verification purposes of the authenticated  transaction for dispute realisation. ")
-
   public String getCavv() {
     return cavv;
   }
-
 
   public void setCavv(String cavv) {
     this.cavv = cavv;
@@ -414,7 +379,6 @@ public class AuthResponse {
 
 
   public AuthResponse context(String context) {
-    
     this.context = context;
     return this;
   }
@@ -424,12 +388,9 @@ public class AuthResponse {
    * @return context
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "aspiu352908ns47n343598bads", value = "The context which processed the transaction, can be used for support purposes to trace transactions.")
-
   public String getContext() {
     return context;
   }
-
 
   public void setContext(String context) {
     this.context = context;
@@ -437,7 +398,6 @@ public class AuthResponse {
 
 
   public AuthResponse cscResult(String cscResult) {
-    
     this.cscResult = cscResult;
     return this;
   }
@@ -447,12 +407,9 @@ public class AuthResponse {
    * @return cscResult
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The CSC rseult codes determine the result of checking the provided CSC value within the Card Security Code fraud system. If a transaction is declined due to the CSC code not matching, this value can help determine the reason for the decline.  <table> <tr> <th>Code</th> <th>Description</th> </tr> <tr><td> </td><td>No information</td></tr> <tr><td>M</td><td>Card verification data matches</td></tr> <tr><td>N</td><td>Card verification data was checked but did not match</td></tr> <tr><td>P</td><td>Card verification was not processed</td></tr> <tr><td>S</td><td>The card verification data should be on the card but the merchant indicates that it is not</td></tr> <tr><td>U</td><td>The card issuer is not certified</td></tr> </table> ")
-
   public String getCscResult() {
     return cscResult;
   }
-
 
   public void setCscResult(String cscResult) {
     this.cscResult = cscResult;
@@ -460,7 +417,6 @@ public class AuthResponse {
 
 
   public AuthResponse currency(String currency) {
-    
     this.currency = currency;
     return this;
   }
@@ -470,12 +426,9 @@ public class AuthResponse {
    * @return currency
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "GBP", value = "The currency the transaction was processed in. This is an `ISO4217` alpha currency value.")
-
   public String getCurrency() {
     return currency;
   }
-
 
   public void setCurrency(String currency) {
     this.currency = currency;
@@ -483,7 +436,6 @@ public class AuthResponse {
 
 
   public AuthResponse datetime(OffsetDateTime datetime) {
-    
     this.datetime = datetime;
     return this;
   }
@@ -493,12 +445,9 @@ public class AuthResponse {
    * @return datetime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2020-01-02T18:32:28Z", value = "The UTC date time of the transaction in ISO data time format. ")
-
   public OffsetDateTime getDatetime() {
     return datetime;
   }
-
 
   public void setDatetime(OffsetDateTime datetime) {
     this.datetime = datetime;
@@ -506,7 +455,6 @@ public class AuthResponse {
 
 
   public AuthResponse eci(String eci) {
-    
     this.eci = eci;
     return this;
   }
@@ -516,12 +464,9 @@ public class AuthResponse {
    * @return eci
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An Electronic Commerce Indicator (ECI) used to identify the result of authentication using 3DSecure. ")
-
   public String getEci() {
     return eci;
   }
-
 
   public void setEci(String eci) {
     this.eci = eci;
@@ -529,7 +474,6 @@ public class AuthResponse {
 
 
   public AuthResponse identifier(String identifier) {
-    
     this.identifier = identifier;
     return this;
   }
@@ -539,12 +483,9 @@ public class AuthResponse {
    * @return identifier
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "95b857a1-5955-4b86-963c-5a6dbfc4fb95", value = "The identifier provided within the request.")
-
   public String getIdentifier() {
     return identifier;
   }
-
 
   public void setIdentifier(String identifier) {
     this.identifier = identifier;
@@ -552,7 +493,6 @@ public class AuthResponse {
 
 
   public AuthResponse live(Boolean live) {
-    
     this.live = live;
     return this;
   }
@@ -562,12 +502,9 @@ public class AuthResponse {
    * @return live
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Used to identify that a transaction was processed on a live authorisation platform.")
-
   public Boolean isLive() {
     return live;
   }
-
 
   public void setLive(Boolean live) {
     this.live = live;
@@ -575,7 +512,6 @@ public class AuthResponse {
 
 
   public AuthResponse maskedpan(String maskedpan) {
-    
     this.maskedpan = maskedpan;
     return this;
   }
@@ -585,12 +521,9 @@ public class AuthResponse {
    * @return maskedpan
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "4***********0002", value = "A masked value of the card number used for processing displaying limited values that can be used on a receipt. ")
-
   public String getMaskedpan() {
     return maskedpan;
   }
-
 
   public void setMaskedpan(String maskedpan) {
     this.maskedpan = maskedpan;
@@ -598,7 +531,6 @@ public class AuthResponse {
 
 
   public AuthResponse merchantid(Integer merchantid) {
-    
     this.merchantid = merchantid;
     return this;
   }
@@ -608,12 +540,9 @@ public class AuthResponse {
    * @return merchantid
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "11223344", required = true, value = "The merchant id that processed this transaction.")
-
   public Integer getMerchantid() {
     return merchantid;
   }
-
 
   public void setMerchantid(Integer merchantid) {
     this.merchantid = merchantid;
@@ -621,7 +550,6 @@ public class AuthResponse {
 
 
   public AuthResponse result(Integer result) {
-    
     this.result = result;
     return this;
   }
@@ -631,12 +559,9 @@ public class AuthResponse {
    * @return result
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1", required = true, value = "An integer result that indicates the outcome of the transaction. The Code value below maps to the result value  <table> <tr> <th>Code</th> <th>Abbrev</th> <th>Description</th> </tr> <tr><td>0</td><td>Declined</td><td>Declined</td></tr> <tr><td>1</td><td>Accepted</td><td>Accepted</td></tr> <tr><td>2</td><td>Rejected</td><td>Rejected</td></tr> <tr><td>3</td><td>Not Attempted</td><td>Not Attempted</td></tr> <tr><td>4</td><td>Referred</td><td>Referred</td></tr> <tr><td>5</td><td>PinRetry</td><td>Perform PIN Retry</td></tr> <tr><td>6</td><td>ForSigVer</td><td>Force Signature Verification</td></tr> <tr><td>7</td><td>Hold</td><td>Hold</td></tr> <tr><td>8</td><td>SecErr</td><td>Security Error</td></tr> <tr><td>9</td><td>CallAcq</td><td>Call Acquirer</td></tr> <tr><td>10</td><td>DNH</td><td>Do Not Honour</td></tr> <tr><td>11</td><td>RtnCrd</td><td>Retain Card</td></tr> <tr><td>12</td><td>ExprdCrd</td><td>Expired Card</td></tr> <tr><td>13</td><td>InvldCrd</td><td>Invalid Card No</td></tr> <tr><td>14</td><td>PinExcd</td><td>Pin Tries Exceeded</td></tr> <tr><td>15</td><td>PinInvld</td><td>Pin Invalid</td></tr> <tr><td>16</td><td>AuthReq</td><td>Authentication Required</td></tr> <tr><td>17</td><td>AuthenFail</td><td>Authentication Failed</td></tr> <tr><td>18</td><td>Verified</td><td>Card Verified</td></tr> <tr><td>19</td><td>Cancelled</td><td>Cancelled</td></tr> <tr><td>20</td><td>Un</td><td>Unknown</td></tr> <tr><td>21</td><td>Challenged</td><td>Challenged</td></tr> <tr><td>22</td><td>Decoupled</td><td>Decoupled</td></tr> <tr><td>23</td><td>Denied</td><td>Permission Denied</td></tr> </table> ")
-
   public Integer getResult() {
     return result;
   }
-
 
   public void setResult(Integer result) {
     this.result = result;
@@ -644,7 +569,6 @@ public class AuthResponse {
 
 
   public AuthResponse resultCode(String resultCode) {
-    
     this.resultCode = resultCode;
     return this;
   }
@@ -654,12 +578,9 @@ public class AuthResponse {
    * @return resultCode
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "0", required = true, value = "The result code as defined in the Response Codes Reference for example 000 is an accepted live transaction whilst 001 is an accepted test transaction. Result codes identify the source of success and failure.  Codes may start with an alpha character i.e. C001 indicating a type of error such as a card validation error. ")
-
   public String getResultCode() {
     return resultCode;
   }
-
 
   public void setResultCode(String resultCode) {
     this.resultCode = resultCode;
@@ -667,7 +588,6 @@ public class AuthResponse {
 
 
   public AuthResponse resultMessage(String resultMessage) {
-    
     this.resultMessage = resultMessage;
     return this;
   }
@@ -677,12 +597,9 @@ public class AuthResponse {
    * @return resultMessage
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "Accepted Transaction", required = true, value = "The message regarding the result which provides further narrative to the result code. ")
-
   public String getResultMessage() {
     return resultMessage;
   }
-
 
   public void setResultMessage(String resultMessage) {
     this.resultMessage = resultMessage;
@@ -690,30 +607,63 @@ public class AuthResponse {
 
 
   public AuthResponse scheme(String scheme) {
-    
     this.scheme = scheme;
     return this;
   }
 
    /**
-   * A name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard. 
+   * The name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard. 
    * @return scheme
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Visa", value = "A name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard. ")
-
   public String getScheme() {
     return scheme;
   }
-
 
   public void setScheme(String scheme) {
     this.scheme = scheme;
   }
 
 
+  public AuthResponse schemeId(String schemeId) {
+    this.schemeId = schemeId;
+    return this;
+  }
+
+   /**
+   * The name of the card scheme of the transaction such as VI or MC. 
+   * @return schemeId
+  **/
+  @javax.annotation.Nullable
+  public String getSchemeId() {
+    return schemeId;
+  }
+
+  public void setSchemeId(String schemeId) {
+    this.schemeId = schemeId;
+  }
+
+
+  public AuthResponse schemeLogo(String schemeLogo) {
+    this.schemeLogo = schemeLogo;
+    return this;
+  }
+
+   /**
+   * A url containing a logo of the card scheme. 
+   * @return schemeLogo
+  **/
+  @javax.annotation.Nullable
+  public String getSchemeLogo() {
+    return schemeLogo;
+  }
+
+  public void setSchemeLogo(String schemeLogo) {
+    this.schemeLogo = schemeLogo;
+  }
+
+
   public AuthResponse sha256(String sha256) {
-    
     this.sha256 = sha256;
     return this;
   }
@@ -723,12 +673,9 @@ public class AuthResponse {
    * @return sha256
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A SHA256 digest value of the transaction used to validate the response data The digest is calculated by concatenating   * authcode   * amount   * response_code   * merchant_id   * trans_no   * identifier   * licence_key - which is not provided in the response. ")
-
   public String getSha256() {
     return sha256;
   }
-
 
   public void setSha256(String sha256) {
     this.sha256 = sha256;
@@ -736,7 +683,6 @@ public class AuthResponse {
 
 
   public AuthResponse transStatus(String transStatus) {
-    
     this.transStatus = transStatus;
     return this;
   }
@@ -746,12 +692,9 @@ public class AuthResponse {
    * @return transStatus
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Used to identify the status of a transaction. The status is used to track a transaction through its life cycle.  <table> <tr> <th>Id</th> <th>Description</th> </tr> <tr> <td>O</td> <td>Transaction is open for settlement</td> </tr> <tr> <td>A</td> <td>Transaction is assigned for settlement and can no longer be voided</td> </tr> <tr> <td>S</td> <td>Transaction has been settled</td> </tr> <tr> <td>D</td> <td>Transaction has been declined</td> </tr> <tr> <td>R</td> <td>Transaction has been rejected</td> </tr> <tr> <td>P</td> <td>Transaction has been authorised only and awaiting a capture. Used in pre-auth situations</td> </tr> <tr> <td>C</td> <td>Transaction has been cancelled</td> </tr> <tr> <td>E</td> <td>Transaction has expired</td> </tr> <tr> <td>I</td> <td>Transaction has been initialised but no action was able to be carried out</td> </tr> <tr> <td>H</td> <td>Transaction is awaiting authorisation</td> </tr> <tr> <td>.</td> <td>Transaction is on hold</td> </tr> <tr> <td>V</td> <td>Transaction has been verified</td> </tr> </table> ")
-
   public String getTransStatus() {
     return transStatus;
   }
-
 
   public void setTransStatus(String transStatus) {
     this.transStatus = transStatus;
@@ -759,7 +702,6 @@ public class AuthResponse {
 
 
   public AuthResponse transno(Integer transno) {
-    
     this.transno = transno;
     return this;
   }
@@ -769,12 +711,9 @@ public class AuthResponse {
    * @return transno
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "78416", value = "The resulting transaction number, ordered incrementally from 1 for every merchant_id. The value will default to less than 1 for transactions that do not have a transaction number issued. ")
-
   public Integer getTransno() {
     return transno;
   }
-
 
   public void setTransno(Integer transno) {
     this.transno = transno;
@@ -815,6 +754,8 @@ public class AuthResponse {
         Objects.equals(this.resultCode, authResponse.resultCode) &&
         Objects.equals(this.resultMessage, authResponse.resultMessage) &&
         Objects.equals(this.scheme, authResponse.scheme) &&
+        Objects.equals(this.schemeId, authResponse.schemeId) &&
+        Objects.equals(this.schemeLogo, authResponse.schemeLogo) &&
         Objects.equals(this.sha256, authResponse.sha256) &&
         Objects.equals(this.transStatus, authResponse.transStatus) &&
         Objects.equals(this.transno, authResponse.transno);
@@ -822,7 +763,7 @@ public class AuthResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, atrn, atsd, authcode, authenResult, authorised, avsResult, binCommercial, binDebit, binDescription, cavv, context, cscResult, currency, datetime, eci, identifier, live, maskedpan, merchantid, result, resultCode, resultMessage, scheme, sha256, transStatus, transno);
+    return Objects.hash(amount, atrn, atsd, authcode, authenResult, authorised, avsResult, binCommercial, binDebit, binDescription, cavv, context, cscResult, currency, datetime, eci, identifier, live, maskedpan, merchantid, result, resultCode, resultMessage, scheme, schemeId, schemeLogo, sha256, transStatus, transno);
   }
 
   @Override
@@ -853,6 +794,8 @@ public class AuthResponse {
     sb.append("    resultCode: ").append(toIndentedString(resultCode)).append("\n");
     sb.append("    resultMessage: ").append(toIndentedString(resultMessage)).append("\n");
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
+    sb.append("    schemeId: ").append(toIndentedString(schemeId)).append("\n");
+    sb.append("    schemeLogo: ").append(toIndentedString(schemeLogo)).append("\n");
     sb.append("    sha256: ").append(toIndentedString(sha256)).append("\n");
     sb.append("    transStatus: ").append(toIndentedString(transStatus)).append("\n");
     sb.append("    transno: ").append(toIndentedString(transno)).append("\n");
@@ -902,6 +845,8 @@ public class AuthResponse {
     openapiFields.add("result_code");
     openapiFields.add("result_message");
     openapiFields.add("scheme");
+    openapiFields.add("scheme_id");
+    openapiFields.add("scheme_logo");
     openapiFields.add("sha256");
     openapiFields.add("trans_status");
     openapiFields.add("transno");
@@ -915,32 +860,33 @@ public class AuthResponse {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to AuthResponse
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to AuthResponse
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!AuthResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!AuthResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in AuthResponse is not found in the empty JSON string", AuthResponse.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!AuthResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuthResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuthResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : AuthResponse.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("atrn") != null && !jsonObj.get("atrn").isJsonNull()) && !jsonObj.get("atrn").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `atrn` to be a primitive type in the JSON string but got `%s`", jsonObj.get("atrn").toString()));
       }
@@ -989,6 +935,12 @@ public class AuthResponse {
       if ((jsonObj.get("scheme") != null && !jsonObj.get("scheme").isJsonNull()) && !jsonObj.get("scheme").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `scheme` to be a primitive type in the JSON string but got `%s`", jsonObj.get("scheme").toString()));
       }
+      if ((jsonObj.get("scheme_id") != null && !jsonObj.get("scheme_id").isJsonNull()) && !jsonObj.get("scheme_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `scheme_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("scheme_id").toString()));
+      }
+      if ((jsonObj.get("scheme_logo") != null && !jsonObj.get("scheme_logo").isJsonNull()) && !jsonObj.get("scheme_logo").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `scheme_logo` to be a primitive type in the JSON string but got `%s`", jsonObj.get("scheme_logo").toString()));
+      }
       if ((jsonObj.get("sha256") != null && !jsonObj.get("sha256").isJsonNull()) && !jsonObj.get("sha256").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `sha256` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sha256").toString()));
       }
@@ -1017,9 +969,9 @@ public class AuthResponse {
 
            @Override
            public AuthResponse read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

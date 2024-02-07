@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**fieldType** | **String** | the type of html5 field, defaults to &#39;text&#39;. |  [optional] |
+|**entryMode** | **String** | The type of entry mode. A value of &#39;pre&#39; will pre-render the custom parameter before the payment screen. Any other value will result in the custom parameter being displayed on the payment screen. |  [optional] |
+|**fieldType** | **String** | the type of html5 field, defaults to &#39;text&#39;. Other options are &#39;dob&#39; for a date of birth series of select list entry. |  [optional] |
 |**group** | **String** | a group the parameter is linked with, allows for grouping with a title. |  [optional] |
 |**label** | **String** | a label to show alongside the input. |  [optional] |
 |**locked** | **Boolean** | whether the parameter is locked from entry. |  [optional] |

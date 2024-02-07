@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security <aside class=\"notice\">   Before we begin a reminder that your application will need to adhere to PCI-DSS standards to operate safely   and to meet requirements set out by Visa and MasterCard and the PCI Security Standards Council including: </aside>  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security <aside class=\"notice\">   Before we begin a reminder that your application will need to adhere to PCI-DSS standards to operate safely   and to meet requirements set out by Visa and MasterCard and the PCI Security Standards Council including: </aside>  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities.
  *
  * Contact: support@citypay.com
  *
@@ -21,8 +21,10 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
 import java.io.IOException;
 import java.time.OffsetDateTime;
+
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -63,7 +65,40 @@ public class AuthResponseTest {
                     "          \"trans_status\": \"P\",\n" +
                     "          \"transno\": 74875\n" +
                     "        }",
-            new TypeToken<AuthResponse>(){}.getType());
+            new TypeToken<AuthResponse>() {
+            }.getType());
+
+    private final AuthResponse authResponseWithNoIdent = new JSON().deserialize("{\n" +
+                    "          \"amount\": 0,\n" +
+                    "          \"atrn\": \"\",\n" +
+                    "          \"atsd\": \"\",\n" +
+                    "          \"authcode\": \"\",\n" +
+                    "          \"authen_result\": \"\",\n" +
+                    "          \"authorised\": false,\n" +
+                    "          \"avs_result\": \" \",\n" +
+                    "          \"bin_commercial\": false,\n" +
+                    "          \"bin_debit\": false,\n" +
+                    "          \"bin_description\": \"\",\n" +
+                    "          \"cavv\": \"\",\n" +
+                    "          \"context\": \"PC.0.A5298ef695b\",\n" +
+                    "          \"csc_result\": \" \",\n" +
+                    "          \"currency\": \"___\",\n" +
+                    "          \"datetime\": \"1969-12-31T23:59:59Z\",\n" +
+                    "          \"eci\": \"0\",\n" +
+                    "          \"identifier\": \"\",\n" +
+                    "          \"live\": true,\n" +
+                    "          \"maskedpan\": \"N/A\",\n" +
+                    "          \"merchantid\": 0,\n" +
+                    "          \"result\": 3,\n" +
+                    "          \"result_code\": \"P030\",\n" +
+                    "          \"result_message\": \"Request Error: Authorisation invalid (203: Data element not in the required format or value is invalid as defined in Table A.1. threeDSSessionData)\",\n" +
+                    "          \"scheme\": \"\",\n" +
+                    "          \"sha256\": \"\",\n" +
+                    "          \"trans_status\": \"_\",\n" +
+                    "          \"transno\": -1\n" +
+                    "        }",
+            new TypeToken<AuthResponse>() {
+            }.getType());
 
     /**
      * Model tests for AuthResponse
@@ -287,6 +322,22 @@ public class AuthResponseTest {
     @Test
     public void transnoTest() {
         assertEquals(Integer.valueOf(74875), authResponse.getTransno());
+    }
+
+    /**
+     * Test the property 'resultCode' when identifier is empty
+     */
+    @Test
+    public void resultCodeWithNoIdentTest() {
+        assertEquals("P030", authResponseWithNoIdent.getResultCode());
+    }
+
+    /**
+     * Test the property 'result' when identifier is empty
+     */
+    @Test
+    public void resultWithNoIdentTest() {
+        assertEquals(Integer.valueOf(3), authResponseWithNoIdent.getResult());
     }
 
 }

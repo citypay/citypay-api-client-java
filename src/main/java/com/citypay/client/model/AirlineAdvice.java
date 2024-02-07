@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
  *
  * Contact: support@citypay.com
  *
@@ -13,17 +13,15 @@
 package com.citypay.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.citypay.client.model.AirlineSegment;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,13 +33,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.citypay.client.JSON;
@@ -118,7 +119,6 @@ public class AirlineAdvice {
   }
 
   public AirlineAdvice carrierName(String carrierName) {
-    
     this.carrierName = carrierName;
     return this;
   }
@@ -128,12 +128,9 @@ public class AirlineAdvice {
    * @return carrierName
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "EG Air", required = true, value = "The name of the airline carrier that generated the tickets for airline travel.")
-
   public String getCarrierName() {
     return carrierName;
   }
-
 
   public void setCarrierName(String carrierName) {
     this.carrierName = carrierName;
@@ -141,7 +138,6 @@ public class AirlineAdvice {
 
 
   public AirlineAdvice conjunctionTicketIndicator(Boolean conjunctionTicketIndicator) {
-    
     this.conjunctionTicketIndicator = conjunctionTicketIndicator;
     return this;
   }
@@ -151,12 +147,9 @@ public class AirlineAdvice {
    * @return conjunctionTicketIndicator
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "false", value = "true if a conjunction ticket (with additional coupons) was issued for an itinerary with more than four segments. Defaults to false. ")
-
   public Boolean isConjunctionTicketIndicator() {
     return conjunctionTicketIndicator;
   }
-
 
   public void setConjunctionTicketIndicator(Boolean conjunctionTicketIndicator) {
     this.conjunctionTicketIndicator = conjunctionTicketIndicator;
@@ -164,7 +157,6 @@ public class AirlineAdvice {
 
 
   public AirlineAdvice eticketIndicator(Boolean eticketIndicator) {
-    
     this.eticketIndicator = eticketIndicator;
     return this;
   }
@@ -174,12 +166,9 @@ public class AirlineAdvice {
    * @return eticketIndicator
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "The Electronic Ticket Indicator, a code that indicates if an electronic ticket was issued.  Defaults to true.")
-
   public Boolean isEticketIndicator() {
     return eticketIndicator;
   }
-
 
   public void setEticketIndicator(Boolean eticketIndicator) {
     this.eticketIndicator = eticketIndicator;
@@ -187,7 +176,6 @@ public class AirlineAdvice {
 
 
   public AirlineAdvice noAirSegments(Integer noAirSegments) {
-    
     this.noAirSegments = noAirSegments;
     return this;
   }
@@ -199,12 +187,9 @@ public class AirlineAdvice {
    * @return noAirSegments
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2", value = "A value that indicates the number of air travel segments included on this ticket.  Valid entries include the numerals “0” through “4”. Required only if the transaction type is TKT or EXC. ")
-
   public Integer getNoAirSegments() {
     return noAirSegments;
   }
-
 
   public void setNoAirSegments(Integer noAirSegments) {
     this.noAirSegments = noAirSegments;
@@ -212,7 +197,6 @@ public class AirlineAdvice {
 
 
   public AirlineAdvice numberInParty(Integer numberInParty) {
-    
     this.numberInParty = numberInParty;
     return this;
   }
@@ -221,13 +205,10 @@ public class AirlineAdvice {
    * The number of people in the party.
    * @return numberInParty
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2", required = true, value = "The number of people in the party.")
-
+  @javax.annotation.Nullable
   public Integer getNumberInParty() {
     return numberInParty;
   }
-
 
   public void setNumberInParty(Integer numberInParty) {
     this.numberInParty = numberInParty;
@@ -235,7 +216,6 @@ public class AirlineAdvice {
 
 
   public AirlineAdvice originalTicketNo(String originalTicketNo) {
-    
     this.originalTicketNo = originalTicketNo;
     return this;
   }
@@ -245,12 +225,9 @@ public class AirlineAdvice {
    * @return originalTicketNo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Required if transaction type is EXC.")
-
   public String getOriginalTicketNo() {
     return originalTicketNo;
   }
-
 
   public void setOriginalTicketNo(String originalTicketNo) {
     this.originalTicketNo = originalTicketNo;
@@ -258,7 +235,6 @@ public class AirlineAdvice {
 
 
   public AirlineAdvice passengerName(String passengerName) {
-    
     this.passengerName = passengerName;
     return this;
   }
@@ -268,12 +244,9 @@ public class AirlineAdvice {
    * @return passengerName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "NE Person", value = "The name of the passenger when the traveller is not the card member that purchased the ticket. Required only if the transaction type is TKT or EXC.")
-
   public String getPassengerName() {
     return passengerName;
   }
-
 
   public void setPassengerName(String passengerName) {
     this.passengerName = passengerName;
@@ -281,7 +254,6 @@ public class AirlineAdvice {
 
 
   public AirlineAdvice segment1(AirlineSegment segment1) {
-    
     this.segment1 = segment1;
     return this;
   }
@@ -291,12 +263,9 @@ public class AirlineAdvice {
    * @return segment1
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public AirlineSegment getSegment1() {
     return segment1;
   }
-
 
   public void setSegment1(AirlineSegment segment1) {
     this.segment1 = segment1;
@@ -304,7 +273,6 @@ public class AirlineAdvice {
 
 
   public AirlineAdvice segment2(AirlineSegment segment2) {
-    
     this.segment2 = segment2;
     return this;
   }
@@ -314,12 +282,9 @@ public class AirlineAdvice {
    * @return segment2
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public AirlineSegment getSegment2() {
     return segment2;
   }
-
 
   public void setSegment2(AirlineSegment segment2) {
     this.segment2 = segment2;
@@ -327,7 +292,6 @@ public class AirlineAdvice {
 
 
   public AirlineAdvice segment3(AirlineSegment segment3) {
-    
     this.segment3 = segment3;
     return this;
   }
@@ -337,12 +301,9 @@ public class AirlineAdvice {
    * @return segment3
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public AirlineSegment getSegment3() {
     return segment3;
   }
-
 
   public void setSegment3(AirlineSegment segment3) {
     this.segment3 = segment3;
@@ -350,7 +311,6 @@ public class AirlineAdvice {
 
 
   public AirlineAdvice segment4(AirlineSegment segment4) {
-    
     this.segment4 = segment4;
     return this;
   }
@@ -360,12 +320,9 @@ public class AirlineAdvice {
    * @return segment4
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public AirlineSegment getSegment4() {
     return segment4;
   }
-
 
   public void setSegment4(AirlineSegment segment4) {
     this.segment4 = segment4;
@@ -373,7 +330,6 @@ public class AirlineAdvice {
 
 
   public AirlineAdvice ticketIssueCity(String ticketIssueCity) {
-    
     this.ticketIssueCity = ticketIssueCity;
     return this;
   }
@@ -383,12 +339,9 @@ public class AirlineAdvice {
    * @return ticketIssueCity
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "London", required = true, value = "The name of the city town or village where the transaction took place.")
-
   public String getTicketIssueCity() {
     return ticketIssueCity;
   }
-
 
   public void setTicketIssueCity(String ticketIssueCity) {
     this.ticketIssueCity = ticketIssueCity;
@@ -396,7 +349,6 @@ public class AirlineAdvice {
 
 
   public AirlineAdvice ticketIssueDate(LocalDate ticketIssueDate) {
-    
     this.ticketIssueDate = ticketIssueDate;
     return this;
   }
@@ -406,12 +358,9 @@ public class AirlineAdvice {
    * @return ticketIssueDate
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "Sat Aug 01 00:00:00 UTC 2020", required = true, value = "The date the ticket was issued in ISO Date format (yyyy-MM-dd).")
-
   public LocalDate getTicketIssueDate() {
     return ticketIssueDate;
   }
-
 
   public void setTicketIssueDate(LocalDate ticketIssueDate) {
     this.ticketIssueDate = ticketIssueDate;
@@ -419,7 +368,6 @@ public class AirlineAdvice {
 
 
   public AirlineAdvice ticketIssueName(String ticketIssueName) {
-    
     this.ticketIssueName = ticketIssueName;
     return this;
   }
@@ -429,12 +377,9 @@ public class AirlineAdvice {
    * @return ticketIssueName
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "Issue Name", required = true, value = "The name of the agency generating the ticket.")
-
   public String getTicketIssueName() {
     return ticketIssueName;
   }
-
 
   public void setTicketIssueName(String ticketIssueName) {
     this.ticketIssueName = ticketIssueName;
@@ -442,7 +387,6 @@ public class AirlineAdvice {
 
 
   public AirlineAdvice ticketNo(String ticketNo) {
-    
     this.ticketNo = ticketNo;
     return this;
   }
@@ -452,12 +396,9 @@ public class AirlineAdvice {
    * @return ticketNo
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "A112233", required = true, value = "This must be a valid ticket number, i.e. numeric (the first 3 digits must represent the valid IATA plate carrier code). The final check digit should be validated prior to submission. On credit charges, this field should contain the number of the original ticket, and not of a replacement. ")
-
   public String getTicketNo() {
     return ticketNo;
   }
-
 
   public void setTicketNo(String ticketNo) {
     this.ticketNo = ticketNo;
@@ -465,7 +406,6 @@ public class AirlineAdvice {
 
 
   public AirlineAdvice transactionType(String transactionType) {
-    
     this.transactionType = transactionType;
     return this;
   }
@@ -475,12 +415,9 @@ public class AirlineAdvice {
    * @return transactionType
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "TKT", required = true, value = "This field contains the Transaction Type code assigned to this transaction. Valid codes include:   - `TKT` = Ticket Purchase   - `REF` = Refund   - `EXC` = Exchange Ticket   - `MSC` = Miscellaneous (non-Ticket Purchase- and non-Exchange Ticket-related transactions only). ")
-
   public String getTransactionType() {
     return transactionType;
   }
-
 
   public void setTransactionType(String transactionType) {
     this.transactionType = transactionType;
@@ -582,7 +519,6 @@ public class AirlineAdvice {
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("carrier_name");
-    openapiRequiredFields.add("number_in_party");
     openapiRequiredFields.add("segment1");
     openapiRequiredFields.add("ticket_issue_city");
     openapiRequiredFields.add("ticket_issue_date");
@@ -592,32 +528,33 @@ public class AirlineAdvice {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to AirlineAdvice
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to AirlineAdvice
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (!AirlineAdvice.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!AirlineAdvice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in AirlineAdvice is not found in the empty JSON string", AirlineAdvice.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
+      for (Map.Entry<String, JsonElement> entry : entries) {
         if (!AirlineAdvice.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AirlineAdvice` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AirlineAdvice` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : AirlineAdvice.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("carrier_name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `carrier_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("carrier_name").toString()));
       }
@@ -628,18 +565,18 @@ public class AirlineAdvice {
         throw new IllegalArgumentException(String.format("Expected the field `passenger_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("passenger_name").toString()));
       }
       // validate the required field `segment1`
-      AirlineSegment.validateJsonObject(jsonObj.getAsJsonObject("segment1"));
+      AirlineSegment.validateJsonElement(jsonObj.get("segment1"));
       // validate the optional field `segment2`
       if (jsonObj.get("segment2") != null && !jsonObj.get("segment2").isJsonNull()) {
-        AirlineSegment.validateJsonObject(jsonObj.getAsJsonObject("segment2"));
+        AirlineSegment.validateJsonElement(jsonObj.get("segment2"));
       }
       // validate the optional field `segment3`
       if (jsonObj.get("segment3") != null && !jsonObj.get("segment3").isJsonNull()) {
-        AirlineSegment.validateJsonObject(jsonObj.getAsJsonObject("segment3"));
+        AirlineSegment.validateJsonElement(jsonObj.get("segment3"));
       }
       // validate the optional field `segment4`
       if (jsonObj.get("segment4") != null && !jsonObj.get("segment4").isJsonNull()) {
-        AirlineSegment.validateJsonObject(jsonObj.getAsJsonObject("segment4"));
+        AirlineSegment.validateJsonElement(jsonObj.get("segment4"));
       }
       if (!jsonObj.get("ticket_issue_city").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `ticket_issue_city` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ticket_issue_city").toString()));
@@ -675,9 +612,9 @@ public class AirlineAdvice {
 
            @Override
            public AirlineAdvice read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

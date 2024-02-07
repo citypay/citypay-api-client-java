@@ -80,7 +80,7 @@ public class BatchProcessingApiTest {
     @Test
     public void getBatchReportRequestTest() throws ApiException {
         BatchReportRequest batchReportRequest = null;
-        BatchReportResponseModel response = api.batchReportRequest(batchReportRequest);
+        BatchReportResponseModel response = api.batchRetrieveRequest(batchReportRequest);
 
         // TODO: test validations
     }
