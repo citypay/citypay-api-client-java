@@ -7,6 +7,7 @@ import com.citypay.client.Configuration;
 import com.citypay.client.api.AuthorisationAndPaymentApi;
 import com.citypay.client.api.CardHolderAccountApi;
 import com.citypay.client.api.OperationalFunctionsApi;
+import com.citypay.client.api.PaylinkApi;
 import com.citypay.client.auth.ApiKeyAuth;
 
 import com.citypay.client.utils.Digest;
@@ -339,5 +340,22 @@ public class ApiSandboxTest {
         }
         assert deleteCha != null;
         assertEquals("001", deleteCha.getCode());
+    }
+
+    @Test
+    public void testPaylinkTokenRequest() {
+        PaylinkApi apiInstance = new PaylinkApi(defaultClient);
+        PaylinkTokenRequestModel paylinkTokenRequestModel = new PaylinkTokenRequestModel();
+        paylinkTokenRequestModel.amount(1).identifier("Test from java SDK").merchantid(Integer.valueOf(merchantId));
+        try {
+            PaylinkTokenCreated result = apiInstance.tokenCreateRequest(paylinkTokenRequestModel);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PaylinkApi#tokenCreateRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
 }

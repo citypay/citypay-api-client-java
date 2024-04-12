@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  Welcome to the CityPay API, a robust HTTP API payment solution designed for seamless server-to-server  transactional processing. Our API facilitates a wide array of payment operations, catering to diverse business needs.  Whether you're integrating Internet payments, handling Mail Order/Telephone Order (MOTO) transactions, managing  Subscriptions with Recurring and Continuous Authority payments, or navigating the complexities of 3-D Secure  authentication, our API is equipped to support your requirements. Additionally, we offer functionalities for  Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids, and Completion processing, alongside the capability  for tokenised payments.  ## Compliance and Security Overview <aside class=\"notice\">   Ensuring the security of payment transactions and compliance with industry standards is paramount. Our API is    designed with stringent security measures and compliance protocols to safeguard sensitive information and meet    the rigorous requirements of Visa, MasterCard, and the PCI Security Standards Council. </aside>  ### Key Compliance and Security Measures  * **TLS Encryption**: All data transmissions must utilise TLS version 1.2 or higher, employing [strong cryptography](#enabled-tls-ciphers). Our infrastructure strictly enforces this requirement to maintain the integrity and confidentiality of data in transit. We conduct regular scans and assessments of our TLS endpoints to identify and mitigate vulnerabilities. * **Data Storage Prohibitions**: Storing sensitive cardholder data (CHD), such as the card security code (CSC) or primary account number (PAN), is strictly prohibited. Our API is designed to minimize your exposure to sensitive data, thereby reducing your compliance burden. * **Data Masking**: For consumer protection and compliance, full card numbers must not be displayed on receipts or any customer-facing materials. Our API automatically masks PANs, displaying only the last four digits to facilitate safe receipt generation. * **Network Scans**: If your application is web-based, regular scans of your hosting environment are mandatory to identify and rectify potential vulnerabilities. This proactive measure is crucial for maintaining a secure and compliant online presence. * **PCI Compliance**: Adherence to PCI DSS standards is not optional; it's a requirement for operating securely and legally in the payments ecosystem. For detailed information on compliance requirements and resources, please visit the PCI Security Standards Council website [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/). * **Request Validation**: Our API includes mechanisms to verify the legitimacy of each request, ensuring it pertains to a valid account and originates from a trusted source. We leverage remote IP address verification alongside sophisticated application firewall technologies to thwart a wide array of common security threats.  ## Getting Started Before integrating with the CityPay API, ensure your application and development practices align with the outlined compliance and security measures. This preparatory step is crucial for a smooth integration process and the long-term success of your payment processing operations.  For further details on API endpoints, request/response formats, and code examples, proceed to the subsequent sections of our documentation. Our aim is to provide you with all the necessary tools and information to integrate our payment processing capabilities seamlessly into your application.  Thank you for choosing CityPay API. We look forward to supporting your payment processing needs with our secure, compliant, and versatile API solution. 
  *
  * Contact: support@citypay.com
  *
@@ -30,6 +30,7 @@ import com.citypay.client.model.Acknowledgement;
 import com.citypay.client.model.Error;
 import com.citypay.client.model.PaylinkAdjustmentRequest;
 import com.citypay.client.model.PaylinkBillPaymentTokenRequest;
+import com.citypay.client.model.PaylinkResendNotificationRequest;
 import com.citypay.client.model.PaylinkTokenCreated;
 import com.citypay.client.model.PaylinkTokenRequestModel;
 import com.citypay.client.model.PaylinkTokenStatus;
@@ -1241,6 +1242,161 @@ public class PaylinkApi {
     public okhttp3.Call tokenReopenRequestAsync(String token, final ApiCallback<Acknowledgement> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = tokenReopenRequestValidateBeforeCall(token, _callback);
+        Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for tokenResendNotificationRequest
+     * @param token The token returned by the create token process. (required)
+     * @param paylinkResendNotificationRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Confirms that the notification was sent. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call tokenResendNotificationRequestCall(String token, PaylinkResendNotificationRequest paylinkResendNotificationRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = paylinkResendNotificationRequest;
+
+        // create path and map variables
+        String localVarPath = "/paylink/{token}/resend-notification"
+            .replace("{" + "token" + "}", localVarApiClient.escapeString(token.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json",
+            "text/xml"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/xml"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "cp-api-key" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call tokenResendNotificationRequestValidateBeforeCall(String token, PaylinkResendNotificationRequest paylinkResendNotificationRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'token' is set
+        if (token == null) {
+            throw new ApiException("Missing the required parameter 'token' when calling tokenResendNotificationRequest(Async)");
+        }
+
+        // verify the required parameter 'paylinkResendNotificationRequest' is set
+        if (paylinkResendNotificationRequest == null) {
+            throw new ApiException("Missing the required parameter 'paylinkResendNotificationRequest' when calling tokenResendNotificationRequest(Async)");
+        }
+
+        return tokenResendNotificationRequestCall(token, paylinkResendNotificationRequest, _callback);
+
+    }
+
+    /**
+     * Resend a notification for Paylink Token
+     * Resend a notification for Paylink Token.
+     * @param token The token returned by the create token process. (required)
+     * @param paylinkResendNotificationRequest  (required)
+     * @return Acknowledgement
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Confirms that the notification was sent. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Acknowledgement tokenResendNotificationRequest(String token, PaylinkResendNotificationRequest paylinkResendNotificationRequest) throws ApiException {
+        ApiResponse<Acknowledgement> localVarResp = tokenResendNotificationRequestWithHttpInfo(token, paylinkResendNotificationRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Resend a notification for Paylink Token
+     * Resend a notification for Paylink Token.
+     * @param token The token returned by the create token process. (required)
+     * @param paylinkResendNotificationRequest  (required)
+     * @return ApiResponse&lt;Acknowledgement&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Confirms that the notification was sent. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Acknowledgement> tokenResendNotificationRequestWithHttpInfo(String token, PaylinkResendNotificationRequest paylinkResendNotificationRequest) throws ApiException {
+        okhttp3.Call localVarCall = tokenResendNotificationRequestValidateBeforeCall(token, paylinkResendNotificationRequest, null);
+        Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Resend a notification for Paylink Token (asynchronously)
+     * Resend a notification for Paylink Token.
+     * @param token The token returned by the create token process. (required)
+     * @param paylinkResendNotificationRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Confirms that the notification was sent. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call tokenResendNotificationRequestAsync(String token, PaylinkResendNotificationRequest paylinkResendNotificationRequest, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = tokenResendNotificationRequestValidateBeforeCall(token, paylinkResendNotificationRequest, _callback);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

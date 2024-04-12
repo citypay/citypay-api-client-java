@@ -5,8 +5,8 @@ All URIs are relative to *https://api.citypay.com*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**batchProcessRequest**](BatchProcessingApi.md#batchProcessRequest) | **POST** /v6/batch/process | Batch Process Request |
-| [**batchRetrieveRequest**](BatchProcessingApi.md#batchRetrieveRequest) | **POST** /v6/batch/retrieve | BatchReportRequest |
-| [**checkBatchStatusRequest**](BatchProcessingApi.md#checkBatchStatusRequest) | **POST** /v6/batch/status | CheckBatchStatus |
+| [**batchRetrieveRequest**](BatchProcessingApi.md#batchRetrieveRequest) | **POST** /v6/batch/retrieve | Batch Retrieve Request |
+| [**checkBatchStatusRequest**](BatchProcessingApi.md#checkBatchStatusRequest) | **POST** /v6/batch/status | Check Batch Status |
 
 
 
@@ -30,7 +30,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.BatchProcessingApi;
 
 public class Example {
@@ -96,9 +96,9 @@ public class Example {
 
 > BatchReportResponseModel batchRetrieveRequest(batchReportRequest)
 
-BatchReportRequest
+Batch Retrieve Request
 
-The report for a given batch.
+Obtains a batch and installment (BIS) report for a given batch id.
 
 ### Example
 
@@ -108,7 +108,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.BatchProcessingApi;
 
 public class Example {
@@ -174,7 +174,7 @@ public class Example {
 
 > CheckBatchStatusResponse checkBatchStatusRequest(checkBatchStatus)
 
-CheckBatchStatus
+Check Batch Status
 
 The operation is used to retrieve the status of a batch process.
 
@@ -186,7 +186,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.BatchProcessingApi;
 
 public class Example {

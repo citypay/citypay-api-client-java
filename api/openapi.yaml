@@ -4,32 +4,55 @@ info:
     email: support@citypay.com
     name: CityPay Support
     url: https://www.citypay.com/contacts/
-  description: "\nThis CityPay API is an HTTP RESTful payment API used for direct\
-    \ server to server transactional processing. It\nprovides a number of payment\
-    \ mechanisms including: Internet, MOTO, Continuous Authority transaction processing,\n\
-    3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation,\
-    \ Cancellation/Voids and\nCompletion processing. The API is also capable of tokenized\
-    \ payments using cardholder Accounts.\n\n## Compliance and Security\nYour application\
-    \ will need to adhere to PCI-DSS standards to operate safely and to meet requirements\
-    \ set out by \nVisa and MasterCard and the PCI Security Standards Council. These\
-    \ include\n\n* Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers).\
-    \ We will not accept calls to our API at\n  lower grade encryption levels. We\
-    \ regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments\n\
-    \  as part of our compliance program.\n* The application must not store sensitive\
-    \ cardholder data (CHD) such as the card security code (CSC) or\n  primary access\
-    \ number (PAN)\n* The application must not display the full card number on receipts,\
-    \ it is recommended to mask the PAN\n  and show the last 4 digits. The API will\
-    \ return this for you for ease of receipt creation\n* If you are developing a\
-    \ website, you will be required to perform regular scans on the network where\
-    \ you host the\n  application to meet your compliance obligations\n* You will\
-    \ be required to be PCI Compliant and the application must adhere to the security\
-    \ standard. Further information\n  is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/)\n\
-    * The API verifies that the request is for a valid account and originates from\
-    \ a trusted source using the remote IP\n  address. Our application firewalls analyse\
-    \ data that may be an attempt to break a large number of security common\n  security\
-    \ vulnerabilities.\n"
+  description: "\nWelcome to the CityPay API, a robust HTTP API payment solution designed\
+    \ for seamless server-to-server \ntransactional processing. Our API facilitates\
+    \ a wide array of payment operations, catering to diverse business needs. \nWhether\
+    \ you're integrating Internet payments, handling Mail Order/Telephone Order (MOTO)\
+    \ transactions, managing \nSubscriptions with Recurring and Continuous Authority\
+    \ payments, or navigating the complexities of 3-D Secure \nauthentication, our\
+    \ API is equipped to support your requirements. Additionally, we offer functionalities\
+    \ for \nAuthorisation, Refunding, Pre-Authorisation, Cancellation/Voids, and Completion\
+    \ processing, alongside the capability \nfor tokenised payments.\n\n## Compliance\
+    \ and Security Overview\n<aside class=\"notice\">\n  Ensuring the security of\
+    \ payment transactions and compliance with industry standards is paramount. Our\
+    \ API is \n  designed with stringent security measures and compliance protocols\
+    \ to safeguard sensitive information and meet \n  the rigorous requirements of\
+    \ Visa, MasterCard, and the PCI Security Standards Council.\n</aside>\n\n### Key\
+    \ Compliance and Security Measures\n\n* **TLS Encryption**: All data transmissions\
+    \ must utilise TLS version 1.2 or higher, employing [strong cryptography](#enabled-tls-ciphers).\
+    \ Our infrastructure strictly enforces this requirement to maintain the integrity\
+    \ and confidentiality of data in transit. We conduct regular scans and assessments\
+    \ of our TLS endpoints to identify and mitigate vulnerabilities.\n* **Data Storage\
+    \ Prohibitions**: Storing sensitive cardholder data (CHD), such as the card security\
+    \ code (CSC) or primary account number (PAN), is strictly prohibited. Our API\
+    \ is designed to minimize your exposure to sensitive data, thereby reducing your\
+    \ compliance burden.\n* **Data Masking**: For consumer protection and compliance,\
+    \ full card numbers must not be displayed on receipts or any customer-facing materials.\
+    \ Our API automatically masks PANs, displaying only the last four digits to facilitate\
+    \ safe receipt generation.\n* **Network Scans**: If your application is web-based,\
+    \ regular scans of your hosting environment are mandatory to identify and rectify\
+    \ potential vulnerabilities. This proactive measure is crucial for maintaining\
+    \ a secure and compliant online presence.\n* **PCI Compliance**: Adherence to\
+    \ PCI DSS standards is not optional; it's a requirement for operating securely\
+    \ and legally in the payments ecosystem. For detailed information on compliance\
+    \ requirements and resources, please visit the PCI Security Standards Council\
+    \ website [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/).\n\
+    * **Request Validation**: Our API includes mechanisms to verify the legitimacy\
+    \ of each request, ensuring it pertains to a valid account and originates from\
+    \ a trusted source. We leverage remote IP address verification alongside sophisticated\
+    \ application firewall technologies to thwart a wide array of common security\
+    \ threats.\n\n## Getting Started\nBefore integrating with the CityPay API, ensure\
+    \ your application and development practices align with the outlined compliance\
+    \ and security measures. This preparatory step is crucial for a smooth integration\
+    \ process and the long-term success of your payment processing operations.\n\n\
+    For further details on API endpoints, request/response formats, and code examples,\
+    \ proceed to the subsequent sections of our documentation. Our aim is to provide\
+    \ you with all the necessary tools and information to integrate our payment processing\
+    \ capabilities seamlessly into your application.\n\nThank you for choosing CityPay\
+    \ API. We look forward to supporting your payment processing needs with our secure,\
+    \ compliant, and versatile API solution.\n"
   title: CityPay Payment API
-  version: 6.6.23
+  version: 6.6.34
 servers:
 - description: Production processing endpoint
   url: https://api.citypay.com
@@ -43,9 +66,9 @@ tags:
   name: Authorisation and Payment Api
 - description: "Batch processing uses the Batch and Instalment Service (BIS) which\
     \ allows for transaction processing against cardholder \naccounts using a dynamic\
-    \ batch file. For merchants who process on schedules and dynamic amounts, the\
-    \ service allows for \nthe presentation of cardholder account references and transaction\
-    \ requirements to run as a scheduled batch.\n"
+    \ batch file. For merchants who process on their own schedules with dynamic or\
+    \ fixed amounts, \nthe service allows for the presentation of cardholder account\
+    \ references and transaction requirements to run as a \nscheduled batch.\n"
   name: Batch Processing Api
 - description: "A cardholder account models a cardholder and can register 1 or more\
     \ cards for tokenised charging. \n\nThe account offers a credential on file option\
@@ -111,20 +134,20 @@ tags:
 - description: Operations that are for operational purposes only such as checking
     connectivity to the API.
   name: Operational Functions Api
-- description: |
-    CityPay Paylink makes online e-commerce easier to implement by handling the card payment process directly with the cardholder's browser and CityPay's payment processing servers, allowing you to concentrate on your business whilst allowing us to manage the payment process.
-
-    0. Simplified payment solutions.
-    0. payment processing is handled by our secure web servers adding security and confidence to your shoppers.
-    0. 3D-Secure authentication is available within the application without any difficult MPI integration, allowing for immediate Verified by Visa and MasterCard SecureCode processing.
-    0. customisation may be performed on the secure payment form.
-    0. significantly reduced technical and financial overheads associated with software implementation and PCI compliance.
-    1. reduced time-to-market.
-
-    The CityPay API offers embedded end-point calls to Paylink offering advanced features of generated tokens.
-
-    For further information on Paylink see [Paylink Online Documentation](https://citypay.github.io/api-docs/paylink).
+- description: "CityPay Paylink makes online e-commerce easier to implement by providing\
+    \ a hosted form to handle the card payment \nprocess directly with the cardholder's\
+    \ browser, allowing you to concentrate on your business whilst allowing CityPay\
+    \ \nto manage the payment process on your behalf.\n\n1. Simplified payment solutions.\n\
+    2. payment processing is handled by our secure web servers adding security and\
+    \ confidence to your shoppers.\n3. 3D-Secure authentication is available within\
+    \ the application without any difficult MPI integration, allowing for immediate\
+    \ Verified by Visa and MasterCard SecureCode processing.\n4. customisation may\
+    \ be performed on the secure payment form.\n5. significantly reduced technical\
+    \ and financial overheads associated with software implementation and PCI compliance.\n\
+    6. reduced time-to-market.\n"
   name: Paylink Api
+- description: Reporting functions that return data based on payment processing services.
+  name: Reporting Api
 paths:
   /direct/auth:
     post:
@@ -1159,6 +1182,66 @@ paths:
       tags:
       - Paylink Api
       x-accepts: application/json
+  /paylink/{token}/resend-notification:
+    post:
+      description: Resend a notification for Paylink Token.
+      operationId: TokenResendNotificationRequest
+      parameters:
+      - description: The token returned by the create token process.
+        explode: false
+        in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaylinkResendNotificationRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/PaylinkResendNotificationRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+          description: Confirms that the notification was sent.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "500":
+          description: Server Error. The server was unable to complete the request.
+      security:
+      - cp-api-key: []
+      summary: Resend a notification for Paylink Token
+      tags:
+      - Paylink Api
+      x-content-type: application/json
+      x-accepts: application/json
   /paylink/{token}/status:
     get:
       description: Obtains the full status of a given Paylink Token.
@@ -1818,77 +1901,61 @@ paths:
       x-accepts: application/json
   /v6/authorise:
     post:
-      description: "An authorisation process performs a standard transaction authorisation\
-        \ based on the provided parameters of its request.\nThe CityPay gateway will\
-        \ route your transaction via an Acquiring bank for subsequent authorisation\
-        \ to the appropriate card \nschemes such as Visa or MasterCard.\n\nThe authorisation\
-        \ API should be used for server environments to process transactions on demand\
-        \ and in realtime. \n\nThe authorisation API can be used for multiple types\
-        \ of transactions including E-commerce, mail order, telephone order,\ncustomer\
-        \ present (keyed), continuous authority, pre-authorisation and others. CityPay\
-        \ will configure your account for \nthe appropriate coding and this will perform\
-        \ transparently by the gateway. \n\nData properties that are required, may\
-        \ depend on the environment you are conducting payment for. Our API aims to\
-        \ be\n flexible enough to cater for these structures. Our integration team\
-        \ will aid you in providing the necessary data to \n transact. \n\n```json\n\
-        { \n  \"RequestChallenged\": {\n    \"acsurl\": \"https://bank.com/3DS/ACS\"\
-        ,\n    \"creq\": \"SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...\"\
-        ,\n    \"merchantid\": 12345,\n    \"transno\": 1,\n    \"threedserver_trans_id\"\
-        : \"d652d8d2-d74a-4264-a051-a7862b10d5d6\"\n  }               \n}\n```\n \n\
-        ## E-commerce workflows\n \nFor E-commerce transactions requiring 3DS, the\
-        \ API contains a fully accredited in built mechanism to handle authentication.\n\
-        \nThe Api and gateway has been accredited extensively with both Acquirers\
-        \ and Card Schemes to simplify the nature of these calls\ninto a simple structure\
-        \ for authentication, preventing integrators from performing lengthy and a\
-        \ costly accreditations with\nVisa and MasterCard.\n\n3D-secure has been around\
-        \ for a number of years and aims to shift the liability of a transaction away\
-        \ from a merchant back\nto the cardholder. A *liability shift* determines\
-        \ whether a card holder can charge back a transaction as unknown. Effectively\n\
-        the process asks for a card holder to authenticate the transaction prior to\
-        \ authorisation producing a Cardholder \nverification value (CAVV) and ecommerce\
-        \ indicator (ECI) as evidence of authorisation.\n\n3DS version 1 has now been\
-        \ replaced by 3DS version 2 to provide secure customer authentication (SCA)\
-        \ in line with EU regulation.\n3DSv2 is being phased out and any accounts\
-        \ using version 1 of the protocol is expected to be migrated by March 2022.\
-        \ \n\nAny new integrations should only consider 3DSv2 flows. \n\n### 3DSv2\n\
-        \n```json\n{ \n  \"RequestChallenged\": {\n    \"acsurl\": \"https://bank.com/3DS/ACS\"\
-        ,\n    \"creq\": \"SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...\"\
-        ,\n    \"merchantid\": 12345,\n    \"transno\": 1,\n    \"threedserver_trans_id\"\
-        : \"d652d8d2-d74a-4264-a051-a7862b10d5d6\"\n  }               \n}\n```\n\n\
-        ```xml\n<RequestChallenged>\n  <acsurl>https://bank.com/3DS/ACS</acsurl>\n\
-        \  <creq>SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...</creq>\n\
-        \  <merchantid>12345</merchantid>\n  <transno>1</transno>\n  <threedserver_trans_id>d652d8d2-d74a-4264-a051-a7862b10d5d6</threedserver_trans_id>\n\
-        </RequestChallenged>\n```\n\nCityPay support 3DS version 2.1 for Verified\
-        \ by Visa, MasterCard Identity Check and American Express SafeKey 2.1. Version\n\
-        2.2 is currently in development however this will be a seamless upgrade for\
-        \ all integrations.\n\n#### 3-D Secure - None\n\n![3DSv2 Frctionless Flow](images/3dsv2-no3d.png)\n\
-        \nA basic flow may involve no 3-D secure processing. This could happen if\
-        \ there is no ability to perform authentication.\nAn enrollment check may\
-        \ apply an \"attempted\" resolution to processing. In this instance a transaction\
-        \ may not meet any\nliability shift. A transaction may result in a decline\
-        \ due to this. We are also able to prevent from transactions being\npresented\
-        \ for authorisation if this occurs. \n\n#### 3-D Secure - Frictionless\n\n\
-        ![3DSv2 Frctionless Flow](images/3dsv2-frictionless.png)\n\nE-commerce transactions\
-        \ supporting 3DSv2 can benefit from seamlessly authenticated transactions\
-        \ which may perform a \n\"frictionless\" flow. This method will authenticate\
-        \ low risk transactions with minimal impact to a \nstandard authorisation\
-        \ flow. Our API simply performs this on behalf of you the developer, the merchant\
-        \ and cardholder.\n\nNo redirection occurs and hence the flow is called frictionless\
-        \ and will appear as though a simple transaction \nauthorisation has occurred.\n\
-        \n#### 3-D Secure - Challenge\n\n![3DSv2 Frctionless Flow](images/3dsv2-challenge.png)\n\
-        \nA transaction that is deemed as higher risk my be \"challenged\". In this\
-        \ instance, the API will return a\n[request challenge](#requestchallenged)\
-        \ which will require your integration to forward the cardholder's browser\
-        \ to the \ngiven [ACS url](#acsurl). This should be performed by posting the\
-        \ [creq](#creq) value (the challenge request value). \n\nOnce complete, the\
-        \ ACS will have already been in touch with our servers by sending us a result\
-        \ of the authentication\nknown as `RReq`.\n\nTo maintain session state, a\
-        \ parameter `threeDSSessionData` can be posted to the ACS url and will be\
-        \ returned alongside \nthe `CRes` value. This will ensure that any controller\
-        \ code will be able to isolate state between calls. This field\nis to be used\
-        \ by your own systems rather than ours and may be any value which can uniquely\
-        \ identify your cardholder's\nsession. As an option, we do provide a `threedserver_trans_id`\
-        \ value in the `RequestChallenged` packet which can be used\nfor the `threeDSSessionData`\
+      description: "## Authorization API Overview\n\nThe authoriSation process is\
+        \ a critical component in payment processing, enabling standard transaction\
+        \ authoriSation \nbased on the parameters provided in its request. The CityPay\
+        \ gateway facilitates this by routing your transaction \nthrough an Acquiring\
+        \ bank, which then seeks authorisation from the appropriate card schemes,\
+        \ such as Visa or MasterCard.\n\nThis API is designed for server environments\
+        \ that require the processing of transactions on demand and in real-time.\
+        \ It \nsupports a wide range of transaction types, including E-commerce, mail\
+        \ order, telephone order, customer present (keyed), \ncontinuous authority,\
+        \ pre-authorisation, and others. CityPay will configure your account for the\
+        \ appropriate acquirer \ncoding, ensuring seamless operation through the gateway.\n\
+        \nDepending on the payment environment, specific data properties are required.\
+        \ Our API is flexible enough to accommodate \nthese requirements, and our\
+        \ integration team is available to assist you in providing the necessary data\
+        \ for transaction \nprocessing.\n\n### Example JSON Request\n\n```json\n{\n\
+        \ \"RequestChallenged\": {\n  \"acsurl\": \"https://bank.com/3DS/ACS\",\n\
+        \  \"creq\": \"SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...\"\
+        ,\n  \"merchantid\": 12345,\n  \"transno\": 1,\n  \"threedserver_trans_id\"\
+        : \"d652d8d2-d74a-4264-a051-a7862b10d5d6\"\n }\n}\n```\n\n## E-commerce workflows\n\
+        \nFor E-commerce transactions requiring 3DS, our API includes a fully accredited\
+        \ built-in mechanism to handle \nauthentication, simplifying the integration\
+        \ process and eliminating the need for lengthy and costly accreditations with\
+        \ \nVisa and MasterCard.\n\n3D Secure aims to shift the liability of a transaction\
+        \ away from the merchant and back to the cardholder. This \n\"liability shift\"\
+        \ determines whether a cardholder can charge back a transaction. The process\
+        \ requires the cardholder \nto authenticate the transaction prior to authorisation,\
+        \ producing a Cardholder Verification Value (CAVV) and \nE-commerce Indicator\
+        \ (ECI) as evidence.\n\n3DS version 2 to provide secure customer authentication\
+        \ (SCA) in line with EU regulation.\n\nCityPay support 3DS version 2.2 for\
+        \ Verified by Visa, MasterCard Identity Check and American Express SafeKey\
+        \ 2.2. Version\n2.3 is currently in development however this will be a seamless\
+        \ upgrade for all integrations.\n\n#### 3-D Secure - None\n\n![3DSv2 Frctionless\
+        \ Flow](images/3dsv2-no3d.png)\n\nSome transactions may not involve 3-D Secure\
+        \ processing, either due to the inability to perform authentication or an\
+        \ \n\"attempted\" resolution. These transactions may not benefit from a liability\
+        \ shift and could result in a decline.\n\n#### 3-D Secure - Frictionless\n\
+        \n![3DSv2 Frctionless Flow](images/3dsv2-frictionless.png)\n\n3DSv2 supports\
+        \ \"frictionless\" authentication for low-risk transactions, minimizing impact\
+        \ on the standard \nauthorisation flow. This process is handled seamlessly\
+        \ by our API, requiring no redirection and maintaining a smooth \ntransaction\
+        \ experience.\n\n#### 3-D Secure - Challenge\n\n![3DSv2 Frctionless Flow](images/3dsv2-challenge.png)\n\
+        \nHigher-risk transactions may be \"challenged,\" requiring the cardholder\
+        \ to authenticate the transaction. In such cases,  \nthe API will return a\
+        \ [request challenge](#requestchallenged) which will require your integration\
+        \ to forward the \ncardholder's browser to the given [ACS url](#acsurl). This\
+        \ should be performed by posting the [creq](#creq) value \n(the challenge\
+        \ request value). \n\nOnce complete, the ACS will have already been in touch\
+        \ with our servers by sending us a result of the authentication\nknown as\
+        \ `RReq`.\n\nTo maintain session state, a parameter `threeDSSessionData` can\
+        \ be posted to the ACS url and will be returned alongside \nthe `CRes` value.\
+        \ This will ensure that any controller code will be able to isolate state\
+        \ between calls. This field\nis to be used by your own systems rather than\
+        \ ours and may be any value which can uniquely identify your cardholder's\n\
+        session. As an option, we do provide a `threedserver_trans_id` value in the\
+        \ `RequestChallenged` packet which can be used\nfor the `threeDSSessionData`\
         \ value as it is used to uniquely identify the 3D-Secure session. \n\nA common\
         \ method of maintaining state is to provide a session related query string\
         \ value in the `merchant_termurl` value\n(also known as the `notificationUrl`).\
@@ -1914,53 +1981,17 @@ paths:
         \        </form>\n    </body>\n</html>\n```\n\nA full ACS test suite is available\
         \ for 3DSv2 testing.\n        \n### Testing 3DSv2 Integrations\n\nThe API\
         \ provides a mock 3dsV2 handler which performs a number of scenarios based\
-        \ on the value of the CSC in the request.\n\n| CSC Value | Behaviour |\n|-----------|-----------|\n\
-        | 731       | Frictionless processing - Not authenticated |\n| 732       |\
-        \ Frictionless processing - Account verification count not be performed |\
-        \        \n| 733       | Frictionless processing - Verification Rejected |\
-        \        \n| 741       | Frictionless processing - Attempts Processing | \
-        \       \n| 750       | Frictionless processing - Authenticated  |       \
-        \ \n| 761       | Triggers an error message |  \n| Any       | Challenge Request\
-        \ |       \n\n\n#### 3DSv1\n\n**Please note that 3DSv1 should now be considered\
-        \ as deprecated.**\n\n```json\n{ \n  \"AuthenticationRequired\": {\n    \"\
-        acsurl\": \"https://bank.com/3DS/ACS\",\n    \"pareq\": \"SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...\"\
-        ,\n    \"md\": \"WQgZXZlcnl0aGluZyBiZW\"\n  }               \n}\n```\n\n```xml\n\
-        <AuthenticationRequired>\n <acsurl>https://bank.com/3DS/ACS</acsurl>\n <pareq>SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...</pareq>\n\
-        \ <md>WQgZXZlcnl0aGluZyBiZW</md>\n</AuthenticationRequired>\n```\n\nFor E-commerce\
-        \ transactions requiring 3DSv1, the API contains a built in MPI which will\
-        \ be called to check whether the\ncard is participating in 3DSv1 with Verified\
-        \ by Visa or MasterCard SecureCode. We only support Amex SafeKey with 3DSv2.\
-        \ Should the card be enrolled, a payer\nrequest (PAReq) value will be created\
-        \ and returned back as an [authentication required](#authenticationrequired)\
-        \ response object.\n\nYour system will need to process this authentication\
-        \ packet and forward the user's browser to an authentication server (ACS)\n\
-        to gain the user's authentication. Once complete, the ACS will produce a HTTP\
-        \ `POST` call back to the URL supplied in\nthe authentication request as `merchant_termurl`.\
-        \ This URL should behave as a controller and handle the post data from the\n\
-        ACS and on a forked server to server HTTP request, forward this data to the\
-        \ [pares authentication url](#pares) for\nsubsequent authorisation processing.\
-        \ You may prefer to provide a processing page whilst this is being processed.\n\
-        Processing with our systems should be relatively quick and be between 500ms\
-        \ - 3000ms however it is desirable to let\nthe user see that something is\
-        \ happening rather than a pending browser.\n\nThe main reason for ensuring\
-        \ that this controller is two fold:\n\n1. We are never in control of the user's\
-        \ browser in a server API call\n2. The controller is actioned on your site\
-        \ to ensure that any post actions from authorisation can be executed in real\
-        \ time\n\nTo forward the user to the ACS, we recommend a simple auto submit\
-        \ HTML form.\n\n> Simple auto submit HTML form\n\n```html\n<html lang=\"en\"\
-        >\n\t<head>\n        <title>Forward to ACS</title>\n\t\t<script type=\"text/javascript\"\
-        >\n        function onLoadEvent() { \n            document.acs.submit(); \n\
-        \        }\n        </script>\n        <noscript>You will require JavaScript\
-        \ to be enabled to complete this transaction</noscript>\n    </head>\n   \
-        \ <body onload=\"onLoadEvent();\">\n        <form name=\"acs\" action=\"{{ACSURL\
-        \ from Response}}\" method=\"POST\">\n            <input type=\"hidden\" name=\"\
-        PaReq\" value=\"{{PaReq Packet from Response}}\" />\n            <input type=\"\
-        hidden\" name=\"TermUrl\" value=\"{{Your Controller}}\" />\n            <input\
-        \ type=\"hidden\" name=\"MD\" value=\"{{MD From Response}}\" />\n        </form>\n\
-        \    </body>\n</html>\n```\n\nPlease note that 3DSv1 is being phased out due\
-        \ to changes to strong customer authentication mechanisms. 3DSv2 addresses\n\
-        this and will solidify the authorisation and confirmation process.\n\nWe provide\
-        \ a Test ACS for full 3DSv1 integration testing that simulates an ACS.\n"
+        \ on the value of the CSC in the request.\n\n| CSC Value | Behaviour     \
+        \                                                        |\n|-----------|-----------------------------------------------------------------------|\n\
+        | 731       | Frictionless processing - Not authenticated                \
+        \           |\n| 732       | Frictionless processing - Account verification\
+        \ count not be performed |        \n| 733       | Frictionless processing\
+        \ - Verification Rejected                       |        \n| 741       | Frictionless\
+        \ processing - Attempts Processing                         |        \n| 750\
+        \       | Frictionless processing - Authenticated                        \
+        \       |        \n| 761       | Triggers an error message               \
+        \                              |  \n| Any       | Challenge Request      \
+        \                                               |\n"
       operationId: AuthorisationRequest
       requestBody:
         content:
@@ -2074,7 +2105,8 @@ paths:
       x-accepts: application/json
   /v6/batch/retrieve:
     post:
-      description: The report for a given batch.
+      description: Obtains a batch and installment (BIS) report for a given batch
+        id.
       operationId: BatchRetrieveRequest
       requestBody:
         content:
@@ -2118,7 +2150,7 @@ paths:
           description: Server Error. The server was unable to complete the request.
       security:
       - cp-api-key: []
-      summary: BatchReportRequest
+      summary: Batch Retrieve Request
       tags:
       - Batch Processing Api
       x-content-type: application/json
@@ -2169,7 +2201,7 @@ paths:
           description: Server Error. The server was unable to complete the request.
       security:
       - cp-api-key: []
-      summary: CheckBatchStatus
+      summary: Check Batch Status
       tags:
       - Batch Processing Api
       x-content-type: application/json
@@ -2456,6 +2488,244 @@ paths:
       - Authorisation and Payment Api
       x-content-type: application/json
       x-accepts: application/json
+  /v6/intent/create:
+    post:
+      description: |
+        This endpoint initiates the creation of a payment intent, which is a precursor to processing a payment. A payment intent
+        captures the details of a prospective payment transaction, including the payment amount, currency, and associated
+        billing and shipping information.
+      operationId: CreatePaymentIntent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentIntent'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/PaymentIntent'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentIntentReference'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/PaymentIntentReference'
+          description: Returns the id of the payment intent.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "500":
+          description: Server Error. The server was unable to complete the request.
+      security:
+      - cp-api-key: []
+      summary: Create a Payment Intent
+      tags:
+      - Authorisation and Payment Api
+      x-beta: true
+      x-content-type: application/json
+      x-accepts: application/json
+  /v6/merchant-batch/report:
+    post:
+      description: "Retrieves a report of merchant batches within a specified date\
+        \ range. \nBatches, which aggregate daily processing activities, are typically\
+        \ generated at `00:00` each day. \nThese batches play a crucial role in the\
+        \ settlement of funds by summarising daily transactions.\n"
+      operationId: MerchantBatchReportRequest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantBatchRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/MerchantBatchRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantBatchReportResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/MerchantBatchReportResponse'
+          description: A report of the batches generated.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "500":
+          description: Server Error. The server was unable to complete the request.
+      security:
+      - cp-api-key: []
+      summary: Merchant Batch Report Request
+      tags:
+      - Reporting Api
+      x-content-type: application/json
+      x-accepts: application/json
+  /v6/merchant-batch/{merchantid}/{batch_no}:
+    get:
+      description: Retrieves a report of merchant a merchant batch for a specified
+        batch number.
+      operationId: MerchantBatchRequest
+      parameters:
+      - description: A merchant ID (MID) for which data is requested. This field allows
+          for filtering of the request by a specific merchant account.
+        explode: false
+        in: path
+        name: merchantid
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: The batch number that is being requested.
+        explode: false
+        in: path
+        name: batch_no
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantBatchResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/MerchantBatchResponse'
+          description: A report of a single batch.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "500":
+          description: Server Error. The server was unable to complete the request.
+      security:
+      - cp-api-key: []
+      summary: Merchant Batch Request
+      tags:
+      - Reporting Api
+      x-accepts: application/json
+  /v6/merchant-batch/{merchantid}/{batch_no}/transactions:
+    post:
+      description: Retrieves transactions available on a given batch.
+      operationId: BatchedTransactionReportRequest
+      parameters:
+      - description: A merchant ID (MID) for which data is requested. This field allows
+          for filtering of the request by a specific merchant account.
+        explode: false
+        in: path
+        name: merchantid
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: The batch number that is being requested.
+        explode: false
+        in: path
+        name: batch_no
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchTransactionReportRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/BatchTransactionReportRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchTransactionReportResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/BatchTransactionReportResponse'
+          description: A report of the transactions listed on batches.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "500":
+          description: Server Error. The server was unable to complete the request.
+      security:
+      - cp-api-key: []
+      summary: Batch Transaction Report Request
+      tags:
+      - Reporting Api
+      x-content-type: application/json
+      x-accepts: application/json
   /v6/merchants/{clientid}:
     get:
       description: |
@@ -2700,6 +2970,136 @@ paths:
       tags:
       - Authorisation and Payment Api
       x-content-type: application/json
+      x-accepts: application/json
+  /v6/remittance/report/{clientid}:
+    post:
+      description: |
+        Fetches remittance reports for financial transactions within a specified date range,
+        covering all client-related activities. This report consolidates all batches disbursed to a
+        client, with each remittance summarising the aggregation of batches leading up to settlement.
+        Additionally, the net remittance amount presented in the final settlement will reflect any
+        deductions made by the acquirer.
+      operationId: RemittanceRangeReport
+      parameters:
+      - description: A client Id for which data is requested.
+        explode: false
+        in: path
+        name: clientid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemittanceReportRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/RemittanceReportRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemittanceReportResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/RemittanceReportResponse'
+          description: A report of financial remittance data for a range of dates.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "500":
+          description: Server Error. The server was unable to complete the request.
+      security:
+      - cp-api-key: []
+      summary: Remittance Report Request
+      tags:
+      - Reporting Api
+      x-content-type: application/json
+      x-accepts: application/json
+  /v6/remittance/report/{clientid}/{date}:
+    get:
+      description: "Fetches remittance reports for financial transactions for a given\
+        \ date, \ncovering all client-related activities. This report consolidates\
+        \ all batches disbursed to a \nclient, with each remittance summarising the\
+        \ aggregation of batches leading up to settlement. \nAdditionally, the net\
+        \ remittance amount presented in the final settlement will reflect any \n\
+        deductions made by the acquirer.\n\nThe process also supports the notion of\
+        \ *today* deferring the date to today's date or *latest* reflecting the\n\
+        latest remittance date available.\n"
+      operationId: RemittanceReportRequest
+      parameters:
+      - description: A client Id for which data is requested.
+        explode: false
+        in: path
+        name: clientid
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Date (YYYY-MM-DD) to filter the request for.
+        explode: false
+        in: path
+        name: date
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemittedClientData'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/RemittedClientData'
+          description: A report of the financial remittance data for a given date.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "500":
+          description: Server Error. The server was unable to complete the request.
+      security:
+      - cp-api-key: []
+      summary: Remittance Date Report Request
+      tags:
+      - Reporting Api
       x-accepts: application/json
   /v6/retrieve:
     post:
@@ -4206,6 +4606,94 @@ components:
       required:
       - account_id
       - amount
+      type: object
+    BatchTransactionReportRequest:
+      example:
+        maxResults: 50
+        nextToken: nextToken
+        orderBy: date
+      properties:
+        maxResults:
+          description: "The maximum number of results to return in a single response.\
+            \ This value is used to limit the size of data returned by the API, enhancing\
+            \ performance and manageability. Values should be between 5 and 250."
+          example: 50
+          format: int32
+          type: integer
+        nextToken:
+          description: "A token that identifies the starting point of the page of\
+            \ results to be returned. An empty value indicates the start of the dataset.\
+            \ When supplied, it is validated and used to fetch the subsequent page\
+            \ of results. This token is typically obtained from the response of a\
+            \ previous pagination request."
+          type: string
+        orderBy:
+          description: "Specifies the field by which results are ordered. Available\
+            \ fields are [trans_no,date_when,amount]. By default, fields are ordered\
+            \ by OrderByExpression(trans_no,ASC). To order in descending order, prefix\
+            \ with '-' or suffix with ' DESC'."
+          example: date
+          type: string
+      type: object
+    BatchTransactionReportResponse:
+      example:
+        data:
+        - amount_value: 3600
+          identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          amount: "20.0"
+          atrn: atrn
+          batchno: batchno
+          maskedpan: 4***********0002
+          transno: 78416
+          authcode: 001245A
+          result: result
+          datetime: 2020-01-02T18:32:28Z
+          merchantid: 11223344
+          currency: GBP
+          trans_status: trans_status
+          trans_type: trans_type
+        - amount_value: 3600
+          identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          amount: "20.0"
+          atrn: atrn
+          batchno: batchno
+          maskedpan: 4***********0002
+          transno: 78416
+          authcode: 001245A
+          result: result
+          datetime: 2020-01-02T18:32:28Z
+          merchantid: 11223344
+          currency: GBP
+          trans_status: trans_status
+          trans_type: trans_type
+        maxResults: 50
+        nextToken: nextToken
+        count: 25
+      properties:
+        count:
+          description: The count of items returned in this page.
+          example: 25
+          format: int32
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/AuthReference'
+          type: array
+          x-description: Transaction data based on the batch request.
+        maxResults:
+          description: The max results requested in this page.
+          example: 50
+          format: int32
+          type: integer
+        nextToken:
+          description: "A token that identifies the starting point of the page of\
+            \ results to be returned. An empty value indicates the start of the dataset.\
+            \ When supplied, it is validated and used to fetch the subsequent page\
+            \ of results. This token is typically obtained from the response of a\
+            \ previous pagination request."
+          type: string
+      required:
+      - data
       type: object
     BatchTransactionResultModel:
       example:
@@ -5827,6 +6315,252 @@ components:
           example: Active
           type: string
       type: object
+    MerchantBatchReportResponse:
+      example:
+        batches:
+        - batch_no: batch_no
+          net_summary:
+            debit_items_count: 12345
+            credit_items_value: 11874500
+            credit_items_count: 12345
+            total_count: 12345
+            debit_items_amount: £75.89
+            net_amount: 11874500
+            debit_items_value: 11874500
+            credit_items_amount: £75.89
+          merchantid: 11223344
+          batch_closed: 2000-01-23T04:56:07.000+00:00
+          batch_status: batch_status
+          batch_status_code: batch_status_code
+          currency: GBP
+        - batch_no: batch_no
+          net_summary:
+            debit_items_count: 12345
+            credit_items_value: 11874500
+            credit_items_count: 12345
+            total_count: 12345
+            debit_items_amount: £75.89
+            net_amount: 11874500
+            debit_items_value: 11874500
+            credit_items_amount: £75.89
+          merchantid: 11223344
+          batch_closed: 2000-01-23T04:56:07.000+00:00
+          batch_status: batch_status
+          batch_status_code: batch_status_code
+          currency: GBP
+        maxResults: 50
+        nextToken: nextToken
+        count: 25
+      properties:
+        batches:
+          items:
+            $ref: '#/components/schemas/MerchantBatchResponse'
+          type: array
+          x-description: Batch data based on the request.
+        count:
+          description: The count of items returned in this page.
+          example: 25
+          format: int32
+          type: integer
+        maxResults:
+          description: The max results requested in this page.
+          example: 50
+          format: int32
+          type: integer
+        nextToken:
+          description: "A token that identifies the starting point of the page of\
+            \ results to be returned. An empty value indicates the start of the dataset.\
+            \ When supplied, it is validated and used to fetch the subsequent page\
+            \ of results. This token is typically obtained from the response of a\
+            \ previous pagination request."
+          type: string
+      required:
+      - batches
+      type: object
+    MerchantBatchRequest:
+      example:
+        date_until: 2024-01-31T00:00:00.000+00:00
+        maxResults: 50
+        nextToken: nextToken
+        orderBy: date
+        merchant_id:
+        - 1
+        - 1
+        date_from: 2024-01-24T00:00:00.000+00:00
+      properties:
+        date_from:
+          description: "Start date (YYYY-MM-DD) for batch retrieval range, inclusive.\
+            \ Maximum value is 3 years ago."
+          example: 2024-01-24
+          format: date
+          type: string
+        date_until:
+          description: "End date (YYYY-MM-DD) for batch retrieval range, inclusive."
+          example: 2024-01-31
+          format: date
+          type: string
+        maxResults:
+          description: "The maximum number of results to return in a single response.\
+            \ This value is used to limit the size of data returned by the API, enhancing\
+            \ performance and manageability. Values should be between 5 and 250."
+          example: 50
+          format: int32
+          type: integer
+        merchant_id:
+          items:
+            description: An array of merchant IDs (MIDs) for which the batch processing
+              data is requested. This field allows for filtering the batches by specific
+              merchant accounts.
+            format: int32
+            maxLength: 8
+            minimum: 1
+            type: integer
+          type: array
+        nextToken:
+          description: "A token that identifies the starting point of the page of\
+            \ results to be returned. An empty value indicates the start of the dataset.\
+            \ When supplied, it is validated and used to fetch the subsequent page\
+            \ of results. This token is typically obtained from the response of a\
+            \ previous pagination request."
+          type: string
+        orderBy:
+          description: "Specifies the field by which results are ordered. Available\
+            \ fields are [merchant_id,batch_no,net_amount]. By default, fields are\
+            \ ordered by OrderByExpression(merchant_id,ASC),OrderByExpression(batch_no,ASC).\
+            \ To order in descending order, prefix with '-' or suffix with ' DESC'."
+          example: date
+          type: string
+      type: object
+    MerchantBatchResponse:
+      example:
+        batch_no: batch_no
+        net_summary:
+          debit_items_count: 12345
+          credit_items_value: 11874500
+          credit_items_count: 12345
+          total_count: 12345
+          debit_items_amount: £75.89
+          net_amount: 11874500
+          debit_items_value: 11874500
+          credit_items_amount: £75.89
+        merchantid: 11223344
+        batch_closed: 2000-01-23T04:56:07.000+00:00
+        batch_status: batch_status
+        batch_status_code: batch_status_code
+        currency: GBP
+      properties:
+        batch_closed:
+          description: "The date and time when the batch was closed. This is represented\
+            \ in ISO 8601 format (e.g., YYYY-MM-DDTHH:MM:SSZ) and indicates when the\
+            \ batch processing was completed."
+          format: date-time
+          type: string
+        batch_no:
+          description: The incremental identifier of the batch. This number is used
+            to track and reference the batch in subsequent operations or inquiries.
+          type: string
+        batch_status:
+          description: A descriptive string detailing the current status of the batch.
+            This status provides a human-readable explanation of the batch's processing
+            state.
+          type: string
+        batch_status_code:
+          description: |
+            A batch status code that represents the processing state of the batch. Batches will be one of
+             - 'O' defining the batch is open for settlement and not yet settled
+             - 'X' defines that the batch is external to our systems and managed elsewhere
+             - 'C' defines that the batch is cancelled and not settled
+             - 'S' defines that the batch has been settled and remitted.
+          type: string
+        currency:
+          description: The currency of the batch.
+          example: GBP
+          maxLength: 3
+          minLength: 3
+          type: string
+        merchantid:
+          description: "The Merchant ID (MID) associated with the batch. This identifier\
+            \ specifies which merchant account the batch was processed for, linking\
+            \ transactions to the merchant."
+          example: 11223344
+          format: int32
+          type: integer
+        net_summary:
+          $ref: '#/components/schemas/NetSummaryResponse'
+      type: object
+    NetSummaryResponse:
+      example:
+        debit_items_count: 12345
+        credit_items_value: 11874500
+        credit_items_count: 12345
+        total_count: 12345
+        debit_items_amount: £75.89
+        net_amount: 11874500
+        debit_items_value: 11874500
+        credit_items_amount: £75.89
+      properties:
+        credit_items_amount:
+          description: The total value of refund (credit) transaction items. Represents
+            the sum of funds returned to customers.
+          example: £75.89
+          format: amount
+          maximum: 999999999
+          type: string
+        credit_items_count:
+          description: The count of refund (credit) transaction items. Reflects the
+            number of refund transactions processed.
+          example: 12345
+          format: int32
+          maximum: 999999
+          minimum: 0
+          type: integer
+        credit_items_value:
+          description: The total value of refund (credit) transaction items. Represents
+            the sum of funds returned to customers.
+          example: 11874500
+          format: int32
+          maximum: 999999999
+          minimum: 0
+          type: integer
+        debit_items_amount:
+          description: The total value of charge (debit) transaction items. Represents
+            the sum of funds received from charges.
+          example: £75.89
+          format: amount
+          maximum: 999999999
+          type: string
+        debit_items_count:
+          description: The count of charge (debit) transaction items. Indicates the
+            number of charge transactions processed.
+          example: 12345
+          format: int32
+          maximum: 999999
+          minimum: 0
+          type: integer
+        debit_items_value:
+          description: The total value of charge (debit) transaction items. Represents
+            the sum of funds received from charges.
+          example: 11874500
+          format: int32
+          maximum: 999999999
+          minimum: 0
+          type: integer
+        net_amount:
+          description: "The absolute net value, reflecting the net gain or loss from\
+            \ transactions."
+          example: 11874500
+          format: int32
+          maximum: 999999999
+          minimum: 0
+          type: integer
+        total_count:
+          description: The total count of all transaction items.
+          example: 12345
+          format: int32
+          maximum: 999999
+          minimum: 0
+          type: integer
+      type: object
     PaResAuthRequest:
       example:
         md: md
@@ -6741,6 +7475,21 @@ components:
           description: a rate as fixed or percentage.
           type: string
       type: object
+    PaylinkResendNotificationRequest:
+      example:
+        sms: true
+        email: true
+      properties:
+        email:
+          description: Resends the bill payment email provided on the Paylink create
+            token notification path. Emails can be sent up to 5 times per token.
+          type: boolean
+        sms:
+          description: |
+            Resends the bill payment SMS provided on the Paylink create token notification path. An SMS cannot be resent if it was
+            previously sent less than 1 minute ago. There is a limit of 3 retries per token.
+          type: boolean
+      type: object
     PaylinkSMSNotificationPath:
       example:
         template: template
@@ -6785,13 +7534,13 @@ components:
         bps: bps
         usc: usc
         date_created: 2000-01-23T04:56:07.000+00:00
+        qrcode: qrcode
         source: source
         server_version: server_version
         url: url
         token: token
         mode: mode
         result: 0
-        qr_code: qr_code
         id: id
         errors:
         - msg: msg
@@ -6823,7 +7572,7 @@ components:
         mode:
           description: Determines whether the token is `live` or `test`.
           type: string
-        qr_code:
+        qrcode:
           description: A URL of a qrcode which can be used to refer to the token URL.
           type: string
         result:
@@ -7193,11 +7942,9 @@ components:
     PaylinkTokenStatusChangeRequest:
       example:
         merchantid: 11223344
-        maxResults: 0
+        maxResults: 50
         nextToken: nextToken
-        orderBy:
-        - orderBy
-        - orderBy
+        orderBy: date
         after: 2000-01-23T04:56:07.000+00:00
       properties:
         after:
@@ -7205,8 +7952,10 @@ components:
           format: date-time
           type: string
         maxResults:
-          description: the maximum number of results between 5 and 250 to return.
-            Default is 50.
+          description: "The maximum number of results to return in a single response.\
+            \ This value is used to limit the size of data returned by the API, enhancing\
+            \ performance and manageability. Values should be between 5 and 250."
+          example: 50
           format: int32
           type: integer
         merchantid:
@@ -7215,23 +7964,27 @@ components:
           format: int32
           type: integer
         nextToken:
-          description: the next token value when more results are available.
+          description: "A token that identifies the starting point of the page of\
+            \ results to be returned. An empty value indicates the start of the dataset.\
+            \ When supplied, it is validated and used to fetch the subsequent page\
+            \ of results. This token is typically obtained from the response of a\
+            \ previous pagination request."
           type: string
         orderBy:
-          items:
-            type: string
-          type: array
-          x-description: |
-            an orderBy array should the search require ordering. The following fields may be specified:
-            `created`.
-            The default order by fields are `created`.
+          description: "Specifies the field by which results are ordered. Available\
+            \ fields are [p.id]. By default, fields are ordered by OrderByExpression(p.id,ASC).\
+            \ To order in descending order, prefix with '-' or suffix with ' DESC'."
+          example: date
+          type: string
       required:
       - after
       - merchantid
       type: object
     PaylinkTokenStatusChangeResponse:
       example:
+        maxResults: 50
         nextToken: nextToken
+        count: 25
         tokens:
         - amount_paid: 0
           is_postback_ok: true
@@ -7302,11 +8055,22 @@ components:
             state: 2000-01-23T04:56:07.000+00:00
             message: message
       properties:
+        count:
+          description: The count of items returned in this page.
+          example: 25
+          format: int32
+          type: integer
+        maxResults:
+          description: The max results requested in this page.
+          example: 50
+          format: int32
+          type: integer
         nextToken:
-          description: |
-            If nextToken is returned, there are more results available. The value of nextToken is a unique pagination
-            token for each page. Make the call again using the returned token to retrieve the next page.
-            Keep all other arguments unchanged.
+          description: "A token that identifies the starting point of the page of\
+            \ results to be returned. An empty value indicates the start of the dataset.\
+            \ When supplied, it is validated and used to fetch the subsequent page\
+            \ of results. This token is typically obtained from the response of a\
+            \ previous pagination request."
           type: string
         tokens:
           items:
@@ -7339,6 +8103,222 @@ components:
         postcode_mandatory:
           description: whether the postcode is forced as mandatory.
           type: boolean
+      type: object
+    PaymentIntent:
+      example:
+        bill_to:
+          area: London
+          country: GB
+          firstname: John
+          address3: address3
+          address2: Westminster
+          address1: 79 Parliament St
+          mobile_no: "447790123456"
+          postcode: L1 789
+          title: Mr
+          lastname: Smith
+          telephone_no: "442030123456"
+          company: Acme Ltd
+          email: card.holder@citypay.com
+        identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+        amount: 3600
+        csc_policy: csc_policy
+        trans_info: trans_info
+        duplicate_policy: duplicate_policy
+        csc: "10"
+        match_avsa: match_avsa
+        avs_postcode_policy: avs_postcode_policy
+        currency: GBP
+        tag: tag
+        ship_to:
+          area: London
+          country: GB
+          firstname: John
+          address3: address3
+          address2: Westminster
+          address1: 79 Parliament St
+          mobile_no: "447790123456"
+          postcode: L1 789
+          title: Mr
+          lastname: Smith
+          telephone_no: "442030123456"
+          company: Acme Ltd
+          email: card.holder@citypay.com
+        trans_type: trans_type
+      properties:
+        amount:
+          description: |
+            The amount to authorise in the lowest unit of currency with a variable length to a maximum of 12 digits.
+
+            No decimal points are to be included and no divisional characters such as 1,024.
+
+            The amount should be the total amount required for the transaction.
+
+            For example with GBP £1,021.95 the amount value is 102195.
+          example: 3600
+          format: int32
+          maxLength: 9
+          minLength: 1
+          type: integer
+        avs_postcode_policy:
+          description: |
+            A policy value which determines whether an AVS postcode policy is enforced or bypassed.
+
+            Values are
+             `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+
+             `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.
+
+             `2` to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.
+
+             `3` to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation.
+          type: string
+        bill_to:
+          $ref: '#/components/schemas/ContactDetails'
+        csc:
+          description: |
+            The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card
+            (American Express has it on the front). The value helps to identify posession of the card as it is not
+            available within the chip or magnetic swipe.
+
+            When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped
+            out by any integer parsing.
+
+            The CSC number aids fraud prevention in Mail Order and Internet payments.
+
+            Business rules are available on your account to identify whether to accept
+            or decline transactions based on mismatched results of the CSC.
+
+            The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored.
+
+            This applies to all entities handling card data.
+
+            It should also not be used in any hashing process.
+
+            CityPay do not store the value and have no method of retrieving the value once the transaction has been processed.
+            For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm.
+          example: "10"
+          maxLength: 4
+          minLength: 3
+          type: string
+        csc_policy:
+          description: |
+            A policy value which determines whether a CSC policy is enforced or bypassed.
+
+            Values are
+             `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+
+             `1` for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.
+
+             `2` to bypass. Transactions that are bypassed will be allowed through even if the CSC did not match.
+
+             `3` to ignore. Transactions that are ignored will bypass the result and not send the CSC details for authorisation.
+          type: string
+        currency:
+          description: The processing currency for the transaction. Will default to
+            the merchant account currency.
+          example: GBP
+          maxLength: 3
+          minLength: 3
+          type: string
+        duplicate_policy:
+          description: |
+            A policy value which determines whether a duplication policy is enforced or bypassed. A duplication check has a window
+            of time set against your account within which it can action. If a previous transaction with matching values occurred within
+            the window, any subsequent transaction will result in a T001 result.
+
+            Values are
+             `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+
+             `1` for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.
+
+             `2` to bypass. Transactions that are bypassed will not be checked for duplication within the duplication window.
+
+             `3` to ignore. Transactions that are ignored will have the same affect as bypass.
+          type: string
+        identifier:
+          description: |
+            The identifier of the transaction to process. The value should be a valid reference and may be used to perform
+             post processing actions and to aid in reconciliation of transactions.
+
+            The value should be a valid printable string with ASCII character ranges from 0x32 to 0x127.
+
+            The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)
+            this will aid in ensuring each transaction is identifiable.
+
+            When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent
+            request will ensure that a transaction is considered as different.
+          example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          maxLength: 50
+          minLength: 4
+          type: string
+        match_avsa:
+          description: |
+            A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.
+
+            Values are
+             `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
+
+             `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.
+
+             `2` to bypass. Transactions that are bypassed will be allowed through even if the address did not match.
+
+             `3` to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation.
+          type: string
+        ship_to:
+          $ref: '#/components/schemas/ContactDetails'
+        tag:
+          description: |
+            A "tag" is a label that you can attach to a payment authorization.
+            Tags can help you group transactions together based on certain criteria, like a work job or a ticket number.
+            They can also assist in filtering transactions when you're generating reports.
+
+            Multiple Tags
+            You can add more than one tag to a transaction by separating them with commas.
+
+            Limitations
+            There is a maximum limit of 3 tags that can be added to a single transaction. Each tag can be no longer than 20
+            characters and alphanumeric with no spaces.
+
+            Example:
+            Let's say you're a software company and you have different teams working on various projects. When a team makes
+            a purchase or incurs an expense, they can tag the transaction with the project name, the team name, and the
+            type of expense.
+
+            Project Name: Project_X
+            Team Name: Team_A
+            Type of Expense: Hardware
+            So, the tag for a transaction might look like: Project_X,Team_A,Hardware
+
+            This way, when you're looking at your financial reports, you can easily filter transactions based on these
+            tags to see how much each project or team is spending on different types of expenses.
+          type: string
+        trans_info:
+          description: Further information that can be added to the transaction will
+            display in reporting. Can be used for flexible values such as operator
+            id.
+          maxLength: 50
+          type: string
+        trans_type:
+          description: The type of transaction being submitted. Normally this value
+            is not required and your account manager may request that you set this
+            field.
+          maxLength: 1
+          type: string
+      required:
+      - amount
+      - identifier
+      type: object
+    PaymentIntentReference:
+      example:
+        payment_intent_id: p13t1111222233334444
+      properties:
+        payment_intent_id:
+          description: The intent id used for future referencing of the intent.
+          example: p13t1111222233334444
+          type: string
+      required:
+      - payment_intent_id
       type: object
     Ping:
       example:
@@ -7523,6 +8503,413 @@ components:
       - cardnumber
       - expmonth
       - expyear
+      type: object
+    RemittanceData:
+      example:
+        date_created: 2020-01-02T18:32:28Z
+        refund_amount: 11874500
+        sales_amount: 11874500
+        sales_count: 11874500
+        net_amount: 11874500
+        refund_count: 11874500
+      properties:
+        date_created:
+          description: Represents the date and time when the remittance was processed.
+            This timestamp follows the ISO 8601 format for datetime representation.
+          example: 2020-01-02T18:32:28Z
+          format: date-time
+          type: string
+        net_amount:
+          description: Represents the net amount after accounting for refunds. This
+            is calculated as SalesAmount - RefundAmount and expressed in the smallest
+            currency unit.
+          example: 11874500
+          format: int32
+          maximum: 999999999
+          minimum: 0
+          type: integer
+        refund_amount:
+          description: The total amount refunded to customers.
+          example: 11874500
+          format: int32
+          maximum: 999999999
+          minimum: 0
+          type: integer
+        refund_count:
+          description: The total number of refund transactions processed. This figure
+            helps in understanding the frequency of refunds relative to sales.
+          example: 11874500
+          format: int32
+          maximum: 999999999
+          minimum: 0
+          type: integer
+        sales_amount:
+          description: The total monetary amount of sales transactions.
+          example: 11874500
+          format: int32
+          maximum: 999999999
+          minimum: 0
+          type: integer
+        sales_count:
+          description: Indicates the total number of sales transactions that occurred.
+            This count provides insight into the volume of sales.
+          example: 11874500
+          format: int32
+          maximum: 999999999
+          minimum: 0
+          type: integer
+      type: object
+    RemittanceReportRequest:
+      example:
+        date_until: 2024-01-31T00:00:00.000+00:00
+        maxResults: 50
+        nextToken: nextToken
+        orderBy: date
+        merchant_id:
+        - 1
+        - 1
+        date_from: 2024-01-24T00:00:00.000+00:00
+      properties:
+        date_from:
+          description: "Start date (YYYY-MM-DD) for batch Retrieval range, inclusive.\
+            \ Maximum value is 3 years ago."
+          example: 2024-01-24
+          format: date
+          type: string
+        date_until:
+          description: "End date (YYYY-MM-DD) for batch Retrieval range, inclusive."
+          example: 2024-01-31
+          format: date
+          type: string
+        maxResults:
+          description: "The maximum number of results to return in a single response.\
+            \ This value is used to limit the size of data returned by the API, enhancing\
+            \ performance and manageability. Values should be between 5 and 250."
+          example: 50
+          format: int32
+          type: integer
+        merchant_id:
+          items:
+            description: An array of merchant IDs (MIDs) for which the batch processing
+              data is requested. This field allows for filtering the batches by specific
+              merchant accounts.
+            format: int32
+            maxLength: 8
+            minimum: 1
+            type: integer
+          type: array
+        nextToken:
+          description: "A token that identifies the starting point of the page of\
+            \ results to be returned. An empty value indicates the start of the dataset.\
+            \ When supplied, it is validated and used to fetch the subsequent page\
+            \ of results. This token is typically obtained from the response of a\
+            \ previous pagination request."
+          type: string
+        orderBy:
+          description: "Specifies the field by which results are ordered. Available\
+            \ fields are [trans_no,date_when,amount]. By default, fields are ordered\
+            \ by OrderByExpression(trans_no,ASC). To order in descending order, prefix\
+            \ with '-' or suffix with ' DESC'."
+          example: date
+          type: string
+      type: object
+    RemittanceReportResponse:
+      example:
+        data:
+        - date: 2020-01-02T00:00:00.000+00:00
+          clientid: PC12345
+          processed_amount: 11874500
+          date_created: 2020-01-02T18:32:28Z
+          remittances:
+          - date_created: 2020-01-02T18:32:28Z
+            refund_amount: 11874500
+            sales_amount: 11874500
+            sales_count: 11874500
+            net_amount: 11874500
+            refund_count: 11874500
+          - date_created: 2020-01-02T18:32:28Z
+            refund_amount: 11874500
+            sales_amount: 11874500
+            sales_count: 11874500
+            net_amount: 11874500
+            refund_count: 11874500
+          sales_amount: 11874500
+          sales_count: 11874500
+          uuid: 123e4567-e89b-12d3-a456-426614174000
+          batches:
+          - batch_no: batch_no
+            net_summary:
+              debit_items_count: 12345
+              credit_items_value: 11874500
+              credit_items_count: 12345
+              total_count: 12345
+              debit_items_amount: £75.89
+              net_amount: 11874500
+              debit_items_value: 11874500
+              credit_items_amount: £75.89
+            merchantid: 11223344
+            batch_closed: 2000-01-23T04:56:07.000+00:00
+            batch_status: batch_status
+            batch_status_code: batch_status_code
+            currency: GBP
+          - batch_no: batch_no
+            net_summary:
+              debit_items_count: 12345
+              credit_items_value: 11874500
+              credit_items_count: 12345
+              total_count: 12345
+              debit_items_amount: £75.89
+              net_amount: 11874500
+              debit_items_value: 11874500
+              credit_items_amount: £75.89
+            merchantid: 11223344
+            batch_closed: 2000-01-23T04:56:07.000+00:00
+            batch_status: batch_status
+            batch_status_code: batch_status_code
+            currency: GBP
+          refund_amount: 11874500
+          processed_count: 11874500
+          net_amount: 11874500
+          refund_count: 11874500
+          settlement_implementation: settlement_implementation
+        - date: 2020-01-02T00:00:00.000+00:00
+          clientid: PC12345
+          processed_amount: 11874500
+          date_created: 2020-01-02T18:32:28Z
+          remittances:
+          - date_created: 2020-01-02T18:32:28Z
+            refund_amount: 11874500
+            sales_amount: 11874500
+            sales_count: 11874500
+            net_amount: 11874500
+            refund_count: 11874500
+          - date_created: 2020-01-02T18:32:28Z
+            refund_amount: 11874500
+            sales_amount: 11874500
+            sales_count: 11874500
+            net_amount: 11874500
+            refund_count: 11874500
+          sales_amount: 11874500
+          sales_count: 11874500
+          uuid: 123e4567-e89b-12d3-a456-426614174000
+          batches:
+          - batch_no: batch_no
+            net_summary:
+              debit_items_count: 12345
+              credit_items_value: 11874500
+              credit_items_count: 12345
+              total_count: 12345
+              debit_items_amount: £75.89
+              net_amount: 11874500
+              debit_items_value: 11874500
+              credit_items_amount: £75.89
+            merchantid: 11223344
+            batch_closed: 2000-01-23T04:56:07.000+00:00
+            batch_status: batch_status
+            batch_status_code: batch_status_code
+            currency: GBP
+          - batch_no: batch_no
+            net_summary:
+              debit_items_count: 12345
+              credit_items_value: 11874500
+              credit_items_count: 12345
+              total_count: 12345
+              debit_items_amount: £75.89
+              net_amount: 11874500
+              debit_items_value: 11874500
+              credit_items_amount: £75.89
+            merchantid: 11223344
+            batch_closed: 2000-01-23T04:56:07.000+00:00
+            batch_status: batch_status
+            batch_status_code: batch_status_code
+            currency: GBP
+          refund_amount: 11874500
+          processed_count: 11874500
+          net_amount: 11874500
+          refund_count: 11874500
+          settlement_implementation: settlement_implementation
+        maxResults: 50
+        nextToken: nextToken
+        count: 25
+      properties:
+        count:
+          description: The count of items returned in this page.
+          example: 25
+          format: int32
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/RemittedClientData'
+          type: array
+          x-description: Transaction data based on the batch request.
+        maxResults:
+          description: The max results requested in this page.
+          example: 50
+          format: int32
+          type: integer
+        nextToken:
+          description: "A token that identifies the starting point of the page of\
+            \ results to be returned. An empty value indicates the start of the dataset.\
+            \ When supplied, it is validated and used to fetch the subsequent page\
+            \ of results. This token is typically obtained from the response of a\
+            \ previous pagination request."
+          type: string
+      required:
+      - data
+      type: object
+    RemittedClientData:
+      example:
+        date: 2020-01-02T00:00:00.000+00:00
+        clientid: PC12345
+        processed_amount: 11874500
+        date_created: 2020-01-02T18:32:28Z
+        remittances:
+        - date_created: 2020-01-02T18:32:28Z
+          refund_amount: 11874500
+          sales_amount: 11874500
+          sales_count: 11874500
+          net_amount: 11874500
+          refund_count: 11874500
+        - date_created: 2020-01-02T18:32:28Z
+          refund_amount: 11874500
+          sales_amount: 11874500
+          sales_count: 11874500
+          net_amount: 11874500
+          refund_count: 11874500
+        sales_amount: 11874500
+        sales_count: 11874500
+        uuid: 123e4567-e89b-12d3-a456-426614174000
+        batches:
+        - batch_no: batch_no
+          net_summary:
+            debit_items_count: 12345
+            credit_items_value: 11874500
+            credit_items_count: 12345
+            total_count: 12345
+            debit_items_amount: £75.89
+            net_amount: 11874500
+            debit_items_value: 11874500
+            credit_items_amount: £75.89
+          merchantid: 11223344
+          batch_closed: 2000-01-23T04:56:07.000+00:00
+          batch_status: batch_status
+          batch_status_code: batch_status_code
+          currency: GBP
+        - batch_no: batch_no
+          net_summary:
+            debit_items_count: 12345
+            credit_items_value: 11874500
+            credit_items_count: 12345
+            total_count: 12345
+            debit_items_amount: £75.89
+            net_amount: 11874500
+            debit_items_value: 11874500
+            credit_items_amount: £75.89
+          merchantid: 11223344
+          batch_closed: 2000-01-23T04:56:07.000+00:00
+          batch_status: batch_status
+          batch_status_code: batch_status_code
+          currency: GBP
+        refund_amount: 11874500
+        processed_count: 11874500
+        net_amount: 11874500
+        refund_count: 11874500
+        settlement_implementation: settlement_implementation
+      properties:
+        batches:
+          items:
+            $ref: '#/components/schemas/MerchantBatchResponse'
+          type: array
+          x-description: Batch data based on the request.
+        clientid:
+          description: The client id that the remittance data is for.
+          example: PC12345
+          maxLength: 10
+          minLength: 3
+          type: string
+        date:
+          description: The date of the remittance.
+          example: 2020-01-02
+          format: date
+          type: string
+        date_created:
+          description: The date time that the remittance was created.
+          example: 2020-01-02T18:32:28Z
+          format: date-time
+          type: string
+        net_amount:
+          description: Represents the net amount after accounting for refunds. This
+            is calculated as SalesAmount - RefundAmount and expressed in the smallest
+            currency unit.
+          example: 11874500
+          format: int32
+          maximum: 999999999
+          minimum: 0
+          type: integer
+        processed_amount:
+          description: The total monetary amount processed consisting of sale and
+            refund transactions.
+          example: 11874500
+          format: int32
+          maximum: 999999999
+          minimum: 0
+          type: integer
+        processed_count:
+          description: Indicates the total number of sales and refund transactions
+            that occurred. This count provides insight into the volume of processing.
+          example: 11874500
+          format: int32
+          maximum: 999999999
+          minimum: 0
+          type: integer
+        refund_amount:
+          description: The total amount refunded to customers.
+          example: 11874500
+          format: int32
+          maximum: 999999999
+          minimum: 0
+          type: integer
+        refund_count:
+          description: The total number of refund transactions processed. This figure
+            helps in understanding the frequency of refunds relative to sales.
+          example: 11874500
+          format: int32
+          maximum: 999999999
+          minimum: 0
+          type: integer
+        remittances:
+          items:
+            $ref: '#/components/schemas/RemittanceData'
+          type: array
+          x-description: Remittance data.
+        sales_amount:
+          description: The total monetary amount of sales transactions.
+          example: 11874500
+          format: int32
+          maximum: 999999999
+          minimum: 0
+          type: integer
+        sales_count:
+          description: Indicates the total number of sales transactions that occurred.
+            This count provides insight into the volume of sales.
+          example: 11874500
+          format: int32
+          maximum: 999999999
+          minimum: 0
+          type: integer
+        settlement_implementation:
+          description: The name of the implementation.
+          type: string
+        uuid:
+          description: The uuid of the settlement file processed on.
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+          maxLength: 36
+          minLength: 36
+          type: string
+      required:
+      - batches
+      - remittances
       type: object
     RequestChallenged:
       example:

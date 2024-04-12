@@ -35,7 +35,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
@@ -123,7 +123,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
@@ -210,7 +210,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
@@ -292,7 +292,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
@@ -372,7 +372,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
@@ -452,7 +452,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
@@ -531,7 +531,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
@@ -615,7 +615,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
@@ -699,7 +699,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
@@ -802,7 +802,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
