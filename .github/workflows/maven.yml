@@ -21,14 +21,14 @@ jobs:
       CP_MERCHANT_ID: ${{ secrets.CP_MERCHANT_ID }}
     strategy:
       matrix:
-        java: [ '8' ]
+        java: [ '21', '17', '12', '11', '8' ]
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK
-      uses: actions/setup-java@v2
-      with:
-        java-version: ${{ matrix.java }}
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B package --no-transfer-progress --file pom.xml
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'adopt'
+          cache: maven
+      - name: Build with Maven
+        run: mvn -B package --no-transfer-progress --file pom.xml
