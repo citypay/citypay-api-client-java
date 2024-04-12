@@ -7,7 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**nextToken** | **String** | If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged.  |  [optional] |
+|**count** | **Integer** | The count of items returned in this page. |  [optional] |
+|**maxResults** | **Integer** | The max results requested in this page. |  [optional] |
+|**nextToken** | **String** | A token that identifies the starting point of the page of results to be returned. An empty value indicates the start of the dataset. When supplied, it is validated and used to fetch the subsequent page of results. This token is typically obtained from the response of a previous pagination request. |  [optional] |
 |**tokens** | [**List&lt;PaylinkTokenStatus&gt;**](PaylinkTokenStatus.md) |  |  |
 
 

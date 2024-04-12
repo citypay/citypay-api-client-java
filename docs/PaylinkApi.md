@@ -12,6 +12,7 @@ All URIs are relative to *https://api.citypay.com*
 | [**tokenPurgeAttachmentsRequest**](PaylinkApi.md#tokenPurgeAttachmentsRequest) | **PUT** /paylink/{token}/purge-attachments | Purges any attachments for a Paylink Token |
 | [**tokenReconciledRequest**](PaylinkApi.md#tokenReconciledRequest) | **PUT** /paylink/{token}/reconciled | Reconcile Paylink Token |
 | [**tokenReopenRequest**](PaylinkApi.md#tokenReopenRequest) | **PUT** /paylink/{token}/reopen | Reopen Paylink Token |
+| [**tokenResendNotificationRequest**](PaylinkApi.md#tokenResendNotificationRequest) | **POST** /paylink/{token}/resend-notification | Resend a notification for Paylink Token |
 | [**tokenStatusRequest**](PaylinkApi.md#tokenStatusRequest) | **GET** /paylink/{token}/status | Paylink Token Status |
 
 
@@ -36,7 +37,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.PaylinkApi;
 
 public class Example {
@@ -116,7 +117,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.PaylinkApi;
 
 public class Example {
@@ -196,7 +197,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.PaylinkApi;
 
 public class Example {
@@ -444,7 +445,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.PaylinkApi;
 
 public class Example {
@@ -522,7 +523,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.PaylinkApi;
 
 public class Example {
@@ -600,7 +601,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.PaylinkApi;
 
 public class Example {
@@ -678,7 +679,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.PaylinkApi;
 
 public class Example {
@@ -756,7 +757,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.PaylinkApi;
 
 public class Example {
@@ -818,6 +819,86 @@ public class Example {
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
 
+## tokenResendNotificationRequest
+
+> Acknowledgement tokenResendNotificationRequest(token, paylinkResendNotificationRequest)
+
+Resend a notification for Paylink Token
+
+Resend a notification for Paylink Token.
+
+### Example
+
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.model.*;
+import com.citypay.client.api.PaylinkApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
+
+        PaylinkApi apiInstance = new PaylinkApi(defaultClient);
+        String token = "token_example"; // String | The token returned by the create token process.
+        PaylinkResendNotificationRequest paylinkResendNotificationRequest = new PaylinkResendNotificationRequest(); // PaylinkResendNotificationRequest | 
+        try {
+            Acknowledgement result = apiInstance.tokenResendNotificationRequest(token, paylinkResendNotificationRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PaylinkApi#tokenResendNotificationRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| The token returned by the create token process. | |
+| **paylinkResendNotificationRequest** | [**PaylinkResendNotificationRequest**](PaylinkResendNotificationRequest.md)|  | |
+
+### Return type
+
+[**Acknowledgement**](Acknowledgement.md)
+
+### Authorization
+
+[cp-api-key](../README.md#cp-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Confirms that the notification was sent. |  -  |
+| **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+| **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+| **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+| **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
+| **500** | Server Error. The server was unable to complete the request. |  -  |
+
+
 ## tokenStatusRequest
 
 > PaylinkTokenStatus tokenStatusRequest(token)
@@ -834,7 +915,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.models.*;
+import com.citypay.client.model.*;
 import com.citypay.client.api.PaylinkApi;
 
 public class Example {

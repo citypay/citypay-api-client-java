@@ -1,6 +1,6 @@
 /*
  * CityPay Payment API
- *  This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing, 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and Completion processing. The API is also capable of tokenized payments using cardholder Accounts.  ## Compliance and Security Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by  Visa and MasterCard and the PCI Security Standards Council. These include  * Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments   as part of our compliance program. * The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or   primary access number (PAN) * The application must not display the full card number on receipts, it is recommended to mask the PAN   and show the last 4 digits. The API will return this for you for ease of receipt creation * If you are developing a website, you will be required to perform regular scans on the network where you host the   application to meet your compliance obligations * You will be required to be PCI Compliant and the application must adhere to the security standard. Further information   is available from [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/) * The API verifies that the request is for a valid account and originates from a trusted source using the remote IP   address. Our application firewalls analyse data that may be an attempt to break a large number of security common   security vulnerabilities. 
+ *  Welcome to the CityPay API, a robust HTTP API payment solution designed for seamless server-to-server  transactional processing. Our API facilitates a wide array of payment operations, catering to diverse business needs.  Whether you're integrating Internet payments, handling Mail Order/Telephone Order (MOTO) transactions, managing  Subscriptions with Recurring and Continuous Authority payments, or navigating the complexities of 3-D Secure  authentication, our API is equipped to support your requirements. Additionally, we offer functionalities for  Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids, and Completion processing, alongside the capability  for tokenised payments.  ## Compliance and Security Overview <aside class=\"notice\">   Ensuring the security of payment transactions and compliance with industry standards is paramount. Our API is    designed with stringent security measures and compliance protocols to safeguard sensitive information and meet    the rigorous requirements of Visa, MasterCard, and the PCI Security Standards Council. </aside>  ### Key Compliance and Security Measures  * **TLS Encryption**: All data transmissions must utilise TLS version 1.2 or higher, employing [strong cryptography](#enabled-tls-ciphers). Our infrastructure strictly enforces this requirement to maintain the integrity and confidentiality of data in transit. We conduct regular scans and assessments of our TLS endpoints to identify and mitigate vulnerabilities. * **Data Storage Prohibitions**: Storing sensitive cardholder data (CHD), such as the card security code (CSC) or primary account number (PAN), is strictly prohibited. Our API is designed to minimize your exposure to sensitive data, thereby reducing your compliance burden. * **Data Masking**: For consumer protection and compliance, full card numbers must not be displayed on receipts or any customer-facing materials. Our API automatically masks PANs, displaying only the last four digits to facilitate safe receipt generation. * **Network Scans**: If your application is web-based, regular scans of your hosting environment are mandatory to identify and rectify potential vulnerabilities. This proactive measure is crucial for maintaining a secure and compliant online presence. * **PCI Compliance**: Adherence to PCI DSS standards is not optional; it's a requirement for operating securely and legally in the payments ecosystem. For detailed information on compliance requirements and resources, please visit the PCI Security Standards Council website [https://www.pcisecuritystandards.org/](https://www.pcisecuritystandards.org/). * **Request Validation**: Our API includes mechanisms to verify the legitimacy of each request, ensuring it pertains to a valid account and originates from a trusted source. We leverage remote IP address verification alongside sophisticated application firewall technologies to thwart a wide array of common security threats.  ## Getting Started Before integrating with the CityPay API, ensure your application and development practices align with the outlined compliance and security measures. This preparatory step is crucial for a smooth integration process and the long-term success of your payment processing operations.  For further details on API endpoints, request/response formats, and code examples, proceed to the subsequent sections of our documentation. Our aim is to provide you with all the necessary tools and information to integrate our payment processing capabilities seamlessly into your application.  Thank you for choosing CityPay API. We look forward to supporting your payment processing needs with our secure, compliant, and versatile API solution. 
  *
  * Contact: support@citypay.com
  *
@@ -82,9 +82,9 @@ public class PaylinkTokenCreated {
   @SerializedName(SERIALIZED_NAME_MODE)
   private String mode;
 
-  public static final String SERIALIZED_NAME_QR_CODE = "qr_code";
-  @SerializedName(SERIALIZED_NAME_QR_CODE)
-  private String qrCode;
+  public static final String SERIALIZED_NAME_QRCODE = "qrcode";
+  @SerializedName(SERIALIZED_NAME_QRCODE)
+  private String qrcode;
 
   public static final String SERIALIZED_NAME_RESULT = "result";
   @SerializedName(SERIALIZED_NAME_RESULT)
@@ -254,22 +254,22 @@ public class PaylinkTokenCreated {
   }
 
 
-  public PaylinkTokenCreated qrCode(String qrCode) {
-    this.qrCode = qrCode;
+  public PaylinkTokenCreated qrcode(String qrcode) {
+    this.qrcode = qrcode;
     return this;
   }
 
    /**
    * A URL of a qrcode which can be used to refer to the token URL.
-   * @return qrCode
+   * @return qrcode
   **/
   @javax.annotation.Nullable
-  public String getQrCode() {
-    return qrCode;
+  public String getQrcode() {
+    return qrcode;
   }
 
-  public void setQrCode(String qrCode) {
-    this.qrCode = qrCode;
+  public void setQrcode(String qrcode) {
+    this.qrcode = qrcode;
   }
 
 
@@ -404,7 +404,7 @@ public class PaylinkTokenCreated {
         Objects.equals(this.id, paylinkTokenCreated.id) &&
         Objects.equals(this.identifier, paylinkTokenCreated.identifier) &&
         Objects.equals(this.mode, paylinkTokenCreated.mode) &&
-        Objects.equals(this.qrCode, paylinkTokenCreated.qrCode) &&
+        Objects.equals(this.qrcode, paylinkTokenCreated.qrcode) &&
         Objects.equals(this.result, paylinkTokenCreated.result) &&
         Objects.equals(this.serverVersion, paylinkTokenCreated.serverVersion) &&
         Objects.equals(this.source, paylinkTokenCreated.source) &&
@@ -415,7 +415,7 @@ public class PaylinkTokenCreated {
 
   @Override
   public int hashCode() {
-    return Objects.hash(attachments, bps, dateCreated, errors, id, identifier, mode, qrCode, result, serverVersion, source, token, url, usc);
+    return Objects.hash(attachments, bps, dateCreated, errors, id, identifier, mode, qrcode, result, serverVersion, source, token, url, usc);
   }
 
   @Override
@@ -429,7 +429,7 @@ public class PaylinkTokenCreated {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
     sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
-    sb.append("    qrCode: ").append(toIndentedString(qrCode)).append("\n");
+    sb.append("    qrcode: ").append(toIndentedString(qrcode)).append("\n");
     sb.append("    result: ").append(toIndentedString(result)).append("\n");
     sb.append("    serverVersion: ").append(toIndentedString(serverVersion)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
@@ -465,7 +465,7 @@ public class PaylinkTokenCreated {
     openapiFields.add("id");
     openapiFields.add("identifier");
     openapiFields.add("mode");
-    openapiFields.add("qr_code");
+    openapiFields.add("qrcode");
     openapiFields.add("result");
     openapiFields.add("server_version");
     openapiFields.add("source");
@@ -538,8 +538,8 @@ public class PaylinkTokenCreated {
       if ((jsonObj.get("mode") != null && !jsonObj.get("mode").isJsonNull()) && !jsonObj.get("mode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mode").toString()));
       }
-      if ((jsonObj.get("qr_code") != null && !jsonObj.get("qr_code").isJsonNull()) && !jsonObj.get("qr_code").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `qr_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("qr_code").toString()));
+      if ((jsonObj.get("qrcode") != null && !jsonObj.get("qrcode").isJsonNull()) && !jsonObj.get("qrcode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `qrcode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("qrcode").toString()));
       }
       if ((jsonObj.get("server_version") != null && !jsonObj.get("server_version").isJsonNull()) && !jsonObj.get("server_version").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `server_version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("server_version").toString()));
