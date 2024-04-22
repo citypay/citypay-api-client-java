@@ -29,8 +29,8 @@ import java.io.IOException;
 import com.citypay.client.model.BatchTransactionReportRequest;
 import com.citypay.client.model.BatchTransactionReportResponse;
 import com.citypay.client.model.Error;
+import com.citypay.client.model.MerchantBatchReportRequest;
 import com.citypay.client.model.MerchantBatchReportResponse;
-import com.citypay.client.model.MerchantBatchRequest;
 import com.citypay.client.model.MerchantBatchResponse;
 import com.citypay.client.model.RemittanceReportRequest;
 import com.citypay.client.model.RemittanceReportResponse;
@@ -246,7 +246,7 @@ public class ReportingApi {
     }
     /**
      * Build call for merchantBatchReportRequest
-     * @param merchantBatchRequest  (required)
+     * @param merchantBatchReportRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -261,7 +261,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call merchantBatchReportRequestCall(MerchantBatchRequest merchantBatchRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call merchantBatchReportRequestCall(MerchantBatchReportRequest merchantBatchReportRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -275,7 +275,7 @@ public class ReportingApi {
             basePath = null;
         }
 
-        Object localVarPostBody = merchantBatchRequest;
+        Object localVarPostBody = merchantBatchReportRequest;
 
         // create path and map variables
         String localVarPath = "/v6/merchant-batch/report";
@@ -309,20 +309,20 @@ public class ReportingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call merchantBatchReportRequestValidateBeforeCall(MerchantBatchRequest merchantBatchRequest, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'merchantBatchRequest' is set
-        if (merchantBatchRequest == null) {
-            throw new ApiException("Missing the required parameter 'merchantBatchRequest' when calling merchantBatchReportRequest(Async)");
+    private okhttp3.Call merchantBatchReportRequestValidateBeforeCall(MerchantBatchReportRequest merchantBatchReportRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'merchantBatchReportRequest' is set
+        if (merchantBatchReportRequest == null) {
+            throw new ApiException("Missing the required parameter 'merchantBatchReportRequest' when calling merchantBatchReportRequest(Async)");
         }
 
-        return merchantBatchReportRequestCall(merchantBatchRequest, _callback);
+        return merchantBatchReportRequestCall(merchantBatchReportRequest, _callback);
 
     }
 
     /**
      * Merchant Batch Report Request
      * Retrieves a report of merchant batches within a specified date range.  Batches, which aggregate daily processing activities, are typically generated at &#x60;00:00&#x60; each day.  These batches play a crucial role in the settlement of funds by summarising daily transactions. 
-     * @param merchantBatchRequest  (required)
+     * @param merchantBatchReportRequest  (required)
      * @return MerchantBatchReportResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -336,15 +336,15 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public MerchantBatchReportResponse merchantBatchReportRequest(MerchantBatchRequest merchantBatchRequest) throws ApiException {
-        ApiResponse<MerchantBatchReportResponse> localVarResp = merchantBatchReportRequestWithHttpInfo(merchantBatchRequest);
+    public MerchantBatchReportResponse merchantBatchReportRequest(MerchantBatchReportRequest merchantBatchReportRequest) throws ApiException {
+        ApiResponse<MerchantBatchReportResponse> localVarResp = merchantBatchReportRequestWithHttpInfo(merchantBatchReportRequest);
         return localVarResp.getData();
     }
 
     /**
      * Merchant Batch Report Request
      * Retrieves a report of merchant batches within a specified date range.  Batches, which aggregate daily processing activities, are typically generated at &#x60;00:00&#x60; each day.  These batches play a crucial role in the settlement of funds by summarising daily transactions. 
-     * @param merchantBatchRequest  (required)
+     * @param merchantBatchReportRequest  (required)
      * @return ApiResponse&lt;MerchantBatchReportResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -358,8 +358,8 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MerchantBatchReportResponse> merchantBatchReportRequestWithHttpInfo(MerchantBatchRequest merchantBatchRequest) throws ApiException {
-        okhttp3.Call localVarCall = merchantBatchReportRequestValidateBeforeCall(merchantBatchRequest, null);
+    public ApiResponse<MerchantBatchReportResponse> merchantBatchReportRequestWithHttpInfo(MerchantBatchReportRequest merchantBatchReportRequest) throws ApiException {
+        okhttp3.Call localVarCall = merchantBatchReportRequestValidateBeforeCall(merchantBatchReportRequest, null);
         Type localVarReturnType = new TypeToken<MerchantBatchReportResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -367,7 +367,7 @@ public class ReportingApi {
     /**
      * Merchant Batch Report Request (asynchronously)
      * Retrieves a report of merchant batches within a specified date range.  Batches, which aggregate daily processing activities, are typically generated at &#x60;00:00&#x60; each day.  These batches play a crucial role in the settlement of funds by summarising daily transactions. 
-     * @param merchantBatchRequest  (required)
+     * @param merchantBatchReportRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -382,9 +382,9 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call merchantBatchReportRequestAsync(MerchantBatchRequest merchantBatchRequest, final ApiCallback<MerchantBatchReportResponse> _callback) throws ApiException {
+    public okhttp3.Call merchantBatchReportRequestAsync(MerchantBatchReportRequest merchantBatchReportRequest, final ApiCallback<MerchantBatchReportResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = merchantBatchReportRequestValidateBeforeCall(merchantBatchRequest, _callback);
+        okhttp3.Call localVarCall = merchantBatchReportRequestValidateBeforeCall(merchantBatchReportRequest, _callback);
         Type localVarReturnType = new TypeToken<MerchantBatchReportResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

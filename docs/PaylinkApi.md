@@ -5,6 +5,7 @@ All URIs are relative to *https://api.citypay.com*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**tokenAdjustmentRequest**](PaylinkApi.md#tokenAdjustmentRequest) | **POST** /paylink/{token}/adjustment | Paylink Token Adjustment |
+| [**tokenCancelRequest**](PaylinkApi.md#tokenCancelRequest) | **PUT** /paylink/{token}/cancel | Cancel a Paylink Token |
 | [**tokenChangesRequest**](PaylinkApi.md#tokenChangesRequest) | **POST** /paylink/token/changes | Paylink Token Audit |
 | [**tokenCloseRequest**](PaylinkApi.md#tokenCloseRequest) | **PUT** /paylink/{token}/close | Close Paylink Token |
 | [**tokenCreateBillPaymentRequest**](PaylinkApi.md#tokenCreateBillPaymentRequest) | **POST** /paylink/bill-payment | Create Bill Payment Paylink Token |
@@ -94,6 +95,84 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Response defining the result of the token request. |  -  |
+| **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+| **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+| **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+| **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
+| **500** | Server Error. The server was unable to complete the request. |  -  |
+
+
+## tokenCancelRequest
+
+> Acknowledgement tokenCancelRequest(token)
+
+Cancel a Paylink Token
+
+Marks a Paylink Token as cancelled. This cancels the Token for any future request for processing.
+
+### Example
+
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.model.*;
+import com.citypay.client.api.PaylinkApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
+
+        PaylinkApi apiInstance = new PaylinkApi(defaultClient);
+        String token = "token_example"; // String | The token returned by the create token process.
+        try {
+            Acknowledgement result = apiInstance.tokenCancelRequest(token);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PaylinkApi#tokenCancelRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| The token returned by the create token process. | |
+
+### Return type
+
+[**Acknowledgement**](Acknowledgement.md)
+
+### Authorization
+
+[cp-api-key](../README.md#cp-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/xml
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Confirms that the token was marked as cancelled. |  -  |
 | **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 | **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
 | **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
@@ -655,7 +734,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Confirms that the attachments eiither did not exist or were purged. |  -  |
+| **200** | Confirms that the attachments either did not exist or were purged. |  -  |
 | **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 | **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
 | **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |

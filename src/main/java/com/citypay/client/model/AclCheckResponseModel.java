@@ -131,7 +131,7 @@ public class AclCheckResponseModel {
   }
 
    /**
-   * The source provider of the ACL.
+   * The source provider of the ACL such as cloud, subnet, country or IP based.
    * @return provider
   **/
   @javax.annotation.Nullable

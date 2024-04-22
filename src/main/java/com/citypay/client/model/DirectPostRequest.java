@@ -21,7 +21,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -125,7 +127,7 @@ public class DirectPostRequest {
 
   public static final String SERIALIZED_NAME_TAG = "tag";
   @SerializedName(SERIALIZED_NAME_TAG)
-  private String tag;
+  private List<String> tag;
 
   public static final String SERIALIZED_NAME_THREEDSECURE = "threedsecure";
   @SerializedName(SERIALIZED_NAME_THREEDSECURE)
@@ -167,7 +169,7 @@ public class DirectPostRequest {
   }
 
    /**
-   * A policy value which determines whether an AVS postcode policy is enforced or bypassed.  Values are  &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation. 
+   * A policy value which determines whether an AVS postcode policy is enforced or bypassed.  Values are:   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation. 
    * @return avsPostcodePolicy
   **/
   @javax.annotation.Nullable
@@ -224,7 +226,7 @@ public class DirectPostRequest {
   }
 
    /**
-   * The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card (American Express has it on the front). The value helps to identify posession of the card as it is not available within the chip or magnetic swipe.  When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped out by any integer parsing.  The CSC number aids fraud prevention in Mail Order and Internet payments.  Business rules are available on your account to identify whether to accept or decline transactions based on mismatched results of the CSC.  The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored.  This applies to all entities handling card data.  It should also not be used in any hashing process.  CityPay do not store the value and have no method of retrieving the value once the transaction has been processed. For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm. 
+   * The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card (American Express has it on the front). The value helps to identify possession of the card as it is not available within the chip or magnetic swipe.  When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped out by any integer parsing.  The CSC number aids fraud prevention in Mail Order and Internet payments.  Business rules are available on your account to identify whether to accept or decline transactions based on mismatched results of the CSC.  The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored.  This applies to all entities handling card data.  It should also not be used in any hashing process.  CityPay do not store the value and have no method of retrieving the value once the transaction has been processed. For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm. 
    * @return csc
   **/
   @javax.annotation.Nullable
@@ -243,7 +245,7 @@ public class DirectPostRequest {
   }
 
    /**
-   * A policy value which determines whether a CSC policy is enforced or bypassed.  Values are  &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the CSC did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send the CSC details for authorisation. 
+   * A policy value which determines whether a CSC policy is enforced or bypassed.  Values are:   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the CSC did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send the CSC details for authorisation. 
    * @return cscPolicy
   **/
   @javax.annotation.Nullable
@@ -281,7 +283,7 @@ public class DirectPostRequest {
   }
 
    /**
-   * A policy value which determines whether a duplication policy is enforced or bypassed. A duplication check has a window of time set against your account within which it can action. If a previous transaction with matching values occurred within the window, any subsequent transaction will result in a T001 result.  Values are  &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.   &#x60;2&#x60; to bypass. Transactions that are bypassed will not be checked for duplication within the duplication window.   &#x60;3&#x60; to ignore. Transactions that are ignored will have the same affect as bypass. 
+   * A policy value which determines whether a duplication policy is enforced or bypassed. A duplication check has a window of time set against your account within which it can action. If a previous transaction with matching values occurred within the window, any subsequent transaction will result in a T001 result.  Values are   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.   &#x60;2&#x60; to bypass. Transactions that are bypassed will not be checked for duplication within the duplication window.   &#x60;3&#x60; to ignore. Transactions that are ignored will have the same affect as bypass. 
    * @return duplicatePolicy
   **/
   @javax.annotation.Nullable
@@ -380,7 +382,7 @@ public class DirectPostRequest {
   }
 
    /**
-   * A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.  Values are  &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the address did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation. 
+   * A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.  Values are:   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the address did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation. 
    * @return matchAvsa
   **/
   @javax.annotation.Nullable
@@ -488,21 +490,29 @@ public class DirectPostRequest {
   }
 
 
-  public DirectPostRequest tag(String tag) {
+  public DirectPostRequest tag(List<String> tag) {
     this.tag = tag;
     return this;
   }
 
+  public DirectPostRequest addTagItem(String tagItem) {
+    if (this.tag == null) {
+      this.tag = new ArrayList<>();
+    }
+    this.tag.add(tagItem);
+    return this;
+  }
+
    /**
-   * A \&quot;tag\&quot; is a label that you can attach to a payment authorization. Tags can help you group transactions together based on certain criteria, like a work job or a ticket number. They can also assist in filtering transactions when you&#39;re generating reports.  Multiple Tags You can add more than one tag to a transaction by separating them with commas.  Limitations There is a maximum limit of 3 tags that can be added to a single transaction. Each tag can be no longer than 20 characters and alphanumeric with no spaces.  Example: Let&#39;s say you&#39;re a software company and you have different teams working on various projects. When a team makes a purchase or incurs an expense, they can tag the transaction with the project name, the team name, and the type of expense.  Project Name: Project_X Team Name: Team_A Type of Expense: Hardware So, the tag for a transaction might look like: Project_X,Team_A,Hardware  This way, when you&#39;re looking at your financial reports, you can easily filter transactions based on these tags to see how much each project or team is spending on different types of expenses. 
+   * Get tag
    * @return tag
   **/
   @javax.annotation.Nullable
-  public String getTag() {
+  public List<String> getTag() {
     return tag;
   }
 
-  public void setTag(String tag) {
+  public void setTag(List<String> tag) {
     this.tag = tag;
   }
 
@@ -759,8 +769,9 @@ public class DirectPostRequest {
       if (jsonObj.get("ship_to") != null && !jsonObj.get("ship_to").isJsonNull()) {
         ContactDetails.validateJsonElement(jsonObj.get("ship_to"));
       }
-      if ((jsonObj.get("tag") != null && !jsonObj.get("tag").isJsonNull()) && !jsonObj.get("tag").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `tag` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tag").toString()));
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("tag") != null && !jsonObj.get("tag").isJsonNull() && !jsonObj.get("tag").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tag` to be an array in the JSON string but got `%s`", jsonObj.get("tag").toString()));
       }
       // validate the optional field `threedsecure`
       if (jsonObj.get("threedsecure") != null && !jsonObj.get("threedsecure").isJsonNull()) {
