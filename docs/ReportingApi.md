@@ -96,7 +96,7 @@ public class Example {
 
 ## merchantBatchReportRequest
 
-> MerchantBatchReportResponse merchantBatchReportRequest(merchantBatchRequest)
+> MerchantBatchReportResponse merchantBatchReportRequest(merchantBatchReportRequest)
 
 Merchant Batch Report Request
 
@@ -128,9 +128,9 @@ public class Example {
         //cp-api-key.setApiKeyPrefix("Token");
 
         ReportingApi apiInstance = new ReportingApi(defaultClient);
-        MerchantBatchRequest merchantBatchRequest = new MerchantBatchRequest(); // MerchantBatchRequest | 
+        MerchantBatchReportRequest merchantBatchReportRequest = new MerchantBatchReportRequest(); // MerchantBatchReportRequest | 
         try {
-            MerchantBatchReportResponse result = apiInstance.merchantBatchReportRequest(merchantBatchRequest);
+            MerchantBatchReportResponse result = apiInstance.merchantBatchReportRequest(merchantBatchReportRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReportingApi#merchantBatchReportRequest");
@@ -148,7 +148,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **merchantBatchRequest** | [**MerchantBatchRequest**](MerchantBatchRequest.md)|  | |
+| **merchantBatchReportRequest** | [**MerchantBatchReportRequest**](MerchantBatchReportRequest.md)|  | |
 
 ### Return type
 

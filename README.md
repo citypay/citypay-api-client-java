@@ -2,8 +2,8 @@
 
 [![Build Status](https://github.com/citypay/citypay-api-client-java/actions/workflows/maven.yml/badge.svg)](https://github.com/citypay/citypay-api-client-java/actions/workflows/maven.yml)
 CityPay Payment API
-- API version: 6.6.34
-  - Build date: 2024-04-12T12:32:58.646533308Z[Etc/UTC]
+- API version: 6.6.40
+  - Build date: 2024-04-22T13:45:32.203030164Z[Etc/UTC]
 
 
 Welcome to the CityPay API, a robust HTTP API payment solution designed for seamless server-to-server 
@@ -73,7 +73,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.citypay</groupId>
   <artifactId>citypay-api-client-java</artifactId>
-  <version>1.1.3</version>
+  <version>1.1.4</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -87,7 +87,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/citypay-api-client-java-1.1.3.jar`
+* `target/citypay-api-client-java-1.1.4.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -166,6 +166,7 @@ Class | Method | HTTP request | Description
 *OperationalFunctionsApi* | [**listMerchantsRequest**](docs/OperationalFunctionsApi.md#listMerchantsRequest) | **GET** /v6/merchants/{clientid} | List Merchants Request
 *OperationalFunctionsApi* | [**pingRequest**](docs/OperationalFunctionsApi.md#pingRequest) | **POST** /v6/ping | Ping Request
 *PaylinkApi* | [**tokenAdjustmentRequest**](docs/PaylinkApi.md#tokenAdjustmentRequest) | **POST** /paylink/{token}/adjustment | Paylink Token Adjustment
+*PaylinkApi* | [**tokenCancelRequest**](docs/PaylinkApi.md#tokenCancelRequest) | **PUT** /paylink/{token}/cancel | Cancel a Paylink Token
 *PaylinkApi* | [**tokenChangesRequest**](docs/PaylinkApi.md#tokenChangesRequest) | **POST** /paylink/token/changes | Paylink Token Audit
 *PaylinkApi* | [**tokenCloseRequest**](docs/PaylinkApi.md#tokenCloseRequest) | **PUT** /paylink/{token}/close | Close Paylink Token
 *PaylinkApi* | [**tokenCreateBillPaymentRequest**](docs/PaylinkApi.md#tokenCreateBillPaymentRequest) | **POST** /paylink/bill-payment | Create Bill Payment Paylink Token
@@ -195,7 +196,6 @@ Class | Method | HTTP request | Description
  - [AuthReferences](docs/AuthReferences.md)
  - [AuthRequest](docs/AuthRequest.md)
  - [AuthResponse](docs/AuthResponse.md)
- - [AuthenRequired](docs/AuthenRequired.md)
  - [Batch](docs/Batch.md)
  - [BatchReportRequest](docs/BatchReportRequest.md)
  - [BatchReportResponseModel](docs/BatchReportResponseModel.md)
@@ -227,8 +227,8 @@ Class | Method | HTTP request | Description
  - [ListMerchantsResponse](docs/ListMerchantsResponse.md)
  - [MCC6012](docs/MCC6012.md)
  - [Merchant](docs/Merchant.md)
+ - [MerchantBatchReportRequest](docs/MerchantBatchReportRequest.md)
  - [MerchantBatchReportResponse](docs/MerchantBatchReportResponse.md)
- - [MerchantBatchRequest](docs/MerchantBatchRequest.md)
  - [MerchantBatchResponse](docs/MerchantBatchResponse.md)
  - [NetSummaryResponse](docs/NetSummaryResponse.md)
  - [PaResAuthRequest](docs/PaResAuthRequest.md)

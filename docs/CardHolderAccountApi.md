@@ -19,7 +19,7 @@ All URIs are relative to *https://api.citypay.com*
 
 ## accountCardDeleteRequest
 
-> Acknowledgement accountCardDeleteRequest(accountid, cardId)
+> Acknowledgement accountCardDeleteRequest(accountid, cardId, force)
 
 Card Deletion
 
@@ -52,8 +52,9 @@ public class Example {
         CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
         String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
         String cardId = "cardId_example"; // String | The id of the card that is presented by a call to retrieve a card holder account.
+        Boolean force = true; // Boolean | Requests that the item is forced immediately.
         try {
-            Acknowledgement result = apiInstance.accountCardDeleteRequest(accountid, cardId);
+            Acknowledgement result = apiInstance.accountCardDeleteRequest(accountid, cardId, force);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CardHolderAccountApi#accountCardDeleteRequest");
@@ -73,6 +74,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountid** | **String**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
 | **cardId** | **String**| The id of the card that is presented by a call to retrieve a card holder account. | |
+| **force** | **Boolean**| Requests that the item is forced immediately. | [optional] |
 
 ### Return type
 

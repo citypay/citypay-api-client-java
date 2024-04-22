@@ -52,7 +52,7 @@ public class CardHolderAccountApiTest {
     public void accountCardDeleteRequestTest() throws ApiException {
         String accountid = null;
         String cardId = null;
-        Acknowledgement response = api.accountCardDeleteRequest(accountid, cardId);
+        Acknowledgement response = api.accountCardDeleteRequest(accountid, cardId, null);
 
         // TODO: test validations
     }

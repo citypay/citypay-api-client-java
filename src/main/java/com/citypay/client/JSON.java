@@ -103,7 +103,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AuthReferences.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AuthRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AuthResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AuthenRequired.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Batch.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.BatchReportRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.BatchReportResponseModel.CustomTypeAdapterFactory());
@@ -135,8 +134,8 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.ListMerchantsResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.MCC6012.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Merchant.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.MerchantBatchReportRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.MerchantBatchReportResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.MerchantBatchRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.MerchantBatchResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.NetSummaryResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaResAuthRequest.CustomTypeAdapterFactory());

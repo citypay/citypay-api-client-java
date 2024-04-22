@@ -85,6 +85,7 @@ public class CardHolderAccountApi {
      * Build call for accountCardDeleteRequest
      * @param accountid The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. (required)
      * @param cardId The id of the card that is presented by a call to retrieve a card holder account. (required)
+     * @param force Requests that the item is forced immediately. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -99,7 +100,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountCardDeleteRequestCall(String accountid, String cardId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call accountCardDeleteRequestCall(String accountid, String cardId, Boolean force, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -126,6 +127,10 @@ public class CardHolderAccountApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (force != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("force", force));
+        }
+
         final String[] localVarAccepts = {
             "application/json",
             "text/xml"
@@ -147,7 +152,7 @@ public class CardHolderAccountApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call accountCardDeleteRequestValidateBeforeCall(String accountid, String cardId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call accountCardDeleteRequestValidateBeforeCall(String accountid, String cardId, Boolean force, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountCardDeleteRequest(Async)");
@@ -158,7 +163,7 @@ public class CardHolderAccountApi {
             throw new ApiException("Missing the required parameter 'cardId' when calling accountCardDeleteRequest(Async)");
         }
 
-        return accountCardDeleteRequestCall(accountid, cardId, _callback);
+        return accountCardDeleteRequestCall(accountid, cardId, force, _callback);
 
     }
 
@@ -167,6 +172,7 @@ public class CardHolderAccountApi {
      * Deletes a card from the account. The card will be marked for deletion before a subsequent purge will clear the card permanently. 
      * @param accountid The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. (required)
      * @param cardId The id of the card that is presented by a call to retrieve a card holder account. (required)
+     * @param force Requests that the item is forced immediately. (optional)
      * @return Acknowledgement
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -180,8 +186,8 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Acknowledgement accountCardDeleteRequest(String accountid, String cardId) throws ApiException {
-        ApiResponse<Acknowledgement> localVarResp = accountCardDeleteRequestWithHttpInfo(accountid, cardId);
+    public Acknowledgement accountCardDeleteRequest(String accountid, String cardId, Boolean force) throws ApiException {
+        ApiResponse<Acknowledgement> localVarResp = accountCardDeleteRequestWithHttpInfo(accountid, cardId, force);
         return localVarResp.getData();
     }
 
@@ -190,6 +196,7 @@ public class CardHolderAccountApi {
      * Deletes a card from the account. The card will be marked for deletion before a subsequent purge will clear the card permanently. 
      * @param accountid The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. (required)
      * @param cardId The id of the card that is presented by a call to retrieve a card holder account. (required)
+     * @param force Requests that the item is forced immediately. (optional)
      * @return ApiResponse&lt;Acknowledgement&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -203,8 +210,8 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Acknowledgement> accountCardDeleteRequestWithHttpInfo(String accountid, String cardId) throws ApiException {
-        okhttp3.Call localVarCall = accountCardDeleteRequestValidateBeforeCall(accountid, cardId, null);
+    public ApiResponse<Acknowledgement> accountCardDeleteRequestWithHttpInfo(String accountid, String cardId, Boolean force) throws ApiException {
+        okhttp3.Call localVarCall = accountCardDeleteRequestValidateBeforeCall(accountid, cardId, force, null);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -214,6 +221,7 @@ public class CardHolderAccountApi {
      * Deletes a card from the account. The card will be marked for deletion before a subsequent purge will clear the card permanently. 
      * @param accountid The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. (required)
      * @param cardId The id of the card that is presented by a call to retrieve a card holder account. (required)
+     * @param force Requests that the item is forced immediately. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -228,9 +236,9 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountCardDeleteRequestAsync(String accountid, String cardId, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+    public okhttp3.Call accountCardDeleteRequestAsync(String accountid, String cardId, Boolean force, final ApiCallback<Acknowledgement> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = accountCardDeleteRequestValidateBeforeCall(accountid, cardId, _callback);
+        okhttp3.Call localVarCall = accountCardDeleteRequestValidateBeforeCall(accountid, cardId, force, _callback);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
