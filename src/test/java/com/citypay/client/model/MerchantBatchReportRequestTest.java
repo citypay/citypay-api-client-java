@@ -10,30 +10,81 @@
  */
 
 
-package com.citypay.client;
+package com.citypay.client.model;
 
-public class Configuration {
-    public static final String VERSION = "1.1.4";
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-    private static ApiClient defaultApiClient = new ApiClient();
+/**
+ * Model tests for MerchantBatchReportRequest
+ */
+public class MerchantBatchReportRequestTest {
+    private final MerchantBatchReportRequest model = new MerchantBatchReportRequest();
 
     /**
-     * Get the default API client, which would be used when creating API
-     * instances without providing an API client.
-     *
-     * @return Default API client
+     * Model tests for MerchantBatchReportRequest
      */
-    public static ApiClient getDefaultApiClient() {
-        return defaultApiClient;
+    @Test
+    public void testMerchantBatchReportRequest() {
+        // TODO: test MerchantBatchReportRequest
     }
 
     /**
-     * Set the default API client, which would be used when creating API
-     * instances without providing an API client.
-     *
-     * @param apiClient API client
+     * Test the property 'dateFrom'
      */
-    public static void setDefaultApiClient(ApiClient apiClient) {
-        defaultApiClient = apiClient;
+    @Test
+    public void dateFromTest() {
+        // TODO: test dateFrom
     }
+
+    /**
+     * Test the property 'dateUntil'
+     */
+    @Test
+    public void dateUntilTest() {
+        // TODO: test dateUntil
+    }
+
+    /**
+     * Test the property 'maxResults'
+     */
+    @Test
+    public void maxResultsTest() {
+        // TODO: test maxResults
+    }
+
+    /**
+     * Test the property 'merchantId'
+     */
+    @Test
+    public void merchantIdTest() {
+        // TODO: test merchantId
+    }
+
+    /**
+     * Test the property 'nextToken'
+     */
+    @Test
+    public void nextTokenTest() {
+        // TODO: test nextToken
+    }
+
+    /**
+     * Test the property 'orderBy'
+     */
+    @Test
+    public void orderByTest() {
+        // TODO: test orderBy
+    }
+
 }

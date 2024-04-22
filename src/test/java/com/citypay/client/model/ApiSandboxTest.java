@@ -119,7 +119,6 @@ public class ApiSandboxTest {
             e.printStackTrace();
         }
         assert result != null;
-        assertNull(result.getAuthenRequired());
         assertNull(result.getRequestChallenged());
         assertNotNull(result.getAuthResponse());
         AuthResponse authResponse = result.getAuthResponse();
@@ -175,7 +174,6 @@ public class ApiSandboxTest {
             e.printStackTrace();
         }
         assert result != null;
-        assertNull(result.getAuthenRequired());
         assertNotNull(result.getRequestChallenged());
         assertNull(result.getAuthResponse());
 
@@ -318,7 +316,6 @@ public class ApiSandboxTest {
         }
         assert decision != null;
         assertNotNull(decision.getAuthResponse());
-        assertNull(decision.getAuthenRequired());
         assertNull(decision.getRequestChallenged());
         AuthResponse response = decision.getAuthResponse();
         assertEquals("001", response.getResultCode());
