@@ -62,7 +62,6 @@ public class DecisionTest {
      */
     @Test
     public void testDecision() {
-        assert decision.getAuthenRequired()==null;
         assert decision.getAuthResponse()!=null;
         assert decision.getRequestChallenged()==null;
     }

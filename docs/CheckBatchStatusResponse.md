@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**batches** | [**List&lt;Batch&gt;**](Batch.md) |  |  [optional] |
+|**batches** | [**Batch**](Batch.md) |  |  [optional] |
 
 
 

@@ -13,15 +13,8 @@
 package com.citypay.client.api;
 
 import com.citypay.client.ApiException;
-import com.citypay.client.model.BatchTransactionReportRequest;
-import com.citypay.client.model.BatchTransactionReportResponse;
+import com.citypay.client.model.*;
 import com.citypay.client.model.Error;
-import com.citypay.client.model.MerchantBatchReportResponse;
-import com.citypay.client.model.MerchantBatchRequest;
-import com.citypay.client.model.MerchantBatchResponse;
-import com.citypay.client.model.RemittanceReportRequest;
-import com.citypay.client.model.RemittanceReportResponse;
-import com.citypay.client.model.RemittedClientData;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -63,8 +56,8 @@ public class ReportingApiTest {
      */
     @Test
     public void merchantBatchReportRequestTest() throws ApiException {
-        MerchantBatchRequest merchantBatchRequest = null;
-        MerchantBatchReportResponse response = api.merchantBatchReportRequest(merchantBatchRequest);
+        MerchantBatchReportRequest merchantBatchReportRequest = null;
+        MerchantBatchReportResponse response = api.merchantBatchReportRequest(merchantBatchReportRequest);
         // TODO: test validations
     }
 

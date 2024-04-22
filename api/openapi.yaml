@@ -52,17 +52,96 @@ info:
     \ API. We look forward to supporting your payment processing needs with our secure,\
     \ compliant, and versatile API solution.\n"
   title: CityPay Payment API
-  version: 6.6.34
+  version: 6.6.39
 servers:
 - description: Production processing endpoint
   url: https://api.citypay.com
 - description: Testing service returning test results for all transactions
   url: https://sandbox.citypay.com
 tags:
-- description: |
-    The Payment Processing API offers standard and enhanced payment processing for MOTO, e-commerce
-    and continuous authority transactions that include fraud and risk checking, 3D-Secure flows
-    and payment querying.
+- description: "The Payment Processing API is designed for MOTO (Mail Order/Telephone\
+    \ Order), e-commerce, and continuous authority \ntransactions. It incorporates\
+    \ advanced fraud and risk assessments, 3D Secure authentication flows, and transaction\
+    \ \nquerying capabilities to streamline your payment operations securely.\n\n\n\
+    ### Understanding the Authorisation Process\n\nThe authorisation process is a\
+    \ critical component in payment processing, enabling standard transaction authorisation\n\
+    based on the parameters provided in its request. The CityPay gateway facilitates\
+    \ this by routing your transaction\nthrough to an Acquiring bank and to the appropriate\
+    \ card scheme, such as Visa, MasterCard or American Express.\n\nOur API is optimized\
+    \ for server environments that process transactions in real-time. It supports\
+    \ various transaction types, including:\n\n- E-commerce\n- Mail order and telephone\
+    \ order\n- Customer present transactions (keyed entry)\n- Continuous authority\
+    \ and pre-authorisation\n\nWe tailor your account with specific acquirer configurations\
+    \ to ensure smooth transactions through our gateway.\n\nDifferent transaction\
+    \ environments may require specific data elements. Our API is designed to be flexible,\
+    \ accommodating these various requirements with the support of our dedicated integration\
+    \ team.\n\n### E-commerce workflows\n\nOur API simplifies 3D Secure integrations\
+    \ for e-commerce transactions, reducing the need for direct accreditation with\
+    \ Visa and MasterCard. This built-in mechanism manages authentication processes\
+    \ and enhances security by shifting potential liability from the merchant to the\
+    \ cardholder. The authentication produces a Cardholder Authentication Verification\
+    \ Value (CAVV) and an E-commerce Indicator (ECI) that are crucial for the transaction\
+    \ validation.\n\nCityPay supports 3DS version 2.2, aligned with EU regulations\
+    \ for Secure Customer Authentication (SCA), and is compatible with Verified by\
+    \ Visa, MasterCard Identity Check, and American Express SafeKey 2.2.\n\n#### Non-3D\
+    \ Secure Transactions\n\n![3DSv2 Frctionless Flow](images/3dsv2-no3d.png)\n\n\
+    Some transactions may bypass 3D Secure processing due to authentication issues\
+    \ or deliberate \"attempted\" checks. These transactions will not qualify for\
+    \ a liability shift and could be declined.\n\n#### Frictionless 3D Secure\n\n\
+    ![3DSv2 Frctionless Flow](images/3dsv2-frictionless.png)\n\nFor low-risk transactions,\
+    \ our API supports a frictionless 3D Secure process. It allows for authentication\
+    \ without disrupting the user experience, requiring no redirection or additional\
+    \ interaction from the cardholder.\n\n#### Challenged 3D Secure\n\n![3DSv2 Frctionless\
+    \ Flow](images/3dsv2-challenge.png)\n\nHigher-risk transactions may be \"challenged,\"\
+    \ requiring the cardholder to authenticate the transaction. In such cases,  \n\
+    the API will return a [request challenge](#requestchallenged) which will require\
+    \ your integration to forward the\ncardholder's browser to the given [ACS url](#acsurl).\
+    \ This should be performed by posting the [creq](#creq) value\n(the challenge\
+    \ request value).\n\n\nOnce complete, the ACS will have already been in touch\
+    \ with our servers by sending us a result of the authentication\nknown as `RReq`.\n\
+    \n\nTo maintain session state, a parameter `threeDSSessionData` can be posted\
+    \ to the ACS url and will be returned alongside\nthe `CRes` value. This will ensure\
+    \ that any controller code will be able to isolate state between calls. This field\n\
+    is to be used by your own systems rather than ours and may be any value which\
+    \ can uniquely identify your cardholder's\nsession. As an option, we do provide\
+    \ a `threedserver_trans_id` value in the `RequestChallenged` packet which can\
+    \ be used\nfor the `threeDSSessionData` value as it is used to uniquely identify\
+    \ the 3D-Secure session.\n\nA common method of maintaining state is to provide\
+    \ a session related query string value in the `merchant_termurl` value\n(also\
+    \ known as the `notificationUrl`). For example providing a url of `https://mystore.com/checkout?token=asny2348w4561..`\n\
+    could return the user directly back to their session with your environment.\n\n\
+    Once you have received a `cres` post from the ACS authentication service, this\
+    \ should be POSTed to the [cres](#cres)\nendpoint to perform full authorisation\
+    \ processing.\n\nPlease note that the CRes returned to us is purely a mechanism\
+    \ of acknowledging that transactions should be committed for\nauthorisation. The\
+    \ ACS by this point will have sent us the verification value (CAVV) to perform\
+    \ a liability shift. The CRes\nvalue will be validated for receipt of the CAVV\
+    \ and subsequently may return response codes illustrating this.\n\nTo forward\
+    \ the user to the ACS, we recommend a simple auto submit HTML form.\n\n> Simple\
+    \ auto submit HTML form\n\n```html\n<html lang=\"en\">\n<head>\n        <title>Forward\
+    \ to ACS</title>\n<script type=\"text/javascript\">\n        function onLoadEvent()\
+    \ { \n            document.acs.submit(); \n        }\n        </script>\n    \
+    \    <noscript>You will require JavaScript to be enabled to complete this transaction</noscript>\n\
+    \    </head>\n    <body onload=\"onLoadEvent();\">\n        <form name=\"acs\"\
+    \ action=\"{{ACSURL from Response}}\" method=\"POST\">\n            <input type=\"\
+    hidden\" name=\"creq\" value=\"{{CReq Packet from Response}}\" />\n          \
+    \  <input type=\"hidden\" name=\"threeDSSessionData\" value=\"{{session-identifier}}\"\
+    \ />\n        </form>\n    </body>\n</html>\n```\n\nA full ACS test suite is available\
+    \ for 3DSv2 testing.\n\n### Testing 3DSv2 Integrations\n\nThe API includes a simulated\
+    \ 3DSv2 handler that executes various scenarios determined by the Card Security\
+    \ Code (CSC) value provided in the transaction request. This feature allows developers\
+    \ to test different outcomes and behaviors in a controlled environment.\n\n| CSC\
+    \ Value | Behaviour                                                          \
+    \   |\n|-----------|-----------------------------------------------------------------------|\n\
+    | 731       | Frictionless processing - Not authenticated                    \
+    \       |\n| 732       | Frictionless processing - Account verification count\
+    \ not be performed |        \n| 733       | Frictionless processing - Verification\
+    \ Rejected                       |        \n| 741       | Frictionless processing\
+    \ - Attempts Processing                         |        \n| 750       | Frictionless\
+    \ processing - Authenticated                               |        \n| 761  \
+    \     | Triggers an error message                                            \
+    \ |  \n| Any       | Challenge Request                                       \
+    \              |\n"
   name: Authorisation and Payment Api
 - description: "Batch processing uses the Batch and Instalment Service (BIS) which\
     \ allows for transaction processing against cardholder \naccounts using a dynamic\
@@ -153,13 +232,6 @@ paths:
     post:
       description: |
         Used to initiate a direct post request transaction flow.
-
-        <pre class="inline-code language-bash">
-        <code>
-        curl https://api.citypay.com/direct/auth?cp-domain-key=n834ytqp84y... \
-         -d "amount=7500&identifier=example_trans&cardnumber=4000000000000002&expmonth=9&expyear=2028&bill_to_postcode=L1+7ZW
-        </code>
-        </pre>.
       operationId: DirectPostAuthRequest
       requestBody:
         content:
@@ -450,13 +522,6 @@ paths:
     post:
       description: |
         Used to initiate a direct post request transaction flow.
-
-        <pre class="inline-code language-bash">
-        <code>
-        curl https://api.citypay.com/v6/direct?cp-domain-key=n834ytqp84y... \
-         -d "amount=7500&identifier=example_trans&cardnumber=4000000000000002&expmonth=9&expyear=2028&bill_to_postcode=L1+7ZW
-        </code>
-        </pre>.
       operationId: DirectPostTokeniseRequest
       requestBody:
         content:
@@ -977,6 +1042,57 @@ paths:
       - Paylink Api
       x-content-type: application/json
       x-accepts: application/json
+  /paylink/{token}/cancel:
+    put:
+      description: Marks a Paylink Token as cancelled. This cancels the Token for
+        any future request for processing.
+      operationId: TokenCancelRequest
+      parameters:
+      - description: The token returned by the create token process.
+        explode: false
+        in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+          description: Confirms that the token was marked as cancelled.
+        "400":
+          description: Bad Request. Should the incoming data not be validly determined.
+        "401":
+          description: Unauthorized. No api key has been provided and is required
+            for this operation.
+        "403":
+          description: Forbidden. The api key was provided and understood but is either
+            incorrect or does not have permission to access the account provided on
+            the request.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable Entity. Should a failure occur that prevents
+            processing of the API call.
+        "500":
+          description: Server Error. The server was unable to complete the request.
+      security:
+      - cp-api-key: []
+      summary: Cancel a Paylink Token
+      tags:
+      - Paylink Api
+      x-accepts: application/json
   /paylink/{token}/close:
     put:
       description: |
@@ -1051,7 +1167,7 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Acknowledgement'
-          description: Confirms that the attachments eiither did not exist or were
+          description: Confirms that the attachments either did not exist or were
             purged.
         "400":
           description: Bad Request. Should the incoming data not be validly determined.
@@ -1533,6 +1649,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Requests that the item is forced immediately.
+        explode: true
+        in: query
+        name: force
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -1901,97 +2025,7 @@ paths:
       x-accepts: application/json
   /v6/authorise:
     post:
-      description: "## Authorization API Overview\n\nThe authoriSation process is\
-        \ a critical component in payment processing, enabling standard transaction\
-        \ authoriSation \nbased on the parameters provided in its request. The CityPay\
-        \ gateway facilitates this by routing your transaction \nthrough an Acquiring\
-        \ bank, which then seeks authorisation from the appropriate card schemes,\
-        \ such as Visa or MasterCard.\n\nThis API is designed for server environments\
-        \ that require the processing of transactions on demand and in real-time.\
-        \ It \nsupports a wide range of transaction types, including E-commerce, mail\
-        \ order, telephone order, customer present (keyed), \ncontinuous authority,\
-        \ pre-authorisation, and others. CityPay will configure your account for the\
-        \ appropriate acquirer \ncoding, ensuring seamless operation through the gateway.\n\
-        \nDepending on the payment environment, specific data properties are required.\
-        \ Our API is flexible enough to accommodate \nthese requirements, and our\
-        \ integration team is available to assist you in providing the necessary data\
-        \ for transaction \nprocessing.\n\n### Example JSON Request\n\n```json\n{\n\
-        \ \"RequestChallenged\": {\n  \"acsurl\": \"https://bank.com/3DS/ACS\",\n\
-        \  \"creq\": \"SXQgd2FzIHRoZSBiZXN0IG9mIHRpbWVzLCBpdCB3YXMgdGhlIHdvcnN00...\"\
-        ,\n  \"merchantid\": 12345,\n  \"transno\": 1,\n  \"threedserver_trans_id\"\
-        : \"d652d8d2-d74a-4264-a051-a7862b10d5d6\"\n }\n}\n```\n\n## E-commerce workflows\n\
-        \nFor E-commerce transactions requiring 3DS, our API includes a fully accredited\
-        \ built-in mechanism to handle \nauthentication, simplifying the integration\
-        \ process and eliminating the need for lengthy and costly accreditations with\
-        \ \nVisa and MasterCard.\n\n3D Secure aims to shift the liability of a transaction\
-        \ away from the merchant and back to the cardholder. This \n\"liability shift\"\
-        \ determines whether a cardholder can charge back a transaction. The process\
-        \ requires the cardholder \nto authenticate the transaction prior to authorisation,\
-        \ producing a Cardholder Verification Value (CAVV) and \nE-commerce Indicator\
-        \ (ECI) as evidence.\n\n3DS version 2 to provide secure customer authentication\
-        \ (SCA) in line with EU regulation.\n\nCityPay support 3DS version 2.2 for\
-        \ Verified by Visa, MasterCard Identity Check and American Express SafeKey\
-        \ 2.2. Version\n2.3 is currently in development however this will be a seamless\
-        \ upgrade for all integrations.\n\n#### 3-D Secure - None\n\n![3DSv2 Frctionless\
-        \ Flow](images/3dsv2-no3d.png)\n\nSome transactions may not involve 3-D Secure\
-        \ processing, either due to the inability to perform authentication or an\
-        \ \n\"attempted\" resolution. These transactions may not benefit from a liability\
-        \ shift and could result in a decline.\n\n#### 3-D Secure - Frictionless\n\
-        \n![3DSv2 Frctionless Flow](images/3dsv2-frictionless.png)\n\n3DSv2 supports\
-        \ \"frictionless\" authentication for low-risk transactions, minimizing impact\
-        \ on the standard \nauthorisation flow. This process is handled seamlessly\
-        \ by our API, requiring no redirection and maintaining a smooth \ntransaction\
-        \ experience.\n\n#### 3-D Secure - Challenge\n\n![3DSv2 Frctionless Flow](images/3dsv2-challenge.png)\n\
-        \nHigher-risk transactions may be \"challenged,\" requiring the cardholder\
-        \ to authenticate the transaction. In such cases,  \nthe API will return a\
-        \ [request challenge](#requestchallenged) which will require your integration\
-        \ to forward the \ncardholder's browser to the given [ACS url](#acsurl). This\
-        \ should be performed by posting the [creq](#creq) value \n(the challenge\
-        \ request value). \n\nOnce complete, the ACS will have already been in touch\
-        \ with our servers by sending us a result of the authentication\nknown as\
-        \ `RReq`.\n\nTo maintain session state, a parameter `threeDSSessionData` can\
-        \ be posted to the ACS url and will be returned alongside \nthe `CRes` value.\
-        \ This will ensure that any controller code will be able to isolate state\
-        \ between calls. This field\nis to be used by your own systems rather than\
-        \ ours and may be any value which can uniquely identify your cardholder's\n\
-        session. As an option, we do provide a `threedserver_trans_id` value in the\
-        \ `RequestChallenged` packet which can be used\nfor the `threeDSSessionData`\
-        \ value as it is used to uniquely identify the 3D-Secure session. \n\nA common\
-        \ method of maintaining state is to provide a session related query string\
-        \ value in the `merchant_termurl` value\n(also known as the `notificationUrl`).\
-        \ For example providing a url of `https://mystore.com/checkout?token=asny2348w4561..`\n\
-        could return the user directly back to their session with your environment.\n\
-        \nOnce you have received a `cres` post from the ACS authentication service,\
-        \ this should be POSTed to the [cres](#cres) \nendpoint to perform full authorisation\
-        \ processing. \n\nPlease note that the CRes returned to us is purely a mechanism\
-        \ of acknowledging that transactions should be committed for\nauthorisation.\
-        \ The ACS by this point will have sent us the verification value (CAVV) to\
-        \ perform a liability shift. The CRes\nvalue will be validated for receipt\
-        \ of the CAVV and subsequently may return response codes illustrating this.\
-        \ \n\nTo forward the user to the ACS, we recommend a simple auto submit HTML\
-        \ form.\n\n> Simple auto submit HTML form\n\n```html\n<html lang=\"en\">\n\
-        \t<head>\n        <title>Forward to ACS</title>\n\t\t<script type=\"text/javascript\"\
-        >\n        function onLoadEvent() { \n            document.acs.submit(); \n\
-        \        }\n        </script>\n        <noscript>You will require JavaScript\
-        \ to be enabled to complete this transaction</noscript>\n    </head>\n   \
-        \ <body onload=\"onLoadEvent();\">\n        <form name=\"acs\" action=\"{{ACSURL\
-        \ from Response}}\" method=\"POST\">\n            <input type=\"hidden\" name=\"\
-        creq\" value=\"{{CReq Packet from Response}}\" />\n            <input type=\"\
-        hidden\" name=\"threeDSSessionData\" value=\"{{session-identifier}}\" />\n\
-        \        </form>\n    </body>\n</html>\n```\n\nA full ACS test suite is available\
-        \ for 3DSv2 testing.\n        \n### Testing 3DSv2 Integrations\n\nThe API\
-        \ provides a mock 3dsV2 handler which performs a number of scenarios based\
-        \ on the value of the CSC in the request.\n\n| CSC Value | Behaviour     \
-        \                                                        |\n|-----------|-----------------------------------------------------------------------|\n\
-        | 731       | Frictionless processing - Not authenticated                \
-        \           |\n| 732       | Frictionless processing - Account verification\
-        \ count not be performed |        \n| 733       | Frictionless processing\
-        \ - Verification Rejected                       |        \n| 741       | Frictionless\
-        \ processing - Attempts Processing                         |        \n| 750\
-        \       | Frictionless processing - Authenticated                        \
-        \       |        \n| 761       | Triggers an error message               \
-        \                              |  \n| Any       | Challenge Request      \
-        \                                               |\n"
+      description: Performs a request for authorisation for a card payment request.
       operationId: AuthorisationRequest
       requestBody:
         content:
@@ -2286,13 +2320,13 @@ paths:
         content:
           application/json:
             examples:
-              example1:
-                externalValue: CaptureRequest-example1.json
-                summary: Basic capture call for a merchant with a given identifier
               example3:
                 externalValue: CaptureRequest-example3.json
                 summary: Capture call for a merchant with identifier and airline data
                   once a ticket has been issued
+              example1:
+                externalValue: CaptureRequest-example1.json
+                summary: Basic capture call for a merchant with a given identifier
               example2:
                 externalValue: CaptureRequest-example2.json
                 summary: Basic capture call for a merchant with a transno and final
@@ -2301,13 +2335,13 @@ paths:
               $ref: '#/components/schemas/CaptureRequest'
           text/xml:
             examples:
-              example1:
-                externalValue: CaptureRequest-example1.xml
-                summary: Basic capture call for a merchant with a given identifier
               example3:
                 externalValue: CaptureRequest-example3.xml
                 summary: Capture call for a merchant with identifier and airline data
                   once a ticket has been issued
+              example1:
+                externalValue: CaptureRequest-example1.xml
+                summary: Basic capture call for a merchant with a given identifier
               example2:
                 externalValue: CaptureRequest-example2.xml
                 summary: Basic capture call for a merchant with a transno and final
@@ -2554,10 +2588,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MerchantBatchRequest'
+              $ref: '#/components/schemas/MerchantBatchReportRequest'
           text/xml:
             schema:
-              $ref: '#/components/schemas/MerchantBatchRequest'
+              $ref: '#/components/schemas/MerchantBatchReportRequest'
         required: true
       responses:
         "200":
@@ -3290,15 +3324,13 @@ components:
     Acknowledgement:
       example:
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-        code: "0"
+        code: "3"
         context: aspiu352908ns47n343598bads
-        message: Approved 044332
+        message: Transaction Cancelled
       properties:
         code:
           description: A response code providing a result of the process.
-          example: "0"
-          maxLength: 4
-          minLength: 3
+          example: "3"
           type: string
         context:
           description: A context id of the process used for referencing transactions
@@ -3314,7 +3346,7 @@ components:
         message:
           description: A response message providing a description of the result of
             the process.
-          example: Approved 044332
+          example: Transaction Cancelled
           type: string
       type: object
     AclCheckRequest:
@@ -3333,13 +3365,14 @@ components:
     AclCheckResponseModel:
       example:
         cache: true
-        provider: provider
+        provider: AWS
         ip: 8.8.8.8
-        acl: acl
+        acl: Default ACL
       properties:
         acl:
           description: The name or value of the acl which was found to match the ip
             address.
+          example: Default ACL
           type: string
         cache:
           description: Whether the ACL was returned via a cached instance.
@@ -3350,7 +3383,9 @@ components:
           format: ipv4
           type: string
         provider:
-          description: The source provider of the ACL.
+          description: "The source provider of the ACL such as cloud, subnet, country\
+            \ or IP based."
+          example: AWS
           type: string
       type: object
     AirlineAdvice:
@@ -3726,7 +3761,7 @@ components:
           browserScreenWidth: browserScreenWidth
           user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36\
             \ (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
-        amount: 3600
+        amount: 19995
         expyear: 2027
         csc_policy: csc_policy
         mcc6012:
@@ -3792,8 +3827,8 @@ components:
           event_organiser_id: event_organiser_id
           payment_type: payment_type
           event_id: event_id
-          event_end_date: 2000-01-23
-          event_start_date: 2000-01-23
+          event_end_date: 2024-04-22T00:00:00.000+00:00
+          event_start_date: 2024-04-22T00:00:00.000+00:00
         match_avsa: match_avsa
         avs_postcode_policy: avs_postcode_policy
         currency: GBP
@@ -3804,7 +3839,9 @@ components:
           xid: xid
           eci: 0
           enrolled: enrolled
-        tag: tag
+        tag:
+        - tag
+        - tag
         ship_to:
           area: London
           country: GB
@@ -3833,7 +3870,7 @@ components:
             The amount should be the total amount required for the transaction.
 
             For example with GBP £1,021.95 the amount value is 102195.
-          example: 3600
+          example: 19995
           format: int32
           maxLength: 9
           minLength: 1
@@ -3842,7 +3879,8 @@ components:
           description: |
             A policy value which determines whether an AVS postcode policy is enforced or bypassed.
 
-            Values are
+            Values are:
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
 
              `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.
@@ -3871,7 +3909,7 @@ components:
         csc:
           description: |
             The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card
-            (American Express has it on the front). The value helps to identify posession of the card as it is not
+            (American Express has it on the front). The value helps to identify possession of the card as it is not
             available within the chip or magnetic swipe.
 
             When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped
@@ -3898,7 +3936,8 @@ components:
           description: |
             A policy value which determines whether a CSC policy is enforced or bypassed.
 
-            Values are
+            Values are:
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
 
              `1` for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.
@@ -3921,6 +3960,7 @@ components:
             the window, any subsequent transaction will result in a T001 result.
 
             Values are
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
 
              `1` for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.
@@ -3969,7 +4009,8 @@ components:
           description: |
             A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.
 
-            Values are
+            Values are:
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
 
              `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.
@@ -3995,31 +4036,29 @@ components:
         ship_to:
           $ref: '#/components/schemas/ContactDetails'
         tag:
-          description: |
-            A "tag" is a label that you can attach to a payment authorization.
-            Tags can help you group transactions together based on certain criteria, like a work job or a ticket number.
-            They can also assist in filtering transactions when you're generating reports.
+          items:
+            description: |
+              A tag is a label that you can attach to a payment authorisation.
+              Tags can help you group transactions together based on certain criteria, like a work job or a ticket number.
+              They can also assist in filtering transactions when you're generating reports.
 
-            Multiple Tags
-            You can add more than one tag to a transaction by separating them with commas.
+              Limitations:
+              There is a maximum limit of 3 tags that can be added to a single transaction. Each tag can be no longer than 20
+              characters and alphanumeric with no spaces.
 
-            Limitations
-            There is a maximum limit of 3 tags that can be added to a single transaction. Each tag can be no longer than 20
-            characters and alphanumeric with no spaces.
+              Example:
+              Let's say you're a software company and you have different teams working on various projects. When a team makes
+              a purchase or incurs an expense, they can tag the transaction with the project name, the team name, and the
+              type of expense.
 
-            Example:
-            Let's say you're a software company and you have different teams working on various projects. When a team makes
-            a purchase or incurs an expense, they can tag the transaction with the project name, the team name, and the
-            type of expense.
+              - Project Name: Project_X
+              - Team Name: Team_A
+              - Type of Expense: Hardware
 
-            Project Name: Project_X
-            Team Name: Team_A
-            Type of Expense: Hardware
-            So, the tag for a transaction might look like: Project_X,Team_A,Hardware
-
-            This way, when you're looking at your financial reports, you can easily filter transactions based on these
-            tags to see how much each project or team is spending on different types of expenses.
-          type: string
+              This way, when you're looking at your financial reports, you can easily filter transactions based on these
+              tags to see how much each project or team is spending on different types of expenses.
+            type: string
+          type: array
         threedsecure:
           $ref: '#/components/schemas/ThreeDSecure'
         trans_info:
@@ -4049,7 +4088,7 @@ components:
         maskedpan: 4***********0002
         scheme: Visa
         sha256: sha256
-        eci: eci
+        eci: "5"
         transno: 78416
         result: 1
         scheme_logo: https://cdn.citypay.com/img/cs/visa-logo.svg
@@ -4064,19 +4103,19 @@ components:
         csc_result: csc_result
         bin_description: Platinum Card
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-        amount: 3600
+        amount: 19995
         bin_commercial: true
         result_message: Accepted Transaction
         atsd: atsd
         authcode: 001245A
-        cavv: cavv
+        cavv: "00000109260000719349"
         merchantid: 11223344
         result_code: "0"
         bin_debit: true
       properties:
         amount:
           description: The amount of the transaction processed.
-          example: 3600
+          example: 19995
           format: int32
           type: integer
         atrn:
@@ -4178,6 +4217,7 @@ components:
           description: |
             The cardholder authentication verification value which can be returned for verification purposes of the authenticated
              transaction for dispute realisation.
+          example: "00000109260000719349"
           type: string
         context:
           description: "The context which processed the transaction, can be used for\
@@ -4186,7 +4226,7 @@ components:
           type: string
         csc_result:
           description: |
-            The CSC rseult codes determine the result of checking the provided CSC value within the
+            The CSC result codes determine the result of checking the provided CSC value within the
             Card Security Code fraud system. If a transaction is declined due to the CSC code not matching,
             this value can help determine the reason for the decline.
 
@@ -4217,6 +4257,7 @@ components:
         eci:
           description: |
             An Electronic Commerce Indicator (ECI) used to identify the result of authentication using 3DSecure.
+          example: "5"
           type: string
         identifier:
           description: The identifier provided within the request.
@@ -4396,31 +4437,6 @@ components:
       - result_code
       - result_message
       type: object
-    AuthenRequired:
-      example:
-        pareq: eNrNWdnOo0qSfpXSmUuf0+w2tFy/lOyYxYDZ79h3sAEbm6cfbFfV+bu6pqe7R2qNJeQkiIwlMyK+...
-        md: md
-        acs_url: https://acs.cardissuer.com/3dsv1
-      properties:
-        acs_url:
-          description: |
-            The url of the Access Control Server (ACS) to forward the user to.
-          example: https://acs.cardissuer.com/3dsv1
-          format: url
-          type: string
-        md:
-          description: |
-            Merchant Data (MD) which should be sent to the ACS to establish and reference
-            the authentication session.
-          type: string
-        pareq:
-          description: |
-            The Payer Authentication Request packet which should be `POSTed` to the Url of the ACS
-            to establish the authentication session. Data should be sent untouched.
-          example: eNrNWdnOo0qSfpXSmUuf0+w2tFy/lOyYxYDZ79h3sAEbm6cfbFfV+bu6pqe7R2qNJeQkiIwlMyK+...
-          format: base64
-          type: string
-      type: object
     Batch:
       example:
         batch_id: 35
@@ -4440,7 +4456,7 @@ components:
           minimum: 1
           type: integer
         batch_status:
-          description: "The status of the batch. Possible values are - CANCELLED.\
+          description: "The status of the batch. Possible values are: \n\n - CANCELLED.\
             \ The file has been cancelled by an administrator or server process. \n\
             - COMPLETE. The file has passed through the processing cycle and is determined\
             \ as being complete further information should be obtained on the results\
@@ -4483,12 +4499,12 @@ components:
     BatchReportResponseModel:
       example:
         client_account_id: AC1
-        amount: 3600
+        amount: 19995
         batch_id: 35
         batch_status: COMPLETE
         transactions:
         - identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-          amount: 3600
+          amount: 19995
           maskedpan: 4***********0002
           scheme: Visa
           message: Approved 044332
@@ -4502,7 +4518,7 @@ components:
           scheme_id: MC
           result_code: "0"
         - identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-          amount: 3600
+          amount: 19995
           maskedpan: 4***********0002
           scheme: Visa
           message: Approved 044332
@@ -4519,7 +4535,7 @@ components:
       properties:
         amount:
           description: The total amount that the batch contains.
-          example: 3600
+          example: 19995
           format: int32
           maxLength: 9
           minLength: 1
@@ -4537,7 +4553,7 @@ components:
           minimum: 1
           type: integer
         batch_status:
-          description: "The status of the batch. Possible values are - CANCELLED.\
+          description: "The status of the batch. Possible values are:\n\n - CANCELLED.\
             \ The file has been cancelled by an administrator or server process. \n\
             - COMPLETE. The file has passed through the processing cycle and is determined\
             \ as being complete further information should be obtained on the results\
@@ -4573,7 +4589,7 @@ components:
     BatchTransaction:
       example:
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-        amount: 3600
+        amount: 19995
         account_id: aaabbb-cccddd-eee
         merchantid: 11223344
       properties:
@@ -4585,7 +4601,7 @@ components:
           type: string
         amount:
           description: The amount required to process in the lowest denomination.
-          example: 3600
+          example: 19995
           format: int32
           maxLength: 9
           minLength: 1
@@ -4610,7 +4626,7 @@ components:
     BatchTransactionReportRequest:
       example:
         maxResults: 50
-        nextToken: nextToken
+        nextToken: n34liuwn435tUAGFNg34yn...
         orderBy: date
       properties:
         maxResults:
@@ -4626,6 +4642,7 @@ components:
             \ When supplied, it is validated and used to fetch the subsequent page\
             \ of results. This token is typically obtained from the response of a\
             \ previous pagination request."
+          example: n34liuwn435tUAGFNg34yn...
           type: string
         orderBy:
           description: "Specifies the field by which results are ordered. Available\
@@ -4667,7 +4684,7 @@ components:
           trans_status: trans_status
           trans_type: trans_type
         maxResults: 50
-        nextToken: nextToken
+        nextToken: n34liuwn435tUAGFNg34yn...
         count: 25
       properties:
         count:
@@ -4691,6 +4708,7 @@ components:
             \ When supplied, it is validated and used to fetch the subsequent page\
             \ of results. This token is typically obtained from the response of a\
             \ previous pagination request."
+          example: n34liuwn435tUAGFNg34yn...
           type: string
       required:
       - data
@@ -4698,7 +4716,7 @@ components:
     BatchTransactionResultModel:
       example:
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-        amount: 3600
+        amount: 19995
         maskedpan: 4***********0002
         scheme: Visa
         message: Approved 044332
@@ -4720,7 +4738,7 @@ components:
           type: string
         amount:
           description: The amount of the transaction processed.
-          example: 3600
+          example: 19995
           format: int32
           maxLength: 9
           minLength: 1
@@ -4832,11 +4850,11 @@ components:
       example:
         bin_description: Platinum Card
         bin_commercial: true
-        bin_country_issued: bin_country_issued
+        bin_country_issued: GB
         bin_credit: true
         scheme: Visa
         bin_corporate: true
-        bin_currency: bin_currency
+        bin_currency: GBP
         bin_debit: true
         bin_eu: true
       properties:
@@ -4848,12 +4866,14 @@ components:
           type: boolean
         bin_country_issued:
           description: The determined country where the card was issued.
+          example: GB
           type: string
         bin_credit:
           description: Defines whether the card is a credit card.
           type: boolean
         bin_currency:
           description: The default currency determined for the card.
+          example: GBP
           type: string
         bin_debit:
           description: Defines whether the card is a debit card.
@@ -4911,7 +4931,7 @@ components:
     CaptureRequest:
       example:
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-        amount: 3600
+        amount: 19995
         merchantid: 11223344
         airline_data:
           number_in_party: 2
@@ -4966,8 +4986,8 @@ components:
           event_organiser_id: event_organiser_id
           payment_type: payment_type
           event_id: event_id
-          event_end_date: 2000-01-23
-          event_start_date: 2000-01-23
+          event_end_date: 2024-04-22T00:00:00.000+00:00
+          event_start_date: 2024-04-22T00:00:00.000+00:00
         transno: 78416
       properties:
         airline_data:
@@ -4980,7 +5000,7 @@ components:
             request which may be caused by some number formatters.
 
             If no amount is supplied, the original processing amount is used.
-          example: 3600
+          example: 19995
           format: int32
           maxLength: 9
           minLength: 1
@@ -5014,14 +5034,14 @@ components:
         bin_commercial: true
         scheme: Visa
         date_created: 2020-01-02T18:32:28Z
-        bin_currency: bin_currency
+        bin_currency: GBP
         expyear: 2027
         label: Visa/0002
         card_id: card_id
         label2: "Visa/0002,Exp:2304"
         token: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
         card_status: card_status
-        bin_country_issued: bin_country_issued
+        bin_country_issued: GB
         default: true
         last4digits: "2"
         bin_credit: true
@@ -5039,12 +5059,14 @@ components:
           type: boolean
         bin_country_issued:
           description: The determined country where the card was issued.
+          example: GB
           type: string
         bin_credit:
           description: Defines whether the card is a credit card.
           type: boolean
         bin_currency:
           description: The default currency determined for the card.
+          example: GBP
           type: string
         bin_debit:
           description: Defines whether the card is a debit card.
@@ -5130,14 +5152,14 @@ components:
           bin_commercial: true
           scheme: Visa
           date_created: 2020-01-02T18:32:28Z
-          bin_currency: bin_currency
+          bin_currency: GBP
           expyear: 2027
           label: Visa/0002
           card_id: card_id
           label2: "Visa/0002,Exp:2304"
           token: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
           card_status: card_status
-          bin_country_issued: bin_country_issued
+          bin_country_issued: GB
           default: true
           last4digits: "2"
           bin_credit: true
@@ -5150,14 +5172,14 @@ components:
           bin_commercial: true
           scheme: Visa
           date_created: 2020-01-02T18:32:28Z
-          bin_currency: bin_currency
+          bin_currency: GBP
           expyear: 2027
           label: Visa/0002
           card_id: card_id
           label2: "Visa/0002,Exp:2304"
           token: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
           card_status: card_status
-          bin_country_issued: bin_country_issued
+          bin_country_issued: GB
           default: true
           last4digits: "2"
           bin_credit: true
@@ -5264,7 +5286,7 @@ components:
           browserScreenWidth: browserScreenWidth
           user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36\
             \ (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
-        amount: 3600
+        amount: 19995
         csc_policy: csc_policy
         trans_info: trans_info
         duplicate_policy: duplicate_policy
@@ -5276,7 +5298,9 @@ components:
         match_avsa: match_avsa
         avs_postcode_policy: avs_postcode_policy
         currency: GBP
-        tag: tag
+        tag:
+        - tag
+        - tag
         trans_type: trans_type
       properties:
         amount:
@@ -5288,7 +5312,7 @@ components:
             The amount should be the total amount required for the transaction.
 
             For example with GBP £1,021.95 the amount value is 102195.
-          example: 3600
+          example: 19995
           format: int32
           maxLength: 9
           minLength: 1
@@ -5297,7 +5321,8 @@ components:
           description: |
             A policy value which determines whether an AVS postcode policy is enforced or bypassed.
 
-            Values are
+            Values are:
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
 
              `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.
@@ -5341,7 +5366,7 @@ components:
         csc:
           description: |
             The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card
-            (American Express has it on the front). The value helps to identify posession of the card as it is not
+            (American Express has it on the front). The value helps to identify possession of the card as it is not
             available within the chip or magnetic swipe.
 
             When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped
@@ -5368,7 +5393,8 @@ components:
           description: |
             A policy value which determines whether a CSC policy is enforced or bypassed.
 
-            Values are
+            Values are:
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
 
              `1` for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.
@@ -5391,6 +5417,7 @@ components:
             the window, any subsequent transaction will result in a T001 result.
 
             Values are
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
 
              `1` for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.
@@ -5442,7 +5469,8 @@ components:
           description: |
             A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.
 
-            Values are
+            Values are:
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
 
              `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.
@@ -5457,31 +5485,29 @@ components:
           format: int32
           type: integer
         tag:
-          description: |
-            A "tag" is a label that you can attach to a payment authorization.
-            Tags can help you group transactions together based on certain criteria, like a work job or a ticket number.
-            They can also assist in filtering transactions when you're generating reports.
+          items:
+            description: |
+              A tag is a label that you can attach to a payment authorisation.
+              Tags can help you group transactions together based on certain criteria, like a work job or a ticket number.
+              They can also assist in filtering transactions when you're generating reports.
 
-            Multiple Tags
-            You can add more than one tag to a transaction by separating them with commas.
+              Limitations:
+              There is a maximum limit of 3 tags that can be added to a single transaction. Each tag can be no longer than 20
+              characters and alphanumeric with no spaces.
 
-            Limitations
-            There is a maximum limit of 3 tags that can be added to a single transaction. Each tag can be no longer than 20
-            characters and alphanumeric with no spaces.
+              Example:
+              Let's say you're a software company and you have different teams working on various projects. When a team makes
+              a purchase or incurs an expense, they can tag the transaction with the project name, the team name, and the
+              type of expense.
 
-            Example:
-            Let's say you're a software company and you have different teams working on various projects. When a team makes
-            a purchase or incurs an expense, they can tag the transaction with the project name, the team name, and the
-            type of expense.
+              - Project Name: Project_X
+              - Team Name: Team_A
+              - Type of Expense: Hardware
 
-            Project Name: Project_X
-            Team Name: Team_A
-            Type of Expense: Hardware
-            So, the tag for a transaction might look like: Project_X,Team_A,Hardware
-
-            This way, when you're looking at your financial reports, you can easily filter transactions based on these
-            tags to see how much each project or team is spending on different types of expenses.
-          type: string
+              This way, when you're looking at your financial reports, you can easily filter transactions based on these
+              tags to see how much each project or team is spending on different types of expenses.
+            type: string
+          type: array
         threedsecure:
           $ref: '#/components/schemas/ThreeDSecure'
         token:
@@ -5525,13 +5551,12 @@ components:
       example:
         client_account_id: AC1
         batch_id:
-        - 78
-        - 78
+        - 1
+        - 1
       properties:
         batch_id:
           items:
             description: The batch id to obtain the status for.
-            example: 78
             format: int32
             maxLength: 8
             minimum: 1
@@ -5550,17 +5575,12 @@ components:
     CheckBatchStatusResponse:
       example:
         batches:
-        - batch_id: 35
-          batch_status: COMPLETE
-          batch_date: 2020-01-02T00:00:00.000+00:00
-        - batch_id: 35
+          batch_id: 35
           batch_status: COMPLETE
           batch_date: 2020-01-02T00:00:00.000+00:00
       properties:
         batches:
-          items:
-            $ref: '#/components/schemas/Batch'
-          type: array
+          $ref: '#/components/schemas/Batch'
       type: object
     ContactDetails:
       example:
@@ -5657,17 +5677,13 @@ components:
           acs_url: https://acs.cardissuer.com/3dsv1
           threedserver_trans_id: threedserver_trans_id
           transno: 78416
-        AuthenRequired:
-          pareq: eNrNWdnOo0qSfpXSmUuf0+w2tFy/lOyYxYDZ79h3sAEbm6cfbFfV+bu6pqe7R2qNJeQkiIwlMyK+...
-          md: md
-          acs_url: https://acs.cardissuer.com/3dsv1
         AuthResponse:
           authen_result: authen_result
           atrn: atrn
           maskedpan: 4***********0002
           scheme: Visa
           sha256: sha256
-          eci: eci
+          eci: "5"
           transno: 78416
           result: 1
           scheme_logo: https://cdn.citypay.com/img/cs/visa-logo.svg
@@ -5682,18 +5698,16 @@ components:
           csc_result: csc_result
           bin_description: Platinum Card
           identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-          amount: 3600
+          amount: 19995
           bin_commercial: true
           result_message: Accepted Transaction
           atsd: atsd
           authcode: 001245A
-          cavv: cavv
+          cavv: "00000109260000719349"
           merchantid: 11223344
           result_code: "0"
           bin_debit: true
       properties:
-        AuthenRequired:
-          $ref: '#/components/schemas/AuthenRequired'
         AuthResponse:
           $ref: '#/components/schemas/AuthResponse'
         RequestChallenged:
@@ -5731,7 +5745,7 @@ components:
           browserScreenWidth: browserScreenWidth
           user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36\
             \ (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
-        amount: 3600
+        amount: 19995
         expyear: 2027
         csc_policy: csc_policy
         redirect_success: https://pay.mystore.com/continue_success
@@ -5746,7 +5760,9 @@ components:
         avs_postcode_policy: avs_postcode_policy
         currency: GBP
         cardnumber: 4000 0000 0000 0002
-        tag: tag
+        tag:
+        - tag
+        - tag
         ship_to:
           area: London
           country: GB
@@ -5773,7 +5789,7 @@ components:
             The amount should be the total amount required for the transaction.
 
             For example with GBP £1,021.95 the amount value is 102195.
-          example: 3600
+          example: 19995
           format: int32
           maxLength: 9
           minLength: 1
@@ -5782,7 +5798,8 @@ components:
           description: |
             A policy value which determines whether an AVS postcode policy is enforced or bypassed.
 
-            Values are
+            Values are:
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
 
              `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.
@@ -5811,7 +5828,7 @@ components:
         csc:
           description: |
             The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card
-            (American Express has it on the front). The value helps to identify posession of the card as it is not
+            (American Express has it on the front). The value helps to identify possession of the card as it is not
             available within the chip or magnetic swipe.
 
             When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped
@@ -5838,7 +5855,8 @@ components:
           description: |
             A policy value which determines whether a CSC policy is enforced or bypassed.
 
-            Values are
+            Values are:
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
 
              `1` for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.
@@ -5861,6 +5879,7 @@ components:
             the window, any subsequent transaction will result in a T001 result.
 
             Values are
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
 
              `1` for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.
@@ -5919,7 +5938,8 @@ components:
           description: |
             A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.
 
-            Values are
+            Values are:
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
 
              `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.
@@ -5957,31 +5977,29 @@ components:
         ship_to:
           $ref: '#/components/schemas/ContactDetails'
         tag:
-          description: |
-            A "tag" is a label that you can attach to a payment authorization.
-            Tags can help you group transactions together based on certain criteria, like a work job or a ticket number.
-            They can also assist in filtering transactions when you're generating reports.
+          items:
+            description: |
+              A tag is a label that you can attach to a payment authorisation.
+              Tags can help you group transactions together based on certain criteria, like a work job or a ticket number.
+              They can also assist in filtering transactions when you're generating reports.
 
-            Multiple Tags
-            You can add more than one tag to a transaction by separating them with commas.
+              Limitations:
+              There is a maximum limit of 3 tags that can be added to a single transaction. Each tag can be no longer than 20
+              characters and alphanumeric with no spaces.
 
-            Limitations
-            There is a maximum limit of 3 tags that can be added to a single transaction. Each tag can be no longer than 20
-            characters and alphanumeric with no spaces.
+              Example:
+              Let's say you're a software company and you have different teams working on various projects. When a team makes
+              a purchase or incurs an expense, they can tag the transaction with the project name, the team name, and the
+              type of expense.
 
-            Example:
-            Let's say you're a software company and you have different teams working on various projects. When a team makes
-            a purchase or incurs an expense, they can tag the transaction with the project name, the team name, and the
-            type of expense.
+              - Project Name: Project_X
+              - Team Name: Team_A
+              - Type of Expense: Hardware
 
-            Project Name: Project_X
-            Team Name: Team_A
-            Type of Expense: Hardware
-            So, the tag for a transaction might look like: Project_X,Team_A,Hardware
-
-            This way, when you're looking at your financial reports, you can easily filter transactions based on these
-            tags to see how much each project or team is spending on different types of expenses.
-          type: string
+              This way, when you're looking at your financial reports, you can easily filter transactions based on these
+              tags to see how much each project or team is spending on different types of expenses.
+            type: string
+          type: array
         threedsecure:
           $ref: '#/components/schemas/ThreeDSecure'
         trans_info:
@@ -6161,11 +6179,12 @@ components:
         event_organiser_id: event_organiser_id
         payment_type: payment_type
         event_id: event_id
-        event_end_date: 2000-01-23
-        event_start_date: 2000-01-23
+        event_end_date: 2024-04-22T00:00:00.000+00:00
+        event_start_date: 2024-04-22T00:00:00.000+00:00
       properties:
         event_end_date:
           description: The date when the event ends in ISO format (yyyy-MM-dd).
+          example: 2024-04-22
           format: date
           type: string
         event_id:
@@ -6176,6 +6195,7 @@ components:
           type: string
         event_start_date:
           description: The date when the event starts in ISO format (yyyy-MM-dd).
+          example: 2024-04-22
           format: date
           type: string
         payment_type:
@@ -6315,73 +6335,11 @@ components:
           example: Active
           type: string
       type: object
-    MerchantBatchReportResponse:
-      example:
-        batches:
-        - batch_no: batch_no
-          net_summary:
-            debit_items_count: 12345
-            credit_items_value: 11874500
-            credit_items_count: 12345
-            total_count: 12345
-            debit_items_amount: £75.89
-            net_amount: 11874500
-            debit_items_value: 11874500
-            credit_items_amount: £75.89
-          merchantid: 11223344
-          batch_closed: 2000-01-23T04:56:07.000+00:00
-          batch_status: batch_status
-          batch_status_code: batch_status_code
-          currency: GBP
-        - batch_no: batch_no
-          net_summary:
-            debit_items_count: 12345
-            credit_items_value: 11874500
-            credit_items_count: 12345
-            total_count: 12345
-            debit_items_amount: £75.89
-            net_amount: 11874500
-            debit_items_value: 11874500
-            credit_items_amount: £75.89
-          merchantid: 11223344
-          batch_closed: 2000-01-23T04:56:07.000+00:00
-          batch_status: batch_status
-          batch_status_code: batch_status_code
-          currency: GBP
-        maxResults: 50
-        nextToken: nextToken
-        count: 25
-      properties:
-        batches:
-          items:
-            $ref: '#/components/schemas/MerchantBatchResponse'
-          type: array
-          x-description: Batch data based on the request.
-        count:
-          description: The count of items returned in this page.
-          example: 25
-          format: int32
-          type: integer
-        maxResults:
-          description: The max results requested in this page.
-          example: 50
-          format: int32
-          type: integer
-        nextToken:
-          description: "A token that identifies the starting point of the page of\
-            \ results to be returned. An empty value indicates the start of the dataset.\
-            \ When supplied, it is validated and used to fetch the subsequent page\
-            \ of results. This token is typically obtained from the response of a\
-            \ previous pagination request."
-          type: string
-      required:
-      - batches
-      type: object
-    MerchantBatchRequest:
+    MerchantBatchReportRequest:
       example:
         date_until: 2024-01-31T00:00:00.000+00:00
         maxResults: 50
-        nextToken: nextToken
+        nextToken: n34liuwn435tUAGFNg34yn...
         orderBy: date
         merchant_id:
         - 1
@@ -6422,6 +6380,7 @@ components:
             \ When supplied, it is validated and used to fetch the subsequent page\
             \ of results. This token is typically obtained from the response of a\
             \ previous pagination request."
+          example: n34liuwn435tUAGFNg34yn...
           type: string
         orderBy:
           description: "Specifies the field by which results are ordered. Available\
@@ -6430,6 +6389,69 @@ components:
             \ To order in descending order, prefix with '-' or suffix with ' DESC'."
           example: date
           type: string
+      type: object
+    MerchantBatchReportResponse:
+      example:
+        batches:
+        - batch_no: batch_no
+          net_summary:
+            debit_items_count: 12345
+            credit_items_value: 11874500
+            credit_items_count: 12345
+            total_count: 12345
+            debit_items_amount: £75.89
+            net_amount: 11874500
+            debit_items_value: 11874500
+            credit_items_amount: £75.89
+          merchantid: 11223344
+          batch_closed: 2024-04-22T11:38:35Z
+          batch_status: batch_status
+          batch_status_code: batch_status_code
+          currency: GBP
+        - batch_no: batch_no
+          net_summary:
+            debit_items_count: 12345
+            credit_items_value: 11874500
+            credit_items_count: 12345
+            total_count: 12345
+            debit_items_amount: £75.89
+            net_amount: 11874500
+            debit_items_value: 11874500
+            credit_items_amount: £75.89
+          merchantid: 11223344
+          batch_closed: 2024-04-22T11:38:35Z
+          batch_status: batch_status
+          batch_status_code: batch_status_code
+          currency: GBP
+        maxResults: 50
+        nextToken: n34liuwn435tUAGFNg34yn...
+        count: 25
+      properties:
+        batches:
+          items:
+            $ref: '#/components/schemas/MerchantBatchResponse'
+          type: array
+          x-description: Batch data based on the request.
+        count:
+          description: The count of items returned in this page.
+          example: 25
+          format: int32
+          type: integer
+        maxResults:
+          description: The max results requested in this page.
+          example: 50
+          format: int32
+          type: integer
+        nextToken:
+          description: "A token that identifies the starting point of the page of\
+            \ results to be returned. An empty value indicates the start of the dataset.\
+            \ When supplied, it is validated and used to fetch the subsequent page\
+            \ of results. This token is typically obtained from the response of a\
+            \ previous pagination request."
+          example: n34liuwn435tUAGFNg34yn...
+          type: string
+      required:
+      - batches
       type: object
     MerchantBatchResponse:
       example:
@@ -6444,7 +6466,7 @@ components:
           debit_items_value: 11874500
           credit_items_amount: £75.89
         merchantid: 11223344
-        batch_closed: 2000-01-23T04:56:07.000+00:00
+        batch_closed: 2024-04-22T11:38:35Z
         batch_status: batch_status
         batch_status_code: batch_status_code
         currency: GBP
@@ -6453,6 +6475,7 @@ components:
           description: "The date and time when the batch was closed. This is represented\
             \ in ISO 8601 format (e.g., YYYY-MM-DDTHH:MM:SSZ) and indicates when the\
             \ batch processing was completed."
+          example: 2024-04-22T11:38:35Z
           format: date-time
           type: string
         batch_no:
@@ -6638,11 +6661,11 @@ components:
       example:
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
         reason: reason
-        amount: 3600
+        amount: 19995
       properties:
         amount:
           description: An amount to adjust to.
-          example: 3600
+          example: 19995
           format: int32
           maxLength: 9
           minLength: 1
@@ -6854,23 +6877,23 @@ components:
         sms_notification_path:
           template: template
           to: to
-        due: 2000-01-23
+        due: 2024-04-22T00:00:00.000+00:00
         memo: memo
         descriptor: descriptor
         email_notification_path:
           cc:
-          - cc
-          - cc
+          - "[\"email@domain.com\"]"
+          - "[\"email@domain.com\"]"
           template: template
           bcc:
-          - bcc
-          - bcc
+          - "[\"email@domain.com\"]"
+          - "[\"email@domain.com\"]"
           reply_to:
-          - reply_to
-          - reply_to
+          - "[\"email@domain.com\"]"
+          - "[\"email@domain.com\"]"
           to:
-          - to
-          - to
+          - "[\"email@domain.com\"]"
+          - "[\"email@domain.com\"]"
       properties:
         addressee:
           description: Who the bill payment request intended for. This should be a
@@ -6892,6 +6915,7 @@ components:
         due:
           description: A date that the invoice is due. This can be displayed on the
             payment page.
+          example: 2024-04-22
           format: date
           type: string
         email_notification_path:
@@ -7212,10 +7236,10 @@ components:
           items:
             type: string
           type: array
-          x-description: "string[]\tOptional\tMay be used to lock fields which are\
-            \ displayed in the form. For example, if the cardholder.address.postcode\
-            \ field were to be specified this would will prevent the customer amending\
-            \ the postal code for the cardholder postcode field."
+          x-description: "string[]OptionalMay be used to lock fields which are displayed\
+            \ in the form. For example, if the cardholder.address.postcode field were\
+            \ to be specified this would will prevent the customer amending the postal\
+            \ code for the cardholder postcode field."
         merch_logo:
           description: A URL of a logo to include in the form. The URL should be delivered
             using HTTPS.
@@ -7343,35 +7367,41 @@ components:
     PaylinkEmailNotificationPath:
       example:
         cc:
-        - cc
-        - cc
+        - "[\"email@domain.com\"]"
+        - "[\"email@domain.com\"]"
         template: template
         bcc:
-        - bcc
-        - bcc
+        - "[\"email@domain.com\"]"
+        - "[\"email@domain.com\"]"
         reply_to:
-        - reply_to
-        - reply_to
+        - "[\"email@domain.com\"]"
+        - "[\"email@domain.com\"]"
         to:
-        - to
-        - to
+        - "[\"email@domain.com\"]"
+        - "[\"email@domain.com\"]"
       properties:
         bcc:
           items:
             description: An array of email addresses to be used for blind carbon copy
               delivery. A maximum of 5 addresses can be added.
+            example: "[\"email@domain.com\"]"
+            format: email
             type: string
           type: array
         cc:
           items:
             description: An array of email addresses to be used for carbon copy delivery.
               A maximum of 5 addresses can be added.
+            example: "[\"email@domain.com\"]"
+            format: email
             type: string
           type: array
         reply_to:
           items:
             description: An array of email addresses to be used for the Reply-To header
               of an email.
+            example: "[\"email@domain.com\"]"
+            format: email
             type: string
           type: array
         template:
@@ -7382,6 +7412,8 @@ components:
           items:
             description: A list of email addresses to be used for the send to email
               address for delivery. A maximum of 5 addresses can be added.
+            example: "[\"email@domain.com\"]"
+            format: email
             type: string
           type: array
       required:
@@ -7389,14 +7421,16 @@ components:
       type: object
     PaylinkErrorCode:
       example:
-        msg: msg
-        code: code
+        msg: An example error response
+        code: "1"
       properties:
         code:
           description: An error code identifying the error.
+          example: "1"
           type: string
         msg:
           description: An error message describing the error.
+          example: An example error response
           type: string
       required:
       - code
@@ -7508,45 +7542,47 @@ components:
       type: object
     PaylinkStateEvent:
       example:
-        datetime: 2000-01-23T04:56:07.000+00:00
-        state: 2000-01-23T04:56:07.000+00:00
-        message: message
+        datetime: 2024-04-22T11:38:35Z
+        state: FormInput
+        message: message on this state
       properties:
         datetime:
           description: the date and time of the event.
+          example: 2024-04-22T11:38:35Z
           format: date-time
           type: string
         message:
           description: a message associated with the event.
+          example: message on this state
           type: string
         state:
           description: The name of the event that was actioned.
-          format: date-time
+          example: FormInput
           type: string
       type: object
     PaylinkTokenCreated:
       example:
-        identifier: identifier
+        identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
         attachments:
           result: result
           name: name
           url: url
         bps: bps
         usc: usc
-        date_created: 2000-01-23T04:56:07.000+00:00
-        qrcode: qrcode
-        source: source
-        server_version: server_version
-        url: url
-        token: token
-        mode: mode
+        date_created: 2024-04-22T11:38:35Z
+        qrcode: https://payments.citypay.com/AAAAAAA/AAAZZZCCCDDDEEE/qrcode
+        source: x.x.x.x
+        server_version: x.x.x
+        url: https://payments.citypay.com/AAAAAAA/AAAZZZCCCDDDEEE
+        token: AAAZZZCCCDDDEEE
+        mode: test
         result: 0
-        id: id
+        id: 00000000-0000-0000-0000-000000000000
         errors:
-        - msg: msg
-          code: code
-        - msg: msg
-          code: code
+        - msg: An example error response
+          code: "1"
+        - msg: An example error response
+          code: "1"
       properties:
         attachments:
           $ref: '#/components/schemas/PaylinkAttachmentResult'
@@ -7556,6 +7592,7 @@ components:
           x-business-extension: BPS
         date_created:
           description: Date and time the token was generated.
+          example: 2024-04-22T11:38:35Z
           format: date-time
           type: string
         errors:
@@ -7565,35 +7602,46 @@ components:
           x-description: Any errors found when processing the request.
         id:
           description: A unique id of the request.
+          example: 00000000-0000-0000-0000-000000000000
           type: string
         identifier:
           description: The identifier as presented in the TokenRequest.
+          example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          maxLength: 50
+          minLength: 4
           type: string
         mode:
           description: Determines whether the token is `live` or `test`.
+          example: test
           type: string
         qrcode:
           description: A URL of a qrcode which can be used to refer to the token URL.
+          example: https://payments.citypay.com/AAAAAAA/AAAZZZCCCDDDEEE/qrcode
           type: string
         result:
           description: The result field contains the result for the Paylink Token
             Request. 0 - indicates that an error was encountered while creating the
             token. 1 - which indicates that a Token was successfully created.
+          example: 0
           format: int32
           type: integer
         server_version:
           description: the version of the server performing the call.
+          example: x.x.x
           type: string
         source:
           description: The incoming IP address of the call.
+          example: x.x.x.x
           format: ipv4
           type: string
         token:
           description: A token generated for the request used to refer to the transaction
             in consequential calls.
+          example: AAAZZZCCCDDDEEE
           type: string
         url:
           description: The Paylink token URL used to checkout by the card holder.
+          example: https://payments.citypay.com/AAAAAAA/AAAZZZCCCDDDEEE
           type: string
         usc:
           description: A UrlShortCode (USC) used for short links.
@@ -7808,10 +7856,10 @@ components:
         amount_paid: 0
         is_postback_ok: true
         is_customer_receipt_email_sent: true
-        mid: mid
+        mid: 11223344
         is_validated: true
         payment_attempts_count: 6
-        datetime: 2000-01-23T04:56:07.000+00:00
+        datetime: 2024-04-22T11:38:35Z
         is_email_sent: true
         is_open_for_payment: true
         last_payment_result: last_payment_result
@@ -7820,25 +7868,25 @@ components:
         is_paid: true
         is_closed: true
         trans_no: 1
-        identifier: identifier
+        identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
         is_merchant_notification_email_sent: true
-        created: 2000-01-23T04:56:07.000+00:00
-        last_event_date_time: 2000-01-23T04:56:07.000+00:00
+        created: 2024-04-22T11:38:35Z
+        last_event_date_time: 2024-04-22T11:38:35Z
         auth_code: auth_code
         token: token
         is_expired: true
         is_attachment: true
         is_request_challenged: true
-        card: card
+        card: Visa/0002
         is_cancelled: true
         is_sms_sent: true
         state_history:
-        - datetime: 2000-01-23T04:56:07.000+00:00
-          state: 2000-01-23T04:56:07.000+00:00
-          message: message
-        - datetime: 2000-01-23T04:56:07.000+00:00
-          state: 2000-01-23T04:56:07.000+00:00
-          message: message
+        - datetime: 2024-04-22T11:38:35Z
+          state: FormInput
+          message: message on this state
+        - datetime: 2024-04-22T11:38:35Z
+          state: FormInput
+          message: message on this state
       properties:
         amount_paid:
           description: the amount that has been paid against the session.
@@ -7850,17 +7898,23 @@ components:
           type: string
         card:
           description: a description of the card that was used for payment if paid.
+          example: Visa/0002
           type: string
         created:
           description: the date and time that the session was created.
+          example: 2024-04-22T11:38:35Z
           format: date-time
           type: string
         datetime:
           description: the date and time of the current status.
+          example: 2024-04-22T11:38:35Z
           format: date-time
           type: string
         identifier:
           description: "the merchant identifier, to help identifying the token."
+          example: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
+          maxLength: 50
+          minLength: 4
           type: string
         is_attachment:
           description: true if an attachment exists.
@@ -7913,6 +7967,7 @@ components:
         last_event_date_time:
           description: the date and time that the session last had an event actioned
             against it.
+          example: 2024-04-22T11:38:35Z
           format: date-time
           type: string
         last_payment_result:
@@ -7920,7 +7975,9 @@ components:
           type: string
         mid:
           description: identifies the merchant account.
-          type: string
+          example: 11223344
+          format: int32
+          type: integer
         payment_attempts_count:
           description: the number of attempts made to pay.
           format: int32
@@ -7943,12 +8000,13 @@ components:
       example:
         merchantid: 11223344
         maxResults: 50
-        nextToken: nextToken
+        nextToken: n34liuwn435tUAGFNg34yn...
         orderBy: date
-        after: 2000-01-23T04:56:07.000+00:00
+        after: 2024-04-22T11:38:35Z
       properties:
         after:
           description: identifies the date and time to lookup changes after.
+          example: 2024-04-22T11:38:35Z
           format: date-time
           type: string
         maxResults:
@@ -7969,6 +8027,7 @@ components:
             \ When supplied, it is validated and used to fetch the subsequent page\
             \ of results. This token is typically obtained from the response of a\
             \ previous pagination request."
+          example: n34liuwn435tUAGFNg34yn...
           type: string
         orderBy:
           description: "Specifies the field by which results are ordered. Available\
@@ -7983,16 +8042,16 @@ components:
     PaylinkTokenStatusChangeResponse:
       example:
         maxResults: 50
-        nextToken: nextToken
+        nextToken: n34liuwn435tUAGFNg34yn...
         count: 25
         tokens:
         - amount_paid: 0
           is_postback_ok: true
           is_customer_receipt_email_sent: true
-          mid: mid
+          mid: 11223344
           is_validated: true
           payment_attempts_count: 6
-          datetime: 2000-01-23T04:56:07.000+00:00
+          datetime: 2024-04-22T11:38:35Z
           is_email_sent: true
           is_open_for_payment: true
           last_payment_result: last_payment_result
@@ -8001,32 +8060,32 @@ components:
           is_paid: true
           is_closed: true
           trans_no: 1
-          identifier: identifier
+          identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
           is_merchant_notification_email_sent: true
-          created: 2000-01-23T04:56:07.000+00:00
-          last_event_date_time: 2000-01-23T04:56:07.000+00:00
+          created: 2024-04-22T11:38:35Z
+          last_event_date_time: 2024-04-22T11:38:35Z
           auth_code: auth_code
           token: token
           is_expired: true
           is_attachment: true
           is_request_challenged: true
-          card: card
+          card: Visa/0002
           is_cancelled: true
           is_sms_sent: true
           state_history:
-          - datetime: 2000-01-23T04:56:07.000+00:00
-            state: 2000-01-23T04:56:07.000+00:00
-            message: message
-          - datetime: 2000-01-23T04:56:07.000+00:00
-            state: 2000-01-23T04:56:07.000+00:00
-            message: message
+          - datetime: 2024-04-22T11:38:35Z
+            state: FormInput
+            message: message on this state
+          - datetime: 2024-04-22T11:38:35Z
+            state: FormInput
+            message: message on this state
         - amount_paid: 0
           is_postback_ok: true
           is_customer_receipt_email_sent: true
-          mid: mid
+          mid: 11223344
           is_validated: true
           payment_attempts_count: 6
-          datetime: 2000-01-23T04:56:07.000+00:00
+          datetime: 2024-04-22T11:38:35Z
           is_email_sent: true
           is_open_for_payment: true
           last_payment_result: last_payment_result
@@ -8035,25 +8094,25 @@ components:
           is_paid: true
           is_closed: true
           trans_no: 1
-          identifier: identifier
+          identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
           is_merchant_notification_email_sent: true
-          created: 2000-01-23T04:56:07.000+00:00
-          last_event_date_time: 2000-01-23T04:56:07.000+00:00
+          created: 2024-04-22T11:38:35Z
+          last_event_date_time: 2024-04-22T11:38:35Z
           auth_code: auth_code
           token: token
           is_expired: true
           is_attachment: true
           is_request_challenged: true
-          card: card
+          card: Visa/0002
           is_cancelled: true
           is_sms_sent: true
           state_history:
-          - datetime: 2000-01-23T04:56:07.000+00:00
-            state: 2000-01-23T04:56:07.000+00:00
-            message: message
-          - datetime: 2000-01-23T04:56:07.000+00:00
-            state: 2000-01-23T04:56:07.000+00:00
-            message: message
+          - datetime: 2024-04-22T11:38:35Z
+            state: FormInput
+            message: message on this state
+          - datetime: 2024-04-22T11:38:35Z
+            state: FormInput
+            message: message on this state
       properties:
         count:
           description: The count of items returned in this page.
@@ -8071,6 +8130,7 @@ components:
             \ When supplied, it is validated and used to fetch the subsequent page\
             \ of results. This token is typically obtained from the response of a\
             \ previous pagination request."
+          example: n34liuwn435tUAGFNg34yn...
           type: string
         tokens:
           items:
@@ -8121,7 +8181,7 @@ components:
           company: Acme Ltd
           email: card.holder@citypay.com
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-        amount: 3600
+        amount: 19995
         csc_policy: csc_policy
         trans_info: trans_info
         duplicate_policy: duplicate_policy
@@ -8129,7 +8189,9 @@ components:
         match_avsa: match_avsa
         avs_postcode_policy: avs_postcode_policy
         currency: GBP
-        tag: tag
+        tag:
+        - tag
+        - tag
         ship_to:
           area: London
           country: GB
@@ -8155,7 +8217,7 @@ components:
             The amount should be the total amount required for the transaction.
 
             For example with GBP £1,021.95 the amount value is 102195.
-          example: 3600
+          example: 19995
           format: int32
           maxLength: 9
           minLength: 1
@@ -8164,7 +8226,8 @@ components:
           description: |
             A policy value which determines whether an AVS postcode policy is enforced or bypassed.
 
-            Values are
+            Values are:
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
 
              `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.
@@ -8178,7 +8241,7 @@ components:
         csc:
           description: |
             The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card
-            (American Express has it on the front). The value helps to identify posession of the card as it is not
+            (American Express has it on the front). The value helps to identify possession of the card as it is not
             available within the chip or magnetic swipe.
 
             When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped
@@ -8205,7 +8268,8 @@ components:
           description: |
             A policy value which determines whether a CSC policy is enforced or bypassed.
 
-            Values are
+            Values are:
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
 
              `1` for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.
@@ -8228,6 +8292,7 @@ components:
             the window, any subsequent transaction will result in a T001 result.
 
             Values are
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
 
              `1` for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.
@@ -8256,7 +8321,8 @@ components:
           description: |
             A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.
 
-            Values are
+            Values are:
+
              `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.
 
              `1` for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.
@@ -8268,31 +8334,29 @@ components:
         ship_to:
           $ref: '#/components/schemas/ContactDetails'
         tag:
-          description: |
-            A "tag" is a label that you can attach to a payment authorization.
-            Tags can help you group transactions together based on certain criteria, like a work job or a ticket number.
-            They can also assist in filtering transactions when you're generating reports.
+          items:
+            description: |
+              A tag is a label that you can attach to a payment authorisation.
+              Tags can help you group transactions together based on certain criteria, like a work job or a ticket number.
+              They can also assist in filtering transactions when you're generating reports.
 
-            Multiple Tags
-            You can add more than one tag to a transaction by separating them with commas.
+              Limitations:
+              There is a maximum limit of 3 tags that can be added to a single transaction. Each tag can be no longer than 20
+              characters and alphanumeric with no spaces.
 
-            Limitations
-            There is a maximum limit of 3 tags that can be added to a single transaction. Each tag can be no longer than 20
-            characters and alphanumeric with no spaces.
+              Example:
+              Let's say you're a software company and you have different teams working on various projects. When a team makes
+              a purchase or incurs an expense, they can tag the transaction with the project name, the team name, and the
+              type of expense.
 
-            Example:
-            Let's say you're a software company and you have different teams working on various projects. When a team makes
-            a purchase or incurs an expense, they can tag the transaction with the project name, the team name, and the
-            type of expense.
+              - Project Name: Project_X
+              - Team Name: Team_A
+              - Type of Expense: Hardware
 
-            Project Name: Project_X
-            Team Name: Team_A
-            Type of Expense: Hardware
-            So, the tag for a transaction might look like: Project_X,Team_A,Hardware
-
-            This way, when you're looking at your financial reports, you can easily filter transactions based on these
-            tags to see how much each project or team is spending on different types of expenses.
-          type: string
+              This way, when you're looking at your financial reports, you can easily filter transactions based on these
+              tags to see how much each project or team is spending on different types of expenses.
+            type: string
+          type: array
         trans_info:
           description: Further information that can be added to the transaction will
             display in reporting. Can be used for flexible values such as operator
@@ -8338,11 +8402,11 @@ components:
         batch_id: 35
         transactions:
         - identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-          amount: 3600
+          amount: 19995
           account_id: aaabbb-cccddd-eee
           merchantid: 11223344
         - identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-          amount: 3600
+          amount: 19995
           account_id: aaabbb-cccddd-eee
           merchantid: 11223344
         batch_date: 2020-01-02T00:00:00.000+00:00
@@ -8401,7 +8465,7 @@ components:
     RefundRequest:
       example:
         identifier: 95b857a1-5955-4b86-963c-5a6dbfc4fb95
-        amount: 3600
+        amount: 19995
         refund_ref: 8322
         merchantid: 11223344
         trans_info: trans_info
@@ -8415,7 +8479,7 @@ components:
             No decimal points are to be included and no divisional characters such as 1,024.
 
             For example with GBP £1,021.95 the amount value is 102195.
-          example: 3600
+          example: 19995
           format: int32
           maxLength: 9
           minLength: 1
@@ -8563,7 +8627,7 @@ components:
       example:
         date_until: 2024-01-31T00:00:00.000+00:00
         maxResults: 50
-        nextToken: nextToken
+        nextToken: n34liuwn435tUAGFNg34yn...
         orderBy: date
         merchant_id:
         - 1
@@ -8604,6 +8668,7 @@ components:
             \ When supplied, it is validated and used to fetch the subsequent page\
             \ of results. This token is typically obtained from the response of a\
             \ previous pagination request."
+          example: n34liuwn435tUAGFNg34yn...
           type: string
         orderBy:
           description: "Specifies the field by which results are ordered. Available\
@@ -8648,7 +8713,7 @@ components:
               debit_items_value: 11874500
               credit_items_amount: £75.89
             merchantid: 11223344
-            batch_closed: 2000-01-23T04:56:07.000+00:00
+            batch_closed: 2024-04-22T11:38:35Z
             batch_status: batch_status
             batch_status_code: batch_status_code
             currency: GBP
@@ -8663,7 +8728,7 @@ components:
               debit_items_value: 11874500
               credit_items_amount: £75.89
             merchantid: 11223344
-            batch_closed: 2000-01-23T04:56:07.000+00:00
+            batch_closed: 2024-04-22T11:38:35Z
             batch_status: batch_status
             batch_status_code: batch_status_code
             currency: GBP
@@ -8704,7 +8769,7 @@ components:
               debit_items_value: 11874500
               credit_items_amount: £75.89
             merchantid: 11223344
-            batch_closed: 2000-01-23T04:56:07.000+00:00
+            batch_closed: 2024-04-22T11:38:35Z
             batch_status: batch_status
             batch_status_code: batch_status_code
             currency: GBP
@@ -8719,7 +8784,7 @@ components:
               debit_items_value: 11874500
               credit_items_amount: £75.89
             merchantid: 11223344
-            batch_closed: 2000-01-23T04:56:07.000+00:00
+            batch_closed: 2024-04-22T11:38:35Z
             batch_status: batch_status
             batch_status_code: batch_status_code
             currency: GBP
@@ -8729,7 +8794,7 @@ components:
           refund_count: 11874500
           settlement_implementation: settlement_implementation
         maxResults: 50
-        nextToken: nextToken
+        nextToken: n34liuwn435tUAGFNg34yn...
         count: 25
       properties:
         count:
@@ -8753,6 +8818,7 @@ components:
             \ When supplied, it is validated and used to fetch the subsequent page\
             \ of results. This token is typically obtained from the response of a\
             \ previous pagination request."
+          example: n34liuwn435tUAGFNg34yn...
           type: string
       required:
       - data
@@ -8791,7 +8857,7 @@ components:
             debit_items_value: 11874500
             credit_items_amount: £75.89
           merchantid: 11223344
-          batch_closed: 2000-01-23T04:56:07.000+00:00
+          batch_closed: 2024-04-22T11:38:35Z
           batch_status: batch_status
           batch_status_code: batch_status_code
           currency: GBP
@@ -8806,7 +8872,7 @@ components:
             debit_items_value: 11874500
             credit_items_amount: £75.89
           merchantid: 11223344
-          batch_closed: 2000-01-23T04:56:07.000+00:00
+          batch_closed: 2024-04-22T11:38:35Z
           batch_status: batch_status
           batch_status_code: batch_status_code
           currency: GBP
@@ -9096,7 +9162,7 @@ components:
         bin_commercial: true
         maskedpan: 4***********0002
         scheme: Visa
-        eci: eci
+        eci: "5"
         bin_debit: true
         sig_id: YWV3ZmF3ZWZhd2VmYXdmMmZhZWYzYWVn
         token: ctPCAPyNyCkx3Ry8wGyv8khC3ch2hUSB3Db..Qzr
@@ -9143,6 +9209,7 @@ components:
         eci:
           description: |
             An Electronic Commerce Indicator (ECI) used to identify the result of authentication using 3DSecure.
+          example: "5"
           type: string
         identifier:
           description: The identifier provided within the request.

@@ -147,7 +147,7 @@ public class PaylinkTokenStatus {
 
   public static final String SERIALIZED_NAME_MID = "mid";
   @SerializedName(SERIALIZED_NAME_MID)
-  private String mid;
+  private Integer mid;
 
   public static final String SERIALIZED_NAME_PAYMENT_ATTEMPTS_COUNT = "payment_attempts_count";
   @SerializedName(SERIALIZED_NAME_PAYMENT_ATTEMPTS_COUNT)
@@ -605,7 +605,7 @@ public class PaylinkTokenStatus {
   }
 
 
-  public PaylinkTokenStatus mid(String mid) {
+  public PaylinkTokenStatus mid(Integer mid) {
     this.mid = mid;
     return this;
   }
@@ -615,11 +615,11 @@ public class PaylinkTokenStatus {
    * @return mid
   **/
   @javax.annotation.Nullable
-  public String getMid() {
+  public Integer getMid() {
     return mid;
   }
 
-  public void setMid(String mid) {
+  public void setMid(Integer mid) {
     this.mid = mid;
   }
 
@@ -872,9 +872,6 @@ public class PaylinkTokenStatus {
       }
       if ((jsonObj.get("last_payment_result") != null && !jsonObj.get("last_payment_result").isJsonNull()) && !jsonObj.get("last_payment_result").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `last_payment_result` to be a primitive type in the JSON string but got `%s`", jsonObj.get("last_payment_result").toString()));
-      }
-      if ((jsonObj.get("mid") != null && !jsonObj.get("mid").isJsonNull()) && !jsonObj.get("mid").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `mid` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mid").toString()));
       }
       if (jsonObj.get("state_history") != null && !jsonObj.get("state_history").isJsonNull()) {
         JsonArray jsonArraystateHistory = jsonObj.getAsJsonArray("state_history");

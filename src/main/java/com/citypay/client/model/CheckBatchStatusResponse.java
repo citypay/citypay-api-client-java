@@ -20,9 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -54,21 +52,13 @@ import com.citypay.client.JSON;
 public class CheckBatchStatusResponse {
   public static final String SERIALIZED_NAME_BATCHES = "batches";
   @SerializedName(SERIALIZED_NAME_BATCHES)
-  private List<Batch> batches;
+  private Batch batches;
 
   public CheckBatchStatusResponse() {
   }
 
-  public CheckBatchStatusResponse batches(List<Batch> batches) {
+  public CheckBatchStatusResponse batches(Batch batches) {
     this.batches = batches;
-    return this;
-  }
-
-  public CheckBatchStatusResponse addBatchesItem(Batch batchesItem) {
-    if (this.batches == null) {
-      this.batches = new ArrayList<>();
-    }
-    this.batches.add(batchesItem);
     return this;
   }
 
@@ -77,11 +67,11 @@ public class CheckBatchStatusResponse {
    * @return batches
   **/
   @javax.annotation.Nullable
-  public List<Batch> getBatches() {
+  public Batch getBatches() {
     return batches;
   }
 
-  public void setBatches(List<Batch> batches) {
+  public void setBatches(Batch batches) {
     this.batches = batches;
   }
 
@@ -158,19 +148,9 @@ public class CheckBatchStatusResponse {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the optional field `batches`
       if (jsonObj.get("batches") != null && !jsonObj.get("batches").isJsonNull()) {
-        JsonArray jsonArraybatches = jsonObj.getAsJsonArray("batches");
-        if (jsonArraybatches != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("batches").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `batches` to be an array in the JSON string but got `%s`", jsonObj.get("batches").toString()));
-          }
-
-          // validate the optional field `batches` (array)
-          for (int i = 0; i < jsonArraybatches.size(); i++) {
-            Batch.validateJsonElement(jsonArraybatches.get(i));
-          };
-        }
+        Batch.validateJsonElement(jsonObj.get("batches"));
       }
   }
 

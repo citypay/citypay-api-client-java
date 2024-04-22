@@ -60,7 +60,7 @@ public class PaylinkStateEvent {
 
   public static final String SERIALIZED_NAME_STATE = "state";
   @SerializedName(SERIALIZED_NAME_STATE)
-  private OffsetDateTime state;
+  private String state;
 
   public PaylinkStateEvent() {
   }
@@ -103,7 +103,7 @@ public class PaylinkStateEvent {
   }
 
 
-  public PaylinkStateEvent state(OffsetDateTime state) {
+  public PaylinkStateEvent state(String state) {
     this.state = state;
     return this;
   }
@@ -113,11 +113,11 @@ public class PaylinkStateEvent {
    * @return state
   **/
   @javax.annotation.Nullable
-  public OffsetDateTime getState() {
+  public String getState() {
     return state;
   }
 
-  public void setState(OffsetDateTime state) {
+  public void setState(String state) {
     this.state = state;
   }
 
@@ -202,6 +202,9 @@ public class PaylinkStateEvent {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull()) && !jsonObj.get("message").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
+      }
+      if ((jsonObj.get("state") != null && !jsonObj.get("state").isJsonNull()) && !jsonObj.get("state").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `state` to be a primitive type in the JSON string but got `%s`", jsonObj.get("state").toString()));
       }
   }
 

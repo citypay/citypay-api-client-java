@@ -14,7 +14,6 @@ package com.citypay.client.model;
 
 import java.util.Objects;
 import com.citypay.client.model.AuthResponse;
-import com.citypay.client.model.AuthenRequired;
 import com.citypay.client.model.RequestChallenged;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -52,10 +51,6 @@ import com.citypay.client.JSON;
  * Decision
  */
 public class Decision {
-  public static final String SERIALIZED_NAME_AUTHEN_REQUIRED = "AuthenRequired";
-  @SerializedName(SERIALIZED_NAME_AUTHEN_REQUIRED)
-  private AuthenRequired authenRequired;
-
   public static final String SERIALIZED_NAME_AUTH_RESPONSE = "AuthResponse";
   @SerializedName(SERIALIZED_NAME_AUTH_RESPONSE)
   private AuthResponse authResponse;
@@ -66,25 +61,6 @@ public class Decision {
 
   public Decision() {
   }
-
-  public Decision authenRequired(AuthenRequired authenRequired) {
-    this.authenRequired = authenRequired;
-    return this;
-  }
-
-   /**
-   * Get authenRequired
-   * @return authenRequired
-  **/
-  @javax.annotation.Nullable
-  public AuthenRequired getAuthenRequired() {
-    return authenRequired;
-  }
-
-  public void setAuthenRequired(AuthenRequired authenRequired) {
-    this.authenRequired = authenRequired;
-  }
-
 
   public Decision authResponse(AuthResponse authResponse) {
     this.authResponse = authResponse;
@@ -134,21 +110,19 @@ public class Decision {
       return false;
     }
     Decision decision = (Decision) o;
-    return Objects.equals(this.authenRequired, decision.authenRequired) &&
-        Objects.equals(this.authResponse, decision.authResponse) &&
+    return Objects.equals(this.authResponse, decision.authResponse) &&
         Objects.equals(this.requestChallenged, decision.requestChallenged);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(authenRequired, authResponse, requestChallenged);
+    return Objects.hash(authResponse, requestChallenged);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Decision {\n");
-    sb.append("    authenRequired: ").append(toIndentedString(authenRequired)).append("\n");
     sb.append("    authResponse: ").append(toIndentedString(authResponse)).append("\n");
     sb.append("    requestChallenged: ").append(toIndentedString(requestChallenged)).append("\n");
     sb.append("}");
@@ -173,7 +147,6 @@ public class Decision {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("AuthenRequired");
     openapiFields.add("AuthResponse");
     openapiFields.add("RequestChallenged");
 
@@ -202,10 +175,6 @@ public class Decision {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `AuthenRequired`
-      if (jsonObj.get("AuthenRequired") != null && !jsonObj.get("AuthenRequired").isJsonNull()) {
-        AuthenRequired.validateJsonElement(jsonObj.get("AuthenRequired"));
-      }
       // validate the optional field `AuthResponse`
       if (jsonObj.get("AuthResponse") != null && !jsonObj.get("AuthResponse").isJsonNull()) {
         AuthResponse.validateJsonElement(jsonObj.get("AuthResponse"));
