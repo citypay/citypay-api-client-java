@@ -5,7 +5,7 @@
     <artifactId>citypay-api-client-java</artifactId>
     <packaging>jar</packaging>
     <name>citypay-api-client-java</name>
-    <version>1.1.4</version>
+    <version>1.1.5</version>
     <url>https://github.com/citypay/citypay-api-client-java</url>
     <description>CityPay API Java Client</description>
     <scm>
@@ -334,7 +334,7 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <gson-fire-version>1.9.0</gson-fire-version>
-        <okhttp-version>4.11.0</okhttp-version>
+        <okhttp-version>4.12.0</okhttp-version>
         <gson-version>2.10.1</gson-version>
         <swagger-core-version>1.6.5</swagger-core-version>
         <commons-lang3-version>3.13.0</commons-lang3-version>

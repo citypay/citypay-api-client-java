@@ -147,8 +147,8 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("CityPay-Java-SDK/1.1.4");
-        defaultHeaderMap.put("cp-sdk", "Java-1.1.4");
+        setUserAgent("CityPay-Java-SDK/1.1.5");
+        defaultHeaderMap.put("cp-sdk", "Java-1.1.5");
 
         authentications = new HashMap<String, Authentication>();
     }
