@@ -16,59 +16,54 @@ All URIs are relative to *https://api.citypay.com*
 | [**chargeRequest**](CardHolderAccountApi.md#chargeRequest) | **POST** /v6/charge | Charge |
 
 
-
-## accountCardDeleteRequest
-
+<a id="accountCardDeleteRequest"></a>
+# **accountCardDeleteRequest**
 > Acknowledgement accountCardDeleteRequest(accountid, cardId, force)
 
 Card Deletion
 
-Deletes a card from the account. The card will be marked for deletion before a subsequent
-purge will clear the card permanently.
-
+Deletes a card from the account. The card will be marked for deletion before a subsequent purge will clear the card permanently. 
 
 ### Example
-
 ```java
 // Import classes:
 import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.model.*;
+import com.citypay.client.models.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.citypay.com");
-        
-        // Configure API key authorization: cp-api-key
-        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
-        cp-api-key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //cp-api-key.setApiKeyPrefix("Token");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.citypay.com");
+    
+    // Configure API key authorization: cp-api-key
+    ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+    cp-api-key.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //cp-api-key.setApiKeyPrefix("Token");
 
-        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
-        String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-        String cardId = "cardId_example"; // String | The id of the card that is presented by a call to retrieve a card holder account.
-        Boolean force = true; // Boolean | Requests that the item is forced immediately.
-        try {
-            Acknowledgement result = apiInstance.accountCardDeleteRequest(accountid, cardId, force);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CardHolderAccountApi#accountCardDeleteRequest");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+    String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+    String cardId = "cardId_example"; // String | The id of the card that is presented by a call to retrieve a card holder account.
+    Boolean force = true; // Boolean | Requests that the item is forced immediately.
+    try {
+      Acknowledgement result = apiInstance.accountCardDeleteRequest(accountid, cardId, force);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CardHolderAccountApi#accountCardDeleteRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -86,9 +81,8 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json, text/xml
-
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -100,64 +94,53 @@ public class Example {
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-
-## accountCardRegisterRequest
-
+<a id="accountCardRegisterRequest"></a>
+# **accountCardRegisterRequest**
 > CardHolderAccount accountCardRegisterRequest(accountid, registerCard)
 
 Card Registration
 
-Allows for a card to be registered for the account. The card will be added for future 
-processing and will be available as a tokenised value for future processing.
-
-The card will be validated for
-
-0. Being a valid card number (luhn check)
-0. Having a valid expiry date
-0. Being a valid bin value.
-
+Allows for a card to be registered for the account. The card will be added for future  processing and will be available as a tokenised value for future processing.  The card will be validated for  0. Being a valid card number (luhn check) 0. Having a valid expiry date 0. Being a valid bin value. 
 
 ### Example
-
 ```java
 // Import classes:
 import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.model.*;
+import com.citypay.client.models.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.citypay.com");
-        
-        // Configure API key authorization: cp-api-key
-        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
-        cp-api-key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //cp-api-key.setApiKeyPrefix("Token");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.citypay.com");
+    
+    // Configure API key authorization: cp-api-key
+    ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+    cp-api-key.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //cp-api-key.setApiKeyPrefix("Token");
 
-        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
-        String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-        RegisterCard registerCard = new RegisterCard(); // RegisterCard | 
-        try {
-            CardHolderAccount result = apiInstance.accountCardRegisterRequest(accountid, registerCard);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CardHolderAccountApi#accountCardRegisterRequest");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+    String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+    RegisterCard registerCard = new RegisterCard(); // RegisterCard | 
+    try {
+      CardHolderAccount result = apiInstance.accountCardRegisterRequest(accountid, registerCard);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CardHolderAccountApi#accountCardRegisterRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -174,9 +157,8 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
-
+ - **Content-Type**: application/json, text/xml
+ - **Accept**: application/json, text/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -188,64 +170,54 @@ public class Example {
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-
-## accountCardStatusRequest
-
+<a id="accountCardStatusRequest"></a>
+# **accountCardStatusRequest**
 > Acknowledgement accountCardStatusRequest(accountid, cardId, cardStatus)
 
 Card Status
 
-Updates the status of a card for processing. The following values are available
-
-| Status | Description | 
-|--------|-------------|
-| Active | The card is active for processing and can be used for charging against with a valid token |
-| Inactive | The card is inactive for processing and cannot be used for processing, it will require reactivation before being used to charge |
-| Expired | The card has expired either due to the expiry date no longer being valid or due to a replacement card being issued |
-
+Updates the status of a card for processing. The following values are available  | Status | Description |  |--------|-------------| | Active | The card is active for processing and can be used for charging against with a valid token | | Inactive | The card is inactive for processing and cannot be used for processing, it will require reactivation before being used to charge | | Expired | The card has expired either due to the expiry date no longer being valid or due to a replacement card being issued | 
 
 ### Example
-
 ```java
 // Import classes:
 import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.model.*;
+import com.citypay.client.models.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.citypay.com");
-        
-        // Configure API key authorization: cp-api-key
-        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
-        cp-api-key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //cp-api-key.setApiKeyPrefix("Token");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.citypay.com");
+    
+    // Configure API key authorization: cp-api-key
+    ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+    cp-api-key.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //cp-api-key.setApiKeyPrefix("Token");
 
-        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
-        String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-        String cardId = "cardId_example"; // String | The id of the card that is presented by a call to retrieve a card holder account.
-        CardStatus cardStatus = new CardStatus(); // CardStatus | 
-        try {
-            Acknowledgement result = apiInstance.accountCardStatusRequest(accountid, cardId, cardStatus);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CardHolderAccountApi#accountCardStatusRequest");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+    String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+    String cardId = "cardId_example"; // String | The id of the card that is presented by a call to retrieve a card holder account.
+    CardStatus cardStatus = new CardStatus(); // CardStatus | 
+    try {
+      Acknowledgement result = apiInstance.accountCardStatusRequest(accountid, cardId, cardStatus);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CardHolderAccountApi#accountCardStatusRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -263,9 +235,8 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
-
+ - **Content-Type**: application/json, text/xml
+ - **Accept**: application/json, text/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -277,9 +248,8 @@ public class Example {
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-
-## accountChangeContactRequest
-
+<a id="accountChangeContactRequest"></a>
+# **accountChangeContactRequest**
 > CardHolderAccount accountChangeContactRequest(accountid, contactDetails)
 
 Contact Details Update
@@ -287,46 +257,44 @@ Contact Details Update
 Allows for the ability to change the contact details for an account.
 
 ### Example
-
 ```java
 // Import classes:
 import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.model.*;
+import com.citypay.client.models.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.citypay.com");
-        
-        // Configure API key authorization: cp-api-key
-        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
-        cp-api-key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //cp-api-key.setApiKeyPrefix("Token");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.citypay.com");
+    
+    // Configure API key authorization: cp-api-key
+    ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+    cp-api-key.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //cp-api-key.setApiKeyPrefix("Token");
 
-        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
-        String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-        ContactDetails contactDetails = new ContactDetails(); // ContactDetails | 
-        try {
-            CardHolderAccount result = apiInstance.accountChangeContactRequest(accountid, contactDetails);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CardHolderAccountApi#accountChangeContactRequest");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+    String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+    ContactDetails contactDetails = new ContactDetails(); // ContactDetails | 
+    try {
+      CardHolderAccount result = apiInstance.accountChangeContactRequest(accountid, contactDetails);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CardHolderAccountApi#accountChangeContactRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -343,9 +311,8 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
-
+ - **Content-Type**: application/json, text/xml
+ - **Accept**: application/json, text/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -357,9 +324,8 @@ public class Example {
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-
-## accountCreate
-
+<a id="accountCreate"></a>
+# **accountCreate**
 > CardHolderAccount accountCreate(accountCreate)
 
 Account Create
@@ -367,45 +333,43 @@ Account Create
 Creates a new card holder account and initialises the account ready for adding cards.
 
 ### Example
-
 ```java
 // Import classes:
 import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.model.*;
+import com.citypay.client.models.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.citypay.com");
-        
-        // Configure API key authorization: cp-api-key
-        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
-        cp-api-key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //cp-api-key.setApiKeyPrefix("Token");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.citypay.com");
+    
+    // Configure API key authorization: cp-api-key
+    ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+    cp-api-key.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //cp-api-key.setApiKeyPrefix("Token");
 
-        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
-        AccountCreate accountCreate = new AccountCreate(); // AccountCreate | 
-        try {
-            CardHolderAccount result = apiInstance.accountCreate(accountCreate);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CardHolderAccountApi#accountCreate");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+    AccountCreate accountCreate = new AccountCreate(); // AccountCreate | 
+    try {
+      CardHolderAccount result = apiInstance.accountCreate(accountCreate);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CardHolderAccountApi#accountCreate");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -421,9 +385,8 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
-
+ - **Content-Type**: application/json, text/xml
+ - **Accept**: application/json, text/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -435,57 +398,52 @@ public class Example {
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-
-## accountDeleteRequest
-
+<a id="accountDeleteRequest"></a>
+# **accountDeleteRequest**
 > Acknowledgement accountDeleteRequest(accountid)
 
 Account Deletion
 
-Allows for the deletion of an account. The account will marked for deletion and subsequent purging. No further
-transactions will be alowed to be processed or actioned against this account.
-
+Allows for the deletion of an account. The account will marked for deletion and subsequent purging. No further transactions will be alowed to be processed or actioned against this account. 
 
 ### Example
-
 ```java
 // Import classes:
 import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.model.*;
+import com.citypay.client.models.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.citypay.com");
-        
-        // Configure API key authorization: cp-api-key
-        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
-        cp-api-key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //cp-api-key.setApiKeyPrefix("Token");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.citypay.com");
+    
+    // Configure API key authorization: cp-api-key
+    ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+    cp-api-key.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //cp-api-key.setApiKeyPrefix("Token");
 
-        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
-        String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-        try {
-            Acknowledgement result = apiInstance.accountDeleteRequest(accountid);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CardHolderAccountApi#accountDeleteRequest");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+    String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+    try {
+      Acknowledgement result = apiInstance.accountDeleteRequest(accountid);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CardHolderAccountApi#accountDeleteRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -501,9 +459,8 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json, text/xml
-
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -515,56 +472,52 @@ public class Example {
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-
-## accountExistsRequest
-
+<a id="accountExistsRequest"></a>
+# **accountExistsRequest**
 > Exists accountExistsRequest(accountid)
 
 Account Exists
 
-Checks that an account exists and is active by providing the account id as a url parameter.
-
+Checks that an account exists and is active by providing the account id as a url parameter. 
 
 ### Example
-
 ```java
 // Import classes:
 import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.model.*;
+import com.citypay.client.models.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.citypay.com");
-        
-        // Configure API key authorization: cp-api-key
-        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
-        cp-api-key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //cp-api-key.setApiKeyPrefix("Token");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.citypay.com");
+    
+    // Configure API key authorization: cp-api-key
+    ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+    cp-api-key.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //cp-api-key.setApiKeyPrefix("Token");
 
-        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
-        String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-        try {
-            Exists result = apiInstance.accountExistsRequest(accountid);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CardHolderAccountApi#accountExistsRequest");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+    String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+    try {
+      Exists result = apiInstance.accountExistsRequest(accountid);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CardHolderAccountApi#accountExistsRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -580,9 +533,8 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json, text/xml
-
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -594,61 +546,52 @@ public class Example {
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-
-## accountRetrieveRequest
-
+<a id="accountRetrieveRequest"></a>
+# **accountRetrieveRequest**
 > CardHolderAccount accountRetrieveRequest(accountid)
 
 Account Retrieval
 
-Allows for the retrieval of a card holder account for the given `id`. Should duplicate accounts exist
-for the same `id`, the first account created with that `id` will be returned.
-
-The account can be used for tokenisation processing by listing all cards assigned to the account.
-The returned cards will include all `active`, `inactive` and `expired` cards. This can be used to 
-enable a card holder to view their wallet and make constructive choices on which card to use.
-
+Allows for the retrieval of a card holder account for the given &#x60;id&#x60;. Should duplicate accounts exist for the same &#x60;id&#x60;, the first account created with that &#x60;id&#x60; will be returned.  The account can be used for tokenisation processing by listing all cards assigned to the account. The returned cards will include all &#x60;active&#x60;, &#x60;inactive&#x60; and &#x60;expired&#x60; cards. This can be used to  enable a card holder to view their wallet and make constructive choices on which card to use. 
 
 ### Example
-
 ```java
 // Import classes:
 import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.model.*;
+import com.citypay.client.models.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.citypay.com");
-        
-        // Configure API key authorization: cp-api-key
-        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
-        cp-api-key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //cp-api-key.setApiKeyPrefix("Token");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.citypay.com");
+    
+    // Configure API key authorization: cp-api-key
+    ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+    cp-api-key.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //cp-api-key.setApiKeyPrefix("Token");
 
-        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
-        String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-        try {
-            CardHolderAccount result = apiInstance.accountRetrieveRequest(accountid);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CardHolderAccountApi#accountRetrieveRequest");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+    String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+    try {
+      CardHolderAccount result = apiInstance.accountRetrieveRequest(accountid);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CardHolderAccountApi#accountRetrieveRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -664,9 +607,8 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json, text/xml
-
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -678,62 +620,53 @@ public class Example {
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-
-## accountStatusRequest
-
+<a id="accountStatusRequest"></a>
+# **accountStatusRequest**
 > Acknowledgement accountStatusRequest(accountid, accountStatus)
 
 Account Status
 
-Updates the status of an account. An account can have the following statuses applied
-
-| Status | Description |
-|--------|-------------|
-| Active | The account is active for processing |
-| Disabled | The account has been disabled and cannot be used for processing. The account will require reactivation to continue procesing |
-
+Updates the status of an account. An account can have the following statuses applied  | Status | Description | |--------|-------------| | Active | The account is active for processing | | Disabled | The account has been disabled and cannot be used for processing. The account will require reactivation to continue procesing | 
 
 ### Example
-
 ```java
 // Import classes:
 import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.model.*;
+import com.citypay.client.models.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.citypay.com");
-        
-        // Configure API key authorization: cp-api-key
-        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
-        cp-api-key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //cp-api-key.setApiKeyPrefix("Token");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.citypay.com");
+    
+    // Configure API key authorization: cp-api-key
+    ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+    cp-api-key.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //cp-api-key.setApiKeyPrefix("Token");
 
-        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
-        String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-        AccountStatus accountStatus = new AccountStatus(); // AccountStatus | 
-        try {
-            Acknowledgement result = apiInstance.accountStatusRequest(accountid, accountStatus);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CardHolderAccountApi#accountStatusRequest");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+    String accountid = "accountid_example"; // String | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+    AccountStatus accountStatus = new AccountStatus(); // AccountStatus | 
+    try {
+      Acknowledgement result = apiInstance.accountStatusRequest(accountid, accountStatus);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CardHolderAccountApi#accountStatusRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -750,9 +683,8 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
-
+ - **Content-Type**: application/json, text/xml
+ - **Accept**: application/json, text/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -764,78 +696,52 @@ public class Example {
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-
-## chargeRequest
-
+<a id="chargeRequest"></a>
+# **chargeRequest**
 > Decision chargeRequest(chargeRequest)
 
 Charge
 
-A charge process obtains an authorisation using a tokenised value which represents a stored card 
-on a card holder account. 
-A card must previously be registered by calling `/account-register-card` with the card details 
-or retrieved using `/account-retrieve`
-
-Tokens are generated whenever a previously registered list of cards are retrieved. Each token has, by design a 
-relatively short time to live of 30 minutes. This is both to safe guard the merchant and card holder from 
-replay attacks. Tokens are also restricted to your account, preventing malicious actors from stealing details
-for use elsewhere.  
-
-If a token is reused after it has expired it will be rejected and a new token will be required.
- 
-Tokenisation can be used for
- 
-- repeat authorisations on a previously stored card
-- easy authorisations just requiring CSC values to be entered
-- can be used for credential on file style payments
-- can require full 3-D Secure authentication to retain the liability shift
-- wallet style usage
- 
-
-_Should an account be used with 3DSv2, the card holder name should also be stored alongside the card as this is a
-required field with both Visa and MasterCard for risk analysis._.
-
+A charge process obtains an authorisation using a tokenised value which represents a stored card  on a card holder account.  A card must previously be registered by calling &#x60;/account-register-card&#x60; with the card details  or retrieved using &#x60;/account-retrieve&#x60;  Tokens are generated whenever a previously registered list of cards are retrieved. Each token has, by design a  relatively short time to live of 30 minutes. This is both to safe guard the merchant and card holder from  replay attacks. Tokens are also restricted to your account, preventing malicious actors from stealing details for use elsewhere.    If a token is reused after it has expired it will be rejected and a new token will be required.   Tokenisation can be used for   - repeat authorisations on a previously stored card - easy authorisations just requiring CSC values to be entered - can be used for credential on file style payments - can require full 3-D Secure authentication to retain the liability shift - wallet style usage    _Should an account be used with 3DSv2, the card holder name should also be stored alongside the card as this is a required field with both Visa and MasterCard for risk analysis._. 
 
 ### Example
-
 ```java
 // Import classes:
 import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.model.*;
+import com.citypay.client.models.*;
 import com.citypay.client.api.CardHolderAccountApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.citypay.com");
-        
-        // Configure API key authorization: cp-api-key
-        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
-        cp-api-key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //cp-api-key.setApiKeyPrefix("Token");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.citypay.com");
+    
+    // Configure API key authorization: cp-api-key
+    ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+    cp-api-key.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //cp-api-key.setApiKeyPrefix("Token");
 
-        CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
-        ChargeRequest chargeRequest = new ChargeRequest(); // ChargeRequest | 
-        try {
-            Decision result = apiInstance.chargeRequest(chargeRequest);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CardHolderAccountApi#chargeRequest");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    CardHolderAccountApi apiInstance = new CardHolderAccountApi(defaultClient);
+    ChargeRequest chargeRequest = new ChargeRequest(); // ChargeRequest | 
+    try {
+      Decision result = apiInstance.chargeRequest(chargeRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CardHolderAccountApi#chargeRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -851,9 +757,8 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
-
+ - **Content-Type**: application/json, text/xml
+ - **Accept**: application/json, text/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |

@@ -43,7 +43,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -128,10 +127,10 @@ public class RemittedClientData {
     return this;
   }
 
-   /**
+  /**
    * Get batches
    * @return batches
-  **/
+   */
   @javax.annotation.Nonnull
   public List<MerchantBatchResponse> getBatches() {
     return batches;
@@ -147,10 +146,10 @@ public class RemittedClientData {
     return this;
   }
 
-   /**
+  /**
    * The client id that the remittance data is for.
    * @return clientid
-  **/
+   */
   @javax.annotation.Nullable
   public String getClientid() {
     return clientid;
@@ -166,10 +165,10 @@ public class RemittedClientData {
     return this;
   }
 
-   /**
+  /**
    * The date of the remittance.
    * @return date
-  **/
+   */
   @javax.annotation.Nullable
   public LocalDate getDate() {
     return date;
@@ -185,10 +184,10 @@ public class RemittedClientData {
     return this;
   }
 
-   /**
+  /**
    * The date time that the remittance was created.
    * @return dateCreated
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDateCreated() {
     return dateCreated;
@@ -204,12 +203,12 @@ public class RemittedClientData {
     return this;
   }
 
-   /**
+  /**
    * Represents the net amount after accounting for refunds. This is calculated as SalesAmount - RefundAmount and expressed in the smallest currency unit.
    * minimum: 0
    * maximum: 999999999
    * @return netAmount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getNetAmount() {
     return netAmount;
@@ -225,12 +224,12 @@ public class RemittedClientData {
     return this;
   }
 
-   /**
+  /**
    * The total monetary amount processed consisting of sale and refund transactions.
    * minimum: 0
    * maximum: 999999999
    * @return processedAmount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getProcessedAmount() {
     return processedAmount;
@@ -246,12 +245,12 @@ public class RemittedClientData {
     return this;
   }
 
-   /**
+  /**
    * Indicates the total number of sales and refund transactions that occurred. This count provides insight into the volume of processing.
    * minimum: 0
    * maximum: 999999999
    * @return processedCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getProcessedCount() {
     return processedCount;
@@ -267,12 +266,12 @@ public class RemittedClientData {
     return this;
   }
 
-   /**
+  /**
    * The total amount refunded to customers.
    * minimum: 0
    * maximum: 999999999
    * @return refundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getRefundAmount() {
     return refundAmount;
@@ -288,12 +287,12 @@ public class RemittedClientData {
     return this;
   }
 
-   /**
+  /**
    * The total number of refund transactions processed. This figure helps in understanding the frequency of refunds relative to sales.
    * minimum: 0
    * maximum: 999999999
    * @return refundCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getRefundCount() {
     return refundCount;
@@ -317,10 +316,10 @@ public class RemittedClientData {
     return this;
   }
 
-   /**
+  /**
    * Get remittances
    * @return remittances
-  **/
+   */
   @javax.annotation.Nonnull
   public List<RemittanceData> getRemittances() {
     return remittances;
@@ -336,12 +335,12 @@ public class RemittedClientData {
     return this;
   }
 
-   /**
+  /**
    * The total monetary amount of sales transactions.
    * minimum: 0
    * maximum: 999999999
    * @return salesAmount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getSalesAmount() {
     return salesAmount;
@@ -357,12 +356,12 @@ public class RemittedClientData {
     return this;
   }
 
-   /**
+  /**
    * Indicates the total number of sales transactions that occurred. This count provides insight into the volume of sales.
    * minimum: 0
    * maximum: 999999999
    * @return salesCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getSalesCount() {
     return salesCount;
@@ -378,10 +377,10 @@ public class RemittedClientData {
     return this;
   }
 
-   /**
+  /**
    * The name of the implementation.
    * @return settlementImplementation
-  **/
+   */
   @javax.annotation.Nullable
   public String getSettlementImplementation() {
     return settlementImplementation;
@@ -397,10 +396,10 @@ public class RemittedClientData {
     return this;
   }
 
-   /**
+  /**
    * The uuid of the settlement file processed on.
    * @return uuid
-  **/
+   */
   @javax.annotation.Nullable
   public UUID getUuid() {
     return uuid;
@@ -503,12 +502,12 @@ public class RemittedClientData {
     openapiRequiredFields.add("remittances");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to RemittedClientData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RemittedClientData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RemittedClientData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -591,22 +590,22 @@ public class RemittedClientData {
     }
   }
 
- /**
-  * Create an instance of RemittedClientData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RemittedClientData
-  * @throws IOException if the JSON string is invalid with respect to RemittedClientData
-  */
+  /**
+   * Create an instance of RemittedClientData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RemittedClientData
+   * @throws IOException if the JSON string is invalid with respect to RemittedClientData
+   */
   public static RemittedClientData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RemittedClientData.class);
   }
 
- /**
-  * Convert an instance of RemittedClientData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RemittedClientData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

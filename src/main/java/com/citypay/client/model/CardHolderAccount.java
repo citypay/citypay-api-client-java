@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -60,7 +59,7 @@ public class CardHolderAccount {
 
   public static final String SERIALIZED_NAME_CARDS = "cards";
   @SerializedName(SERIALIZED_NAME_CARDS)
-  private List<Card> cards;
+  private List<Card> cards = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CONTACT = "contact";
   @SerializedName(SERIALIZED_NAME_CONTACT)
@@ -98,10 +97,10 @@ public class CardHolderAccount {
     return this;
   }
 
-   /**
+  /**
    * The account id of the card holder account provided by the merchant which uniquely identifies the account. 
    * @return accountId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getAccountId() {
     return accountId;
@@ -125,10 +124,10 @@ public class CardHolderAccount {
     return this;
   }
 
-   /**
+  /**
    * Get cards
    * @return cards
-  **/
+   */
   @javax.annotation.Nullable
   public List<Card> getCards() {
     return cards;
@@ -144,10 +143,10 @@ public class CardHolderAccount {
     return this;
   }
 
-   /**
+  /**
    * Get contact
    * @return contact
-  **/
+   */
   @javax.annotation.Nonnull
   public ContactDetails getContact() {
     return contact;
@@ -163,10 +162,10 @@ public class CardHolderAccount {
     return this;
   }
 
-   /**
+  /**
    * The date and time the account was created.
    * @return dateCreated
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDateCreated() {
     return dateCreated;
@@ -182,10 +181,10 @@ public class CardHolderAccount {
     return this;
   }
 
-   /**
+  /**
    * The id of the default card.
    * @return defaultCardId
-  **/
+   */
   @javax.annotation.Nullable
   public String getDefaultCardId() {
     return defaultCardId;
@@ -201,10 +200,10 @@ public class CardHolderAccount {
     return this;
   }
 
-   /**
+  /**
    * The index in the array of the default card.
    * @return defaultCardIndex
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getDefaultCardIndex() {
     return defaultCardIndex;
@@ -220,10 +219,10 @@ public class CardHolderAccount {
     return this;
   }
 
-   /**
+  /**
    * The date and time the account was last modified.
    * @return lastModified
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getLastModified() {
     return lastModified;
@@ -239,10 +238,10 @@ public class CardHolderAccount {
     return this;
   }
 
-   /**
+  /**
    * Defines the status of the account for processing valid values are   - ACTIVE for active accounts that are able to process   - DISABLED for accounts that are currently disabled for processing. 
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
@@ -258,10 +257,10 @@ public class CardHolderAccount {
     return this;
   }
 
-   /**
+  /**
    * A unique id of the card holder account which uniquely identifies the stored account. This value is not searchable.
    * @return uniqueId
-  **/
+   */
   @javax.annotation.Nullable
   public String getUniqueId() {
     return uniqueId;
@@ -349,12 +348,12 @@ public class CardHolderAccount {
     openapiRequiredFields.add("contact");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CardHolderAccount
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CardHolderAccount
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CardHolderAccount.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -436,22 +435,22 @@ public class CardHolderAccount {
     }
   }
 
- /**
-  * Create an instance of CardHolderAccount given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CardHolderAccount
-  * @throws IOException if the JSON string is invalid with respect to CardHolderAccount
-  */
+  /**
+   * Create an instance of CardHolderAccount given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CardHolderAccount
+   * @throws IOException if the JSON string is invalid with respect to CardHolderAccount
+   */
   public static CardHolderAccount fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CardHolderAccount.class);
   }
 
- /**
-  * Convert an instance of CardHolderAccount to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CardHolderAccount to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

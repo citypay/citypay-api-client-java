@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -138,10 +137,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is a commercial card.
    * @return binCommercial
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinCommercial() {
     return binCommercial;
@@ -157,10 +156,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is a corporate business card.
    * @return binCorporate
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinCorporate() {
     return binCorporate;
@@ -176,10 +175,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * The determined country where the card was issued.
    * @return binCountryIssued
-  **/
+   */
   @javax.annotation.Nullable
   public String getBinCountryIssued() {
     return binCountryIssued;
@@ -195,10 +194,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is a credit card.
    * @return binCredit
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinCredit() {
     return binCredit;
@@ -214,10 +213,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * The default currency determined for the card.
    * @return binCurrency
-  **/
+   */
   @javax.annotation.Nullable
   public String getBinCurrency() {
     return binCurrency;
@@ -233,10 +232,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is a debit card.
    * @return binDebit
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinDebit() {
     return binDebit;
@@ -252,10 +251,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * A description of the bin on the card to identify what type of product the card is.
    * @return binDescription
-  **/
+   */
   @javax.annotation.Nullable
   public String getBinDescription() {
     return binDescription;
@@ -271,10 +270,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is regulated within the EU.
    * @return binEu
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinEu() {
     return binEu;
@@ -290,10 +289,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * The id of the card that is returned. Should be used for referencing the card when perform any changes.
    * @return cardId
-  **/
+   */
   @javax.annotation.Nullable
   public String getCardId() {
     return cardId;
@@ -309,10 +308,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * The status of the card such, valid values are   - ACTIVE the card is active for processing   - INACTIVE the card is not active for processing   - EXPIRED for cards that have passed their expiry date. 
    * @return cardStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getCardStatus() {
     return cardStatus;
@@ -328,10 +327,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * The date time of when the card was created.
    * @return dateCreated
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDateCreated() {
     return dateCreated;
@@ -347,10 +346,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * Determines if the card is the default card for the account and should be regarded as the first option to be used for processing.
    * @return _default
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isDefault() {
     return _default;
@@ -366,12 +365,12 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * The expiry month of the card.
    * minimum: 1
    * maximum: 12
    * @return expmonth
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getExpmonth() {
     return expmonth;
@@ -387,12 +386,12 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * The expiry year of the card.
    * minimum: 2000
    * maximum: 2100
    * @return expyear
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getExpyear() {
     return expyear;
@@ -408,10 +407,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * A label which identifies this card.
    * @return label
-  **/
+   */
   @javax.annotation.Nullable
   public String getLabel() {
     return label;
@@ -427,10 +426,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * A label which also provides the expiry date of the card.
    * @return label2
-  **/
+   */
   @javax.annotation.Nullable
   public String getLabel2() {
     return label2;
@@ -446,10 +445,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * The last 4 digits of the card to aid in identification.
    * @return last4digits
-  **/
+   */
   @javax.annotation.Nullable
   public String getLast4digits() {
     return last4digits;
@@ -465,10 +464,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * The name on the card.
    * @return nameOnCard
-  **/
+   */
   @javax.annotation.Nullable
   public String getNameOnCard() {
     return nameOnCard;
@@ -484,10 +483,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * The scheme that issued the card.
    * @return scheme
-  **/
+   */
   @javax.annotation.Nullable
   public String getScheme() {
     return scheme;
@@ -503,10 +502,10 @@ public class Card {
     return this;
   }
 
-   /**
+  /**
    * A token that can be used to process against the card.
    * @return token
-  **/
+   */
   @javax.annotation.Nullable
   public String getToken() {
     return token;
@@ -625,12 +624,12 @@ public class Card {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Card
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Card
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!Card.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -710,22 +709,22 @@ public class Card {
     }
   }
 
- /**
-  * Create an instance of Card given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Card
-  * @throws IOException if the JSON string is invalid with respect to Card
-  */
+  /**
+   * Create an instance of Card given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Card
+   * @throws IOException if the JSON string is invalid with respect to Card
+   */
   public static Card fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Card.class);
   }
 
- /**
-  * Convert an instance of Card to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Card to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

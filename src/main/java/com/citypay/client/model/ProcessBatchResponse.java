@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -65,10 +64,10 @@ public class ProcessBatchResponse {
     return this;
   }
 
-   /**
+  /**
    * Information regarding the processing request.
    * @return message
-  **/
+   */
   @javax.annotation.Nullable
   public String getMessage() {
     return message;
@@ -84,10 +83,10 @@ public class ProcessBatchResponse {
     return this;
   }
 
-   /**
+  /**
    * true if the request has been accepted for processing and is valid.
    * @return valid
-  **/
+   */
   @javax.annotation.Nonnull
   public Boolean isValid() {
     return valid;
@@ -153,12 +152,12 @@ public class ProcessBatchResponse {
     openapiRequiredFields.add("valid");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to ProcessBatchResponse
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ProcessBatchResponse
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!ProcessBatchResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -215,22 +214,22 @@ public class ProcessBatchResponse {
     }
   }
 
- /**
-  * Create an instance of ProcessBatchResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ProcessBatchResponse
-  * @throws IOException if the JSON string is invalid with respect to ProcessBatchResponse
-  */
+  /**
+   * Create an instance of ProcessBatchResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ProcessBatchResponse
+   * @throws IOException if the JSON string is invalid with respect to ProcessBatchResponse
+   */
   public static ProcessBatchResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ProcessBatchResponse.class);
   }
 
- /**
-  * Convert an instance of ProcessBatchResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ProcessBatchResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

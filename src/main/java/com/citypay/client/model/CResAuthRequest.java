@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -61,10 +60,10 @@ public class CResAuthRequest {
     return this;
   }
 
-   /**
+  /**
    * The challenge response data forwarded by the ACS in 3D-Secure V2 processing. Data should be forwarded to CityPay unchanged for subsequent authorisation and processing. 
    * @return cres
-  **/
+   */
   @javax.annotation.Nullable
   public String getCres() {
     return cres;
@@ -126,12 +125,12 @@ public class CResAuthRequest {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CResAuthRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CResAuthRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CResAuthRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -181,22 +180,22 @@ public class CResAuthRequest {
     }
   }
 
- /**
-  * Create an instance of CResAuthRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CResAuthRequest
-  * @throws IOException if the JSON string is invalid with respect to CResAuthRequest
-  */
+  /**
+   * Create an instance of CResAuthRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CResAuthRequest
+   * @throws IOException if the JSON string is invalid with respect to CResAuthRequest
+   */
   public static CResAuthRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CResAuthRequest.class);
   }
 
- /**
-  * Convert an instance of CResAuthRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CResAuthRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -65,10 +64,10 @@ public class PaylinkErrorCode {
     return this;
   }
 
-   /**
+  /**
    * An error code identifying the error.
    * @return code
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCode() {
     return code;
@@ -84,10 +83,10 @@ public class PaylinkErrorCode {
     return this;
   }
 
-   /**
+  /**
    * An error message describing the error.
    * @return msg
-  **/
+   */
   @javax.annotation.Nonnull
   public String getMsg() {
     return msg;
@@ -154,12 +153,12 @@ public class PaylinkErrorCode {
     openapiRequiredFields.add("msg");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkErrorCode
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkErrorCode
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkErrorCode.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -219,22 +218,22 @@ public class PaylinkErrorCode {
     }
   }
 
- /**
-  * Create an instance of PaylinkErrorCode given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkErrorCode
-  * @throws IOException if the JSON string is invalid with respect to PaylinkErrorCode
-  */
+  /**
+   * Create an instance of PaylinkErrorCode given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkErrorCode
+   * @throws IOException if the JSON string is invalid with respect to PaylinkErrorCode
+   */
   public static PaylinkErrorCode fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkErrorCode.class);
   }
 
- /**
-  * Convert an instance of PaylinkErrorCode to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkErrorCode to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -61,10 +60,10 @@ public class AclCheckRequest {
     return this;
   }
 
-   /**
+  /**
    * An ip address to check for an ACL against. The address should be a publicly routable IPv4 address.
    * @return ip
-  **/
+   */
   @javax.annotation.Nonnull
   public String getIp() {
     return ip;
@@ -127,12 +126,12 @@ public class AclCheckRequest {
     openapiRequiredFields.add("ip");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to AclCheckRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AclCheckRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!AclCheckRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -189,22 +188,22 @@ public class AclCheckRequest {
     }
   }
 
- /**
-  * Create an instance of AclCheckRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of AclCheckRequest
-  * @throws IOException if the JSON string is invalid with respect to AclCheckRequest
-  */
+  /**
+   * Create an instance of AclCheckRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AclCheckRequest
+   * @throws IOException if the JSON string is invalid with respect to AclCheckRequest
+   */
   public static AclCheckRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AclCheckRequest.class);
   }
 
- /**
-  * Convert an instance of AclCheckRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of AclCheckRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

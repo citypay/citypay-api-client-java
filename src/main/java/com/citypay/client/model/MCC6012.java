@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -73,10 +72,10 @@ public class MCC6012 {
     return this;
   }
 
-   /**
+  /**
    * The account number of the recipient.
    * @return recipientAccount
-  **/
+   */
   @javax.annotation.Nullable
   public String getRecipientAccount() {
     return recipientAccount;
@@ -92,10 +91,10 @@ public class MCC6012 {
     return this;
   }
 
-   /**
+  /**
    * The date of birth of the recipient.
    * @return recipientDob
-  **/
+   */
   @javax.annotation.Nullable
   public String getRecipientDob() {
     return recipientDob;
@@ -111,10 +110,10 @@ public class MCC6012 {
     return this;
   }
 
-   /**
+  /**
    * The lastname of ther recepient.
    * @return recipientLastname
-  **/
+   */
   @javax.annotation.Nullable
   public String getRecipientLastname() {
     return recipientLastname;
@@ -130,10 +129,10 @@ public class MCC6012 {
     return this;
   }
 
-   /**
+  /**
    * The postcode of the recipient.
    * @return recipientPostcode
-  **/
+   */
   @javax.annotation.Nullable
   public String getRecipientPostcode() {
     return recipientPostcode;
@@ -204,12 +203,12 @@ public class MCC6012 {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to MCC6012
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MCC6012
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!MCC6012.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -268,22 +267,22 @@ public class MCC6012 {
     }
   }
 
- /**
-  * Create an instance of MCC6012 given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MCC6012
-  * @throws IOException if the JSON string is invalid with respect to MCC6012
-  */
+  /**
+   * Create an instance of MCC6012 given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MCC6012
+   * @throws IOException if the JSON string is invalid with respect to MCC6012
+   */
   public static MCC6012 fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MCC6012.class);
   }
 
- /**
-  * Convert an instance of MCC6012 to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MCC6012 to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

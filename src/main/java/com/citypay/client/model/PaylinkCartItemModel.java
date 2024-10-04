@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -89,10 +88,10 @@ public class PaylinkCartItemModel {
     return this;
   }
 
-   /**
+  /**
    * The net amount of the item. The Paylink Payment Form does not multiply this figure by the value provided by the count value for the cart item, this is principally to avoid rounding errors to introduce discrepancies between the value of the goods charged for and the total amount represented by the collection of cart items.
    * @return amount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getAmount() {
     return amount;
@@ -108,10 +107,10 @@ public class PaylinkCartItemModel {
     return this;
   }
 
-   /**
+  /**
    * The brand of the item such as Nike.
    * @return brand
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrand() {
     return brand;
@@ -127,10 +126,10 @@ public class PaylinkCartItemModel {
     return this;
   }
 
-   /**
+  /**
    * The category of the item such as shoes.
    * @return category
-  **/
+   */
   @javax.annotation.Nullable
   public String getCategory() {
     return category;
@@ -146,10 +145,10 @@ public class PaylinkCartItemModel {
     return this;
   }
 
-   /**
+  /**
    * The count of how many of this item is being purchased, should the cart be editable, this value should be the default count required. The Paylink Payment Form assumes a count of 1 in the event that no value for the count field is provided for a cart item.
    * @return count
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getCount() {
     return count;
@@ -165,10 +164,10 @@ public class PaylinkCartItemModel {
     return this;
   }
 
-   /**
+  /**
    * The label which describes the item.
    * @return label
-  **/
+   */
   @javax.annotation.Nullable
   public String getLabel() {
     return label;
@@ -184,10 +183,10 @@ public class PaylinkCartItemModel {
     return this;
   }
 
-   /**
+  /**
    * For an editable cart, the maximum number of items that can be purchased, defaults to 5.
    * @return max
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMax() {
     return max;
@@ -203,10 +202,10 @@ public class PaylinkCartItemModel {
     return this;
   }
 
-   /**
+  /**
    * The stock control unit value.
    * @return sku
-  **/
+   */
   @javax.annotation.Nullable
   public String getSku() {
     return sku;
@@ -222,10 +221,10 @@ public class PaylinkCartItemModel {
     return this;
   }
 
-   /**
+  /**
    * The variant field refers to the variant of the cart item to enable similar items to be distinguished according to certain criteria. For example, similar items may be distinguished in terms of size, weight and power. The Paylink Payment Form does not constrain the value of the variant field to a particular set of metrics.
    * @return variant
-  **/
+   */
   @javax.annotation.Nullable
   public String getVariant() {
     return variant;
@@ -308,12 +307,12 @@ public class PaylinkCartItemModel {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkCartItemModel
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkCartItemModel
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkCartItemModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -375,22 +374,22 @@ public class PaylinkCartItemModel {
     }
   }
 
- /**
-  * Create an instance of PaylinkCartItemModel given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkCartItemModel
-  * @throws IOException if the JSON string is invalid with respect to PaylinkCartItemModel
-  */
+  /**
+   * Create an instance of PaylinkCartItemModel given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkCartItemModel
+   * @throws IOException if the JSON string is invalid with respect to PaylinkCartItemModel
+   */
   public static PaylinkCartItemModel fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkCartItemModel.class);
   }
 
- /**
-  * Convert an instance of PaylinkCartItemModel to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkCartItemModel to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

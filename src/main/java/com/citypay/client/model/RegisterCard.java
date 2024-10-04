@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -77,10 +76,10 @@ public class RegisterCard {
     return this;
   }
 
-   /**
+  /**
    * The primary number of the card.
    * @return cardnumber
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCardnumber() {
     return cardnumber;
@@ -96,10 +95,10 @@ public class RegisterCard {
     return this;
   }
 
-   /**
+  /**
    * Determines whether the card should be the new default card.
    * @return _default
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isDefault() {
     return _default;
@@ -115,12 +114,12 @@ public class RegisterCard {
     return this;
   }
 
-   /**
+  /**
    * The expiry month of the card.
    * minimum: 1
    * maximum: 12
    * @return expmonth
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getExpmonth() {
     return expmonth;
@@ -136,12 +135,12 @@ public class RegisterCard {
     return this;
   }
 
-   /**
+  /**
    * The expiry year of the card.
    * minimum: 2000
    * maximum: 2100
    * @return expyear
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getExpyear() {
     return expyear;
@@ -157,10 +156,10 @@ public class RegisterCard {
     return this;
   }
 
-   /**
+  /**
    * The card holder name as it appears on the card. The value is required if the account is to be used for 3dsv2 processing, otherwise it is optional.
    * @return nameOnCard
-  **/
+   */
   @javax.annotation.Nullable
   public String getNameOnCard() {
     return nameOnCard;
@@ -237,12 +236,12 @@ public class RegisterCard {
     openapiRequiredFields.add("expyear");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to RegisterCard
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RegisterCard
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RegisterCard.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -302,22 +301,22 @@ public class RegisterCard {
     }
   }
 
- /**
-  * Create an instance of RegisterCard given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RegisterCard
-  * @throws IOException if the JSON string is invalid with respect to RegisterCard
-  */
+  /**
+   * Create an instance of RegisterCard given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RegisterCard
+   * @throws IOException if the JSON string is invalid with respect to RegisterCard
+   */
   public static RegisterCard fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RegisterCard.class);
   }
 
- /**
-  * Convert an instance of RegisterCard to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RegisterCard to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

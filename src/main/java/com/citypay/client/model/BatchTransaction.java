@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -73,10 +72,10 @@ public class BatchTransaction {
     return this;
   }
 
-   /**
+  /**
    * The card holder account id to process against.
    * @return accountId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getAccountId() {
     return accountId;
@@ -92,10 +91,10 @@ public class BatchTransaction {
     return this;
   }
 
-   /**
+  /**
    * The amount required to process in the lowest denomination.
    * @return amount
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getAmount() {
     return amount;
@@ -111,10 +110,10 @@ public class BatchTransaction {
     return this;
   }
 
-   /**
+  /**
    * An identifier used to reference the transaction set by your integration. The value should be used to refer to the transaction in future calls.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nullable
   public String getIdentifier() {
     return identifier;
@@ -130,10 +129,10 @@ public class BatchTransaction {
     return this;
   }
 
-   /**
+  /**
    * The CityPay merchant id used to process the transaction.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMerchantid() {
     return merchantid;
@@ -206,12 +205,12 @@ public class BatchTransaction {
     openapiRequiredFields.add("amount");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to BatchTransaction
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to BatchTransaction
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!BatchTransaction.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -271,22 +270,22 @@ public class BatchTransaction {
     }
   }
 
- /**
-  * Create an instance of BatchTransaction given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of BatchTransaction
-  * @throws IOException if the JSON string is invalid with respect to BatchTransaction
-  */
+  /**
+   * Create an instance of BatchTransaction given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of BatchTransaction
+   * @throws IOException if the JSON string is invalid with respect to BatchTransaction
+   */
   public static BatchTransaction fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, BatchTransaction.class);
   }
 
- /**
-  * Convert an instance of BatchTransaction to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of BatchTransaction to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

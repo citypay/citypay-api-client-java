@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -69,10 +68,10 @@ public class PaylinkAdjustmentRequest {
     return this;
   }
 
-   /**
+  /**
    * An amount to adjust to.
    * @return amount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getAmount() {
     return amount;
@@ -88,10 +87,10 @@ public class PaylinkAdjustmentRequest {
     return this;
   }
 
-   /**
+  /**
    * An identifier of the original request.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nullable
   public String getIdentifier() {
     return identifier;
@@ -107,10 +106,10 @@ public class PaylinkAdjustmentRequest {
     return this;
   }
 
-   /**
+  /**
    * A textual reason for the adjustment.
    * @return reason
-  **/
+   */
   @javax.annotation.Nullable
   public String getReason() {
     return reason;
@@ -178,12 +177,12 @@ public class PaylinkAdjustmentRequest {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkAdjustmentRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkAdjustmentRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkAdjustmentRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -236,22 +235,22 @@ public class PaylinkAdjustmentRequest {
     }
   }
 
- /**
-  * Create an instance of PaylinkAdjustmentRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkAdjustmentRequest
-  * @throws IOException if the JSON string is invalid with respect to PaylinkAdjustmentRequest
-  */
+  /**
+   * Create an instance of PaylinkAdjustmentRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkAdjustmentRequest
+   * @throws IOException if the JSON string is invalid with respect to PaylinkAdjustmentRequest
+   */
   public static PaylinkAdjustmentRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkAdjustmentRequest.class);
   }
 
- /**
-  * Convert an instance of PaylinkAdjustmentRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkAdjustmentRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

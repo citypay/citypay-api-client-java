@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -85,10 +84,10 @@ public class PaylinkAddress {
     return this;
   }
 
-   /**
+  /**
    * The first line of the address.
    * @return address1
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddress1() {
     return address1;
@@ -104,10 +103,10 @@ public class PaylinkAddress {
     return this;
   }
 
-   /**
+  /**
    * The second line of the address.
    * @return address2
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddress2() {
     return address2;
@@ -123,10 +122,10 @@ public class PaylinkAddress {
     return this;
   }
 
-   /**
+  /**
    * The third line of the address.
    * @return address3
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddress3() {
     return address3;
@@ -142,10 +141,10 @@ public class PaylinkAddress {
     return this;
   }
 
-   /**
+  /**
    * The area such as city, department, town or parish.
    * @return area
-  **/
+   */
   @javax.annotation.Nullable
   public String getArea() {
     return area;
@@ -161,10 +160,10 @@ public class PaylinkAddress {
     return this;
   }
 
-   /**
+  /**
    * The country code in ISO 3166 format. The country code should be an ISO-3166 2 or 3 digit country code.
    * @return country
-  **/
+   */
   @javax.annotation.Nullable
   public String getCountry() {
     return country;
@@ -180,10 +179,10 @@ public class PaylinkAddress {
     return this;
   }
 
-   /**
+  /**
    * A label for the address such as Head Office, Home Address.
    * @return label
-  **/
+   */
   @javax.annotation.Nullable
   public String getLabel() {
     return label;
@@ -199,10 +198,10 @@ public class PaylinkAddress {
     return this;
   }
 
-   /**
+  /**
    * The postcode or zip code of the address.
    * @return postcode
-  **/
+   */
   @javax.annotation.Nullable
   public String getPostcode() {
     return postcode;
@@ -282,12 +281,12 @@ public class PaylinkAddress {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkAddress
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkAddress
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkAddress.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -355,22 +354,22 @@ public class PaylinkAddress {
     }
   }
 
- /**
-  * Create an instance of PaylinkAddress given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkAddress
-  * @throws IOException if the JSON string is invalid with respect to PaylinkAddress
-  */
+  /**
+   * Create an instance of PaylinkAddress given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkAddress
+   * @throws IOException if the JSON string is invalid with respect to PaylinkAddress
+   */
   public static PaylinkAddress fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkAddress.class);
   }
 
- /**
-  * Convert an instance of PaylinkAddress to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkAddress to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

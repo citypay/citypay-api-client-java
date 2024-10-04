@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -61,10 +60,10 @@ public class AccountStatus {
     return this;
   }
 
-   /**
+  /**
    * The status of the account to set, valid values are ACTIVE or DISABLED.
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
@@ -126,12 +125,12 @@ public class AccountStatus {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to AccountStatus
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AccountStatus
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!AccountStatus.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -181,22 +180,22 @@ public class AccountStatus {
     }
   }
 
- /**
-  * Create an instance of AccountStatus given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of AccountStatus
-  * @throws IOException if the JSON string is invalid with respect to AccountStatus
-  */
+  /**
+   * Create an instance of AccountStatus given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AccountStatus
+   * @throws IOException if the JSON string is invalid with respect to AccountStatus
+   */
   public static AccountStatus fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AccountStatus.class);
   }
 
- /**
-  * Convert an instance of AccountStatus to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of AccountStatus to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

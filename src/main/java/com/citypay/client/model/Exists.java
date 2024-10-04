@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -70,10 +69,10 @@ public class Exists {
     return this;
   }
 
-   /**
+  /**
    * Boolean value whether the entity is active.
    * @return active
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isActive() {
     return active;
@@ -89,10 +88,10 @@ public class Exists {
     return this;
   }
 
-   /**
+  /**
    * Boolean value whether the entity exists.
    * @return exists
-  **/
+   */
   @javax.annotation.Nonnull
   public Boolean isExists() {
     return exists;
@@ -108,10 +107,10 @@ public class Exists {
     return this;
   }
 
-   /**
+  /**
    * The last modified date of the entity.
    * @return lastModified
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getLastModified() {
     return lastModified;
@@ -180,12 +179,12 @@ public class Exists {
     openapiRequiredFields.add("exists");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Exists
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Exists
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!Exists.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -239,22 +238,22 @@ public class Exists {
     }
   }
 
- /**
-  * Create an instance of Exists given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Exists
-  * @throws IOException if the JSON string is invalid with respect to Exists
-  */
+  /**
+   * Create an instance of Exists given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Exists
+   * @throws IOException if the JSON string is invalid with respect to Exists
+   */
   public static Exists fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Exists.class);
   }
 
- /**
-  * Convert an instance of Exists to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Exists to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -54,7 +53,7 @@ import com.citypay.client.JSON;
 public class PaylinkCart {
   public static final String SERIALIZED_NAME_CONTENTS = "contents";
   @SerializedName(SERIALIZED_NAME_CONTENTS)
-  private List<PaylinkCartItemModel> contents;
+  private List<PaylinkCartItemModel> contents = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_COUPON = "coupon";
   @SerializedName(SERIALIZED_NAME_COUPON)
@@ -96,10 +95,10 @@ public class PaylinkCart {
     return this;
   }
 
-   /**
+  /**
    * Get contents
    * @return contents
-  **/
+   */
   @javax.annotation.Nullable
   public List<PaylinkCartItemModel> getContents() {
     return contents;
@@ -115,10 +114,10 @@ public class PaylinkCart {
     return this;
   }
 
-   /**
+  /**
    * A coupon redeemed with the transaction.
    * @return coupon
-  **/
+   */
   @javax.annotation.Nullable
   public String getCoupon() {
     return coupon;
@@ -134,10 +133,10 @@ public class PaylinkCart {
     return this;
   }
 
-   /**
+  /**
    * The mode field specifies the behaviour or functionality of the cart.  Valid values are:   0 - No cart - No cart is shown  1 - Read-only - The cart is shown with a breakdown of the item details provided by objects in the contents array.  2 - Selection cart - The cart is shown as a drop-down box of available cart items that the customer can a single item select from.  3 - Dynamic cart - a text box is rendered to enable the operator to input an amount.  4 - Multi cart - The cart is displayed with items rendered with selectable quantities. 
    * @return mode
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMode() {
     return mode;
@@ -153,10 +152,10 @@ public class PaylinkCart {
     return this;
   }
 
-   /**
+  /**
    * Specifies a description about the product or service that is the subject of the transaction. It will be rendered in the header of the page with no labels.
    * @return productDescription
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductDescription() {
     return productDescription;
@@ -172,10 +171,10 @@ public class PaylinkCart {
     return this;
   }
 
-   /**
+  /**
    * Specifies information about the product or service that is the subject of the transaction. It will be rendered in the header of the page.
    * @return productInformation
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductInformation() {
     return productInformation;
@@ -191,10 +190,10 @@ public class PaylinkCart {
     return this;
   }
 
-   /**
+  /**
    * The shipping amount of the transaction in the lowest denomination of currency.
    * @return shipping
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getShipping() {
     return shipping;
@@ -210,10 +209,10 @@ public class PaylinkCart {
     return this;
   }
 
-   /**
+  /**
    * The tax amount of the transaction in the lowest denomination of currency.
    * @return tax
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTax() {
     return tax;
@@ -293,12 +292,12 @@ public class PaylinkCart {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkCart
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkCart
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkCart.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -368,22 +367,22 @@ public class PaylinkCart {
     }
   }
 
- /**
-  * Create an instance of PaylinkCart given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkCart
-  * @throws IOException if the JSON string is invalid with respect to PaylinkCart
-  */
+  /**
+   * Create an instance of PaylinkCart given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkCart
+   * @throws IOException if the JSON string is invalid with respect to PaylinkCart
+   */
   public static PaylinkCart fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkCart.class);
   }
 
- /**
-  * Convert an instance of PaylinkCart to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkCart to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -77,10 +76,10 @@ public class RefundRequest {
     return this;
   }
 
-   /**
+  /**
    * The amount to refund in the lowest unit of currency with a variable length to a maximum of 12 digits.  The amount should be the total amount required to refund for the transaction up to the original processed amount.  No decimal points are to be included and no divisional characters such as 1,024.  For example with GBP £1,021.95 the amount value is 102195. 
    * @return amount
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getAmount() {
     return amount;
@@ -96,10 +95,10 @@ public class RefundRequest {
     return this;
   }
 
-   /**
+  /**
    * The identifier of the refund to process. The value should be a valid reference and may be used to perform  post processing actions and to aid in reconciliation of transactions.  The value should be a valid printable string with ASCII character ranges from 0x32 to 0x127.  The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier) this will aid in ensuring each transaction is identifiable.  When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent request will ensure that a transaction is considered as different. 
    * @return identifier
-  **/
+   */
   @javax.annotation.Nonnull
   public String getIdentifier() {
     return identifier;
@@ -115,10 +114,10 @@ public class RefundRequest {
     return this;
   }
 
-   /**
+  /**
    * Identifies the merchant account to perform the refund for.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getMerchantid() {
     return merchantid;
@@ -134,10 +133,10 @@ public class RefundRequest {
     return this;
   }
 
-   /**
+  /**
    * A reference to the original transaction number that is wanting to be refunded. The original  transaction must be on the same merchant id, previously authorised. 
    * @return refundRef
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getRefundRef() {
     return refundRef;
@@ -153,10 +152,10 @@ public class RefundRequest {
     return this;
   }
 
-   /**
+  /**
    * Further information that can be added to the transaction will display in reporting. Can be used for flexible values such as operator id.
    * @return transInfo
-  **/
+   */
   @javax.annotation.Nullable
   public String getTransInfo() {
     return transInfo;
@@ -234,12 +233,12 @@ public class RefundRequest {
     openapiRequiredFields.add("refund_ref");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to RefundRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RefundRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RefundRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -299,22 +298,22 @@ public class RefundRequest {
     }
   }
 
- /**
-  * Create an instance of RefundRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RefundRequest
-  * @throws IOException if the JSON string is invalid with respect to RefundRequest
-  */
+  /**
+   * Create an instance of RefundRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RefundRequest
+   * @throws IOException if the JSON string is invalid with respect to RefundRequest
+   */
   public static RefundRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RefundRequest.class);
   }
 
- /**
-  * Convert an instance of RefundRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RefundRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -70,10 +69,10 @@ public class PaylinkStateEvent {
     return this;
   }
 
-   /**
+  /**
    * the date and time of the event.
    * @return datetime
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDatetime() {
     return datetime;
@@ -89,10 +88,10 @@ public class PaylinkStateEvent {
     return this;
   }
 
-   /**
+  /**
    * a message associated with the event.
    * @return message
-  **/
+   */
   @javax.annotation.Nullable
   public String getMessage() {
     return message;
@@ -108,10 +107,10 @@ public class PaylinkStateEvent {
     return this;
   }
 
-   /**
+  /**
    * The name of the event that was actioned.
    * @return state
-  **/
+   */
   @javax.annotation.Nullable
   public String getState() {
     return state;
@@ -179,12 +178,12 @@ public class PaylinkStateEvent {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkStateEvent
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkStateEvent
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkStateEvent.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -237,22 +236,22 @@ public class PaylinkStateEvent {
     }
   }
 
- /**
-  * Create an instance of PaylinkStateEvent given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkStateEvent
-  * @throws IOException if the JSON string is invalid with respect to PaylinkStateEvent
-  */
+  /**
+   * Create an instance of PaylinkStateEvent given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkStateEvent
+   * @throws IOException if the JSON string is invalid with respect to PaylinkStateEvent
+   */
   public static PaylinkStateEvent fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkStateEvent.class);
   }
 
- /**
-  * Convert an instance of PaylinkStateEvent to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkStateEvent to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

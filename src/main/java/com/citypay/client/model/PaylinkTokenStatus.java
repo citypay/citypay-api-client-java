@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -155,7 +154,7 @@ public class PaylinkTokenStatus {
 
   public static final String SERIALIZED_NAME_STATE_HISTORY = "state_history";
   @SerializedName(SERIALIZED_NAME_STATE_HISTORY)
-  private List<PaylinkStateEvent> stateHistory;
+  private List<PaylinkStateEvent> stateHistory = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TOKEN = "token";
   @SerializedName(SERIALIZED_NAME_TOKEN)
@@ -173,10 +172,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * the amount that has been paid against the session.
    * @return amountPaid
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getAmountPaid() {
     return amountPaid;
@@ -192,10 +191,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * an authorisation code if the transaction was processed and isPaid is true.
    * @return authCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getAuthCode() {
     return authCode;
@@ -211,10 +210,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * a description of the card that was used for payment if paid.
    * @return card
-  **/
+   */
   @javax.annotation.Nullable
   public String getCard() {
     return card;
@@ -230,10 +229,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * the date and time that the session was created.
    * @return created
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getCreated() {
     return created;
@@ -249,10 +248,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * the date and time of the current status.
    * @return datetime
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDatetime() {
     return datetime;
@@ -268,10 +267,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * the merchant identifier, to help identifying the token.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nullable
   public String getIdentifier() {
     return identifier;
@@ -287,10 +286,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * true if an attachment exists.
    * @return isAttachment
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isIsAttachment() {
     return isAttachment;
@@ -306,10 +305,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * true if the session was cancelled either by the user or by a system request.
    * @return isCancelled
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isIsCancelled() {
     return isCancelled;
@@ -325,10 +324,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * true if the token has been closed.
    * @return isClosed
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isIsClosed() {
     return isClosed;
@@ -344,10 +343,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * true if a customer receipt has been sent.
    * @return isCustomerReceiptEmailSent
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isIsCustomerReceiptEmailSent() {
     return isCustomerReceiptEmailSent;
@@ -363,10 +362,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * true if an email was sent.
    * @return isEmailSent
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isIsEmailSent() {
     return isEmailSent;
@@ -382,10 +381,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * true if the session has expired.
    * @return isExpired
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isIsExpired() {
     return isExpired;
@@ -401,10 +400,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * true if the form was ever displayed to the addressee.
    * @return isFormViewed
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isIsFormViewed() {
     return isFormViewed;
@@ -420,10 +419,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * true if a merchant notification receipt was sent.
    * @return isMerchantNotificationEmailSent
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isIsMerchantNotificationEmailSent() {
     return isMerchantNotificationEmailSent;
@@ -439,10 +438,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * true if the session is still open for payment or false if it has been closed.
    * @return isOpenForPayment
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isIsOpenForPayment() {
     return isOpenForPayment;
@@ -458,10 +457,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * whether the session has been paid and therefore can be considered as complete.
    * @return isPaid
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isIsPaid() {
     return isPaid;
@@ -477,10 +476,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * true if payment has been attempted.
    * @return isPaymentAttempted
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isIsPaymentAttempted() {
     return isPaymentAttempted;
@@ -496,10 +495,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * true if a post back was executed successfully.
    * @return isPostbackOk
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isIsPostbackOk() {
     return isPostbackOk;
@@ -515,10 +514,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * true if the request has been challenged using 3-D Secure.
    * @return isRequestChallenged
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isIsRequestChallenged() {
     return isRequestChallenged;
@@ -534,10 +533,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * true if an SMS was sent.
    * @return isSmsSent
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isIsSmsSent() {
     return isSmsSent;
@@ -553,10 +552,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * whether the token generation was successfully validated.
    * @return isValidated
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isIsValidated() {
     return isValidated;
@@ -572,10 +571,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * the date and time that the session last had an event actioned against it.
    * @return lastEventDateTime
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getLastEventDateTime() {
     return lastEventDateTime;
@@ -591,10 +590,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * the result of the last payment if one exists.
    * @return lastPaymentResult
-  **/
+   */
   @javax.annotation.Nullable
   public String getLastPaymentResult() {
     return lastPaymentResult;
@@ -610,10 +609,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * identifies the merchant account.
    * @return mid
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMid() {
     return mid;
@@ -629,10 +628,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * the number of attempts made to pay.
    * @return paymentAttemptsCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getPaymentAttemptsCount() {
     return paymentAttemptsCount;
@@ -656,10 +655,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * Get stateHistory
    * @return stateHistory
-  **/
+   */
   @javax.annotation.Nullable
   public List<PaylinkStateEvent> getStateHistory() {
     return stateHistory;
@@ -675,10 +674,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * the token value which uniquely identifies the session.
    * @return token
-  **/
+   */
   @javax.annotation.Nullable
   public String getToken() {
     return token;
@@ -694,10 +693,10 @@ public class PaylinkTokenStatus {
     return this;
   }
 
-   /**
+  /**
    * a transaction number if the transacstion was processed and isPaid is true.
    * @return transNo
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTransNo() {
     return transNo;
@@ -840,12 +839,12 @@ public class PaylinkTokenStatus {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkTokenStatus
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkTokenStatus
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkTokenStatus.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -921,22 +920,22 @@ public class PaylinkTokenStatus {
     }
   }
 
- /**
-  * Create an instance of PaylinkTokenStatus given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkTokenStatus
-  * @throws IOException if the JSON string is invalid with respect to PaylinkTokenStatus
-  */
+  /**
+   * Create an instance of PaylinkTokenStatus given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkTokenStatus
+   * @throws IOException if the JSON string is invalid with respect to PaylinkTokenStatus
+   */
   public static PaylinkTokenStatus fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkTokenStatus.class);
   }
 
- /**
-  * Convert an instance of PaylinkTokenStatus to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkTokenStatus to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

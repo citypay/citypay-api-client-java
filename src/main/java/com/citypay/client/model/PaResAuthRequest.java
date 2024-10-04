@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -65,10 +64,10 @@ public class PaResAuthRequest {
     return this;
   }
 
-   /**
+  /**
    * The Merchant Data (MD) which is a unique ID to reference the authentication session.  This value will be created by CityPay when required. When responding from the ACS, this value will be returned by the ACS. 
    * @return md
-  **/
+   */
   @javax.annotation.Nonnull
   public String getMd() {
     return md;
@@ -84,10 +83,10 @@ public class PaResAuthRequest {
     return this;
   }
 
-   /**
+  /**
    * The Payer Authentication Response packet which is returned by the ACS containing the  response of the authentication session including verification values. The response  is a base64 encoded packet and should be forwarded to CityPay untouched. 
    * @return pares
-  **/
+   */
   @javax.annotation.Nonnull
   public String getPares() {
     return pares;
@@ -154,12 +153,12 @@ public class PaResAuthRequest {
     openapiRequiredFields.add("pares");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaResAuthRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaResAuthRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaResAuthRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -219,22 +218,22 @@ public class PaResAuthRequest {
     }
   }
 
- /**
-  * Create an instance of PaResAuthRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaResAuthRequest
-  * @throws IOException if the JSON string is invalid with respect to PaResAuthRequest
-  */
+  /**
+   * Create an instance of PaResAuthRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaResAuthRequest
+   * @throws IOException if the JSON string is invalid with respect to PaResAuthRequest
+   */
   public static PaResAuthRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaResAuthRequest.class);
   }
 
- /**
-  * Convert an instance of PaResAuthRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaResAuthRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

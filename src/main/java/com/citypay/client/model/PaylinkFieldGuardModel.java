@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -85,10 +84,10 @@ public class PaylinkFieldGuardModel {
     return this;
   }
 
-   /**
+  /**
    * A type of HTML element that should be displayed such as text, password, url. Any HTML5 input type value may be supplied.  If a value of &#x60;date&#x60; is supplied the value format should be an ISO format YYYY-MM-DD format date i.e. 2024-03-01 If a value of &#x60;datetime-local&#x60; is supplied, the value format should be an ISO format YYYY-MM-DDTHH:mm i.e. 2024-06-01T19:30. 
    * @return fieldType
-  **/
+   */
   @javax.annotation.Nullable
   public String getFieldType() {
     return fieldType;
@@ -104,10 +103,10 @@ public class PaylinkFieldGuardModel {
     return this;
   }
 
-   /**
+  /**
    * A label for the field guard to display on the authentication page.
    * @return label
-  **/
+   */
   @javax.annotation.Nullable
   public String getLabel() {
     return label;
@@ -123,10 +122,10 @@ public class PaylinkFieldGuardModel {
     return this;
   }
 
-   /**
+  /**
    * A maximum length of any value supplied in the field guard form. Used for validating entry.
    * @return maxlen
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMaxlen() {
     return maxlen;
@@ -142,10 +141,10 @@ public class PaylinkFieldGuardModel {
     return this;
   }
 
-   /**
+  /**
    * A minimum length of any value supplied in the field guard form. Used for validating entry.
    * @return minlen
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMinlen() {
     return minlen;
@@ -161,10 +160,10 @@ public class PaylinkFieldGuardModel {
     return this;
   }
 
-   /**
+  /**
    * A field name which is used to refer to a field which is guarded.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
@@ -180,10 +179,10 @@ public class PaylinkFieldGuardModel {
     return this;
   }
 
-   /**
+  /**
    * A JavaScript regular expression value which can be used to validate the data provided in the field guard entry form. Used for validating entry.
    * @return regex
-  **/
+   */
   @javax.annotation.Nullable
   public String getRegex() {
     return regex;
@@ -199,10 +198,10 @@ public class PaylinkFieldGuardModel {
     return this;
   }
 
-   /**
+  /**
    * A value directly associated with the field guard. Any value provided at this level will be considered as sensitive and not logged.
    * @return value
-  **/
+   */
   @javax.annotation.Nullable
   public String getValue() {
     return value;
@@ -282,12 +281,12 @@ public class PaylinkFieldGuardModel {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkFieldGuardModel
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkFieldGuardModel
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkFieldGuardModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -349,22 +348,22 @@ public class PaylinkFieldGuardModel {
     }
   }
 
- /**
-  * Create an instance of PaylinkFieldGuardModel given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkFieldGuardModel
-  * @throws IOException if the JSON string is invalid with respect to PaylinkFieldGuardModel
-  */
+  /**
+   * Create an instance of PaylinkFieldGuardModel given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkFieldGuardModel
+   * @throws IOException if the JSON string is invalid with respect to PaylinkFieldGuardModel
+   */
   public static PaylinkFieldGuardModel fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkFieldGuardModel.class);
   }
 
- /**
-  * Convert an instance of PaylinkFieldGuardModel to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkFieldGuardModel to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

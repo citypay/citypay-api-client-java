@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -89,10 +88,10 @@ public class NetSummaryResponse {
     return this;
   }
 
-   /**
+  /**
    * The total value of refund (credit) transaction items. Represents the sum of funds returned to customers.
    * @return creditItemsAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCreditItemsAmount() {
     return creditItemsAmount;
@@ -108,12 +107,12 @@ public class NetSummaryResponse {
     return this;
   }
 
-   /**
+  /**
    * The count of refund (credit) transaction items. Reflects the number of refund transactions processed.
    * minimum: 0
    * maximum: 999999
    * @return creditItemsCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getCreditItemsCount() {
     return creditItemsCount;
@@ -129,12 +128,12 @@ public class NetSummaryResponse {
     return this;
   }
 
-   /**
+  /**
    * The total value of refund (credit) transaction items. Represents the sum of funds returned to customers.
    * minimum: 0
    * maximum: 999999999
    * @return creditItemsValue
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getCreditItemsValue() {
     return creditItemsValue;
@@ -150,10 +149,10 @@ public class NetSummaryResponse {
     return this;
   }
 
-   /**
+  /**
    * The total value of charge (debit) transaction items. Represents the sum of funds received from charges.
    * @return debitItemsAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getDebitItemsAmount() {
     return debitItemsAmount;
@@ -169,12 +168,12 @@ public class NetSummaryResponse {
     return this;
   }
 
-   /**
+  /**
    * The count of charge (debit) transaction items. Indicates the number of charge transactions processed.
    * minimum: 0
    * maximum: 999999
    * @return debitItemsCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getDebitItemsCount() {
     return debitItemsCount;
@@ -190,12 +189,12 @@ public class NetSummaryResponse {
     return this;
   }
 
-   /**
+  /**
    * The total value of charge (debit) transaction items. Represents the sum of funds received from charges.
    * minimum: 0
    * maximum: 999999999
    * @return debitItemsValue
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getDebitItemsValue() {
     return debitItemsValue;
@@ -211,12 +210,12 @@ public class NetSummaryResponse {
     return this;
   }
 
-   /**
+  /**
    * The absolute net value, reflecting the net gain or loss from transactions.
    * minimum: 0
    * maximum: 999999999
    * @return netAmount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getNetAmount() {
     return netAmount;
@@ -232,12 +231,12 @@ public class NetSummaryResponse {
     return this;
   }
 
-   /**
+  /**
    * The total count of all transaction items.
    * minimum: 0
    * maximum: 999999
    * @return totalCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTotalCount() {
     return totalCount;
@@ -320,12 +319,12 @@ public class NetSummaryResponse {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to NetSummaryResponse
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to NetSummaryResponse
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!NetSummaryResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -378,22 +377,22 @@ public class NetSummaryResponse {
     }
   }
 
- /**
-  * Create an instance of NetSummaryResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of NetSummaryResponse
-  * @throws IOException if the JSON string is invalid with respect to NetSummaryResponse
-  */
+  /**
+   * Create an instance of NetSummaryResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of NetSummaryResponse
+   * @throws IOException if the JSON string is invalid with respect to NetSummaryResponse
+   */
   public static NetSummaryResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NetSummaryResponse.class);
   }
 
- /**
-  * Convert an instance of NetSummaryResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of NetSummaryResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

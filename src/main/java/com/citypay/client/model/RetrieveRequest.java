@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -69,10 +68,10 @@ public class RetrieveRequest {
     return this;
   }
 
-   /**
+  /**
    * The identifier of the transaction to retrieve. Optional if a transaction number is provided.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nullable
   public String getIdentifier() {
     return identifier;
@@ -88,10 +87,10 @@ public class RetrieveRequest {
     return this;
   }
 
-   /**
+  /**
    * The merchant account to retrieve data for.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getMerchantid() {
     return merchantid;
@@ -107,10 +106,10 @@ public class RetrieveRequest {
     return this;
   }
 
-   /**
+  /**
    * The transaction number of a transaction to retrieve. Optional if an identifier is supplied.
    * @return transno
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTransno() {
     return transno;
@@ -179,12 +178,12 @@ public class RetrieveRequest {
     openapiRequiredFields.add("merchantid");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to RetrieveRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RetrieveRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RetrieveRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -241,22 +240,22 @@ public class RetrieveRequest {
     }
   }
 
- /**
-  * Create an instance of RetrieveRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RetrieveRequest
-  * @throws IOException if the JSON string is invalid with respect to RetrieveRequest
-  */
+  /**
+   * Create an instance of RetrieveRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RetrieveRequest
+   * @throws IOException if the JSON string is invalid with respect to RetrieveRequest
+   */
   public static RetrieveRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RetrieveRequest.class);
   }
 
- /**
-  * Convert an instance of RetrieveRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RetrieveRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

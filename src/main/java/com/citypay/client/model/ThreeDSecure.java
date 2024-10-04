@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -109,10 +108,10 @@ public class ThreeDSecure {
     return this;
   }
 
-   /**
+  /**
    * Required for 3DSv1. Optional if the &#x60;cp_bx&#x60; value is provided otherwise required for 3Dv2 processing operating in browser authentication mode.  The &#x60;cp_bx&#x60; value will override any value supplied to this field.  The content of the HTTP accept header as sent to the merchant from the cardholder&#39;s user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. 
    * @return acceptHeaders
-  **/
+   */
   @javax.annotation.Nullable
   public String getAcceptHeaders() {
     return acceptHeaders;
@@ -128,10 +127,10 @@ public class ThreeDSecure {
     return this;
   }
 
-   /**
+  /**
    * BrowserColorDepth field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
    * @return browserColorDepth
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrowserColorDepth() {
     return browserColorDepth;
@@ -147,10 +146,10 @@ public class ThreeDSecure {
     return this;
   }
 
-   /**
+  /**
    * BrowserIP field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
    * @return browserIP
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrowserIP() {
     return browserIP;
@@ -166,10 +165,10 @@ public class ThreeDSecure {
     return this;
   }
 
-   /**
+  /**
    * BrowserJavaEnabled field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
    * @return browserJavaEnabled
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrowserJavaEnabled() {
     return browserJavaEnabled;
@@ -185,10 +184,10 @@ public class ThreeDSecure {
     return this;
   }
 
-   /**
+  /**
    * BrowserLanguage field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
    * @return browserLanguage
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrowserLanguage() {
     return browserLanguage;
@@ -204,10 +203,10 @@ public class ThreeDSecure {
     return this;
   }
 
-   /**
+  /**
    * BrowserScreenHeight field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
    * @return browserScreenHeight
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrowserScreenHeight() {
     return browserScreenHeight;
@@ -223,10 +222,10 @@ public class ThreeDSecure {
     return this;
   }
 
-   /**
+  /**
    * BrowserScreenWidth field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
    * @return browserScreenWidth
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrowserScreenWidth() {
     return browserScreenWidth;
@@ -242,10 +241,10 @@ public class ThreeDSecure {
     return this;
   }
 
-   /**
+  /**
    * BrowserTZ offset field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
    * @return browserTZ
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrowserTZ() {
     return browserTZ;
@@ -261,10 +260,10 @@ public class ThreeDSecure {
     return this;
   }
 
-   /**
+  /**
    * Required for 3DSv2.  Browser extension value produced by the citypay.js &#x60;bx&#x60; function. See [https://sandbox.citypay.com/3dsv2/bx](https://sandbox.citypay.com/3dsv2/bx) for  details. 
    * @return cpBx
-  **/
+   */
   @javax.annotation.Nullable
   public String getCpBx() {
     return cpBx;
@@ -280,10 +279,10 @@ public class ThreeDSecure {
     return this;
   }
 
-   /**
+  /**
    * Where a merchant is configured for 3DSv2, setting this option will attempt to downgrade the transaction to  3DSv1. 
    * @return downgrade1
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isDowngrade1() {
     return downgrade1;
@@ -299,10 +298,10 @@ public class ThreeDSecure {
     return this;
   }
 
-   /**
+  /**
    * A controller URL for 3D-Secure processing that any response from an authentication request or challenge request should be sent to.  The controller should forward on the response from the URL back via this API for subsequent processing. 
    * @return merchantTermurl
-  **/
+   */
   @javax.annotation.Nullable
   public String getMerchantTermurl() {
     return merchantTermurl;
@@ -318,10 +317,10 @@ public class ThreeDSecure {
     return this;
   }
 
-   /**
+  /**
    * A policy value which determines whether ThreeDSecure is enforced or bypassed. Note that this will only work for e-commerce transactions and accounts that have 3DSecure enabled and fully registered with Visa, MasterCard or American Express. It is useful when transactions may be wanted to bypass processing rules.  Note that this may affect the liability shift of transactions and may occur a higher fee with the acquiring bank.  Values are   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions will be enabled for 3DS processing   &#x60;2&#x60; to bypass. Transactions that are bypassed will switch off 3DS processing. 
    * @return tdsPolicy
-  **/
+   */
   @javax.annotation.Nullable
   public String getTdsPolicy() {
     return tdsPolicy;
@@ -337,10 +336,10 @@ public class ThreeDSecure {
     return this;
   }
 
-   /**
+  /**
    * Required for 3DSv1.  Optional if the &#x60;cp_bx&#x60; value is provided otherwise required 3Dv2 processing operating in browser authentication mode.  The &#x60;cp_bx&#x60; value will override any value supplied to this field.  The content of the HTTP user-agent header as sent to the merchant from the cardholder&#39;s user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. 
    * @return userAgent
-  **/
+   */
   @javax.annotation.Nullable
   public String getUserAgent() {
     return userAgent;
@@ -438,12 +437,12 @@ public class ThreeDSecure {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to ThreeDSecure
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ThreeDSecure
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!ThreeDSecure.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -526,22 +525,22 @@ public class ThreeDSecure {
     }
   }
 
- /**
-  * Create an instance of ThreeDSecure given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ThreeDSecure
-  * @throws IOException if the JSON string is invalid with respect to ThreeDSecure
-  */
+  /**
+   * Create an instance of ThreeDSecure given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ThreeDSecure
+   * @throws IOException if the JSON string is invalid with respect to ThreeDSecure
+   */
   public static ThreeDSecure fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ThreeDSecure.class);
   }
 
- /**
-  * Convert an instance of ThreeDSecure to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ThreeDSecure to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

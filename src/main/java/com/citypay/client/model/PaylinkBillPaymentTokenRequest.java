@@ -43,7 +43,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -62,7 +61,7 @@ public class PaylinkBillPaymentTokenRequest {
 
   public static final String SERIALIZED_NAME_ATTACHMENTS = "attachments";
   @SerializedName(SERIALIZED_NAME_ATTACHMENTS)
-  private List<PaylinkAttachmentRequest> attachments;
+  private List<PaylinkAttachmentRequest> attachments = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DESCRIPTOR = "descriptor";
   @SerializedName(SERIALIZED_NAME_DESCRIPTOR)
@@ -96,10 +95,10 @@ public class PaylinkBillPaymentTokenRequest {
     return this;
   }
 
-   /**
+  /**
    * Who the bill payment request intended for. This should be a readable name such as a person or company.
    * @return addressee
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressee() {
     return addressee;
@@ -123,10 +122,10 @@ public class PaylinkBillPaymentTokenRequest {
     return this;
   }
 
-   /**
+  /**
    * Get attachments
    * @return attachments
-  **/
+   */
   @javax.annotation.Nullable
   public List<PaylinkAttachmentRequest> getAttachments() {
     return attachments;
@@ -142,10 +141,10 @@ public class PaylinkBillPaymentTokenRequest {
     return this;
   }
 
-   /**
+  /**
    * A descriptor for the bill payment used to describe what the payment request is for for instance \&quot;Invoice\&quot;.  The descriptor can be used as descriptive text on emails or the payment page. For instance an invoice may have a button saying \&quot;View Invoice\&quot; or an email may say \&quot;to pay your Invoice online\&quot;. 
    * @return descriptor
-  **/
+   */
   @javax.annotation.Nullable
   public String getDescriptor() {
     return descriptor;
@@ -161,10 +160,10 @@ public class PaylinkBillPaymentTokenRequest {
     return this;
   }
 
-   /**
+  /**
    * A date that the invoice is due. This can be displayed on the payment page.
    * @return due
-  **/
+   */
   @javax.annotation.Nullable
   public LocalDate getDue() {
     return due;
@@ -180,10 +179,10 @@ public class PaylinkBillPaymentTokenRequest {
     return this;
   }
 
-   /**
+  /**
    * Get emailNotificationPath
    * @return emailNotificationPath
-  **/
+   */
   @javax.annotation.Nullable
   public PaylinkEmailNotificationPath getEmailNotificationPath() {
     return emailNotificationPath;
@@ -199,10 +198,10 @@ public class PaylinkBillPaymentTokenRequest {
     return this;
   }
 
-   /**
+  /**
    * A memo that can be added to the payment page and email to provide to the customer.
    * @return memo
-  **/
+   */
   @javax.annotation.Nullable
   public String getMemo() {
     return memo;
@@ -218,10 +217,10 @@ public class PaylinkBillPaymentTokenRequest {
     return this;
   }
 
-   /**
+  /**
    * Get request
    * @return request
-  **/
+   */
   @javax.annotation.Nonnull
   public PaylinkTokenRequestModel getRequest() {
     return request;
@@ -237,10 +236,10 @@ public class PaylinkBillPaymentTokenRequest {
     return this;
   }
 
-   /**
+  /**
    * Get smsNotificationPath
    * @return smsNotificationPath
-  **/
+   */
   @javax.annotation.Nullable
   public PaylinkSMSNotificationPath getSmsNotificationPath() {
     return smsNotificationPath;
@@ -324,12 +323,12 @@ public class PaylinkBillPaymentTokenRequest {
     openapiRequiredFields.add("request");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkBillPaymentTokenRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkBillPaymentTokenRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkBillPaymentTokenRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -416,22 +415,22 @@ public class PaylinkBillPaymentTokenRequest {
     }
   }
 
- /**
-  * Create an instance of PaylinkBillPaymentTokenRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkBillPaymentTokenRequest
-  * @throws IOException if the JSON string is invalid with respect to PaylinkBillPaymentTokenRequest
-  */
+  /**
+   * Create an instance of PaylinkBillPaymentTokenRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkBillPaymentTokenRequest
+   * @throws IOException if the JSON string is invalid with respect to PaylinkBillPaymentTokenRequest
+   */
   public static PaylinkBillPaymentTokenRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkBillPaymentTokenRequest.class);
   }
 
- /**
-  * Convert an instance of PaylinkBillPaymentTokenRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkBillPaymentTokenRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -66,10 +65,10 @@ public class AccountCreate {
     return this;
   }
 
-   /**
+  /**
    * A card holder account id used for uniquely identifying the account. This value will be used for future referencing of the account oand to link your system to this API. This value is immutable and never changes. 
    * @return accountId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getAccountId() {
     return accountId;
@@ -85,10 +84,10 @@ public class AccountCreate {
     return this;
   }
 
-   /**
+  /**
    * Get contact
    * @return contact
-  **/
+   */
   @javax.annotation.Nullable
   public ContactDetails getContact() {
     return contact;
@@ -154,12 +153,12 @@ public class AccountCreate {
     openapiRequiredFields.add("account_id");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to AccountCreate
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AccountCreate
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!AccountCreate.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -220,22 +219,22 @@ public class AccountCreate {
     }
   }
 
- /**
-  * Create an instance of AccountCreate given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of AccountCreate
-  * @throws IOException if the JSON string is invalid with respect to AccountCreate
-  */
+  /**
+   * Create an instance of AccountCreate given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AccountCreate
+   * @throws IOException if the JSON string is invalid with respect to AccountCreate
+   */
   public static AccountCreate fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AccountCreate.class);
   }
 
- /**
-  * Convert an instance of AccountCreate to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of AccountCreate to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

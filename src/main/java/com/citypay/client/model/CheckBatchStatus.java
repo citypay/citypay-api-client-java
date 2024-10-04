@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -75,10 +74,10 @@ public class CheckBatchStatus {
     return this;
   }
 
-   /**
+  /**
    * Get batchId
    * @return batchId
-  **/
+   */
   @javax.annotation.Nonnull
   public List<Integer> getBatchId() {
     return batchId;
@@ -94,10 +93,10 @@ public class CheckBatchStatus {
     return this;
   }
 
-   /**
+  /**
    * The batch account id to obtain the batch for. Defaults to your client id if not provided.
    * @return clientAccountId
-  **/
+   */
   @javax.annotation.Nullable
   public String getClientAccountId() {
     return clientAccountId;
@@ -163,12 +162,12 @@ public class CheckBatchStatus {
     openapiRequiredFields.add("batch_id");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CheckBatchStatus
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CheckBatchStatus
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CheckBatchStatus.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -231,22 +230,22 @@ public class CheckBatchStatus {
     }
   }
 
- /**
-  * Create an instance of CheckBatchStatus given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CheckBatchStatus
-  * @throws IOException if the JSON string is invalid with respect to CheckBatchStatus
-  */
+  /**
+   * Create an instance of CheckBatchStatus given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CheckBatchStatus
+   * @throws IOException if the JSON string is invalid with respect to CheckBatchStatus
+   */
   public static CheckBatchStatus fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CheckBatchStatus.class);
   }
 
- /**
-  * Convert an instance of CheckBatchStatus to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CheckBatchStatus to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -109,10 +108,10 @@ public class ContactDetails {
     return this;
   }
 
-   /**
+  /**
    * The first line of the address for the card holder.
    * @return address1
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddress1() {
     return address1;
@@ -128,10 +127,10 @@ public class ContactDetails {
     return this;
   }
 
-   /**
+  /**
    * The second line of the address for the card holder.
    * @return address2
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddress2() {
     return address2;
@@ -147,10 +146,10 @@ public class ContactDetails {
     return this;
   }
 
-   /**
+  /**
    * The third line of the address for the card holder.
    * @return address3
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddress3() {
     return address3;
@@ -166,10 +165,10 @@ public class ContactDetails {
     return this;
   }
 
-   /**
+  /**
    * The area such as city, department, parish for the card holder.
    * @return area
-  **/
+   */
   @javax.annotation.Nullable
   public String getArea() {
     return area;
@@ -185,10 +184,10 @@ public class ContactDetails {
     return this;
   }
 
-   /**
+  /**
    * The company name for the card holder if the contact is a corporate contact.
    * @return company
-  **/
+   */
   @javax.annotation.Nullable
   public String getCompany() {
     return company;
@@ -204,10 +203,10 @@ public class ContactDetails {
     return this;
   }
 
-   /**
+  /**
    * The country code in ISO 3166 format. The country value may be used for fraud analysis and for   acceptance of the transaction. 
    * @return country
-  **/
+   */
   @javax.annotation.Nullable
   public String getCountry() {
     return country;
@@ -223,10 +222,10 @@ public class ContactDetails {
     return this;
   }
 
-   /**
+  /**
    * An email address for the card holder which may be used for correspondence.
    * @return email
-  **/
+   */
   @javax.annotation.Nullable
   public String getEmail() {
     return email;
@@ -242,10 +241,10 @@ public class ContactDetails {
     return this;
   }
 
-   /**
+  /**
    * The first name  of the card holder.
    * @return firstname
-  **/
+   */
   @javax.annotation.Nullable
   public String getFirstname() {
     return firstname;
@@ -261,10 +260,10 @@ public class ContactDetails {
     return this;
   }
 
-   /**
+  /**
    * The last name or surname of the card holder.
    * @return lastname
-  **/
+   */
   @javax.annotation.Nullable
   public String getLastname() {
     return lastname;
@@ -280,10 +279,10 @@ public class ContactDetails {
     return this;
   }
 
-   /**
+  /**
    * A mobile number for the card holder the mobile number is often required by delivery companies to ensure they are able to be in contact when required.
    * @return mobileNo
-  **/
+   */
   @javax.annotation.Nullable
   public String getMobileNo() {
     return mobileNo;
@@ -299,10 +298,10 @@ public class ContactDetails {
     return this;
   }
 
-   /**
+  /**
    * The postcode or zip code of the address which may be used for fraud analysis.
    * @return postcode
-  **/
+   */
   @javax.annotation.Nullable
   public String getPostcode() {
     return postcode;
@@ -318,10 +317,10 @@ public class ContactDetails {
     return this;
   }
 
-   /**
+  /**
    * A telephone number for the card holder.
    * @return telephoneNo
-  **/
+   */
   @javax.annotation.Nullable
   public String getTelephoneNo() {
     return telephoneNo;
@@ -337,10 +336,10 @@ public class ContactDetails {
     return this;
   }
 
-   /**
+  /**
    * A title for the card holder such as Mr, Mrs, Ms, M. Mme. etc.
    * @return title
-  **/
+   */
   @javax.annotation.Nullable
   public String getTitle() {
     return title;
@@ -438,12 +437,12 @@ public class ContactDetails {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to ContactDetails
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ContactDetails
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!ContactDetails.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -529,22 +528,22 @@ public class ContactDetails {
     }
   }
 
- /**
-  * Create an instance of ContactDetails given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ContactDetails
-  * @throws IOException if the JSON string is invalid with respect to ContactDetails
-  */
+  /**
+   * Create an instance of ContactDetails given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ContactDetails
+   * @throws IOException if the JSON string is invalid with respect to ContactDetails
+   */
   public static ContactDetails fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContactDetails.class);
   }
 
- /**
-  * Convert an instance of ContactDetails to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ContactDetails to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

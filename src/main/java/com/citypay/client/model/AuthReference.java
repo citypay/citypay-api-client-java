@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -114,10 +113,10 @@ public class AuthReference {
     return this;
   }
 
-   /**
+  /**
    * The amount of the transaction in decimal currency format.
    * @return amount
-  **/
+   */
   @javax.annotation.Nullable
   public String getAmount() {
     return amount;
@@ -133,10 +132,10 @@ public class AuthReference {
     return this;
   }
 
-   /**
+  /**
    * The amount of the transaction in integer/request format.
    * @return amountValue
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getAmountValue() {
     return amountValue;
@@ -152,10 +151,10 @@ public class AuthReference {
     return this;
   }
 
-   /**
+  /**
    * A reference number provided by the acquiring services.
    * @return atrn
-  **/
+   */
   @javax.annotation.Nullable
   public String getAtrn() {
     return atrn;
@@ -171,10 +170,10 @@ public class AuthReference {
     return this;
   }
 
-   /**
+  /**
    * The authorisation code of the transaction returned by the acquirer or card issuer.
    * @return authcode
-  **/
+   */
   @javax.annotation.Nullable
   public String getAuthcode() {
     return authcode;
@@ -190,10 +189,10 @@ public class AuthReference {
     return this;
   }
 
-   /**
+  /**
    * A batch number which the transaction has been end of day batched towards.
    * @return batchno
-  **/
+   */
   @javax.annotation.Nullable
   public String getBatchno() {
     return batchno;
@@ -209,10 +208,10 @@ public class AuthReference {
     return this;
   }
 
-   /**
+  /**
    * The currency of the transaction in ISO 4217 code format.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
@@ -228,10 +227,10 @@ public class AuthReference {
     return this;
   }
 
-   /**
+  /**
    * The date and time of the transaction.
    * @return datetime
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDatetime() {
     return datetime;
@@ -247,10 +246,10 @@ public class AuthReference {
     return this;
   }
 
-   /**
+  /**
    * The identifier of the transaction used to process the transaction.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nullable
   public String getIdentifier() {
     return identifier;
@@ -266,10 +265,10 @@ public class AuthReference {
     return this;
   }
 
-   /**
+  /**
    * A masking of the card number which was used to process the tranasction.
    * @return maskedpan
-  **/
+   */
   @javax.annotation.Nullable
   public String getMaskedpan() {
     return maskedpan;
@@ -285,10 +284,10 @@ public class AuthReference {
     return this;
   }
 
-   /**
+  /**
    * The merchant id of the transaction result.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMerchantid() {
     return merchantid;
@@ -304,10 +303,10 @@ public class AuthReference {
     return this;
   }
 
-   /**
+  /**
    * The result of the transaction.
    * @return result
-  **/
+   */
   @javax.annotation.Nullable
   public String getResult() {
     return result;
@@ -323,10 +322,10 @@ public class AuthReference {
     return this;
   }
 
-   /**
+  /**
    * The current status of the transaction through it&#39;s lifecycle.
    * @return transStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getTransStatus() {
     return transStatus;
@@ -342,10 +341,10 @@ public class AuthReference {
     return this;
   }
 
-   /**
+  /**
    * The type of transaction that was processed.
    * @return transType
-  **/
+   */
   @javax.annotation.Nullable
   public String getTransType() {
     return transType;
@@ -361,10 +360,10 @@ public class AuthReference {
     return this;
   }
 
-   /**
+  /**
    * The transaction number of the transaction.
    * @return transno
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTransno() {
     return transno;
@@ -465,12 +464,12 @@ public class AuthReference {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to AuthReference
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AuthReference
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!AuthReference.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -547,22 +546,22 @@ public class AuthReference {
     }
   }
 
- /**
-  * Create an instance of AuthReference given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of AuthReference
-  * @throws IOException if the JSON string is invalid with respect to AuthReference
-  */
+  /**
+   * Create an instance of AuthReference given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AuthReference
+   * @throws IOException if the JSON string is invalid with respect to AuthReference
+   */
   public static AuthReference fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AuthReference.class);
   }
 
- /**
-  * Convert an instance of AuthReference to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of AuthReference to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

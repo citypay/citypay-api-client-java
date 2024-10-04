@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -61,10 +60,10 @@ public class DomainKeyCheckRequest {
     return this;
   }
 
-   /**
+  /**
    * The domain key to check. 
    * @return domainKey
-  **/
+   */
   @javax.annotation.Nonnull
   public String getDomainKey() {
     return domainKey;
@@ -127,12 +126,12 @@ public class DomainKeyCheckRequest {
     openapiRequiredFields.add("domain_key");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to DomainKeyCheckRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to DomainKeyCheckRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!DomainKeyCheckRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -189,22 +188,22 @@ public class DomainKeyCheckRequest {
     }
   }
 
- /**
-  * Create an instance of DomainKeyCheckRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of DomainKeyCheckRequest
-  * @throws IOException if the JSON string is invalid with respect to DomainKeyCheckRequest
-  */
+  /**
+   * Create an instance of DomainKeyCheckRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of DomainKeyCheckRequest
+   * @throws IOException if the JSON string is invalid with respect to DomainKeyCheckRequest
+   */
   public static DomainKeyCheckRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DomainKeyCheckRequest.class);
   }
 
- /**
-  * Convert an instance of DomainKeyCheckRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of DomainKeyCheckRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -73,10 +72,10 @@ public class PaylinkUI {
     return this;
   }
 
-   /**
+  /**
    * whether the address is forced as mandatory.
    * @return addressMandatory
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isAddressMandatory() {
     return addressMandatory;
@@ -92,10 +91,10 @@ public class PaylinkUI {
     return this;
   }
 
-   /**
+  /**
    * specify the form autocomplete setting, default to on. If set to off the UI will set autocomplete&#x3D;\&quot;off\&quot; on the form level and prevent elements from adding it.
    * @return formAutoComplete
-  **/
+   */
   @javax.annotation.Nullable
   public String getFormAutoComplete() {
     return formAutoComplete;
@@ -111,10 +110,10 @@ public class PaylinkUI {
     return this;
   }
 
-   /**
+  /**
    * the logical ordering of the ui groups.
    * @return ordering
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getOrdering() {
     return ordering;
@@ -130,10 +129,10 @@ public class PaylinkUI {
     return this;
   }
 
-   /**
+  /**
    * whether the postcode is forced as mandatory.
    * @return postcodeMandatory
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isPostcodeMandatory() {
     return postcodeMandatory;
@@ -204,12 +203,12 @@ public class PaylinkUI {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkUI
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkUI
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkUI.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -259,22 +258,22 @@ public class PaylinkUI {
     }
   }
 
- /**
-  * Create an instance of PaylinkUI given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkUI
-  * @throws IOException if the JSON string is invalid with respect to PaylinkUI
-  */
+  /**
+   * Create an instance of PaylinkUI given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkUI
+   * @throws IOException if the JSON string is invalid with respect to PaylinkUI
+   */
   public static PaylinkUI fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkUI.class);
   }
 
- /**
-  * Convert an instance of PaylinkUI to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkUI to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

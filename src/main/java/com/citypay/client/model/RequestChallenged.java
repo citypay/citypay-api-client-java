@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -77,10 +76,10 @@ public class RequestChallenged {
     return this;
   }
 
-   /**
+  /**
    * The url of the Access Control Server (ACS) to forward the user to. 
    * @return acsUrl
-  **/
+   */
   @javax.annotation.Nullable
   public String getAcsUrl() {
     return acsUrl;
@@ -96,10 +95,10 @@ public class RequestChallenged {
     return this;
   }
 
-   /**
+  /**
    * The challenge request data which is encoded for usage by the ACS.
    * @return creq
-  **/
+   */
   @javax.annotation.Nullable
   public String getCreq() {
     return creq;
@@ -115,10 +114,10 @@ public class RequestChallenged {
     return this;
   }
 
-   /**
+  /**
    * The merchant id that processed this transaction.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMerchantid() {
     return merchantid;
@@ -134,10 +133,10 @@ public class RequestChallenged {
     return this;
   }
 
-   /**
+  /**
    * The 3DSv2 trans id reference for the challenge process. May be used to create the ThreeDSSessionData value to send to the ACS.
    * @return threedserverTransId
-  **/
+   */
   @javax.annotation.Nullable
   public String getThreedserverTransId() {
     return threedserverTransId;
@@ -153,10 +152,10 @@ public class RequestChallenged {
     return this;
   }
 
-   /**
+  /**
    * The transaction number for the challenge, ordered incrementally from 1 for every merchant_id. 
    * @return transno
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTransno() {
     return transno;
@@ -230,12 +229,12 @@ public class RequestChallenged {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to RequestChallenged
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RequestChallenged
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RequestChallenged.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -291,22 +290,22 @@ public class RequestChallenged {
     }
   }
 
- /**
-  * Create an instance of RequestChallenged given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RequestChallenged
-  * @throws IOException if the JSON string is invalid with respect to RequestChallenged
-  */
+  /**
+   * Create an instance of RequestChallenged given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RequestChallenged
+   * @throws IOException if the JSON string is invalid with respect to RequestChallenged
+   */
   public static RequestChallenged fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RequestChallenged.class);
   }
 
- /**
-  * Convert an instance of RequestChallenged to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RequestChallenged to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

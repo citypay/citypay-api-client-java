@@ -9,59 +9,52 @@ All URIs are relative to *https://api.citypay.com*
 | [**checkBatchStatusRequest**](BatchProcessingApi.md#checkBatchStatusRequest) | **POST** /v6/batch/status | Check Batch Status |
 
 
-
-## batchProcessRequest
-
+<a id="batchProcessRequest"></a>
+# **batchProcessRequest**
 > ProcessBatchResponse batchProcessRequest(processBatchRequest)
 
 Batch Process Request
 
-A batch process request is used to start the batch process workflow by uploading batch
-data and initialising a new batch for processing. Once validated the batch will be queued
-for processing and further updates can be received by a subsequent call to retrieve the batch
-status.
-
+A batch process request is used to start the batch process workflow by uploading batch data and initialising a new batch for processing. Once validated the batch will be queued for processing and further updates can be received by a subsequent call to retrieve the batch status. 
 
 ### Example
-
 ```java
 // Import classes:
 import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.model.*;
+import com.citypay.client.models.*;
 import com.citypay.client.api.BatchProcessingApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.citypay.com");
-        
-        // Configure API key authorization: cp-api-key
-        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
-        cp-api-key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //cp-api-key.setApiKeyPrefix("Token");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.citypay.com");
+    
+    // Configure API key authorization: cp-api-key
+    ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+    cp-api-key.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //cp-api-key.setApiKeyPrefix("Token");
 
-        BatchProcessingApi apiInstance = new BatchProcessingApi(defaultClient);
-        ProcessBatchRequest processBatchRequest = new ProcessBatchRequest(); // ProcessBatchRequest | 
-        try {
-            ProcessBatchResponse result = apiInstance.batchProcessRequest(processBatchRequest);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling BatchProcessingApi#batchProcessRequest");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    BatchProcessingApi apiInstance = new BatchProcessingApi(defaultClient);
+    ProcessBatchRequest processBatchRequest = new ProcessBatchRequest(); // ProcessBatchRequest | 
+    try {
+      ProcessBatchResponse result = apiInstance.batchProcessRequest(processBatchRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BatchProcessingApi#batchProcessRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -77,9 +70,8 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
-
+ - **Content-Type**: application/json, text/xml
+ - **Accept**: application/json, text/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -91,9 +83,8 @@ public class Example {
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-
-## batchRetrieveRequest
-
+<a id="batchRetrieveRequest"></a>
+# **batchRetrieveRequest**
 > BatchReportResponseModel batchRetrieveRequest(batchReportRequest)
 
 Batch Retrieve Request
@@ -101,45 +92,43 @@ Batch Retrieve Request
 Obtains a batch and installment (BIS) report for a given batch id.
 
 ### Example
-
 ```java
 // Import classes:
 import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.model.*;
+import com.citypay.client.models.*;
 import com.citypay.client.api.BatchProcessingApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.citypay.com");
-        
-        // Configure API key authorization: cp-api-key
-        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
-        cp-api-key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //cp-api-key.setApiKeyPrefix("Token");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.citypay.com");
+    
+    // Configure API key authorization: cp-api-key
+    ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+    cp-api-key.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //cp-api-key.setApiKeyPrefix("Token");
 
-        BatchProcessingApi apiInstance = new BatchProcessingApi(defaultClient);
-        BatchReportRequest batchReportRequest = new BatchReportRequest(); // BatchReportRequest | 
-        try {
-            BatchReportResponseModel result = apiInstance.batchRetrieveRequest(batchReportRequest);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling BatchProcessingApi#batchRetrieveRequest");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    BatchProcessingApi apiInstance = new BatchProcessingApi(defaultClient);
+    BatchReportRequest batchReportRequest = new BatchReportRequest(); // BatchReportRequest | 
+    try {
+      BatchReportResponseModel result = apiInstance.batchRetrieveRequest(batchReportRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BatchProcessingApi#batchRetrieveRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -155,9 +144,8 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
-
+ - **Content-Type**: application/json, text/xml
+ - **Accept**: application/json, text/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -169,9 +157,8 @@ public class Example {
 | **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
-
-## checkBatchStatusRequest
-
+<a id="checkBatchStatusRequest"></a>
+# **checkBatchStatusRequest**
 > CheckBatchStatusResponse checkBatchStatusRequest(checkBatchStatus)
 
 Check Batch Status
@@ -179,45 +166,43 @@ Check Batch Status
 The operation is used to retrieve the status of a batch process.
 
 ### Example
-
 ```java
 // Import classes:
 import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.model.*;
+import com.citypay.client.models.*;
 import com.citypay.client.api.BatchProcessingApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.citypay.com");
-        
-        // Configure API key authorization: cp-api-key
-        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
-        cp-api-key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //cp-api-key.setApiKeyPrefix("Token");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.citypay.com");
+    
+    // Configure API key authorization: cp-api-key
+    ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+    cp-api-key.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //cp-api-key.setApiKeyPrefix("Token");
 
-        BatchProcessingApi apiInstance = new BatchProcessingApi(defaultClient);
-        CheckBatchStatus checkBatchStatus = new CheckBatchStatus(); // CheckBatchStatus | 
-        try {
-            CheckBatchStatusResponse result = apiInstance.checkBatchStatusRequest(checkBatchStatus);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling BatchProcessingApi#checkBatchStatusRequest");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    BatchProcessingApi apiInstance = new BatchProcessingApi(defaultClient);
+    CheckBatchStatus checkBatchStatus = new CheckBatchStatus(); // CheckBatchStatus | 
+    try {
+      CheckBatchStatusResponse result = apiInstance.checkBatchStatusRequest(checkBatchStatus);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BatchProcessingApi#checkBatchStatusRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -233,9 +218,8 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
-
+ - **Content-Type**: application/json, text/xml
+ - **Accept**: application/json, text/xml
 
 ### HTTP response details
 | Status code | Description | Response headers |

@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,15 +52,15 @@ import com.citypay.client.JSON;
 public class PaylinkEmailNotificationPath {
   public static final String SERIALIZED_NAME_BCC = "bcc";
   @SerializedName(SERIALIZED_NAME_BCC)
-  private List<String> bcc;
+  private List<String> bcc = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CC = "cc";
   @SerializedName(SERIALIZED_NAME_CC)
-  private List<String> cc;
+  private List<String> cc = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REPLY_TO = "reply_to";
   @SerializedName(SERIALIZED_NAME_REPLY_TO)
-  private List<String> replyTo;
+  private List<String> replyTo = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TEMPLATE = "template";
   @SerializedName(SERIALIZED_NAME_TEMPLATE)
@@ -87,10 +86,10 @@ public class PaylinkEmailNotificationPath {
     return this;
   }
 
-   /**
+  /**
    * Get bcc
    * @return bcc
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getBcc() {
     return bcc;
@@ -114,10 +113,10 @@ public class PaylinkEmailNotificationPath {
     return this;
   }
 
-   /**
+  /**
    * Get cc
    * @return cc
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getCc() {
     return cc;
@@ -141,10 +140,10 @@ public class PaylinkEmailNotificationPath {
     return this;
   }
 
-   /**
+  /**
    * Get replyTo
    * @return replyTo
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getReplyTo() {
     return replyTo;
@@ -160,10 +159,10 @@ public class PaylinkEmailNotificationPath {
     return this;
   }
 
-   /**
+  /**
    * An optional template name to use a template other than the default.
    * @return template
-  **/
+   */
   @javax.annotation.Nullable
   public String getTemplate() {
     return template;
@@ -187,10 +186,10 @@ public class PaylinkEmailNotificationPath {
     return this;
   }
 
-   /**
+  /**
    * Get to
    * @return to
-  **/
+   */
   @javax.annotation.Nonnull
   public List<String> getTo() {
     return to;
@@ -265,12 +264,12 @@ public class PaylinkEmailNotificationPath {
     openapiRequiredFields.add("to");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkEmailNotificationPath
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkEmailNotificationPath
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkEmailNotificationPath.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -345,22 +344,22 @@ public class PaylinkEmailNotificationPath {
     }
   }
 
- /**
-  * Create an instance of PaylinkEmailNotificationPath given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkEmailNotificationPath
-  * @throws IOException if the JSON string is invalid with respect to PaylinkEmailNotificationPath
-  */
+  /**
+   * Create an instance of PaylinkEmailNotificationPath given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkEmailNotificationPath
+   * @throws IOException if the JSON string is invalid with respect to PaylinkEmailNotificationPath
+   */
   public static PaylinkEmailNotificationPath fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkEmailNotificationPath.class);
   }
 
- /**
-  * Convert an instance of PaylinkEmailNotificationPath to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkEmailNotificationPath to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

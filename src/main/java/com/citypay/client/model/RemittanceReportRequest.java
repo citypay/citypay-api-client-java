@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -66,7 +65,7 @@ public class RemittanceReportRequest {
 
   public static final String SERIALIZED_NAME_MERCHANT_ID = "merchant_id";
   @SerializedName(SERIALIZED_NAME_MERCHANT_ID)
-  private List<Integer> merchantId;
+  private List<Integer> merchantId = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_NEXT_TOKEN = "nextToken";
   @SerializedName(SERIALIZED_NAME_NEXT_TOKEN)
@@ -84,10 +83,10 @@ public class RemittanceReportRequest {
     return this;
   }
 
-   /**
+  /**
    * Start date (YYYY-MM-DD) for batch Retrieval range, inclusive. Maximum value is 3 years ago.
    * @return dateFrom
-  **/
+   */
   @javax.annotation.Nullable
   public LocalDate getDateFrom() {
     return dateFrom;
@@ -103,10 +102,10 @@ public class RemittanceReportRequest {
     return this;
   }
 
-   /**
+  /**
    * End date (YYYY-MM-DD) for batch Retrieval range, inclusive.
    * @return dateUntil
-  **/
+   */
   @javax.annotation.Nullable
   public LocalDate getDateUntil() {
     return dateUntil;
@@ -122,10 +121,10 @@ public class RemittanceReportRequest {
     return this;
   }
 
-   /**
+  /**
    * The maximum number of results to return in a single response. This value is used to limit the size of data returned by the API, enhancing performance and manageability. Values should be between 5 and 250.
    * @return maxResults
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMaxResults() {
     return maxResults;
@@ -149,10 +148,10 @@ public class RemittanceReportRequest {
     return this;
   }
 
-   /**
+  /**
    * Get merchantId
    * @return merchantId
-  **/
+   */
   @javax.annotation.Nullable
   public List<Integer> getMerchantId() {
     return merchantId;
@@ -168,10 +167,10 @@ public class RemittanceReportRequest {
     return this;
   }
 
-   /**
+  /**
    * A token that identifies the starting point of the page of results to be returned. An empty value indicates the start of the dataset. When supplied, it is validated and used to fetch the subsequent page of results. This token is typically obtained from the response of a previous pagination request.
    * @return nextToken
-  **/
+   */
   @javax.annotation.Nullable
   public String getNextToken() {
     return nextToken;
@@ -187,10 +186,10 @@ public class RemittanceReportRequest {
     return this;
   }
 
-   /**
+  /**
    * Specifies the field by which results are ordered. Available fields are [trans_no,date_when,amount]. By default, fields are ordered by OrderByExpression(trans_no,ASC). To order in descending order, prefix with &#39;-&#39; or suffix with &#39; DESC&#39;.
    * @return orderBy
-  **/
+   */
   @javax.annotation.Nullable
   public String getOrderBy() {
     return orderBy;
@@ -267,12 +266,12 @@ public class RemittanceReportRequest {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to RemittanceReportRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RemittanceReportRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RemittanceReportRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -329,22 +328,22 @@ public class RemittanceReportRequest {
     }
   }
 
- /**
-  * Create an instance of RemittanceReportRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RemittanceReportRequest
-  * @throws IOException if the JSON string is invalid with respect to RemittanceReportRequest
-  */
+  /**
+   * Create an instance of RemittanceReportRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RemittanceReportRequest
+   * @throws IOException if the JSON string is invalid with respect to RemittanceReportRequest
+   */
   public static RemittanceReportRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RemittanceReportRequest.class);
   }
 
- /**
-  * Convert an instance of RemittanceReportRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RemittanceReportRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

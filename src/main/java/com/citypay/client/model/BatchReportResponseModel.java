@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -85,10 +84,10 @@ public class BatchReportResponseModel {
     return this;
   }
 
-   /**
+  /**
    * The total amount that the batch contains.
    * @return amount
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getAmount() {
     return amount;
@@ -104,10 +103,10 @@ public class BatchReportResponseModel {
     return this;
   }
 
-   /**
+  /**
    * The date and time of the batch in ISO-8601 format.
    * @return batchDate
-  **/
+   */
   @javax.annotation.Nonnull
   public LocalDate getBatchDate() {
     return batchDate;
@@ -123,11 +122,11 @@ public class BatchReportResponseModel {
     return this;
   }
 
-   /**
+  /**
    * The batch id specified in the batch processing request.
    * minimum: 1
    * @return batchId
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getBatchId() {
     return batchId;
@@ -143,10 +142,10 @@ public class BatchReportResponseModel {
     return this;
   }
 
-   /**
+  /**
    * The status of the batch. Possible values are:   - CANCELLED. The file has been cancelled by an administrator or server process.  - COMPLETE. The file has passed through the processing cycle and is determined as being complete further information should be obtained on the results of the processing - ERROR_IN_PROCESSING. Errors have occurred in the processing that has deemed that processing can not continue. - INITIALISED. The file has been initialised and no action has yet been performed - LOCKED. The file has been locked for processing - QUEUED. The file has been queued for processing yet no processing has yet been performed - UNKNOWN. The file is of an unknown status, that is the file can either not be determined by the information requested of the file has not yet been received. 
    * @return batchStatus
-  **/
+   */
   @javax.annotation.Nonnull
   public String getBatchStatus() {
     return batchStatus;
@@ -162,10 +161,10 @@ public class BatchReportResponseModel {
     return this;
   }
 
-   /**
+  /**
    * The batch account id that the batch was processed with.
    * @return clientAccountId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getClientAccountId() {
     return clientAccountId;
@@ -189,10 +188,10 @@ public class BatchReportResponseModel {
     return this;
   }
 
-   /**
+  /**
    * Get transactions
    * @return transactions
-  **/
+   */
   @javax.annotation.Nonnull
   public List<BatchTransactionResultModel> getTransactions() {
     return transactions;
@@ -275,12 +274,12 @@ public class BatchReportResponseModel {
     openapiRequiredFields.add("transactions");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to BatchReportResponseModel
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to BatchReportResponseModel
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!BatchReportResponseModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -350,22 +349,22 @@ public class BatchReportResponseModel {
     }
   }
 
- /**
-  * Create an instance of BatchReportResponseModel given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of BatchReportResponseModel
-  * @throws IOException if the JSON string is invalid with respect to BatchReportResponseModel
-  */
+  /**
+   * Create an instance of BatchReportResponseModel given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of BatchReportResponseModel
+   * @throws IOException if the JSON string is invalid with respect to BatchReportResponseModel
+   */
   public static BatchReportResponseModel fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, BatchReportResponseModel.class);
   }
 
- /**
-  * Convert an instance of BatchReportResponseModel to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of BatchReportResponseModel to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

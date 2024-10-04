@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -77,10 +76,10 @@ public class Merchant {
     return this;
   }
 
-   /**
+  /**
    * The currency of the merchant.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
@@ -96,10 +95,10 @@ public class Merchant {
     return this;
   }
 
-   /**
+  /**
    * The merchant id which uniquely identifies the merchant account.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMerchantid() {
     return merchantid;
@@ -115,10 +114,10 @@ public class Merchant {
     return this;
   }
 
-   /**
+  /**
    * The name of the merchant.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
@@ -134,10 +133,10 @@ public class Merchant {
     return this;
   }
 
-   /**
+  /**
    * The status of the account.
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
@@ -153,10 +152,10 @@ public class Merchant {
     return this;
   }
 
-   /**
+  /**
    * The status label of the account.
    * @return statusLabel
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatusLabel() {
     return statusLabel;
@@ -230,12 +229,12 @@ public class Merchant {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Merchant
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Merchant
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!Merchant.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -294,22 +293,22 @@ public class Merchant {
     }
   }
 
- /**
-  * Create an instance of Merchant given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Merchant
-  * @throws IOException if the JSON string is invalid with respect to Merchant
-  */
+  /**
+   * Create an instance of Merchant given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Merchant
+   * @throws IOException if the JSON string is invalid with respect to Merchant
+   */
   public static Merchant fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Merchant.class);
   }
 
- /**
-  * Convert an instance of Merchant to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Merchant to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }
