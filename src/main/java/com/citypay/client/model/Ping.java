@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -61,10 +60,10 @@ public class Ping {
     return this;
   }
 
-   /**
+  /**
    * An identifier of the ping request which will be returned in the response.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nullable
   public String getIdentifier() {
     return identifier;
@@ -126,12 +125,12 @@ public class Ping {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Ping
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Ping
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!Ping.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -181,22 +180,22 @@ public class Ping {
     }
   }
 
- /**
-  * Create an instance of Ping given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Ping
-  * @throws IOException if the JSON string is invalid with respect to Ping
-  */
+  /**
+   * Create an instance of Ping given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Ping
+   * @throws IOException if the JSON string is invalid with respect to Ping
+   */
   public static Ping fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Ping.class);
   }
 
- /**
-  * Convert an instance of Ping to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Ping to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

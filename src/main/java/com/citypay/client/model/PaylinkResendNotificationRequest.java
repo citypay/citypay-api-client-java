@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -65,10 +64,10 @@ public class PaylinkResendNotificationRequest {
     return this;
   }
 
-   /**
+  /**
    * Resends the bill payment email provided on the Paylink create token notification path. Emails can be sent up to 5 times per token.
    * @return email
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isEmail() {
     return email;
@@ -84,10 +83,10 @@ public class PaylinkResendNotificationRequest {
     return this;
   }
 
-   /**
+  /**
    * Resends the bill payment SMS provided on the Paylink create token notification path. An SMS cannot be resent if it was previously sent less than 1 minute ago. There is a limit of 3 retries per token. 
    * @return sms
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isSms() {
     return sms;
@@ -152,12 +151,12 @@ public class PaylinkResendNotificationRequest {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkResendNotificationRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkResendNotificationRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkResendNotificationRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -204,22 +203,22 @@ public class PaylinkResendNotificationRequest {
     }
   }
 
- /**
-  * Create an instance of PaylinkResendNotificationRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkResendNotificationRequest
-  * @throws IOException if the JSON string is invalid with respect to PaylinkResendNotificationRequest
-  */
+  /**
+   * Create an instance of PaylinkResendNotificationRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkResendNotificationRequest
+   * @throws IOException if the JSON string is invalid with respect to PaylinkResendNotificationRequest
+   */
   public static PaylinkResendNotificationRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkResendNotificationRequest.class);
   }
 
- /**
-  * Convert an instance of PaylinkResendNotificationRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkResendNotificationRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

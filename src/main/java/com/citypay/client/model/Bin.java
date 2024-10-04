@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -93,10 +92,10 @@ public class Bin {
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is a commercial card.
    * @return binCommercial
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinCommercial() {
     return binCommercial;
@@ -112,10 +111,10 @@ public class Bin {
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is a corporate business card.
    * @return binCorporate
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinCorporate() {
     return binCorporate;
@@ -131,10 +130,10 @@ public class Bin {
     return this;
   }
 
-   /**
+  /**
    * The determined country where the card was issued.
    * @return binCountryIssued
-  **/
+   */
   @javax.annotation.Nullable
   public String getBinCountryIssued() {
     return binCountryIssued;
@@ -150,10 +149,10 @@ public class Bin {
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is a credit card.
    * @return binCredit
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinCredit() {
     return binCredit;
@@ -169,10 +168,10 @@ public class Bin {
     return this;
   }
 
-   /**
+  /**
    * The default currency determined for the card.
    * @return binCurrency
-  **/
+   */
   @javax.annotation.Nullable
   public String getBinCurrency() {
     return binCurrency;
@@ -188,10 +187,10 @@ public class Bin {
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is a debit card.
    * @return binDebit
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinDebit() {
     return binDebit;
@@ -207,10 +206,10 @@ public class Bin {
     return this;
   }
 
-   /**
+  /**
    * A description of the bin on the card to identify what type of product the card is.
    * @return binDescription
-  **/
+   */
   @javax.annotation.Nullable
   public String getBinDescription() {
     return binDescription;
@@ -226,10 +225,10 @@ public class Bin {
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is regulated within the EU.
    * @return binEu
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinEu() {
     return binEu;
@@ -245,10 +244,10 @@ public class Bin {
     return this;
   }
 
-   /**
+  /**
    * The scheme that issued the card.
    * @return scheme
-  **/
+   */
   @javax.annotation.Nullable
   public String getScheme() {
     return scheme;
@@ -334,12 +333,12 @@ public class Bin {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Bin
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Bin
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!Bin.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -398,22 +397,22 @@ public class Bin {
     }
   }
 
- /**
-  * Create an instance of Bin given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Bin
-  * @throws IOException if the JSON string is invalid with respect to Bin
-  */
+  /**
+   * Create an instance of Bin given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Bin
+   * @throws IOException if the JSON string is invalid with respect to Bin
+   */
   public static Bin fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Bin.class);
   }
 
- /**
-  * Convert an instance of Bin to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Bin to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

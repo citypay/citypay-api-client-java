@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -78,10 +77,10 @@ public class Error {
     return this;
   }
 
-   /**
+  /**
    * A response code providing a result of the process.
    * @return code
-  **/
+   */
   @javax.annotation.Nullable
   public String getCode() {
     return code;
@@ -97,10 +96,10 @@ public class Error {
     return this;
   }
 
-   /**
+  /**
    * A context id of the process used for referencing transactions through support.
    * @return context
-  **/
+   */
   @javax.annotation.Nullable
   public String getContext() {
     return context;
@@ -116,10 +115,10 @@ public class Error {
     return this;
   }
 
-   /**
+  /**
    * An identifier if presented in the original request.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nullable
   public String getIdentifier() {
     return identifier;
@@ -135,10 +134,10 @@ public class Error {
     return this;
   }
 
-   /**
+  /**
    * A response message providing a description of the result of the process.
    * @return message
-  **/
+   */
   @javax.annotation.Nullable
   public String getMessage() {
     return message;
@@ -154,10 +153,10 @@ public class Error {
     return this;
   }
 
-   /**
+  /**
    * The ISO-8601 UTC date and time of the response data.
    * @return responseDt
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getResponseDt() {
     return responseDt;
@@ -231,12 +230,12 @@ public class Error {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Error
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Error
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!Error.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -295,22 +294,22 @@ public class Error {
     }
   }
 
- /**
-  * Create an instance of Error given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Error
-  * @throws IOException if the JSON string is invalid with respect to Error
-  */
+  /**
+   * Create an instance of Error given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Error
+   * @throws IOException if the JSON string is invalid with respect to Error
+   */
   public static Error fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Error.class);
   }
 
- /**
-  * Convert an instance of Error to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Error to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

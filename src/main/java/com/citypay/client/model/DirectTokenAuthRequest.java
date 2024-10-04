@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -73,10 +72,10 @@ public class DirectTokenAuthRequest {
     return this;
   }
 
-   /**
+  /**
    * A random value string which is provided to the API to perform a digest. The value will be used by its UTF-8 byte representation of any digest function. 
    * @return nonce
-  **/
+   */
   @javax.annotation.Nullable
   public String getNonce() {
     return nonce;
@@ -92,10 +91,10 @@ public class DirectTokenAuthRequest {
     return this;
   }
 
-   /**
+  /**
    * The URL used to redirect back to your site when a transaction has been rejected or declined. Required if a url-encoded request. 
    * @return redirectFailure
-  **/
+   */
   @javax.annotation.Nullable
   public String getRedirectFailure() {
     return redirectFailure;
@@ -111,10 +110,10 @@ public class DirectTokenAuthRequest {
     return this;
   }
 
-   /**
+  /**
    * The URL used to redirect back to your site when a transaction has been authorised. Required if a url-encoded request. 
    * @return redirectSuccess
-  **/
+   */
   @javax.annotation.Nullable
   public String getRedirectSuccess() {
     return redirectSuccess;
@@ -130,10 +129,10 @@ public class DirectTokenAuthRequest {
     return this;
   }
 
-   /**
+  /**
    * The token required to process the transaction as presented by the direct post methodology. 
    * @return token
-  **/
+   */
   @javax.annotation.Nullable
   public String getToken() {
     return token;
@@ -204,12 +203,12 @@ public class DirectTokenAuthRequest {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to DirectTokenAuthRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to DirectTokenAuthRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!DirectTokenAuthRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -268,22 +267,22 @@ public class DirectTokenAuthRequest {
     }
   }
 
- /**
-  * Create an instance of DirectTokenAuthRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of DirectTokenAuthRequest
-  * @throws IOException if the JSON string is invalid with respect to DirectTokenAuthRequest
-  */
+  /**
+   * Create an instance of DirectTokenAuthRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of DirectTokenAuthRequest
+   * @throws IOException if the JSON string is invalid with respect to DirectTokenAuthRequest
+   */
   public static DirectTokenAuthRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DirectTokenAuthRequest.class);
   }
 
- /**
-  * Convert an instance of DirectTokenAuthRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of DirectTokenAuthRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

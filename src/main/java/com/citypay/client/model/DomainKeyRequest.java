@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -79,10 +78,10 @@ public class DomainKeyRequest {
     return this;
   }
 
-   /**
+  /**
    * Get domain
    * @return domain
-  **/
+   */
   @javax.annotation.Nonnull
   public List<String> getDomain() {
     return domain;
@@ -98,10 +97,10 @@ public class DomainKeyRequest {
     return this;
   }
 
-   /**
+  /**
    * Specifies if the key is to be used for production. Defaults to false. 
    * @return live
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isLive() {
     return live;
@@ -117,10 +116,10 @@ public class DomainKeyRequest {
     return this;
   }
 
-   /**
+  /**
    * The merchant id the domain key is to be used for. 
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getMerchantid() {
     return merchantid;
@@ -190,12 +189,12 @@ public class DomainKeyRequest {
     openapiRequiredFields.add("merchantid");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to DomainKeyRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to DomainKeyRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!DomainKeyRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -255,22 +254,22 @@ public class DomainKeyRequest {
     }
   }
 
- /**
-  * Create an instance of DomainKeyRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of DomainKeyRequest
-  * @throws IOException if the JSON string is invalid with respect to DomainKeyRequest
-  */
+  /**
+   * Create an instance of DomainKeyRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of DomainKeyRequest
+   * @throws IOException if the JSON string is invalid with respect to DomainKeyRequest
+   */
   public static DomainKeyRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DomainKeyRequest.class);
   }
 
- /**
-  * Convert an instance of DomainKeyRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of DomainKeyRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

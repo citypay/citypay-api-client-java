@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -61,10 +60,10 @@ public class BinLookup {
     return this;
   }
 
-   /**
+  /**
    * A bin value to use for lookup.
    * @return bin
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getBin() {
     return bin;
@@ -127,12 +126,12 @@ public class BinLookup {
     openapiRequiredFields.add("bin");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to BinLookup
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to BinLookup
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!BinLookup.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -186,22 +185,22 @@ public class BinLookup {
     }
   }
 
- /**
-  * Create an instance of BinLookup given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of BinLookup
-  * @throws IOException if the JSON string is invalid with respect to BinLookup
-  */
+  /**
+   * Create an instance of BinLookup given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of BinLookup
+   * @throws IOException if the JSON string is invalid with respect to BinLookup
+   */
   public static BinLookup fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, BinLookup.class);
   }
 
- /**
-  * Convert an instance of BinLookup to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of BinLookup to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

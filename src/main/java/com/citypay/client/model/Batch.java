@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -70,10 +69,10 @@ public class Batch {
     return this;
   }
 
-   /**
+  /**
    * The date that the file was created in ISO-8601 format.
    * @return batchDate
-  **/
+   */
   @javax.annotation.Nonnull
   public LocalDate getBatchDate() {
     return batchDate;
@@ -89,11 +88,11 @@ public class Batch {
     return this;
   }
 
-   /**
+  /**
    * The batch id requested.
    * minimum: 1
    * @return batchId
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getBatchId() {
     return batchId;
@@ -109,10 +108,10 @@ public class Batch {
     return this;
   }
 
-   /**
+  /**
    * The status of the batch. Possible values are:    - CANCELLED. The file has been cancelled by an administrator or server process.  - COMPLETE. The file has passed through the processing cycle and is determined as being complete further information should be obtained on the results of the processing - ERROR_IN_PROCESSING. Errors have occurred in the processing that has deemed that processing can not continue. - INITIALISED. The file has been initialised and no action has yet been performed - LOCKED. The file has been locked for processing - QUEUED. The file has been queued for processing yet no processing has yet been performed - UNKNOWN. The file is of an unknown status, that is the file can either not be determined by the information requested of the file has not yet been received. 
    * @return batchStatus
-  **/
+   */
   @javax.annotation.Nonnull
   public String getBatchStatus() {
     return batchStatus;
@@ -182,12 +181,12 @@ public class Batch {
     openapiRequiredFields.add("batch_status");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Batch
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Batch
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!Batch.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -244,22 +243,22 @@ public class Batch {
     }
   }
 
- /**
-  * Create an instance of Batch given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Batch
-  * @throws IOException if the JSON string is invalid with respect to Batch
-  */
+  /**
+   * Create an instance of Batch given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Batch
+   * @throws IOException if the JSON string is invalid with respect to Batch
+   */
   public static Batch fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Batch.class);
   }
 
- /**
-  * Convert an instance of Batch to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Batch to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

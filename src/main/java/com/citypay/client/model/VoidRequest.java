@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -69,10 +68,10 @@ public class VoidRequest {
     return this;
   }
 
-   /**
+  /**
    * The identifier of the transaction to void. If an empty value is supplied then a &#x60;trans_no&#x60; value must be supplied.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nullable
   public String getIdentifier() {
     return identifier;
@@ -88,10 +87,10 @@ public class VoidRequest {
     return this;
   }
 
-   /**
+  /**
    * Identifies the merchant account to perform the void for.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getMerchantid() {
     return merchantid;
@@ -107,10 +106,10 @@ public class VoidRequest {
     return this;
   }
 
-   /**
+  /**
    * The transaction number of the transaction to look up and void. If an empty value is supplied then an identifier value must be supplied.
    * @return transno
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTransno() {
     return transno;
@@ -179,12 +178,12 @@ public class VoidRequest {
     openapiRequiredFields.add("merchantid");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to VoidRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to VoidRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!VoidRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -241,22 +240,22 @@ public class VoidRequest {
     }
   }
 
- /**
-  * Create an instance of VoidRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of VoidRequest
-  * @throws IOException if the JSON string is invalid with respect to VoidRequest
-  */
+  /**
+   * Create an instance of VoidRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of VoidRequest
+   * @throws IOException if the JSON string is invalid with respect to VoidRequest
+   */
   public static VoidRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, VoidRequest.class);
   }
 
- /**
-  * Convert an instance of VoidRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of VoidRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

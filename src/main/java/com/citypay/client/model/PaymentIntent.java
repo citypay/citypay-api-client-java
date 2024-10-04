@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -94,7 +93,7 @@ public class PaymentIntent {
 
   public static final String SERIALIZED_NAME_TAG = "tag";
   @SerializedName(SERIALIZED_NAME_TAG)
-  private List<String> tag;
+  private List<String> tag = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TRANS_INFO = "trans_info";
   @SerializedName(SERIALIZED_NAME_TRANS_INFO)
@@ -112,10 +111,10 @@ public class PaymentIntent {
     return this;
   }
 
-   /**
+  /**
    * The amount to authorise in the lowest unit of currency with a variable length to a maximum of 12 digits.  No decimal points are to be included and no divisional characters such as 1,024.  The amount should be the total amount required for the transaction.  For example with GBP £1,021.95 the amount value is 102195. 
    * @return amount
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getAmount() {
     return amount;
@@ -131,10 +130,10 @@ public class PaymentIntent {
     return this;
   }
 
-   /**
+  /**
    * A policy value which determines whether an AVS postcode policy is enforced or bypassed.  Values are:   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation. 
    * @return avsPostcodePolicy
-  **/
+   */
   @javax.annotation.Nullable
   public String getAvsPostcodePolicy() {
     return avsPostcodePolicy;
@@ -150,10 +149,10 @@ public class PaymentIntent {
     return this;
   }
 
-   /**
+  /**
    * Get billTo
    * @return billTo
-  **/
+   */
   @javax.annotation.Nullable
   public ContactDetails getBillTo() {
     return billTo;
@@ -169,10 +168,10 @@ public class PaymentIntent {
     return this;
   }
 
-   /**
+  /**
    * The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card (American Express has it on the front). The value helps to identify possession of the card as it is not available within the chip or magnetic swipe.  When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped out by any integer parsing.  The CSC number aids fraud prevention in Mail Order and Internet payments.  Business rules are available on your account to identify whether to accept or decline transactions based on mismatched results of the CSC.  The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored.  This applies to all entities handling card data.  It should also not be used in any hashing process.  CityPay do not store the value and have no method of retrieving the value once the transaction has been processed. For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm. 
    * @return csc
-  **/
+   */
   @javax.annotation.Nullable
   public String getCsc() {
     return csc;
@@ -188,10 +187,10 @@ public class PaymentIntent {
     return this;
   }
 
-   /**
+  /**
    * A policy value which determines whether a CSC policy is enforced or bypassed.  Values are:   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the CSC did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send the CSC details for authorisation. 
    * @return cscPolicy
-  **/
+   */
   @javax.annotation.Nullable
   public String getCscPolicy() {
     return cscPolicy;
@@ -207,10 +206,10 @@ public class PaymentIntent {
     return this;
   }
 
-   /**
+  /**
    * The processing currency for the transaction. Will default to the merchant account currency.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
@@ -226,10 +225,10 @@ public class PaymentIntent {
     return this;
   }
 
-   /**
+  /**
    * A policy value which determines whether a duplication policy is enforced or bypassed. A duplication check has a window of time set against your account within which it can action. If a previous transaction with matching values occurred within the window, any subsequent transaction will result in a T001 result.  Values are   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.   &#x60;2&#x60; to bypass. Transactions that are bypassed will not be checked for duplication within the duplication window.   &#x60;3&#x60; to ignore. Transactions that are ignored will have the same affect as bypass. 
    * @return duplicatePolicy
-  **/
+   */
   @javax.annotation.Nullable
   public String getDuplicatePolicy() {
     return duplicatePolicy;
@@ -245,10 +244,10 @@ public class PaymentIntent {
     return this;
   }
 
-   /**
+  /**
    * The identifier of the transaction to process. The value should be a valid reference and may be used to perform  post processing actions and to aid in reconciliation of transactions.  The value should be a valid printable string with ASCII character ranges from 0x32 to 0x127.  The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier) this will aid in ensuring each transaction is identifiable.  When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent request will ensure that a transaction is considered as different. 
    * @return identifier
-  **/
+   */
   @javax.annotation.Nonnull
   public String getIdentifier() {
     return identifier;
@@ -264,10 +263,10 @@ public class PaymentIntent {
     return this;
   }
 
-   /**
+  /**
    * A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.  Values are:   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the address did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation. 
    * @return matchAvsa
-  **/
+   */
   @javax.annotation.Nullable
   public String getMatchAvsa() {
     return matchAvsa;
@@ -283,10 +282,10 @@ public class PaymentIntent {
     return this;
   }
 
-   /**
+  /**
    * Get shipTo
    * @return shipTo
-  **/
+   */
   @javax.annotation.Nullable
   public ContactDetails getShipTo() {
     return shipTo;
@@ -310,10 +309,10 @@ public class PaymentIntent {
     return this;
   }
 
-   /**
+  /**
    * Get tag
    * @return tag
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getTag() {
     return tag;
@@ -329,10 +328,10 @@ public class PaymentIntent {
     return this;
   }
 
-   /**
+  /**
    * Further information that can be added to the transaction will display in reporting. Can be used for flexible values such as operator id.
    * @return transInfo
-  **/
+   */
   @javax.annotation.Nullable
   public String getTransInfo() {
     return transInfo;
@@ -348,10 +347,10 @@ public class PaymentIntent {
     return this;
   }
 
-   /**
+  /**
    * The type of transaction being submitted. Normally this value is not required and your account manager may request that you set this field.
    * @return transType
-  **/
+   */
   @javax.annotation.Nullable
   public String getTransType() {
     return transType;
@@ -451,12 +450,12 @@ public class PaymentIntent {
     openapiRequiredFields.add("identifier");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaymentIntent
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaymentIntent
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaymentIntent.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -549,22 +548,22 @@ public class PaymentIntent {
     }
   }
 
- /**
-  * Create an instance of PaymentIntent given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaymentIntent
-  * @throws IOException if the JSON string is invalid with respect to PaymentIntent
-  */
+  /**
+   * Create an instance of PaymentIntent given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaymentIntent
+   * @throws IOException if the JSON string is invalid with respect to PaymentIntent
+   */
   public static PaymentIntent fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaymentIntent.class);
   }
 
- /**
-  * Convert an instance of PaymentIntent to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaymentIntent to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

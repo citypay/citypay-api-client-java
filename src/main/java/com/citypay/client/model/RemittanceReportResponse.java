@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -76,10 +75,10 @@ public class RemittanceReportResponse {
     return this;
   }
 
-   /**
+  /**
    * The count of items returned in this page.
    * @return count
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getCount() {
     return count;
@@ -103,10 +102,10 @@ public class RemittanceReportResponse {
     return this;
   }
 
-   /**
+  /**
    * Get data
    * @return data
-  **/
+   */
   @javax.annotation.Nonnull
   public List<RemittedClientData> getData() {
     return data;
@@ -122,10 +121,10 @@ public class RemittanceReportResponse {
     return this;
   }
 
-   /**
+  /**
    * The max results requested in this page.
    * @return maxResults
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMaxResults() {
     return maxResults;
@@ -141,10 +140,10 @@ public class RemittanceReportResponse {
     return this;
   }
 
-   /**
+  /**
    * A token that identifies the starting point of the page of results to be returned. An empty value indicates the start of the dataset. When supplied, it is validated and used to fetch the subsequent page of results. This token is typically obtained from the response of a previous pagination request.
    * @return nextToken
-  **/
+   */
   @javax.annotation.Nullable
   public String getNextToken() {
     return nextToken;
@@ -216,12 +215,12 @@ public class RemittanceReportResponse {
     openapiRequiredFields.add("data");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to RemittanceReportResponse
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RemittanceReportResponse
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RemittanceReportResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -288,22 +287,22 @@ public class RemittanceReportResponse {
     }
   }
 
- /**
-  * Create an instance of RemittanceReportResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RemittanceReportResponse
-  * @throws IOException if the JSON string is invalid with respect to RemittanceReportResponse
-  */
+  /**
+   * Create an instance of RemittanceReportResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RemittanceReportResponse
+   * @throws IOException if the JSON string is invalid with respect to RemittanceReportResponse
+   */
   public static RemittanceReportResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RemittanceReportResponse.class);
   }
 
- /**
-  * Convert an instance of RemittanceReportResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RemittanceReportResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

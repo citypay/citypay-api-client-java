@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -65,10 +64,10 @@ public class CardStatus {
     return this;
   }
 
-   /**
+  /**
    * The status of the card to set, valid values are ACTIVE or INACTIVE.
    * @return cardStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getCardStatus() {
     return cardStatus;
@@ -84,10 +83,10 @@ public class CardStatus {
     return this;
   }
 
-   /**
+  /**
    * Defines if the card is set as the default.
    * @return _default
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isDefault() {
     return _default;
@@ -152,12 +151,12 @@ public class CardStatus {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CardStatus
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CardStatus
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CardStatus.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -207,22 +206,22 @@ public class CardStatus {
     }
   }
 
- /**
-  * Create an instance of CardStatus given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CardStatus
-  * @throws IOException if the JSON string is invalid with respect to CardStatus
-  */
+  /**
+   * Create an instance of CardStatus given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CardStatus
+   * @throws IOException if the JSON string is invalid with respect to CardStatus
+   */
   public static CardStatus fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CardStatus.class);
   }
 
- /**
-  * Convert an instance of CardStatus to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CardStatus to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

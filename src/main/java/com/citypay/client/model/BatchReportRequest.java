@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -65,11 +64,11 @@ public class BatchReportRequest {
     return this;
   }
 
-   /**
+  /**
    * The batch id specified in the batch processing request.
    * minimum: 1
    * @return batchId
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getBatchId() {
     return batchId;
@@ -85,10 +84,10 @@ public class BatchReportRequest {
     return this;
   }
 
-   /**
+  /**
    * The batch account id that the batch was processed for. Defaults to your client id if not provided.
    * @return clientAccountId
-  **/
+   */
   @javax.annotation.Nullable
   public String getClientAccountId() {
     return clientAccountId;
@@ -154,12 +153,12 @@ public class BatchReportRequest {
     openapiRequiredFields.add("batch_id");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to BatchReportRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to BatchReportRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!BatchReportRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -216,22 +215,22 @@ public class BatchReportRequest {
     }
   }
 
- /**
-  * Create an instance of BatchReportRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of BatchReportRequest
-  * @throws IOException if the JSON string is invalid with respect to BatchReportRequest
-  */
+  /**
+   * Create an instance of BatchReportRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of BatchReportRequest
+   * @throws IOException if the JSON string is invalid with respect to BatchReportRequest
+   */
   public static BatchReportRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, BatchReportRequest.class);
   }
 
- /**
-  * Convert an instance of BatchReportRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of BatchReportRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

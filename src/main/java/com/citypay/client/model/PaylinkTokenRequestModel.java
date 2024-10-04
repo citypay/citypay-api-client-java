@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -112,10 +111,10 @@ public class PaylinkTokenRequestModel {
     return this;
   }
 
-   /**
+  /**
    * Specifies an alpha-numeric account number that the Paylink service uses when creating a Cardholder Account. The value should be no longer than 20 characters in length.
    * @return accountno
-  **/
+   */
   @javax.annotation.Nullable
   public String getAccountno() {
     return accountno;
@@ -131,10 +130,10 @@ public class PaylinkTokenRequestModel {
     return this;
   }
 
-   /**
+  /**
    * Specifies the intended value of the transaction in the lowest denomination with no spacing characters or decimal point. This is the net total to be processed. An example of £74.95 would be presented as 7495.
    * @return amount
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getAmount() {
     return amount;
@@ -150,10 +149,10 @@ public class PaylinkTokenRequestModel {
     return this;
   }
 
-   /**
+  /**
    * Get cardholder
    * @return cardholder
-  **/
+   */
   @javax.annotation.Nullable
   public PaylinkCardHolder getCardholder() {
     return cardholder;
@@ -169,10 +168,10 @@ public class PaylinkTokenRequestModel {
     return this;
   }
 
-   /**
+  /**
    * Get cart
    * @return cart
-  **/
+   */
   @javax.annotation.Nullable
   public PaylinkCart getCart() {
     return cart;
@@ -188,10 +187,10 @@ public class PaylinkTokenRequestModel {
     return this;
   }
 
-   /**
+  /**
    * The clientVersion field is used to specify the version of your application that has invoked the Paylink payment process. This feature is typically used for tracing issues relating to application deployments, or any Paylink integration module or plugin.
    * @return clientVersion
-  **/
+   */
   @javax.annotation.Nullable
   public String getClientVersion() {
     return clientVersion;
@@ -207,10 +206,10 @@ public class PaylinkTokenRequestModel {
     return this;
   }
 
-   /**
+  /**
    * Get config
    * @return config
-  **/
+   */
   @javax.annotation.Nullable
   public PaylinkConfig getConfig() {
     return config;
@@ -226,10 +225,10 @@ public class PaylinkTokenRequestModel {
     return this;
   }
 
-   /**
+  /**
    * A currency for the token. This value should be only used on multi-currency accounts and be an appropriate currency which the account is configured for.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
@@ -245,10 +244,10 @@ public class PaylinkTokenRequestModel {
     return this;
   }
 
-   /**
+  /**
    * The email field is used for the Merchant to be notified on completion of the transaction . The value may be supplied to override the default stored value. Emails sent to this address by the Paylink service should not be forwarded on to the cardholder as it may contain certain information that is used by the Paylink service to validate and authenticate Paylink Token Requests: for example, the Merchant ID and the licence key. 
    * @return email
-  **/
+   */
   @javax.annotation.Nullable
   public String getEmail() {
     return email;
@@ -264,10 +263,10 @@ public class PaylinkTokenRequestModel {
     return this;
   }
 
-   /**
+  /**
    * Identifies a particular transaction linked to a Merchant account. It enables accurate duplicate checking within a pre-configured time period, as well as transaction reporting and tracing. The identifier should be unique to prevent payment card processing attempts from being rejected due to duplication. 
    * @return identifier
-  **/
+   */
   @javax.annotation.Nonnull
   public String getIdentifier() {
     return identifier;
@@ -283,10 +282,10 @@ public class PaylinkTokenRequestModel {
     return this;
   }
 
-   /**
+  /**
    * The merchant id you wish to process this transaction with.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getMerchantid() {
     return merchantid;
@@ -302,10 +301,10 @@ public class PaylinkTokenRequestModel {
     return this;
   }
 
-   /**
+  /**
    * True if the intent of this cardholder initiated transaction is to establish a recurring payment model, processable as merchant initiated transactions.
    * @return recurring
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isRecurring() {
     return recurring;
@@ -321,10 +320,10 @@ public class PaylinkTokenRequestModel {
     return this;
   }
 
-   /**
+  /**
    * an id associated with a subscription to link the token request against.
    * @return subscriptionId
-  **/
+   */
   @javax.annotation.Nullable
   public String getSubscriptionId() {
     return subscriptionId;
@@ -340,10 +339,10 @@ public class PaylinkTokenRequestModel {
     return this;
   }
 
-   /**
+  /**
    * A value to override the transaction type if requested by your account manager.
    * @return txType
-  **/
+   */
   @javax.annotation.Nullable
   public String getTxType() {
     return txType;
@@ -444,12 +443,12 @@ public class PaylinkTokenRequestModel {
     openapiRequiredFields.add("merchantid");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkTokenRequestModel
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkTokenRequestModel
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkTokenRequestModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -536,22 +535,22 @@ public class PaylinkTokenRequestModel {
     }
   }
 
- /**
-  * Create an instance of PaylinkTokenRequestModel given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkTokenRequestModel
-  * @throws IOException if the JSON string is invalid with respect to PaylinkTokenRequestModel
-  */
+  /**
+   * Create an instance of PaylinkTokenRequestModel given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkTokenRequestModel
+   * @throws IOException if the JSON string is invalid with respect to PaylinkTokenRequestModel
+   */
   public static PaylinkTokenRequestModel fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkTokenRequestModel.class);
   }
 
- /**
-  * Convert an instance of PaylinkTokenRequestModel to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkTokenRequestModel to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

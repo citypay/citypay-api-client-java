@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -80,10 +79,10 @@ public class DomainKeyResponse {
     return this;
   }
 
-   /**
+  /**
    * The date the domain key was generated. 
    * @return dateCreated
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDateCreated() {
     return dateCreated;
@@ -107,10 +106,10 @@ public class DomainKeyResponse {
     return this;
   }
 
-   /**
+  /**
    * Get domain
    * @return domain
-  **/
+   */
   @javax.annotation.Nonnull
   public List<String> getDomain() {
     return domain;
@@ -126,10 +125,10 @@ public class DomainKeyResponse {
     return this;
   }
 
-   /**
+  /**
    * The domain key generated. 
    * @return domainKey
-  **/
+   */
   @javax.annotation.Nullable
   public String getDomainKey() {
     return domainKey;
@@ -145,10 +144,10 @@ public class DomainKeyResponse {
     return this;
   }
 
-   /**
+  /**
    * true if this key is a production key. 
    * @return live
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isLive() {
     return live;
@@ -164,10 +163,10 @@ public class DomainKeyResponse {
     return this;
   }
 
-   /**
+  /**
    * The merchant id the domain key is to be used for. 
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getMerchantid() {
     return merchantid;
@@ -243,12 +242,12 @@ public class DomainKeyResponse {
     openapiRequiredFields.add("merchantid");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to DomainKeyResponse
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to DomainKeyResponse
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!DomainKeyResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -311,22 +310,22 @@ public class DomainKeyResponse {
     }
   }
 
- /**
-  * Create an instance of DomainKeyResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of DomainKeyResponse
-  * @throws IOException if the JSON string is invalid with respect to DomainKeyResponse
-  */
+  /**
+   * Create an instance of DomainKeyResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of DomainKeyResponse
+   * @throws IOException if the JSON string is invalid with respect to DomainKeyResponse
+   */
   public static DomainKeyResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DomainKeyResponse.class);
   }
 
- /**
-  * Convert an instance of DomainKeyResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of DomainKeyResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -3,7 +3,8 @@
 [![Build Status](https://github.com/citypay/citypay-api-client-java/actions/workflows/maven.yml/badge.svg)](https://github.com/citypay/citypay-api-client-java/actions/workflows/maven.yml)
 CityPay Payment API
 - API version: 6.6.40
-  - Build date: 2024-04-22T13:59:31.520907161Z[Etc/UTC]
+  - Build date: 2024-10-04T09:55:41.112479373Z[Etc/UTC]
+  - Generator version: 7.8.0
 
 
 Welcome to the CityPay API, a robust HTTP API payment solution designed for seamless server-to-server 
@@ -73,7 +74,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.citypay</groupId>
   <artifactId>citypay-api-client-java</artifactId>
-  <version>1.1.5</version>
+  <version></version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -87,7 +88,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/citypay-api-client-java-1.1.5.jar`
+* `target/citypay-api-client-java-.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -101,7 +102,7 @@ import com.citypay.client.ApiClient;
 import com.citypay.client.ApiException;
 import com.citypay.client.Configuration;
 import com.citypay.client.auth.*;
-import com.citypay.client.model.*;
+import com.citypay.client.models.*;
 import com.citypay.client.api.AuthorisationAndPaymentApi;
 
 public class Example {

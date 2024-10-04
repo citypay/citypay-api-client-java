@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -62,7 +61,7 @@ public class ListMerchantsResponse {
 
   public static final String SERIALIZED_NAME_MERCHANTS = "merchants";
   @SerializedName(SERIALIZED_NAME_MERCHANTS)
-  private List<Merchant> merchants;
+  private List<Merchant> merchants = new ArrayList<>();
 
   public ListMerchantsResponse() {
   }
@@ -72,10 +71,10 @@ public class ListMerchantsResponse {
     return this;
   }
 
-   /**
+  /**
    * The client name that was requested.
    * @return clientName
-  **/
+   */
   @javax.annotation.Nullable
   public String getClientName() {
     return clientName;
@@ -91,10 +90,10 @@ public class ListMerchantsResponse {
     return this;
   }
 
-   /**
+  /**
    * The client id requested.
    * @return clientid
-  **/
+   */
   @javax.annotation.Nullable
   public String getClientid() {
     return clientid;
@@ -118,10 +117,10 @@ public class ListMerchantsResponse {
     return this;
   }
 
-   /**
+  /**
    * Get merchants
    * @return merchants
-  **/
+   */
   @javax.annotation.Nullable
   public List<Merchant> getMerchants() {
     return merchants;
@@ -189,12 +188,12 @@ public class ListMerchantsResponse {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to ListMerchantsResponse
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ListMerchantsResponse
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!ListMerchantsResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -261,22 +260,22 @@ public class ListMerchantsResponse {
     }
   }
 
- /**
-  * Create an instance of ListMerchantsResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ListMerchantsResponse
-  * @throws IOException if the JSON string is invalid with respect to ListMerchantsResponse
-  */
+  /**
+   * Create an instance of ListMerchantsResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ListMerchantsResponse
+   * @throws IOException if the JSON string is invalid with respect to ListMerchantsResponse
+   */
   public static ListMerchantsResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ListMerchantsResponse.class);
   }
 
- /**
-  * Convert an instance of ListMerchantsResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ListMerchantsResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

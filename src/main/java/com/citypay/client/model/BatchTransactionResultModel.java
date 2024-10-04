@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -114,10 +113,10 @@ public class BatchTransactionResultModel {
     return this;
   }
 
-   /**
+  /**
    * The card holder account id used for the transaction.
    * @return accountId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getAccountId() {
     return accountId;
@@ -133,10 +132,10 @@ public class BatchTransactionResultModel {
     return this;
   }
 
-   /**
+  /**
    * The amount of the transaction processed.
    * @return amount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getAmount() {
     return amount;
@@ -152,10 +151,10 @@ public class BatchTransactionResultModel {
     return this;
   }
 
-   /**
+  /**
    * The authorisation code of a successful transaction.
    * @return authcode
-  **/
+   */
   @javax.annotation.Nullable
   public String getAuthcode() {
     return authcode;
@@ -171,10 +170,10 @@ public class BatchTransactionResultModel {
     return this;
   }
 
-   /**
+  /**
    * The datetime that the transaction was processed.
    * @return datetime
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDatetime() {
     return datetime;
@@ -190,10 +189,10 @@ public class BatchTransactionResultModel {
     return this;
   }
 
-   /**
+  /**
    * The identifier of the transaction.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nonnull
   public String getIdentifier() {
     return identifier;
@@ -209,10 +208,10 @@ public class BatchTransactionResultModel {
     return this;
   }
 
-   /**
+  /**
    * A masked value of the card number used for processing displaying limited values that can be used on a receipt. 
    * @return maskedpan
-  **/
+   */
   @javax.annotation.Nullable
   public String getMaskedpan() {
     return maskedpan;
@@ -228,10 +227,10 @@ public class BatchTransactionResultModel {
     return this;
   }
 
-   /**
+  /**
    * The merchant id of the transaction.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getMerchantid() {
     return merchantid;
@@ -247,10 +246,10 @@ public class BatchTransactionResultModel {
     return this;
   }
 
-   /**
+  /**
    * A response message pertaining to the transaction.
    * @return message
-  **/
+   */
   @javax.annotation.Nonnull
   public String getMessage() {
     return message;
@@ -266,10 +265,10 @@ public class BatchTransactionResultModel {
     return this;
   }
 
-   /**
+  /**
    * An integer result that indicates the outcome of the transaction. The Code value below maps to the result value  &lt;table&gt; &lt;tr&gt; &lt;th&gt;Code&lt;/th&gt; &lt;th&gt;Abbrev&lt;/th&gt; &lt;th&gt;Description&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;Declined&lt;/td&gt;&lt;td&gt;Declined&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;Accepted&lt;/td&gt;&lt;td&gt;Accepted&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;Rejected&lt;/td&gt;&lt;td&gt;Rejected&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;Not Attempted&lt;/td&gt;&lt;td&gt;Not Attempted&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;Referred&lt;/td&gt;&lt;td&gt;Referred&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;PinRetry&lt;/td&gt;&lt;td&gt;Perform PIN Retry&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;ForSigVer&lt;/td&gt;&lt;td&gt;Force Signature Verification&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;Hold&lt;/td&gt;&lt;td&gt;Hold&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;SecErr&lt;/td&gt;&lt;td&gt;Security Error&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;CallAcq&lt;/td&gt;&lt;td&gt;Call Acquirer&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;DNH&lt;/td&gt;&lt;td&gt;Do Not Honour&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;11&lt;/td&gt;&lt;td&gt;RtnCrd&lt;/td&gt;&lt;td&gt;Retain Card&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;12&lt;/td&gt;&lt;td&gt;ExprdCrd&lt;/td&gt;&lt;td&gt;Expired Card&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;13&lt;/td&gt;&lt;td&gt;InvldCrd&lt;/td&gt;&lt;td&gt;Invalid Card No&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;14&lt;/td&gt;&lt;td&gt;PinExcd&lt;/td&gt;&lt;td&gt;Pin Tries Exceeded&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;15&lt;/td&gt;&lt;td&gt;PinInvld&lt;/td&gt;&lt;td&gt;Pin Invalid&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;16&lt;/td&gt;&lt;td&gt;AuthReq&lt;/td&gt;&lt;td&gt;Authentication Required&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;17&lt;/td&gt;&lt;td&gt;AuthenFail&lt;/td&gt;&lt;td&gt;Authentication Failed&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;18&lt;/td&gt;&lt;td&gt;Verified&lt;/td&gt;&lt;td&gt;Card Verified&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;19&lt;/td&gt;&lt;td&gt;Cancelled&lt;/td&gt;&lt;td&gt;Cancelled&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;20&lt;/td&gt;&lt;td&gt;Un&lt;/td&gt;&lt;td&gt;Unknown&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;21&lt;/td&gt;&lt;td&gt;Challenged&lt;/td&gt;&lt;td&gt;Challenged&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;22&lt;/td&gt;&lt;td&gt;Decoupled&lt;/td&gt;&lt;td&gt;Decoupled&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;23&lt;/td&gt;&lt;td&gt;Denied&lt;/td&gt;&lt;td&gt;Permission Denied&lt;/td&gt;&lt;/tr&gt; &lt;/table&gt; 
    * @return result
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getResult() {
     return result;
@@ -285,10 +284,10 @@ public class BatchTransactionResultModel {
     return this;
   }
 
-   /**
+  /**
    * A result code of the transaction identifying the result of the transaction for success, rejection or decline.
    * @return resultCode
-  **/
+   */
   @javax.annotation.Nonnull
   public String getResultCode() {
     return resultCode;
@@ -304,10 +303,10 @@ public class BatchTransactionResultModel {
     return this;
   }
 
-   /**
+  /**
    * The name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard. 
    * @return scheme
-  **/
+   */
   @javax.annotation.Nullable
   public String getScheme() {
     return scheme;
@@ -323,10 +322,10 @@ public class BatchTransactionResultModel {
     return this;
   }
 
-   /**
+  /**
    * The name of the card scheme of the transaction such as VI or MC. 
    * @return schemeId
-  **/
+   */
   @javax.annotation.Nullable
   public String getSchemeId() {
     return schemeId;
@@ -342,10 +341,10 @@ public class BatchTransactionResultModel {
     return this;
   }
 
-   /**
+  /**
    * A url containing a logo of the card scheme. 
    * @return schemeLogo
-  **/
+   */
   @javax.annotation.Nullable
   public String getSchemeLogo() {
     return schemeLogo;
@@ -361,10 +360,10 @@ public class BatchTransactionResultModel {
     return this;
   }
 
-   /**
+  /**
    * The resulting transaction number, ordered incrementally from 1 for every merchant_id. The value will default to less than 1 for transactions that do not have a transaction number issued. 
    * @return transno
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTransno() {
     return transno;
@@ -471,12 +470,12 @@ public class BatchTransactionResultModel {
     openapiRequiredFields.add("result_code");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to BatchTransactionResultModel
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to BatchTransactionResultModel
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!BatchTransactionResultModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -557,22 +556,22 @@ public class BatchTransactionResultModel {
     }
   }
 
- /**
-  * Create an instance of BatchTransactionResultModel given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of BatchTransactionResultModel
-  * @throws IOException if the JSON string is invalid with respect to BatchTransactionResultModel
-  */
+  /**
+   * Create an instance of BatchTransactionResultModel given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of BatchTransactionResultModel
+   * @throws IOException if the JSON string is invalid with respect to BatchTransactionResultModel
+   */
   public static BatchTransactionResultModel fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, BatchTransactionResultModel.class);
   }
 
- /**
-  * Convert an instance of BatchTransactionResultModel to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of BatchTransactionResultModel to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

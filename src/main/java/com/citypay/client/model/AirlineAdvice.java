@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -123,10 +122,10 @@ public class AirlineAdvice {
     return this;
   }
 
-   /**
+  /**
    * The name of the airline carrier that generated the tickets for airline travel.
    * @return carrierName
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCarrierName() {
     return carrierName;
@@ -142,10 +141,10 @@ public class AirlineAdvice {
     return this;
   }
 
-   /**
+  /**
    * true if a conjunction ticket (with additional coupons) was issued for an itinerary with more than four segments. Defaults to false. 
    * @return conjunctionTicketIndicator
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isConjunctionTicketIndicator() {
     return conjunctionTicketIndicator;
@@ -161,10 +160,10 @@ public class AirlineAdvice {
     return this;
   }
 
-   /**
+  /**
    * The Electronic Ticket Indicator, a code that indicates if an electronic ticket was issued.  Defaults to true.
    * @return eticketIndicator
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isEticketIndicator() {
     return eticketIndicator;
@@ -180,12 +179,12 @@ public class AirlineAdvice {
     return this;
   }
 
-   /**
+  /**
    * A value that indicates the number of air travel segments included on this ticket.  Valid entries include the numerals “0” through “4”. Required only if the transaction type is TKT or EXC. 
    * minimum: 0
    * maximum: 4
    * @return noAirSegments
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getNoAirSegments() {
     return noAirSegments;
@@ -201,10 +200,10 @@ public class AirlineAdvice {
     return this;
   }
 
-   /**
+  /**
    * The number of people in the party.
    * @return numberInParty
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getNumberInParty() {
     return numberInParty;
@@ -220,10 +219,10 @@ public class AirlineAdvice {
     return this;
   }
 
-   /**
+  /**
    * Required if transaction type is EXC.
    * @return originalTicketNo
-  **/
+   */
   @javax.annotation.Nullable
   public String getOriginalTicketNo() {
     return originalTicketNo;
@@ -239,10 +238,10 @@ public class AirlineAdvice {
     return this;
   }
 
-   /**
+  /**
    * The name of the passenger when the traveller is not the card member that purchased the ticket. Required only if the transaction type is TKT or EXC.
    * @return passengerName
-  **/
+   */
   @javax.annotation.Nullable
   public String getPassengerName() {
     return passengerName;
@@ -258,10 +257,10 @@ public class AirlineAdvice {
     return this;
   }
 
-   /**
+  /**
    * Get segment1
    * @return segment1
-  **/
+   */
   @javax.annotation.Nonnull
   public AirlineSegment getSegment1() {
     return segment1;
@@ -277,10 +276,10 @@ public class AirlineAdvice {
     return this;
   }
 
-   /**
+  /**
    * Get segment2
    * @return segment2
-  **/
+   */
   @javax.annotation.Nullable
   public AirlineSegment getSegment2() {
     return segment2;
@@ -296,10 +295,10 @@ public class AirlineAdvice {
     return this;
   }
 
-   /**
+  /**
    * Get segment3
    * @return segment3
-  **/
+   */
   @javax.annotation.Nullable
   public AirlineSegment getSegment3() {
     return segment3;
@@ -315,10 +314,10 @@ public class AirlineAdvice {
     return this;
   }
 
-   /**
+  /**
    * Get segment4
    * @return segment4
-  **/
+   */
   @javax.annotation.Nullable
   public AirlineSegment getSegment4() {
     return segment4;
@@ -334,10 +333,10 @@ public class AirlineAdvice {
     return this;
   }
 
-   /**
+  /**
    * The name of the city town or village where the transaction took place.
    * @return ticketIssueCity
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTicketIssueCity() {
     return ticketIssueCity;
@@ -353,10 +352,10 @@ public class AirlineAdvice {
     return this;
   }
 
-   /**
+  /**
    * The date the ticket was issued in ISO Date format (yyyy-MM-dd).
    * @return ticketIssueDate
-  **/
+   */
   @javax.annotation.Nonnull
   public LocalDate getTicketIssueDate() {
     return ticketIssueDate;
@@ -372,10 +371,10 @@ public class AirlineAdvice {
     return this;
   }
 
-   /**
+  /**
    * The name of the agency generating the ticket.
    * @return ticketIssueName
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTicketIssueName() {
     return ticketIssueName;
@@ -391,10 +390,10 @@ public class AirlineAdvice {
     return this;
   }
 
-   /**
+  /**
    * This must be a valid ticket number, i.e. numeric (the first 3 digits must represent the valid IATA plate carrier code). The final check digit should be validated prior to submission. On credit charges, this field should contain the number of the original ticket, and not of a replacement. 
    * @return ticketNo
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTicketNo() {
     return ticketNo;
@@ -410,10 +409,10 @@ public class AirlineAdvice {
     return this;
   }
 
-   /**
+  /**
    * This field contains the Transaction Type code assigned to this transaction. Valid codes include:   - &#x60;TKT&#x60; &#x3D; Ticket Purchase   - &#x60;REF&#x60; &#x3D; Refund   - &#x60;EXC&#x60; &#x3D; Exchange Ticket   - &#x60;MSC&#x60; &#x3D; Miscellaneous (non-Ticket Purchase- and non-Exchange Ticket-related transactions only). 
    * @return transactionType
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTransactionType() {
     return transactionType;
@@ -527,12 +526,12 @@ public class AirlineAdvice {
     openapiRequiredFields.add("transaction_type");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to AirlineAdvice
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AirlineAdvice
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!AirlineAdvice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -621,22 +620,22 @@ public class AirlineAdvice {
     }
   }
 
- /**
-  * Create an instance of AirlineAdvice given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of AirlineAdvice
-  * @throws IOException if the JSON string is invalid with respect to AirlineAdvice
-  */
+  /**
+   * Create an instance of AirlineAdvice given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AirlineAdvice
+   * @throws IOException if the JSON string is invalid with respect to AirlineAdvice
+   */
   public static AirlineAdvice fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AirlineAdvice.class);
   }
 
- /**
-  * Convert an instance of AirlineAdvice to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of AirlineAdvice to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

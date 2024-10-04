@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -61,10 +60,10 @@ public class PaymentIntentReference {
     return this;
   }
 
-   /**
+  /**
    * The intent id used for future referencing of the intent.
    * @return paymentIntentId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getPaymentIntentId() {
     return paymentIntentId;
@@ -127,12 +126,12 @@ public class PaymentIntentReference {
     openapiRequiredFields.add("payment_intent_id");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaymentIntentReference
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaymentIntentReference
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaymentIntentReference.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -189,22 +188,22 @@ public class PaymentIntentReference {
     }
   }
 
- /**
-  * Create an instance of PaymentIntentReference given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaymentIntentReference
-  * @throws IOException if the JSON string is invalid with respect to PaymentIntentReference
-  */
+  /**
+   * Create an instance of PaymentIntentReference given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaymentIntentReference
+   * @throws IOException if the JSON string is invalid with respect to PaymentIntentReference
+   */
   public static PaymentIntentReference fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaymentIntentReference.class);
   }
 
- /**
-  * Convert an instance of PaymentIntentReference to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaymentIntentReference to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -97,10 +96,10 @@ public class TokenisationResponseModel {
     return this;
   }
 
-   /**
+  /**
    * The result of any authentication using 3d_secure authorisation against ecommerce transactions. Values are:  &lt;table&gt; &lt;tr&gt; &lt;th&gt;Value&lt;/th&gt; &lt;th&gt;Description&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Y&lt;/td&gt; &lt;td&gt;Authentication Successful. The Cardholder&#39;s password was successfully validated.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;N&lt;/td&gt; &lt;td&gt;Authentication Failed. Customer failed or cancelled authentication, transaction denied.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;A&lt;/td&gt; &lt;td&gt;Attempts Processing Performed Authentication could not be completed but a proof of authentication attempt (CAVV) was generated.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;U&lt;/td&gt; &lt;td&gt;Authentication Could Not Be Performed Authentication could not be completed, due to technical or other problem.&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; 
    * @return authenResult
-  **/
+   */
   @javax.annotation.Nullable
   public String getAuthenResult() {
     return authenResult;
@@ -116,10 +115,10 @@ public class TokenisationResponseModel {
     return this;
   }
 
-   /**
+  /**
    * Determines whether the bin range was found to be a commercial or business card.
    * @return binCommercial
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinCommercial() {
     return binCommercial;
@@ -135,10 +134,10 @@ public class TokenisationResponseModel {
     return this;
   }
 
-   /**
+  /**
    * Determines whether the bin range was found to be a debit card. If false the card was considered as a credit card.
    * @return binDebit
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinDebit() {
     return binDebit;
@@ -154,10 +153,10 @@ public class TokenisationResponseModel {
     return this;
   }
 
-   /**
+  /**
    * A description of the bin range found for the card.
    * @return binDescription
-  **/
+   */
   @javax.annotation.Nullable
   public String getBinDescription() {
     return binDescription;
@@ -173,10 +172,10 @@ public class TokenisationResponseModel {
     return this;
   }
 
-   /**
+  /**
    * An Electronic Commerce Indicator (ECI) used to identify the result of authentication using 3DSecure. 
    * @return eci
-  **/
+   */
   @javax.annotation.Nullable
   public String getEci() {
     return eci;
@@ -192,10 +191,10 @@ public class TokenisationResponseModel {
     return this;
   }
 
-   /**
+  /**
    * The identifier provided within the request.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nullable
   public String getIdentifier() {
     return identifier;
@@ -211,10 +210,10 @@ public class TokenisationResponseModel {
     return this;
   }
 
-   /**
+  /**
    * A masked value of the card number used for processing displaying limited values that can be used on a receipt. 
    * @return maskedpan
-  **/
+   */
   @javax.annotation.Nullable
   public String getMaskedpan() {
     return maskedpan;
@@ -230,10 +229,10 @@ public class TokenisationResponseModel {
     return this;
   }
 
-   /**
+  /**
    * The name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard. 
    * @return scheme
-  **/
+   */
   @javax.annotation.Nullable
   public String getScheme() {
     return scheme;
@@ -249,10 +248,10 @@ public class TokenisationResponseModel {
     return this;
   }
 
-   /**
+  /**
    * A Base58 encoded SHA-256 digest generated from the token value Base58 decoded and appended with the nonce value UTF-8 decoded.
    * @return sigId
-  **/
+   */
   @javax.annotation.Nullable
   public String getSigId() {
     return sigId;
@@ -268,10 +267,10 @@ public class TokenisationResponseModel {
     return this;
   }
 
-   /**
+  /**
    * The token used for presentment to authorisation later in the processing flow.
    * @return token
-  **/
+   */
   @javax.annotation.Nullable
   public String getToken() {
     return token;
@@ -360,12 +359,12 @@ public class TokenisationResponseModel {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to TokenisationResponseModel
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to TokenisationResponseModel
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!TokenisationResponseModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -436,22 +435,22 @@ public class TokenisationResponseModel {
     }
   }
 
- /**
-  * Create an instance of TokenisationResponseModel given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of TokenisationResponseModel
-  * @throws IOException if the JSON string is invalid with respect to TokenisationResponseModel
-  */
+  /**
+   * Create an instance of TokenisationResponseModel given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of TokenisationResponseModel
+   * @throws IOException if the JSON string is invalid with respect to TokenisationResponseModel
+   */
   public static TokenisationResponseModel fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, TokenisationResponseModel.class);
   }
 
- /**
-  * Convert an instance of TokenisationResponseModel to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of TokenisationResponseModel to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

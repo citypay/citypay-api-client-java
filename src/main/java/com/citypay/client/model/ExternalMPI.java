@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -77,10 +76,10 @@ public class ExternalMPI {
     return this;
   }
 
-   /**
+  /**
    * The authentication result available from the MPI.
    * @return authenResult
-  **/
+   */
   @javax.annotation.Nullable
   public String getAuthenResult() {
     return authenResult;
@@ -96,10 +95,10 @@ public class ExternalMPI {
     return this;
   }
 
-   /**
+  /**
    * A value determining the cardholder verification value supplied by the card scheme.
    * @return cavv
-  **/
+   */
   @javax.annotation.Nullable
   public String getCavv() {
     return cavv;
@@ -115,10 +114,10 @@ public class ExternalMPI {
     return this;
   }
 
-   /**
+  /**
    * The obtained e-commerce indicator from the MPI.
    * @return eci
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getEci() {
     return eci;
@@ -134,10 +133,10 @@ public class ExternalMPI {
     return this;
   }
 
-   /**
+  /**
    * A value determining whether the card holder was enrolled.
    * @return enrolled
-  **/
+   */
   @javax.annotation.Nullable
   public String getEnrolled() {
     return enrolled;
@@ -153,10 +152,10 @@ public class ExternalMPI {
     return this;
   }
 
-   /**
+  /**
    * The XID used for processing with the MPI.
    * @return xid
-  **/
+   */
   @javax.annotation.Nullable
   public String getXid() {
     return xid;
@@ -230,12 +229,12 @@ public class ExternalMPI {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to ExternalMPI
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ExternalMPI
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!ExternalMPI.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -294,22 +293,22 @@ public class ExternalMPI {
     }
   }
 
- /**
-  * Create an instance of ExternalMPI given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ExternalMPI
-  * @throws IOException if the JSON string is invalid with respect to ExternalMPI
-  */
+  /**
+   * Create an instance of ExternalMPI given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ExternalMPI
+   * @throws IOException if the JSON string is invalid with respect to ExternalMPI
+   */
   public static ExternalMPI fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ExternalMPI.class);
   }
 
- /**
-  * Convert an instance of ExternalMPI to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ExternalMPI to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

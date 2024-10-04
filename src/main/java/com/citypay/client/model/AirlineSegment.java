@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -90,10 +89,10 @@ public class AirlineSegment {
     return this;
   }
 
-   /**
+  /**
    * A standard airline routing code (airport code or location identifier) applicable to the arrival portion of this segment. 
    * @return arrivalLocationCode
-  **/
+   */
   @javax.annotation.Nonnull
   public String getArrivalLocationCode() {
     return arrivalLocationCode;
@@ -109,10 +108,10 @@ public class AirlineSegment {
     return this;
   }
 
-   /**
+  /**
    * This field contains the two character airline designator code (air carrier code or airline code) that corresponds to the airline carrier applicable for up to four flight segments of this trip itinerary. 
    * @return carrierCode
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCarrierCode() {
     return carrierCode;
@@ -128,10 +127,10 @@ public class AirlineSegment {
     return this;
   }
 
-   /**
+  /**
    * This field contains a code that corresponds to the fare class (A, B, C, D, Premium, Discounted, etc.) within the overall class of service (e.g., First Class, Business, Economy) applicable to this travel segment, as specified in the IATA Standard Code allocation table. 
    * @return classServiceCode
-  **/
+   */
   @javax.annotation.Nonnull
   public String getClassServiceCode() {
     return classServiceCode;
@@ -147,10 +146,10 @@ public class AirlineSegment {
     return this;
   }
 
-   /**
+  /**
    * The Departure Date for the travel segment in ISO Date Format (yyyy-MM-dd).
    * @return departureDate
-  **/
+   */
   @javax.annotation.Nonnull
   public LocalDate getDepartureDate() {
     return departureDate;
@@ -166,10 +165,10 @@ public class AirlineSegment {
     return this;
   }
 
-   /**
+  /**
    * A standard airline routing code (airport code or location identifier) applicable to the departure portion of this segment. 
    * @return departureLocationCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getDepartureLocationCode() {
     return departureLocationCode;
@@ -185,10 +184,10 @@ public class AirlineSegment {
     return this;
   }
 
-   /**
+  /**
    * This field contains the carrier-assigned Flight Number for this travel segment.
    * @return flightNumber
-  **/
+   */
   @javax.annotation.Nonnull
   public String getFlightNumber() {
     return flightNumber;
@@ -204,10 +203,10 @@ public class AirlineSegment {
     return this;
   }
 
-   /**
+  /**
    * This field contains the total Fare for this travel segment.
    * @return segmentFare
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getSegmentFare() {
     return segmentFare;
@@ -223,10 +222,10 @@ public class AirlineSegment {
     return this;
   }
 
-   /**
+  /**
    * O &#x3D; Stopover allowed, X &#x3D; Stopover not allowed.
    * @return stopOverIndicator
-  **/
+   */
   @javax.annotation.Nullable
   public String getStopOverIndicator() {
     return stopOverIndicator;
@@ -314,12 +313,12 @@ public class AirlineSegment {
     openapiRequiredFields.add("flight_number");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to AirlineSegment
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AirlineSegment
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!AirlineSegment.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -391,22 +390,22 @@ public class AirlineSegment {
     }
   }
 
- /**
-  * Create an instance of AirlineSegment given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of AirlineSegment
-  * @throws IOException if the JSON string is invalid with respect to AirlineSegment
-  */
+  /**
+   * Create an instance of AirlineSegment given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AirlineSegment
+   * @throws IOException if the JSON string is invalid with respect to AirlineSegment
+   */
   public static AirlineSegment fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AirlineSegment.class);
   }
 
- /**
-  * Convert an instance of AirlineSegment to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of AirlineSegment to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -44,7 +44,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -63,7 +62,7 @@ public class PaylinkConfig {
 
   public static final String SERIALIZED_NAME_CUSTOM_PARAMS = "custom_params";
   @SerializedName(SERIALIZED_NAME_CUSTOM_PARAMS)
-  private List<PaylinkCustomParam> customParams;
+  private List<PaylinkCustomParam> customParams = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DESCRIPTOR = "descriptor";
   @SerializedName(SERIALIZED_NAME_DESCRIPTOR)
@@ -75,11 +74,11 @@ public class PaylinkConfig {
 
   public static final String SERIALIZED_NAME_FIELD_GUARD = "field_guard";
   @SerializedName(SERIALIZED_NAME_FIELD_GUARD)
-  private List<PaylinkFieldGuardModel> fieldGuard;
+  private List<PaylinkFieldGuardModel> fieldGuard = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LOCK_PARAMS = "lock_params";
   @SerializedName(SERIALIZED_NAME_LOCK_PARAMS)
-  private List<String> lockParams;
+  private List<String> lockParams = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MERCH_LOGO = "merch_logo";
   @SerializedName(SERIALIZED_NAME_MERCH_LOGO)
@@ -91,7 +90,7 @@ public class PaylinkConfig {
 
   public static final String SERIALIZED_NAME_OPTIONS = "options";
   @SerializedName(SERIALIZED_NAME_OPTIONS)
-  private List<String> options;
+  private List<String> options = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PART_PAYMENTS = "part_payments";
   @SerializedName(SERIALIZED_NAME_PART_PAYMENTS)
@@ -153,10 +152,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * Specifies the approach to be adopted by the Paylink form when displaying a 3-D Secure challenge window. The values may be  iframe: shows the 3-D Secure ACS in an iframe dialog, neatly embedding it in Paylink. This provides a more seamless flow for the cardholder who is able to validate and authenticate their card using a dialog provided by their card issuer.  inline: an inline mode transfers the full browser window to the authentication server, allowing the payment cardholder to see their payment card issuer&#39;s URL and the certificate status in the browser. If you request an iframe mode and the browser width is deemed as being small (&lt; 768px) then an inline mode will be enforced. This is to ensure that mobile users have an improved user experience. 
    * @return acsMode
-  **/
+   */
   @javax.annotation.Nullable
   public String getAcsMode() {
     return acsMode;
@@ -180,10 +179,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * Get customParams
    * @return customParams
-  **/
+   */
   @javax.annotation.Nullable
   public List<PaylinkCustomParam> getCustomParams() {
     return customParams;
@@ -199,10 +198,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * Directly specify the merchant descriptor used for the transaction to be displayed on the payment page.
    * @return descriptor
-  **/
+   */
   @javax.annotation.Nullable
   public String getDescriptor() {
     return descriptor;
@@ -218,10 +217,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * Specifies a period of time in seconds after which the token cannot be used. A value of 0 defines that the token will never expire. The API will convert an expiry time based on a string value. For instance:   s - Time in seconds, for example 90s.   m - Time in minutes, for example 20m.   h - Time in hours, for example 4h.   w - Time in weeks, for example 4w.   M - Time in months, for example 6M.   y - Time in years, for example 1y.   Defaults to 30 minutes. 
    * @return expireIn
-  **/
+   */
   @javax.annotation.Nullable
   public String getExpireIn() {
     return expireIn;
@@ -245,10 +244,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * Get fieldGuard
    * @return fieldGuard
-  **/
+   */
   @javax.annotation.Nullable
   public List<PaylinkFieldGuardModel> getFieldGuard() {
     return fieldGuard;
@@ -272,10 +271,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * Get lockParams
    * @return lockParams
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getLockParams() {
     return lockParams;
@@ -291,10 +290,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * A URL of a logo to include in the form. The URL should be delivered using HTTPS.
    * @return merchLogo
-  **/
+   */
   @javax.annotation.Nullable
   public String getMerchLogo() {
     return merchLogo;
@@ -310,10 +309,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * A URL of the merchant terms and conditions for payment. If a value is supplied, a checkbox will be required to be completed to confirm that the cardholder agrees to these conditions before payment. A modal dialogue is displayed with the content of the conditions displayed.
    * @return merchTerms
-  **/
+   */
   @javax.annotation.Nullable
   public String getMerchTerms() {
     return merchTerms;
@@ -337,10 +336,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * Get options
    * @return options
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getOptions() {
     return options;
@@ -356,10 +355,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * Get partPayments
    * @return partPayments
-  **/
+   */
   @javax.annotation.Nullable
   public PaylinkPartPayments getPartPayments() {
     return partPayments;
@@ -383,10 +382,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * Get passThroughData
    * @return passThroughData
-  **/
+   */
   @javax.annotation.Nullable
   public Map<String, String> getPassThroughData() {
     return passThroughData;
@@ -410,10 +409,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * Get passThroughHeaders
    * @return passThroughHeaders
-  **/
+   */
   @javax.annotation.Nullable
   public Map<String, String> getPassThroughHeaders() {
     return passThroughHeaders;
@@ -429,10 +428,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * Specifies a URL to use for a call back when the payment is completed. see Postback Handling }.
    * @return postback
-  **/
+   */
   @javax.annotation.Nullable
   public String getPostback() {
     return postback;
@@ -448,10 +447,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * A password to be added to the postback for HTTP Basic Authentication.
    * @return postbackPassword
-  **/
+   */
   @javax.annotation.Nullable
   public String getPostbackPassword() {
     return postbackPassword;
@@ -467,10 +466,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * The policy setting for the postback see Postback Handling.
    * @return postbackPolicy
-  **/
+   */
   @javax.annotation.Nullable
   public String getPostbackPolicy() {
     return postbackPolicy;
@@ -486,10 +485,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * A username to be added to the postback for HTTP Basic Authentication.
    * @return postbackUsername
-  **/
+   */
   @javax.annotation.Nullable
   public String getPostbackUsername() {
     return postbackUsername;
@@ -505,10 +504,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * A value which can delay the redirection in seconds. A value of 0 will redirect immediately.
    * @return redirectDelay
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getRedirectDelay() {
     return redirectDelay;
@@ -524,10 +523,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * A URL which the browser is redirected to on non-completion of a transaction.
    * @return redirectFailure
-  **/
+   */
   @javax.annotation.Nullable
   public String getRedirectFailure() {
     return redirectFailure;
@@ -543,10 +542,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * A URL which the browser is redirected to on authorisation of a transaction.
    * @return redirectSuccess
-  **/
+   */
   @javax.annotation.Nullable
   public String getRedirectSuccess() {
     return redirectSuccess;
@@ -562,10 +561,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * The Paylink renderer engine to use.
    * @return renderer
-  **/
+   */
   @javax.annotation.Nullable
   public String getRenderer() {
     return renderer;
@@ -581,10 +580,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * If a value of true is specified, any redirection will include the transaction result in parameters. It is recommended to use the postback integration rather than redirection parameters.
    * @return returnParams
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isReturnParams() {
     return returnParams;
@@ -600,10 +599,10 @@ public class PaylinkConfig {
     return this;
   }
 
-   /**
+  /**
    * Get ui
    * @return ui
-  **/
+   */
   @javax.annotation.Nullable
   public PaylinkUI getUi() {
     return ui;
@@ -728,12 +727,12 @@ public class PaylinkConfig {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkConfig
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkConfig
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -860,22 +859,22 @@ public class PaylinkConfig {
     }
   }
 
- /**
-  * Create an instance of PaylinkConfig given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkConfig
-  * @throws IOException if the JSON string is invalid with respect to PaylinkConfig
-  */
+  /**
+   * Create an instance of PaylinkConfig given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkConfig
+   * @throws IOException if the JSON string is invalid with respect to PaylinkConfig
+   */
   public static PaylinkConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkConfig.class);
   }
 
- /**
-  * Convert an instance of PaylinkConfig to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkConfig to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

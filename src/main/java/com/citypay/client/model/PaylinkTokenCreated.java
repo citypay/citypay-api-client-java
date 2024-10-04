@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -68,7 +67,7 @@ public class PaylinkTokenCreated {
 
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
-  private List<PaylinkErrorCode> errors;
+  private List<PaylinkErrorCode> errors = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -118,10 +117,10 @@ public class PaylinkTokenCreated {
     return this;
   }
 
-   /**
+  /**
    * Get attachments
    * @return attachments
-  **/
+   */
   @javax.annotation.Nullable
   public PaylinkAttachmentResult getAttachments() {
     return attachments;
@@ -137,10 +136,10 @@ public class PaylinkTokenCreated {
     return this;
   }
 
-   /**
+  /**
    * true if BPS has been enabled on this token.
    * @return bps
-  **/
+   */
   @javax.annotation.Nullable
   public String getBps() {
     return bps;
@@ -156,10 +155,10 @@ public class PaylinkTokenCreated {
     return this;
   }
 
-   /**
+  /**
    * Date and time the token was generated.
    * @return dateCreated
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDateCreated() {
     return dateCreated;
@@ -183,10 +182,10 @@ public class PaylinkTokenCreated {
     return this;
   }
 
-   /**
+  /**
    * Get errors
    * @return errors
-  **/
+   */
   @javax.annotation.Nullable
   public List<PaylinkErrorCode> getErrors() {
     return errors;
@@ -202,10 +201,10 @@ public class PaylinkTokenCreated {
     return this;
   }
 
-   /**
+  /**
    * A unique id of the request.
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public String getId() {
     return id;
@@ -221,10 +220,10 @@ public class PaylinkTokenCreated {
     return this;
   }
 
-   /**
+  /**
    * The identifier as presented in the TokenRequest.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nullable
   public String getIdentifier() {
     return identifier;
@@ -240,10 +239,10 @@ public class PaylinkTokenCreated {
     return this;
   }
 
-   /**
+  /**
    * Determines whether the token is &#x60;live&#x60; or &#x60;test&#x60;.
    * @return mode
-  **/
+   */
   @javax.annotation.Nullable
   public String getMode() {
     return mode;
@@ -259,10 +258,10 @@ public class PaylinkTokenCreated {
     return this;
   }
 
-   /**
+  /**
    * A URL of a qrcode which can be used to refer to the token URL.
    * @return qrcode
-  **/
+   */
   @javax.annotation.Nullable
   public String getQrcode() {
     return qrcode;
@@ -278,10 +277,10 @@ public class PaylinkTokenCreated {
     return this;
   }
 
-   /**
+  /**
    * The result field contains the result for the Paylink Token Request. 0 - indicates that an error was encountered while creating the token. 1 - which indicates that a Token was successfully created.
    * @return result
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getResult() {
     return result;
@@ -297,10 +296,10 @@ public class PaylinkTokenCreated {
     return this;
   }
 
-   /**
+  /**
    * the version of the server performing the call.
    * @return serverVersion
-  **/
+   */
   @javax.annotation.Nullable
   public String getServerVersion() {
     return serverVersion;
@@ -316,10 +315,10 @@ public class PaylinkTokenCreated {
     return this;
   }
 
-   /**
+  /**
    * The incoming IP address of the call.
    * @return source
-  **/
+   */
   @javax.annotation.Nullable
   public String getSource() {
     return source;
@@ -335,10 +334,10 @@ public class PaylinkTokenCreated {
     return this;
   }
 
-   /**
+  /**
    * A token generated for the request used to refer to the transaction in consequential calls.
    * @return token
-  **/
+   */
   @javax.annotation.Nonnull
   public String getToken() {
     return token;
@@ -354,10 +353,10 @@ public class PaylinkTokenCreated {
     return this;
   }
 
-   /**
+  /**
    * The Paylink token URL used to checkout by the card holder.
    * @return url
-  **/
+   */
   @javax.annotation.Nullable
   public String getUrl() {
     return url;
@@ -373,10 +372,10 @@ public class PaylinkTokenCreated {
     return this;
   }
 
-   /**
+  /**
    * A UrlShortCode (USC) used for short links.
    * @return usc
-  **/
+   */
   @javax.annotation.Nullable
   public String getUsc() {
     return usc;
@@ -480,12 +479,12 @@ public class PaylinkTokenCreated {
     openapiRequiredFields.add("token");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkTokenCreated
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkTokenCreated
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkTokenCreated.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -587,22 +586,22 @@ public class PaylinkTokenCreated {
     }
   }
 
- /**
-  * Create an instance of PaylinkTokenCreated given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkTokenCreated
-  * @throws IOException if the JSON string is invalid with respect to PaylinkTokenCreated
-  */
+  /**
+   * Create an instance of PaylinkTokenCreated given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkTokenCreated
+   * @throws IOException if the JSON string is invalid with respect to PaylinkTokenCreated
+   */
   public static PaylinkTokenCreated fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkTokenCreated.class);
   }
 
- /**
-  * Convert an instance of PaylinkTokenCreated to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkTokenCreated to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

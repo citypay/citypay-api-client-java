@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -87,10 +86,10 @@ public class MerchantBatchResponse {
     return this;
   }
 
-   /**
+  /**
    * The date and time when the batch was closed. This is represented in ISO 8601 format (e.g., YYYY-MM-DDTHH:MM:SSZ) and indicates when the batch processing was completed.
    * @return batchClosed
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getBatchClosed() {
     return batchClosed;
@@ -106,10 +105,10 @@ public class MerchantBatchResponse {
     return this;
   }
 
-   /**
+  /**
    * The incremental identifier of the batch. This number is used to track and reference the batch in subsequent operations or inquiries.
    * @return batchNo
-  **/
+   */
   @javax.annotation.Nullable
   public String getBatchNo() {
     return batchNo;
@@ -125,10 +124,10 @@ public class MerchantBatchResponse {
     return this;
   }
 
-   /**
+  /**
    * A descriptive string detailing the current status of the batch. This status provides a human-readable explanation of the batch&#39;s processing state.
    * @return batchStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getBatchStatus() {
     return batchStatus;
@@ -144,10 +143,10 @@ public class MerchantBatchResponse {
     return this;
   }
 
-   /**
+  /**
    * A batch status code that represents the processing state of the batch. Batches will be one of  - &#39;O&#39; defining the batch is open for settlement and not yet settled  - &#39;X&#39; defines that the batch is external to our systems and managed elsewhere  - &#39;C&#39; defines that the batch is cancelled and not settled  - &#39;S&#39; defines that the batch has been settled and remitted. 
    * @return batchStatusCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getBatchStatusCode() {
     return batchStatusCode;
@@ -163,10 +162,10 @@ public class MerchantBatchResponse {
     return this;
   }
 
-   /**
+  /**
    * The currency of the batch.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
@@ -182,10 +181,10 @@ public class MerchantBatchResponse {
     return this;
   }
 
-   /**
+  /**
    * The Merchant ID (MID) associated with the batch. This identifier specifies which merchant account the batch was processed for, linking transactions to the merchant.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMerchantid() {
     return merchantid;
@@ -201,10 +200,10 @@ public class MerchantBatchResponse {
     return this;
   }
 
-   /**
+  /**
    * Get netSummary
    * @return netSummary
-  **/
+   */
   @javax.annotation.Nullable
   public NetSummaryResponse getNetSummary() {
     return netSummary;
@@ -284,12 +283,12 @@ public class MerchantBatchResponse {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to MerchantBatchResponse
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MerchantBatchResponse
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!MerchantBatchResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -352,22 +351,22 @@ public class MerchantBatchResponse {
     }
   }
 
- /**
-  * Create an instance of MerchantBatchResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MerchantBatchResponse
-  * @throws IOException if the JSON string is invalid with respect to MerchantBatchResponse
-  */
+  /**
+   * Create an instance of MerchantBatchResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MerchantBatchResponse
+   * @throws IOException if the JSON string is invalid with respect to MerchantBatchResponse
+   */
   public static MerchantBatchResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MerchantBatchResponse.class);
   }
 
- /**
-  * Convert an instance of MerchantBatchResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MerchantBatchResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

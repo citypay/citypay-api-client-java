@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -77,10 +76,10 @@ public class PaylinkAttachmentRequest {
     return this;
   }
 
-   /**
+  /**
    * base64 encoding of the file if less than 32kb in size.
    * @return data
-  **/
+   */
   @javax.annotation.Nullable
   public String getData() {
     return data;
@@ -96,10 +95,10 @@ public class PaylinkAttachmentRequest {
     return this;
   }
 
-   /**
+  /**
    * The name of the attachment normally taken from the filename. You should not include the filename path as appropriate.
    * @return filename
-  **/
+   */
   @javax.annotation.Nonnull
   public String getFilename() {
     return filename;
@@ -115,10 +114,10 @@ public class PaylinkAttachmentRequest {
     return this;
   }
 
-   /**
+  /**
    * The mime type of the attachment as defined in [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html). Currently only &#x60;application/pdf&#x60; is supported.
    * @return mimeType
-  **/
+   */
   @javax.annotation.Nonnull
   public String getMimeType() {
     return mimeType;
@@ -134,10 +133,10 @@ public class PaylinkAttachmentRequest {
     return this;
   }
 
-   /**
+  /**
    * A name for the file to identify it to the card holder when it is displayed in the payment form. For example Invoice, Statement.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
@@ -153,10 +152,10 @@ public class PaylinkAttachmentRequest {
     return this;
   }
 
-   /**
+  /**
    * The retention period in days of the attachment. Defaults to 180 days.
    * @return retention
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getRetention() {
     return retention;
@@ -232,12 +231,12 @@ public class PaylinkAttachmentRequest {
     openapiRequiredFields.add("mime_type");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkAttachmentRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkAttachmentRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkAttachmentRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -303,22 +302,22 @@ public class PaylinkAttachmentRequest {
     }
   }
 
- /**
-  * Create an instance of PaylinkAttachmentRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkAttachmentRequest
-  * @throws IOException if the JSON string is invalid with respect to PaylinkAttachmentRequest
-  */
+  /**
+   * Create an instance of PaylinkAttachmentRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkAttachmentRequest
+   * @throws IOException if the JSON string is invalid with respect to PaylinkAttachmentRequest
+   */
   public static PaylinkAttachmentRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkAttachmentRequest.class);
   }
 
- /**
-  * Convert an instance of PaylinkAttachmentRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkAttachmentRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

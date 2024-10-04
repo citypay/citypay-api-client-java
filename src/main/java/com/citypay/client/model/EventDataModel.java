@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -78,10 +77,10 @@ public class EventDataModel {
     return this;
   }
 
-   /**
+  /**
    * The date when the event ends in ISO format (yyyy-MM-dd).
    * @return eventEndDate
-  **/
+   */
   @javax.annotation.Nullable
   public LocalDate getEventEndDate() {
     return eventEndDate;
@@ -97,10 +96,10 @@ public class EventDataModel {
     return this;
   }
 
-   /**
+  /**
    * An id of the event.
    * @return eventId
-  **/
+   */
   @javax.annotation.Nullable
   public String getEventId() {
     return eventId;
@@ -116,10 +115,10 @@ public class EventDataModel {
     return this;
   }
 
-   /**
+  /**
    * An id of the event organiser.
    * @return eventOrganiserId
-  **/
+   */
   @javax.annotation.Nullable
   public String getEventOrganiserId() {
     return eventOrganiserId;
@@ -135,10 +134,10 @@ public class EventDataModel {
     return this;
   }
 
-   /**
+  /**
    * The date when the event starts in ISO format (yyyy-MM-dd).
    * @return eventStartDate
-  **/
+   */
   @javax.annotation.Nullable
   public LocalDate getEventStartDate() {
     return eventStartDate;
@@ -154,10 +153,10 @@ public class EventDataModel {
     return this;
   }
 
-   /**
+  /**
    * The type of payment such as &#x60;deposit&#x60; or &#x60;balance&#x60;.
    * @return paymentType
-  **/
+   */
   @javax.annotation.Nullable
   public String getPaymentType() {
     return paymentType;
@@ -231,12 +230,12 @@ public class EventDataModel {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to EventDataModel
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to EventDataModel
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!EventDataModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -292,22 +291,22 @@ public class EventDataModel {
     }
   }
 
- /**
-  * Create an instance of EventDataModel given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of EventDataModel
-  * @throws IOException if the JSON string is invalid with respect to EventDataModel
-  */
+  /**
+   * Create an instance of EventDataModel given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of EventDataModel
+   * @throws IOException if the JSON string is invalid with respect to EventDataModel
+   */
   public static EventDataModel fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, EventDataModel.class);
   }
 
- /**
-  * Convert an instance of EventDataModel to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of EventDataModel to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

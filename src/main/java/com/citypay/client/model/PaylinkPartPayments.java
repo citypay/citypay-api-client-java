@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -81,10 +80,10 @@ public class PaylinkPartPayments {
     return this;
   }
 
-   /**
+  /**
    * Determines if part payments is enabled. Default is false.
    * @return enabled
-  **/
+   */
   @javax.annotation.Nullable
   public String getEnabled() {
     return enabled;
@@ -100,10 +99,10 @@ public class PaylinkPartPayments {
     return this;
   }
 
-   /**
+  /**
    * The floor amount specifies a value that the minimum rate cannot go under. If 0 the amount of min rate is applied.
    * @return floor
-  **/
+   */
   @javax.annotation.Nullable
   public String getFloor() {
     return floor;
@@ -119,10 +118,10 @@ public class PaylinkPartPayments {
     return this;
   }
 
-   /**
+  /**
    * a maximum percentage to charge i.e. 90%.
    * @return max
-  **/
+   */
   @javax.annotation.Nullable
   public String getMax() {
     return max;
@@ -138,10 +137,10 @@ public class PaylinkPartPayments {
     return this;
   }
 
-   /**
+  /**
    * a rate as fixed or percentage.
    * @return maxRate
-  **/
+   */
   @javax.annotation.Nullable
   public String getMaxRate() {
     return maxRate;
@@ -157,10 +156,10 @@ public class PaylinkPartPayments {
     return this;
   }
 
-   /**
+  /**
    * a minimum percentage to charge i.e. 10.
    * @return min
-  **/
+   */
   @javax.annotation.Nullable
   public String getMin() {
     return min;
@@ -176,10 +175,10 @@ public class PaylinkPartPayments {
     return this;
   }
 
-   /**
+  /**
    * a rate as fixed or percentage.
    * @return minRate
-  **/
+   */
   @javax.annotation.Nullable
   public String getMinRate() {
     return minRate;
@@ -256,12 +255,12 @@ public class PaylinkPartPayments {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkPartPayments
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkPartPayments
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkPartPayments.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -326,22 +325,22 @@ public class PaylinkPartPayments {
     }
   }
 
- /**
-  * Create an instance of PaylinkPartPayments given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkPartPayments
-  * @throws IOException if the JSON string is invalid with respect to PaylinkPartPayments
-  */
+  /**
+   * Create an instance of PaylinkPartPayments given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkPartPayments
+   * @throws IOException if the JSON string is invalid with respect to PaylinkPartPayments
+   */
   public static PaylinkPartPayments fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkPartPayments.class);
   }
 
- /**
-  * Convert an instance of PaylinkPartPayments to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkPartPayments to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

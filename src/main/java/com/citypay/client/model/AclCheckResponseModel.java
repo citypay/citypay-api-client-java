@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -73,10 +72,10 @@ public class AclCheckResponseModel {
     return this;
   }
 
-   /**
+  /**
    * The name or value of the acl which was found to match the ip address.
    * @return acl
-  **/
+   */
   @javax.annotation.Nullable
   public String getAcl() {
     return acl;
@@ -92,10 +91,10 @@ public class AclCheckResponseModel {
     return this;
   }
 
-   /**
+  /**
    * Whether the ACL was returned via a cached instance.
    * @return cache
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isCache() {
     return cache;
@@ -111,10 +110,10 @@ public class AclCheckResponseModel {
     return this;
   }
 
-   /**
+  /**
    * The IP address used in the lookup.
    * @return ip
-  **/
+   */
   @javax.annotation.Nullable
   public String getIp() {
     return ip;
@@ -130,10 +129,10 @@ public class AclCheckResponseModel {
     return this;
   }
 
-   /**
+  /**
    * The source provider of the ACL such as cloud, subnet, country or IP based.
    * @return provider
-  **/
+   */
   @javax.annotation.Nullable
   public String getProvider() {
     return provider;
@@ -204,12 +203,12 @@ public class AclCheckResponseModel {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to AclCheckResponseModel
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AclCheckResponseModel
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!AclCheckResponseModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -265,22 +264,22 @@ public class AclCheckResponseModel {
     }
   }
 
- /**
-  * Create an instance of AclCheckResponseModel given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of AclCheckResponseModel
-  * @throws IOException if the JSON string is invalid with respect to AclCheckResponseModel
-  */
+  /**
+   * Create an instance of AclCheckResponseModel given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AclCheckResponseModel
+   * @throws IOException if the JSON string is invalid with respect to AclCheckResponseModel
+   */
   public static AclCheckResponseModel fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AclCheckResponseModel.class);
   }
 
- /**
-  * Convert an instance of AclCheckResponseModel to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of AclCheckResponseModel to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

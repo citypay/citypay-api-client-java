@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -82,10 +81,10 @@ public class RemittanceData {
     return this;
   }
 
-   /**
+  /**
    * Represents the date and time when the remittance was processed. This timestamp follows the ISO 8601 format for datetime representation.
    * @return dateCreated
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDateCreated() {
     return dateCreated;
@@ -101,12 +100,12 @@ public class RemittanceData {
     return this;
   }
 
-   /**
+  /**
    * Represents the net amount after accounting for refunds. This is calculated as SalesAmount - RefundAmount and expressed in the smallest currency unit.
    * minimum: 0
    * maximum: 999999999
    * @return netAmount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getNetAmount() {
     return netAmount;
@@ -122,12 +121,12 @@ public class RemittanceData {
     return this;
   }
 
-   /**
+  /**
    * The total amount refunded to customers.
    * minimum: 0
    * maximum: 999999999
    * @return refundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getRefundAmount() {
     return refundAmount;
@@ -143,12 +142,12 @@ public class RemittanceData {
     return this;
   }
 
-   /**
+  /**
    * The total number of refund transactions processed. This figure helps in understanding the frequency of refunds relative to sales.
    * minimum: 0
    * maximum: 999999999
    * @return refundCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getRefundCount() {
     return refundCount;
@@ -164,12 +163,12 @@ public class RemittanceData {
     return this;
   }
 
-   /**
+  /**
    * The total monetary amount of sales transactions.
    * minimum: 0
    * maximum: 999999999
    * @return salesAmount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getSalesAmount() {
     return salesAmount;
@@ -185,12 +184,12 @@ public class RemittanceData {
     return this;
   }
 
-   /**
+  /**
    * Indicates the total number of sales transactions that occurred. This count provides insight into the volume of sales.
    * minimum: 0
    * maximum: 999999999
    * @return salesCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getSalesCount() {
     return salesCount;
@@ -267,12 +266,12 @@ public class RemittanceData {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to RemittanceData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RemittanceData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RemittanceData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -319,22 +318,22 @@ public class RemittanceData {
     }
   }
 
- /**
-  * Create an instance of RemittanceData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RemittanceData
-  * @throws IOException if the JSON string is invalid with respect to RemittanceData
-  */
+  /**
+   * Create an instance of RemittanceData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RemittanceData
+   * @throws IOException if the JSON string is invalid with respect to RemittanceData
+   */
   public static RemittanceData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RemittanceData.class);
   }
 
- /**
-  * Convert an instance of RemittanceData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RemittanceData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

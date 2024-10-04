@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -69,10 +68,10 @@ public class PaylinkAttachmentResult {
     return this;
   }
 
-   /**
+  /**
    * The name of the attachment.
    * @return name
-  **/
+   */
   @javax.annotation.Nonnull
   public String getName() {
     return name;
@@ -88,10 +87,10 @@ public class PaylinkAttachmentResult {
     return this;
   }
 
-   /**
+  /**
    * The result of an uploaded attachment such as &#x60;OK&#x60; or &#x60;UPLOAD&#x60;.
    * @return result
-  **/
+   */
   @javax.annotation.Nonnull
   public String getResult() {
     return result;
@@ -107,10 +106,10 @@ public class PaylinkAttachmentResult {
     return this;
   }
 
-   /**
+  /**
    * If the attachment is to be uploaded, a URL that can be used for Multipart upload of the attachment.
    * @return url
-  **/
+   */
   @javax.annotation.Nullable
   public String getUrl() {
     return url;
@@ -180,12 +179,12 @@ public class PaylinkAttachmentResult {
     openapiRequiredFields.add("result");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkAttachmentResult
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkAttachmentResult
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkAttachmentResult.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -248,22 +247,22 @@ public class PaylinkAttachmentResult {
     }
   }
 
- /**
-  * Create an instance of PaylinkAttachmentResult given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkAttachmentResult
-  * @throws IOException if the JSON string is invalid with respect to PaylinkAttachmentResult
-  */
+  /**
+   * Create an instance of PaylinkAttachmentResult given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkAttachmentResult
+   * @throws IOException if the JSON string is invalid with respect to PaylinkAttachmentResult
+   */
   public static PaylinkAttachmentResult fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkAttachmentResult.class);
   }
 
- /**
-  * Convert an instance of PaylinkAttachmentResult to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkAttachmentResult to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }
