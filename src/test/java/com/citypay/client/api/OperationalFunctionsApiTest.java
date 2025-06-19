@@ -13,24 +13,25 @@
 package com.citypay.client.api;
 
 import com.citypay.client.ApiException;
-import com.citypay.client.model.Acknowledgement;
-import com.citypay.client.model.AclCheckRequest;
-import com.citypay.client.model.AclCheckResponseModel;
-import com.citypay.client.model.DomainKeyCheckRequest;
-import com.citypay.client.model.DomainKeyRequest;
-import com.citypay.client.model.DomainKeyResponse;
-import com.citypay.client.model.ListMerchantsResponse;
-import com.citypay.client.model.Ping;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Disabled;
+import com.citypay.client.model.*;
+import com.citypay.client.model.Error;
+import org.junit.Test;
+import org.junit.Ignore;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static com.citypay.client.api.TestClient.*;
+import static org.junit.Assert.*;
 
 /**
  * API tests for OperationalFunctionsApi
  */
-@Disabled
 public class OperationalFunctionsApiTest {
 
-    private final OperationalFunctionsApi api = new OperationalFunctionsApi();
+    private final OperationalFunctionsApi api = new OperationalFunctionsApi(defaultClient);
 
     
     /**
@@ -91,10 +92,20 @@ public class OperationalFunctionsApiTest {
      */
     @Test
     public void listMerchantsRequestTest() throws ApiException {
-        String clientid = null;
-        ListMerchantsResponse response = api.listMerchantsRequest(clientid);
+        ListMerchantsResponse result = api.listMerchantsRequest(TEST_CLIENT_ID);
+        assertNotNull(result);
+        assertEquals(TEST_CLIENT_ID, result.getClientid());
+        assertEquals("CityPay Test", result.getClientName());
+        assertNotNull(result.getMerchants());
 
-        // TODO: test validations
+        boolean found = false;
+        for (Merchant merchant : result.getMerchants()) {
+            if (merchant.getMerchantid() == TEST_MERCHANT_ID) {
+                found = true;
+            }
+        }
+
+        assertTrue("Test merchant not found", found);
     }
     
     /**
@@ -107,10 +118,13 @@ public class OperationalFunctionsApiTest {
      */
     @Test
     public void pingRequestTest() throws ApiException {
-        Ping ping = null;
-        Acknowledgement response = api.pingRequest(ping);
-
-        // TODO: test validations
+        Ping ping = new Ping().identifier("it_test");
+        Acknowledgement result = api.pingRequest(ping);
+        assert result != null;
+        assertEquals("044", result.getCode());
+        assertEquals("it_test", result.getIdentifier());
+        assertEquals("Ping OK", result.getMessage());
+        assertNotNull(result.getContext());
     }
     
 }
