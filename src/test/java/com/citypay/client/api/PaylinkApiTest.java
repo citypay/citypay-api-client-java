@@ -24,7 +24,6 @@ import com.citypay.client.model.PaylinkTokenStatusChangeResponse;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Disabled;
 
 import java.io.IOException;
 
@@ -33,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 /**
  * API tests for PaylinkApi
  */
-@Disabled
+
 public class PaylinkApiTest {
 
     private final PaylinkApi api = new PaylinkApi();
@@ -49,10 +48,6 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenAdjustmentRequestTest() throws ApiException {
-        String token = null;
-        PaylinkAdjustmentRequest paylinkAdjustmentRequest = null;
-        Acknowledgement response = api.tokenAdjustmentRequest(token, paylinkAdjustmentRequest);
-
         // TODO: test validations
     }
     
@@ -66,9 +61,6 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenCloseRequestTest() throws ApiException {
-        String token = "token";
-        Acknowledgement response = api.paylinkTokenCloseRequest(token);
-
         // TODO: test validations
     }
     
@@ -82,9 +74,6 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenCreateBillPaymentRequestTest() throws ApiException {
-        PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest = null;
-        PaylinkTokenCreated response = api.tokenCreateBillPaymentRequest(paylinkBillPaymentTokenRequest);
-
         // TODO: test validations
     }
     
@@ -98,9 +87,6 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenCreateRequestTest() throws ApiException {
-        PaylinkTokenRequestModel paylinkTokenRequestModel = null;
-        PaylinkTokenCreated response = api.tokenCreateRequest(paylinkTokenRequestModel);
-
         // TODO: test validations
     }
     
@@ -114,9 +100,6 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenReconciledRequestTest() throws ApiException {
-        String token = null;
-        Acknowledgement response = api.tokenReconciledRequest(token);
-
         // TODO: test validations
     }
     
@@ -130,9 +113,6 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenReopenRequestTest() throws ApiException {
-        String token = null;
-        Acknowledgement response = api.tokenReopenRequest(token);
-
         // TODO: test validations
     }
     
@@ -146,9 +126,6 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenStatusChangesRequestTest() throws ApiException {
-        PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest = null;
-        PaylinkTokenStatusChangeResponse response = api.tokenChangesRequest(paylinkTokenStatusChangeRequest);
-
         // TODO: test validations
     }
     
@@ -162,9 +139,6 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenStatusRequestTest() throws ApiException {
-        String token = null;
-        PaylinkTokenStatus response = api.tokenStatusRequest(token);
-
         // TODO: test validations
     }
 
