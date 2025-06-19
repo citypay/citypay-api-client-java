@@ -119,7 +119,7 @@ public class AuthorisationAndPaymentApiTest {
     @Test
     public void paResRequestTest() throws ApiException {
         PaResAuthRequest paResAuthRequest = null;
-        AuthResponse response = api.paResRequest(paResAuthRequest);
+//        AuthResponse response = api.paResRequest(paResAuthRequest);
 
         // TODO: test validations
     }

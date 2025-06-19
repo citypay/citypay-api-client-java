@@ -66,8 +66,8 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenCloseRequestTest() throws ApiException {
-        String token = null;
-        Acknowledgement response = api.tokenCloseRequest(token);
+        String token = "token";
+        Acknowledgement response = api.paylinkTokenCloseRequest(token);
 
         // TODO: test validations
     }
