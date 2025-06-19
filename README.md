@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/citypay/citypay-api-client-java/actions/workflows/maven.yml/badge.svg)](https://github.com/citypay/citypay-api-client-java/actions/workflows/maven.yml)
 CityPay Payment API
-- API version: 6.9.1
+- API version: 6.9.2
   - Build date: 2025-06-19T10:43:48.671338044Z[Etc/UTC]
   - Generator version: 7.13.0
 

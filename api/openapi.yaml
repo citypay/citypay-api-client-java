@@ -52,7 +52,7 @@ info:
     \ API. We look forward to supporting your payment processing needs with our secure,\
     \ compliant, and versatile API solution.\n"
   title: CityPay Payment API
-  version: 6.9.1
+  version: 6.9.2
 servers:
 - description: Production processing endpoint
   url: https://api.citypay.com
