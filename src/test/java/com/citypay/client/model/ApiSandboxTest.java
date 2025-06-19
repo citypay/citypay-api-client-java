@@ -20,14 +20,11 @@ import org.junit.Test;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
-import java.util.Objects;
 import java.util.UUID;
 
 import static org.junit.Assert.*;
 
 public class ApiSandboxTest {
-
     public static String clientId = System.getenv("CP_CLIENT_ID");
     public static String licenceKey = System.getenv("CP_LICENCE_KEY");
     public static String merchantId = System.getenv("CP_MERCHANT_ID");

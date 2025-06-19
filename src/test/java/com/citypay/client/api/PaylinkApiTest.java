@@ -21,8 +21,14 @@ import com.citypay.client.model.PaylinkTokenRequestModel;
 import com.citypay.client.model.PaylinkTokenStatus;
 import com.citypay.client.model.PaylinkTokenStatusChangeRequest;
 import com.citypay.client.model.PaylinkTokenStatusChangeResponse;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import org.junit.Test;
 import org.junit.Ignore;
+
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
  * API tests for PaylinkApi
@@ -160,6 +166,27 @@ public class PaylinkApiTest {
         PaylinkTokenStatus response = api.tokenStatusRequest(token);
 
         // TODO: test validations
+    }
+
+    @Test
+    public void testPaylinkTokenCreatedJsonValidation() throws IOException {
+        String PaylinkTokenCreatedResponse = "{"
+                + "\"date_created\": \"2025-06-11T11:01:59Z\","
+                + "\"mid\": 123,"
+                + "\"id\": \"00000000-0000-0000-0000-000000000000\","
+                + "\"identifier\": \"95b857a1-5955-4b86-963c-5a6dbfc4fb95\","
+                + "\"mode\": \"test\","
+                + "\"qrcode\": \"https://payments.citypay.com/AAAAAAA/AAAZZZCCCDDDEEE/qrcode\","
+                + "\"result\": 0,"
+                + "\"server_version\": \"x.x.x\","
+                + "\"source\": \"x.x.x.x\","
+                + "\"token\": \"AAAZZZCCCDDDEEE\","
+                + "\"url\": \"https://payments.citypay.com/AAAAAAA/AAAZZZCCCDDDEEE\""
+                + "}";
+
+        JsonElement element = JsonParser.parseString(PaylinkTokenCreatedResponse);
+        PaylinkTokenCreated.validateJsonElement(element);
+        assertDoesNotThrow(() -> PaylinkTokenCreated.validateJsonElement(element));
     }
     
 }
