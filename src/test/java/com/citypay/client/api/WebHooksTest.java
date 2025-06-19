@@ -14,7 +14,6 @@ package com.citypay.client.api;
 
 import com.citypay.client.ApiException;
 import com.citypay.client.model.Acknowledgement;
-import com.citypay.client.model.Error;
 import com.citypay.client.model.WebHookChannelCreateRequest;
 import com.citypay.client.model.WebHookChannelCreateResponse;
 import com.citypay.client.model.WebHookChannelDeleteRequest;
@@ -23,11 +22,6 @@ import com.citypay.client.model.WebHookSubscriptionResponse;
 import com.citypay.client.model.WebHookUnsubscribeRequest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for WebHooks

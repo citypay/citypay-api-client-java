@@ -19,16 +19,10 @@ import com.citypay.client.model.AclCheckResponseModel;
 import com.citypay.client.model.DomainKeyCheckRequest;
 import com.citypay.client.model.DomainKeyRequest;
 import com.citypay.client.model.DomainKeyResponse;
-import com.citypay.client.model.Error;
 import com.citypay.client.model.ListMerchantsResponse;
 import com.citypay.client.model.Ping;
 import org.junit.Test;
 import org.junit.Ignore;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for OperationalFunctionsApi

@@ -14,7 +14,6 @@ package com.citypay.client.api;
 
 import com.citypay.client.ApiException;
 import com.citypay.client.model.Acknowledgement;
-import com.citypay.client.model.Error;
 import com.citypay.client.model.PaylinkAdjustmentRequest;
 import com.citypay.client.model.PaylinkBillPaymentTokenRequest;
 import com.citypay.client.model.PaylinkTokenCreated;
@@ -24,11 +23,6 @@ import com.citypay.client.model.PaylinkTokenStatusChangeRequest;
 import com.citypay.client.model.PaylinkTokenStatusChangeResponse;
 import org.junit.Test;
 import org.junit.Ignore;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for PaylinkApi

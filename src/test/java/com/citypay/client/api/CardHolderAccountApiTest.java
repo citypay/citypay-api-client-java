@@ -21,15 +21,10 @@ import com.citypay.client.model.CardStatus;
 import com.citypay.client.model.ChargeRequest;
 import com.citypay.client.model.ContactDetails;
 import com.citypay.client.model.Decision;
-import com.citypay.client.model.Error;
 import com.citypay.client.model.RegisterCard;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for CardHolderAccountApi

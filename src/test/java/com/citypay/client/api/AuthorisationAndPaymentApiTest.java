@@ -22,7 +22,6 @@ import com.citypay.client.model.BinLookup;
 import com.citypay.client.model.CResAuthRequest;
 import com.citypay.client.model.CaptureRequest;
 import com.citypay.client.model.Decision;
-import com.citypay.client.model.Error;
 import com.citypay.client.model.PaResAuthRequest;
 import com.citypay.client.model.RefundRequest;
 import com.citypay.client.model.RetrieveRequest;
@@ -30,10 +29,6 @@ import com.citypay.client.model.VoidRequest;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for AuthorisationAndPaymentApi

@@ -13,18 +13,12 @@
 package com.citypay.client.api;
 
 import com.citypay.client.ApiException;
-import com.citypay.client.model.Error;
 import com.citypay.client.model.FindPaymentIntentRequest;
 import com.citypay.client.model.PaymentIntentReference;
 import com.citypay.client.model.PaymentIntentRequestModel;
 import com.citypay.client.model.PaymentIntentResponseModel;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for PaymentIntentApi
