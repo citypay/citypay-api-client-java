@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,125 +50,174 @@ import com.citypay.client.JSON;
 public class RegisterCard {
   public static final String SERIALIZED_NAME_CARDNUMBER = "cardnumber";
   @SerializedName(SERIALIZED_NAME_CARDNUMBER)
+  @javax.annotation.Nonnull
   private String cardnumber;
 
   public static final String SERIALIZED_NAME_DEFAULT = "default";
   @SerializedName(SERIALIZED_NAME_DEFAULT)
+  @javax.annotation.Nullable
   private Boolean _default;
 
   public static final String SERIALIZED_NAME_EXPMONTH = "expmonth";
   @SerializedName(SERIALIZED_NAME_EXPMONTH)
+  @javax.annotation.Nonnull
   private Integer expmonth;
 
   public static final String SERIALIZED_NAME_EXPYEAR = "expyear";
   @SerializedName(SERIALIZED_NAME_EXPYEAR)
+  @javax.annotation.Nonnull
   private Integer expyear;
 
   public static final String SERIALIZED_NAME_NAME_ON_CARD = "name_on_card";
   @SerializedName(SERIALIZED_NAME_NAME_ON_CARD)
+  @javax.annotation.Nullable
   private String nameOnCard;
 
   public RegisterCard() {
   }
 
-  public RegisterCard cardnumber(String cardnumber) {
+  public RegisterCard cardnumber(@javax.annotation.Nonnull String cardnumber) {
     this.cardnumber = cardnumber;
     return this;
   }
 
-   /**
+  /**
    * The primary number of the card.
    * @return cardnumber
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCardnumber() {
     return cardnumber;
   }
 
-  public void setCardnumber(String cardnumber) {
+  public void setCardnumber(@javax.annotation.Nonnull String cardnumber) {
     this.cardnumber = cardnumber;
   }
 
 
-  public RegisterCard _default(Boolean _default) {
+  public RegisterCard _default(@javax.annotation.Nullable Boolean _default) {
     this._default = _default;
     return this;
   }
 
-   /**
+  /**
    * Determines whether the card should be the new default card.
    * @return _default
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isDefault() {
     return _default;
   }
 
-  public void setDefault(Boolean _default) {
+  public void setDefault(@javax.annotation.Nullable Boolean _default) {
     this._default = _default;
   }
 
 
-  public RegisterCard expmonth(Integer expmonth) {
+  public RegisterCard expmonth(@javax.annotation.Nonnull Integer expmonth) {
     this.expmonth = expmonth;
     return this;
   }
 
-   /**
+  /**
    * The expiry month of the card.
    * minimum: 1
    * maximum: 12
    * @return expmonth
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getExpmonth() {
     return expmonth;
   }
 
-  public void setExpmonth(Integer expmonth) {
+  public void setExpmonth(@javax.annotation.Nonnull Integer expmonth) {
     this.expmonth = expmonth;
   }
 
 
-  public RegisterCard expyear(Integer expyear) {
+  public RegisterCard expyear(@javax.annotation.Nonnull Integer expyear) {
     this.expyear = expyear;
     return this;
   }
 
-   /**
+  /**
    * The expiry year of the card.
    * minimum: 2000
    * maximum: 2100
    * @return expyear
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getExpyear() {
     return expyear;
   }
 
-  public void setExpyear(Integer expyear) {
+  public void setExpyear(@javax.annotation.Nonnull Integer expyear) {
     this.expyear = expyear;
   }
 
 
-  public RegisterCard nameOnCard(String nameOnCard) {
+  public RegisterCard nameOnCard(@javax.annotation.Nullable String nameOnCard) {
     this.nameOnCard = nameOnCard;
     return this;
   }
 
-   /**
+  /**
    * The card holder name as it appears on the card. The value is required if the account is to be used for 3dsv2 processing, otherwise it is optional.
    * @return nameOnCard
-  **/
+   */
   @javax.annotation.Nullable
   public String getNameOnCard() {
     return nameOnCard;
   }
 
-  public void setNameOnCard(String nameOnCard) {
+  public void setNameOnCard(@javax.annotation.Nullable String nameOnCard) {
     this.nameOnCard = nameOnCard;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the RegisterCard instance itself
+   */
+  public RegisterCard putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -185,12 +233,13 @@ public class RegisterCard {
         Objects.equals(this._default, registerCard._default) &&
         Objects.equals(this.expmonth, registerCard.expmonth) &&
         Objects.equals(this.expyear, registerCard.expyear) &&
-        Objects.equals(this.nameOnCard, registerCard.nameOnCard);
+        Objects.equals(this.nameOnCard, registerCard.nameOnCard)&&
+        Objects.equals(this.additionalProperties, registerCard.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cardnumber, _default, expmonth, expyear, nameOnCard);
+    return Objects.hash(cardnumber, _default, expmonth, expyear, nameOnCard, additionalProperties);
   }
 
   @Override
@@ -202,6 +251,7 @@ public class RegisterCard {
     sb.append("    expmonth: ").append(toIndentedString(expmonth)).append("\n");
     sb.append("    expyear: ").append(toIndentedString(expyear)).append("\n");
     sb.append("    nameOnCard: ").append(toIndentedString(nameOnCard)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -237,24 +287,16 @@ public class RegisterCard {
     openapiRequiredFields.add("expyear");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to RegisterCard
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RegisterCard
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RegisterCard.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in RegisterCard is not found in the empty JSON string", RegisterCard.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!RegisterCard.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RegisterCard` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
@@ -288,6 +330,28 @@ public class RegisterCard {
            @Override
            public void write(JsonWriter out, RegisterCard value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -295,29 +359,50 @@ public class RegisterCard {
            public RegisterCard read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             RegisterCard instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of RegisterCard given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RegisterCard
-  * @throws IOException if the JSON string is invalid with respect to RegisterCard
-  */
+  /**
+   * Create an instance of RegisterCard given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RegisterCard
+   * @throws IOException if the JSON string is invalid with respect to RegisterCard
+   */
   public static RegisterCard fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RegisterCard.class);
   }
 
- /**
-  * Convert an instance of RegisterCard to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RegisterCard to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

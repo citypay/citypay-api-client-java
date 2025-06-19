@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,75 +50,122 @@ import com.citypay.client.JSON;
 public class VoidRequest {
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
+  @javax.annotation.Nullable
   private String identifier;
 
   public static final String SERIALIZED_NAME_MERCHANTID = "merchantid";
   @SerializedName(SERIALIZED_NAME_MERCHANTID)
+  @javax.annotation.Nonnull
   private Integer merchantid;
 
   public static final String SERIALIZED_NAME_TRANSNO = "transno";
   @SerializedName(SERIALIZED_NAME_TRANSNO)
+  @javax.annotation.Nullable
   private Integer transno;
 
   public VoidRequest() {
   }
 
-  public VoidRequest identifier(String identifier) {
+  public VoidRequest identifier(@javax.annotation.Nullable String identifier) {
     this.identifier = identifier;
     return this;
   }
 
-   /**
+  /**
    * The identifier of the transaction to void. If an empty value is supplied then a &#x60;trans_no&#x60; value must be supplied.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nullable
   public String getIdentifier() {
     return identifier;
   }
 
-  public void setIdentifier(String identifier) {
+  public void setIdentifier(@javax.annotation.Nullable String identifier) {
     this.identifier = identifier;
   }
 
 
-  public VoidRequest merchantid(Integer merchantid) {
+  public VoidRequest merchantid(@javax.annotation.Nonnull Integer merchantid) {
     this.merchantid = merchantid;
     return this;
   }
 
-   /**
+  /**
    * Identifies the merchant account to perform the void for.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getMerchantid() {
     return merchantid;
   }
 
-  public void setMerchantid(Integer merchantid) {
+  public void setMerchantid(@javax.annotation.Nonnull Integer merchantid) {
     this.merchantid = merchantid;
   }
 
 
-  public VoidRequest transno(Integer transno) {
+  public VoidRequest transno(@javax.annotation.Nullable Integer transno) {
     this.transno = transno;
     return this;
   }
 
-   /**
+  /**
    * The transaction number of the transaction to look up and void. If an empty value is supplied then an identifier value must be supplied.
    * @return transno
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTransno() {
     return transno;
   }
 
-  public void setTransno(Integer transno) {
+  public void setTransno(@javax.annotation.Nullable Integer transno) {
     this.transno = transno;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the VoidRequest instance itself
+   */
+  public VoidRequest putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -133,12 +179,13 @@ public class VoidRequest {
     VoidRequest voidRequest = (VoidRequest) o;
     return Objects.equals(this.identifier, voidRequest.identifier) &&
         Objects.equals(this.merchantid, voidRequest.merchantid) &&
-        Objects.equals(this.transno, voidRequest.transno);
+        Objects.equals(this.transno, voidRequest.transno)&&
+        Objects.equals(this.additionalProperties, voidRequest.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(identifier, merchantid, transno);
+    return Objects.hash(identifier, merchantid, transno, additionalProperties);
   }
 
   @Override
@@ -148,6 +195,7 @@ public class VoidRequest {
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
     sb.append("    merchantid: ").append(toIndentedString(merchantid)).append("\n");
     sb.append("    transno: ").append(toIndentedString(transno)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -179,24 +227,16 @@ public class VoidRequest {
     openapiRequiredFields.add("merchantid");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to VoidRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to VoidRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!VoidRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in VoidRequest is not found in the empty JSON string", VoidRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!VoidRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `VoidRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
@@ -227,6 +267,28 @@ public class VoidRequest {
            @Override
            public void write(JsonWriter out, VoidRequest value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -234,29 +296,50 @@ public class VoidRequest {
            public VoidRequest read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             VoidRequest instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of VoidRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of VoidRequest
-  * @throws IOException if the JSON string is invalid with respect to VoidRequest
-  */
+  /**
+   * Create an instance of VoidRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of VoidRequest
+   * @throws IOException if the JSON string is invalid with respect to VoidRequest
+   */
   public static VoidRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, VoidRequest.class);
   }
 
- /**
-  * Convert an instance of VoidRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of VoidRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,121 +50,170 @@ import com.citypay.client.JSON;
 public class Merchant {
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_MERCHANTID = "merchantid";
   @SerializedName(SERIALIZED_NAME_MERCHANTID)
+  @javax.annotation.Nullable
   private Integer merchantid;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_STATUS_LABEL = "status_label";
   @SerializedName(SERIALIZED_NAME_STATUS_LABEL)
+  @javax.annotation.Nullable
   private String statusLabel;
 
   public Merchant() {
   }
 
-  public Merchant currency(String currency) {
+  public Merchant currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * The currency of the merchant.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public Merchant merchantid(Integer merchantid) {
+  public Merchant merchantid(@javax.annotation.Nullable Integer merchantid) {
     this.merchantid = merchantid;
     return this;
   }
 
-   /**
+  /**
    * The merchant id which uniquely identifies the merchant account.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMerchantid() {
     return merchantid;
   }
 
-  public void setMerchantid(Integer merchantid) {
+  public void setMerchantid(@javax.annotation.Nullable Integer merchantid) {
     this.merchantid = merchantid;
   }
 
 
-  public Merchant name(String name) {
+  public Merchant name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * The name of the merchant.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public Merchant status(String status) {
+  public Merchant status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * The status of the account.
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public Merchant statusLabel(String statusLabel) {
+  public Merchant statusLabel(@javax.annotation.Nullable String statusLabel) {
     this.statusLabel = statusLabel;
     return this;
   }
 
-   /**
+  /**
    * The status label of the account.
    * @return statusLabel
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatusLabel() {
     return statusLabel;
   }
 
-  public void setStatusLabel(String statusLabel) {
+  public void setStatusLabel(@javax.annotation.Nullable String statusLabel) {
     this.statusLabel = statusLabel;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the Merchant instance itself
+   */
+  public Merchant putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -181,12 +229,13 @@ public class Merchant {
         Objects.equals(this.merchantid, merchant.merchantid) &&
         Objects.equals(this.name, merchant.name) &&
         Objects.equals(this.status, merchant.status) &&
-        Objects.equals(this.statusLabel, merchant.statusLabel);
+        Objects.equals(this.statusLabel, merchant.statusLabel)&&
+        Objects.equals(this.additionalProperties, merchant.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(currency, merchantid, name, status, statusLabel);
+    return Objects.hash(currency, merchantid, name, status, statusLabel, additionalProperties);
   }
 
   @Override
@@ -198,6 +247,7 @@ public class Merchant {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    statusLabel: ").append(toIndentedString(statusLabel)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -230,24 +280,16 @@ public class Merchant {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Merchant
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Merchant
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!Merchant.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Merchant is not found in the empty JSON string", Merchant.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!Merchant.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Merchant` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -280,6 +322,28 @@ public class Merchant {
            @Override
            public void write(JsonWriter out, Merchant value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -287,29 +351,50 @@ public class Merchant {
            public Merchant read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             Merchant instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of Merchant given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Merchant
-  * @throws IOException if the JSON string is invalid with respect to Merchant
-  */
+  /**
+   * Create an instance of Merchant given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Merchant
+   * @throws IOException if the JSON string is invalid with respect to Merchant
+   */
   public static Merchant fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Merchant.class);
   }
 
- /**
-  * Convert an instance of Merchant to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Merchant to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

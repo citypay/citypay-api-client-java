@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,52 +52,98 @@ import com.citypay.client.JSON;
 public class Decision {
   public static final String SERIALIZED_NAME_AUTH_RESPONSE = "AuthResponse";
   @SerializedName(SERIALIZED_NAME_AUTH_RESPONSE)
+  @javax.annotation.Nullable
   private AuthResponse authResponse;
 
   public static final String SERIALIZED_NAME_REQUEST_CHALLENGED = "RequestChallenged";
   @SerializedName(SERIALIZED_NAME_REQUEST_CHALLENGED)
+  @javax.annotation.Nullable
   private RequestChallenged requestChallenged;
 
   public Decision() {
   }
 
-  public Decision authResponse(AuthResponse authResponse) {
+  public Decision authResponse(@javax.annotation.Nullable AuthResponse authResponse) {
     this.authResponse = authResponse;
     return this;
   }
 
-   /**
+  /**
    * Get authResponse
    * @return authResponse
-  **/
+   */
   @javax.annotation.Nullable
   public AuthResponse getAuthResponse() {
     return authResponse;
   }
 
-  public void setAuthResponse(AuthResponse authResponse) {
+  public void setAuthResponse(@javax.annotation.Nullable AuthResponse authResponse) {
     this.authResponse = authResponse;
   }
 
 
-  public Decision requestChallenged(RequestChallenged requestChallenged) {
+  public Decision requestChallenged(@javax.annotation.Nullable RequestChallenged requestChallenged) {
     this.requestChallenged = requestChallenged;
     return this;
   }
 
-   /**
+  /**
    * Get requestChallenged
    * @return requestChallenged
-  **/
+   */
   @javax.annotation.Nullable
   public RequestChallenged getRequestChallenged() {
     return requestChallenged;
   }
 
-  public void setRequestChallenged(RequestChallenged requestChallenged) {
+  public void setRequestChallenged(@javax.annotation.Nullable RequestChallenged requestChallenged) {
     this.requestChallenged = requestChallenged;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the Decision instance itself
+   */
+  public Decision putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -111,12 +156,13 @@ public class Decision {
     }
     Decision decision = (Decision) o;
     return Objects.equals(this.authResponse, decision.authResponse) &&
-        Objects.equals(this.requestChallenged, decision.requestChallenged);
+        Objects.equals(this.requestChallenged, decision.requestChallenged)&&
+        Objects.equals(this.additionalProperties, decision.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(authResponse, requestChallenged);
+    return Objects.hash(authResponse, requestChallenged, additionalProperties);
   }
 
   @Override
@@ -125,6 +171,7 @@ public class Decision {
     sb.append("class Decision {\n");
     sb.append("    authResponse: ").append(toIndentedString(authResponse)).append("\n");
     sb.append("    requestChallenged: ").append(toIndentedString(requestChallenged)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -154,24 +201,16 @@ public class Decision {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Decision
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Decision
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!Decision.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Decision is not found in the empty JSON string", Decision.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!Decision.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Decision` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -200,6 +239,28 @@ public class Decision {
            @Override
            public void write(JsonWriter out, Decision value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -207,29 +268,50 @@ public class Decision {
            public Decision read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             Decision instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of Decision given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Decision
-  * @throws IOException if the JSON string is invalid with respect to Decision
-  */
+  /**
+   * Create an instance of Decision given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Decision
+   * @throws IOException if the JSON string is invalid with respect to Decision
+   */
   public static Decision fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Decision.class);
   }
 
- /**
-  * Convert an instance of Decision to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Decision to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

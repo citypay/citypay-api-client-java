@@ -35,6 +35,7 @@ import com.citypay.client.model.DomainKeyResponse;
 import com.citypay.client.model.Error;
 import com.citypay.client.model.ListMerchantsResponse;
 import com.citypay.client.model.Ping;
+import com.citypay.client.model.RegisterIpModel;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -86,7 +87,8 @@ public class OperationalFunctionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response to the ACL Check request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -96,7 +98,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call aclCheckRequestCall(AclCheckRequest aclCheckRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call aclCheckRequestCall(@javax.annotation.Nonnull AclCheckRequest aclCheckRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -144,7 +146,7 @@ public class OperationalFunctionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call aclCheckRequestValidateBeforeCall(AclCheckRequest aclCheckRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call aclCheckRequestValidateBeforeCall(@javax.annotation.Nonnull AclCheckRequest aclCheckRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'aclCheckRequest' is set
         if (aclCheckRequest == null) {
             throw new ApiException("Missing the required parameter 'aclCheckRequest' when calling aclCheckRequest(Async)");
@@ -161,7 +163,8 @@ public class OperationalFunctionsApi {
      * @return AclCheckResponseModel
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response to the ACL Check request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -171,7 +174,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public AclCheckResponseModel aclCheckRequest(AclCheckRequest aclCheckRequest) throws ApiException {
+    public AclCheckResponseModel aclCheckRequest(@javax.annotation.Nonnull AclCheckRequest aclCheckRequest) throws ApiException {
         ApiResponse<AclCheckResponseModel> localVarResp = aclCheckRequestWithHttpInfo(aclCheckRequest);
         return localVarResp.getData();
     }
@@ -183,7 +186,8 @@ public class OperationalFunctionsApi {
      * @return ApiResponse&lt;AclCheckResponseModel&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response to the ACL Check request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -193,7 +197,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AclCheckResponseModel> aclCheckRequestWithHttpInfo(AclCheckRequest aclCheckRequest) throws ApiException {
+    public ApiResponse<AclCheckResponseModel> aclCheckRequestWithHttpInfo(@javax.annotation.Nonnull AclCheckRequest aclCheckRequest) throws ApiException {
         okhttp3.Call localVarCall = aclCheckRequestValidateBeforeCall(aclCheckRequest, null);
         Type localVarReturnType = new TypeToken<AclCheckResponseModel>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -207,7 +211,8 @@ public class OperationalFunctionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response to the ACL Check request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -217,7 +222,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call aclCheckRequestAsync(AclCheckRequest aclCheckRequest, final ApiCallback<AclCheckResponseModel> _callback) throws ApiException {
+    public okhttp3.Call aclCheckRequestAsync(@javax.annotation.Nonnull AclCheckRequest aclCheckRequest, final ApiCallback<AclCheckResponseModel> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = aclCheckRequestValidateBeforeCall(aclCheckRequest, _callback);
         Type localVarReturnType = new TypeToken<AclCheckResponseModel>(){}.getType();
@@ -231,7 +236,8 @@ public class OperationalFunctionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A checked domain key. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -241,7 +247,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call domainKeyCheckRequestCall(DomainKeyCheckRequest domainKeyCheckRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call domainKeyCheckRequestCall(@javax.annotation.Nonnull DomainKeyCheckRequest domainKeyCheckRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -289,7 +295,7 @@ public class OperationalFunctionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call domainKeyCheckRequestValidateBeforeCall(DomainKeyCheckRequest domainKeyCheckRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call domainKeyCheckRequestValidateBeforeCall(@javax.annotation.Nonnull DomainKeyCheckRequest domainKeyCheckRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'domainKeyCheckRequest' is set
         if (domainKeyCheckRequest == null) {
             throw new ApiException("Missing the required parameter 'domainKeyCheckRequest' when calling domainKeyCheckRequest(Async)");
@@ -306,7 +312,8 @@ public class OperationalFunctionsApi {
      * @return DomainKeyResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A checked domain key. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -316,7 +323,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public DomainKeyResponse domainKeyCheckRequest(DomainKeyCheckRequest domainKeyCheckRequest) throws ApiException {
+    public DomainKeyResponse domainKeyCheckRequest(@javax.annotation.Nonnull DomainKeyCheckRequest domainKeyCheckRequest) throws ApiException {
         ApiResponse<DomainKeyResponse> localVarResp = domainKeyCheckRequestWithHttpInfo(domainKeyCheckRequest);
         return localVarResp.getData();
     }
@@ -328,7 +335,8 @@ public class OperationalFunctionsApi {
      * @return ApiResponse&lt;DomainKeyResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A checked domain key. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -338,7 +346,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<DomainKeyResponse> domainKeyCheckRequestWithHttpInfo(DomainKeyCheckRequest domainKeyCheckRequest) throws ApiException {
+    public ApiResponse<DomainKeyResponse> domainKeyCheckRequestWithHttpInfo(@javax.annotation.Nonnull DomainKeyCheckRequest domainKeyCheckRequest) throws ApiException {
         okhttp3.Call localVarCall = domainKeyCheckRequestValidateBeforeCall(domainKeyCheckRequest, null);
         Type localVarReturnType = new TypeToken<DomainKeyResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -352,7 +360,8 @@ public class OperationalFunctionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A checked domain key. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -362,7 +371,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call domainKeyCheckRequestAsync(DomainKeyCheckRequest domainKeyCheckRequest, final ApiCallback<DomainKeyResponse> _callback) throws ApiException {
+    public okhttp3.Call domainKeyCheckRequestAsync(@javax.annotation.Nonnull DomainKeyCheckRequest domainKeyCheckRequest, final ApiCallback<DomainKeyResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = domainKeyCheckRequestValidateBeforeCall(domainKeyCheckRequest, _callback);
         Type localVarReturnType = new TypeToken<DomainKeyResponse>(){}.getType();
@@ -376,7 +385,8 @@ public class OperationalFunctionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A generated domain key. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -386,7 +396,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call domainKeyGenRequestCall(DomainKeyRequest domainKeyRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call domainKeyGenRequestCall(@javax.annotation.Nonnull DomainKeyRequest domainKeyRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -434,7 +444,7 @@ public class OperationalFunctionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call domainKeyGenRequestValidateBeforeCall(DomainKeyRequest domainKeyRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call domainKeyGenRequestValidateBeforeCall(@javax.annotation.Nonnull DomainKeyRequest domainKeyRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'domainKeyRequest' is set
         if (domainKeyRequest == null) {
             throw new ApiException("Missing the required parameter 'domainKeyRequest' when calling domainKeyGenRequest(Async)");
@@ -451,7 +461,8 @@ public class OperationalFunctionsApi {
      * @return DomainKeyResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A generated domain key. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -461,7 +472,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public DomainKeyResponse domainKeyGenRequest(DomainKeyRequest domainKeyRequest) throws ApiException {
+    public DomainKeyResponse domainKeyGenRequest(@javax.annotation.Nonnull DomainKeyRequest domainKeyRequest) throws ApiException {
         ApiResponse<DomainKeyResponse> localVarResp = domainKeyGenRequestWithHttpInfo(domainKeyRequest);
         return localVarResp.getData();
     }
@@ -473,7 +484,8 @@ public class OperationalFunctionsApi {
      * @return ApiResponse&lt;DomainKeyResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A generated domain key. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -483,7 +495,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<DomainKeyResponse> domainKeyGenRequestWithHttpInfo(DomainKeyRequest domainKeyRequest) throws ApiException {
+    public ApiResponse<DomainKeyResponse> domainKeyGenRequestWithHttpInfo(@javax.annotation.Nonnull DomainKeyRequest domainKeyRequest) throws ApiException {
         okhttp3.Call localVarCall = domainKeyGenRequestValidateBeforeCall(domainKeyRequest, null);
         Type localVarReturnType = new TypeToken<DomainKeyResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -497,7 +509,8 @@ public class OperationalFunctionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A generated domain key. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -507,7 +520,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call domainKeyGenRequestAsync(DomainKeyRequest domainKeyRequest, final ApiCallback<DomainKeyResponse> _callback) throws ApiException {
+    public okhttp3.Call domainKeyGenRequestAsync(@javax.annotation.Nonnull DomainKeyRequest domainKeyRequest, final ApiCallback<DomainKeyResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = domainKeyGenRequestValidateBeforeCall(domainKeyRequest, _callback);
         Type localVarReturnType = new TypeToken<DomainKeyResponse>(){}.getType();
@@ -521,7 +534,8 @@ public class OperationalFunctionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A list of merchants that are configured against the client id. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -531,7 +545,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listMerchantsRequestCall(String clientid, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listMerchantsRequestCall(@javax.annotation.Nonnull String clientid, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -578,7 +592,7 @@ public class OperationalFunctionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listMerchantsRequestValidateBeforeCall(String clientid, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listMerchantsRequestValidateBeforeCall(@javax.annotation.Nonnull String clientid, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'clientid' is set
         if (clientid == null) {
             throw new ApiException("Missing the required parameter 'clientid' when calling listMerchantsRequest(Async)");
@@ -595,7 +609,8 @@ public class OperationalFunctionsApi {
      * @return ListMerchantsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A list of merchants that are configured against the client id. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -605,7 +620,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ListMerchantsResponse listMerchantsRequest(String clientid) throws ApiException {
+    public ListMerchantsResponse listMerchantsRequest(@javax.annotation.Nonnull String clientid) throws ApiException {
         ApiResponse<ListMerchantsResponse> localVarResp = listMerchantsRequestWithHttpInfo(clientid);
         return localVarResp.getData();
     }
@@ -617,7 +632,8 @@ public class OperationalFunctionsApi {
      * @return ApiResponse&lt;ListMerchantsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A list of merchants that are configured against the client id. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -627,7 +643,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ListMerchantsResponse> listMerchantsRequestWithHttpInfo(String clientid) throws ApiException {
+    public ApiResponse<ListMerchantsResponse> listMerchantsRequestWithHttpInfo(@javax.annotation.Nonnull String clientid) throws ApiException {
         okhttp3.Call localVarCall = listMerchantsRequestValidateBeforeCall(clientid, null);
         Type localVarReturnType = new TypeToken<ListMerchantsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -641,7 +657,8 @@ public class OperationalFunctionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A list of merchants that are configured against the client id. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -651,7 +668,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listMerchantsRequestAsync(String clientid, final ApiCallback<ListMerchantsResponse> _callback) throws ApiException {
+    public okhttp3.Call listMerchantsRequestAsync(@javax.annotation.Nonnull String clientid, final ApiCallback<ListMerchantsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listMerchantsRequestValidateBeforeCall(clientid, _callback);
         Type localVarReturnType = new TypeToken<ListMerchantsResponse>(){}.getType();
@@ -665,7 +682,8 @@ public class OperationalFunctionsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of the ping request, returning on 044 response code on successful receipt of the ping request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -675,7 +693,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call pingRequestCall(Ping ping, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call pingRequestCall(@javax.annotation.Nonnull Ping ping, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -725,7 +743,7 @@ public class OperationalFunctionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call pingRequestValidateBeforeCall(Ping ping, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call pingRequestValidateBeforeCall(@javax.annotation.Nonnull Ping ping, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'ping' is set
         if (ping == null) {
             throw new ApiException("Missing the required parameter 'ping' when calling pingRequest(Async)");
@@ -742,7 +760,8 @@ public class OperationalFunctionsApi {
      * @return Acknowledgement
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of the ping request, returning on 044 response code on successful receipt of the ping request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -752,7 +771,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Acknowledgement pingRequest(Ping ping) throws ApiException {
+    public Acknowledgement pingRequest(@javax.annotation.Nonnull Ping ping) throws ApiException {
         ApiResponse<Acknowledgement> localVarResp = pingRequestWithHttpInfo(ping);
         return localVarResp.getData();
     }
@@ -764,7 +783,8 @@ public class OperationalFunctionsApi {
      * @return ApiResponse&lt;Acknowledgement&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of the ping request, returning on 044 response code on successful receipt of the ping request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -774,7 +794,7 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Acknowledgement> pingRequestWithHttpInfo(Ping ping) throws ApiException {
+    public ApiResponse<Acknowledgement> pingRequestWithHttpInfo(@javax.annotation.Nonnull Ping ping) throws ApiException {
         okhttp3.Call localVarCall = pingRequestValidateBeforeCall(ping, null);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -788,7 +808,8 @@ public class OperationalFunctionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of the ping request, returning on 044 response code on successful receipt of the ping request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -798,9 +819,158 @@ public class OperationalFunctionsApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call pingRequestAsync(Ping ping, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+    public okhttp3.Call pingRequestAsync(@javax.annotation.Nonnull Ping ping, final ApiCallback<Acknowledgement> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = pingRequestValidateBeforeCall(ping, _callback);
+        Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for registerTempKey
+     * @param registerIpModel  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Register IP. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call registerTempKeyCall(@javax.annotation.Nonnull RegisterIpModel registerIpModel, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = registerIpModel;
+
+        // create path and map variables
+        String localVarPath = "/v6/permissions/register-temp-ip";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json",
+            "text/xml"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/xml"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "cp-api-key" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call registerTempKeyValidateBeforeCall(@javax.annotation.Nonnull RegisterIpModel registerIpModel, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'registerIpModel' is set
+        if (registerIpModel == null) {
+            throw new ApiException("Missing the required parameter 'registerIpModel' when calling registerTempKey(Async)");
+        }
+
+        return registerTempKeyCall(registerIpModel, _callback);
+
+    }
+
+    /**
+     * Register Temp Key
+     * Registers a temporary licence key.
+     * @param registerIpModel  (required)
+     * @return Acknowledgement
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Register IP. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Acknowledgement registerTempKey(@javax.annotation.Nonnull RegisterIpModel registerIpModel) throws ApiException {
+        ApiResponse<Acknowledgement> localVarResp = registerTempKeyWithHttpInfo(registerIpModel);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Register Temp Key
+     * Registers a temporary licence key.
+     * @param registerIpModel  (required)
+     * @return ApiResponse&lt;Acknowledgement&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Register IP. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Acknowledgement> registerTempKeyWithHttpInfo(@javax.annotation.Nonnull RegisterIpModel registerIpModel) throws ApiException {
+        okhttp3.Call localVarCall = registerTempKeyValidateBeforeCall(registerIpModel, null);
+        Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Register Temp Key (asynchronously)
+     * Registers a temporary licence key.
+     * @param registerIpModel  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Register IP. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call registerTempKeyAsync(@javax.annotation.Nonnull RegisterIpModel registerIpModel, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = registerTempKeyValidateBeforeCall(registerIpModel, _callback);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

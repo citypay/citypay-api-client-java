@@ -43,7 +43,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -58,64 +57,78 @@ import com.citypay.client.JSON;
 public class RemittedClientData {
   public static final String SERIALIZED_NAME_BATCHES = "batches";
   @SerializedName(SERIALIZED_NAME_BATCHES)
+  @javax.annotation.Nonnull
   private List<MerchantBatchResponse> batches = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CLIENTID = "clientid";
   @SerializedName(SERIALIZED_NAME_CLIENTID)
+  @javax.annotation.Nullable
   private String clientid;
 
   public static final String SERIALIZED_NAME_DATE = "date";
   @SerializedName(SERIALIZED_NAME_DATE)
+  @javax.annotation.Nullable
   private LocalDate date;
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
   @SerializedName(SERIALIZED_NAME_DATE_CREATED)
+  @javax.annotation.Nullable
   private OffsetDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_NET_AMOUNT = "net_amount";
   @SerializedName(SERIALIZED_NAME_NET_AMOUNT)
+  @javax.annotation.Nullable
   private Integer netAmount;
 
   public static final String SERIALIZED_NAME_PROCESSED_AMOUNT = "processed_amount";
   @SerializedName(SERIALIZED_NAME_PROCESSED_AMOUNT)
+  @javax.annotation.Nullable
   private Integer processedAmount;
 
   public static final String SERIALIZED_NAME_PROCESSED_COUNT = "processed_count";
   @SerializedName(SERIALIZED_NAME_PROCESSED_COUNT)
+  @javax.annotation.Nullable
   private Integer processedCount;
 
   public static final String SERIALIZED_NAME_REFUND_AMOUNT = "refund_amount";
   @SerializedName(SERIALIZED_NAME_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private Integer refundAmount;
 
   public static final String SERIALIZED_NAME_REFUND_COUNT = "refund_count";
   @SerializedName(SERIALIZED_NAME_REFUND_COUNT)
+  @javax.annotation.Nullable
   private Integer refundCount;
 
   public static final String SERIALIZED_NAME_REMITTANCES = "remittances";
   @SerializedName(SERIALIZED_NAME_REMITTANCES)
+  @javax.annotation.Nonnull
   private List<RemittanceData> remittances = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SALES_AMOUNT = "sales_amount";
   @SerializedName(SERIALIZED_NAME_SALES_AMOUNT)
+  @javax.annotation.Nullable
   private Integer salesAmount;
 
   public static final String SERIALIZED_NAME_SALES_COUNT = "sales_count";
   @SerializedName(SERIALIZED_NAME_SALES_COUNT)
+  @javax.annotation.Nullable
   private Integer salesCount;
 
   public static final String SERIALIZED_NAME_SETTLEMENT_IMPLEMENTATION = "settlement_implementation";
   @SerializedName(SERIALIZED_NAME_SETTLEMENT_IMPLEMENTATION)
+  @javax.annotation.Nullable
   private String settlementImplementation;
 
   public static final String SERIALIZED_NAME_UUID = "uuid";
   @SerializedName(SERIALIZED_NAME_UUID)
+  @javax.annotation.Nullable
   private UUID uuid;
 
   public RemittedClientData() {
   }
 
-  public RemittedClientData batches(List<MerchantBatchResponse> batches) {
+  public RemittedClientData batches(@javax.annotation.Nonnull List<MerchantBatchResponse> batches) {
     this.batches = batches;
     return this;
   }
@@ -128,183 +141,183 @@ public class RemittedClientData {
     return this;
   }
 
-   /**
+  /**
    * Get batches
    * @return batches
-  **/
+   */
   @javax.annotation.Nonnull
   public List<MerchantBatchResponse> getBatches() {
     return batches;
   }
 
-  public void setBatches(List<MerchantBatchResponse> batches) {
+  public void setBatches(@javax.annotation.Nonnull List<MerchantBatchResponse> batches) {
     this.batches = batches;
   }
 
 
-  public RemittedClientData clientid(String clientid) {
+  public RemittedClientData clientid(@javax.annotation.Nullable String clientid) {
     this.clientid = clientid;
     return this;
   }
 
-   /**
+  /**
    * The client id that the remittance data is for.
    * @return clientid
-  **/
+   */
   @javax.annotation.Nullable
   public String getClientid() {
     return clientid;
   }
 
-  public void setClientid(String clientid) {
+  public void setClientid(@javax.annotation.Nullable String clientid) {
     this.clientid = clientid;
   }
 
 
-  public RemittedClientData date(LocalDate date) {
+  public RemittedClientData date(@javax.annotation.Nullable LocalDate date) {
     this.date = date;
     return this;
   }
 
-   /**
+  /**
    * The date of the remittance.
    * @return date
-  **/
+   */
   @javax.annotation.Nullable
   public LocalDate getDate() {
     return date;
   }
 
-  public void setDate(LocalDate date) {
+  public void setDate(@javax.annotation.Nullable LocalDate date) {
     this.date = date;
   }
 
 
-  public RemittedClientData dateCreated(OffsetDateTime dateCreated) {
+  public RemittedClientData dateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
     this.dateCreated = dateCreated;
     return this;
   }
 
-   /**
+  /**
    * The date time that the remittance was created.
    * @return dateCreated
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDateCreated() {
     return dateCreated;
   }
 
-  public void setDateCreated(OffsetDateTime dateCreated) {
+  public void setDateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
     this.dateCreated = dateCreated;
   }
 
 
-  public RemittedClientData netAmount(Integer netAmount) {
+  public RemittedClientData netAmount(@javax.annotation.Nullable Integer netAmount) {
     this.netAmount = netAmount;
     return this;
   }
 
-   /**
+  /**
    * Represents the net amount after accounting for refunds. This is calculated as SalesAmount - RefundAmount and expressed in the smallest currency unit.
    * minimum: 0
    * maximum: 999999999
    * @return netAmount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getNetAmount() {
     return netAmount;
   }
 
-  public void setNetAmount(Integer netAmount) {
+  public void setNetAmount(@javax.annotation.Nullable Integer netAmount) {
     this.netAmount = netAmount;
   }
 
 
-  public RemittedClientData processedAmount(Integer processedAmount) {
+  public RemittedClientData processedAmount(@javax.annotation.Nullable Integer processedAmount) {
     this.processedAmount = processedAmount;
     return this;
   }
 
-   /**
+  /**
    * The total monetary amount processed consisting of sale and refund transactions.
    * minimum: 0
    * maximum: 999999999
    * @return processedAmount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getProcessedAmount() {
     return processedAmount;
   }
 
-  public void setProcessedAmount(Integer processedAmount) {
+  public void setProcessedAmount(@javax.annotation.Nullable Integer processedAmount) {
     this.processedAmount = processedAmount;
   }
 
 
-  public RemittedClientData processedCount(Integer processedCount) {
+  public RemittedClientData processedCount(@javax.annotation.Nullable Integer processedCount) {
     this.processedCount = processedCount;
     return this;
   }
 
-   /**
+  /**
    * Indicates the total number of sales and refund transactions that occurred. This count provides insight into the volume of processing.
    * minimum: 0
    * maximum: 999999999
    * @return processedCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getProcessedCount() {
     return processedCount;
   }
 
-  public void setProcessedCount(Integer processedCount) {
+  public void setProcessedCount(@javax.annotation.Nullable Integer processedCount) {
     this.processedCount = processedCount;
   }
 
 
-  public RemittedClientData refundAmount(Integer refundAmount) {
+  public RemittedClientData refundAmount(@javax.annotation.Nullable Integer refundAmount) {
     this.refundAmount = refundAmount;
     return this;
   }
 
-   /**
+  /**
    * The total amount refunded to customers.
    * minimum: 0
    * maximum: 999999999
    * @return refundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getRefundAmount() {
     return refundAmount;
   }
 
-  public void setRefundAmount(Integer refundAmount) {
+  public void setRefundAmount(@javax.annotation.Nullable Integer refundAmount) {
     this.refundAmount = refundAmount;
   }
 
 
-  public RemittedClientData refundCount(Integer refundCount) {
+  public RemittedClientData refundCount(@javax.annotation.Nullable Integer refundCount) {
     this.refundCount = refundCount;
     return this;
   }
 
-   /**
+  /**
    * The total number of refund transactions processed. This figure helps in understanding the frequency of refunds relative to sales.
    * minimum: 0
    * maximum: 999999999
    * @return refundCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getRefundCount() {
     return refundCount;
   }
 
-  public void setRefundCount(Integer refundCount) {
+  public void setRefundCount(@javax.annotation.Nullable Integer refundCount) {
     this.refundCount = refundCount;
   }
 
 
-  public RemittedClientData remittances(List<RemittanceData> remittances) {
+  public RemittedClientData remittances(@javax.annotation.Nonnull List<RemittanceData> remittances) {
     this.remittances = remittances;
     return this;
   }
@@ -317,99 +330,143 @@ public class RemittedClientData {
     return this;
   }
 
-   /**
+  /**
    * Get remittances
    * @return remittances
-  **/
+   */
   @javax.annotation.Nonnull
   public List<RemittanceData> getRemittances() {
     return remittances;
   }
 
-  public void setRemittances(List<RemittanceData> remittances) {
+  public void setRemittances(@javax.annotation.Nonnull List<RemittanceData> remittances) {
     this.remittances = remittances;
   }
 
 
-  public RemittedClientData salesAmount(Integer salesAmount) {
+  public RemittedClientData salesAmount(@javax.annotation.Nullable Integer salesAmount) {
     this.salesAmount = salesAmount;
     return this;
   }
 
-   /**
+  /**
    * The total monetary amount of sales transactions.
    * minimum: 0
    * maximum: 999999999
    * @return salesAmount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getSalesAmount() {
     return salesAmount;
   }
 
-  public void setSalesAmount(Integer salesAmount) {
+  public void setSalesAmount(@javax.annotation.Nullable Integer salesAmount) {
     this.salesAmount = salesAmount;
   }
 
 
-  public RemittedClientData salesCount(Integer salesCount) {
+  public RemittedClientData salesCount(@javax.annotation.Nullable Integer salesCount) {
     this.salesCount = salesCount;
     return this;
   }
 
-   /**
+  /**
    * Indicates the total number of sales transactions that occurred. This count provides insight into the volume of sales.
    * minimum: 0
    * maximum: 999999999
    * @return salesCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getSalesCount() {
     return salesCount;
   }
 
-  public void setSalesCount(Integer salesCount) {
+  public void setSalesCount(@javax.annotation.Nullable Integer salesCount) {
     this.salesCount = salesCount;
   }
 
 
-  public RemittedClientData settlementImplementation(String settlementImplementation) {
+  public RemittedClientData settlementImplementation(@javax.annotation.Nullable String settlementImplementation) {
     this.settlementImplementation = settlementImplementation;
     return this;
   }
 
-   /**
+  /**
    * The name of the implementation.
    * @return settlementImplementation
-  **/
+   */
   @javax.annotation.Nullable
   public String getSettlementImplementation() {
     return settlementImplementation;
   }
 
-  public void setSettlementImplementation(String settlementImplementation) {
+  public void setSettlementImplementation(@javax.annotation.Nullable String settlementImplementation) {
     this.settlementImplementation = settlementImplementation;
   }
 
 
-  public RemittedClientData uuid(UUID uuid) {
+  public RemittedClientData uuid(@javax.annotation.Nullable UUID uuid) {
     this.uuid = uuid;
     return this;
   }
 
-   /**
+  /**
    * The uuid of the settlement file processed on.
    * @return uuid
-  **/
+   */
   @javax.annotation.Nullable
   public UUID getUuid() {
     return uuid;
   }
 
-  public void setUuid(UUID uuid) {
+  public void setUuid(@javax.annotation.Nullable UUID uuid) {
     this.uuid = uuid;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the RemittedClientData instance itself
+   */
+  public RemittedClientData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -434,12 +491,13 @@ public class RemittedClientData {
         Objects.equals(this.salesAmount, remittedClientData.salesAmount) &&
         Objects.equals(this.salesCount, remittedClientData.salesCount) &&
         Objects.equals(this.settlementImplementation, remittedClientData.settlementImplementation) &&
-        Objects.equals(this.uuid, remittedClientData.uuid);
+        Objects.equals(this.uuid, remittedClientData.uuid)&&
+        Objects.equals(this.additionalProperties, remittedClientData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(batches, clientid, date, dateCreated, netAmount, processedAmount, processedCount, refundAmount, refundCount, remittances, salesAmount, salesCount, settlementImplementation, uuid);
+    return Objects.hash(batches, clientid, date, dateCreated, netAmount, processedAmount, processedCount, refundAmount, refundCount, remittances, salesAmount, salesCount, settlementImplementation, uuid, additionalProperties);
   }
 
   @Override
@@ -460,6 +518,7 @@ public class RemittedClientData {
     sb.append("    salesCount: ").append(toIndentedString(salesCount)).append("\n");
     sb.append("    settlementImplementation: ").append(toIndentedString(settlementImplementation)).append("\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -503,24 +562,16 @@ public class RemittedClientData {
     openapiRequiredFields.add("remittances");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to RemittedClientData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RemittedClientData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RemittedClientData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in RemittedClientData is not found in the empty JSON string", RemittedClientData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!RemittedClientData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RemittedClientData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
@@ -577,6 +628,28 @@ public class RemittedClientData {
            @Override
            public void write(JsonWriter out, RemittedClientData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -584,29 +657,50 @@ public class RemittedClientData {
            public RemittedClientData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             RemittedClientData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of RemittedClientData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RemittedClientData
-  * @throws IOException if the JSON string is invalid with respect to RemittedClientData
-  */
+  /**
+   * Create an instance of RemittedClientData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RemittedClientData
+   * @throws IOException if the JSON string is invalid with respect to RemittedClientData
+   */
   public static RemittedClientData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RemittedClientData.class);
   }
 
- /**
-  * Convert an instance of RemittedClientData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RemittedClientData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

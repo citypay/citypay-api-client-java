@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,261 +48,340 @@ import com.citypay.client.JSON;
  * PaylinkCustomParam
  */
 public class PaylinkCustomParam {
+  public static final String SERIALIZED_NAME_AUTH_META_DATA = "auth_meta_data";
+  @SerializedName(SERIALIZED_NAME_AUTH_META_DATA)
+  @javax.annotation.Nullable
+  private Boolean authMetaData;
+
   public static final String SERIALIZED_NAME_ENTRY_MODE = "entry_mode";
   @SerializedName(SERIALIZED_NAME_ENTRY_MODE)
+  @javax.annotation.Nullable
   private String entryMode;
 
   public static final String SERIALIZED_NAME_FIELD_TYPE = "field_type";
   @SerializedName(SERIALIZED_NAME_FIELD_TYPE)
+  @javax.annotation.Nullable
   private String fieldType;
 
   public static final String SERIALIZED_NAME_GROUP = "group";
   @SerializedName(SERIALIZED_NAME_GROUP)
+  @javax.annotation.Nullable
   private String group;
 
   public static final String SERIALIZED_NAME_LABEL = "label";
   @SerializedName(SERIALIZED_NAME_LABEL)
+  @javax.annotation.Nullable
   private String label;
 
   public static final String SERIALIZED_NAME_LOCKED = "locked";
   @SerializedName(SERIALIZED_NAME_LOCKED)
+  @javax.annotation.Nullable
   private Boolean locked;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nonnull
   private String name;
 
   public static final String SERIALIZED_NAME_ORDER = "order";
   @SerializedName(SERIALIZED_NAME_ORDER)
+  @javax.annotation.Nullable
   private Integer order;
 
   public static final String SERIALIZED_NAME_PATTERN = "pattern";
   @SerializedName(SERIALIZED_NAME_PATTERN)
+  @javax.annotation.Nullable
   private String pattern;
 
   public static final String SERIALIZED_NAME_PLACEHOLDER = "placeholder";
   @SerializedName(SERIALIZED_NAME_PLACEHOLDER)
+  @javax.annotation.Nullable
   private String placeholder;
 
   public static final String SERIALIZED_NAME_REQUIRED = "required";
   @SerializedName(SERIALIZED_NAME_REQUIRED)
+  @javax.annotation.Nullable
   private Boolean required;
 
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
+  @javax.annotation.Nullable
   private String value;
 
   public PaylinkCustomParam() {
   }
 
-  public PaylinkCustomParam entryMode(String entryMode) {
+  public PaylinkCustomParam authMetaData(@javax.annotation.Nullable Boolean authMetaData) {
+    this.authMetaData = authMetaData;
+    return this;
+  }
+
+  /**
+   * Determines if the custom parameter is stored as meta data against an authorisation allowing for that authorisation to be searched and queried by the result of this value. Defaults to false.
+   * @return authMetaData
+   */
+  @javax.annotation.Nullable
+  public Boolean isAuthMetaData() {
+    return authMetaData;
+  }
+
+  public void setAuthMetaData(@javax.annotation.Nullable Boolean authMetaData) {
+    this.authMetaData = authMetaData;
+  }
+
+
+  public PaylinkCustomParam entryMode(@javax.annotation.Nullable String entryMode) {
     this.entryMode = entryMode;
     return this;
   }
 
-   /**
-   * The type of entry mode. A value of &#39;pre&#39; will pre-render the custom parameter before the payment screen. Any other value will result in the custom parameter being displayed on the payment screen.
+  /**
+   * The type of entry mode. A value of &#x60;pre&#x60; will pre-render the custom parameter before the payment screen. Any other value will result in the custom parameter being displayed on the payment screen.
    * @return entryMode
-  **/
+   */
   @javax.annotation.Nullable
   public String getEntryMode() {
     return entryMode;
   }
 
-  public void setEntryMode(String entryMode) {
+  public void setEntryMode(@javax.annotation.Nullable String entryMode) {
     this.entryMode = entryMode;
   }
 
 
-  public PaylinkCustomParam fieldType(String fieldType) {
+  public PaylinkCustomParam fieldType(@javax.annotation.Nullable String fieldType) {
     this.fieldType = fieldType;
     return this;
   }
 
-   /**
-   * the type of html5 field, defaults to &#39;text&#39;. Other options are &#39;dob&#39; for a date of birth series of select list entry.
+  /**
+   * The type of html field, defaulting to &#x60;text&#x60;. Options are:   - &#x60;dob&#x60;      A date of birth field as a series of select list entries  - &#x60;text&#x60;     Allows the user to enter any text.  - &#x60;password&#x60; A field where the characters are masked to protect the input, typically used for passwords.  - &#x60;email&#x60;    Used for input fields that should contain an email address.  - &#x60;number&#x60;   For numeric input, can include controls for incrementing or decrementing the number.  - &#x60;tel&#x60;      For telephone numbers.  - &#x60;url&#x60;      A text field for entering a URL.  - &#x60;hidden&#x60;   Not visible to the user, but its value is sent when the form is submitted.  - &#x60;checkbox&#x60; A check box allowing single values to be selected/deselected.  - &#x60;radio&#x60;    Allows the user to select one of a limited number of choices.  - &#x60;select&#x60;   Renders as select items  Select Options:  Select options are constructed by providing a list of values in the value custom parameter field. Each value is delimited by a pipe character &#x60;|&#x60;. Value items can also be delimited with &#x60;:&#x60; as a value label pair.  For instance, a sports club requires identifying it&#39;s age group for membership entry:  &lt;CodeGroup title&#x3D;\&quot;Select Examples\&quot; label&#x3D;\&quot;ProcessBatchRequest\&quot;&gt;    &#x60;&#x60;&#x60;json {{ title: &#39;Basic Values&#39; }}      { \&quot;label\&quot; : \&quot;Age Group\&quot;,        \&quot;fieldType\&quot;: \&quot;select\&quot;,        \&quot;value\&quot; : \&quot;Under 18|18-30|30-50|50+\&quot; }...       &lt;select&gt;          &lt;option value&#x3D;\&quot;Under 18\&quot;&gt;Under 18&lt;/option&gt;          &lt;option value&#x3D;\&quot;18-30\&quot;&gt;18-30&lt;/option&gt;          &lt;option value&#x3D;\&quot;30-50\&quot;&gt;30-50&lt;/option&gt;          &lt;option value&#x3D;\&quot;50+\&quot;&gt;50+&lt;/option&gt;      &lt;/select&gt;    &#x60;&#x60;&#x60;    &#x60;&#x60;&#x60;json {{ title: &#39;Label and Values&#39; }}      { \&quot;label\&quot; : \&quot;Age Group\&quot;,        \&quot;fieldType\&quot;: \&quot;select\&quot;,        \&quot;value\&quot; : \&quot;0:Under 18|1:18-30|2:30-50|3:50+\&quot; }...       &lt;select&gt;          &lt;option value&#x3D;\&quot;0\&quot;&gt;Under 18&lt;/option&gt;          &lt;option value&#x3D;\&quot;1\&quot;&gt;18-30&lt;/option&gt;          &lt;option value&#x3D;\&quot;2\&quot;&gt;30-50&lt;/option&gt;          &lt;option value&#x3D;\&quot;3\&quot;&gt;50+&lt;/option&gt;      &lt;/select&gt;    &#x60;&#x60;&#x60; &lt;/CodeGroup&gt;  Fields may be requested as optional. If a select is required to be optional, provide a value such as &#x60;:Select an Option|options...&#x60; at the front of the list. 
    * @return fieldType
-  **/
+   */
   @javax.annotation.Nullable
   public String getFieldType() {
     return fieldType;
   }
 
-  public void setFieldType(String fieldType) {
+  public void setFieldType(@javax.annotation.Nullable String fieldType) {
     this.fieldType = fieldType;
   }
 
 
-  public PaylinkCustomParam group(String group) {
+  public PaylinkCustomParam group(@javax.annotation.Nullable String group) {
     this.group = group;
     return this;
   }
 
-   /**
-   * a group the parameter is linked with, allows for grouping with a title.
+  /**
+   * A value which groups items for layout. The value should be a string title for rendering such as \&quot;Your Account Info\&quot;. If no value is provided, the parameter is added to a default parameter group. Group names are ordered alphabetically when rendered.
    * @return group
-  **/
+   */
   @javax.annotation.Nullable
   public String getGroup() {
     return group;
   }
 
-  public void setGroup(String group) {
+  public void setGroup(@javax.annotation.Nullable String group) {
     this.group = group;
   }
 
 
-  public PaylinkCustomParam label(String label) {
+  public PaylinkCustomParam label(@javax.annotation.Nullable String label) {
     this.label = label;
     return this;
   }
 
-   /**
-   * a label to show alongside the input.
+  /**
+   * A label to show alongside the input. If this value is not supplied, the name value will be used.
    * @return label
-  **/
+   */
   @javax.annotation.Nullable
   public String getLabel() {
     return label;
   }
 
-  public void setLabel(String label) {
+  public void setLabel(@javax.annotation.Nullable String label) {
     this.label = label;
   }
 
 
-  public PaylinkCustomParam locked(Boolean locked) {
+  public PaylinkCustomParam locked(@javax.annotation.Nullable Boolean locked) {
     this.locked = locked;
     return this;
   }
 
-   /**
-   * whether the parameter is locked from entry.
+  /**
+   * States whether the field is locked, preventing entry or amendment by the person completing the form.
    * @return locked
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isLocked() {
     return locked;
   }
 
-  public void setLocked(Boolean locked) {
+  public void setLocked(@javax.annotation.Nullable Boolean locked) {
     this.locked = locked;
   }
 
 
-  public PaylinkCustomParam name(String name) {
+  public PaylinkCustomParam name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
 
-   /**
-   * the name of the custom parameter used to converse with the submitter.
+  /**
+   * Refers to the rendered HTML form element name. The value of this field is used in the postback and redirect dataset.
    * @return name
-  **/
+   */
   @javax.annotation.Nonnull
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
 
-  public PaylinkCustomParam order(Integer order) {
+  public PaylinkCustomParam order(@javax.annotation.Nullable Integer order) {
     this.order = order;
     return this;
   }
 
-   /**
-   * an index order for the parameter.
+  /**
+   * A value which allows you to order the position of elements in a grouping. Values will order in ascending order. Negative values are possible.
    * @return order
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getOrder() {
     return order;
   }
 
-  public void setOrder(Integer order) {
+  public void setOrder(@javax.annotation.Nullable Integer order) {
     this.order = order;
   }
 
 
-  public PaylinkCustomParam pattern(String pattern) {
+  public PaylinkCustomParam pattern(@javax.annotation.Nullable String pattern) {
     this.pattern = pattern;
     return this;
   }
 
-   /**
-   * a regex pattern to validate the custom parameter with.
+  /**
+   * A string value which specifies the validation logic of the form element, for example a value of QA[0-9]{3,4} will require a value such as QA221 or QA4433.
    * @return pattern
-  **/
+   */
   @javax.annotation.Nullable
   public String getPattern() {
     return pattern;
   }
 
-  public void setPattern(String pattern) {
+  public void setPattern(@javax.annotation.Nullable String pattern) {
     this.pattern = pattern;
   }
 
 
-  public PaylinkCustomParam placeholder(String placeholder) {
+  public PaylinkCustomParam placeholder(@javax.annotation.Nullable String placeholder) {
     this.placeholder = placeholder;
     return this;
   }
 
-   /**
-   * a placehold value to display in the input.
+  /**
+   * A value to set as the placeholder attribute which will render in the browser.
    * @return placeholder
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlaceholder() {
     return placeholder;
   }
 
-  public void setPlaceholder(String placeholder) {
+  public void setPlaceholder(@javax.annotation.Nullable String placeholder) {
     this.placeholder = placeholder;
   }
 
 
-  public PaylinkCustomParam required(Boolean required) {
+  public PaylinkCustomParam required(@javax.annotation.Nullable Boolean required) {
     this.required = required;
     return this;
   }
 
-   /**
-   * whether the field is required.
+  /**
+   * A boolean value that states whether the field is required or optional. When an element is required, validation will be performed on the end user&#39;s input form.
    * @return required
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isRequired() {
     return required;
   }
 
-  public void setRequired(Boolean required) {
+  public void setRequired(@javax.annotation.Nullable Boolean required) {
     this.required = required;
   }
 
 
-  public PaylinkCustomParam value(String value) {
+  public PaylinkCustomParam value(@javax.annotation.Nullable String value) {
     this.value = value;
     return this;
   }
 
-   /**
-   * a default value for the field.
+  /**
+   * An initial value for the parameter as it appears on the Form. If your parameter is hidden, the value will be required.
    * @return value
-  **/
+   */
   @javax.annotation.Nullable
   public String getValue() {
     return value;
   }
 
-  public void setValue(String value) {
+  public void setValue(@javax.annotation.Nullable String value) {
     this.value = value;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the PaylinkCustomParam instance itself
+   */
+  public PaylinkCustomParam putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -315,7 +393,8 @@ public class PaylinkCustomParam {
       return false;
     }
     PaylinkCustomParam paylinkCustomParam = (PaylinkCustomParam) o;
-    return Objects.equals(this.entryMode, paylinkCustomParam.entryMode) &&
+    return Objects.equals(this.authMetaData, paylinkCustomParam.authMetaData) &&
+        Objects.equals(this.entryMode, paylinkCustomParam.entryMode) &&
         Objects.equals(this.fieldType, paylinkCustomParam.fieldType) &&
         Objects.equals(this.group, paylinkCustomParam.group) &&
         Objects.equals(this.label, paylinkCustomParam.label) &&
@@ -325,18 +404,20 @@ public class PaylinkCustomParam {
         Objects.equals(this.pattern, paylinkCustomParam.pattern) &&
         Objects.equals(this.placeholder, paylinkCustomParam.placeholder) &&
         Objects.equals(this.required, paylinkCustomParam.required) &&
-        Objects.equals(this.value, paylinkCustomParam.value);
+        Objects.equals(this.value, paylinkCustomParam.value)&&
+        Objects.equals(this.additionalProperties, paylinkCustomParam.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(entryMode, fieldType, group, label, locked, name, order, pattern, placeholder, required, value);
+    return Objects.hash(authMetaData, entryMode, fieldType, group, label, locked, name, order, pattern, placeholder, required, value, additionalProperties);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaylinkCustomParam {\n");
+    sb.append("    authMetaData: ").append(toIndentedString(authMetaData)).append("\n");
     sb.append("    entryMode: ").append(toIndentedString(entryMode)).append("\n");
     sb.append("    fieldType: ").append(toIndentedString(fieldType)).append("\n");
     sb.append("    group: ").append(toIndentedString(group)).append("\n");
@@ -348,6 +429,7 @@ public class PaylinkCustomParam {
     sb.append("    placeholder: ").append(toIndentedString(placeholder)).append("\n");
     sb.append("    required: ").append(toIndentedString(required)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -370,6 +452,7 @@ public class PaylinkCustomParam {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("auth_meta_data");
     openapiFields.add("entry_mode");
     openapiFields.add("field_type");
     openapiFields.add("group");
@@ -387,24 +470,16 @@ public class PaylinkCustomParam {
     openapiRequiredFields.add("name");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkCustomParam
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkCustomParam
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkCustomParam.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkCustomParam is not found in the empty JSON string", PaylinkCustomParam.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PaylinkCustomParam.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkCustomParam` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
@@ -456,6 +531,28 @@ public class PaylinkCustomParam {
            @Override
            public void write(JsonWriter out, PaylinkCustomParam value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -463,29 +560,50 @@ public class PaylinkCustomParam {
            public PaylinkCustomParam read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             PaylinkCustomParam instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of PaylinkCustomParam given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkCustomParam
-  * @throws IOException if the JSON string is invalid with respect to PaylinkCustomParam
-  */
+  /**
+   * Create an instance of PaylinkCustomParam given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkCustomParam
+   * @throws IOException if the JSON string is invalid with respect to PaylinkCustomParam
+   */
   public static PaylinkCustomParam fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkCustomParam.class);
   }
 
- /**
-  * Convert an instance of PaylinkCustomParam to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkCustomParam to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

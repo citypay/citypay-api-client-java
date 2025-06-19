@@ -35,6 +35,7 @@ import com.citypay.client.model.MerchantBatchResponse;
 import com.citypay.client.model.RemittanceReportRequest;
 import com.citypay.client.model.RemittanceReportResponse;
 import com.citypay.client.model.RemittedClientData;
+import com.citypay.client.model.TransactionReportRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -88,7 +89,8 @@ public class ReportingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of the transactions listed on batches. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -98,7 +100,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call batchedTransactionReportRequestCall(Integer merchantid, String batchNo, BatchTransactionReportRequest batchTransactionReportRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call batchedTransactionReportRequestCall(@javax.annotation.Nonnull Integer merchantid, @javax.annotation.Nonnull String batchNo, @javax.annotation.Nonnull BatchTransactionReportRequest batchTransactionReportRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -148,7 +150,7 @@ public class ReportingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call batchedTransactionReportRequestValidateBeforeCall(Integer merchantid, String batchNo, BatchTransactionReportRequest batchTransactionReportRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call batchedTransactionReportRequestValidateBeforeCall(@javax.annotation.Nonnull Integer merchantid, @javax.annotation.Nonnull String batchNo, @javax.annotation.Nonnull BatchTransactionReportRequest batchTransactionReportRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'merchantid' is set
         if (merchantid == null) {
             throw new ApiException("Missing the required parameter 'merchantid' when calling batchedTransactionReportRequest(Async)");
@@ -177,7 +179,8 @@ public class ReportingApi {
      * @return BatchTransactionReportResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of the transactions listed on batches. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -187,7 +190,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public BatchTransactionReportResponse batchedTransactionReportRequest(Integer merchantid, String batchNo, BatchTransactionReportRequest batchTransactionReportRequest) throws ApiException {
+    public BatchTransactionReportResponse batchedTransactionReportRequest(@javax.annotation.Nonnull Integer merchantid, @javax.annotation.Nonnull String batchNo, @javax.annotation.Nonnull BatchTransactionReportRequest batchTransactionReportRequest) throws ApiException {
         ApiResponse<BatchTransactionReportResponse> localVarResp = batchedTransactionReportRequestWithHttpInfo(merchantid, batchNo, batchTransactionReportRequest);
         return localVarResp.getData();
     }
@@ -201,7 +204,8 @@ public class ReportingApi {
      * @return ApiResponse&lt;BatchTransactionReportResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of the transactions listed on batches. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -211,7 +215,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<BatchTransactionReportResponse> batchedTransactionReportRequestWithHttpInfo(Integer merchantid, String batchNo, BatchTransactionReportRequest batchTransactionReportRequest) throws ApiException {
+    public ApiResponse<BatchTransactionReportResponse> batchedTransactionReportRequestWithHttpInfo(@javax.annotation.Nonnull Integer merchantid, @javax.annotation.Nonnull String batchNo, @javax.annotation.Nonnull BatchTransactionReportRequest batchTransactionReportRequest) throws ApiException {
         okhttp3.Call localVarCall = batchedTransactionReportRequestValidateBeforeCall(merchantid, batchNo, batchTransactionReportRequest, null);
         Type localVarReturnType = new TypeToken<BatchTransactionReportResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -227,7 +231,8 @@ public class ReportingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of the transactions listed on batches. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -237,7 +242,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call batchedTransactionReportRequestAsync(Integer merchantid, String batchNo, BatchTransactionReportRequest batchTransactionReportRequest, final ApiCallback<BatchTransactionReportResponse> _callback) throws ApiException {
+    public okhttp3.Call batchedTransactionReportRequestAsync(@javax.annotation.Nonnull Integer merchantid, @javax.annotation.Nonnull String batchNo, @javax.annotation.Nonnull BatchTransactionReportRequest batchTransactionReportRequest, final ApiCallback<BatchTransactionReportResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = batchedTransactionReportRequestValidateBeforeCall(merchantid, batchNo, batchTransactionReportRequest, _callback);
         Type localVarReturnType = new TypeToken<BatchTransactionReportResponse>(){}.getType();
@@ -251,7 +256,8 @@ public class ReportingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of the batches generated. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -261,7 +267,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call merchantBatchReportRequestCall(MerchantBatchReportRequest merchantBatchReportRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call merchantBatchReportRequestCall(@javax.annotation.Nonnull MerchantBatchReportRequest merchantBatchReportRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -309,7 +315,7 @@ public class ReportingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call merchantBatchReportRequestValidateBeforeCall(MerchantBatchReportRequest merchantBatchReportRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call merchantBatchReportRequestValidateBeforeCall(@javax.annotation.Nonnull MerchantBatchReportRequest merchantBatchReportRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'merchantBatchReportRequest' is set
         if (merchantBatchReportRequest == null) {
             throw new ApiException("Missing the required parameter 'merchantBatchReportRequest' when calling merchantBatchReportRequest(Async)");
@@ -326,7 +332,8 @@ public class ReportingApi {
      * @return MerchantBatchReportResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of the batches generated. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -336,7 +343,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public MerchantBatchReportResponse merchantBatchReportRequest(MerchantBatchReportRequest merchantBatchReportRequest) throws ApiException {
+    public MerchantBatchReportResponse merchantBatchReportRequest(@javax.annotation.Nonnull MerchantBatchReportRequest merchantBatchReportRequest) throws ApiException {
         ApiResponse<MerchantBatchReportResponse> localVarResp = merchantBatchReportRequestWithHttpInfo(merchantBatchReportRequest);
         return localVarResp.getData();
     }
@@ -348,7 +355,8 @@ public class ReportingApi {
      * @return ApiResponse&lt;MerchantBatchReportResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of the batches generated. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -358,7 +366,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MerchantBatchReportResponse> merchantBatchReportRequestWithHttpInfo(MerchantBatchReportRequest merchantBatchReportRequest) throws ApiException {
+    public ApiResponse<MerchantBatchReportResponse> merchantBatchReportRequestWithHttpInfo(@javax.annotation.Nonnull MerchantBatchReportRequest merchantBatchReportRequest) throws ApiException {
         okhttp3.Call localVarCall = merchantBatchReportRequestValidateBeforeCall(merchantBatchReportRequest, null);
         Type localVarReturnType = new TypeToken<MerchantBatchReportResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -372,7 +380,8 @@ public class ReportingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of the batches generated. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -382,7 +391,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call merchantBatchReportRequestAsync(MerchantBatchReportRequest merchantBatchReportRequest, final ApiCallback<MerchantBatchReportResponse> _callback) throws ApiException {
+    public okhttp3.Call merchantBatchReportRequestAsync(@javax.annotation.Nonnull MerchantBatchReportRequest merchantBatchReportRequest, final ApiCallback<MerchantBatchReportResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = merchantBatchReportRequestValidateBeforeCall(merchantBatchReportRequest, _callback);
         Type localVarReturnType = new TypeToken<MerchantBatchReportResponse>(){}.getType();
@@ -397,7 +406,8 @@ public class ReportingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of a single batch. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -407,7 +417,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call merchantBatchRequestCall(Integer merchantid, String batchNo, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call merchantBatchRequestCall(@javax.annotation.Nonnull Integer merchantid, @javax.annotation.Nonnull String batchNo, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -455,7 +465,7 @@ public class ReportingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call merchantBatchRequestValidateBeforeCall(Integer merchantid, String batchNo, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call merchantBatchRequestValidateBeforeCall(@javax.annotation.Nonnull Integer merchantid, @javax.annotation.Nonnull String batchNo, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'merchantid' is set
         if (merchantid == null) {
             throw new ApiException("Missing the required parameter 'merchantid' when calling merchantBatchRequest(Async)");
@@ -478,7 +488,8 @@ public class ReportingApi {
      * @return MerchantBatchResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of a single batch. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -488,7 +499,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public MerchantBatchResponse merchantBatchRequest(Integer merchantid, String batchNo) throws ApiException {
+    public MerchantBatchResponse merchantBatchRequest(@javax.annotation.Nonnull Integer merchantid, @javax.annotation.Nonnull String batchNo) throws ApiException {
         ApiResponse<MerchantBatchResponse> localVarResp = merchantBatchRequestWithHttpInfo(merchantid, batchNo);
         return localVarResp.getData();
     }
@@ -501,7 +512,8 @@ public class ReportingApi {
      * @return ApiResponse&lt;MerchantBatchResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of a single batch. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -511,7 +523,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MerchantBatchResponse> merchantBatchRequestWithHttpInfo(Integer merchantid, String batchNo) throws ApiException {
+    public ApiResponse<MerchantBatchResponse> merchantBatchRequestWithHttpInfo(@javax.annotation.Nonnull Integer merchantid, @javax.annotation.Nonnull String batchNo) throws ApiException {
         okhttp3.Call localVarCall = merchantBatchRequestValidateBeforeCall(merchantid, batchNo, null);
         Type localVarReturnType = new TypeToken<MerchantBatchResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -526,7 +538,8 @@ public class ReportingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of a single batch. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -536,7 +549,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call merchantBatchRequestAsync(Integer merchantid, String batchNo, final ApiCallback<MerchantBatchResponse> _callback) throws ApiException {
+    public okhttp3.Call merchantBatchRequestAsync(@javax.annotation.Nonnull Integer merchantid, @javax.annotation.Nonnull String batchNo, final ApiCallback<MerchantBatchResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = merchantBatchRequestValidateBeforeCall(merchantid, batchNo, _callback);
         Type localVarReturnType = new TypeToken<MerchantBatchResponse>(){}.getType();
@@ -551,7 +564,8 @@ public class ReportingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of financial remittance data for a range of dates. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -561,7 +575,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call remittanceRangeReportCall(String clientid, RemittanceReportRequest remittanceReportRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call remittanceRangeReportCall(@javax.annotation.Nonnull String clientid, @javax.annotation.Nonnull RemittanceReportRequest remittanceReportRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -610,7 +624,7 @@ public class ReportingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call remittanceRangeReportValidateBeforeCall(String clientid, RemittanceReportRequest remittanceReportRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call remittanceRangeReportValidateBeforeCall(@javax.annotation.Nonnull String clientid, @javax.annotation.Nonnull RemittanceReportRequest remittanceReportRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'clientid' is set
         if (clientid == null) {
             throw new ApiException("Missing the required parameter 'clientid' when calling remittanceRangeReport(Async)");
@@ -633,7 +647,8 @@ public class ReportingApi {
      * @return RemittanceReportResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of financial remittance data for a range of dates. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -643,7 +658,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public RemittanceReportResponse remittanceRangeReport(String clientid, RemittanceReportRequest remittanceReportRequest) throws ApiException {
+    public RemittanceReportResponse remittanceRangeReport(@javax.annotation.Nonnull String clientid, @javax.annotation.Nonnull RemittanceReportRequest remittanceReportRequest) throws ApiException {
         ApiResponse<RemittanceReportResponse> localVarResp = remittanceRangeReportWithHttpInfo(clientid, remittanceReportRequest);
         return localVarResp.getData();
     }
@@ -656,7 +671,8 @@ public class ReportingApi {
      * @return ApiResponse&lt;RemittanceReportResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of financial remittance data for a range of dates. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -666,7 +682,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<RemittanceReportResponse> remittanceRangeReportWithHttpInfo(String clientid, RemittanceReportRequest remittanceReportRequest) throws ApiException {
+    public ApiResponse<RemittanceReportResponse> remittanceRangeReportWithHttpInfo(@javax.annotation.Nonnull String clientid, @javax.annotation.Nonnull RemittanceReportRequest remittanceReportRequest) throws ApiException {
         okhttp3.Call localVarCall = remittanceRangeReportValidateBeforeCall(clientid, remittanceReportRequest, null);
         Type localVarReturnType = new TypeToken<RemittanceReportResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -681,7 +697,8 @@ public class ReportingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of financial remittance data for a range of dates. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -691,7 +708,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call remittanceRangeReportAsync(String clientid, RemittanceReportRequest remittanceReportRequest, final ApiCallback<RemittanceReportResponse> _callback) throws ApiException {
+    public okhttp3.Call remittanceRangeReportAsync(@javax.annotation.Nonnull String clientid, @javax.annotation.Nonnull RemittanceReportRequest remittanceReportRequest, final ApiCallback<RemittanceReportResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = remittanceRangeReportValidateBeforeCall(clientid, remittanceReportRequest, _callback);
         Type localVarReturnType = new TypeToken<RemittanceReportResponse>(){}.getType();
@@ -706,7 +723,8 @@ public class ReportingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of the financial remittance data for a given date. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -716,7 +734,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call remittanceReportRequestCall(String clientid, String date, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call remittanceReportRequestCall(@javax.annotation.Nonnull String clientid, @javax.annotation.Nonnull String date, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -764,7 +782,7 @@ public class ReportingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call remittanceReportRequestValidateBeforeCall(String clientid, String date, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call remittanceReportRequestValidateBeforeCall(@javax.annotation.Nonnull String clientid, @javax.annotation.Nonnull String date, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'clientid' is set
         if (clientid == null) {
             throw new ApiException("Missing the required parameter 'clientid' when calling remittanceReportRequest(Async)");
@@ -787,7 +805,8 @@ public class ReportingApi {
      * @return RemittedClientData
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of the financial remittance data for a given date. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -797,7 +816,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public RemittedClientData remittanceReportRequest(String clientid, String date) throws ApiException {
+    public RemittedClientData remittanceReportRequest(@javax.annotation.Nonnull String clientid, @javax.annotation.Nonnull String date) throws ApiException {
         ApiResponse<RemittedClientData> localVarResp = remittanceReportRequestWithHttpInfo(clientid, date);
         return localVarResp.getData();
     }
@@ -810,7 +829,8 @@ public class ReportingApi {
      * @return ApiResponse&lt;RemittedClientData&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of the financial remittance data for a given date. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -820,7 +840,7 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<RemittedClientData> remittanceReportRequestWithHttpInfo(String clientid, String date) throws ApiException {
+    public ApiResponse<RemittedClientData> remittanceReportRequestWithHttpInfo(@javax.annotation.Nonnull String clientid, @javax.annotation.Nonnull String date) throws ApiException {
         okhttp3.Call localVarCall = remittanceReportRequestValidateBeforeCall(clientid, date, null);
         Type localVarReturnType = new TypeToken<RemittedClientData>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -835,7 +855,8 @@ public class ReportingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A report of the financial remittance data for a given date. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -845,10 +866,159 @@ public class ReportingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call remittanceReportRequestAsync(String clientid, String date, final ApiCallback<RemittedClientData> _callback) throws ApiException {
+    public okhttp3.Call remittanceReportRequestAsync(@javax.annotation.Nonnull String clientid, @javax.annotation.Nonnull String date, final ApiCallback<RemittedClientData> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = remittanceReportRequestValidateBeforeCall(clientid, date, _callback);
         Type localVarReturnType = new TypeToken<RemittedClientData>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for transactionReportRequest
+     * @param transactionReportRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> A report of the transactions processed. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call transactionReportRequestCall(@javax.annotation.Nonnull TransactionReportRequest transactionReportRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = transactionReportRequest;
+
+        // create path and map variables
+        String localVarPath = "/v6/transactions";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json",
+            "text/xml"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/xml"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "cp-api-key" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call transactionReportRequestValidateBeforeCall(@javax.annotation.Nonnull TransactionReportRequest transactionReportRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'transactionReportRequest' is set
+        if (transactionReportRequest == null) {
+            throw new ApiException("Missing the required parameter 'transactionReportRequest' when calling transactionReportRequest(Async)");
+        }
+
+        return transactionReportRequestCall(transactionReportRequest, _callback);
+
+    }
+
+    /**
+     * Transaction Report Request
+     * Retrieve a paginated report of transaction activity within a specified time range. Supports filters by transaction type,  result state, merchant ID, and allows field selection or predefined response modes for optimal data handling. 
+     * @param transactionReportRequest  (required)
+     * @return BatchTransactionReportResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> A report of the transactions processed. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public BatchTransactionReportResponse transactionReportRequest(@javax.annotation.Nonnull TransactionReportRequest transactionReportRequest) throws ApiException {
+        ApiResponse<BatchTransactionReportResponse> localVarResp = transactionReportRequestWithHttpInfo(transactionReportRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Transaction Report Request
+     * Retrieve a paginated report of transaction activity within a specified time range. Supports filters by transaction type,  result state, merchant ID, and allows field selection or predefined response modes for optimal data handling. 
+     * @param transactionReportRequest  (required)
+     * @return ApiResponse&lt;BatchTransactionReportResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> A report of the transactions processed. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<BatchTransactionReportResponse> transactionReportRequestWithHttpInfo(@javax.annotation.Nonnull TransactionReportRequest transactionReportRequest) throws ApiException {
+        okhttp3.Call localVarCall = transactionReportRequestValidateBeforeCall(transactionReportRequest, null);
+        Type localVarReturnType = new TypeToken<BatchTransactionReportResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Transaction Report Request (asynchronously)
+     * Retrieve a paginated report of transaction activity within a specified time range. Supports filters by transaction type,  result state, merchant ID, and allows field selection or predefined response modes for optimal data handling. 
+     * @param transactionReportRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> A report of the transactions processed. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call transactionReportRequestAsync(@javax.annotation.Nonnull TransactionReportRequest transactionReportRequest, final ApiCallback<BatchTransactionReportResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = transactionReportRequestValidateBeforeCall(transactionReportRequest, _callback);
+        Type localVarReturnType = new TypeToken<BatchTransactionReportResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

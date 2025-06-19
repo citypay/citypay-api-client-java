@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,144 +52,194 @@ import com.citypay.client.JSON;
 public class CaptureRequest {
   public static final String SERIALIZED_NAME_AIRLINE_DATA = "airline_data";
   @SerializedName(SERIALIZED_NAME_AIRLINE_DATA)
+  @javax.annotation.Nullable
   private AirlineAdvice airlineData;
 
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
+  @javax.annotation.Nullable
   private Integer amount;
 
   public static final String SERIALIZED_NAME_EVENT_MANAGEMENT = "event_management";
   @SerializedName(SERIALIZED_NAME_EVENT_MANAGEMENT)
+  @javax.annotation.Nullable
   private EventDataModel eventManagement;
 
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
+  @javax.annotation.Nullable
   private String identifier;
 
   public static final String SERIALIZED_NAME_MERCHANTID = "merchantid";
   @SerializedName(SERIALIZED_NAME_MERCHANTID)
+  @javax.annotation.Nonnull
   private Integer merchantid;
 
   public static final String SERIALIZED_NAME_TRANSNO = "transno";
   @SerializedName(SERIALIZED_NAME_TRANSNO)
+  @javax.annotation.Nullable
   private Integer transno;
 
   public CaptureRequest() {
   }
 
-  public CaptureRequest airlineData(AirlineAdvice airlineData) {
+  public CaptureRequest airlineData(@javax.annotation.Nullable AirlineAdvice airlineData) {
     this.airlineData = airlineData;
     return this;
   }
 
-   /**
+  /**
    * Get airlineData
    * @return airlineData
-  **/
+   */
   @javax.annotation.Nullable
   public AirlineAdvice getAirlineData() {
     return airlineData;
   }
 
-  public void setAirlineData(AirlineAdvice airlineData) {
+  public void setAirlineData(@javax.annotation.Nullable AirlineAdvice airlineData) {
     this.airlineData = airlineData;
   }
 
 
-  public CaptureRequest amount(Integer amount) {
+  public CaptureRequest amount(@javax.annotation.Nullable Integer amount) {
     this.amount = amount;
     return this;
   }
 
-   /**
+  /**
    * The completion amount provided in the lowest unit of currency for the specific currency of the merchant, with a variable length to a maximum of 12 digits. No decimal points to be included. For example with GBP 75.45 use the value 7545. Please check that you do not supply divisional characters such as 1,024 in the request which may be caused by some number formatters.  If no amount is supplied, the original processing amount is used. 
    * @return amount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getAmount() {
     return amount;
   }
 
-  public void setAmount(Integer amount) {
+  public void setAmount(@javax.annotation.Nullable Integer amount) {
     this.amount = amount;
   }
 
 
-  public CaptureRequest eventManagement(EventDataModel eventManagement) {
+  public CaptureRequest eventManagement(@javax.annotation.Nullable EventDataModel eventManagement) {
     this.eventManagement = eventManagement;
     return this;
   }
 
-   /**
+  /**
    * Get eventManagement
    * @return eventManagement
-  **/
+   */
   @javax.annotation.Nullable
   public EventDataModel getEventManagement() {
     return eventManagement;
   }
 
-  public void setEventManagement(EventDataModel eventManagement) {
+  public void setEventManagement(@javax.annotation.Nullable EventDataModel eventManagement) {
     this.eventManagement = eventManagement;
   }
 
 
-  public CaptureRequest identifier(String identifier) {
+  public CaptureRequest identifier(@javax.annotation.Nullable String identifier) {
     this.identifier = identifier;
     return this;
   }
 
-   /**
+  /**
    * The identifier of the transaction to capture. If an empty value is supplied then a &#x60;trans_no&#x60; value must be supplied.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nullable
   public String getIdentifier() {
     return identifier;
   }
 
-  public void setIdentifier(String identifier) {
+  public void setIdentifier(@javax.annotation.Nullable String identifier) {
     this.identifier = identifier;
   }
 
 
-  public CaptureRequest merchantid(Integer merchantid) {
+  public CaptureRequest merchantid(@javax.annotation.Nonnull Integer merchantid) {
     this.merchantid = merchantid;
     return this;
   }
 
-   /**
+  /**
    * Identifies the merchant account to perform the capture for.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getMerchantid() {
     return merchantid;
   }
 
-  public void setMerchantid(Integer merchantid) {
+  public void setMerchantid(@javax.annotation.Nonnull Integer merchantid) {
     this.merchantid = merchantid;
   }
 
 
-  public CaptureRequest transno(Integer transno) {
+  public CaptureRequest transno(@javax.annotation.Nullable Integer transno) {
     this.transno = transno;
     return this;
   }
 
-   /**
+  /**
    * The transaction number of the transaction to look up and capture. If an empty value is supplied then an identifier value must be supplied.
    * @return transno
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTransno() {
     return transno;
   }
 
-  public void setTransno(Integer transno) {
+  public void setTransno(@javax.annotation.Nullable Integer transno) {
     this.transno = transno;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the CaptureRequest instance itself
+   */
+  public CaptureRequest putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -207,12 +256,13 @@ public class CaptureRequest {
         Objects.equals(this.eventManagement, captureRequest.eventManagement) &&
         Objects.equals(this.identifier, captureRequest.identifier) &&
         Objects.equals(this.merchantid, captureRequest.merchantid) &&
-        Objects.equals(this.transno, captureRequest.transno);
+        Objects.equals(this.transno, captureRequest.transno)&&
+        Objects.equals(this.additionalProperties, captureRequest.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(airlineData, amount, eventManagement, identifier, merchantid, transno);
+    return Objects.hash(airlineData, amount, eventManagement, identifier, merchantid, transno, additionalProperties);
   }
 
   @Override
@@ -225,6 +275,7 @@ public class CaptureRequest {
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
     sb.append("    merchantid: ").append(toIndentedString(merchantid)).append("\n");
     sb.append("    transno: ").append(toIndentedString(transno)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -259,24 +310,16 @@ public class CaptureRequest {
     openapiRequiredFields.add("merchantid");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CaptureRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CaptureRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CaptureRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CaptureRequest is not found in the empty JSON string", CaptureRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CaptureRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CaptureRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
@@ -315,6 +358,28 @@ public class CaptureRequest {
            @Override
            public void write(JsonWriter out, CaptureRequest value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -322,29 +387,50 @@ public class CaptureRequest {
            public CaptureRequest read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             CaptureRequest instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CaptureRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CaptureRequest
-  * @throws IOException if the JSON string is invalid with respect to CaptureRequest
-  */
+  /**
+   * Create an instance of CaptureRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CaptureRequest
+   * @throws IOException if the JSON string is invalid with respect to CaptureRequest
+   */
   public static CaptureRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CaptureRequest.class);
   }
 
- /**
-  * Convert an instance of CaptureRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CaptureRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

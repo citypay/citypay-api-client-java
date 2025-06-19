@@ -9,6 +9,7 @@ All URIs are relative to *https://api.citypay.com*
 | [**merchantBatchRequest**](ReportingApi.md#merchantBatchRequest) | **GET** /v6/merchant-batch/{merchantid}/{batch_no} | Merchant Batch Request |
 | [**remittanceRangeReport**](ReportingApi.md#remittanceRangeReport) | **POST** /v6/remittance/report/{clientid} | Remittance Report Request |
 | [**remittanceReportRequest**](ReportingApi.md#remittanceReportRequest) | **GET** /v6/remittance/report/{clientid}/{date} | Remittance Date Report Request |
+| [**transactionReportRequest**](ReportingApi.md#transactionReportRequest) | **POST** /v6/transactions | Transaction Report Request |
 
 
 
@@ -421,6 +422,86 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A report of the financial remittance data for a given date. |  -  |
+| **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+| **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+| **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+| **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
+| **500** | Server Error. The server was unable to complete the request. |  -  |
+
+
+## transactionReportRequest
+
+> BatchTransactionReportResponse transactionReportRequest(transactionReportRequest)
+
+Transaction Report Request
+
+Retrieve a paginated report of transaction activity within a specified time range. Supports filters by transaction type, 
+result state, merchant ID, and allows field selection or predefined response modes for optimal data handling.
+
+
+### Example
+
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.model.*;
+import com.citypay.client.api.ReportingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
+
+        ReportingApi apiInstance = new ReportingApi(defaultClient);
+        TransactionReportRequest transactionReportRequest = new TransactionReportRequest(); // TransactionReportRequest | 
+        try {
+            BatchTransactionReportResponse result = apiInstance.transactionReportRequest(transactionReportRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ReportingApi#transactionReportRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **transactionReportRequest** | [**TransactionReportRequest**](TransactionReportRequest.md)|  | |
+
+### Return type
+
+[**BatchTransactionReportResponse**](BatchTransactionReportResponse.md)
+
+### Authorization
+
+[cp-api-key](../README.md#cp-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A report of the transactions processed. |  -  |
 | **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 | **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
 | **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |

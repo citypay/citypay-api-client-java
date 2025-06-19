@@ -90,7 +90,8 @@ public class CardHolderAccountApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Acknowledges the card has been requested for deletion. A response code of &#x60;001&#x60; is returned if the account is available for deletion otherwise an error code is returned. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -100,7 +101,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountCardDeleteRequestCall(String accountid, String cardId, Boolean force, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call accountCardDeleteRequestCall(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull String cardId, @javax.annotation.Nullable Boolean force, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -152,7 +153,7 @@ public class CardHolderAccountApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call accountCardDeleteRequestValidateBeforeCall(String accountid, String cardId, Boolean force, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call accountCardDeleteRequestValidateBeforeCall(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull String cardId, @javax.annotation.Nullable Boolean force, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountCardDeleteRequest(Async)");
@@ -176,7 +177,8 @@ public class CardHolderAccountApi {
      * @return Acknowledgement
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Acknowledges the card has been requested for deletion. A response code of &#x60;001&#x60; is returned if the account is available for deletion otherwise an error code is returned. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -186,7 +188,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Acknowledgement accountCardDeleteRequest(String accountid, String cardId, Boolean force) throws ApiException {
+    public Acknowledgement accountCardDeleteRequest(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull String cardId, @javax.annotation.Nullable Boolean force) throws ApiException {
         ApiResponse<Acknowledgement> localVarResp = accountCardDeleteRequestWithHttpInfo(accountid, cardId, force);
         return localVarResp.getData();
     }
@@ -200,7 +202,8 @@ public class CardHolderAccountApi {
      * @return ApiResponse&lt;Acknowledgement&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Acknowledges the card has been requested for deletion. A response code of &#x60;001&#x60; is returned if the account is available for deletion otherwise an error code is returned. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -210,7 +213,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Acknowledgement> accountCardDeleteRequestWithHttpInfo(String accountid, String cardId, Boolean force) throws ApiException {
+    public ApiResponse<Acknowledgement> accountCardDeleteRequestWithHttpInfo(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull String cardId, @javax.annotation.Nullable Boolean force) throws ApiException {
         okhttp3.Call localVarCall = accountCardDeleteRequestValidateBeforeCall(accountid, cardId, force, null);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -226,7 +229,8 @@ public class CardHolderAccountApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Acknowledges the card has been requested for deletion. A response code of &#x60;001&#x60; is returned if the account is available for deletion otherwise an error code is returned. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -236,7 +240,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountCardDeleteRequestAsync(String accountid, String cardId, Boolean force, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+    public okhttp3.Call accountCardDeleteRequestAsync(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull String cardId, @javax.annotation.Nullable Boolean force, final ApiCallback<Acknowledgement> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = accountCardDeleteRequestValidateBeforeCall(accountid, cardId, force, _callback);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
@@ -251,7 +255,8 @@ public class CardHolderAccountApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A successfully registered card provides a reload of the account including the new card. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -261,7 +266,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountCardRegisterRequestCall(String accountid, RegisterCard registerCard, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call accountCardRegisterRequestCall(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull RegisterCard registerCard, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -310,7 +315,7 @@ public class CardHolderAccountApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call accountCardRegisterRequestValidateBeforeCall(String accountid, RegisterCard registerCard, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call accountCardRegisterRequestValidateBeforeCall(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull RegisterCard registerCard, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountCardRegisterRequest(Async)");
@@ -333,7 +338,8 @@ public class CardHolderAccountApi {
      * @return CardHolderAccount
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A successfully registered card provides a reload of the account including the new card. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -343,7 +349,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public CardHolderAccount accountCardRegisterRequest(String accountid, RegisterCard registerCard) throws ApiException {
+    public CardHolderAccount accountCardRegisterRequest(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull RegisterCard registerCard) throws ApiException {
         ApiResponse<CardHolderAccount> localVarResp = accountCardRegisterRequestWithHttpInfo(accountid, registerCard);
         return localVarResp.getData();
     }
@@ -356,7 +362,8 @@ public class CardHolderAccountApi {
      * @return ApiResponse&lt;CardHolderAccount&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A successfully registered card provides a reload of the account including the new card. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -366,7 +373,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CardHolderAccount> accountCardRegisterRequestWithHttpInfo(String accountid, RegisterCard registerCard) throws ApiException {
+    public ApiResponse<CardHolderAccount> accountCardRegisterRequestWithHttpInfo(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull RegisterCard registerCard) throws ApiException {
         okhttp3.Call localVarCall = accountCardRegisterRequestValidateBeforeCall(accountid, registerCard, null);
         Type localVarReturnType = new TypeToken<CardHolderAccount>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -381,7 +388,8 @@ public class CardHolderAccountApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A successfully registered card provides a reload of the account including the new card. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -391,7 +399,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountCardRegisterRequestAsync(String accountid, RegisterCard registerCard, final ApiCallback<CardHolderAccount> _callback) throws ApiException {
+    public okhttp3.Call accountCardRegisterRequestAsync(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull RegisterCard registerCard, final ApiCallback<CardHolderAccount> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = accountCardRegisterRequestValidateBeforeCall(accountid, registerCard, _callback);
         Type localVarReturnType = new TypeToken<CardHolderAccount>(){}.getType();
@@ -407,7 +415,8 @@ public class CardHolderAccountApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -417,7 +426,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountCardStatusRequestCall(String accountid, String cardId, CardStatus cardStatus, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call accountCardStatusRequestCall(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull String cardId, @javax.annotation.Nonnull CardStatus cardStatus, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -467,7 +476,7 @@ public class CardHolderAccountApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call accountCardStatusRequestValidateBeforeCall(String accountid, String cardId, CardStatus cardStatus, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call accountCardStatusRequestValidateBeforeCall(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull String cardId, @javax.annotation.Nonnull CardStatus cardStatus, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountCardStatusRequest(Async)");
@@ -496,7 +505,8 @@ public class CardHolderAccountApi {
      * @return Acknowledgement
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -506,7 +516,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Acknowledgement accountCardStatusRequest(String accountid, String cardId, CardStatus cardStatus) throws ApiException {
+    public Acknowledgement accountCardStatusRequest(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull String cardId, @javax.annotation.Nonnull CardStatus cardStatus) throws ApiException {
         ApiResponse<Acknowledgement> localVarResp = accountCardStatusRequestWithHttpInfo(accountid, cardId, cardStatus);
         return localVarResp.getData();
     }
@@ -520,7 +530,8 @@ public class CardHolderAccountApi {
      * @return ApiResponse&lt;Acknowledgement&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -530,7 +541,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Acknowledgement> accountCardStatusRequestWithHttpInfo(String accountid, String cardId, CardStatus cardStatus) throws ApiException {
+    public ApiResponse<Acknowledgement> accountCardStatusRequestWithHttpInfo(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull String cardId, @javax.annotation.Nonnull CardStatus cardStatus) throws ApiException {
         okhttp3.Call localVarCall = accountCardStatusRequestValidateBeforeCall(accountid, cardId, cardStatus, null);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -546,7 +557,8 @@ public class CardHolderAccountApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Acknowledges the card status has changed, returning a response code of &#x60;001&#x60; for a valid change or &#x60;000&#x60; for a non valid change. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -556,7 +568,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountCardStatusRequestAsync(String accountid, String cardId, CardStatus cardStatus, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+    public okhttp3.Call accountCardStatusRequestAsync(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull String cardId, @javax.annotation.Nonnull CardStatus cardStatus, final ApiCallback<Acknowledgement> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = accountCardStatusRequestValidateBeforeCall(accountid, cardId, cardStatus, _callback);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
@@ -571,7 +583,8 @@ public class CardHolderAccountApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A revised account with the new details set. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -581,7 +594,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountChangeContactRequestCall(String accountid, ContactDetails contactDetails, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call accountChangeContactRequestCall(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull ContactDetails contactDetails, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -630,7 +643,7 @@ public class CardHolderAccountApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call accountChangeContactRequestValidateBeforeCall(String accountid, ContactDetails contactDetails, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call accountChangeContactRequestValidateBeforeCall(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull ContactDetails contactDetails, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountChangeContactRequest(Async)");
@@ -653,7 +666,8 @@ public class CardHolderAccountApi {
      * @return CardHolderAccount
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A revised account with the new details set. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -663,7 +677,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public CardHolderAccount accountChangeContactRequest(String accountid, ContactDetails contactDetails) throws ApiException {
+    public CardHolderAccount accountChangeContactRequest(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull ContactDetails contactDetails) throws ApiException {
         ApiResponse<CardHolderAccount> localVarResp = accountChangeContactRequestWithHttpInfo(accountid, contactDetails);
         return localVarResp.getData();
     }
@@ -676,7 +690,8 @@ public class CardHolderAccountApi {
      * @return ApiResponse&lt;CardHolderAccount&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A revised account with the new details set. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -686,7 +701,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CardHolderAccount> accountChangeContactRequestWithHttpInfo(String accountid, ContactDetails contactDetails) throws ApiException {
+    public ApiResponse<CardHolderAccount> accountChangeContactRequestWithHttpInfo(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull ContactDetails contactDetails) throws ApiException {
         okhttp3.Call localVarCall = accountChangeContactRequestValidateBeforeCall(accountid, contactDetails, null);
         Type localVarReturnType = new TypeToken<CardHolderAccount>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -701,7 +716,8 @@ public class CardHolderAccountApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A revised account with the new details set. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -711,7 +727,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountChangeContactRequestAsync(String accountid, ContactDetails contactDetails, final ApiCallback<CardHolderAccount> _callback) throws ApiException {
+    public okhttp3.Call accountChangeContactRequestAsync(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull ContactDetails contactDetails, final ApiCallback<CardHolderAccount> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = accountChangeContactRequestValidateBeforeCall(accountid, contactDetails, _callback);
         Type localVarReturnType = new TypeToken<CardHolderAccount>(){}.getType();
@@ -725,7 +741,8 @@ public class CardHolderAccountApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Provides an initialised account. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -735,7 +752,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountCreateCall(AccountCreate accountCreate, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call accountCreateCall(@javax.annotation.Nonnull AccountCreate accountCreate, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -783,7 +800,7 @@ public class CardHolderAccountApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call accountCreateValidateBeforeCall(AccountCreate accountCreate, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call accountCreateValidateBeforeCall(@javax.annotation.Nonnull AccountCreate accountCreate, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'accountCreate' is set
         if (accountCreate == null) {
             throw new ApiException("Missing the required parameter 'accountCreate' when calling accountCreate(Async)");
@@ -800,7 +817,8 @@ public class CardHolderAccountApi {
      * @return CardHolderAccount
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Provides an initialised account. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -810,7 +828,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public CardHolderAccount accountCreate(AccountCreate accountCreate) throws ApiException {
+    public CardHolderAccount accountCreate(@javax.annotation.Nonnull AccountCreate accountCreate) throws ApiException {
         ApiResponse<CardHolderAccount> localVarResp = accountCreateWithHttpInfo(accountCreate);
         return localVarResp.getData();
     }
@@ -822,7 +840,8 @@ public class CardHolderAccountApi {
      * @return ApiResponse&lt;CardHolderAccount&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Provides an initialised account. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -832,7 +851,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CardHolderAccount> accountCreateWithHttpInfo(AccountCreate accountCreate) throws ApiException {
+    public ApiResponse<CardHolderAccount> accountCreateWithHttpInfo(@javax.annotation.Nonnull AccountCreate accountCreate) throws ApiException {
         okhttp3.Call localVarCall = accountCreateValidateBeforeCall(accountCreate, null);
         Type localVarReturnType = new TypeToken<CardHolderAccount>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -846,7 +865,8 @@ public class CardHolderAccountApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Provides an initialised account. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -856,7 +876,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountCreateAsync(AccountCreate accountCreate, final ApiCallback<CardHolderAccount> _callback) throws ApiException {
+    public okhttp3.Call accountCreateAsync(@javax.annotation.Nonnull AccountCreate accountCreate, final ApiCallback<CardHolderAccount> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = accountCreateValidateBeforeCall(accountCreate, _callback);
         Type localVarReturnType = new TypeToken<CardHolderAccount>(){}.getType();
@@ -870,7 +890,8 @@ public class CardHolderAccountApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> An acknowledgment code of &#x60;001&#x60; that the card holder account has been marked for deletion. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -880,7 +901,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountDeleteRequestCall(String accountid, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call accountDeleteRequestCall(@javax.annotation.Nonnull String accountid, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -927,7 +948,7 @@ public class CardHolderAccountApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call accountDeleteRequestValidateBeforeCall(String accountid, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call accountDeleteRequestValidateBeforeCall(@javax.annotation.Nonnull String accountid, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountDeleteRequest(Async)");
@@ -944,7 +965,8 @@ public class CardHolderAccountApi {
      * @return Acknowledgement
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> An acknowledgment code of &#x60;001&#x60; that the card holder account has been marked for deletion. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -954,7 +976,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Acknowledgement accountDeleteRequest(String accountid) throws ApiException {
+    public Acknowledgement accountDeleteRequest(@javax.annotation.Nonnull String accountid) throws ApiException {
         ApiResponse<Acknowledgement> localVarResp = accountDeleteRequestWithHttpInfo(accountid);
         return localVarResp.getData();
     }
@@ -966,7 +988,8 @@ public class CardHolderAccountApi {
      * @return ApiResponse&lt;Acknowledgement&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> An acknowledgment code of &#x60;001&#x60; that the card holder account has been marked for deletion. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -976,7 +999,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Acknowledgement> accountDeleteRequestWithHttpInfo(String accountid) throws ApiException {
+    public ApiResponse<Acknowledgement> accountDeleteRequestWithHttpInfo(@javax.annotation.Nonnull String accountid) throws ApiException {
         okhttp3.Call localVarCall = accountDeleteRequestValidateBeforeCall(accountid, null);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -990,7 +1013,8 @@ public class CardHolderAccountApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> An acknowledgment code of &#x60;001&#x60; that the card holder account has been marked for deletion. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1000,7 +1024,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountDeleteRequestAsync(String accountid, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+    public okhttp3.Call accountDeleteRequestAsync(@javax.annotation.Nonnull String accountid, final ApiCallback<Acknowledgement> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = accountDeleteRequestValidateBeforeCall(accountid, _callback);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
@@ -1014,7 +1038,8 @@ public class CardHolderAccountApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A response model determining whether the account exists, if exists is true, a last modified date of the account is also provided. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1024,7 +1049,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountExistsRequestCall(String accountid, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call accountExistsRequestCall(@javax.annotation.Nonnull String accountid, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1071,7 +1096,7 @@ public class CardHolderAccountApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call accountExistsRequestValidateBeforeCall(String accountid, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call accountExistsRequestValidateBeforeCall(@javax.annotation.Nonnull String accountid, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountExistsRequest(Async)");
@@ -1088,7 +1113,8 @@ public class CardHolderAccountApi {
      * @return Exists
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A response model determining whether the account exists, if exists is true, a last modified date of the account is also provided. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1098,7 +1124,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Exists accountExistsRequest(String accountid) throws ApiException {
+    public Exists accountExistsRequest(@javax.annotation.Nonnull String accountid) throws ApiException {
         ApiResponse<Exists> localVarResp = accountExistsRequestWithHttpInfo(accountid);
         return localVarResp.getData();
     }
@@ -1110,7 +1136,8 @@ public class CardHolderAccountApi {
      * @return ApiResponse&lt;Exists&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A response model determining whether the account exists, if exists is true, a last modified date of the account is also provided. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1120,7 +1147,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Exists> accountExistsRequestWithHttpInfo(String accountid) throws ApiException {
+    public ApiResponse<Exists> accountExistsRequestWithHttpInfo(@javax.annotation.Nonnull String accountid) throws ApiException {
         okhttp3.Call localVarCall = accountExistsRequestValidateBeforeCall(accountid, null);
         Type localVarReturnType = new TypeToken<Exists>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1134,7 +1161,8 @@ public class CardHolderAccountApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A response model determining whether the account exists, if exists is true, a last modified date of the account is also provided. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1144,7 +1172,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountExistsRequestAsync(String accountid, final ApiCallback<Exists> _callback) throws ApiException {
+    public okhttp3.Call accountExistsRequestAsync(@javax.annotation.Nonnull String accountid, final ApiCallback<Exists> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = accountExistsRequestValidateBeforeCall(accountid, _callback);
         Type localVarReturnType = new TypeToken<Exists>(){}.getType();
@@ -1158,7 +1186,8 @@ public class CardHolderAccountApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A card holder account that matches the account id provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1168,7 +1197,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountRetrieveRequestCall(String accountid, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call accountRetrieveRequestCall(@javax.annotation.Nonnull String accountid, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1215,7 +1244,7 @@ public class CardHolderAccountApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call accountRetrieveRequestValidateBeforeCall(String accountid, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call accountRetrieveRequestValidateBeforeCall(@javax.annotation.Nonnull String accountid, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountRetrieveRequest(Async)");
@@ -1232,7 +1261,8 @@ public class CardHolderAccountApi {
      * @return CardHolderAccount
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A card holder account that matches the account id provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1242,7 +1272,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public CardHolderAccount accountRetrieveRequest(String accountid) throws ApiException {
+    public CardHolderAccount accountRetrieveRequest(@javax.annotation.Nonnull String accountid) throws ApiException {
         ApiResponse<CardHolderAccount> localVarResp = accountRetrieveRequestWithHttpInfo(accountid);
         return localVarResp.getData();
     }
@@ -1254,7 +1284,8 @@ public class CardHolderAccountApi {
      * @return ApiResponse&lt;CardHolderAccount&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A card holder account that matches the account id provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1264,7 +1295,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CardHolderAccount> accountRetrieveRequestWithHttpInfo(String accountid) throws ApiException {
+    public ApiResponse<CardHolderAccount> accountRetrieveRequestWithHttpInfo(@javax.annotation.Nonnull String accountid) throws ApiException {
         okhttp3.Call localVarCall = accountRetrieveRequestValidateBeforeCall(accountid, null);
         Type localVarReturnType = new TypeToken<CardHolderAccount>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1278,7 +1309,8 @@ public class CardHolderAccountApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A card holder account that matches the account id provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1288,7 +1320,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountRetrieveRequestAsync(String accountid, final ApiCallback<CardHolderAccount> _callback) throws ApiException {
+    public okhttp3.Call accountRetrieveRequestAsync(@javax.annotation.Nonnull String accountid, final ApiCallback<CardHolderAccount> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = accountRetrieveRequestValidateBeforeCall(accountid, _callback);
         Type localVarReturnType = new TypeToken<CardHolderAccount>(){}.getType();
@@ -1303,7 +1335,8 @@ public class CardHolderAccountApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> An acknowledgment that the card holder account status has been updated.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;001&#x60; is returned if the request was accepted or no change required.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;000&#x60; is returned if the request contains invalid data. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1313,7 +1346,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountStatusRequestCall(String accountid, AccountStatus accountStatus, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call accountStatusRequestCall(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull AccountStatus accountStatus, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1362,7 +1395,7 @@ public class CardHolderAccountApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call accountStatusRequestValidateBeforeCall(String accountid, AccountStatus accountStatus, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call accountStatusRequestValidateBeforeCall(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull AccountStatus accountStatus, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'accountid' is set
         if (accountid == null) {
             throw new ApiException("Missing the required parameter 'accountid' when calling accountStatusRequest(Async)");
@@ -1385,7 +1418,8 @@ public class CardHolderAccountApi {
      * @return Acknowledgement
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> An acknowledgment that the card holder account status has been updated.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;001&#x60; is returned if the request was accepted or no change required.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;000&#x60; is returned if the request contains invalid data. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1395,7 +1429,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Acknowledgement accountStatusRequest(String accountid, AccountStatus accountStatus) throws ApiException {
+    public Acknowledgement accountStatusRequest(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull AccountStatus accountStatus) throws ApiException {
         ApiResponse<Acknowledgement> localVarResp = accountStatusRequestWithHttpInfo(accountid, accountStatus);
         return localVarResp.getData();
     }
@@ -1408,7 +1442,8 @@ public class CardHolderAccountApi {
      * @return ApiResponse&lt;Acknowledgement&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> An acknowledgment that the card holder account status has been updated.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;001&#x60; is returned if the request was accepted or no change required.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;000&#x60; is returned if the request contains invalid data. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1418,7 +1453,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Acknowledgement> accountStatusRequestWithHttpInfo(String accountid, AccountStatus accountStatus) throws ApiException {
+    public ApiResponse<Acknowledgement> accountStatusRequestWithHttpInfo(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull AccountStatus accountStatus) throws ApiException {
         okhttp3.Call localVarCall = accountStatusRequestValidateBeforeCall(accountid, accountStatus, null);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1433,7 +1468,8 @@ public class CardHolderAccountApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> An acknowledgment that the card holder account status has been updated.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;001&#x60; is returned if the request was accepted or no change required.&lt;/br&gt;&lt;/br&gt;A response code of &#x60;000&#x60; is returned if the request contains invalid data. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1443,7 +1479,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call accountStatusRequestAsync(String accountid, AccountStatus accountStatus, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+    public okhttp3.Call accountStatusRequestAsync(@javax.annotation.Nonnull String accountid, @javax.annotation.Nonnull AccountStatus accountStatus, final ApiCallback<Acknowledgement> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = accountStatusRequestValidateBeforeCall(accountid, accountStatus, _callback);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
@@ -1457,7 +1493,8 @@ public class CardHolderAccountApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A decision met by the result of the charge. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1467,7 +1504,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call chargeRequestCall(ChargeRequest chargeRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call chargeRequestCall(@javax.annotation.Nonnull ChargeRequest chargeRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1515,7 +1552,7 @@ public class CardHolderAccountApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call chargeRequestValidateBeforeCall(ChargeRequest chargeRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call chargeRequestValidateBeforeCall(@javax.annotation.Nonnull ChargeRequest chargeRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'chargeRequest' is set
         if (chargeRequest == null) {
             throw new ApiException("Missing the required parameter 'chargeRequest' when calling chargeRequest(Async)");
@@ -1532,7 +1569,8 @@ public class CardHolderAccountApi {
      * @return Decision
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A decision met by the result of the charge. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1542,7 +1580,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Decision chargeRequest(ChargeRequest chargeRequest) throws ApiException {
+    public Decision chargeRequest(@javax.annotation.Nonnull ChargeRequest chargeRequest) throws ApiException {
         ApiResponse<Decision> localVarResp = chargeRequestWithHttpInfo(chargeRequest);
         return localVarResp.getData();
     }
@@ -1554,7 +1592,8 @@ public class CardHolderAccountApi {
      * @return ApiResponse&lt;Decision&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A decision met by the result of the charge. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1564,7 +1603,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Decision> chargeRequestWithHttpInfo(ChargeRequest chargeRequest) throws ApiException {
+    public ApiResponse<Decision> chargeRequestWithHttpInfo(@javax.annotation.Nonnull ChargeRequest chargeRequest) throws ApiException {
         okhttp3.Call localVarCall = chargeRequestValidateBeforeCall(chargeRequest, null);
         Type localVarReturnType = new TypeToken<Decision>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1578,7 +1617,8 @@ public class CardHolderAccountApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A decision met by the result of the charge. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1588,7 +1628,7 @@ public class CardHolderAccountApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call chargeRequestAsync(ChargeRequest chargeRequest, final ApiCallback<Decision> _callback) throws ApiException {
+    public okhttp3.Call chargeRequestAsync(@javax.annotation.Nonnull ChargeRequest chargeRequest, final ApiCallback<Decision> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = chargeRequestValidateBeforeCall(chargeRequest, _callback);
         Type localVarReturnType = new TypeToken<Decision>(){}.getType();

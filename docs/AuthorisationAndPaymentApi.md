@@ -8,10 +8,10 @@ All URIs are relative to *https://api.citypay.com*
 | [**binRangeLookupRequest**](AuthorisationAndPaymentApi.md#binRangeLookupRequest) | **POST** /v6/bin | Bin Lookup |
 | [**cResRequest**](AuthorisationAndPaymentApi.md#cResRequest) | **POST** /v6/cres | CRes |
 | [**captureRequest**](AuthorisationAndPaymentApi.md#captureRequest) | **POST** /v6/capture | Capture |
-| [**createPaymentIntent**](AuthorisationAndPaymentApi.md#createPaymentIntent) | **POST** /v6/intent/create | Create a Payment Intent |
-| [**paResRequest**](AuthorisationAndPaymentApi.md#paResRequest) | **POST** /v6/pares | PaRes |
+| [**cardTokenisationRequest**](AuthorisationAndPaymentApi.md#cardTokenisationRequest) | **POST** /v6/tokenise | Card Tokenisation Request |
 | [**refundRequest**](AuthorisationAndPaymentApi.md#refundRequest) | **POST** /v6/refund | Refund |
-| [**retrievalRequest**](AuthorisationAndPaymentApi.md#retrievalRequest) | **POST** /v6/retrieve | Retrieval |
+| [**retrievalRequest**](AuthorisationAndPaymentApi.md#retrievalRequest) | **POST** /v6/retrieve | Transaction Retrieval |
+| [**verificationRequest**](AuthorisationAndPaymentApi.md#verificationRequest) | **POST** /v6/verify | Verification |
 | [**voidRequest**](AuthorisationAndPaymentApi.md#voidRequest) | **POST** /v6/void | Void |
 
 
@@ -363,16 +363,13 @@ public class Example {
 | **500** | Server Error. The server was unable to complete the request. |  -  |
 
 
-## createPaymentIntent
+## cardTokenisationRequest
 
-> PaymentIntentReference createPaymentIntent(paymentIntent)
+> CardTokenisationResponse cardTokenisationRequest(cardTokenisationRequest)
 
-Create a Payment Intent
+Card Tokenisation Request
 
-This endpoint initiates the creation of a payment intent, which is a precursor to processing a payment. A payment intent
-captures the details of a prospective payment transaction, including the payment amount, currency, and associated
-billing and shipping information.
-
+Performs a tokenisation request for card details.
 
 ### Example
 
@@ -390,6 +387,12 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.citypay.com");
         
+        // Configure API key authorization: cp-domain-key
+        ApiKeyAuth cp-domain-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-domain-key");
+        cp-domain-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-domain-key.setApiKeyPrefix("Token");
+
         // Configure API key authorization: cp-api-key
         ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
         cp-api-key.setApiKey("YOUR API KEY");
@@ -397,12 +400,12 @@ public class Example {
         //cp-api-key.setApiKeyPrefix("Token");
 
         AuthorisationAndPaymentApi apiInstance = new AuthorisationAndPaymentApi(defaultClient);
-        PaymentIntent paymentIntent = new PaymentIntent(); // PaymentIntent | 
+        CardTokenisationRequest cardTokenisationRequest = new CardTokenisationRequest(); // CardTokenisationRequest | 
         try {
-            PaymentIntentReference result = apiInstance.createPaymentIntent(paymentIntent);
+            CardTokenisationResponse result = apiInstance.cardTokenisationRequest(cardTokenisationRequest);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling AuthorisationAndPaymentApi#createPaymentIntent");
+            System.err.println("Exception when calling AuthorisationAndPaymentApi#cardTokenisationRequest");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -417,15 +420,15 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **paymentIntent** | [**PaymentIntent**](PaymentIntent.md)|  | |
+| **cardTokenisationRequest** | [**CardTokenisationRequest**](CardTokenisationRequest.md)|  | |
 
 ### Return type
 
-[**PaymentIntentReference**](PaymentIntentReference.md)
+[**CardTokenisationResponse**](CardTokenisationResponse.md)
 
 ### Authorization
 
-[cp-api-key](../README.md#cp-api-key)
+[cp-domain-key](../README.md#cp-domain-key), [cp-api-key](../README.md#cp-api-key)
 
 ### HTTP request headers
 
@@ -436,92 +439,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Returns the id of the payment intent. |  -  |
-| **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
-| **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
-| **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
-| **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
-| **500** | Server Error. The server was unable to complete the request. |  -  |
-
-
-## paResRequest
-
-> AuthResponse paResRequest(paResAuthRequest)
-
-PaRes
-
-The Payer Authentication Response (PaRes) is an operation after the result of authentication 
- being performed. The request uses an encoded packet of authentication data to 
-notify us of the completion of the liability shift. Once this value has been unpacked and its
-signature is checked, our systems will proceed to authorisation processing.  
-
-Any call to the PaRes operation will require a previous authorisation request and cannot be called 
-on its own without a previous [authentication required](#authenticationrequired)  being obtained.
-
-
-### Example
-
-```java
-// Import classes:
-import com.citypay.client.ApiClient;
-import com.citypay.client.ApiException;
-import com.citypay.client.Configuration;
-import com.citypay.client.auth.*;
-import com.citypay.client.model.*;
-import com.citypay.client.api.AuthorisationAndPaymentApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.citypay.com");
-        
-        // Configure API key authorization: cp-api-key
-        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
-        cp-api-key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //cp-api-key.setApiKeyPrefix("Token");
-
-        AuthorisationAndPaymentApi apiInstance = new AuthorisationAndPaymentApi(defaultClient);
-        PaResAuthRequest paResAuthRequest = new PaResAuthRequest(); // PaResAuthRequest | 
-        try {
-            AuthResponse result = apiInstance.paResRequest(paResAuthRequest);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AuthorisationAndPaymentApi#paResRequest");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **paResAuthRequest** | [**PaResAuthRequest**](PaResAuthRequest.md)|  | |
-
-### Return type
-
-[**AuthResponse**](AuthResponse.md)
-
-### Authorization
-
-[cp-api-key](../README.md#cp-api-key)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A result of processing the 3DSv1 authorisation data. |  -  |
+| **200** | A result of the tokenisation request. |  -  |
 | **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 | **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
 | **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
@@ -614,7 +532,7 @@ public class Example {
 
 > AuthReferences retrievalRequest(retrieveRequest)
 
-Retrieval
+Transaction Retrieval
 
 A retrieval request which allows an integration to obtain the result of a transaction processed
 in the last 90 days. The request allows for retrieval based on the identifier or transaction 
@@ -691,6 +609,84 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A result of the retrieval request. |  -  |
+| **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+| **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+| **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+| **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
+| **500** | Server Error. The server was unable to complete the request. |  -  |
+
+
+## verificationRequest
+
+> Decision verificationRequest(verificationRequest)
+
+Verification
+
+Performs a request for verification for a card payment request.
+
+### Example
+
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.model.*;
+import com.citypay.client.api.AuthorisationAndPaymentApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
+
+        AuthorisationAndPaymentApi apiInstance = new AuthorisationAndPaymentApi(defaultClient);
+        VerificationRequest verificationRequest = new VerificationRequest(); // VerificationRequest | 
+        try {
+            Decision result = apiInstance.verificationRequest(verificationRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthorisationAndPaymentApi#verificationRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **verificationRequest** | [**VerificationRequest**](VerificationRequest.md)|  | |
+
+### Return type
+
+[**Decision**](Decision.md)
+
+### Authorization
+
+[cp-api-key](../README.md#cp-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A decision made by the result of verification. |  -  |
 | **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 | **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
 | **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |

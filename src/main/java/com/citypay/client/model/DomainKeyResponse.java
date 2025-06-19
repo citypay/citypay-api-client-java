@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -54,47 +53,52 @@ import com.citypay.client.JSON;
 public class DomainKeyResponse {
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
   @SerializedName(SERIALIZED_NAME_DATE_CREATED)
+  @javax.annotation.Nullable
   private OffsetDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_DOMAIN = "domain";
   @SerializedName(SERIALIZED_NAME_DOMAIN)
+  @javax.annotation.Nonnull
   private List<String> domain = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DOMAIN_KEY = "domain_key";
   @SerializedName(SERIALIZED_NAME_DOMAIN_KEY)
+  @javax.annotation.Nullable
   private String domainKey;
 
   public static final String SERIALIZED_NAME_LIVE = "live";
   @SerializedName(SERIALIZED_NAME_LIVE)
+  @javax.annotation.Nullable
   private Boolean live;
 
   public static final String SERIALIZED_NAME_MERCHANTID = "merchantid";
   @SerializedName(SERIALIZED_NAME_MERCHANTID)
+  @javax.annotation.Nonnull
   private Integer merchantid;
 
   public DomainKeyResponse() {
   }
 
-  public DomainKeyResponse dateCreated(OffsetDateTime dateCreated) {
+  public DomainKeyResponse dateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
     this.dateCreated = dateCreated;
     return this;
   }
 
-   /**
+  /**
    * The date the domain key was generated. 
    * @return dateCreated
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDateCreated() {
     return dateCreated;
   }
 
-  public void setDateCreated(OffsetDateTime dateCreated) {
+  public void setDateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
     this.dateCreated = dateCreated;
   }
 
 
-  public DomainKeyResponse domain(List<String> domain) {
+  public DomainKeyResponse domain(@javax.annotation.Nonnull List<String> domain) {
     this.domain = domain;
     return this;
   }
@@ -107,76 +111,120 @@ public class DomainKeyResponse {
     return this;
   }
 
-   /**
+  /**
    * Get domain
    * @return domain
-  **/
+   */
   @javax.annotation.Nonnull
   public List<String> getDomain() {
     return domain;
   }
 
-  public void setDomain(List<String> domain) {
+  public void setDomain(@javax.annotation.Nonnull List<String> domain) {
     this.domain = domain;
   }
 
 
-  public DomainKeyResponse domainKey(String domainKey) {
+  public DomainKeyResponse domainKey(@javax.annotation.Nullable String domainKey) {
     this.domainKey = domainKey;
     return this;
   }
 
-   /**
+  /**
    * The domain key generated. 
    * @return domainKey
-  **/
+   */
   @javax.annotation.Nullable
   public String getDomainKey() {
     return domainKey;
   }
 
-  public void setDomainKey(String domainKey) {
+  public void setDomainKey(@javax.annotation.Nullable String domainKey) {
     this.domainKey = domainKey;
   }
 
 
-  public DomainKeyResponse live(Boolean live) {
+  public DomainKeyResponse live(@javax.annotation.Nullable Boolean live) {
     this.live = live;
     return this;
   }
 
-   /**
+  /**
    * true if this key is a production key. 
    * @return live
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isLive() {
     return live;
   }
 
-  public void setLive(Boolean live) {
+  public void setLive(@javax.annotation.Nullable Boolean live) {
     this.live = live;
   }
 
 
-  public DomainKeyResponse merchantid(Integer merchantid) {
+  public DomainKeyResponse merchantid(@javax.annotation.Nonnull Integer merchantid) {
     this.merchantid = merchantid;
     return this;
   }
 
-   /**
+  /**
    * The merchant id the domain key is to be used for. 
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getMerchantid() {
     return merchantid;
   }
 
-  public void setMerchantid(Integer merchantid) {
+  public void setMerchantid(@javax.annotation.Nonnull Integer merchantid) {
     this.merchantid = merchantid;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the DomainKeyResponse instance itself
+   */
+  public DomainKeyResponse putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -192,12 +240,13 @@ public class DomainKeyResponse {
         Objects.equals(this.domain, domainKeyResponse.domain) &&
         Objects.equals(this.domainKey, domainKeyResponse.domainKey) &&
         Objects.equals(this.live, domainKeyResponse.live) &&
-        Objects.equals(this.merchantid, domainKeyResponse.merchantid);
+        Objects.equals(this.merchantid, domainKeyResponse.merchantid)&&
+        Objects.equals(this.additionalProperties, domainKeyResponse.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dateCreated, domain, domainKey, live, merchantid);
+    return Objects.hash(dateCreated, domain, domainKey, live, merchantid, additionalProperties);
   }
 
   @Override
@@ -209,6 +258,7 @@ public class DomainKeyResponse {
     sb.append("    domainKey: ").append(toIndentedString(domainKey)).append("\n");
     sb.append("    live: ").append(toIndentedString(live)).append("\n");
     sb.append("    merchantid: ").append(toIndentedString(merchantid)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -243,24 +293,16 @@ public class DomainKeyResponse {
     openapiRequiredFields.add("merchantid");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to DomainKeyResponse
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to DomainKeyResponse
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!DomainKeyResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in DomainKeyResponse is not found in the empty JSON string", DomainKeyResponse.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!DomainKeyResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DomainKeyResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
@@ -297,6 +339,28 @@ public class DomainKeyResponse {
            @Override
            public void write(JsonWriter out, DomainKeyResponse value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -304,29 +368,50 @@ public class DomainKeyResponse {
            public DomainKeyResponse read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             DomainKeyResponse instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of DomainKeyResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of DomainKeyResponse
-  * @throws IOException if the JSON string is invalid with respect to DomainKeyResponse
-  */
+  /**
+   * Create an instance of DomainKeyResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of DomainKeyResponse
+   * @throws IOException if the JSON string is invalid with respect to DomainKeyResponse
+   */
   public static DomainKeyResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DomainKeyResponse.class);
   }
 
- /**
-  * Convert an instance of DomainKeyResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of DomainKeyResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

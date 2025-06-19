@@ -84,7 +84,8 @@ public class BatchProcessingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Request to process a batch provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -94,7 +95,7 @@ public class BatchProcessingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call batchProcessRequestCall(ProcessBatchRequest processBatchRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call batchProcessRequestCall(@javax.annotation.Nonnull ProcessBatchRequest processBatchRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -142,7 +143,7 @@ public class BatchProcessingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call batchProcessRequestValidateBeforeCall(ProcessBatchRequest processBatchRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call batchProcessRequestValidateBeforeCall(@javax.annotation.Nonnull ProcessBatchRequest processBatchRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'processBatchRequest' is set
         if (processBatchRequest == null) {
             throw new ApiException("Missing the required parameter 'processBatchRequest' when calling batchProcessRequest(Async)");
@@ -159,7 +160,8 @@ public class BatchProcessingApi {
      * @return ProcessBatchResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Request to process a batch provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -169,7 +171,7 @@ public class BatchProcessingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ProcessBatchResponse batchProcessRequest(ProcessBatchRequest processBatchRequest) throws ApiException {
+    public ProcessBatchResponse batchProcessRequest(@javax.annotation.Nonnull ProcessBatchRequest processBatchRequest) throws ApiException {
         ApiResponse<ProcessBatchResponse> localVarResp = batchProcessRequestWithHttpInfo(processBatchRequest);
         return localVarResp.getData();
     }
@@ -181,7 +183,8 @@ public class BatchProcessingApi {
      * @return ApiResponse&lt;ProcessBatchResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Request to process a batch provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -191,7 +194,7 @@ public class BatchProcessingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProcessBatchResponse> batchProcessRequestWithHttpInfo(ProcessBatchRequest processBatchRequest) throws ApiException {
+    public ApiResponse<ProcessBatchResponse> batchProcessRequestWithHttpInfo(@javax.annotation.Nonnull ProcessBatchRequest processBatchRequest) throws ApiException {
         okhttp3.Call localVarCall = batchProcessRequestValidateBeforeCall(processBatchRequest, null);
         Type localVarReturnType = new TypeToken<ProcessBatchResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -205,7 +208,8 @@ public class BatchProcessingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Request to process a batch provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -215,7 +219,7 @@ public class BatchProcessingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call batchProcessRequestAsync(ProcessBatchRequest processBatchRequest, final ApiCallback<ProcessBatchResponse> _callback) throws ApiException {
+    public okhttp3.Call batchProcessRequestAsync(@javax.annotation.Nonnull ProcessBatchRequest processBatchRequest, final ApiCallback<ProcessBatchResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = batchProcessRequestValidateBeforeCall(processBatchRequest, _callback);
         Type localVarReturnType = new TypeToken<ProcessBatchResponse>(){}.getType();
@@ -229,7 +233,8 @@ public class BatchProcessingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> The report for a given batch. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -239,7 +244,7 @@ public class BatchProcessingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call batchRetrieveRequestCall(BatchReportRequest batchReportRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call batchRetrieveRequestCall(@javax.annotation.Nonnull BatchReportRequest batchReportRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -287,7 +292,7 @@ public class BatchProcessingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call batchRetrieveRequestValidateBeforeCall(BatchReportRequest batchReportRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call batchRetrieveRequestValidateBeforeCall(@javax.annotation.Nonnull BatchReportRequest batchReportRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'batchReportRequest' is set
         if (batchReportRequest == null) {
             throw new ApiException("Missing the required parameter 'batchReportRequest' when calling batchRetrieveRequest(Async)");
@@ -304,7 +309,8 @@ public class BatchProcessingApi {
      * @return BatchReportResponseModel
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> The report for a given batch. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -314,7 +320,7 @@ public class BatchProcessingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public BatchReportResponseModel batchRetrieveRequest(BatchReportRequest batchReportRequest) throws ApiException {
+    public BatchReportResponseModel batchRetrieveRequest(@javax.annotation.Nonnull BatchReportRequest batchReportRequest) throws ApiException {
         ApiResponse<BatchReportResponseModel> localVarResp = batchRetrieveRequestWithHttpInfo(batchReportRequest);
         return localVarResp.getData();
     }
@@ -326,7 +332,8 @@ public class BatchProcessingApi {
      * @return ApiResponse&lt;BatchReportResponseModel&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> The report for a given batch. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -336,7 +343,7 @@ public class BatchProcessingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<BatchReportResponseModel> batchRetrieveRequestWithHttpInfo(BatchReportRequest batchReportRequest) throws ApiException {
+    public ApiResponse<BatchReportResponseModel> batchRetrieveRequestWithHttpInfo(@javax.annotation.Nonnull BatchReportRequest batchReportRequest) throws ApiException {
         okhttp3.Call localVarCall = batchRetrieveRequestValidateBeforeCall(batchReportRequest, null);
         Type localVarReturnType = new TypeToken<BatchReportResponseModel>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -350,7 +357,8 @@ public class BatchProcessingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> The report for a given batch. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -360,7 +368,7 @@ public class BatchProcessingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call batchRetrieveRequestAsync(BatchReportRequest batchReportRequest, final ApiCallback<BatchReportResponseModel> _callback) throws ApiException {
+    public okhttp3.Call batchRetrieveRequestAsync(@javax.annotation.Nonnull BatchReportRequest batchReportRequest, final ApiCallback<BatchReportResponseModel> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = batchRetrieveRequestValidateBeforeCall(batchReportRequest, _callback);
         Type localVarReturnType = new TypeToken<BatchReportResponseModel>(){}.getType();
@@ -374,7 +382,8 @@ public class BatchProcessingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> The status of batches provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -384,7 +393,7 @@ public class BatchProcessingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call checkBatchStatusRequestCall(CheckBatchStatus checkBatchStatus, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call checkBatchStatusRequestCall(@javax.annotation.Nonnull CheckBatchStatus checkBatchStatus, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -432,7 +441,7 @@ public class BatchProcessingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call checkBatchStatusRequestValidateBeforeCall(CheckBatchStatus checkBatchStatus, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call checkBatchStatusRequestValidateBeforeCall(@javax.annotation.Nonnull CheckBatchStatus checkBatchStatus, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'checkBatchStatus' is set
         if (checkBatchStatus == null) {
             throw new ApiException("Missing the required parameter 'checkBatchStatus' when calling checkBatchStatusRequest(Async)");
@@ -449,7 +458,8 @@ public class BatchProcessingApi {
      * @return CheckBatchStatusResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> The status of batches provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -459,7 +469,7 @@ public class BatchProcessingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public CheckBatchStatusResponse checkBatchStatusRequest(CheckBatchStatus checkBatchStatus) throws ApiException {
+    public CheckBatchStatusResponse checkBatchStatusRequest(@javax.annotation.Nonnull CheckBatchStatus checkBatchStatus) throws ApiException {
         ApiResponse<CheckBatchStatusResponse> localVarResp = checkBatchStatusRequestWithHttpInfo(checkBatchStatus);
         return localVarResp.getData();
     }
@@ -471,7 +481,8 @@ public class BatchProcessingApi {
      * @return ApiResponse&lt;CheckBatchStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> The status of batches provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -481,7 +492,7 @@ public class BatchProcessingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CheckBatchStatusResponse> checkBatchStatusRequestWithHttpInfo(CheckBatchStatus checkBatchStatus) throws ApiException {
+    public ApiResponse<CheckBatchStatusResponse> checkBatchStatusRequestWithHttpInfo(@javax.annotation.Nonnull CheckBatchStatus checkBatchStatus) throws ApiException {
         okhttp3.Call localVarCall = checkBatchStatusRequestValidateBeforeCall(checkBatchStatus, null);
         Type localVarReturnType = new TypeToken<CheckBatchStatusResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -495,7 +506,8 @@ public class BatchProcessingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> The status of batches provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -505,7 +517,7 @@ public class BatchProcessingApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call checkBatchStatusRequestAsync(CheckBatchStatus checkBatchStatus, final ApiCallback<CheckBatchStatusResponse> _callback) throws ApiException {
+    public okhttp3.Call checkBatchStatusRequestAsync(@javax.annotation.Nonnull CheckBatchStatus checkBatchStatus, final ApiCallback<CheckBatchStatusResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = checkBatchStatusRequestValidateBeforeCall(checkBatchStatus, _callback);
         Type localVarReturnType = new TypeToken<CheckBatchStatusResponse>(){}.getType();

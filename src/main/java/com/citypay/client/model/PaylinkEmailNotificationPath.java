@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,28 +52,33 @@ import com.citypay.client.JSON;
 public class PaylinkEmailNotificationPath {
   public static final String SERIALIZED_NAME_BCC = "bcc";
   @SerializedName(SERIALIZED_NAME_BCC)
-  private List<String> bcc;
+  @javax.annotation.Nullable
+  private List<String> bcc = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CC = "cc";
   @SerializedName(SERIALIZED_NAME_CC)
-  private List<String> cc;
+  @javax.annotation.Nullable
+  private List<String> cc = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REPLY_TO = "reply_to";
   @SerializedName(SERIALIZED_NAME_REPLY_TO)
-  private List<String> replyTo;
+  @javax.annotation.Nullable
+  private List<String> replyTo = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TEMPLATE = "template";
   @SerializedName(SERIALIZED_NAME_TEMPLATE)
+  @javax.annotation.Nullable
   private String template;
 
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
+  @javax.annotation.Nonnull
   private List<String> to = new ArrayList<>();
 
   public PaylinkEmailNotificationPath() {
   }
 
-  public PaylinkEmailNotificationPath bcc(List<String> bcc) {
+  public PaylinkEmailNotificationPath bcc(@javax.annotation.Nullable List<String> bcc) {
     this.bcc = bcc;
     return this;
   }
@@ -87,21 +91,21 @@ public class PaylinkEmailNotificationPath {
     return this;
   }
 
-   /**
+  /**
    * Get bcc
    * @return bcc
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getBcc() {
     return bcc;
   }
 
-  public void setBcc(List<String> bcc) {
+  public void setBcc(@javax.annotation.Nullable List<String> bcc) {
     this.bcc = bcc;
   }
 
 
-  public PaylinkEmailNotificationPath cc(List<String> cc) {
+  public PaylinkEmailNotificationPath cc(@javax.annotation.Nullable List<String> cc) {
     this.cc = cc;
     return this;
   }
@@ -114,21 +118,21 @@ public class PaylinkEmailNotificationPath {
     return this;
   }
 
-   /**
+  /**
    * Get cc
    * @return cc
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getCc() {
     return cc;
   }
 
-  public void setCc(List<String> cc) {
+  public void setCc(@javax.annotation.Nullable List<String> cc) {
     this.cc = cc;
   }
 
 
-  public PaylinkEmailNotificationPath replyTo(List<String> replyTo) {
+  public PaylinkEmailNotificationPath replyTo(@javax.annotation.Nullable List<String> replyTo) {
     this.replyTo = replyTo;
     return this;
   }
@@ -141,40 +145,40 @@ public class PaylinkEmailNotificationPath {
     return this;
   }
 
-   /**
+  /**
    * Get replyTo
    * @return replyTo
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getReplyTo() {
     return replyTo;
   }
 
-  public void setReplyTo(List<String> replyTo) {
+  public void setReplyTo(@javax.annotation.Nullable List<String> replyTo) {
     this.replyTo = replyTo;
   }
 
 
-  public PaylinkEmailNotificationPath template(String template) {
+  public PaylinkEmailNotificationPath template(@javax.annotation.Nullable String template) {
     this.template = template;
     return this;
   }
 
-   /**
+  /**
    * An optional template name to use a template other than the default.
    * @return template
-  **/
+   */
   @javax.annotation.Nullable
   public String getTemplate() {
     return template;
   }
 
-  public void setTemplate(String template) {
+  public void setTemplate(@javax.annotation.Nullable String template) {
     this.template = template;
   }
 
 
-  public PaylinkEmailNotificationPath to(List<String> to) {
+  public PaylinkEmailNotificationPath to(@javax.annotation.Nonnull List<String> to) {
     this.to = to;
     return this;
   }
@@ -187,19 +191,63 @@ public class PaylinkEmailNotificationPath {
     return this;
   }
 
-   /**
+  /**
    * Get to
    * @return to
-  **/
+   */
   @javax.annotation.Nonnull
   public List<String> getTo() {
     return to;
   }
 
-  public void setTo(List<String> to) {
+  public void setTo(@javax.annotation.Nonnull List<String> to) {
     this.to = to;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the PaylinkEmailNotificationPath instance itself
+   */
+  public PaylinkEmailNotificationPath putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -215,12 +263,13 @@ public class PaylinkEmailNotificationPath {
         Objects.equals(this.cc, paylinkEmailNotificationPath.cc) &&
         Objects.equals(this.replyTo, paylinkEmailNotificationPath.replyTo) &&
         Objects.equals(this.template, paylinkEmailNotificationPath.template) &&
-        Objects.equals(this.to, paylinkEmailNotificationPath.to);
+        Objects.equals(this.to, paylinkEmailNotificationPath.to)&&
+        Objects.equals(this.additionalProperties, paylinkEmailNotificationPath.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(bcc, cc, replyTo, template, to);
+    return Objects.hash(bcc, cc, replyTo, template, to, additionalProperties);
   }
 
   @Override
@@ -232,6 +281,7 @@ public class PaylinkEmailNotificationPath {
     sb.append("    replyTo: ").append(toIndentedString(replyTo)).append("\n");
     sb.append("    template: ").append(toIndentedString(template)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -265,24 +315,16 @@ public class PaylinkEmailNotificationPath {
     openapiRequiredFields.add("to");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkEmailNotificationPath
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkEmailNotificationPath
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkEmailNotificationPath.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkEmailNotificationPath is not found in the empty JSON string", PaylinkEmailNotificationPath.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PaylinkEmailNotificationPath.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkEmailNotificationPath` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
@@ -331,6 +373,28 @@ public class PaylinkEmailNotificationPath {
            @Override
            public void write(JsonWriter out, PaylinkEmailNotificationPath value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -338,29 +402,50 @@ public class PaylinkEmailNotificationPath {
            public PaylinkEmailNotificationPath read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             PaylinkEmailNotificationPath instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of PaylinkEmailNotificationPath given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkEmailNotificationPath
-  * @throws IOException if the JSON string is invalid with respect to PaylinkEmailNotificationPath
-  */
+  /**
+   * Create an instance of PaylinkEmailNotificationPath given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkEmailNotificationPath
+   * @throws IOException if the JSON string is invalid with respect to PaylinkEmailNotificationPath
+   */
   public static PaylinkEmailNotificationPath fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkEmailNotificationPath.class);
   }
 
- /**
-  * Convert an instance of PaylinkEmailNotificationPath to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkEmailNotificationPath to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

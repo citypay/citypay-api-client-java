@@ -26,8 +26,11 @@ import io.gsonfire.TypeSelector;
 import okio.ByteString;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.ParsePosition;
@@ -85,7 +88,7 @@ public class JSON {
         return clazz;
     }
 
-    {
+    static {
         GsonBuilder gsonBuilder = createGson();
         gsonBuilder.registerTypeAdapter(Date.class, dateTypeAdapter);
         gsonBuilder.registerTypeAdapter(java.sql.Date.class, sqlDateTypeAdapter);
@@ -97,6 +100,8 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Acknowledgement.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AclCheckRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AclCheckResponseModel.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AdjustmentCondition.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Adjustments.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AirlineAdvice.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AirlineSegment.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.AuthReference.CustomTypeAdapterFactory());
@@ -117,6 +122,8 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Card.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.CardHolderAccount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.CardStatus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.CardTokenisationRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.CardTokenisationResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.ChargeRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.CheckBatchStatus.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.CheckBatchStatusResponse.CustomTypeAdapterFactory());
@@ -131,6 +138,8 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.EventDataModel.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Exists.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.ExternalMPI.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.FindPaymentIntentRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.HttpConfig.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.ListMerchantsResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.MCC6012.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Merchant.CustomTypeAdapterFactory());
@@ -138,7 +147,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.MerchantBatchReportResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.MerchantBatchResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.NetSummaryResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaResAuthRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkAddress.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkAdjustmentRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkAttachmentRequest.CustomTypeAdapterFactory());
@@ -162,13 +170,15 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkTokenStatusChangeRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkTokenStatusChangeResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaylinkUI.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaymentIntent.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaymentIntentReference.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaymentIntentRequestModel.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.PaymentIntentResponseModel.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.Ping.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.ProcessBatchRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.ProcessBatchResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.RefundRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.RegisterCard.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.RegisterIpModel.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.RemittanceData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.RemittanceReportRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.RemittanceReportResponse.CustomTypeAdapterFactory());
@@ -177,7 +187,15 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.RetrieveRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.ThreeDSecure.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.TokenisationResponseModel.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.TransactionReportRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.VerificationRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.VoidRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.WebHookChannelCreateRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.WebHookChannelCreateResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.WebHookChannelDeleteRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.WebHookSubscriptionRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.WebHookSubscriptionResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.citypay.client.model.WebHookUnsubscribeRequest.CustomTypeAdapterFactory());
         gson = gsonBuilder.create();
     }
 
@@ -239,6 +257,28 @@ public class JSON {
                 return (T) body;
             } else {
                 throw (e);
+            }
+        }
+    }
+
+    /**
+    * Deserialize the given JSON InputStream to a Java object.
+    *
+    * @param <T>         Type
+    * @param inputStream The JSON InputStream
+    * @param returnType  The type to deserialize into
+    * @return The deserialized Java object
+    */
+    @SuppressWarnings("unchecked")
+    public static <T> T deserialize(InputStream inputStream, Type returnType) throws IOException {
+        try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
+        if (isLenientOnJson) {
+            // see https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/stream/JsonReader.html#setLenient(boolean)
+            JsonReader jsonReader = new JsonReader(reader);
+            jsonReader.setLenient(true);
+            return gson.fromJson(jsonReader, returnType);
+            } else {
+                return gson.fromJson(reader, returnType);
             }
         }
     }

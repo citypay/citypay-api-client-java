@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -54,305 +53,386 @@ import com.citypay.client.JSON;
 public class PaylinkTokenRequestModel {
   public static final String SERIALIZED_NAME_ACCOUNTNO = "accountno";
   @SerializedName(SERIALIZED_NAME_ACCOUNTNO)
+  @javax.annotation.Nullable
   private String accountno;
 
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
+  @javax.annotation.Nonnull
   private Integer amount;
 
   public static final String SERIALIZED_NAME_CARDHOLDER = "cardholder";
   @SerializedName(SERIALIZED_NAME_CARDHOLDER)
+  @javax.annotation.Nullable
   private PaylinkCardHolder cardholder;
 
   public static final String SERIALIZED_NAME_CART = "cart";
   @SerializedName(SERIALIZED_NAME_CART)
+  @javax.annotation.Nullable
   private PaylinkCart cart;
 
   public static final String SERIALIZED_NAME_CLIENT_VERSION = "client_version";
   @SerializedName(SERIALIZED_NAME_CLIENT_VERSION)
+  @javax.annotation.Nullable
   private String clientVersion;
 
   public static final String SERIALIZED_NAME_CONFIG = "config";
   @SerializedName(SERIALIZED_NAME_CONFIG)
+  @javax.annotation.Nullable
   private PaylinkConfig config;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)
+  @javax.annotation.Nullable
   private String email;
 
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
+  @javax.annotation.Nonnull
   private String identifier;
 
   public static final String SERIALIZED_NAME_MERCHANTID = "merchantid";
   @SerializedName(SERIALIZED_NAME_MERCHANTID)
+  @javax.annotation.Nonnull
   private Integer merchantid;
+
+  public static final String SERIALIZED_NAME_PAYMENT_INTENT_ID = "payment_intent_id";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_INTENT_ID)
+  @javax.annotation.Nullable
+  private String paymentIntentId;
 
   public static final String SERIALIZED_NAME_RECURRING = "recurring";
   @SerializedName(SERIALIZED_NAME_RECURRING)
+  @javax.annotation.Nullable
   private Boolean recurring;
 
   public static final String SERIALIZED_NAME_SUBSCRIPTION_ID = "subscription_id";
   @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_ID)
+  @javax.annotation.Nullable
   private String subscriptionId;
 
   public static final String SERIALIZED_NAME_TX_TYPE = "tx_type";
   @SerializedName(SERIALIZED_NAME_TX_TYPE)
+  @javax.annotation.Nullable
   private String txType;
 
   public PaylinkTokenRequestModel() {
   }
 
-  public PaylinkTokenRequestModel accountno(String accountno) {
+  public PaylinkTokenRequestModel accountno(@javax.annotation.Nullable String accountno) {
     this.accountno = accountno;
     return this;
   }
 
-   /**
-   * Specifies an alpha-numeric account number that the Paylink service uses when creating a Cardholder Account. The value should be no longer than 20 characters in length.
+  /**
+   * To be able to use credential on file (COF) services. A cardholder account may be created once the payment has been authorised, this is then stored \&quot;on file\&quot; for subsequent charging for example re-authorisation, unscheduled payment, delayed charges, incremental authorisation, recurring payments, resubmission or no-show style agreements.  Specifies an alpha-numeric account number that the Paylink service uses when creating a Cardholder Account. The value should be no longer than 20 characters in length. 
    * @return accountno
-  **/
+   */
   @javax.annotation.Nullable
   public String getAccountno() {
     return accountno;
   }
 
-  public void setAccountno(String accountno) {
+  public void setAccountno(@javax.annotation.Nullable String accountno) {
     this.accountno = accountno;
   }
 
 
-  public PaylinkTokenRequestModel amount(Integer amount) {
+  public PaylinkTokenRequestModel amount(@javax.annotation.Nonnull Integer amount) {
     this.amount = amount;
     return this;
   }
 
-   /**
+  /**
    * Specifies the intended value of the transaction in the lowest denomination with no spacing characters or decimal point. This is the net total to be processed. An example of £74.95 would be presented as 7495.
    * @return amount
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getAmount() {
     return amount;
   }
 
-  public void setAmount(Integer amount) {
+  public void setAmount(@javax.annotation.Nonnull Integer amount) {
     this.amount = amount;
   }
 
 
-  public PaylinkTokenRequestModel cardholder(PaylinkCardHolder cardholder) {
+  public PaylinkTokenRequestModel cardholder(@javax.annotation.Nullable PaylinkCardHolder cardholder) {
     this.cardholder = cardholder;
     return this;
   }
 
-   /**
+  /**
    * Get cardholder
    * @return cardholder
-  **/
+   */
   @javax.annotation.Nullable
   public PaylinkCardHolder getCardholder() {
     return cardholder;
   }
 
-  public void setCardholder(PaylinkCardHolder cardholder) {
+  public void setCardholder(@javax.annotation.Nullable PaylinkCardHolder cardholder) {
     this.cardholder = cardholder;
   }
 
 
-  public PaylinkTokenRequestModel cart(PaylinkCart cart) {
+  public PaylinkTokenRequestModel cart(@javax.annotation.Nullable PaylinkCart cart) {
     this.cart = cart;
     return this;
   }
 
-   /**
+  /**
    * Get cart
    * @return cart
-  **/
+   */
   @javax.annotation.Nullable
   public PaylinkCart getCart() {
     return cart;
   }
 
-  public void setCart(PaylinkCart cart) {
+  public void setCart(@javax.annotation.Nullable PaylinkCart cart) {
     this.cart = cart;
   }
 
 
-  public PaylinkTokenRequestModel clientVersion(String clientVersion) {
+  public PaylinkTokenRequestModel clientVersion(@javax.annotation.Nullable String clientVersion) {
     this.clientVersion = clientVersion;
     return this;
   }
 
-   /**
+  /**
    * The clientVersion field is used to specify the version of your application that has invoked the Paylink payment process. This feature is typically used for tracing issues relating to application deployments, or any Paylink integration module or plugin.
    * @return clientVersion
-  **/
+   */
   @javax.annotation.Nullable
   public String getClientVersion() {
     return clientVersion;
   }
 
-  public void setClientVersion(String clientVersion) {
+  public void setClientVersion(@javax.annotation.Nullable String clientVersion) {
     this.clientVersion = clientVersion;
   }
 
 
-  public PaylinkTokenRequestModel config(PaylinkConfig config) {
+  public PaylinkTokenRequestModel config(@javax.annotation.Nullable PaylinkConfig config) {
     this.config = config;
     return this;
   }
 
-   /**
+  /**
    * Get config
    * @return config
-  **/
+   */
   @javax.annotation.Nullable
   public PaylinkConfig getConfig() {
     return config;
   }
 
-  public void setConfig(PaylinkConfig config) {
+  public void setConfig(@javax.annotation.Nullable PaylinkConfig config) {
     this.config = config;
   }
 
 
-  public PaylinkTokenRequestModel currency(String currency) {
+  public PaylinkTokenRequestModel currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * A currency for the token. This value should be only used on multi-currency accounts and be an appropriate currency which the account is configured for.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public PaylinkTokenRequestModel email(String email) {
+  public PaylinkTokenRequestModel email(@javax.annotation.Nullable String email) {
     this.email = email;
     return this;
   }
 
-   /**
+  /**
    * The email field is used for the Merchant to be notified on completion of the transaction . The value may be supplied to override the default stored value. Emails sent to this address by the Paylink service should not be forwarded on to the cardholder as it may contain certain information that is used by the Paylink service to validate and authenticate Paylink Token Requests: for example, the Merchant ID and the licence key. 
    * @return email
-  **/
+   */
   @javax.annotation.Nullable
   public String getEmail() {
     return email;
   }
 
-  public void setEmail(String email) {
+  public void setEmail(@javax.annotation.Nullable String email) {
     this.email = email;
   }
 
 
-  public PaylinkTokenRequestModel identifier(String identifier) {
+  public PaylinkTokenRequestModel identifier(@javax.annotation.Nonnull String identifier) {
     this.identifier = identifier;
     return this;
   }
 
-   /**
+  /**
    * Identifies a particular transaction linked to a Merchant account. It enables accurate duplicate checking within a pre-configured time period, as well as transaction reporting and tracing. The identifier should be unique to prevent payment card processing attempts from being rejected due to duplication. 
    * @return identifier
-  **/
+   */
   @javax.annotation.Nonnull
   public String getIdentifier() {
     return identifier;
   }
 
-  public void setIdentifier(String identifier) {
+  public void setIdentifier(@javax.annotation.Nonnull String identifier) {
     this.identifier = identifier;
   }
 
 
-  public PaylinkTokenRequestModel merchantid(Integer merchantid) {
+  public PaylinkTokenRequestModel merchantid(@javax.annotation.Nonnull Integer merchantid) {
     this.merchantid = merchantid;
     return this;
   }
 
-   /**
+  /**
    * The merchant id you wish to process this transaction with.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getMerchantid() {
     return merchantid;
   }
 
-  public void setMerchantid(Integer merchantid) {
+  public void setMerchantid(@javax.annotation.Nonnull Integer merchantid) {
     this.merchantid = merchantid;
   }
 
 
-  public PaylinkTokenRequestModel recurring(Boolean recurring) {
+  public PaylinkTokenRequestModel paymentIntentId(@javax.annotation.Nullable String paymentIntentId) {
+    this.paymentIntentId = paymentIntentId;
+    return this;
+  }
+
+  /**
+   * A payment intent id already previously registered for this token.
+   * @return paymentIntentId
+   */
+  @javax.annotation.Nullable
+  public String getPaymentIntentId() {
+    return paymentIntentId;
+  }
+
+  public void setPaymentIntentId(@javax.annotation.Nullable String paymentIntentId) {
+    this.paymentIntentId = paymentIntentId;
+  }
+
+
+  public PaylinkTokenRequestModel recurring(@javax.annotation.Nullable Boolean recurring) {
     this.recurring = recurring;
     return this;
   }
 
-   /**
+  /**
    * True if the intent of this cardholder initiated transaction is to establish a recurring payment model, processable as merchant initiated transactions.
    * @return recurring
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isRecurring() {
     return recurring;
   }
 
-  public void setRecurring(Boolean recurring) {
+  public void setRecurring(@javax.annotation.Nullable Boolean recurring) {
     this.recurring = recurring;
   }
 
 
-  public PaylinkTokenRequestModel subscriptionId(String subscriptionId) {
+  public PaylinkTokenRequestModel subscriptionId(@javax.annotation.Nullable String subscriptionId) {
     this.subscriptionId = subscriptionId;
     return this;
   }
 
-   /**
+  /**
    * an id associated with a subscription to link the token request against.
    * @return subscriptionId
-  **/
+   */
   @javax.annotation.Nullable
   public String getSubscriptionId() {
     return subscriptionId;
   }
 
-  public void setSubscriptionId(String subscriptionId) {
+  public void setSubscriptionId(@javax.annotation.Nullable String subscriptionId) {
     this.subscriptionId = subscriptionId;
   }
 
 
-  public PaylinkTokenRequestModel txType(String txType) {
+  public PaylinkTokenRequestModel txType(@javax.annotation.Nullable String txType) {
     this.txType = txType;
     return this;
   }
 
-   /**
+  /**
    * A value to override the transaction type if requested by your account manager.
    * @return txType
-  **/
+   */
   @javax.annotation.Nullable
   public String getTxType() {
     return txType;
   }
 
-  public void setTxType(String txType) {
+  public void setTxType(@javax.annotation.Nullable String txType) {
     this.txType = txType;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the PaylinkTokenRequestModel instance itself
+   */
+  public PaylinkTokenRequestModel putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -374,14 +454,16 @@ public class PaylinkTokenRequestModel {
         Objects.equals(this.email, paylinkTokenRequestModel.email) &&
         Objects.equals(this.identifier, paylinkTokenRequestModel.identifier) &&
         Objects.equals(this.merchantid, paylinkTokenRequestModel.merchantid) &&
+        Objects.equals(this.paymentIntentId, paylinkTokenRequestModel.paymentIntentId) &&
         Objects.equals(this.recurring, paylinkTokenRequestModel.recurring) &&
         Objects.equals(this.subscriptionId, paylinkTokenRequestModel.subscriptionId) &&
-        Objects.equals(this.txType, paylinkTokenRequestModel.txType);
+        Objects.equals(this.txType, paylinkTokenRequestModel.txType)&&
+        Objects.equals(this.additionalProperties, paylinkTokenRequestModel.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountno, amount, cardholder, cart, clientVersion, config, currency, email, identifier, merchantid, recurring, subscriptionId, txType);
+    return Objects.hash(accountno, amount, cardholder, cart, clientVersion, config, currency, email, identifier, merchantid, paymentIntentId, recurring, subscriptionId, txType, additionalProperties);
   }
 
   @Override
@@ -398,9 +480,11 @@ public class PaylinkTokenRequestModel {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
     sb.append("    merchantid: ").append(toIndentedString(merchantid)).append("\n");
+    sb.append("    paymentIntentId: ").append(toIndentedString(paymentIntentId)).append("\n");
     sb.append("    recurring: ").append(toIndentedString(recurring)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("    txType: ").append(toIndentedString(txType)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -433,6 +517,7 @@ public class PaylinkTokenRequestModel {
     openapiFields.add("email");
     openapiFields.add("identifier");
     openapiFields.add("merchantid");
+    openapiFields.add("payment_intent_id");
     openapiFields.add("recurring");
     openapiFields.add("subscription_id");
     openapiFields.add("tx_type");
@@ -444,24 +529,16 @@ public class PaylinkTokenRequestModel {
     openapiRequiredFields.add("merchantid");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkTokenRequestModel
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkTokenRequestModel
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkTokenRequestModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkTokenRequestModel is not found in the empty JSON string", PaylinkTokenRequestModel.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PaylinkTokenRequestModel.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkTokenRequestModel` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
@@ -499,6 +576,9 @@ public class PaylinkTokenRequestModel {
       if (!jsonObj.get("identifier").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `identifier` to be a primitive type in the JSON string but got `%s`", jsonObj.get("identifier").toString()));
       }
+      if ((jsonObj.get("payment_intent_id") != null && !jsonObj.get("payment_intent_id").isJsonNull()) && !jsonObj.get("payment_intent_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `payment_intent_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_intent_id").toString()));
+      }
       if ((jsonObj.get("subscription_id") != null && !jsonObj.get("subscription_id").isJsonNull()) && !jsonObj.get("subscription_id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `subscription_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subscription_id").toString()));
       }
@@ -522,6 +602,28 @@ public class PaylinkTokenRequestModel {
            @Override
            public void write(JsonWriter out, PaylinkTokenRequestModel value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -529,29 +631,50 @@ public class PaylinkTokenRequestModel {
            public PaylinkTokenRequestModel read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             PaylinkTokenRequestModel instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of PaylinkTokenRequestModel given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkTokenRequestModel
-  * @throws IOException if the JSON string is invalid with respect to PaylinkTokenRequestModel
-  */
+  /**
+   * Create an instance of PaylinkTokenRequestModel given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkTokenRequestModel
+   * @throws IOException if the JSON string is invalid with respect to PaylinkTokenRequestModel
+   */
   public static PaylinkTokenRequestModel fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkTokenRequestModel.class);
   }
 
- /**
-  * Convert an instance of PaylinkTokenRequestModel to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkTokenRequestModel to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

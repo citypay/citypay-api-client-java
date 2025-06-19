@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,202 +50,254 @@ import com.citypay.client.JSON;
 public class NetSummaryResponse {
   public static final String SERIALIZED_NAME_CREDIT_ITEMS_AMOUNT = "credit_items_amount";
   @SerializedName(SERIALIZED_NAME_CREDIT_ITEMS_AMOUNT)
+  @javax.annotation.Nullable
   private String creditItemsAmount;
 
   public static final String SERIALIZED_NAME_CREDIT_ITEMS_COUNT = "credit_items_count";
   @SerializedName(SERIALIZED_NAME_CREDIT_ITEMS_COUNT)
+  @javax.annotation.Nullable
   private Integer creditItemsCount;
 
   public static final String SERIALIZED_NAME_CREDIT_ITEMS_VALUE = "credit_items_value";
   @SerializedName(SERIALIZED_NAME_CREDIT_ITEMS_VALUE)
+  @javax.annotation.Nullable
   private Integer creditItemsValue;
 
   public static final String SERIALIZED_NAME_DEBIT_ITEMS_AMOUNT = "debit_items_amount";
   @SerializedName(SERIALIZED_NAME_DEBIT_ITEMS_AMOUNT)
+  @javax.annotation.Nullable
   private String debitItemsAmount;
 
   public static final String SERIALIZED_NAME_DEBIT_ITEMS_COUNT = "debit_items_count";
   @SerializedName(SERIALIZED_NAME_DEBIT_ITEMS_COUNT)
+  @javax.annotation.Nullable
   private Integer debitItemsCount;
 
   public static final String SERIALIZED_NAME_DEBIT_ITEMS_VALUE = "debit_items_value";
   @SerializedName(SERIALIZED_NAME_DEBIT_ITEMS_VALUE)
+  @javax.annotation.Nullable
   private Integer debitItemsValue;
 
   public static final String SERIALIZED_NAME_NET_AMOUNT = "net_amount";
   @SerializedName(SERIALIZED_NAME_NET_AMOUNT)
+  @javax.annotation.Nullable
   private Integer netAmount;
 
   public static final String SERIALIZED_NAME_TOTAL_COUNT = "total_count";
   @SerializedName(SERIALIZED_NAME_TOTAL_COUNT)
+  @javax.annotation.Nullable
   private Integer totalCount;
 
   public NetSummaryResponse() {
   }
 
-  public NetSummaryResponse creditItemsAmount(String creditItemsAmount) {
+  public NetSummaryResponse creditItemsAmount(@javax.annotation.Nullable String creditItemsAmount) {
     this.creditItemsAmount = creditItemsAmount;
     return this;
   }
 
-   /**
+  /**
    * The total value of refund (credit) transaction items. Represents the sum of funds returned to customers.
    * @return creditItemsAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCreditItemsAmount() {
     return creditItemsAmount;
   }
 
-  public void setCreditItemsAmount(String creditItemsAmount) {
+  public void setCreditItemsAmount(@javax.annotation.Nullable String creditItemsAmount) {
     this.creditItemsAmount = creditItemsAmount;
   }
 
 
-  public NetSummaryResponse creditItemsCount(Integer creditItemsCount) {
+  public NetSummaryResponse creditItemsCount(@javax.annotation.Nullable Integer creditItemsCount) {
     this.creditItemsCount = creditItemsCount;
     return this;
   }
 
-   /**
+  /**
    * The count of refund (credit) transaction items. Reflects the number of refund transactions processed.
    * minimum: 0
    * maximum: 999999
    * @return creditItemsCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getCreditItemsCount() {
     return creditItemsCount;
   }
 
-  public void setCreditItemsCount(Integer creditItemsCount) {
+  public void setCreditItemsCount(@javax.annotation.Nullable Integer creditItemsCount) {
     this.creditItemsCount = creditItemsCount;
   }
 
 
-  public NetSummaryResponse creditItemsValue(Integer creditItemsValue) {
+  public NetSummaryResponse creditItemsValue(@javax.annotation.Nullable Integer creditItemsValue) {
     this.creditItemsValue = creditItemsValue;
     return this;
   }
 
-   /**
+  /**
    * The total value of refund (credit) transaction items. Represents the sum of funds returned to customers.
    * minimum: 0
    * maximum: 999999999
    * @return creditItemsValue
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getCreditItemsValue() {
     return creditItemsValue;
   }
 
-  public void setCreditItemsValue(Integer creditItemsValue) {
+  public void setCreditItemsValue(@javax.annotation.Nullable Integer creditItemsValue) {
     this.creditItemsValue = creditItemsValue;
   }
 
 
-  public NetSummaryResponse debitItemsAmount(String debitItemsAmount) {
+  public NetSummaryResponse debitItemsAmount(@javax.annotation.Nullable String debitItemsAmount) {
     this.debitItemsAmount = debitItemsAmount;
     return this;
   }
 
-   /**
+  /**
    * The total value of charge (debit) transaction items. Represents the sum of funds received from charges.
    * @return debitItemsAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getDebitItemsAmount() {
     return debitItemsAmount;
   }
 
-  public void setDebitItemsAmount(String debitItemsAmount) {
+  public void setDebitItemsAmount(@javax.annotation.Nullable String debitItemsAmount) {
     this.debitItemsAmount = debitItemsAmount;
   }
 
 
-  public NetSummaryResponse debitItemsCount(Integer debitItemsCount) {
+  public NetSummaryResponse debitItemsCount(@javax.annotation.Nullable Integer debitItemsCount) {
     this.debitItemsCount = debitItemsCount;
     return this;
   }
 
-   /**
+  /**
    * The count of charge (debit) transaction items. Indicates the number of charge transactions processed.
    * minimum: 0
    * maximum: 999999
    * @return debitItemsCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getDebitItemsCount() {
     return debitItemsCount;
   }
 
-  public void setDebitItemsCount(Integer debitItemsCount) {
+  public void setDebitItemsCount(@javax.annotation.Nullable Integer debitItemsCount) {
     this.debitItemsCount = debitItemsCount;
   }
 
 
-  public NetSummaryResponse debitItemsValue(Integer debitItemsValue) {
+  public NetSummaryResponse debitItemsValue(@javax.annotation.Nullable Integer debitItemsValue) {
     this.debitItemsValue = debitItemsValue;
     return this;
   }
 
-   /**
+  /**
    * The total value of charge (debit) transaction items. Represents the sum of funds received from charges.
    * minimum: 0
    * maximum: 999999999
    * @return debitItemsValue
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getDebitItemsValue() {
     return debitItemsValue;
   }
 
-  public void setDebitItemsValue(Integer debitItemsValue) {
+  public void setDebitItemsValue(@javax.annotation.Nullable Integer debitItemsValue) {
     this.debitItemsValue = debitItemsValue;
   }
 
 
-  public NetSummaryResponse netAmount(Integer netAmount) {
+  public NetSummaryResponse netAmount(@javax.annotation.Nullable Integer netAmount) {
     this.netAmount = netAmount;
     return this;
   }
 
-   /**
+  /**
    * The absolute net value, reflecting the net gain or loss from transactions.
    * minimum: 0
    * maximum: 999999999
    * @return netAmount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getNetAmount() {
     return netAmount;
   }
 
-  public void setNetAmount(Integer netAmount) {
+  public void setNetAmount(@javax.annotation.Nullable Integer netAmount) {
     this.netAmount = netAmount;
   }
 
 
-  public NetSummaryResponse totalCount(Integer totalCount) {
+  public NetSummaryResponse totalCount(@javax.annotation.Nullable Integer totalCount) {
     this.totalCount = totalCount;
     return this;
   }
 
-   /**
+  /**
    * The total count of all transaction items.
    * minimum: 0
    * maximum: 999999
    * @return totalCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTotalCount() {
     return totalCount;
   }
 
-  public void setTotalCount(Integer totalCount) {
+  public void setTotalCount(@javax.annotation.Nullable Integer totalCount) {
     this.totalCount = totalCount;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the NetSummaryResponse instance itself
+   */
+  public NetSummaryResponse putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -265,12 +316,13 @@ public class NetSummaryResponse {
         Objects.equals(this.debitItemsCount, netSummaryResponse.debitItemsCount) &&
         Objects.equals(this.debitItemsValue, netSummaryResponse.debitItemsValue) &&
         Objects.equals(this.netAmount, netSummaryResponse.netAmount) &&
-        Objects.equals(this.totalCount, netSummaryResponse.totalCount);
+        Objects.equals(this.totalCount, netSummaryResponse.totalCount)&&
+        Objects.equals(this.additionalProperties, netSummaryResponse.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(creditItemsAmount, creditItemsCount, creditItemsValue, debitItemsAmount, debitItemsCount, debitItemsValue, netAmount, totalCount);
+    return Objects.hash(creditItemsAmount, creditItemsCount, creditItemsValue, debitItemsAmount, debitItemsCount, debitItemsValue, netAmount, totalCount, additionalProperties);
   }
 
   @Override
@@ -285,6 +337,7 @@ public class NetSummaryResponse {
     sb.append("    debitItemsValue: ").append(toIndentedString(debitItemsValue)).append("\n");
     sb.append("    netAmount: ").append(toIndentedString(netAmount)).append("\n");
     sb.append("    totalCount: ").append(toIndentedString(totalCount)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -320,24 +373,16 @@ public class NetSummaryResponse {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to NetSummaryResponse
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to NetSummaryResponse
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!NetSummaryResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in NetSummaryResponse is not found in the empty JSON string", NetSummaryResponse.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!NetSummaryResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetSummaryResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -364,6 +409,28 @@ public class NetSummaryResponse {
            @Override
            public void write(JsonWriter out, NetSummaryResponse value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -371,29 +438,50 @@ public class NetSummaryResponse {
            public NetSummaryResponse read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             NetSummaryResponse instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of NetSummaryResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of NetSummaryResponse
-  * @throws IOException if the JSON string is invalid with respect to NetSummaryResponse
-  */
+  /**
+   * Create an instance of NetSummaryResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of NetSummaryResponse
+   * @throws IOException if the JSON string is invalid with respect to NetSummaryResponse
+   */
   public static NetSummaryResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NetSummaryResponse.class);
   }
 
- /**
-  * Convert an instance of NetSummaryResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of NetSummaryResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

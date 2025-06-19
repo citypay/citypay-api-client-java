@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,98 +50,146 @@ import com.citypay.client.JSON;
 public class AclCheckResponseModel {
   public static final String SERIALIZED_NAME_ACL = "acl";
   @SerializedName(SERIALIZED_NAME_ACL)
+  @javax.annotation.Nullable
   private String acl;
 
   public static final String SERIALIZED_NAME_CACHE = "cache";
   @SerializedName(SERIALIZED_NAME_CACHE)
+  @javax.annotation.Nullable
   private Boolean cache;
 
   public static final String SERIALIZED_NAME_IP = "ip";
   @SerializedName(SERIALIZED_NAME_IP)
+  @javax.annotation.Nullable
   private String ip;
 
   public static final String SERIALIZED_NAME_PROVIDER = "provider";
   @SerializedName(SERIALIZED_NAME_PROVIDER)
+  @javax.annotation.Nullable
   private String provider;
 
   public AclCheckResponseModel() {
   }
 
-  public AclCheckResponseModel acl(String acl) {
+  public AclCheckResponseModel acl(@javax.annotation.Nullable String acl) {
     this.acl = acl;
     return this;
   }
 
-   /**
+  /**
    * The name or value of the acl which was found to match the ip address.
    * @return acl
-  **/
+   */
   @javax.annotation.Nullable
   public String getAcl() {
     return acl;
   }
 
-  public void setAcl(String acl) {
+  public void setAcl(@javax.annotation.Nullable String acl) {
     this.acl = acl;
   }
 
 
-  public AclCheckResponseModel cache(Boolean cache) {
+  public AclCheckResponseModel cache(@javax.annotation.Nullable Boolean cache) {
     this.cache = cache;
     return this;
   }
 
-   /**
+  /**
    * Whether the ACL was returned via a cached instance.
    * @return cache
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isCache() {
     return cache;
   }
 
-  public void setCache(Boolean cache) {
+  public void setCache(@javax.annotation.Nullable Boolean cache) {
     this.cache = cache;
   }
 
 
-  public AclCheckResponseModel ip(String ip) {
+  public AclCheckResponseModel ip(@javax.annotation.Nullable String ip) {
     this.ip = ip;
     return this;
   }
 
-   /**
+  /**
    * The IP address used in the lookup.
    * @return ip
-  **/
+   */
   @javax.annotation.Nullable
   public String getIp() {
     return ip;
   }
 
-  public void setIp(String ip) {
+  public void setIp(@javax.annotation.Nullable String ip) {
     this.ip = ip;
   }
 
 
-  public AclCheckResponseModel provider(String provider) {
+  public AclCheckResponseModel provider(@javax.annotation.Nullable String provider) {
     this.provider = provider;
     return this;
   }
 
-   /**
+  /**
    * The source provider of the ACL such as cloud, subnet, country or IP based.
    * @return provider
-  **/
+   */
   @javax.annotation.Nullable
   public String getProvider() {
     return provider;
   }
 
-  public void setProvider(String provider) {
+  public void setProvider(@javax.annotation.Nullable String provider) {
     this.provider = provider;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the AclCheckResponseModel instance itself
+   */
+  public AclCheckResponseModel putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -157,12 +204,13 @@ public class AclCheckResponseModel {
     return Objects.equals(this.acl, aclCheckResponseModel.acl) &&
         Objects.equals(this.cache, aclCheckResponseModel.cache) &&
         Objects.equals(this.ip, aclCheckResponseModel.ip) &&
-        Objects.equals(this.provider, aclCheckResponseModel.provider);
+        Objects.equals(this.provider, aclCheckResponseModel.provider)&&
+        Objects.equals(this.additionalProperties, aclCheckResponseModel.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(acl, cache, ip, provider);
+    return Objects.hash(acl, cache, ip, provider, additionalProperties);
   }
 
   @Override
@@ -173,6 +221,7 @@ public class AclCheckResponseModel {
     sb.append("    cache: ").append(toIndentedString(cache)).append("\n");
     sb.append("    ip: ").append(toIndentedString(ip)).append("\n");
     sb.append("    provider: ").append(toIndentedString(provider)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -204,24 +253,16 @@ public class AclCheckResponseModel {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to AclCheckResponseModel
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AclCheckResponseModel
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!AclCheckResponseModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in AclCheckResponseModel is not found in the empty JSON string", AclCheckResponseModel.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!AclCheckResponseModel.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AclCheckResponseModel` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -251,6 +292,28 @@ public class AclCheckResponseModel {
            @Override
            public void write(JsonWriter out, AclCheckResponseModel value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -258,29 +321,50 @@ public class AclCheckResponseModel {
            public AclCheckResponseModel read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             AclCheckResponseModel instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of AclCheckResponseModel given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of AclCheckResponseModel
-  * @throws IOException if the JSON string is invalid with respect to AclCheckResponseModel
-  */
+  /**
+   * Create an instance of AclCheckResponseModel given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AclCheckResponseModel
+   * @throws IOException if the JSON string is invalid with respect to AclCheckResponseModel
+   */
   public static AclCheckResponseModel fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AclCheckResponseModel.class);
   }
 
- /**
-  * Convert an instance of AclCheckResponseModel to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of AclCheckResponseModel to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

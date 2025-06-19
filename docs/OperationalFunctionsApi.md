@@ -9,6 +9,7 @@ All URIs are relative to *https://api.citypay.com*
 | [**domainKeyGenRequest**](OperationalFunctionsApi.md#domainKeyGenRequest) | **POST** /dk/gen | Domain Key Generation Request |
 | [**listMerchantsRequest**](OperationalFunctionsApi.md#listMerchantsRequest) | **GET** /v6/merchants/{clientid} | List Merchants Request |
 | [**pingRequest**](OperationalFunctionsApi.md#pingRequest) | **POST** /v6/ping | Ping Request |
+| [**registerTempKey**](OperationalFunctionsApi.md#registerTempKey) | **POST** /v6/permissions/register-temp-ip | Register Temp Key |
 
 
 
@@ -421,6 +422,84 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A result of the ping request, returning on 044 response code on successful receipt of the ping request. |  -  |
+| **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+| **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+| **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+| **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
+| **500** | Server Error. The server was unable to complete the request. |  -  |
+
+
+## registerTempKey
+
+> Acknowledgement registerTempKey(registerIpModel)
+
+Register Temp Key
+
+Registers a temporary licence key.
+
+### Example
+
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.model.*;
+import com.citypay.client.api.OperationalFunctionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
+
+        OperationalFunctionsApi apiInstance = new OperationalFunctionsApi(defaultClient);
+        RegisterIpModel registerIpModel = new RegisterIpModel(); // RegisterIpModel | 
+        try {
+            Acknowledgement result = apiInstance.registerTempKey(registerIpModel);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OperationalFunctionsApi#registerTempKey");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **registerIpModel** | [**RegisterIpModel**](RegisterIpModel.md)|  | |
+
+### Return type
+
+[**Acknowledgement**](Acknowledgement.md)
+
+### Authorization
+
+[cp-api-key](../README.md#cp-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/xml
+- **Accept**: application/json, text/xml
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Register IP. |  -  |
 | **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 | **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
 | **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |

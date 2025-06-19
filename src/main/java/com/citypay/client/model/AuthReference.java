@@ -21,6 +21,8 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,330 +51,900 @@ import com.citypay.client.JSON;
  * AuthReference
  */
 public class AuthReference {
+  public static final String SERIALIZED_NAME_ADDRESS = "address";
+  @SerializedName(SERIALIZED_NAME_ADDRESS)
+  @javax.annotation.Nullable
+  private String address;
+
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
+  @javax.annotation.Nullable
   private String amount;
 
   public static final String SERIALIZED_NAME_AMOUNT_VALUE = "amount_value";
   @SerializedName(SERIALIZED_NAME_AMOUNT_VALUE)
+  @javax.annotation.Nullable
   private Integer amountValue;
 
   public static final String SERIALIZED_NAME_ATRN = "atrn";
   @SerializedName(SERIALIZED_NAME_ATRN)
+  @javax.annotation.Nullable
   private String atrn;
 
   public static final String SERIALIZED_NAME_AUTHCODE = "authcode";
   @SerializedName(SERIALIZED_NAME_AUTHCODE)
+  @javax.annotation.Nullable
   private String authcode;
+
+  public static final String SERIALIZED_NAME_AUTHEN_RESULT = "authen_result";
+  @SerializedName(SERIALIZED_NAME_AUTHEN_RESULT)
+  @javax.annotation.Nullable
+  private String authenResult;
 
   public static final String SERIALIZED_NAME_BATCHNO = "batchno";
   @SerializedName(SERIALIZED_NAME_BATCHNO)
+  @javax.annotation.Nullable
   private String batchno;
+
+  public static final String SERIALIZED_NAME_BIN_COMMERCIAL = "bin_commercial";
+  @SerializedName(SERIALIZED_NAME_BIN_COMMERCIAL)
+  @javax.annotation.Nullable
+  private Boolean binCommercial;
+
+  public static final String SERIALIZED_NAME_BIN_CONSUMER = "bin_consumer";
+  @SerializedName(SERIALIZED_NAME_BIN_CONSUMER)
+  @javax.annotation.Nullable
+  private Boolean binConsumer;
+
+  public static final String SERIALIZED_NAME_BIN_CORPORATE = "bin_corporate";
+  @SerializedName(SERIALIZED_NAME_BIN_CORPORATE)
+  @javax.annotation.Nullable
+  private Boolean binCorporate;
+
+  public static final String SERIALIZED_NAME_BIN_CREDIT = "bin_credit";
+  @SerializedName(SERIALIZED_NAME_BIN_CREDIT)
+  @javax.annotation.Nullable
+  private Boolean binCredit;
+
+  public static final String SERIALIZED_NAME_BIN_DEBIT = "bin_debit";
+  @SerializedName(SERIALIZED_NAME_BIN_DEBIT)
+  @javax.annotation.Nullable
+  private Boolean binDebit;
+
+  public static final String SERIALIZED_NAME_CARDHOLDER_AGREEMENT = "cardholder_agreement";
+  @SerializedName(SERIALIZED_NAME_CARDHOLDER_AGREEMENT)
+  @javax.annotation.Nullable
+  private String cardholderAgreement;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_DATETIME = "datetime";
   @SerializedName(SERIALIZED_NAME_DATETIME)
+  @javax.annotation.Nullable
   private OffsetDateTime datetime;
+
+  public static final String SERIALIZED_NAME_ECI = "eci";
+  @SerializedName(SERIALIZED_NAME_ECI)
+  @javax.annotation.Nullable
+  private String eci;
+
+  public static final String SERIALIZED_NAME_EMAIL = "email";
+  @SerializedName(SERIALIZED_NAME_EMAIL)
+  @javax.annotation.Nullable
+  private String email;
+
+  public static final String SERIALIZED_NAME_ENV = "env";
+  @SerializedName(SERIALIZED_NAME_ENV)
+  @javax.annotation.Nullable
+  private String env;
 
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
+  @javax.annotation.Nullable
   private String identifier;
+
+  public static final String SERIALIZED_NAME_INITIATION = "initiation";
+  @SerializedName(SERIALIZED_NAME_INITIATION)
+  @javax.annotation.Nullable
+  private String initiation;
+
+  public static final String SERIALIZED_NAME_INSTRUMENT = "instrument";
+  @SerializedName(SERIALIZED_NAME_INSTRUMENT)
+  @javax.annotation.Nullable
+  private String instrument;
 
   public static final String SERIALIZED_NAME_MASKEDPAN = "maskedpan";
   @SerializedName(SERIALIZED_NAME_MASKEDPAN)
+  @javax.annotation.Nullable
   private String maskedpan;
 
   public static final String SERIALIZED_NAME_MERCHANTID = "merchantid";
   @SerializedName(SERIALIZED_NAME_MERCHANTID)
+  @javax.annotation.Nullable
   private Integer merchantid;
+
+  public static final String SERIALIZED_NAME_META = "meta";
+  @SerializedName(SERIALIZED_NAME_META)
+  @javax.annotation.Nullable
+  private Map<String, String> meta = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_NAME_ON_CARD = "name_on_card";
+  @SerializedName(SERIALIZED_NAME_NAME_ON_CARD)
+  @javax.annotation.Nullable
+  private String nameOnCard;
+
+  public static final String SERIALIZED_NAME_POSTCODE = "postcode";
+  @SerializedName(SERIALIZED_NAME_POSTCODE)
+  @javax.annotation.Nullable
+  private String postcode;
 
   public static final String SERIALIZED_NAME_RESULT = "result";
   @SerializedName(SERIALIZED_NAME_RESULT)
+  @javax.annotation.Nullable
   private String result;
+
+  public static final String SERIALIZED_NAME_RESULT_ID = "result_id";
+  @SerializedName(SERIALIZED_NAME_RESULT_ID)
+  @javax.annotation.Nullable
+  private String resultId;
+
+  public static final String SERIALIZED_NAME_SCHEME = "scheme";
+  @SerializedName(SERIALIZED_NAME_SCHEME)
+  @javax.annotation.Nullable
+  private String scheme;
+
+  public static final String SERIALIZED_NAME_SCHEME_LOGO = "scheme_logo";
+  @SerializedName(SERIALIZED_NAME_SCHEME_LOGO)
+  @javax.annotation.Nullable
+  private String schemeLogo;
 
   public static final String SERIALIZED_NAME_TRANS_STATUS = "trans_status";
   @SerializedName(SERIALIZED_NAME_TRANS_STATUS)
+  @javax.annotation.Nullable
   private String transStatus;
 
   public static final String SERIALIZED_NAME_TRANS_TYPE = "trans_type";
   @SerializedName(SERIALIZED_NAME_TRANS_TYPE)
+  @javax.annotation.Nullable
   private String transType;
 
   public static final String SERIALIZED_NAME_TRANSNO = "transno";
   @SerializedName(SERIALIZED_NAME_TRANSNO)
+  @javax.annotation.Nullable
   private Integer transno;
+
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nullable
+  private String type;
+
+  public static final String SERIALIZED_NAME_UTC = "utc";
+  @SerializedName(SERIALIZED_NAME_UTC)
+  @javax.annotation.Nullable
+  private Long utc;
 
   public AuthReference() {
   }
 
-  public AuthReference amount(String amount) {
+  public AuthReference address(@javax.annotation.Nullable String address) {
+    this.address = address;
+    return this;
+  }
+
+  /**
+   * The address of the card holder.
+   * @return address
+   */
+  @javax.annotation.Nullable
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(@javax.annotation.Nullable String address) {
+    this.address = address;
+  }
+
+
+  public AuthReference amount(@javax.annotation.Nullable String amount) {
     this.amount = amount;
     return this;
   }
 
-   /**
+  /**
    * The amount of the transaction in decimal currency format.
    * @return amount
-  **/
+   */
   @javax.annotation.Nullable
   public String getAmount() {
     return amount;
   }
 
-  public void setAmount(String amount) {
+  public void setAmount(@javax.annotation.Nullable String amount) {
     this.amount = amount;
   }
 
 
-  public AuthReference amountValue(Integer amountValue) {
+  public AuthReference amountValue(@javax.annotation.Nullable Integer amountValue) {
     this.amountValue = amountValue;
     return this;
   }
 
-   /**
+  /**
    * The amount of the transaction in integer/request format.
    * @return amountValue
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getAmountValue() {
     return amountValue;
   }
 
-  public void setAmountValue(Integer amountValue) {
+  public void setAmountValue(@javax.annotation.Nullable Integer amountValue) {
     this.amountValue = amountValue;
   }
 
 
-  public AuthReference atrn(String atrn) {
+  public AuthReference atrn(@javax.annotation.Nullable String atrn) {
     this.atrn = atrn;
     return this;
   }
 
-   /**
+  /**
    * A reference number provided by the acquiring services.
    * @return atrn
-  **/
+   */
   @javax.annotation.Nullable
   public String getAtrn() {
     return atrn;
   }
 
-  public void setAtrn(String atrn) {
+  public void setAtrn(@javax.annotation.Nullable String atrn) {
     this.atrn = atrn;
   }
 
 
-  public AuthReference authcode(String authcode) {
+  public AuthReference authcode(@javax.annotation.Nullable String authcode) {
     this.authcode = authcode;
     return this;
   }
 
-   /**
+  /**
    * The authorisation code of the transaction returned by the acquirer or card issuer.
    * @return authcode
-  **/
+   */
   @javax.annotation.Nullable
   public String getAuthcode() {
     return authcode;
   }
 
-  public void setAuthcode(String authcode) {
+  public void setAuthcode(@javax.annotation.Nullable String authcode) {
     this.authcode = authcode;
   }
 
 
-  public AuthReference batchno(String batchno) {
+  public AuthReference authenResult(@javax.annotation.Nullable String authenResult) {
+    this.authenResult = authenResult;
+    return this;
+  }
+
+  /**
+   * The authentication result if an ecommerce transaction. &#39;Y&#39;. Authentication Successful, &#39;N&#39;. Authentication Failed, &#39;A&#39;. Attempts Processing Performed, &#39;U&#39;. Authentication Could Not Be Performed, &#39;C&#39;. Challenge Required.
+   * @return authenResult
+   */
+  @javax.annotation.Nullable
+  public String getAuthenResult() {
+    return authenResult;
+  }
+
+  public void setAuthenResult(@javax.annotation.Nullable String authenResult) {
+    this.authenResult = authenResult;
+  }
+
+
+  public AuthReference batchno(@javax.annotation.Nullable String batchno) {
     this.batchno = batchno;
     return this;
   }
 
-   /**
+  /**
    * A batch number which the transaction has been end of day batched towards.
    * @return batchno
-  **/
+   */
   @javax.annotation.Nullable
   public String getBatchno() {
     return batchno;
   }
 
-  public void setBatchno(String batchno) {
+  public void setBatchno(@javax.annotation.Nullable String batchno) {
     this.batchno = batchno;
   }
 
 
-  public AuthReference currency(String currency) {
+  public AuthReference binCommercial(@javax.annotation.Nullable Boolean binCommercial) {
+    this.binCommercial = binCommercial;
+    return this;
+  }
+
+  /**
+   * Whether the card is a commercial card.
+   * @return binCommercial
+   */
+  @javax.annotation.Nullable
+  public Boolean isBinCommercial() {
+    return binCommercial;
+  }
+
+  public void setBinCommercial(@javax.annotation.Nullable Boolean binCommercial) {
+    this.binCommercial = binCommercial;
+  }
+
+
+  public AuthReference binConsumer(@javax.annotation.Nullable Boolean binConsumer) {
+    this.binConsumer = binConsumer;
+    return this;
+  }
+
+  /**
+   * Whether the card is a consumer card.
+   * @return binConsumer
+   */
+  @javax.annotation.Nullable
+  public Boolean isBinConsumer() {
+    return binConsumer;
+  }
+
+  public void setBinConsumer(@javax.annotation.Nullable Boolean binConsumer) {
+    this.binConsumer = binConsumer;
+  }
+
+
+  public AuthReference binCorporate(@javax.annotation.Nullable Boolean binCorporate) {
+    this.binCorporate = binCorporate;
+    return this;
+  }
+
+  /**
+   * Whether the card is a corporate card.
+   * @return binCorporate
+   */
+  @javax.annotation.Nullable
+  public Boolean isBinCorporate() {
+    return binCorporate;
+  }
+
+  public void setBinCorporate(@javax.annotation.Nullable Boolean binCorporate) {
+    this.binCorporate = binCorporate;
+  }
+
+
+  public AuthReference binCredit(@javax.annotation.Nullable Boolean binCredit) {
+    this.binCredit = binCredit;
+    return this;
+  }
+
+  /**
+   * Whether the card is a credit card.
+   * @return binCredit
+   */
+  @javax.annotation.Nullable
+  public Boolean isBinCredit() {
+    return binCredit;
+  }
+
+  public void setBinCredit(@javax.annotation.Nullable Boolean binCredit) {
+    this.binCredit = binCredit;
+  }
+
+
+  public AuthReference binDebit(@javax.annotation.Nullable Boolean binDebit) {
+    this.binDebit = binDebit;
+    return this;
+  }
+
+  /**
+   * Whether the card is a debit card.
+   * @return binDebit
+   */
+  @javax.annotation.Nullable
+  public Boolean isBinDebit() {
+    return binDebit;
+  }
+
+  public void setBinDebit(@javax.annotation.Nullable Boolean binDebit) {
+    this.binDebit = binDebit;
+  }
+
+
+  public AuthReference cardholderAgreement(@javax.annotation.Nullable String cardholderAgreement) {
+    this.cardholderAgreement = cardholderAgreement;
+    return this;
+  }
+
+  /**
+   * Merchant-initiated transactions (MITs) are payments you trigger, where the cardholder has previously consented to you carrying out such payments. These may be scheduled (such as recurring payments and installments) or unscheduled (like account top-ups triggered by balance thresholds and no-show charges).  Scheduled These are regular payments using stored card details, like installments or a monthly subscription fee.  - &#x60;I&#x60; Instalment - A single purchase of goods or services billed to a cardholder in multiple transactions, over a period of time agreed by the cardholder and you.  - &#x60;R&#x60; Recurring - Transactions processed at fixed, regular intervals not to exceed one year between transactions, representing an agreement between a cardholder and you to purchase goods or services provided over a period of time.  Unscheduled These are payments using stored card details that do not occur on a regular schedule, like top-ups for a digital wallet triggered by the balance falling below a certain threshold.  - &#x60;A&#x60; Reauthorisation - a purchase made after the original purchase. A common scenario is delayed/split shipments.  - &#x60;C&#x60; Unscheduled Payment - A transaction using a stored credential for a fixed or variable amount that does not occur on a scheduled or regularly occurring transaction date. This includes account top-ups triggered by balance thresholds.  - &#x60;D&#x60; Delayed Charge - A delayed charge is typically used in hotel, cruise lines and vehicle rental environments to perform a supplemental account charge after original services are rendered.  - &#x60;L&#x60; Incremental - An incremental authorisation is typically found in hotel and car rental environments, where the cardholder has agreed to pay for any service incurred during the duration of the contract. An incremental authorisation is where you need to seek authorisation of further funds in addition to what you have originally requested. A common scenario is additional services charged to the contract, such as extending a stay in a hotel.  - &#x60;S&#x60; Resubmission - When the original purchase occurred, but you were not able to get authorisation at the time the goods or services were provided. It should be only used where the goods or services have already been provided, but the authorisation request is declined for insufficient funds.  - &#x60;X&#x60; No-show - A no-show is a transaction where you are enabled to charge for services which the cardholder entered into an agreement to purchase, but the cardholder did not meet the terms of the agreement.  - &#x60;N&#x60; Not Applicable - For all other transactions the value will be not applicable. 
+   * @return cardholderAgreement
+   */
+  @javax.annotation.Nullable
+  public String getCardholderAgreement() {
+    return cardholderAgreement;
+  }
+
+  public void setCardholderAgreement(@javax.annotation.Nullable String cardholderAgreement) {
+    this.cardholderAgreement = cardholderAgreement;
+  }
+
+
+  public AuthReference currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * The currency of the transaction in ISO 4217 code format.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public AuthReference datetime(OffsetDateTime datetime) {
+  public AuthReference datetime(@javax.annotation.Nullable OffsetDateTime datetime) {
     this.datetime = datetime;
     return this;
   }
 
-   /**
+  /**
    * The date and time of the transaction.
    * @return datetime
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDatetime() {
     return datetime;
   }
 
-  public void setDatetime(OffsetDateTime datetime) {
+  public void setDatetime(@javax.annotation.Nullable OffsetDateTime datetime) {
     this.datetime = datetime;
   }
 
 
-  public AuthReference identifier(String identifier) {
+  public AuthReference eci(@javax.annotation.Nullable String eci) {
+    this.eci = eci;
+    return this;
+  }
+
+  /**
+   * The ECI if an ecommerce transaction.
+   * @return eci
+   */
+  @javax.annotation.Nullable
+  public String getEci() {
+    return eci;
+  }
+
+  public void setEci(@javax.annotation.Nullable String eci) {
+    this.eci = eci;
+  }
+
+
+  public AuthReference email(@javax.annotation.Nullable String email) {
+    this.email = email;
+    return this;
+  }
+
+  /**
+   * The email address of the card holder.
+   * @return email
+   */
+  @javax.annotation.Nullable
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(@javax.annotation.Nullable String email) {
+    this.email = email;
+  }
+
+
+  public AuthReference env(@javax.annotation.Nullable String env) {
+    this.env = env;
+    return this;
+  }
+
+  /**
+   * The environment that the transaction is process within based on the transaction type.
+   * @return env
+   */
+  @javax.annotation.Nullable
+  public String getEnv() {
+    return env;
+  }
+
+  public void setEnv(@javax.annotation.Nullable String env) {
+    this.env = env;
+  }
+
+
+  public AuthReference identifier(@javax.annotation.Nullable String identifier) {
     this.identifier = identifier;
     return this;
   }
 
-   /**
+  /**
    * The identifier of the transaction used to process the transaction.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nullable
   public String getIdentifier() {
     return identifier;
   }
 
-  public void setIdentifier(String identifier) {
+  public void setIdentifier(@javax.annotation.Nullable String identifier) {
     this.identifier = identifier;
   }
 
 
-  public AuthReference maskedpan(String maskedpan) {
+  public AuthReference initiation(@javax.annotation.Nullable String initiation) {
+    this.initiation = initiation;
+    return this;
+  }
+
+  /**
+   * The initiation of the payment. The value will be C for Card holder initiated and M for a merchant initiated transaction.
+   * @return initiation
+   */
+  @javax.annotation.Nullable
+  public String getInitiation() {
+    return initiation;
+  }
+
+  public void setInitiation(@javax.annotation.Nullable String initiation) {
+    this.initiation = initiation;
+  }
+
+
+  public AuthReference instrument(@javax.annotation.Nullable String instrument) {
+    this.instrument = instrument;
+    return this;
+  }
+
+  /**
+   * The payment instrument used such as Card, Cash, Bank, Crypto, ApplePay, GooglePay, Click2Pay, PayPal, OpenBankingPayment.
+   * @return instrument
+   */
+  @javax.annotation.Nullable
+  public String getInstrument() {
+    return instrument;
+  }
+
+  public void setInstrument(@javax.annotation.Nullable String instrument) {
+    this.instrument = instrument;
+  }
+
+
+  public AuthReference maskedpan(@javax.annotation.Nullable String maskedpan) {
     this.maskedpan = maskedpan;
     return this;
   }
 
-   /**
+  /**
    * A masking of the card number which was used to process the tranasction.
    * @return maskedpan
-  **/
+   */
   @javax.annotation.Nullable
   public String getMaskedpan() {
     return maskedpan;
   }
 
-  public void setMaskedpan(String maskedpan) {
+  public void setMaskedpan(@javax.annotation.Nullable String maskedpan) {
     this.maskedpan = maskedpan;
   }
 
 
-  public AuthReference merchantid(Integer merchantid) {
+  public AuthReference merchantid(@javax.annotation.Nullable Integer merchantid) {
     this.merchantid = merchantid;
     return this;
   }
 
-   /**
+  /**
    * The merchant id of the transaction result.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMerchantid() {
     return merchantid;
   }
 
-  public void setMerchantid(Integer merchantid) {
+  public void setMerchantid(@javax.annotation.Nullable Integer merchantid) {
     this.merchantid = merchantid;
   }
 
 
-  public AuthReference result(String result) {
+  public AuthReference meta(@javax.annotation.Nullable Map<String, String> meta) {
+    this.meta = meta;
+    return this;
+  }
+
+  public AuthReference putMetaItem(String key, String metaItem) {
+    if (this.meta == null) {
+      this.meta = new HashMap<>();
+    }
+    this.meta.put(key, metaItem);
+    return this;
+  }
+
+  /**
+   * Get meta
+   * @return meta
+   */
+  @javax.annotation.Nullable
+  public Map<String, String> getMeta() {
+    return meta;
+  }
+
+  public void setMeta(@javax.annotation.Nullable Map<String, String> meta) {
+    this.meta = meta;
+  }
+
+
+  public AuthReference nameOnCard(@javax.annotation.Nullable String nameOnCard) {
+    this.nameOnCard = nameOnCard;
+    return this;
+  }
+
+  /**
+   * The name of the card holder.
+   * @return nameOnCard
+   */
+  @javax.annotation.Nullable
+  public String getNameOnCard() {
+    return nameOnCard;
+  }
+
+  public void setNameOnCard(@javax.annotation.Nullable String nameOnCard) {
+    this.nameOnCard = nameOnCard;
+  }
+
+
+  public AuthReference postcode(@javax.annotation.Nullable String postcode) {
+    this.postcode = postcode;
+    return this;
+  }
+
+  /**
+   * The postcode of the card holder.
+   * @return postcode
+   */
+  @javax.annotation.Nullable
+  public String getPostcode() {
+    return postcode;
+  }
+
+  public void setPostcode(@javax.annotation.Nullable String postcode) {
+    this.postcode = postcode;
+  }
+
+
+  public AuthReference result(@javax.annotation.Nullable String result) {
     this.result = result;
     return this;
   }
 
-   /**
+  /**
    * The result of the transaction.
    * @return result
-  **/
+   */
   @javax.annotation.Nullable
   public String getResult() {
     return result;
   }
 
-  public void setResult(String result) {
+  public void setResult(@javax.annotation.Nullable String result) {
     this.result = result;
   }
 
 
-  public AuthReference transStatus(String transStatus) {
+  public AuthReference resultId(@javax.annotation.Nullable String resultId) {
+    this.resultId = resultId;
+    return this;
+  }
+
+  /**
+   * The id of the result of the transaction.
+   * @return resultId
+   */
+  @javax.annotation.Nullable
+  public String getResultId() {
+    return resultId;
+  }
+
+  public void setResultId(@javax.annotation.Nullable String resultId) {
+    this.resultId = resultId;
+  }
+
+
+  public AuthReference scheme(@javax.annotation.Nullable String scheme) {
+    this.scheme = scheme;
+    return this;
+  }
+
+  /**
+   * The card scheme of any card used.
+   * @return scheme
+   */
+  @javax.annotation.Nullable
+  public String getScheme() {
+    return scheme;
+  }
+
+  public void setScheme(@javax.annotation.Nullable String scheme) {
+    this.scheme = scheme;
+  }
+
+
+  public AuthReference schemeLogo(@javax.annotation.Nullable String schemeLogo) {
+    this.schemeLogo = schemeLogo;
+    return this;
+  }
+
+  /**
+   * The card scheme logo of any card used.
+   * @return schemeLogo
+   */
+  @javax.annotation.Nullable
+  public String getSchemeLogo() {
+    return schemeLogo;
+  }
+
+  public void setSchemeLogo(@javax.annotation.Nullable String schemeLogo) {
+    this.schemeLogo = schemeLogo;
+  }
+
+
+  public AuthReference transStatus(@javax.annotation.Nullable String transStatus) {
     this.transStatus = transStatus;
     return this;
   }
 
-   /**
+  /**
    * The current status of the transaction through it&#39;s lifecycle.
    * @return transStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getTransStatus() {
     return transStatus;
   }
 
-  public void setTransStatus(String transStatus) {
+  public void setTransStatus(@javax.annotation.Nullable String transStatus) {
     this.transStatus = transStatus;
   }
 
 
-  public AuthReference transType(String transType) {
+  public AuthReference transType(@javax.annotation.Nullable String transType) {
     this.transType = transType;
     return this;
   }
 
-   /**
-   * The type of transaction that was processed.
+  /**
+   * The type code of transaction that was processed.
    * @return transType
-  **/
+   */
   @javax.annotation.Nullable
   public String getTransType() {
     return transType;
   }
 
-  public void setTransType(String transType) {
+  public void setTransType(@javax.annotation.Nullable String transType) {
     this.transType = transType;
   }
 
 
-  public AuthReference transno(Integer transno) {
+  public AuthReference transno(@javax.annotation.Nullable Integer transno) {
     this.transno = transno;
     return this;
   }
 
-   /**
+  /**
    * The transaction number of the transaction.
    * @return transno
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTransno() {
     return transno;
   }
 
-  public void setTransno(Integer transno) {
+  public void setTransno(@javax.annotation.Nullable Integer transno) {
     this.transno = transno;
   }
 
+
+  public AuthReference type(@javax.annotation.Nullable String type) {
+    this.type = type;
+    return this;
+  }
+
+  /**
+   * Defines whether the transaction is a sale, refund or verification.
+   * @return type
+   */
+  @javax.annotation.Nullable
+  public String getType() {
+    return type;
+  }
+
+  public void setType(@javax.annotation.Nullable String type) {
+    this.type = type;
+  }
+
+
+  public AuthReference utc(@javax.annotation.Nullable Long utc) {
+    this.utc = utc;
+    return this;
+  }
+
+  /**
+   * The date and time of the transaction in UTC milli seconds since the epoc.
+   * @return utc
+   */
+  @javax.annotation.Nullable
+  public Long getUtc() {
+    return utc;
+  }
+
+  public void setUtc(@javax.annotation.Nullable Long utc) {
+    this.utc = utc;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the AuthReference instance itself
+   */
+  public AuthReference putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -385,45 +956,89 @@ public class AuthReference {
       return false;
     }
     AuthReference authReference = (AuthReference) o;
-    return Objects.equals(this.amount, authReference.amount) &&
+    return Objects.equals(this.address, authReference.address) &&
+        Objects.equals(this.amount, authReference.amount) &&
         Objects.equals(this.amountValue, authReference.amountValue) &&
         Objects.equals(this.atrn, authReference.atrn) &&
         Objects.equals(this.authcode, authReference.authcode) &&
+        Objects.equals(this.authenResult, authReference.authenResult) &&
         Objects.equals(this.batchno, authReference.batchno) &&
+        Objects.equals(this.binCommercial, authReference.binCommercial) &&
+        Objects.equals(this.binConsumer, authReference.binConsumer) &&
+        Objects.equals(this.binCorporate, authReference.binCorporate) &&
+        Objects.equals(this.binCredit, authReference.binCredit) &&
+        Objects.equals(this.binDebit, authReference.binDebit) &&
+        Objects.equals(this.cardholderAgreement, authReference.cardholderAgreement) &&
         Objects.equals(this.currency, authReference.currency) &&
         Objects.equals(this.datetime, authReference.datetime) &&
+        Objects.equals(this.eci, authReference.eci) &&
+        Objects.equals(this.email, authReference.email) &&
+        Objects.equals(this.env, authReference.env) &&
         Objects.equals(this.identifier, authReference.identifier) &&
+        Objects.equals(this.initiation, authReference.initiation) &&
+        Objects.equals(this.instrument, authReference.instrument) &&
         Objects.equals(this.maskedpan, authReference.maskedpan) &&
         Objects.equals(this.merchantid, authReference.merchantid) &&
+        Objects.equals(this.meta, authReference.meta) &&
+        Objects.equals(this.nameOnCard, authReference.nameOnCard) &&
+        Objects.equals(this.postcode, authReference.postcode) &&
         Objects.equals(this.result, authReference.result) &&
+        Objects.equals(this.resultId, authReference.resultId) &&
+        Objects.equals(this.scheme, authReference.scheme) &&
+        Objects.equals(this.schemeLogo, authReference.schemeLogo) &&
         Objects.equals(this.transStatus, authReference.transStatus) &&
         Objects.equals(this.transType, authReference.transType) &&
-        Objects.equals(this.transno, authReference.transno);
+        Objects.equals(this.transno, authReference.transno) &&
+        Objects.equals(this.type, authReference.type) &&
+        Objects.equals(this.utc, authReference.utc)&&
+        Objects.equals(this.additionalProperties, authReference.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, amountValue, atrn, authcode, batchno, currency, datetime, identifier, maskedpan, merchantid, result, transStatus, transType, transno);
+    return Objects.hash(address, amount, amountValue, atrn, authcode, authenResult, batchno, binCommercial, binConsumer, binCorporate, binCredit, binDebit, cardholderAgreement, currency, datetime, eci, email, env, identifier, initiation, instrument, maskedpan, merchantid, meta, nameOnCard, postcode, result, resultId, scheme, schemeLogo, transStatus, transType, transno, type, utc, additionalProperties);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AuthReference {\n");
+    sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    amountValue: ").append(toIndentedString(amountValue)).append("\n");
     sb.append("    atrn: ").append(toIndentedString(atrn)).append("\n");
     sb.append("    authcode: ").append(toIndentedString(authcode)).append("\n");
+    sb.append("    authenResult: ").append(toIndentedString(authenResult)).append("\n");
     sb.append("    batchno: ").append(toIndentedString(batchno)).append("\n");
+    sb.append("    binCommercial: ").append(toIndentedString(binCommercial)).append("\n");
+    sb.append("    binConsumer: ").append(toIndentedString(binConsumer)).append("\n");
+    sb.append("    binCorporate: ").append(toIndentedString(binCorporate)).append("\n");
+    sb.append("    binCredit: ").append(toIndentedString(binCredit)).append("\n");
+    sb.append("    binDebit: ").append(toIndentedString(binDebit)).append("\n");
+    sb.append("    cardholderAgreement: ").append(toIndentedString(cardholderAgreement)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    datetime: ").append(toIndentedString(datetime)).append("\n");
+    sb.append("    eci: ").append(toIndentedString(eci)).append("\n");
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    env: ").append(toIndentedString(env)).append("\n");
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
+    sb.append("    initiation: ").append(toIndentedString(initiation)).append("\n");
+    sb.append("    instrument: ").append(toIndentedString(instrument)).append("\n");
     sb.append("    maskedpan: ").append(toIndentedString(maskedpan)).append("\n");
     sb.append("    merchantid: ").append(toIndentedString(merchantid)).append("\n");
+    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
+    sb.append("    nameOnCard: ").append(toIndentedString(nameOnCard)).append("\n");
+    sb.append("    postcode: ").append(toIndentedString(postcode)).append("\n");
     sb.append("    result: ").append(toIndentedString(result)).append("\n");
+    sb.append("    resultId: ").append(toIndentedString(resultId)).append("\n");
+    sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
+    sb.append("    schemeLogo: ").append(toIndentedString(schemeLogo)).append("\n");
     sb.append("    transStatus: ").append(toIndentedString(transStatus)).append("\n");
     sb.append("    transType: ").append(toIndentedString(transType)).append("\n");
     sb.append("    transno: ").append(toIndentedString(transno)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    utc: ").append(toIndentedString(utc)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -446,46 +1061,62 @@ public class AuthReference {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("address");
     openapiFields.add("amount");
     openapiFields.add("amount_value");
     openapiFields.add("atrn");
     openapiFields.add("authcode");
+    openapiFields.add("authen_result");
     openapiFields.add("batchno");
+    openapiFields.add("bin_commercial");
+    openapiFields.add("bin_consumer");
+    openapiFields.add("bin_corporate");
+    openapiFields.add("bin_credit");
+    openapiFields.add("bin_debit");
+    openapiFields.add("cardholder_agreement");
     openapiFields.add("currency");
     openapiFields.add("datetime");
+    openapiFields.add("eci");
+    openapiFields.add("email");
+    openapiFields.add("env");
     openapiFields.add("identifier");
+    openapiFields.add("initiation");
+    openapiFields.add("instrument");
     openapiFields.add("maskedpan");
     openapiFields.add("merchantid");
+    openapiFields.add("meta");
+    openapiFields.add("name_on_card");
+    openapiFields.add("postcode");
     openapiFields.add("result");
+    openapiFields.add("result_id");
+    openapiFields.add("scheme");
+    openapiFields.add("scheme_logo");
     openapiFields.add("trans_status");
     openapiFields.add("trans_type");
     openapiFields.add("transno");
+    openapiFields.add("type");
+    openapiFields.add("utc");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to AuthReference
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AuthReference
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!AuthReference.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in AuthReference is not found in the empty JSON string", AuthReference.openapiRequiredFields.toString()));
         }
       }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!AuthReference.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuthReference` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) && !jsonObj.get("address").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("address").toString()));
+      }
       if ((jsonObj.get("amount") != null && !jsonObj.get("amount").isJsonNull()) && !jsonObj.get("amount").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("amount").toString()));
       }
@@ -495,26 +1126,68 @@ public class AuthReference {
       if ((jsonObj.get("authcode") != null && !jsonObj.get("authcode").isJsonNull()) && !jsonObj.get("authcode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `authcode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("authcode").toString()));
       }
+      if ((jsonObj.get("authen_result") != null && !jsonObj.get("authen_result").isJsonNull()) && !jsonObj.get("authen_result").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `authen_result` to be a primitive type in the JSON string but got `%s`", jsonObj.get("authen_result").toString()));
+      }
       if ((jsonObj.get("batchno") != null && !jsonObj.get("batchno").isJsonNull()) && !jsonObj.get("batchno").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `batchno` to be a primitive type in the JSON string but got `%s`", jsonObj.get("batchno").toString()));
+      }
+      if ((jsonObj.get("cardholder_agreement") != null && !jsonObj.get("cardholder_agreement").isJsonNull()) && !jsonObj.get("cardholder_agreement").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cardholder_agreement` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cardholder_agreement").toString()));
       }
       if ((jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) && !jsonObj.get("currency").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
       }
+      if ((jsonObj.get("eci") != null && !jsonObj.get("eci").isJsonNull()) && !jsonObj.get("eci").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `eci` to be a primitive type in the JSON string but got `%s`", jsonObj.get("eci").toString()));
+      }
+      if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
+      }
+      if ((jsonObj.get("env") != null && !jsonObj.get("env").isJsonNull()) && !jsonObj.get("env").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `env` to be a primitive type in the JSON string but got `%s`", jsonObj.get("env").toString()));
+      }
       if ((jsonObj.get("identifier") != null && !jsonObj.get("identifier").isJsonNull()) && !jsonObj.get("identifier").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `identifier` to be a primitive type in the JSON string but got `%s`", jsonObj.get("identifier").toString()));
+      }
+      if ((jsonObj.get("initiation") != null && !jsonObj.get("initiation").isJsonNull()) && !jsonObj.get("initiation").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `initiation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("initiation").toString()));
+      }
+      if ((jsonObj.get("instrument") != null && !jsonObj.get("instrument").isJsonNull()) && !jsonObj.get("instrument").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `instrument` to be a primitive type in the JSON string but got `%s`", jsonObj.get("instrument").toString()));
       }
       if ((jsonObj.get("maskedpan") != null && !jsonObj.get("maskedpan").isJsonNull()) && !jsonObj.get("maskedpan").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `maskedpan` to be a primitive type in the JSON string but got `%s`", jsonObj.get("maskedpan").toString()));
       }
+      if ((jsonObj.get("name_on_card") != null && !jsonObj.get("name_on_card").isJsonNull()) && !jsonObj.get("name_on_card").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name_on_card` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name_on_card").toString()));
+      }
+      if ((jsonObj.get("postcode") != null && !jsonObj.get("postcode").isJsonNull()) && !jsonObj.get("postcode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `postcode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("postcode").toString()));
+      }
       if ((jsonObj.get("result") != null && !jsonObj.get("result").isJsonNull()) && !jsonObj.get("result").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `result` to be a primitive type in the JSON string but got `%s`", jsonObj.get("result").toString()));
+      }
+      if ((jsonObj.get("result_id") != null && !jsonObj.get("result_id").isJsonNull()) && !jsonObj.get("result_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `result_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("result_id").toString()));
+      }
+      if ((jsonObj.get("scheme") != null && !jsonObj.get("scheme").isJsonNull()) && !jsonObj.get("scheme").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `scheme` to be a primitive type in the JSON string but got `%s`", jsonObj.get("scheme").toString()));
+      }
+      if ((jsonObj.get("scheme_logo") != null && !jsonObj.get("scheme_logo").isJsonNull()) && !jsonObj.get("scheme_logo").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `scheme_logo` to be a primitive type in the JSON string but got `%s`", jsonObj.get("scheme_logo").toString()));
       }
       if ((jsonObj.get("trans_status") != null && !jsonObj.get("trans_status").isJsonNull()) && !jsonObj.get("trans_status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `trans_status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("trans_status").toString()));
       }
       if ((jsonObj.get("trans_type") != null && !jsonObj.get("trans_type").isJsonNull()) && !jsonObj.get("trans_type").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `trans_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("trans_type").toString()));
+      }
+      if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) && !jsonObj.get("type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
+      }
+      if ((jsonObj.get("utc") != null && !jsonObj.get("utc").isJsonNull()) && !jsonObj.get("utc").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `utc` to be a primitive type in the JSON string but got `%s`", jsonObj.get("utc").toString()));
       }
   }
 
@@ -533,6 +1206,28 @@ public class AuthReference {
            @Override
            public void write(JsonWriter out, AuthReference value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -540,29 +1235,50 @@ public class AuthReference {
            public AuthReference read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             AuthReference instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of AuthReference given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of AuthReference
-  * @throws IOException if the JSON string is invalid with respect to AuthReference
-  */
+  /**
+   * Create an instance of AuthReference given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AuthReference
+   * @throws IOException if the JSON string is invalid with respect to AuthReference
+   */
   public static AuthReference fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AuthReference.class);
   }
 
- /**
-  * Convert an instance of AuthReference to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of AuthReference to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

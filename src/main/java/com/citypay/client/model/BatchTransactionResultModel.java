@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,328 +51,386 @@ import com.citypay.client.JSON;
 public class BatchTransactionResultModel {
   public static final String SERIALIZED_NAME_ACCOUNT_ID = "account_id";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_ID)
+  @javax.annotation.Nonnull
   private String accountId;
 
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
+  @javax.annotation.Nullable
   private Integer amount;
 
   public static final String SERIALIZED_NAME_AUTHCODE = "authcode";
   @SerializedName(SERIALIZED_NAME_AUTHCODE)
+  @javax.annotation.Nullable
   private String authcode;
 
   public static final String SERIALIZED_NAME_DATETIME = "datetime";
   @SerializedName(SERIALIZED_NAME_DATETIME)
+  @javax.annotation.Nullable
   private OffsetDateTime datetime;
 
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
+  @javax.annotation.Nonnull
   private String identifier;
 
   public static final String SERIALIZED_NAME_MASKEDPAN = "maskedpan";
   @SerializedName(SERIALIZED_NAME_MASKEDPAN)
+  @javax.annotation.Nullable
   private String maskedpan;
 
   public static final String SERIALIZED_NAME_MERCHANTID = "merchantid";
   @SerializedName(SERIALIZED_NAME_MERCHANTID)
+  @javax.annotation.Nonnull
   private Integer merchantid;
 
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
+  @javax.annotation.Nonnull
   private String message;
 
   public static final String SERIALIZED_NAME_RESULT = "result";
   @SerializedName(SERIALIZED_NAME_RESULT)
+  @javax.annotation.Nonnull
   private Integer result;
 
   public static final String SERIALIZED_NAME_RESULT_CODE = "result_code";
   @SerializedName(SERIALIZED_NAME_RESULT_CODE)
+  @javax.annotation.Nonnull
   private String resultCode;
 
   public static final String SERIALIZED_NAME_SCHEME = "scheme";
   @SerializedName(SERIALIZED_NAME_SCHEME)
+  @javax.annotation.Nullable
   private String scheme;
 
   public static final String SERIALIZED_NAME_SCHEME_ID = "scheme_id";
   @SerializedName(SERIALIZED_NAME_SCHEME_ID)
+  @javax.annotation.Nullable
   private String schemeId;
 
   public static final String SERIALIZED_NAME_SCHEME_LOGO = "scheme_logo";
   @SerializedName(SERIALIZED_NAME_SCHEME_LOGO)
+  @javax.annotation.Nullable
   private String schemeLogo;
 
   public static final String SERIALIZED_NAME_TRANSNO = "transno";
   @SerializedName(SERIALIZED_NAME_TRANSNO)
+  @javax.annotation.Nullable
   private Integer transno;
 
   public BatchTransactionResultModel() {
   }
 
-  public BatchTransactionResultModel accountId(String accountId) {
+  public BatchTransactionResultModel accountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
     return this;
   }
 
-   /**
+  /**
    * The card holder account id used for the transaction.
    * @return accountId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getAccountId() {
     return accountId;
   }
 
-  public void setAccountId(String accountId) {
+  public void setAccountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
   }
 
 
-  public BatchTransactionResultModel amount(Integer amount) {
+  public BatchTransactionResultModel amount(@javax.annotation.Nullable Integer amount) {
     this.amount = amount;
     return this;
   }
 
-   /**
+  /**
    * The amount of the transaction processed.
    * @return amount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getAmount() {
     return amount;
   }
 
-  public void setAmount(Integer amount) {
+  public void setAmount(@javax.annotation.Nullable Integer amount) {
     this.amount = amount;
   }
 
 
-  public BatchTransactionResultModel authcode(String authcode) {
+  public BatchTransactionResultModel authcode(@javax.annotation.Nullable String authcode) {
     this.authcode = authcode;
     return this;
   }
 
-   /**
+  /**
    * The authorisation code of a successful transaction.
    * @return authcode
-  **/
+   */
   @javax.annotation.Nullable
   public String getAuthcode() {
     return authcode;
   }
 
-  public void setAuthcode(String authcode) {
+  public void setAuthcode(@javax.annotation.Nullable String authcode) {
     this.authcode = authcode;
   }
 
 
-  public BatchTransactionResultModel datetime(OffsetDateTime datetime) {
+  public BatchTransactionResultModel datetime(@javax.annotation.Nullable OffsetDateTime datetime) {
     this.datetime = datetime;
     return this;
   }
 
-   /**
+  /**
    * The datetime that the transaction was processed.
    * @return datetime
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDatetime() {
     return datetime;
   }
 
-  public void setDatetime(OffsetDateTime datetime) {
+  public void setDatetime(@javax.annotation.Nullable OffsetDateTime datetime) {
     this.datetime = datetime;
   }
 
 
-  public BatchTransactionResultModel identifier(String identifier) {
+  public BatchTransactionResultModel identifier(@javax.annotation.Nonnull String identifier) {
     this.identifier = identifier;
     return this;
   }
 
-   /**
+  /**
    * The identifier of the transaction.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nonnull
   public String getIdentifier() {
     return identifier;
   }
 
-  public void setIdentifier(String identifier) {
+  public void setIdentifier(@javax.annotation.Nonnull String identifier) {
     this.identifier = identifier;
   }
 
 
-  public BatchTransactionResultModel maskedpan(String maskedpan) {
+  public BatchTransactionResultModel maskedpan(@javax.annotation.Nullable String maskedpan) {
     this.maskedpan = maskedpan;
     return this;
   }
 
-   /**
+  /**
    * A masked value of the card number used for processing displaying limited values that can be used on a receipt. 
    * @return maskedpan
-  **/
+   */
   @javax.annotation.Nullable
   public String getMaskedpan() {
     return maskedpan;
   }
 
-  public void setMaskedpan(String maskedpan) {
+  public void setMaskedpan(@javax.annotation.Nullable String maskedpan) {
     this.maskedpan = maskedpan;
   }
 
 
-  public BatchTransactionResultModel merchantid(Integer merchantid) {
+  public BatchTransactionResultModel merchantid(@javax.annotation.Nonnull Integer merchantid) {
     this.merchantid = merchantid;
     return this;
   }
 
-   /**
+  /**
    * The merchant id of the transaction.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getMerchantid() {
     return merchantid;
   }
 
-  public void setMerchantid(Integer merchantid) {
+  public void setMerchantid(@javax.annotation.Nonnull Integer merchantid) {
     this.merchantid = merchantid;
   }
 
 
-  public BatchTransactionResultModel message(String message) {
+  public BatchTransactionResultModel message(@javax.annotation.Nonnull String message) {
     this.message = message;
     return this;
   }
 
-   /**
+  /**
    * A response message pertaining to the transaction.
    * @return message
-  **/
+   */
   @javax.annotation.Nonnull
   public String getMessage() {
     return message;
   }
 
-  public void setMessage(String message) {
+  public void setMessage(@javax.annotation.Nonnull String message) {
     this.message = message;
   }
 
 
-  public BatchTransactionResultModel result(Integer result) {
+  public BatchTransactionResultModel result(@javax.annotation.Nonnull Integer result) {
     this.result = result;
     return this;
   }
 
-   /**
+  /**
    * An integer result that indicates the outcome of the transaction. The Code value below maps to the result value  &lt;table&gt; &lt;tr&gt; &lt;th&gt;Code&lt;/th&gt; &lt;th&gt;Abbrev&lt;/th&gt; &lt;th&gt;Description&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;Declined&lt;/td&gt;&lt;td&gt;Declined&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;Accepted&lt;/td&gt;&lt;td&gt;Accepted&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;Rejected&lt;/td&gt;&lt;td&gt;Rejected&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;Not Attempted&lt;/td&gt;&lt;td&gt;Not Attempted&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;Referred&lt;/td&gt;&lt;td&gt;Referred&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;PinRetry&lt;/td&gt;&lt;td&gt;Perform PIN Retry&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;ForSigVer&lt;/td&gt;&lt;td&gt;Force Signature Verification&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;Hold&lt;/td&gt;&lt;td&gt;Hold&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;SecErr&lt;/td&gt;&lt;td&gt;Security Error&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;CallAcq&lt;/td&gt;&lt;td&gt;Call Acquirer&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;DNH&lt;/td&gt;&lt;td&gt;Do Not Honour&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;11&lt;/td&gt;&lt;td&gt;RtnCrd&lt;/td&gt;&lt;td&gt;Retain Card&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;12&lt;/td&gt;&lt;td&gt;ExprdCrd&lt;/td&gt;&lt;td&gt;Expired Card&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;13&lt;/td&gt;&lt;td&gt;InvldCrd&lt;/td&gt;&lt;td&gt;Invalid Card No&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;14&lt;/td&gt;&lt;td&gt;PinExcd&lt;/td&gt;&lt;td&gt;Pin Tries Exceeded&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;15&lt;/td&gt;&lt;td&gt;PinInvld&lt;/td&gt;&lt;td&gt;Pin Invalid&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;16&lt;/td&gt;&lt;td&gt;AuthReq&lt;/td&gt;&lt;td&gt;Authentication Required&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;17&lt;/td&gt;&lt;td&gt;AuthenFail&lt;/td&gt;&lt;td&gt;Authentication Failed&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;18&lt;/td&gt;&lt;td&gt;Verified&lt;/td&gt;&lt;td&gt;Card Verified&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;19&lt;/td&gt;&lt;td&gt;Cancelled&lt;/td&gt;&lt;td&gt;Cancelled&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;20&lt;/td&gt;&lt;td&gt;Un&lt;/td&gt;&lt;td&gt;Unknown&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;21&lt;/td&gt;&lt;td&gt;Challenged&lt;/td&gt;&lt;td&gt;Challenged&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;22&lt;/td&gt;&lt;td&gt;Decoupled&lt;/td&gt;&lt;td&gt;Decoupled&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;23&lt;/td&gt;&lt;td&gt;Denied&lt;/td&gt;&lt;td&gt;Permission Denied&lt;/td&gt;&lt;/tr&gt; &lt;/table&gt; 
    * @return result
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getResult() {
     return result;
   }
 
-  public void setResult(Integer result) {
+  public void setResult(@javax.annotation.Nonnull Integer result) {
     this.result = result;
   }
 
 
-  public BatchTransactionResultModel resultCode(String resultCode) {
+  public BatchTransactionResultModel resultCode(@javax.annotation.Nonnull String resultCode) {
     this.resultCode = resultCode;
     return this;
   }
 
-   /**
+  /**
    * A result code of the transaction identifying the result of the transaction for success, rejection or decline.
    * @return resultCode
-  **/
+   */
   @javax.annotation.Nonnull
   public String getResultCode() {
     return resultCode;
   }
 
-  public void setResultCode(String resultCode) {
+  public void setResultCode(@javax.annotation.Nonnull String resultCode) {
     this.resultCode = resultCode;
   }
 
 
-  public BatchTransactionResultModel scheme(String scheme) {
+  public BatchTransactionResultModel scheme(@javax.annotation.Nullable String scheme) {
     this.scheme = scheme;
     return this;
   }
 
-   /**
+  /**
    * The name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard. 
    * @return scheme
-  **/
+   */
   @javax.annotation.Nullable
   public String getScheme() {
     return scheme;
   }
 
-  public void setScheme(String scheme) {
+  public void setScheme(@javax.annotation.Nullable String scheme) {
     this.scheme = scheme;
   }
 
 
-  public BatchTransactionResultModel schemeId(String schemeId) {
+  public BatchTransactionResultModel schemeId(@javax.annotation.Nullable String schemeId) {
     this.schemeId = schemeId;
     return this;
   }
 
-   /**
+  /**
    * The name of the card scheme of the transaction such as VI or MC. 
    * @return schemeId
-  **/
+   */
   @javax.annotation.Nullable
   public String getSchemeId() {
     return schemeId;
   }
 
-  public void setSchemeId(String schemeId) {
+  public void setSchemeId(@javax.annotation.Nullable String schemeId) {
     this.schemeId = schemeId;
   }
 
 
-  public BatchTransactionResultModel schemeLogo(String schemeLogo) {
+  public BatchTransactionResultModel schemeLogo(@javax.annotation.Nullable String schemeLogo) {
     this.schemeLogo = schemeLogo;
     return this;
   }
 
-   /**
+  /**
    * A url containing a logo of the card scheme. 
    * @return schemeLogo
-  **/
+   */
   @javax.annotation.Nullable
   public String getSchemeLogo() {
     return schemeLogo;
   }
 
-  public void setSchemeLogo(String schemeLogo) {
+  public void setSchemeLogo(@javax.annotation.Nullable String schemeLogo) {
     this.schemeLogo = schemeLogo;
   }
 
 
-  public BatchTransactionResultModel transno(Integer transno) {
+  public BatchTransactionResultModel transno(@javax.annotation.Nullable Integer transno) {
     this.transno = transno;
     return this;
   }
 
-   /**
+  /**
    * The resulting transaction number, ordered incrementally from 1 for every merchant_id. The value will default to less than 1 for transactions that do not have a transaction number issued. 
    * @return transno
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTransno() {
     return transno;
   }
 
-  public void setTransno(Integer transno) {
+  public void setTransno(@javax.annotation.Nullable Integer transno) {
     this.transno = transno;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the BatchTransactionResultModel instance itself
+   */
+  public BatchTransactionResultModel putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -398,12 +455,13 @@ public class BatchTransactionResultModel {
         Objects.equals(this.scheme, batchTransactionResultModel.scheme) &&
         Objects.equals(this.schemeId, batchTransactionResultModel.schemeId) &&
         Objects.equals(this.schemeLogo, batchTransactionResultModel.schemeLogo) &&
-        Objects.equals(this.transno, batchTransactionResultModel.transno);
+        Objects.equals(this.transno, batchTransactionResultModel.transno)&&
+        Objects.equals(this.additionalProperties, batchTransactionResultModel.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, amount, authcode, datetime, identifier, maskedpan, merchantid, message, result, resultCode, scheme, schemeId, schemeLogo, transno);
+    return Objects.hash(accountId, amount, authcode, datetime, identifier, maskedpan, merchantid, message, result, resultCode, scheme, schemeId, schemeLogo, transno, additionalProperties);
   }
 
   @Override
@@ -424,6 +482,7 @@ public class BatchTransactionResultModel {
     sb.append("    schemeId: ").append(toIndentedString(schemeId)).append("\n");
     sb.append("    schemeLogo: ").append(toIndentedString(schemeLogo)).append("\n");
     sb.append("    transno: ").append(toIndentedString(transno)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -471,24 +530,16 @@ public class BatchTransactionResultModel {
     openapiRequiredFields.add("result_code");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to BatchTransactionResultModel
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to BatchTransactionResultModel
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!BatchTransactionResultModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in BatchTransactionResultModel is not found in the empty JSON string", BatchTransactionResultModel.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!BatchTransactionResultModel.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `BatchTransactionResultModel` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
@@ -543,6 +594,28 @@ public class BatchTransactionResultModel {
            @Override
            public void write(JsonWriter out, BatchTransactionResultModel value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -550,29 +623,50 @@ public class BatchTransactionResultModel {
            public BatchTransactionResultModel read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             BatchTransactionResultModel instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of BatchTransactionResultModel given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of BatchTransactionResultModel
-  * @throws IOException if the JSON string is invalid with respect to BatchTransactionResultModel
-  */
+  /**
+   * Create an instance of BatchTransactionResultModel given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of BatchTransactionResultModel
+   * @throws IOException if the JSON string is invalid with respect to BatchTransactionResultModel
+   */
   public static BatchTransactionResultModel fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, BatchTransactionResultModel.class);
   }
 
- /**
-  * Convert an instance of BatchTransactionResultModel to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of BatchTransactionResultModel to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

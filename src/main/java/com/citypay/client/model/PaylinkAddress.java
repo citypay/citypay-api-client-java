@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,167 +50,218 @@ import com.citypay.client.JSON;
 public class PaylinkAddress {
   public static final String SERIALIZED_NAME_ADDRESS1 = "address1";
   @SerializedName(SERIALIZED_NAME_ADDRESS1)
+  @javax.annotation.Nullable
   private String address1;
 
   public static final String SERIALIZED_NAME_ADDRESS2 = "address2";
   @SerializedName(SERIALIZED_NAME_ADDRESS2)
+  @javax.annotation.Nullable
   private String address2;
 
   public static final String SERIALIZED_NAME_ADDRESS3 = "address3";
   @SerializedName(SERIALIZED_NAME_ADDRESS3)
+  @javax.annotation.Nullable
   private String address3;
 
   public static final String SERIALIZED_NAME_AREA = "area";
   @SerializedName(SERIALIZED_NAME_AREA)
+  @javax.annotation.Nullable
   private String area;
 
   public static final String SERIALIZED_NAME_COUNTRY = "country";
   @SerializedName(SERIALIZED_NAME_COUNTRY)
+  @javax.annotation.Nullable
   private String country;
 
   public static final String SERIALIZED_NAME_LABEL = "label";
   @SerializedName(SERIALIZED_NAME_LABEL)
+  @javax.annotation.Nullable
   private String label;
 
   public static final String SERIALIZED_NAME_POSTCODE = "postcode";
   @SerializedName(SERIALIZED_NAME_POSTCODE)
+  @javax.annotation.Nullable
   private String postcode;
 
   public PaylinkAddress() {
   }
 
-  public PaylinkAddress address1(String address1) {
+  public PaylinkAddress address1(@javax.annotation.Nullable String address1) {
     this.address1 = address1;
     return this;
   }
 
-   /**
+  /**
    * The first line of the address.
    * @return address1
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddress1() {
     return address1;
   }
 
-  public void setAddress1(String address1) {
+  public void setAddress1(@javax.annotation.Nullable String address1) {
     this.address1 = address1;
   }
 
 
-  public PaylinkAddress address2(String address2) {
+  public PaylinkAddress address2(@javax.annotation.Nullable String address2) {
     this.address2 = address2;
     return this;
   }
 
-   /**
+  /**
    * The second line of the address.
    * @return address2
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddress2() {
     return address2;
   }
 
-  public void setAddress2(String address2) {
+  public void setAddress2(@javax.annotation.Nullable String address2) {
     this.address2 = address2;
   }
 
 
-  public PaylinkAddress address3(String address3) {
+  public PaylinkAddress address3(@javax.annotation.Nullable String address3) {
     this.address3 = address3;
     return this;
   }
 
-   /**
+  /**
    * The third line of the address.
    * @return address3
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddress3() {
     return address3;
   }
 
-  public void setAddress3(String address3) {
+  public void setAddress3(@javax.annotation.Nullable String address3) {
     this.address3 = address3;
   }
 
 
-  public PaylinkAddress area(String area) {
+  public PaylinkAddress area(@javax.annotation.Nullable String area) {
     this.area = area;
     return this;
   }
 
-   /**
+  /**
    * The area such as city, department, town or parish.
    * @return area
-  **/
+   */
   @javax.annotation.Nullable
   public String getArea() {
     return area;
   }
 
-  public void setArea(String area) {
+  public void setArea(@javax.annotation.Nullable String area) {
     this.area = area;
   }
 
 
-  public PaylinkAddress country(String country) {
+  public PaylinkAddress country(@javax.annotation.Nullable String country) {
     this.country = country;
     return this;
   }
 
-   /**
+  /**
    * The country code in ISO 3166 format. The country code should be an ISO-3166 2 or 3 digit country code.
    * @return country
-  **/
+   */
   @javax.annotation.Nullable
   public String getCountry() {
     return country;
   }
 
-  public void setCountry(String country) {
+  public void setCountry(@javax.annotation.Nullable String country) {
     this.country = country;
   }
 
 
-  public PaylinkAddress label(String label) {
+  public PaylinkAddress label(@javax.annotation.Nullable String label) {
     this.label = label;
     return this;
   }
 
-   /**
+  /**
    * A label for the address such as Head Office, Home Address.
    * @return label
-  **/
+   */
   @javax.annotation.Nullable
   public String getLabel() {
     return label;
   }
 
-  public void setLabel(String label) {
+  public void setLabel(@javax.annotation.Nullable String label) {
     this.label = label;
   }
 
 
-  public PaylinkAddress postcode(String postcode) {
+  public PaylinkAddress postcode(@javax.annotation.Nullable String postcode) {
     this.postcode = postcode;
     return this;
   }
 
-   /**
+  /**
    * The postcode or zip code of the address.
    * @return postcode
-  **/
+   */
   @javax.annotation.Nullable
   public String getPostcode() {
     return postcode;
   }
 
-  public void setPostcode(String postcode) {
+  public void setPostcode(@javax.annotation.Nullable String postcode) {
     this.postcode = postcode;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the PaylinkAddress instance itself
+   */
+  public PaylinkAddress putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -229,12 +279,13 @@ public class PaylinkAddress {
         Objects.equals(this.area, paylinkAddress.area) &&
         Objects.equals(this.country, paylinkAddress.country) &&
         Objects.equals(this.label, paylinkAddress.label) &&
-        Objects.equals(this.postcode, paylinkAddress.postcode);
+        Objects.equals(this.postcode, paylinkAddress.postcode)&&
+        Objects.equals(this.additionalProperties, paylinkAddress.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(address1, address2, address3, area, country, label, postcode);
+    return Objects.hash(address1, address2, address3, area, country, label, postcode, additionalProperties);
   }
 
   @Override
@@ -248,6 +299,7 @@ public class PaylinkAddress {
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    postcode: ").append(toIndentedString(postcode)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -282,24 +334,16 @@ public class PaylinkAddress {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkAddress
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkAddress
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkAddress.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkAddress is not found in the empty JSON string", PaylinkAddress.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PaylinkAddress.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkAddress` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -341,6 +385,28 @@ public class PaylinkAddress {
            @Override
            public void write(JsonWriter out, PaylinkAddress value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -348,29 +414,50 @@ public class PaylinkAddress {
            public PaylinkAddress read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             PaylinkAddress instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of PaylinkAddress given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkAddress
-  * @throws IOException if the JSON string is invalid with respect to PaylinkAddress
-  */
+  /**
+   * Create an instance of PaylinkAddress given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkAddress
+   * @throws IOException if the JSON string is invalid with respect to PaylinkAddress
+   */
   public static PaylinkAddress fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkAddress.class);
   }
 
- /**
-  * Convert an instance of PaylinkAddress to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkAddress to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

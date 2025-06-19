@@ -81,6 +81,154 @@ public class PaylinkApi {
     }
 
     /**
+     * Build call for paylinkTokenCloseRequest
+     * @param token The token returned by the create token process. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Confirms that the Paylink token was marked for closure. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call paylinkTokenCloseRequestCall(@javax.annotation.Nonnull String token, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/paylink/{token}/close"
+            .replace("{" + "token" + "}", localVarApiClient.escapeString(token.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json",
+            "text/xml"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "cp-api-key" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call paylinkTokenCloseRequestValidateBeforeCall(@javax.annotation.Nonnull String token, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'token' is set
+        if (token == null) {
+            throw new ApiException("Missing the required parameter 'token' when calling paylinkTokenCloseRequest(Async)");
+        }
+
+        return paylinkTokenCloseRequestCall(token, _callback);
+
+    }
+
+    /**
+     * Close Paylink Token
+     * Closes a paylink token that was previously created.
+     * @param token The token returned by the create token process. (required)
+     * @return Acknowledgement
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Confirms that the Paylink token was marked for closure. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Acknowledgement paylinkTokenCloseRequest(@javax.annotation.Nonnull String token) throws ApiException {
+        ApiResponse<Acknowledgement> localVarResp = paylinkTokenCloseRequestWithHttpInfo(token);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Close Paylink Token
+     * Closes a paylink token that was previously created.
+     * @param token The token returned by the create token process. (required)
+     * @return ApiResponse&lt;Acknowledgement&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Confirms that the Paylink token was marked for closure. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Acknowledgement> paylinkTokenCloseRequestWithHttpInfo(@javax.annotation.Nonnull String token) throws ApiException {
+        okhttp3.Call localVarCall = paylinkTokenCloseRequestValidateBeforeCall(token, null);
+        Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Close Paylink Token (asynchronously)
+     * Closes a paylink token that was previously created.
+     * @param token The token returned by the create token process. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Confirms that the Paylink token was marked for closure. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call paylinkTokenCloseRequestAsync(@javax.annotation.Nonnull String token, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = paylinkTokenCloseRequestValidateBeforeCall(token, _callback);
+        Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for tokenAdjustmentRequest
      * @param token The token returned by the create token process. (required)
      * @param paylinkAdjustmentRequest  (required)
@@ -88,7 +236,8 @@ public class PaylinkApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response defining the result of the token request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -98,7 +247,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenAdjustmentRequestCall(String token, PaylinkAdjustmentRequest paylinkAdjustmentRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call tokenAdjustmentRequestCall(@javax.annotation.Nonnull String token, @javax.annotation.Nonnull PaylinkAdjustmentRequest paylinkAdjustmentRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -147,7 +296,7 @@ public class PaylinkApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tokenAdjustmentRequestValidateBeforeCall(String token, PaylinkAdjustmentRequest paylinkAdjustmentRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tokenAdjustmentRequestValidateBeforeCall(@javax.annotation.Nonnull String token, @javax.annotation.Nonnull PaylinkAdjustmentRequest paylinkAdjustmentRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'token' is set
         if (token == null) {
             throw new ApiException("Missing the required parameter 'token' when calling tokenAdjustmentRequest(Async)");
@@ -170,7 +319,8 @@ public class PaylinkApi {
      * @return Acknowledgement
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response defining the result of the token request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -180,7 +330,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Acknowledgement tokenAdjustmentRequest(String token, PaylinkAdjustmentRequest paylinkAdjustmentRequest) throws ApiException {
+    public Acknowledgement tokenAdjustmentRequest(@javax.annotation.Nonnull String token, @javax.annotation.Nonnull PaylinkAdjustmentRequest paylinkAdjustmentRequest) throws ApiException {
         ApiResponse<Acknowledgement> localVarResp = tokenAdjustmentRequestWithHttpInfo(token, paylinkAdjustmentRequest);
         return localVarResp.getData();
     }
@@ -193,7 +343,8 @@ public class PaylinkApi {
      * @return ApiResponse&lt;Acknowledgement&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response defining the result of the token request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -203,7 +354,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Acknowledgement> tokenAdjustmentRequestWithHttpInfo(String token, PaylinkAdjustmentRequest paylinkAdjustmentRequest) throws ApiException {
+    public ApiResponse<Acknowledgement> tokenAdjustmentRequestWithHttpInfo(@javax.annotation.Nonnull String token, @javax.annotation.Nonnull PaylinkAdjustmentRequest paylinkAdjustmentRequest) throws ApiException {
         okhttp3.Call localVarCall = tokenAdjustmentRequestValidateBeforeCall(token, paylinkAdjustmentRequest, null);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -218,7 +369,8 @@ public class PaylinkApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response defining the result of the token request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -228,9 +380,167 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenAdjustmentRequestAsync(String token, PaylinkAdjustmentRequest paylinkAdjustmentRequest, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+    public okhttp3.Call tokenAdjustmentRequestAsync(@javax.annotation.Nonnull String token, @javax.annotation.Nonnull PaylinkAdjustmentRequest paylinkAdjustmentRequest, final ApiCallback<Acknowledgement> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = tokenAdjustmentRequestValidateBeforeCall(token, paylinkAdjustmentRequest, _callback);
+        Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for tokenAttachmentStatus
+     * @param token The token returned by the create token process. (required)
+     * @param attachment The attachemnt name requested. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Verifies that the attachment has been successfully uploaded and returns an MD5 hash of its content to ensure the integrity and correctness of the file during validation. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call tokenAttachmentStatusCall(@javax.annotation.Nonnull String token, @javax.annotation.Nonnull String attachment, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/paylink/{token}/attachment-status/{attachment}"
+            .replace("{" + "token" + "}", localVarApiClient.escapeString(token.toString()))
+            .replace("{" + "attachment" + "}", localVarApiClient.escapeString(attachment.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json",
+            "text/xml"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "cp-api-key" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call tokenAttachmentStatusValidateBeforeCall(@javax.annotation.Nonnull String token, @javax.annotation.Nonnull String attachment, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'token' is set
+        if (token == null) {
+            throw new ApiException("Missing the required parameter 'token' when calling tokenAttachmentStatus(Async)");
+        }
+
+        // verify the required parameter 'attachment' is set
+        if (attachment == null) {
+            throw new ApiException("Missing the required parameter 'attachment' when calling tokenAttachmentStatus(Async)");
+        }
+
+        return tokenAttachmentStatusCall(token, attachment, _callback);
+
+    }
+
+    /**
+     * Checks an attachment status
+     * The &#x60;TokenAttachmentStatus&#x60; processes a request to check the status of a Paylink BPS attachment,  verifying its successful upload and returning metadata such as the MD5 hash, upload time,  and content type to ensure file integrity and correctness. 
+     * @param token The token returned by the create token process. (required)
+     * @param attachment The attachemnt name requested. (required)
+     * @return Acknowledgement
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Verifies that the attachment has been successfully uploaded and returns an MD5 hash of its content to ensure the integrity and correctness of the file during validation. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Acknowledgement tokenAttachmentStatus(@javax.annotation.Nonnull String token, @javax.annotation.Nonnull String attachment) throws ApiException {
+        ApiResponse<Acknowledgement> localVarResp = tokenAttachmentStatusWithHttpInfo(token, attachment);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Checks an attachment status
+     * The &#x60;TokenAttachmentStatus&#x60; processes a request to check the status of a Paylink BPS attachment,  verifying its successful upload and returning metadata such as the MD5 hash, upload time,  and content type to ensure file integrity and correctness. 
+     * @param token The token returned by the create token process. (required)
+     * @param attachment The attachemnt name requested. (required)
+     * @return ApiResponse&lt;Acknowledgement&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Verifies that the attachment has been successfully uploaded and returns an MD5 hash of its content to ensure the integrity and correctness of the file during validation. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Acknowledgement> tokenAttachmentStatusWithHttpInfo(@javax.annotation.Nonnull String token, @javax.annotation.Nonnull String attachment) throws ApiException {
+        okhttp3.Call localVarCall = tokenAttachmentStatusValidateBeforeCall(token, attachment, null);
+        Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Checks an attachment status (asynchronously)
+     * The &#x60;TokenAttachmentStatus&#x60; processes a request to check the status of a Paylink BPS attachment,  verifying its successful upload and returning metadata such as the MD5 hash, upload time,  and content type to ensure file integrity and correctness. 
+     * @param token The token returned by the create token process. (required)
+     * @param attachment The attachemnt name requested. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Verifies that the attachment has been successfully uploaded and returns an MD5 hash of its content to ensure the integrity and correctness of the file during validation. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call tokenAttachmentStatusAsync(@javax.annotation.Nonnull String token, @javax.annotation.Nonnull String attachment, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = tokenAttachmentStatusValidateBeforeCall(token, attachment, _callback);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -242,7 +552,8 @@ public class PaylinkApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the token was marked as cancelled. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -252,7 +563,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenCancelRequestCall(String token, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call tokenCancelRequestCall(@javax.annotation.Nonnull String token, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -299,7 +610,7 @@ public class PaylinkApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tokenCancelRequestValidateBeforeCall(String token, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tokenCancelRequestValidateBeforeCall(@javax.annotation.Nonnull String token, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'token' is set
         if (token == null) {
             throw new ApiException("Missing the required parameter 'token' when calling tokenCancelRequest(Async)");
@@ -316,7 +627,8 @@ public class PaylinkApi {
      * @return Acknowledgement
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the token was marked as cancelled. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -326,7 +638,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Acknowledgement tokenCancelRequest(String token) throws ApiException {
+    public Acknowledgement tokenCancelRequest(@javax.annotation.Nonnull String token) throws ApiException {
         ApiResponse<Acknowledgement> localVarResp = tokenCancelRequestWithHttpInfo(token);
         return localVarResp.getData();
     }
@@ -338,7 +650,8 @@ public class PaylinkApi {
      * @return ApiResponse&lt;Acknowledgement&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the token was marked as cancelled. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -348,7 +661,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Acknowledgement> tokenCancelRequestWithHttpInfo(String token) throws ApiException {
+    public ApiResponse<Acknowledgement> tokenCancelRequestWithHttpInfo(@javax.annotation.Nonnull String token) throws ApiException {
         okhttp3.Call localVarCall = tokenCancelRequestValidateBeforeCall(token, null);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -362,7 +675,8 @@ public class PaylinkApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the token was marked as cancelled. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -372,7 +686,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenCancelRequestAsync(String token, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+    public okhttp3.Call tokenCancelRequestAsync(@javax.annotation.Nonnull String token, final ApiCallback<Acknowledgement> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = tokenCancelRequestValidateBeforeCall(token, _callback);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
@@ -386,7 +700,8 @@ public class PaylinkApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Changes from tokens actioned after the pivotal date provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -396,7 +711,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenChangesRequestCall(PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call tokenChangesRequestCall(@javax.annotation.Nonnull PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -444,7 +759,7 @@ public class PaylinkApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tokenChangesRequestValidateBeforeCall(PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tokenChangesRequestValidateBeforeCall(@javax.annotation.Nonnull PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'paylinkTokenStatusChangeRequest' is set
         if (paylinkTokenStatusChangeRequest == null) {
             throw new ApiException("Missing the required parameter 'paylinkTokenStatusChangeRequest' when calling tokenChangesRequest(Async)");
@@ -461,7 +776,8 @@ public class PaylinkApi {
      * @return PaylinkTokenStatusChangeResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Changes from tokens actioned after the pivotal date provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -471,7 +787,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public PaylinkTokenStatusChangeResponse tokenChangesRequest(PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest) throws ApiException {
+    public PaylinkTokenStatusChangeResponse tokenChangesRequest(@javax.annotation.Nonnull PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest) throws ApiException {
         ApiResponse<PaylinkTokenStatusChangeResponse> localVarResp = tokenChangesRequestWithHttpInfo(paylinkTokenStatusChangeRequest);
         return localVarResp.getData();
     }
@@ -483,7 +799,8 @@ public class PaylinkApi {
      * @return ApiResponse&lt;PaylinkTokenStatusChangeResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Changes from tokens actioned after the pivotal date provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -493,7 +810,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaylinkTokenStatusChangeResponse> tokenChangesRequestWithHttpInfo(PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest) throws ApiException {
+    public ApiResponse<PaylinkTokenStatusChangeResponse> tokenChangesRequestWithHttpInfo(@javax.annotation.Nonnull PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest) throws ApiException {
         okhttp3.Call localVarCall = tokenChangesRequestValidateBeforeCall(paylinkTokenStatusChangeRequest, null);
         Type localVarReturnType = new TypeToken<PaylinkTokenStatusChangeResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -507,7 +824,8 @@ public class PaylinkApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Changes from tokens actioned after the pivotal date provided in the request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -517,154 +835,10 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenChangesRequestAsync(PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest, final ApiCallback<PaylinkTokenStatusChangeResponse> _callback) throws ApiException {
+    public okhttp3.Call tokenChangesRequestAsync(@javax.annotation.Nonnull PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest, final ApiCallback<PaylinkTokenStatusChangeResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = tokenChangesRequestValidateBeforeCall(paylinkTokenStatusChangeRequest, _callback);
         Type localVarReturnType = new TypeToken<PaylinkTokenStatusChangeResponse>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for tokenCloseRequest
-     * @param token The token returned by the create token process. (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Confirms that the token was marked for closure. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call tokenCloseRequestCall(String token, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/paylink/{token}/close"
-            .replace("{" + "token" + "}", localVarApiClient.escapeString(token.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json",
-            "text/xml"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call tokenCloseRequestValidateBeforeCall(String token, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'token' is set
-        if (token == null) {
-            throw new ApiException("Missing the required parameter 'token' when calling tokenCloseRequest(Async)");
-        }
-
-        return tokenCloseRequestCall(token, _callback);
-
-    }
-
-    /**
-     * Close Paylink Token
-     * Marks a Paylink Token as closed. This closes the Token for any future action and the Token will not appear in any status request calls. 
-     * @param token The token returned by the create token process. (required)
-     * @return Acknowledgement
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Confirms that the token was marked for closure. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Acknowledgement tokenCloseRequest(String token) throws ApiException {
-        ApiResponse<Acknowledgement> localVarResp = tokenCloseRequestWithHttpInfo(token);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Close Paylink Token
-     * Marks a Paylink Token as closed. This closes the Token for any future action and the Token will not appear in any status request calls. 
-     * @param token The token returned by the create token process. (required)
-     * @return ApiResponse&lt;Acknowledgement&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Confirms that the token was marked for closure. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Acknowledgement> tokenCloseRequestWithHttpInfo(String token) throws ApiException {
-        okhttp3.Call localVarCall = tokenCloseRequestValidateBeforeCall(token, null);
-        Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Close Paylink Token (asynchronously)
-     * Marks a Paylink Token as closed. This closes the Token for any future action and the Token will not appear in any status request calls. 
-     * @param token The token returned by the create token process. (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Confirms that the token was marked for closure. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call tokenCloseRequestAsync(String token, final ApiCallback<Acknowledgement> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = tokenCloseRequestValidateBeforeCall(token, _callback);
-        Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -675,7 +849,8 @@ public class PaylinkApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response defining the result of the token request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -685,7 +860,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenCreateBillPaymentRequestCall(PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call tokenCreateBillPaymentRequestCall(@javax.annotation.Nonnull PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -733,7 +908,7 @@ public class PaylinkApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tokenCreateBillPaymentRequestValidateBeforeCall(PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tokenCreateBillPaymentRequestValidateBeforeCall(@javax.annotation.Nonnull PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'paylinkBillPaymentTokenRequest' is set
         if (paylinkBillPaymentTokenRequest == null) {
             throw new ApiException("Missing the required parameter 'paylinkBillPaymentTokenRequest' when calling tokenCreateBillPaymentRequest(Async)");
@@ -750,7 +925,8 @@ public class PaylinkApi {
      * @return PaylinkTokenCreated
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response defining the result of the token request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -760,7 +936,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public PaylinkTokenCreated tokenCreateBillPaymentRequest(PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest) throws ApiException {
+    public PaylinkTokenCreated tokenCreateBillPaymentRequest(@javax.annotation.Nonnull PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest) throws ApiException {
         ApiResponse<PaylinkTokenCreated> localVarResp = tokenCreateBillPaymentRequestWithHttpInfo(paylinkBillPaymentTokenRequest);
         return localVarResp.getData();
     }
@@ -772,7 +948,8 @@ public class PaylinkApi {
      * @return ApiResponse&lt;PaylinkTokenCreated&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response defining the result of the token request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -782,7 +959,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaylinkTokenCreated> tokenCreateBillPaymentRequestWithHttpInfo(PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest) throws ApiException {
+    public ApiResponse<PaylinkTokenCreated> tokenCreateBillPaymentRequestWithHttpInfo(@javax.annotation.Nonnull PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest) throws ApiException {
         okhttp3.Call localVarCall = tokenCreateBillPaymentRequestValidateBeforeCall(paylinkBillPaymentTokenRequest, null);
         Type localVarReturnType = new TypeToken<PaylinkTokenCreated>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -796,7 +973,8 @@ public class PaylinkApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response defining the result of the token request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -806,7 +984,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenCreateBillPaymentRequestAsync(PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest, final ApiCallback<PaylinkTokenCreated> _callback) throws ApiException {
+    public okhttp3.Call tokenCreateBillPaymentRequestAsync(@javax.annotation.Nonnull PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest, final ApiCallback<PaylinkTokenCreated> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = tokenCreateBillPaymentRequestValidateBeforeCall(paylinkBillPaymentTokenRequest, _callback);
         Type localVarReturnType = new TypeToken<PaylinkTokenCreated>(){}.getType();
@@ -820,7 +998,8 @@ public class PaylinkApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response defining the result of the token request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -830,7 +1009,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenCreateRequestCall(PaylinkTokenRequestModel paylinkTokenRequestModel, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call tokenCreateRequestCall(@javax.annotation.Nonnull PaylinkTokenRequestModel paylinkTokenRequestModel, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -878,7 +1057,7 @@ public class PaylinkApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tokenCreateRequestValidateBeforeCall(PaylinkTokenRequestModel paylinkTokenRequestModel, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tokenCreateRequestValidateBeforeCall(@javax.annotation.Nonnull PaylinkTokenRequestModel paylinkTokenRequestModel, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'paylinkTokenRequestModel' is set
         if (paylinkTokenRequestModel == null) {
             throw new ApiException("Missing the required parameter 'paylinkTokenRequestModel' when calling tokenCreateRequest(Async)");
@@ -895,7 +1074,8 @@ public class PaylinkApi {
      * @return PaylinkTokenCreated
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response defining the result of the token request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -905,7 +1085,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public PaylinkTokenCreated tokenCreateRequest(PaylinkTokenRequestModel paylinkTokenRequestModel) throws ApiException {
+    public PaylinkTokenCreated tokenCreateRequest(@javax.annotation.Nonnull PaylinkTokenRequestModel paylinkTokenRequestModel) throws ApiException {
         ApiResponse<PaylinkTokenCreated> localVarResp = tokenCreateRequestWithHttpInfo(paylinkTokenRequestModel);
         return localVarResp.getData();
     }
@@ -917,7 +1097,8 @@ public class PaylinkApi {
      * @return ApiResponse&lt;PaylinkTokenCreated&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response defining the result of the token request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -927,7 +1108,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaylinkTokenCreated> tokenCreateRequestWithHttpInfo(PaylinkTokenRequestModel paylinkTokenRequestModel) throws ApiException {
+    public ApiResponse<PaylinkTokenCreated> tokenCreateRequestWithHttpInfo(@javax.annotation.Nonnull PaylinkTokenRequestModel paylinkTokenRequestModel) throws ApiException {
         okhttp3.Call localVarCall = tokenCreateRequestValidateBeforeCall(paylinkTokenRequestModel, null);
         Type localVarReturnType = new TypeToken<PaylinkTokenCreated>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -941,7 +1122,8 @@ public class PaylinkApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Response defining the result of the token request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -951,7 +1133,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenCreateRequestAsync(PaylinkTokenRequestModel paylinkTokenRequestModel, final ApiCallback<PaylinkTokenCreated> _callback) throws ApiException {
+    public okhttp3.Call tokenCreateRequestAsync(@javax.annotation.Nonnull PaylinkTokenRequestModel paylinkTokenRequestModel, final ApiCallback<PaylinkTokenCreated> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = tokenCreateRequestValidateBeforeCall(paylinkTokenRequestModel, _callback);
         Type localVarReturnType = new TypeToken<PaylinkTokenCreated>(){}.getType();
@@ -965,7 +1147,8 @@ public class PaylinkApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the attachments either did not exist or were purged. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -975,7 +1158,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenPurgeAttachmentsRequestCall(String token, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call tokenPurgeAttachmentsRequestCall(@javax.annotation.Nonnull String token, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1022,7 +1205,7 @@ public class PaylinkApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tokenPurgeAttachmentsRequestValidateBeforeCall(String token, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tokenPurgeAttachmentsRequestValidateBeforeCall(@javax.annotation.Nonnull String token, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'token' is set
         if (token == null) {
             throw new ApiException("Missing the required parameter 'token' when calling tokenPurgeAttachmentsRequest(Async)");
@@ -1039,7 +1222,8 @@ public class PaylinkApi {
      * @return Acknowledgement
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the attachments either did not exist or were purged. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1049,7 +1233,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Acknowledgement tokenPurgeAttachmentsRequest(String token) throws ApiException {
+    public Acknowledgement tokenPurgeAttachmentsRequest(@javax.annotation.Nonnull String token) throws ApiException {
         ApiResponse<Acknowledgement> localVarResp = tokenPurgeAttachmentsRequestWithHttpInfo(token);
         return localVarResp.getData();
     }
@@ -1061,7 +1245,8 @@ public class PaylinkApi {
      * @return ApiResponse&lt;Acknowledgement&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the attachments either did not exist or were purged. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1071,7 +1256,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Acknowledgement> tokenPurgeAttachmentsRequestWithHttpInfo(String token) throws ApiException {
+    public ApiResponse<Acknowledgement> tokenPurgeAttachmentsRequestWithHttpInfo(@javax.annotation.Nonnull String token) throws ApiException {
         okhttp3.Call localVarCall = tokenPurgeAttachmentsRequestValidateBeforeCall(token, null);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1085,7 +1270,8 @@ public class PaylinkApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the attachments either did not exist or were purged. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1095,7 +1281,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenPurgeAttachmentsRequestAsync(String token, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+    public okhttp3.Call tokenPurgeAttachmentsRequestAsync(@javax.annotation.Nonnull String token, final ApiCallback<Acknowledgement> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = tokenPurgeAttachmentsRequestValidateBeforeCall(token, _callback);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
@@ -1109,7 +1295,8 @@ public class PaylinkApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the token was marked as reconciled. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1119,7 +1306,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenReconciledRequestCall(String token, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call tokenReconciledRequestCall(@javax.annotation.Nonnull String token, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1166,7 +1353,7 @@ public class PaylinkApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tokenReconciledRequestValidateBeforeCall(String token, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tokenReconciledRequestValidateBeforeCall(@javax.annotation.Nonnull String token, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'token' is set
         if (token == null) {
             throw new ApiException("Missing the required parameter 'token' when calling tokenReconciledRequest(Async)");
@@ -1183,7 +1370,8 @@ public class PaylinkApi {
      * @return Acknowledgement
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the token was marked as reconciled. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1193,7 +1381,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Acknowledgement tokenReconciledRequest(String token) throws ApiException {
+    public Acknowledgement tokenReconciledRequest(@javax.annotation.Nonnull String token) throws ApiException {
         ApiResponse<Acknowledgement> localVarResp = tokenReconciledRequestWithHttpInfo(token);
         return localVarResp.getData();
     }
@@ -1205,7 +1393,8 @@ public class PaylinkApi {
      * @return ApiResponse&lt;Acknowledgement&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the token was marked as reconciled. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1215,7 +1404,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Acknowledgement> tokenReconciledRequestWithHttpInfo(String token) throws ApiException {
+    public ApiResponse<Acknowledgement> tokenReconciledRequestWithHttpInfo(@javax.annotation.Nonnull String token) throws ApiException {
         okhttp3.Call localVarCall = tokenReconciledRequestValidateBeforeCall(token, null);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1229,7 +1418,8 @@ public class PaylinkApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the token was marked as reconciled. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1239,7 +1429,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenReconciledRequestAsync(String token, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+    public okhttp3.Call tokenReconciledRequestAsync(@javax.annotation.Nonnull String token, final ApiCallback<Acknowledgement> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = tokenReconciledRequestValidateBeforeCall(token, _callback);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
@@ -1253,7 +1443,8 @@ public class PaylinkApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the token was reopened. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1263,7 +1454,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenReopenRequestCall(String token, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call tokenReopenRequestCall(@javax.annotation.Nonnull String token, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1310,7 +1501,7 @@ public class PaylinkApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tokenReopenRequestValidateBeforeCall(String token, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tokenReopenRequestValidateBeforeCall(@javax.annotation.Nonnull String token, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'token' is set
         if (token == null) {
             throw new ApiException("Missing the required parameter 'token' when calling tokenReopenRequest(Async)");
@@ -1327,7 +1518,8 @@ public class PaylinkApi {
      * @return Acknowledgement
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the token was reopened. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1337,7 +1529,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Acknowledgement tokenReopenRequest(String token) throws ApiException {
+    public Acknowledgement tokenReopenRequest(@javax.annotation.Nonnull String token) throws ApiException {
         ApiResponse<Acknowledgement> localVarResp = tokenReopenRequestWithHttpInfo(token);
         return localVarResp.getData();
     }
@@ -1349,7 +1541,8 @@ public class PaylinkApi {
      * @return ApiResponse&lt;Acknowledgement&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the token was reopened. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1359,7 +1552,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Acknowledgement> tokenReopenRequestWithHttpInfo(String token) throws ApiException {
+    public ApiResponse<Acknowledgement> tokenReopenRequestWithHttpInfo(@javax.annotation.Nonnull String token) throws ApiException {
         okhttp3.Call localVarCall = tokenReopenRequestValidateBeforeCall(token, null);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1373,7 +1566,8 @@ public class PaylinkApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the token was reopened. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1383,7 +1577,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenReopenRequestAsync(String token, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+    public okhttp3.Call tokenReopenRequestAsync(@javax.annotation.Nonnull String token, final ApiCallback<Acknowledgement> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = tokenReopenRequestValidateBeforeCall(token, _callback);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
@@ -1398,7 +1592,8 @@ public class PaylinkApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the notification was sent. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1408,7 +1603,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenResendNotificationRequestCall(String token, PaylinkResendNotificationRequest paylinkResendNotificationRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call tokenResendNotificationRequestCall(@javax.annotation.Nonnull String token, @javax.annotation.Nonnull PaylinkResendNotificationRequest paylinkResendNotificationRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1457,7 +1652,7 @@ public class PaylinkApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tokenResendNotificationRequestValidateBeforeCall(String token, PaylinkResendNotificationRequest paylinkResendNotificationRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tokenResendNotificationRequestValidateBeforeCall(@javax.annotation.Nonnull String token, @javax.annotation.Nonnull PaylinkResendNotificationRequest paylinkResendNotificationRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'token' is set
         if (token == null) {
             throw new ApiException("Missing the required parameter 'token' when calling tokenResendNotificationRequest(Async)");
@@ -1480,7 +1675,8 @@ public class PaylinkApi {
      * @return Acknowledgement
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the notification was sent. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1490,7 +1686,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Acknowledgement tokenResendNotificationRequest(String token, PaylinkResendNotificationRequest paylinkResendNotificationRequest) throws ApiException {
+    public Acknowledgement tokenResendNotificationRequest(@javax.annotation.Nonnull String token, @javax.annotation.Nonnull PaylinkResendNotificationRequest paylinkResendNotificationRequest) throws ApiException {
         ApiResponse<Acknowledgement> localVarResp = tokenResendNotificationRequestWithHttpInfo(token, paylinkResendNotificationRequest);
         return localVarResp.getData();
     }
@@ -1503,7 +1699,8 @@ public class PaylinkApi {
      * @return ApiResponse&lt;Acknowledgement&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the notification was sent. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1513,7 +1710,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Acknowledgement> tokenResendNotificationRequestWithHttpInfo(String token, PaylinkResendNotificationRequest paylinkResendNotificationRequest) throws ApiException {
+    public ApiResponse<Acknowledgement> tokenResendNotificationRequestWithHttpInfo(@javax.annotation.Nonnull String token, @javax.annotation.Nonnull PaylinkResendNotificationRequest paylinkResendNotificationRequest) throws ApiException {
         okhttp3.Call localVarCall = tokenResendNotificationRequestValidateBeforeCall(token, paylinkResendNotificationRequest, null);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1528,7 +1725,8 @@ public class PaylinkApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Confirms that the notification was sent. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1538,7 +1736,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenResendNotificationRequestAsync(String token, PaylinkResendNotificationRequest paylinkResendNotificationRequest, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+    public okhttp3.Call tokenResendNotificationRequestAsync(@javax.annotation.Nonnull String token, @javax.annotation.Nonnull PaylinkResendNotificationRequest paylinkResendNotificationRequest, final ApiCallback<Acknowledgement> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = tokenResendNotificationRequestValidateBeforeCall(token, paylinkResendNotificationRequest, _callback);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
@@ -1552,7 +1750,8 @@ public class PaylinkApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> The current status of the token. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1562,7 +1761,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenStatusRequestCall(String token, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call tokenStatusRequestCall(@javax.annotation.Nonnull String token, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1609,7 +1808,7 @@ public class PaylinkApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tokenStatusRequestValidateBeforeCall(String token, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tokenStatusRequestValidateBeforeCall(@javax.annotation.Nonnull String token, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'token' is set
         if (token == null) {
             throw new ApiException("Missing the required parameter 'token' when calling tokenStatusRequest(Async)");
@@ -1626,7 +1825,8 @@ public class PaylinkApi {
      * @return PaylinkTokenStatus
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> The current status of the token. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1636,7 +1836,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public PaylinkTokenStatus tokenStatusRequest(String token) throws ApiException {
+    public PaylinkTokenStatus tokenStatusRequest(@javax.annotation.Nonnull String token) throws ApiException {
         ApiResponse<PaylinkTokenStatus> localVarResp = tokenStatusRequestWithHttpInfo(token);
         return localVarResp.getData();
     }
@@ -1648,7 +1848,8 @@ public class PaylinkApi {
      * @return ApiResponse&lt;PaylinkTokenStatus&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> The current status of the token. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1658,7 +1859,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaylinkTokenStatus> tokenStatusRequestWithHttpInfo(String token) throws ApiException {
+    public ApiResponse<PaylinkTokenStatus> tokenStatusRequestWithHttpInfo(@javax.annotation.Nonnull String token) throws ApiException {
         okhttp3.Call localVarCall = tokenStatusRequestValidateBeforeCall(token, null);
         Type localVarReturnType = new TypeToken<PaylinkTokenStatus>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1672,7 +1873,8 @@ public class PaylinkApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> The current status of the token. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1682,7 +1884,7 @@ public class PaylinkApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenStatusRequestAsync(String token, final ApiCallback<PaylinkTokenStatus> _callback) throws ApiException {
+    public okhttp3.Call tokenStatusRequestAsync(@javax.annotation.Nonnull String token, final ApiCallback<PaylinkTokenStatus> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = tokenStatusRequestValidateBeforeCall(token, _callback);
         Type localVarReturnType = new TypeToken<PaylinkTokenStatus>(){}.getType();

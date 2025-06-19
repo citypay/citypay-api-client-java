@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,305 +50,362 @@ import com.citypay.client.JSON;
 public class ContactDetails {
   public static final String SERIALIZED_NAME_ADDRESS1 = "address1";
   @SerializedName(SERIALIZED_NAME_ADDRESS1)
+  @javax.annotation.Nullable
   private String address1;
 
   public static final String SERIALIZED_NAME_ADDRESS2 = "address2";
   @SerializedName(SERIALIZED_NAME_ADDRESS2)
+  @javax.annotation.Nullable
   private String address2;
 
   public static final String SERIALIZED_NAME_ADDRESS3 = "address3";
   @SerializedName(SERIALIZED_NAME_ADDRESS3)
+  @javax.annotation.Nullable
   private String address3;
 
   public static final String SERIALIZED_NAME_AREA = "area";
   @SerializedName(SERIALIZED_NAME_AREA)
+  @javax.annotation.Nullable
   private String area;
 
   public static final String SERIALIZED_NAME_COMPANY = "company";
   @SerializedName(SERIALIZED_NAME_COMPANY)
+  @javax.annotation.Nullable
   private String company;
 
   public static final String SERIALIZED_NAME_COUNTRY = "country";
   @SerializedName(SERIALIZED_NAME_COUNTRY)
+  @javax.annotation.Nullable
   private String country;
 
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)
+  @javax.annotation.Nullable
   private String email;
 
   public static final String SERIALIZED_NAME_FIRSTNAME = "firstname";
   @SerializedName(SERIALIZED_NAME_FIRSTNAME)
+  @javax.annotation.Nullable
   private String firstname;
 
   public static final String SERIALIZED_NAME_LASTNAME = "lastname";
   @SerializedName(SERIALIZED_NAME_LASTNAME)
+  @javax.annotation.Nullable
   private String lastname;
 
   public static final String SERIALIZED_NAME_MOBILE_NO = "mobile_no";
   @SerializedName(SERIALIZED_NAME_MOBILE_NO)
+  @javax.annotation.Nullable
   private String mobileNo;
 
   public static final String SERIALIZED_NAME_POSTCODE = "postcode";
   @SerializedName(SERIALIZED_NAME_POSTCODE)
+  @javax.annotation.Nullable
   private String postcode;
 
   public static final String SERIALIZED_NAME_TELEPHONE_NO = "telephone_no";
   @SerializedName(SERIALIZED_NAME_TELEPHONE_NO)
+  @javax.annotation.Nullable
   private String telephoneNo;
 
   public static final String SERIALIZED_NAME_TITLE = "title";
   @SerializedName(SERIALIZED_NAME_TITLE)
+  @javax.annotation.Nullable
   private String title;
 
   public ContactDetails() {
   }
 
-  public ContactDetails address1(String address1) {
+  public ContactDetails address1(@javax.annotation.Nullable String address1) {
     this.address1 = address1;
     return this;
   }
 
-   /**
+  /**
    * The first line of the address for the card holder.
    * @return address1
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddress1() {
     return address1;
   }
 
-  public void setAddress1(String address1) {
+  public void setAddress1(@javax.annotation.Nullable String address1) {
     this.address1 = address1;
   }
 
 
-  public ContactDetails address2(String address2) {
+  public ContactDetails address2(@javax.annotation.Nullable String address2) {
     this.address2 = address2;
     return this;
   }
 
-   /**
+  /**
    * The second line of the address for the card holder.
    * @return address2
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddress2() {
     return address2;
   }
 
-  public void setAddress2(String address2) {
+  public void setAddress2(@javax.annotation.Nullable String address2) {
     this.address2 = address2;
   }
 
 
-  public ContactDetails address3(String address3) {
+  public ContactDetails address3(@javax.annotation.Nullable String address3) {
     this.address3 = address3;
     return this;
   }
 
-   /**
+  /**
    * The third line of the address for the card holder.
    * @return address3
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddress3() {
     return address3;
   }
 
-  public void setAddress3(String address3) {
+  public void setAddress3(@javax.annotation.Nullable String address3) {
     this.address3 = address3;
   }
 
 
-  public ContactDetails area(String area) {
+  public ContactDetails area(@javax.annotation.Nullable String area) {
     this.area = area;
     return this;
   }
 
-   /**
+  /**
    * The area such as city, department, parish for the card holder.
    * @return area
-  **/
+   */
   @javax.annotation.Nullable
   public String getArea() {
     return area;
   }
 
-  public void setArea(String area) {
+  public void setArea(@javax.annotation.Nullable String area) {
     this.area = area;
   }
 
 
-  public ContactDetails company(String company) {
+  public ContactDetails company(@javax.annotation.Nullable String company) {
     this.company = company;
     return this;
   }
 
-   /**
+  /**
    * The company name for the card holder if the contact is a corporate contact.
    * @return company
-  **/
+   */
   @javax.annotation.Nullable
   public String getCompany() {
     return company;
   }
 
-  public void setCompany(String company) {
+  public void setCompany(@javax.annotation.Nullable String company) {
     this.company = company;
   }
 
 
-  public ContactDetails country(String country) {
+  public ContactDetails country(@javax.annotation.Nullable String country) {
     this.country = country;
     return this;
   }
 
-   /**
+  /**
    * The country code in ISO 3166 format. The country value may be used for fraud analysis and for   acceptance of the transaction. 
    * @return country
-  **/
+   */
   @javax.annotation.Nullable
   public String getCountry() {
     return country;
   }
 
-  public void setCountry(String country) {
+  public void setCountry(@javax.annotation.Nullable String country) {
     this.country = country;
   }
 
 
-  public ContactDetails email(String email) {
+  public ContactDetails email(@javax.annotation.Nullable String email) {
     this.email = email;
     return this;
   }
 
-   /**
+  /**
    * An email address for the card holder which may be used for correspondence.
    * @return email
-  **/
+   */
   @javax.annotation.Nullable
   public String getEmail() {
     return email;
   }
 
-  public void setEmail(String email) {
+  public void setEmail(@javax.annotation.Nullable String email) {
     this.email = email;
   }
 
 
-  public ContactDetails firstname(String firstname) {
+  public ContactDetails firstname(@javax.annotation.Nullable String firstname) {
     this.firstname = firstname;
     return this;
   }
 
-   /**
+  /**
    * The first name  of the card holder.
    * @return firstname
-  **/
+   */
   @javax.annotation.Nullable
   public String getFirstname() {
     return firstname;
   }
 
-  public void setFirstname(String firstname) {
+  public void setFirstname(@javax.annotation.Nullable String firstname) {
     this.firstname = firstname;
   }
 
 
-  public ContactDetails lastname(String lastname) {
+  public ContactDetails lastname(@javax.annotation.Nullable String lastname) {
     this.lastname = lastname;
     return this;
   }
 
-   /**
+  /**
    * The last name or surname of the card holder.
    * @return lastname
-  **/
+   */
   @javax.annotation.Nullable
   public String getLastname() {
     return lastname;
   }
 
-  public void setLastname(String lastname) {
+  public void setLastname(@javax.annotation.Nullable String lastname) {
     this.lastname = lastname;
   }
 
 
-  public ContactDetails mobileNo(String mobileNo) {
+  public ContactDetails mobileNo(@javax.annotation.Nullable String mobileNo) {
     this.mobileNo = mobileNo;
     return this;
   }
 
-   /**
+  /**
    * A mobile number for the card holder the mobile number is often required by delivery companies to ensure they are able to be in contact when required.
    * @return mobileNo
-  **/
+   */
   @javax.annotation.Nullable
   public String getMobileNo() {
     return mobileNo;
   }
 
-  public void setMobileNo(String mobileNo) {
+  public void setMobileNo(@javax.annotation.Nullable String mobileNo) {
     this.mobileNo = mobileNo;
   }
 
 
-  public ContactDetails postcode(String postcode) {
+  public ContactDetails postcode(@javax.annotation.Nullable String postcode) {
     this.postcode = postcode;
     return this;
   }
 
-   /**
+  /**
    * The postcode or zip code of the address which may be used for fraud analysis.
    * @return postcode
-  **/
+   */
   @javax.annotation.Nullable
   public String getPostcode() {
     return postcode;
   }
 
-  public void setPostcode(String postcode) {
+  public void setPostcode(@javax.annotation.Nullable String postcode) {
     this.postcode = postcode;
   }
 
 
-  public ContactDetails telephoneNo(String telephoneNo) {
+  public ContactDetails telephoneNo(@javax.annotation.Nullable String telephoneNo) {
     this.telephoneNo = telephoneNo;
     return this;
   }
 
-   /**
+  /**
    * A telephone number for the card holder.
    * @return telephoneNo
-  **/
+   */
   @javax.annotation.Nullable
   public String getTelephoneNo() {
     return telephoneNo;
   }
 
-  public void setTelephoneNo(String telephoneNo) {
+  public void setTelephoneNo(@javax.annotation.Nullable String telephoneNo) {
     this.telephoneNo = telephoneNo;
   }
 
 
-  public ContactDetails title(String title) {
+  public ContactDetails title(@javax.annotation.Nullable String title) {
     this.title = title;
     return this;
   }
 
-   /**
+  /**
    * A title for the card holder such as Mr, Mrs, Ms, M. Mme. etc.
    * @return title
-  **/
+   */
   @javax.annotation.Nullable
   public String getTitle() {
     return title;
   }
 
-  public void setTitle(String title) {
+  public void setTitle(@javax.annotation.Nullable String title) {
     this.title = title;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the ContactDetails instance itself
+   */
+  public ContactDetails putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -373,12 +429,13 @@ public class ContactDetails {
         Objects.equals(this.mobileNo, contactDetails.mobileNo) &&
         Objects.equals(this.postcode, contactDetails.postcode) &&
         Objects.equals(this.telephoneNo, contactDetails.telephoneNo) &&
-        Objects.equals(this.title, contactDetails.title);
+        Objects.equals(this.title, contactDetails.title)&&
+        Objects.equals(this.additionalProperties, contactDetails.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(address1, address2, address3, area, company, country, email, firstname, lastname, mobileNo, postcode, telephoneNo, title);
+    return Objects.hash(address1, address2, address3, area, company, country, email, firstname, lastname, mobileNo, postcode, telephoneNo, title, additionalProperties);
   }
 
   @Override
@@ -398,6 +455,7 @@ public class ContactDetails {
     sb.append("    postcode: ").append(toIndentedString(postcode)).append("\n");
     sb.append("    telephoneNo: ").append(toIndentedString(telephoneNo)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -438,24 +496,16 @@ public class ContactDetails {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to ContactDetails
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ContactDetails
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!ContactDetails.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ContactDetails is not found in the empty JSON string", ContactDetails.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ContactDetails.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContactDetails` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -515,6 +565,28 @@ public class ContactDetails {
            @Override
            public void write(JsonWriter out, ContactDetails value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -522,29 +594,50 @@ public class ContactDetails {
            public ContactDetails read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             ContactDetails instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of ContactDetails given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ContactDetails
-  * @throws IOException if the JSON string is invalid with respect to ContactDetails
-  */
+  /**
+   * Create an instance of ContactDetails given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ContactDetails
+   * @throws IOException if the JSON string is invalid with respect to ContactDetails
+   */
   public static ContactDetails fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContactDetails.class);
   }
 
- /**
-  * Convert an instance of ContactDetails to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ContactDetails to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

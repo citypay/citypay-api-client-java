@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,470 +51,534 @@ import com.citypay.client.JSON;
 public class Card {
   public static final String SERIALIZED_NAME_BIN_COMMERCIAL = "bin_commercial";
   @SerializedName(SERIALIZED_NAME_BIN_COMMERCIAL)
+  @javax.annotation.Nullable
   private Boolean binCommercial;
 
   public static final String SERIALIZED_NAME_BIN_CORPORATE = "bin_corporate";
   @SerializedName(SERIALIZED_NAME_BIN_CORPORATE)
+  @javax.annotation.Nullable
   private Boolean binCorporate;
 
   public static final String SERIALIZED_NAME_BIN_COUNTRY_ISSUED = "bin_country_issued";
   @SerializedName(SERIALIZED_NAME_BIN_COUNTRY_ISSUED)
+  @javax.annotation.Nullable
   private String binCountryIssued;
 
   public static final String SERIALIZED_NAME_BIN_CREDIT = "bin_credit";
   @SerializedName(SERIALIZED_NAME_BIN_CREDIT)
+  @javax.annotation.Nullable
   private Boolean binCredit;
 
   public static final String SERIALIZED_NAME_BIN_CURRENCY = "bin_currency";
   @SerializedName(SERIALIZED_NAME_BIN_CURRENCY)
+  @javax.annotation.Nullable
   private String binCurrency;
 
   public static final String SERIALIZED_NAME_BIN_DEBIT = "bin_debit";
   @SerializedName(SERIALIZED_NAME_BIN_DEBIT)
+  @javax.annotation.Nullable
   private Boolean binDebit;
 
   public static final String SERIALIZED_NAME_BIN_DESCRIPTION = "bin_description";
   @SerializedName(SERIALIZED_NAME_BIN_DESCRIPTION)
+  @javax.annotation.Nullable
   private String binDescription;
 
   public static final String SERIALIZED_NAME_BIN_EU = "bin_eu";
   @SerializedName(SERIALIZED_NAME_BIN_EU)
+  @javax.annotation.Nullable
   private Boolean binEu;
 
   public static final String SERIALIZED_NAME_CARD_ID = "card_id";
   @SerializedName(SERIALIZED_NAME_CARD_ID)
+  @javax.annotation.Nullable
   private String cardId;
 
   public static final String SERIALIZED_NAME_CARD_STATUS = "card_status";
   @SerializedName(SERIALIZED_NAME_CARD_STATUS)
+  @javax.annotation.Nullable
   private String cardStatus;
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
   @SerializedName(SERIALIZED_NAME_DATE_CREATED)
+  @javax.annotation.Nullable
   private OffsetDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_DEFAULT = "default";
   @SerializedName(SERIALIZED_NAME_DEFAULT)
+  @javax.annotation.Nullable
   private Boolean _default;
 
   public static final String SERIALIZED_NAME_EXPMONTH = "expmonth";
   @SerializedName(SERIALIZED_NAME_EXPMONTH)
+  @javax.annotation.Nullable
   private Integer expmonth;
 
   public static final String SERIALIZED_NAME_EXPYEAR = "expyear";
   @SerializedName(SERIALIZED_NAME_EXPYEAR)
+  @javax.annotation.Nullable
   private Integer expyear;
 
   public static final String SERIALIZED_NAME_LABEL = "label";
   @SerializedName(SERIALIZED_NAME_LABEL)
+  @javax.annotation.Nullable
   private String label;
 
   public static final String SERIALIZED_NAME_LABEL2 = "label2";
   @SerializedName(SERIALIZED_NAME_LABEL2)
+  @javax.annotation.Nullable
   private String label2;
 
   public static final String SERIALIZED_NAME_LAST4DIGITS = "last4digits";
   @SerializedName(SERIALIZED_NAME_LAST4DIGITS)
+  @javax.annotation.Nullable
   private String last4digits;
 
   public static final String SERIALIZED_NAME_NAME_ON_CARD = "name_on_card";
   @SerializedName(SERIALIZED_NAME_NAME_ON_CARD)
+  @javax.annotation.Nullable
   private String nameOnCard;
 
   public static final String SERIALIZED_NAME_SCHEME = "scheme";
   @SerializedName(SERIALIZED_NAME_SCHEME)
+  @javax.annotation.Nullable
   private String scheme;
 
   public static final String SERIALIZED_NAME_TOKEN = "token";
   @SerializedName(SERIALIZED_NAME_TOKEN)
+  @javax.annotation.Nullable
   private String token;
 
   public Card() {
   }
 
-  public Card binCommercial(Boolean binCommercial) {
+  public Card binCommercial(@javax.annotation.Nullable Boolean binCommercial) {
     this.binCommercial = binCommercial;
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is a commercial card.
    * @return binCommercial
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinCommercial() {
     return binCommercial;
   }
 
-  public void setBinCommercial(Boolean binCommercial) {
+  public void setBinCommercial(@javax.annotation.Nullable Boolean binCommercial) {
     this.binCommercial = binCommercial;
   }
 
 
-  public Card binCorporate(Boolean binCorporate) {
+  public Card binCorporate(@javax.annotation.Nullable Boolean binCorporate) {
     this.binCorporate = binCorporate;
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is a corporate business card.
    * @return binCorporate
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinCorporate() {
     return binCorporate;
   }
 
-  public void setBinCorporate(Boolean binCorporate) {
+  public void setBinCorporate(@javax.annotation.Nullable Boolean binCorporate) {
     this.binCorporate = binCorporate;
   }
 
 
-  public Card binCountryIssued(String binCountryIssued) {
+  public Card binCountryIssued(@javax.annotation.Nullable String binCountryIssued) {
     this.binCountryIssued = binCountryIssued;
     return this;
   }
 
-   /**
+  /**
    * The determined country where the card was issued.
    * @return binCountryIssued
-  **/
+   */
   @javax.annotation.Nullable
   public String getBinCountryIssued() {
     return binCountryIssued;
   }
 
-  public void setBinCountryIssued(String binCountryIssued) {
+  public void setBinCountryIssued(@javax.annotation.Nullable String binCountryIssued) {
     this.binCountryIssued = binCountryIssued;
   }
 
 
-  public Card binCredit(Boolean binCredit) {
+  public Card binCredit(@javax.annotation.Nullable Boolean binCredit) {
     this.binCredit = binCredit;
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is a credit card.
    * @return binCredit
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinCredit() {
     return binCredit;
   }
 
-  public void setBinCredit(Boolean binCredit) {
+  public void setBinCredit(@javax.annotation.Nullable Boolean binCredit) {
     this.binCredit = binCredit;
   }
 
 
-  public Card binCurrency(String binCurrency) {
+  public Card binCurrency(@javax.annotation.Nullable String binCurrency) {
     this.binCurrency = binCurrency;
     return this;
   }
 
-   /**
+  /**
    * The default currency determined for the card.
    * @return binCurrency
-  **/
+   */
   @javax.annotation.Nullable
   public String getBinCurrency() {
     return binCurrency;
   }
 
-  public void setBinCurrency(String binCurrency) {
+  public void setBinCurrency(@javax.annotation.Nullable String binCurrency) {
     this.binCurrency = binCurrency;
   }
 
 
-  public Card binDebit(Boolean binDebit) {
+  public Card binDebit(@javax.annotation.Nullable Boolean binDebit) {
     this.binDebit = binDebit;
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is a debit card.
    * @return binDebit
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinDebit() {
     return binDebit;
   }
 
-  public void setBinDebit(Boolean binDebit) {
+  public void setBinDebit(@javax.annotation.Nullable Boolean binDebit) {
     this.binDebit = binDebit;
   }
 
 
-  public Card binDescription(String binDescription) {
+  public Card binDescription(@javax.annotation.Nullable String binDescription) {
     this.binDescription = binDescription;
     return this;
   }
 
-   /**
+  /**
    * A description of the bin on the card to identify what type of product the card is.
    * @return binDescription
-  **/
+   */
   @javax.annotation.Nullable
   public String getBinDescription() {
     return binDescription;
   }
 
-  public void setBinDescription(String binDescription) {
+  public void setBinDescription(@javax.annotation.Nullable String binDescription) {
     this.binDescription = binDescription;
   }
 
 
-  public Card binEu(Boolean binEu) {
+  public Card binEu(@javax.annotation.Nullable Boolean binEu) {
     this.binEu = binEu;
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is regulated within the EU.
    * @return binEu
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinEu() {
     return binEu;
   }
 
-  public void setBinEu(Boolean binEu) {
+  public void setBinEu(@javax.annotation.Nullable Boolean binEu) {
     this.binEu = binEu;
   }
 
 
-  public Card cardId(String cardId) {
+  public Card cardId(@javax.annotation.Nullable String cardId) {
     this.cardId = cardId;
     return this;
   }
 
-   /**
+  /**
    * The id of the card that is returned. Should be used for referencing the card when perform any changes.
    * @return cardId
-  **/
+   */
   @javax.annotation.Nullable
   public String getCardId() {
     return cardId;
   }
 
-  public void setCardId(String cardId) {
+  public void setCardId(@javax.annotation.Nullable String cardId) {
     this.cardId = cardId;
   }
 
 
-  public Card cardStatus(String cardStatus) {
+  public Card cardStatus(@javax.annotation.Nullable String cardStatus) {
     this.cardStatus = cardStatus;
     return this;
   }
 
-   /**
+  /**
    * The status of the card such, valid values are   - ACTIVE the card is active for processing   - INACTIVE the card is not active for processing   - EXPIRED for cards that have passed their expiry date. 
    * @return cardStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getCardStatus() {
     return cardStatus;
   }
 
-  public void setCardStatus(String cardStatus) {
+  public void setCardStatus(@javax.annotation.Nullable String cardStatus) {
     this.cardStatus = cardStatus;
   }
 
 
-  public Card dateCreated(OffsetDateTime dateCreated) {
+  public Card dateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
     this.dateCreated = dateCreated;
     return this;
   }
 
-   /**
+  /**
    * The date time of when the card was created.
    * @return dateCreated
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDateCreated() {
     return dateCreated;
   }
 
-  public void setDateCreated(OffsetDateTime dateCreated) {
+  public void setDateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
     this.dateCreated = dateCreated;
   }
 
 
-  public Card _default(Boolean _default) {
+  public Card _default(@javax.annotation.Nullable Boolean _default) {
     this._default = _default;
     return this;
   }
 
-   /**
+  /**
    * Determines if the card is the default card for the account and should be regarded as the first option to be used for processing.
    * @return _default
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isDefault() {
     return _default;
   }
 
-  public void setDefault(Boolean _default) {
+  public void setDefault(@javax.annotation.Nullable Boolean _default) {
     this._default = _default;
   }
 
 
-  public Card expmonth(Integer expmonth) {
+  public Card expmonth(@javax.annotation.Nullable Integer expmonth) {
     this.expmonth = expmonth;
     return this;
   }
 
-   /**
+  /**
    * The expiry month of the card.
    * minimum: 1
    * maximum: 12
    * @return expmonth
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getExpmonth() {
     return expmonth;
   }
 
-  public void setExpmonth(Integer expmonth) {
+  public void setExpmonth(@javax.annotation.Nullable Integer expmonth) {
     this.expmonth = expmonth;
   }
 
 
-  public Card expyear(Integer expyear) {
+  public Card expyear(@javax.annotation.Nullable Integer expyear) {
     this.expyear = expyear;
     return this;
   }
 
-   /**
+  /**
    * The expiry year of the card.
    * minimum: 2000
    * maximum: 2100
    * @return expyear
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getExpyear() {
     return expyear;
   }
 
-  public void setExpyear(Integer expyear) {
+  public void setExpyear(@javax.annotation.Nullable Integer expyear) {
     this.expyear = expyear;
   }
 
 
-  public Card label(String label) {
+  public Card label(@javax.annotation.Nullable String label) {
     this.label = label;
     return this;
   }
 
-   /**
+  /**
    * A label which identifies this card.
    * @return label
-  **/
+   */
   @javax.annotation.Nullable
   public String getLabel() {
     return label;
   }
 
-  public void setLabel(String label) {
+  public void setLabel(@javax.annotation.Nullable String label) {
     this.label = label;
   }
 
 
-  public Card label2(String label2) {
+  public Card label2(@javax.annotation.Nullable String label2) {
     this.label2 = label2;
     return this;
   }
 
-   /**
+  /**
    * A label which also provides the expiry date of the card.
    * @return label2
-  **/
+   */
   @javax.annotation.Nullable
   public String getLabel2() {
     return label2;
   }
 
-  public void setLabel2(String label2) {
+  public void setLabel2(@javax.annotation.Nullable String label2) {
     this.label2 = label2;
   }
 
 
-  public Card last4digits(String last4digits) {
+  public Card last4digits(@javax.annotation.Nullable String last4digits) {
     this.last4digits = last4digits;
     return this;
   }
 
-   /**
+  /**
    * The last 4 digits of the card to aid in identification.
    * @return last4digits
-  **/
+   */
   @javax.annotation.Nullable
   public String getLast4digits() {
     return last4digits;
   }
 
-  public void setLast4digits(String last4digits) {
+  public void setLast4digits(@javax.annotation.Nullable String last4digits) {
     this.last4digits = last4digits;
   }
 
 
-  public Card nameOnCard(String nameOnCard) {
+  public Card nameOnCard(@javax.annotation.Nullable String nameOnCard) {
     this.nameOnCard = nameOnCard;
     return this;
   }
 
-   /**
+  /**
    * The name on the card.
    * @return nameOnCard
-  **/
+   */
   @javax.annotation.Nullable
   public String getNameOnCard() {
     return nameOnCard;
   }
 
-  public void setNameOnCard(String nameOnCard) {
+  public void setNameOnCard(@javax.annotation.Nullable String nameOnCard) {
     this.nameOnCard = nameOnCard;
   }
 
 
-  public Card scheme(String scheme) {
+  public Card scheme(@javax.annotation.Nullable String scheme) {
     this.scheme = scheme;
     return this;
   }
 
-   /**
+  /**
    * The scheme that issued the card.
    * @return scheme
-  **/
+   */
   @javax.annotation.Nullable
   public String getScheme() {
     return scheme;
   }
 
-  public void setScheme(String scheme) {
+  public void setScheme(@javax.annotation.Nullable String scheme) {
     this.scheme = scheme;
   }
 
 
-  public Card token(String token) {
+  public Card token(@javax.annotation.Nullable String token) {
     this.token = token;
     return this;
   }
 
-   /**
+  /**
    * A token that can be used to process against the card.
    * @return token
-  **/
+   */
   @javax.annotation.Nullable
   public String getToken() {
     return token;
   }
 
-  public void setToken(String token) {
+  public void setToken(@javax.annotation.Nullable String token) {
     this.token = token;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the Card instance itself
+   */
+  public Card putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -546,12 +609,13 @@ public class Card {
         Objects.equals(this.last4digits, card.last4digits) &&
         Objects.equals(this.nameOnCard, card.nameOnCard) &&
         Objects.equals(this.scheme, card.scheme) &&
-        Objects.equals(this.token, card.token);
+        Objects.equals(this.token, card.token)&&
+        Objects.equals(this.additionalProperties, card.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(binCommercial, binCorporate, binCountryIssued, binCredit, binCurrency, binDebit, binDescription, binEu, cardId, cardStatus, dateCreated, _default, expmonth, expyear, label, label2, last4digits, nameOnCard, scheme, token);
+    return Objects.hash(binCommercial, binCorporate, binCountryIssued, binCredit, binCurrency, binDebit, binDescription, binEu, cardId, cardStatus, dateCreated, _default, expmonth, expyear, label, label2, last4digits, nameOnCard, scheme, token, additionalProperties);
   }
 
   @Override
@@ -578,6 +642,7 @@ public class Card {
     sb.append("    nameOnCard: ").append(toIndentedString(nameOnCard)).append("\n");
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -625,24 +690,16 @@ public class Card {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Card
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Card
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!Card.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Card is not found in the empty JSON string", Card.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!Card.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Card` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -696,6 +753,28 @@ public class Card {
            @Override
            public void write(JsonWriter out, Card value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -703,29 +782,50 @@ public class Card {
            public Card read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             Card instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of Card given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Card
-  * @throws IOException if the JSON string is invalid with respect to Card
-  */
+  /**
+   * Create an instance of Card given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Card
+   * @throws IOException if the JSON string is invalid with respect to Card
+   */
   public static Card fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Card.class);
   }
 
- /**
-  * Convert an instance of Card to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Card to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

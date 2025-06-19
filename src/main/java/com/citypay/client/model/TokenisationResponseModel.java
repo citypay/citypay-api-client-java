@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,236 +50,290 @@ import com.citypay.client.JSON;
 public class TokenisationResponseModel {
   public static final String SERIALIZED_NAME_AUTHEN_RESULT = "authen_result";
   @SerializedName(SERIALIZED_NAME_AUTHEN_RESULT)
+  @javax.annotation.Nullable
   private String authenResult;
 
   public static final String SERIALIZED_NAME_BIN_COMMERCIAL = "bin_commercial";
   @SerializedName(SERIALIZED_NAME_BIN_COMMERCIAL)
+  @javax.annotation.Nullable
   private Boolean binCommercial;
 
   public static final String SERIALIZED_NAME_BIN_DEBIT = "bin_debit";
   @SerializedName(SERIALIZED_NAME_BIN_DEBIT)
+  @javax.annotation.Nullable
   private Boolean binDebit;
 
   public static final String SERIALIZED_NAME_BIN_DESCRIPTION = "bin_description";
   @SerializedName(SERIALIZED_NAME_BIN_DESCRIPTION)
+  @javax.annotation.Nullable
   private String binDescription;
 
   public static final String SERIALIZED_NAME_ECI = "eci";
   @SerializedName(SERIALIZED_NAME_ECI)
+  @javax.annotation.Nullable
   private String eci;
 
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
+  @javax.annotation.Nullable
   private String identifier;
 
   public static final String SERIALIZED_NAME_MASKEDPAN = "maskedpan";
   @SerializedName(SERIALIZED_NAME_MASKEDPAN)
+  @javax.annotation.Nullable
   private String maskedpan;
 
   public static final String SERIALIZED_NAME_SCHEME = "scheme";
   @SerializedName(SERIALIZED_NAME_SCHEME)
+  @javax.annotation.Nullable
   private String scheme;
 
   public static final String SERIALIZED_NAME_SIG_ID = "sig_id";
   @SerializedName(SERIALIZED_NAME_SIG_ID)
+  @javax.annotation.Nullable
   private String sigId;
 
   public static final String SERIALIZED_NAME_TOKEN = "token";
   @SerializedName(SERIALIZED_NAME_TOKEN)
+  @javax.annotation.Nullable
   private String token;
 
   public TokenisationResponseModel() {
   }
 
-  public TokenisationResponseModel authenResult(String authenResult) {
+  public TokenisationResponseModel authenResult(@javax.annotation.Nullable String authenResult) {
     this.authenResult = authenResult;
     return this;
   }
 
-   /**
+  /**
    * The result of any authentication using 3d_secure authorisation against ecommerce transactions. Values are:  &lt;table&gt; &lt;tr&gt; &lt;th&gt;Value&lt;/th&gt; &lt;th&gt;Description&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Y&lt;/td&gt; &lt;td&gt;Authentication Successful. The Cardholder&#39;s password was successfully validated.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;N&lt;/td&gt; &lt;td&gt;Authentication Failed. Customer failed or cancelled authentication, transaction denied.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;A&lt;/td&gt; &lt;td&gt;Attempts Processing Performed Authentication could not be completed but a proof of authentication attempt (CAVV) was generated.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;U&lt;/td&gt; &lt;td&gt;Authentication Could Not Be Performed Authentication could not be completed, due to technical or other problem.&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; 
    * @return authenResult
-  **/
+   */
   @javax.annotation.Nullable
   public String getAuthenResult() {
     return authenResult;
   }
 
-  public void setAuthenResult(String authenResult) {
+  public void setAuthenResult(@javax.annotation.Nullable String authenResult) {
     this.authenResult = authenResult;
   }
 
 
-  public TokenisationResponseModel binCommercial(Boolean binCommercial) {
+  public TokenisationResponseModel binCommercial(@javax.annotation.Nullable Boolean binCommercial) {
     this.binCommercial = binCommercial;
     return this;
   }
 
-   /**
+  /**
    * Determines whether the bin range was found to be a commercial or business card.
    * @return binCommercial
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinCommercial() {
     return binCommercial;
   }
 
-  public void setBinCommercial(Boolean binCommercial) {
+  public void setBinCommercial(@javax.annotation.Nullable Boolean binCommercial) {
     this.binCommercial = binCommercial;
   }
 
 
-  public TokenisationResponseModel binDebit(Boolean binDebit) {
+  public TokenisationResponseModel binDebit(@javax.annotation.Nullable Boolean binDebit) {
     this.binDebit = binDebit;
     return this;
   }
 
-   /**
+  /**
    * Determines whether the bin range was found to be a debit card. If false the card was considered as a credit card.
    * @return binDebit
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinDebit() {
     return binDebit;
   }
 
-  public void setBinDebit(Boolean binDebit) {
+  public void setBinDebit(@javax.annotation.Nullable Boolean binDebit) {
     this.binDebit = binDebit;
   }
 
 
-  public TokenisationResponseModel binDescription(String binDescription) {
+  public TokenisationResponseModel binDescription(@javax.annotation.Nullable String binDescription) {
     this.binDescription = binDescription;
     return this;
   }
 
-   /**
+  /**
    * A description of the bin range found for the card.
    * @return binDescription
-  **/
+   */
   @javax.annotation.Nullable
   public String getBinDescription() {
     return binDescription;
   }
 
-  public void setBinDescription(String binDescription) {
+  public void setBinDescription(@javax.annotation.Nullable String binDescription) {
     this.binDescription = binDescription;
   }
 
 
-  public TokenisationResponseModel eci(String eci) {
+  public TokenisationResponseModel eci(@javax.annotation.Nullable String eci) {
     this.eci = eci;
     return this;
   }
 
-   /**
+  /**
    * An Electronic Commerce Indicator (ECI) used to identify the result of authentication using 3DSecure. 
    * @return eci
-  **/
+   */
   @javax.annotation.Nullable
   public String getEci() {
     return eci;
   }
 
-  public void setEci(String eci) {
+  public void setEci(@javax.annotation.Nullable String eci) {
     this.eci = eci;
   }
 
 
-  public TokenisationResponseModel identifier(String identifier) {
+  public TokenisationResponseModel identifier(@javax.annotation.Nullable String identifier) {
     this.identifier = identifier;
     return this;
   }
 
-   /**
+  /**
    * The identifier provided within the request.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nullable
   public String getIdentifier() {
     return identifier;
   }
 
-  public void setIdentifier(String identifier) {
+  public void setIdentifier(@javax.annotation.Nullable String identifier) {
     this.identifier = identifier;
   }
 
 
-  public TokenisationResponseModel maskedpan(String maskedpan) {
+  public TokenisationResponseModel maskedpan(@javax.annotation.Nullable String maskedpan) {
     this.maskedpan = maskedpan;
     return this;
   }
 
-   /**
+  /**
    * A masked value of the card number used for processing displaying limited values that can be used on a receipt. 
    * @return maskedpan
-  **/
+   */
   @javax.annotation.Nullable
   public String getMaskedpan() {
     return maskedpan;
   }
 
-  public void setMaskedpan(String maskedpan) {
+  public void setMaskedpan(@javax.annotation.Nullable String maskedpan) {
     this.maskedpan = maskedpan;
   }
 
 
-  public TokenisationResponseModel scheme(String scheme) {
+  public TokenisationResponseModel scheme(@javax.annotation.Nullable String scheme) {
     this.scheme = scheme;
     return this;
   }
 
-   /**
+  /**
    * The name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard. 
    * @return scheme
-  **/
+   */
   @javax.annotation.Nullable
   public String getScheme() {
     return scheme;
   }
 
-  public void setScheme(String scheme) {
+  public void setScheme(@javax.annotation.Nullable String scheme) {
     this.scheme = scheme;
   }
 
 
-  public TokenisationResponseModel sigId(String sigId) {
+  public TokenisationResponseModel sigId(@javax.annotation.Nullable String sigId) {
     this.sigId = sigId;
     return this;
   }
 
-   /**
+  /**
    * A Base58 encoded SHA-256 digest generated from the token value Base58 decoded and appended with the nonce value UTF-8 decoded.
    * @return sigId
-  **/
+   */
   @javax.annotation.Nullable
   public String getSigId() {
     return sigId;
   }
 
-  public void setSigId(String sigId) {
+  public void setSigId(@javax.annotation.Nullable String sigId) {
     this.sigId = sigId;
   }
 
 
-  public TokenisationResponseModel token(String token) {
+  public TokenisationResponseModel token(@javax.annotation.Nullable String token) {
     this.token = token;
     return this;
   }
 
-   /**
+  /**
    * The token used for presentment to authorisation later in the processing flow.
    * @return token
-  **/
+   */
   @javax.annotation.Nullable
   public String getToken() {
     return token;
   }
 
-  public void setToken(String token) {
+  public void setToken(@javax.annotation.Nullable String token) {
     this.token = token;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the TokenisationResponseModel instance itself
+   */
+  public TokenisationResponseModel putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -301,12 +354,13 @@ public class TokenisationResponseModel {
         Objects.equals(this.maskedpan, tokenisationResponseModel.maskedpan) &&
         Objects.equals(this.scheme, tokenisationResponseModel.scheme) &&
         Objects.equals(this.sigId, tokenisationResponseModel.sigId) &&
-        Objects.equals(this.token, tokenisationResponseModel.token);
+        Objects.equals(this.token, tokenisationResponseModel.token)&&
+        Objects.equals(this.additionalProperties, tokenisationResponseModel.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(authenResult, binCommercial, binDebit, binDescription, eci, identifier, maskedpan, scheme, sigId, token);
+    return Objects.hash(authenResult, binCommercial, binDebit, binDescription, eci, identifier, maskedpan, scheme, sigId, token, additionalProperties);
   }
 
   @Override
@@ -323,6 +377,7 @@ public class TokenisationResponseModel {
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
     sb.append("    sigId: ").append(toIndentedString(sigId)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -360,24 +415,16 @@ public class TokenisationResponseModel {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to TokenisationResponseModel
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to TokenisationResponseModel
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!TokenisationResponseModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in TokenisationResponseModel is not found in the empty JSON string", TokenisationResponseModel.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!TokenisationResponseModel.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TokenisationResponseModel` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -422,6 +469,28 @@ public class TokenisationResponseModel {
            @Override
            public void write(JsonWriter out, TokenisationResponseModel value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -429,29 +498,50 @@ public class TokenisationResponseModel {
            public TokenisationResponseModel read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             TokenisationResponseModel instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of TokenisationResponseModel given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of TokenisationResponseModel
-  * @throws IOException if the JSON string is invalid with respect to TokenisationResponseModel
-  */
+  /**
+   * Create an instance of TokenisationResponseModel given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of TokenisationResponseModel
+   * @throws IOException if the JSON string is invalid with respect to TokenisationResponseModel
+   */
   public static TokenisationResponseModel fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, TokenisationResponseModel.class);
   }
 
- /**
-  * Convert an instance of TokenisationResponseModel to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of TokenisationResponseModel to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }
