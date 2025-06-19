@@ -18,12 +18,12 @@ import com.citypay.client.model.DirectPostRequest;
 import com.citypay.client.model.DirectTokenAuthRequest;
 import com.citypay.client.model.TokenisationResponseModel;
 import org.junit.jupiter.api.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 
 /**
  * API tests for DirectPostApi
  */
-@Ignore
+@Disabled
 public class DirectPostApiTest {
 
     private final DirectPostApi api = new DirectPostApi();

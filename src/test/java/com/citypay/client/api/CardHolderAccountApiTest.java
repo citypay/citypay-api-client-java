@@ -23,13 +23,12 @@ import com.citypay.client.model.ContactDetails;
 import com.citypay.client.model.Decision;
 import com.citypay.client.model.RegisterCard;
 import org.junit.jupiter.api.Test;
-import org.junit.Ignore;
-
+import org.junit.jupiter.api.Disabled;
 
 /**
  * API tests for CardHolderAccountApi
  */
-@Ignore
+@Disabled
 public class CardHolderAccountApiTest {
 
     private final CardHolderAccountApi api = new CardHolderAccountApi();

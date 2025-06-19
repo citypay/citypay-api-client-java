@@ -27,13 +27,13 @@ import com.citypay.client.model.RefundRequest;
 import com.citypay.client.model.RetrieveRequest;
 import com.citypay.client.model.VoidRequest;
 import org.junit.jupiter.api.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 
 
 /**
  * API tests for AuthorisationAndPaymentApi
  */
-@Ignore
+@Disabled
 public class AuthorisationAndPaymentApiTest {
 
     private final AuthorisationAndPaymentApi api = new AuthorisationAndPaymentApi();

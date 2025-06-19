@@ -24,7 +24,7 @@ import com.citypay.client.model.PaylinkTokenStatusChangeResponse;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import org.junit.jupiter.api.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 
 import java.io.IOException;
 
@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 /**
  * API tests for PaylinkApi
  */
-@Ignore
+@Disabled
 public class PaylinkApiTest {
 
     private final PaylinkApi api = new PaylinkApi();

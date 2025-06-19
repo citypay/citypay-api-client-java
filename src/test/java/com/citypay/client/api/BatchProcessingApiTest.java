@@ -20,12 +20,12 @@ import com.citypay.client.model.CheckBatchStatusResponse;
 import com.citypay.client.model.ProcessBatchRequest;
 import com.citypay.client.model.ProcessBatchResponse;
 import org.junit.jupiter.api.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 
 /**
  * API tests for BatchProcessingApi
  */
-@Ignore
+@Disabled
 public class BatchProcessingApiTest {
 
     private final BatchProcessingApi api = new BatchProcessingApi();

@@ -22,12 +22,12 @@ import com.citypay.client.model.DomainKeyResponse;
 import com.citypay.client.model.ListMerchantsResponse;
 import com.citypay.client.model.Ping;
 import org.junit.jupiter.api.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 
 /**
  * API tests for OperationalFunctionsApi
  */
-@Ignore
+@Disabled
 public class OperationalFunctionsApiTest {
 
     private final OperationalFunctionsApi api = new OperationalFunctionsApi();
