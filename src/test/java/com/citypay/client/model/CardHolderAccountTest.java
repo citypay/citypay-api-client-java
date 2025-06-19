@@ -15,7 +15,7 @@ package com.citypay.client.model;
 import com.citypay.client.JSON;
 import com.google.gson.reflect.TypeToken;
 import java.time.OffsetDateTime;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
 

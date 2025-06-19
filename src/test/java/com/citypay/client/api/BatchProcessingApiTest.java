@@ -19,7 +19,7 @@ import com.citypay.client.model.CheckBatchStatus;
 import com.citypay.client.model.CheckBatchStatusResponse;
 import com.citypay.client.model.ProcessBatchRequest;
 import com.citypay.client.model.ProcessBatchResponse;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.Ignore;
 
 /**

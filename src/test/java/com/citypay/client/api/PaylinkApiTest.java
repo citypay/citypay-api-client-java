@@ -23,7 +23,7 @@ import com.citypay.client.model.PaylinkTokenStatusChangeRequest;
 import com.citypay.client.model.PaylinkTokenStatusChangeResponse;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.Ignore;
 
 import java.io.IOException;

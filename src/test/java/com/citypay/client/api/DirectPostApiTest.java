@@ -17,7 +17,7 @@ import com.citypay.client.model.AuthResponse;
 import com.citypay.client.model.DirectPostRequest;
 import com.citypay.client.model.DirectTokenAuthRequest;
 import com.citypay.client.model.TokenisationResponseModel;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.Ignore;
 
 /**

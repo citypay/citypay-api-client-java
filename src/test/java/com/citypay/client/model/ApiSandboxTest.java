@@ -14,15 +14,15 @@ import com.citypay.client.utils.Digest;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import okhttp3.*;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ApiSandboxTest {
     public static String clientId = System.getenv("CP_CLIENT_ID");
@@ -32,7 +32,7 @@ public class ApiSandboxTest {
     public static ApiClient defaultClient;
     public static String key;
 
-    @Before
+    @BeforeEach
     public void setupConfig() {
         {
 

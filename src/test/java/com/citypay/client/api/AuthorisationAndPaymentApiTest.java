@@ -26,7 +26,7 @@ import com.citypay.client.model.PaResAuthRequest;
 import com.citypay.client.model.RefundRequest;
 import com.citypay.client.model.RetrieveRequest;
 import com.citypay.client.model.VoidRequest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.Ignore;
 
 

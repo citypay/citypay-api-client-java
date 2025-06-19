@@ -21,7 +21,7 @@ import com.citypay.client.model.DomainKeyRequest;
 import com.citypay.client.model.DomainKeyResponse;
 import com.citypay.client.model.ListMerchantsResponse;
 import com.citypay.client.model.Ping;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.Ignore;
 
 /**

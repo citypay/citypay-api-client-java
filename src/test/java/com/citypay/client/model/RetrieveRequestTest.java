@@ -12,7 +12,7 @@
 
 package com.citypay.client.model;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 /**

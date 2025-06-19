@@ -22,7 +22,7 @@ import com.citypay.client.model.ChargeRequest;
 import com.citypay.client.model.ContactDetails;
 import com.citypay.client.model.Decision;
 import com.citypay.client.model.RegisterCard;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.Ignore;
 
 
