@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,98 +50,146 @@ import com.citypay.client.JSON;
 public class DirectTokenAuthRequest {
   public static final String SERIALIZED_NAME_NONCE = "nonce";
   @SerializedName(SERIALIZED_NAME_NONCE)
+  @javax.annotation.Nullable
   private String nonce;
 
   public static final String SERIALIZED_NAME_REDIRECT_FAILURE = "redirect_failure";
   @SerializedName(SERIALIZED_NAME_REDIRECT_FAILURE)
+  @javax.annotation.Nullable
   private String redirectFailure;
 
   public static final String SERIALIZED_NAME_REDIRECT_SUCCESS = "redirect_success";
   @SerializedName(SERIALIZED_NAME_REDIRECT_SUCCESS)
+  @javax.annotation.Nullable
   private String redirectSuccess;
 
   public static final String SERIALIZED_NAME_TOKEN = "token";
   @SerializedName(SERIALIZED_NAME_TOKEN)
+  @javax.annotation.Nullable
   private String token;
 
   public DirectTokenAuthRequest() {
   }
 
-  public DirectTokenAuthRequest nonce(String nonce) {
+  public DirectTokenAuthRequest nonce(@javax.annotation.Nullable String nonce) {
     this.nonce = nonce;
     return this;
   }
 
-   /**
+  /**
    * A random value string which is provided to the API to perform a digest. The value will be used by its UTF-8 byte representation of any digest function. 
    * @return nonce
-  **/
+   */
   @javax.annotation.Nullable
   public String getNonce() {
     return nonce;
   }
 
-  public void setNonce(String nonce) {
+  public void setNonce(@javax.annotation.Nullable String nonce) {
     this.nonce = nonce;
   }
 
 
-  public DirectTokenAuthRequest redirectFailure(String redirectFailure) {
+  public DirectTokenAuthRequest redirectFailure(@javax.annotation.Nullable String redirectFailure) {
     this.redirectFailure = redirectFailure;
     return this;
   }
 
-   /**
+  /**
    * The URL used to redirect back to your site when a transaction has been rejected or declined. Required if a url-encoded request. 
    * @return redirectFailure
-  **/
+   */
   @javax.annotation.Nullable
   public String getRedirectFailure() {
     return redirectFailure;
   }
 
-  public void setRedirectFailure(String redirectFailure) {
+  public void setRedirectFailure(@javax.annotation.Nullable String redirectFailure) {
     this.redirectFailure = redirectFailure;
   }
 
 
-  public DirectTokenAuthRequest redirectSuccess(String redirectSuccess) {
+  public DirectTokenAuthRequest redirectSuccess(@javax.annotation.Nullable String redirectSuccess) {
     this.redirectSuccess = redirectSuccess;
     return this;
   }
 
-   /**
+  /**
    * The URL used to redirect back to your site when a transaction has been authorised. Required if a url-encoded request. 
    * @return redirectSuccess
-  **/
+   */
   @javax.annotation.Nullable
   public String getRedirectSuccess() {
     return redirectSuccess;
   }
 
-  public void setRedirectSuccess(String redirectSuccess) {
+  public void setRedirectSuccess(@javax.annotation.Nullable String redirectSuccess) {
     this.redirectSuccess = redirectSuccess;
   }
 
 
-  public DirectTokenAuthRequest token(String token) {
+  public DirectTokenAuthRequest token(@javax.annotation.Nullable String token) {
     this.token = token;
     return this;
   }
 
-   /**
+  /**
    * The token required to process the transaction as presented by the direct post methodology. 
    * @return token
-  **/
+   */
   @javax.annotation.Nullable
   public String getToken() {
     return token;
   }
 
-  public void setToken(String token) {
+  public void setToken(@javax.annotation.Nullable String token) {
     this.token = token;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the DirectTokenAuthRequest instance itself
+   */
+  public DirectTokenAuthRequest putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -157,12 +204,13 @@ public class DirectTokenAuthRequest {
     return Objects.equals(this.nonce, directTokenAuthRequest.nonce) &&
         Objects.equals(this.redirectFailure, directTokenAuthRequest.redirectFailure) &&
         Objects.equals(this.redirectSuccess, directTokenAuthRequest.redirectSuccess) &&
-        Objects.equals(this.token, directTokenAuthRequest.token);
+        Objects.equals(this.token, directTokenAuthRequest.token)&&
+        Objects.equals(this.additionalProperties, directTokenAuthRequest.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(nonce, redirectFailure, redirectSuccess, token);
+    return Objects.hash(nonce, redirectFailure, redirectSuccess, token, additionalProperties);
   }
 
   @Override
@@ -173,6 +221,7 @@ public class DirectTokenAuthRequest {
     sb.append("    redirectFailure: ").append(toIndentedString(redirectFailure)).append("\n");
     sb.append("    redirectSuccess: ").append(toIndentedString(redirectSuccess)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -204,24 +253,16 @@ public class DirectTokenAuthRequest {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to DirectTokenAuthRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to DirectTokenAuthRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!DirectTokenAuthRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in DirectTokenAuthRequest is not found in the empty JSON string", DirectTokenAuthRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!DirectTokenAuthRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DirectTokenAuthRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -254,6 +295,28 @@ public class DirectTokenAuthRequest {
            @Override
            public void write(JsonWriter out, DirectTokenAuthRequest value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -261,29 +324,50 @@ public class DirectTokenAuthRequest {
            public DirectTokenAuthRequest read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             DirectTokenAuthRequest instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of DirectTokenAuthRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of DirectTokenAuthRequest
-  * @throws IOException if the JSON string is invalid with respect to DirectTokenAuthRequest
-  */
+  /**
+   * Create an instance of DirectTokenAuthRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of DirectTokenAuthRequest
+   * @throws IOException if the JSON string is invalid with respect to DirectTokenAuthRequest
+   */
   public static DirectTokenAuthRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DirectTokenAuthRequest.class);
   }
 
- /**
-  * Convert an instance of DirectTokenAuthRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of DirectTokenAuthRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

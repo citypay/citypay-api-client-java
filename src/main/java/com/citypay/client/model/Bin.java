@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,213 +50,266 @@ import com.citypay.client.JSON;
 public class Bin {
   public static final String SERIALIZED_NAME_BIN_COMMERCIAL = "bin_commercial";
   @SerializedName(SERIALIZED_NAME_BIN_COMMERCIAL)
+  @javax.annotation.Nullable
   private Boolean binCommercial;
 
   public static final String SERIALIZED_NAME_BIN_CORPORATE = "bin_corporate";
   @SerializedName(SERIALIZED_NAME_BIN_CORPORATE)
+  @javax.annotation.Nullable
   private Boolean binCorporate;
 
   public static final String SERIALIZED_NAME_BIN_COUNTRY_ISSUED = "bin_country_issued";
   @SerializedName(SERIALIZED_NAME_BIN_COUNTRY_ISSUED)
+  @javax.annotation.Nullable
   private String binCountryIssued;
 
   public static final String SERIALIZED_NAME_BIN_CREDIT = "bin_credit";
   @SerializedName(SERIALIZED_NAME_BIN_CREDIT)
+  @javax.annotation.Nullable
   private Boolean binCredit;
 
   public static final String SERIALIZED_NAME_BIN_CURRENCY = "bin_currency";
   @SerializedName(SERIALIZED_NAME_BIN_CURRENCY)
+  @javax.annotation.Nullable
   private String binCurrency;
 
   public static final String SERIALIZED_NAME_BIN_DEBIT = "bin_debit";
   @SerializedName(SERIALIZED_NAME_BIN_DEBIT)
+  @javax.annotation.Nullable
   private Boolean binDebit;
 
   public static final String SERIALIZED_NAME_BIN_DESCRIPTION = "bin_description";
   @SerializedName(SERIALIZED_NAME_BIN_DESCRIPTION)
+  @javax.annotation.Nullable
   private String binDescription;
 
   public static final String SERIALIZED_NAME_BIN_EU = "bin_eu";
   @SerializedName(SERIALIZED_NAME_BIN_EU)
+  @javax.annotation.Nullable
   private Boolean binEu;
 
   public static final String SERIALIZED_NAME_SCHEME = "scheme";
   @SerializedName(SERIALIZED_NAME_SCHEME)
+  @javax.annotation.Nullable
   private String scheme;
 
   public Bin() {
   }
 
-  public Bin binCommercial(Boolean binCommercial) {
+  public Bin binCommercial(@javax.annotation.Nullable Boolean binCommercial) {
     this.binCommercial = binCommercial;
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is a commercial card.
    * @return binCommercial
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinCommercial() {
     return binCommercial;
   }
 
-  public void setBinCommercial(Boolean binCommercial) {
+  public void setBinCommercial(@javax.annotation.Nullable Boolean binCommercial) {
     this.binCommercial = binCommercial;
   }
 
 
-  public Bin binCorporate(Boolean binCorporate) {
+  public Bin binCorporate(@javax.annotation.Nullable Boolean binCorporate) {
     this.binCorporate = binCorporate;
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is a corporate business card.
    * @return binCorporate
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinCorporate() {
     return binCorporate;
   }
 
-  public void setBinCorporate(Boolean binCorporate) {
+  public void setBinCorporate(@javax.annotation.Nullable Boolean binCorporate) {
     this.binCorporate = binCorporate;
   }
 
 
-  public Bin binCountryIssued(String binCountryIssued) {
+  public Bin binCountryIssued(@javax.annotation.Nullable String binCountryIssued) {
     this.binCountryIssued = binCountryIssued;
     return this;
   }
 
-   /**
+  /**
    * The determined country where the card was issued.
    * @return binCountryIssued
-  **/
+   */
   @javax.annotation.Nullable
   public String getBinCountryIssued() {
     return binCountryIssued;
   }
 
-  public void setBinCountryIssued(String binCountryIssued) {
+  public void setBinCountryIssued(@javax.annotation.Nullable String binCountryIssued) {
     this.binCountryIssued = binCountryIssued;
   }
 
 
-  public Bin binCredit(Boolean binCredit) {
+  public Bin binCredit(@javax.annotation.Nullable Boolean binCredit) {
     this.binCredit = binCredit;
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is a credit card.
    * @return binCredit
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinCredit() {
     return binCredit;
   }
 
-  public void setBinCredit(Boolean binCredit) {
+  public void setBinCredit(@javax.annotation.Nullable Boolean binCredit) {
     this.binCredit = binCredit;
   }
 
 
-  public Bin binCurrency(String binCurrency) {
+  public Bin binCurrency(@javax.annotation.Nullable String binCurrency) {
     this.binCurrency = binCurrency;
     return this;
   }
 
-   /**
+  /**
    * The default currency determined for the card.
    * @return binCurrency
-  **/
+   */
   @javax.annotation.Nullable
   public String getBinCurrency() {
     return binCurrency;
   }
 
-  public void setBinCurrency(String binCurrency) {
+  public void setBinCurrency(@javax.annotation.Nullable String binCurrency) {
     this.binCurrency = binCurrency;
   }
 
 
-  public Bin binDebit(Boolean binDebit) {
+  public Bin binDebit(@javax.annotation.Nullable Boolean binDebit) {
     this.binDebit = binDebit;
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is a debit card.
    * @return binDebit
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinDebit() {
     return binDebit;
   }
 
-  public void setBinDebit(Boolean binDebit) {
+  public void setBinDebit(@javax.annotation.Nullable Boolean binDebit) {
     this.binDebit = binDebit;
   }
 
 
-  public Bin binDescription(String binDescription) {
+  public Bin binDescription(@javax.annotation.Nullable String binDescription) {
     this.binDescription = binDescription;
     return this;
   }
 
-   /**
+  /**
    * A description of the bin on the card to identify what type of product the card is.
    * @return binDescription
-  **/
+   */
   @javax.annotation.Nullable
   public String getBinDescription() {
     return binDescription;
   }
 
-  public void setBinDescription(String binDescription) {
+  public void setBinDescription(@javax.annotation.Nullable String binDescription) {
     this.binDescription = binDescription;
   }
 
 
-  public Bin binEu(Boolean binEu) {
+  public Bin binEu(@javax.annotation.Nullable Boolean binEu) {
     this.binEu = binEu;
     return this;
   }
 
-   /**
+  /**
    * Defines whether the card is regulated within the EU.
    * @return binEu
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isBinEu() {
     return binEu;
   }
 
-  public void setBinEu(Boolean binEu) {
+  public void setBinEu(@javax.annotation.Nullable Boolean binEu) {
     this.binEu = binEu;
   }
 
 
-  public Bin scheme(String scheme) {
+  public Bin scheme(@javax.annotation.Nullable String scheme) {
     this.scheme = scheme;
     return this;
   }
 
-   /**
+  /**
    * The scheme that issued the card.
    * @return scheme
-  **/
+   */
   @javax.annotation.Nullable
   public String getScheme() {
     return scheme;
   }
 
-  public void setScheme(String scheme) {
+  public void setScheme(@javax.annotation.Nullable String scheme) {
     this.scheme = scheme;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the Bin instance itself
+   */
+  public Bin putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -277,12 +329,13 @@ public class Bin {
         Objects.equals(this.binDebit, bin.binDebit) &&
         Objects.equals(this.binDescription, bin.binDescription) &&
         Objects.equals(this.binEu, bin.binEu) &&
-        Objects.equals(this.scheme, bin.scheme);
+        Objects.equals(this.scheme, bin.scheme)&&
+        Objects.equals(this.additionalProperties, bin.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(binCommercial, binCorporate, binCountryIssued, binCredit, binCurrency, binDebit, binDescription, binEu, scheme);
+    return Objects.hash(binCommercial, binCorporate, binCountryIssued, binCredit, binCurrency, binDebit, binDescription, binEu, scheme, additionalProperties);
   }
 
   @Override
@@ -298,6 +351,7 @@ public class Bin {
     sb.append("    binDescription: ").append(toIndentedString(binDescription)).append("\n");
     sb.append("    binEu: ").append(toIndentedString(binEu)).append("\n");
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -334,24 +388,16 @@ public class Bin {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Bin
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Bin
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!Bin.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Bin is not found in the empty JSON string", Bin.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!Bin.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Bin` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -384,6 +430,28 @@ public class Bin {
            @Override
            public void write(JsonWriter out, Bin value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -391,29 +459,50 @@ public class Bin {
            public Bin read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             Bin instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of Bin given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Bin
-  * @throws IOException if the JSON string is invalid with respect to Bin
-  */
+  /**
+   * Create an instance of Bin given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Bin
+   * @throws IOException if the JSON string is invalid with respect to Bin
+   */
   public static Bin fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Bin.class);
   }
 
- /**
-  * Convert an instance of Bin to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Bin to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

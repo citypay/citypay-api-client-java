@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,98 +50,146 @@ import com.citypay.client.JSON;
 public class MCC6012 {
   public static final String SERIALIZED_NAME_RECIPIENT_ACCOUNT = "recipient_account";
   @SerializedName(SERIALIZED_NAME_RECIPIENT_ACCOUNT)
+  @javax.annotation.Nullable
   private String recipientAccount;
 
   public static final String SERIALIZED_NAME_RECIPIENT_DOB = "recipient_dob";
   @SerializedName(SERIALIZED_NAME_RECIPIENT_DOB)
+  @javax.annotation.Nullable
   private String recipientDob;
 
   public static final String SERIALIZED_NAME_RECIPIENT_LASTNAME = "recipient_lastname";
   @SerializedName(SERIALIZED_NAME_RECIPIENT_LASTNAME)
+  @javax.annotation.Nullable
   private String recipientLastname;
 
   public static final String SERIALIZED_NAME_RECIPIENT_POSTCODE = "recipient_postcode";
   @SerializedName(SERIALIZED_NAME_RECIPIENT_POSTCODE)
+  @javax.annotation.Nullable
   private String recipientPostcode;
 
   public MCC6012() {
   }
 
-  public MCC6012 recipientAccount(String recipientAccount) {
+  public MCC6012 recipientAccount(@javax.annotation.Nullable String recipientAccount) {
     this.recipientAccount = recipientAccount;
     return this;
   }
 
-   /**
+  /**
    * The account number of the recipient.
    * @return recipientAccount
-  **/
+   */
   @javax.annotation.Nullable
   public String getRecipientAccount() {
     return recipientAccount;
   }
 
-  public void setRecipientAccount(String recipientAccount) {
+  public void setRecipientAccount(@javax.annotation.Nullable String recipientAccount) {
     this.recipientAccount = recipientAccount;
   }
 
 
-  public MCC6012 recipientDob(String recipientDob) {
+  public MCC6012 recipientDob(@javax.annotation.Nullable String recipientDob) {
     this.recipientDob = recipientDob;
     return this;
   }
 
-   /**
+  /**
    * The date of birth of the recipient.
    * @return recipientDob
-  **/
+   */
   @javax.annotation.Nullable
   public String getRecipientDob() {
     return recipientDob;
   }
 
-  public void setRecipientDob(String recipientDob) {
+  public void setRecipientDob(@javax.annotation.Nullable String recipientDob) {
     this.recipientDob = recipientDob;
   }
 
 
-  public MCC6012 recipientLastname(String recipientLastname) {
+  public MCC6012 recipientLastname(@javax.annotation.Nullable String recipientLastname) {
     this.recipientLastname = recipientLastname;
     return this;
   }
 
-   /**
+  /**
    * The lastname of ther recepient.
    * @return recipientLastname
-  **/
+   */
   @javax.annotation.Nullable
   public String getRecipientLastname() {
     return recipientLastname;
   }
 
-  public void setRecipientLastname(String recipientLastname) {
+  public void setRecipientLastname(@javax.annotation.Nullable String recipientLastname) {
     this.recipientLastname = recipientLastname;
   }
 
 
-  public MCC6012 recipientPostcode(String recipientPostcode) {
+  public MCC6012 recipientPostcode(@javax.annotation.Nullable String recipientPostcode) {
     this.recipientPostcode = recipientPostcode;
     return this;
   }
 
-   /**
+  /**
    * The postcode of the recipient.
    * @return recipientPostcode
-  **/
+   */
   @javax.annotation.Nullable
   public String getRecipientPostcode() {
     return recipientPostcode;
   }
 
-  public void setRecipientPostcode(String recipientPostcode) {
+  public void setRecipientPostcode(@javax.annotation.Nullable String recipientPostcode) {
     this.recipientPostcode = recipientPostcode;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the MCC6012 instance itself
+   */
+  public MCC6012 putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -157,12 +204,13 @@ public class MCC6012 {
     return Objects.equals(this.recipientAccount, MCC6012.recipientAccount) &&
         Objects.equals(this.recipientDob, MCC6012.recipientDob) &&
         Objects.equals(this.recipientLastname, MCC6012.recipientLastname) &&
-        Objects.equals(this.recipientPostcode, MCC6012.recipientPostcode);
+        Objects.equals(this.recipientPostcode, MCC6012.recipientPostcode)&&
+        Objects.equals(this.additionalProperties, MCC6012.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(recipientAccount, recipientDob, recipientLastname, recipientPostcode);
+    return Objects.hash(recipientAccount, recipientDob, recipientLastname, recipientPostcode, additionalProperties);
   }
 
   @Override
@@ -173,6 +221,7 @@ public class MCC6012 {
     sb.append("    recipientDob: ").append(toIndentedString(recipientDob)).append("\n");
     sb.append("    recipientLastname: ").append(toIndentedString(recipientLastname)).append("\n");
     sb.append("    recipientPostcode: ").append(toIndentedString(recipientPostcode)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -204,24 +253,16 @@ public class MCC6012 {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to MCC6012
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MCC6012
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!MCC6012.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in MCC6012 is not found in the empty JSON string", MCC6012.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!MCC6012.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MCC6012` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -254,6 +295,28 @@ public class MCC6012 {
            @Override
            public void write(JsonWriter out, MCC6012 value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -261,29 +324,50 @@ public class MCC6012 {
            public MCC6012 read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             MCC6012 instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of MCC6012 given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MCC6012
-  * @throws IOException if the JSON string is invalid with respect to MCC6012
-  */
+  /**
+   * Create an instance of MCC6012 given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MCC6012
+   * @throws IOException if the JSON string is invalid with respect to MCC6012
+   */
   public static MCC6012 fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MCC6012.class);
   }
 
- /**
-  * Convert an instance of MCC6012 to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MCC6012 to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

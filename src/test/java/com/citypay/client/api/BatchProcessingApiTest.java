@@ -17,21 +17,15 @@ import com.citypay.client.model.BatchReportRequest;
 import com.citypay.client.model.BatchReportResponseModel;
 import com.citypay.client.model.CheckBatchStatus;
 import com.citypay.client.model.CheckBatchStatusResponse;
-import com.citypay.client.model.Error;
 import com.citypay.client.model.ProcessBatchRequest;
 import com.citypay.client.model.ProcessBatchResponse;
-import org.junit.Test;
-import org.junit.Ignore;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 /**
  * API tests for BatchProcessingApi
  */
-@Ignore
+@Disabled
 public class BatchProcessingApiTest {
 
     private final BatchProcessingApi api = new BatchProcessingApi();

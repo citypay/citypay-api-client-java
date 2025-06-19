@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,98 +50,146 @@ import com.citypay.client.JSON;
 public class PaylinkUI {
   public static final String SERIALIZED_NAME_ADDRESS_MANDATORY = "address_mandatory";
   @SerializedName(SERIALIZED_NAME_ADDRESS_MANDATORY)
+  @javax.annotation.Nullable
   private Boolean addressMandatory;
 
   public static final String SERIALIZED_NAME_FORM_AUTO_COMPLETE = "form_auto_complete";
   @SerializedName(SERIALIZED_NAME_FORM_AUTO_COMPLETE)
+  @javax.annotation.Nullable
   private String formAutoComplete;
 
   public static final String SERIALIZED_NAME_ORDERING = "ordering";
   @SerializedName(SERIALIZED_NAME_ORDERING)
+  @javax.annotation.Nullable
   private Integer ordering;
 
   public static final String SERIALIZED_NAME_POSTCODE_MANDATORY = "postcode_mandatory";
   @SerializedName(SERIALIZED_NAME_POSTCODE_MANDATORY)
+  @javax.annotation.Nullable
   private Boolean postcodeMandatory;
 
   public PaylinkUI() {
   }
 
-  public PaylinkUI addressMandatory(Boolean addressMandatory) {
+  public PaylinkUI addressMandatory(@javax.annotation.Nullable Boolean addressMandatory) {
     this.addressMandatory = addressMandatory;
     return this;
   }
 
-   /**
+  /**
    * whether the address is forced as mandatory.
    * @return addressMandatory
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isAddressMandatory() {
     return addressMandatory;
   }
 
-  public void setAddressMandatory(Boolean addressMandatory) {
+  public void setAddressMandatory(@javax.annotation.Nullable Boolean addressMandatory) {
     this.addressMandatory = addressMandatory;
   }
 
 
-  public PaylinkUI formAutoComplete(String formAutoComplete) {
+  public PaylinkUI formAutoComplete(@javax.annotation.Nullable String formAutoComplete) {
     this.formAutoComplete = formAutoComplete;
     return this;
   }
 
-   /**
+  /**
    * specify the form autocomplete setting, default to on. If set to off the UI will set autocomplete&#x3D;\&quot;off\&quot; on the form level and prevent elements from adding it.
    * @return formAutoComplete
-  **/
+   */
   @javax.annotation.Nullable
   public String getFormAutoComplete() {
     return formAutoComplete;
   }
 
-  public void setFormAutoComplete(String formAutoComplete) {
+  public void setFormAutoComplete(@javax.annotation.Nullable String formAutoComplete) {
     this.formAutoComplete = formAutoComplete;
   }
 
 
-  public PaylinkUI ordering(Integer ordering) {
+  public PaylinkUI ordering(@javax.annotation.Nullable Integer ordering) {
     this.ordering = ordering;
     return this;
   }
 
-   /**
+  /**
    * the logical ordering of the ui groups.
    * @return ordering
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getOrdering() {
     return ordering;
   }
 
-  public void setOrdering(Integer ordering) {
+  public void setOrdering(@javax.annotation.Nullable Integer ordering) {
     this.ordering = ordering;
   }
 
 
-  public PaylinkUI postcodeMandatory(Boolean postcodeMandatory) {
+  public PaylinkUI postcodeMandatory(@javax.annotation.Nullable Boolean postcodeMandatory) {
     this.postcodeMandatory = postcodeMandatory;
     return this;
   }
 
-   /**
+  /**
    * whether the postcode is forced as mandatory.
    * @return postcodeMandatory
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isPostcodeMandatory() {
     return postcodeMandatory;
   }
 
-  public void setPostcodeMandatory(Boolean postcodeMandatory) {
+  public void setPostcodeMandatory(@javax.annotation.Nullable Boolean postcodeMandatory) {
     this.postcodeMandatory = postcodeMandatory;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the PaylinkUI instance itself
+   */
+  public PaylinkUI putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -157,12 +204,13 @@ public class PaylinkUI {
     return Objects.equals(this.addressMandatory, paylinkUI.addressMandatory) &&
         Objects.equals(this.formAutoComplete, paylinkUI.formAutoComplete) &&
         Objects.equals(this.ordering, paylinkUI.ordering) &&
-        Objects.equals(this.postcodeMandatory, paylinkUI.postcodeMandatory);
+        Objects.equals(this.postcodeMandatory, paylinkUI.postcodeMandatory)&&
+        Objects.equals(this.additionalProperties, paylinkUI.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(addressMandatory, formAutoComplete, ordering, postcodeMandatory);
+    return Objects.hash(addressMandatory, formAutoComplete, ordering, postcodeMandatory, additionalProperties);
   }
 
   @Override
@@ -173,6 +221,7 @@ public class PaylinkUI {
     sb.append("    formAutoComplete: ").append(toIndentedString(formAutoComplete)).append("\n");
     sb.append("    ordering: ").append(toIndentedString(ordering)).append("\n");
     sb.append("    postcodeMandatory: ").append(toIndentedString(postcodeMandatory)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -204,24 +253,16 @@ public class PaylinkUI {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkUI
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkUI
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkUI.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkUI is not found in the empty JSON string", PaylinkUI.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PaylinkUI.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkUI` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -245,6 +286,28 @@ public class PaylinkUI {
            @Override
            public void write(JsonWriter out, PaylinkUI value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -252,29 +315,50 @@ public class PaylinkUI {
            public PaylinkUI read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             PaylinkUI instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of PaylinkUI given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkUI
-  * @throws IOException if the JSON string is invalid with respect to PaylinkUI
-  */
+  /**
+   * Create an instance of PaylinkUI given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkUI
+   * @throws IOException if the JSON string is invalid with respect to PaylinkUI
+   */
   public static PaylinkUI fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkUI.class);
   }
 
- /**
-  * Convert an instance of PaylinkUI to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkUI to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

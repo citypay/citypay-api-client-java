@@ -84,7 +84,8 @@ public class DirectPostApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of a successful tokenisation or authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -96,7 +97,7 @@ public class DirectPostApi {
         <tr><td> 500 </td><td> Server Error. Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call directCResAuthRequestCall(String uuid, String cres, String threeDSSessionData, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call directCResAuthRequestCall(@javax.annotation.Nonnull String uuid, @javax.annotation.Nullable String cres, @javax.annotation.Nullable String threeDSSessionData, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -153,7 +154,7 @@ public class DirectPostApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call directCResAuthRequestValidateBeforeCall(String uuid, String cres, String threeDSSessionData, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call directCResAuthRequestValidateBeforeCall(@javax.annotation.Nonnull String uuid, @javax.annotation.Nullable String cres, @javax.annotation.Nullable String threeDSSessionData, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'uuid' is set
         if (uuid == null) {
             throw new ApiException("Missing the required parameter 'uuid' when calling directCResAuthRequest(Async)");
@@ -172,7 +173,8 @@ public class DirectPostApi {
      * @return AuthResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of a successful tokenisation or authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -184,7 +186,7 @@ public class DirectPostApi {
         <tr><td> 500 </td><td> Server Error. Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public AuthResponse directCResAuthRequest(String uuid, String cres, String threeDSSessionData) throws ApiException {
+    public AuthResponse directCResAuthRequest(@javax.annotation.Nonnull String uuid, @javax.annotation.Nullable String cres, @javax.annotation.Nullable String threeDSSessionData) throws ApiException {
         ApiResponse<AuthResponse> localVarResp = directCResAuthRequestWithHttpInfo(uuid, cres, threeDSSessionData);
         return localVarResp.getData();
     }
@@ -198,7 +200,8 @@ public class DirectPostApi {
      * @return ApiResponse&lt;AuthResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of a successful tokenisation or authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -210,7 +213,7 @@ public class DirectPostApi {
         <tr><td> 500 </td><td> Server Error. Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AuthResponse> directCResAuthRequestWithHttpInfo(String uuid, String cres, String threeDSSessionData) throws ApiException {
+    public ApiResponse<AuthResponse> directCResAuthRequestWithHttpInfo(@javax.annotation.Nonnull String uuid, @javax.annotation.Nullable String cres, @javax.annotation.Nullable String threeDSSessionData) throws ApiException {
         okhttp3.Call localVarCall = directCResAuthRequestValidateBeforeCall(uuid, cres, threeDSSessionData, null);
         Type localVarReturnType = new TypeToken<AuthResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -226,7 +229,8 @@ public class DirectPostApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of a successful tokenisation or authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -238,7 +242,7 @@ public class DirectPostApi {
         <tr><td> 500 </td><td> Server Error. Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call directCResAuthRequestAsync(String uuid, String cres, String threeDSSessionData, final ApiCallback<AuthResponse> _callback) throws ApiException {
+    public okhttp3.Call directCResAuthRequestAsync(@javax.annotation.Nonnull String uuid, @javax.annotation.Nullable String cres, @javax.annotation.Nullable String threeDSSessionData, final ApiCallback<AuthResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = directCResAuthRequestValidateBeforeCall(uuid, cres, threeDSSessionData, _callback);
         Type localVarReturnType = new TypeToken<AuthResponse>(){}.getType();
@@ -254,7 +258,8 @@ public class DirectPostApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of a successful tokenisation or authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -266,7 +271,7 @@ public class DirectPostApi {
         <tr><td> 500 </td><td> Server Error. Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call directCResTokeniseRequestCall(String uuid, String cres, String threeDSSessionData, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call directCResTokeniseRequestCall(@javax.annotation.Nonnull String uuid, @javax.annotation.Nullable String cres, @javax.annotation.Nullable String threeDSSessionData, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -323,7 +328,7 @@ public class DirectPostApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call directCResTokeniseRequestValidateBeforeCall(String uuid, String cres, String threeDSSessionData, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call directCResTokeniseRequestValidateBeforeCall(@javax.annotation.Nonnull String uuid, @javax.annotation.Nullable String cres, @javax.annotation.Nullable String threeDSSessionData, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'uuid' is set
         if (uuid == null) {
             throw new ApiException("Missing the required parameter 'uuid' when calling directCResTokeniseRequest(Async)");
@@ -342,7 +347,8 @@ public class DirectPostApi {
      * @return TokenisationResponseModel
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of a successful tokenisation or authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -354,7 +360,7 @@ public class DirectPostApi {
         <tr><td> 500 </td><td> Server Error. Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public TokenisationResponseModel directCResTokeniseRequest(String uuid, String cres, String threeDSSessionData) throws ApiException {
+    public TokenisationResponseModel directCResTokeniseRequest(@javax.annotation.Nonnull String uuid, @javax.annotation.Nullable String cres, @javax.annotation.Nullable String threeDSSessionData) throws ApiException {
         ApiResponse<TokenisationResponseModel> localVarResp = directCResTokeniseRequestWithHttpInfo(uuid, cres, threeDSSessionData);
         return localVarResp.getData();
     }
@@ -368,7 +374,8 @@ public class DirectPostApi {
      * @return ApiResponse&lt;TokenisationResponseModel&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of a successful tokenisation or authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -380,7 +387,7 @@ public class DirectPostApi {
         <tr><td> 500 </td><td> Server Error. Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<TokenisationResponseModel> directCResTokeniseRequestWithHttpInfo(String uuid, String cres, String threeDSSessionData) throws ApiException {
+    public ApiResponse<TokenisationResponseModel> directCResTokeniseRequestWithHttpInfo(@javax.annotation.Nonnull String uuid, @javax.annotation.Nullable String cres, @javax.annotation.Nullable String threeDSSessionData) throws ApiException {
         okhttp3.Call localVarCall = directCResTokeniseRequestValidateBeforeCall(uuid, cres, threeDSSessionData, null);
         Type localVarReturnType = new TypeToken<TokenisationResponseModel>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -396,7 +403,8 @@ public class DirectPostApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of a successful tokenisation or authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -408,7 +416,7 @@ public class DirectPostApi {
         <tr><td> 500 </td><td> Server Error. Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call directCResTokeniseRequestAsync(String uuid, String cres, String threeDSSessionData, final ApiCallback<TokenisationResponseModel> _callback) throws ApiException {
+    public okhttp3.Call directCResTokeniseRequestAsync(@javax.annotation.Nonnull String uuid, @javax.annotation.Nullable String cres, @javax.annotation.Nullable String threeDSSessionData, final ApiCallback<TokenisationResponseModel> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = directCResTokeniseRequestValidateBeforeCall(uuid, cres, threeDSSessionData, _callback);
         Type localVarReturnType = new TypeToken<TokenisationResponseModel>(){}.getType();
@@ -422,7 +430,8 @@ public class DirectPostApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of a successful tokenisation or authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -434,7 +443,7 @@ public class DirectPostApi {
         <tr><td> 500 </td><td> Server Error. Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call directPostAuthRequestCall(DirectPostRequest directPostRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call directPostAuthRequestCall(@javax.annotation.Nonnull DirectPostRequest directPostRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -485,7 +494,7 @@ public class DirectPostApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call directPostAuthRequestValidateBeforeCall(DirectPostRequest directPostRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call directPostAuthRequestValidateBeforeCall(@javax.annotation.Nonnull DirectPostRequest directPostRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'directPostRequest' is set
         if (directPostRequest == null) {
             throw new ApiException("Missing the required parameter 'directPostRequest' when calling directPostAuthRequest(Async)");
@@ -502,7 +511,8 @@ public class DirectPostApi {
      * @return AuthResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of a successful tokenisation or authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -514,7 +524,7 @@ public class DirectPostApi {
         <tr><td> 500 </td><td> Server Error. Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public AuthResponse directPostAuthRequest(DirectPostRequest directPostRequest) throws ApiException {
+    public AuthResponse directPostAuthRequest(@javax.annotation.Nonnull DirectPostRequest directPostRequest) throws ApiException {
         ApiResponse<AuthResponse> localVarResp = directPostAuthRequestWithHttpInfo(directPostRequest);
         return localVarResp.getData();
     }
@@ -526,7 +536,8 @@ public class DirectPostApi {
      * @return ApiResponse&lt;AuthResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of a successful tokenisation or authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -538,7 +549,7 @@ public class DirectPostApi {
         <tr><td> 500 </td><td> Server Error. Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AuthResponse> directPostAuthRequestWithHttpInfo(DirectPostRequest directPostRequest) throws ApiException {
+    public ApiResponse<AuthResponse> directPostAuthRequestWithHttpInfo(@javax.annotation.Nonnull DirectPostRequest directPostRequest) throws ApiException {
         okhttp3.Call localVarCall = directPostAuthRequestValidateBeforeCall(directPostRequest, null);
         Type localVarReturnType = new TypeToken<AuthResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -552,7 +563,8 @@ public class DirectPostApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of a successful tokenisation or authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -564,7 +576,7 @@ public class DirectPostApi {
         <tr><td> 500 </td><td> Server Error. Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call directPostAuthRequestAsync(DirectPostRequest directPostRequest, final ApiCallback<AuthResponse> _callback) throws ApiException {
+    public okhttp3.Call directPostAuthRequestAsync(@javax.annotation.Nonnull DirectPostRequest directPostRequest, final ApiCallback<AuthResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = directPostAuthRequestValidateBeforeCall(directPostRequest, _callback);
         Type localVarReturnType = new TypeToken<AuthResponse>(){}.getType();
@@ -578,7 +590,8 @@ public class DirectPostApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of a successful tokenisation or authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -590,7 +603,7 @@ public class DirectPostApi {
         <tr><td> 500 </td><td> Server Error. Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call directPostTokeniseRequestCall(DirectPostRequest directPostRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call directPostTokeniseRequestCall(@javax.annotation.Nonnull DirectPostRequest directPostRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -641,7 +654,7 @@ public class DirectPostApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call directPostTokeniseRequestValidateBeforeCall(DirectPostRequest directPostRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call directPostTokeniseRequestValidateBeforeCall(@javax.annotation.Nonnull DirectPostRequest directPostRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'directPostRequest' is set
         if (directPostRequest == null) {
             throw new ApiException("Missing the required parameter 'directPostRequest' when calling directPostTokeniseRequest(Async)");
@@ -658,7 +671,8 @@ public class DirectPostApi {
      * @return AuthResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of a successful tokenisation or authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -670,7 +684,7 @@ public class DirectPostApi {
         <tr><td> 500 </td><td> Server Error. Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public AuthResponse directPostTokeniseRequest(DirectPostRequest directPostRequest) throws ApiException {
+    public AuthResponse directPostTokeniseRequest(@javax.annotation.Nonnull DirectPostRequest directPostRequest) throws ApiException {
         ApiResponse<AuthResponse> localVarResp = directPostTokeniseRequestWithHttpInfo(directPostRequest);
         return localVarResp.getData();
     }
@@ -682,7 +696,8 @@ public class DirectPostApi {
      * @return ApiResponse&lt;AuthResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of a successful tokenisation or authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -694,7 +709,7 @@ public class DirectPostApi {
         <tr><td> 500 </td><td> Server Error. Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AuthResponse> directPostTokeniseRequestWithHttpInfo(DirectPostRequest directPostRequest) throws ApiException {
+    public ApiResponse<AuthResponse> directPostTokeniseRequestWithHttpInfo(@javax.annotation.Nonnull DirectPostRequest directPostRequest) throws ApiException {
         okhttp3.Call localVarCall = directPostTokeniseRequestValidateBeforeCall(directPostRequest, null);
         Type localVarReturnType = new TypeToken<AuthResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -708,7 +723,8 @@ public class DirectPostApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of a successful tokenisation or authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -720,7 +736,7 @@ public class DirectPostApi {
         <tr><td> 500 </td><td> Server Error. Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call directPostTokeniseRequestAsync(DirectPostRequest directPostRequest, final ApiCallback<AuthResponse> _callback) throws ApiException {
+    public okhttp3.Call directPostTokeniseRequestAsync(@javax.annotation.Nonnull DirectPostRequest directPostRequest, final ApiCallback<AuthResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = directPostTokeniseRequestValidateBeforeCall(directPostRequest, _callback);
         Type localVarReturnType = new TypeToken<AuthResponse>(){}.getType();
@@ -734,7 +750,8 @@ public class DirectPostApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of an authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -745,7 +762,7 @@ public class DirectPostApi {
         <tr><td> 412 </td><td> Bad Request. Should the incoming data not be validly determined and an error code results. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenRequestCall(DirectTokenAuthRequest directTokenAuthRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call tokenRequestCall(@javax.annotation.Nonnull DirectTokenAuthRequest directTokenAuthRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -796,7 +813,7 @@ public class DirectPostApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call tokenRequestValidateBeforeCall(DirectTokenAuthRequest directTokenAuthRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call tokenRequestValidateBeforeCall(@javax.annotation.Nonnull DirectTokenAuthRequest directTokenAuthRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'directTokenAuthRequest' is set
         if (directTokenAuthRequest == null) {
             throw new ApiException("Missing the required parameter 'directTokenAuthRequest' when calling tokenRequest(Async)");
@@ -813,7 +830,8 @@ public class DirectPostApi {
      * @return AuthResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of an authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -824,7 +842,7 @@ public class DirectPostApi {
         <tr><td> 412 </td><td> Bad Request. Should the incoming data not be validly determined and an error code results. </td><td>  -  </td></tr>
      </table>
      */
-    public AuthResponse tokenRequest(DirectTokenAuthRequest directTokenAuthRequest) throws ApiException {
+    public AuthResponse tokenRequest(@javax.annotation.Nonnull DirectTokenAuthRequest directTokenAuthRequest) throws ApiException {
         ApiResponse<AuthResponse> localVarResp = tokenRequestWithHttpInfo(directTokenAuthRequest);
         return localVarResp.getData();
     }
@@ -836,7 +854,8 @@ public class DirectPostApi {
      * @return ApiResponse&lt;AuthResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of an authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -847,7 +866,7 @@ public class DirectPostApi {
         <tr><td> 412 </td><td> Bad Request. Should the incoming data not be validly determined and an error code results. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AuthResponse> tokenRequestWithHttpInfo(DirectTokenAuthRequest directTokenAuthRequest) throws ApiException {
+    public ApiResponse<AuthResponse> tokenRequestWithHttpInfo(@javax.annotation.Nonnull DirectTokenAuthRequest directTokenAuthRequest) throws ApiException {
         okhttp3.Call localVarCall = tokenRequestValidateBeforeCall(directTokenAuthRequest, null);
         Type localVarReturnType = new TypeToken<AuthResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -861,7 +880,8 @@ public class DirectPostApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of an authorisation process if called via an XHR method. </td><td>  -  </td></tr>
         <tr><td> 303 </td><td> Redirect. A result of a successful tokenisation or authorisation process, redirecting to the success URL. </td><td>  -  </td></tr>
@@ -872,7 +892,7 @@ public class DirectPostApi {
         <tr><td> 412 </td><td> Bad Request. Should the incoming data not be validly determined and an error code results. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call tokenRequestAsync(DirectTokenAuthRequest directTokenAuthRequest, final ApiCallback<AuthResponse> _callback) throws ApiException {
+    public okhttp3.Call tokenRequestAsync(@javax.annotation.Nonnull DirectTokenAuthRequest directTokenAuthRequest, final ApiCallback<AuthResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = tokenRequestValidateBeforeCall(directTokenAuthRequest, _callback);
         Type localVarReturnType = new TypeToken<AuthResponse>(){}.getType();

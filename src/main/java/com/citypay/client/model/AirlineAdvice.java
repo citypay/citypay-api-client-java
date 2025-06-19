@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,376 +52,436 @@ import com.citypay.client.JSON;
 public class AirlineAdvice {
   public static final String SERIALIZED_NAME_CARRIER_NAME = "carrier_name";
   @SerializedName(SERIALIZED_NAME_CARRIER_NAME)
+  @javax.annotation.Nonnull
   private String carrierName;
 
   public static final String SERIALIZED_NAME_CONJUNCTION_TICKET_INDICATOR = "conjunction_ticket_indicator";
   @SerializedName(SERIALIZED_NAME_CONJUNCTION_TICKET_INDICATOR)
+  @javax.annotation.Nullable
   private Boolean conjunctionTicketIndicator;
 
   public static final String SERIALIZED_NAME_ETICKET_INDICATOR = "eticket_indicator";
   @SerializedName(SERIALIZED_NAME_ETICKET_INDICATOR)
+  @javax.annotation.Nullable
   private Boolean eticketIndicator;
 
   public static final String SERIALIZED_NAME_NO_AIR_SEGMENTS = "no_air_segments";
   @SerializedName(SERIALIZED_NAME_NO_AIR_SEGMENTS)
+  @javax.annotation.Nullable
   private Integer noAirSegments;
 
   public static final String SERIALIZED_NAME_NUMBER_IN_PARTY = "number_in_party";
   @SerializedName(SERIALIZED_NAME_NUMBER_IN_PARTY)
+  @javax.annotation.Nullable
   private Integer numberInParty;
 
   public static final String SERIALIZED_NAME_ORIGINAL_TICKET_NO = "original_ticket_no";
   @SerializedName(SERIALIZED_NAME_ORIGINAL_TICKET_NO)
+  @javax.annotation.Nullable
   private String originalTicketNo;
 
   public static final String SERIALIZED_NAME_PASSENGER_NAME = "passenger_name";
   @SerializedName(SERIALIZED_NAME_PASSENGER_NAME)
+  @javax.annotation.Nullable
   private String passengerName;
 
   public static final String SERIALIZED_NAME_SEGMENT1 = "segment1";
   @SerializedName(SERIALIZED_NAME_SEGMENT1)
+  @javax.annotation.Nonnull
   private AirlineSegment segment1;
 
   public static final String SERIALIZED_NAME_SEGMENT2 = "segment2";
   @SerializedName(SERIALIZED_NAME_SEGMENT2)
+  @javax.annotation.Nullable
   private AirlineSegment segment2;
 
   public static final String SERIALIZED_NAME_SEGMENT3 = "segment3";
   @SerializedName(SERIALIZED_NAME_SEGMENT3)
+  @javax.annotation.Nullable
   private AirlineSegment segment3;
 
   public static final String SERIALIZED_NAME_SEGMENT4 = "segment4";
   @SerializedName(SERIALIZED_NAME_SEGMENT4)
+  @javax.annotation.Nullable
   private AirlineSegment segment4;
 
   public static final String SERIALIZED_NAME_TICKET_ISSUE_CITY = "ticket_issue_city";
   @SerializedName(SERIALIZED_NAME_TICKET_ISSUE_CITY)
+  @javax.annotation.Nonnull
   private String ticketIssueCity;
 
   public static final String SERIALIZED_NAME_TICKET_ISSUE_DATE = "ticket_issue_date";
   @SerializedName(SERIALIZED_NAME_TICKET_ISSUE_DATE)
+  @javax.annotation.Nonnull
   private LocalDate ticketIssueDate;
 
   public static final String SERIALIZED_NAME_TICKET_ISSUE_NAME = "ticket_issue_name";
   @SerializedName(SERIALIZED_NAME_TICKET_ISSUE_NAME)
+  @javax.annotation.Nonnull
   private String ticketIssueName;
 
   public static final String SERIALIZED_NAME_TICKET_NO = "ticket_no";
   @SerializedName(SERIALIZED_NAME_TICKET_NO)
+  @javax.annotation.Nonnull
   private String ticketNo;
 
   public static final String SERIALIZED_NAME_TRANSACTION_TYPE = "transaction_type";
   @SerializedName(SERIALIZED_NAME_TRANSACTION_TYPE)
+  @javax.annotation.Nonnull
   private String transactionType;
 
   public AirlineAdvice() {
   }
 
-  public AirlineAdvice carrierName(String carrierName) {
+  public AirlineAdvice carrierName(@javax.annotation.Nonnull String carrierName) {
     this.carrierName = carrierName;
     return this;
   }
 
-   /**
+  /**
    * The name of the airline carrier that generated the tickets for airline travel.
    * @return carrierName
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCarrierName() {
     return carrierName;
   }
 
-  public void setCarrierName(String carrierName) {
+  public void setCarrierName(@javax.annotation.Nonnull String carrierName) {
     this.carrierName = carrierName;
   }
 
 
-  public AirlineAdvice conjunctionTicketIndicator(Boolean conjunctionTicketIndicator) {
+  public AirlineAdvice conjunctionTicketIndicator(@javax.annotation.Nullable Boolean conjunctionTicketIndicator) {
     this.conjunctionTicketIndicator = conjunctionTicketIndicator;
     return this;
   }
 
-   /**
+  /**
    * true if a conjunction ticket (with additional coupons) was issued for an itinerary with more than four segments. Defaults to false. 
    * @return conjunctionTicketIndicator
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isConjunctionTicketIndicator() {
     return conjunctionTicketIndicator;
   }
 
-  public void setConjunctionTicketIndicator(Boolean conjunctionTicketIndicator) {
+  public void setConjunctionTicketIndicator(@javax.annotation.Nullable Boolean conjunctionTicketIndicator) {
     this.conjunctionTicketIndicator = conjunctionTicketIndicator;
   }
 
 
-  public AirlineAdvice eticketIndicator(Boolean eticketIndicator) {
+  public AirlineAdvice eticketIndicator(@javax.annotation.Nullable Boolean eticketIndicator) {
     this.eticketIndicator = eticketIndicator;
     return this;
   }
 
-   /**
+  /**
    * The Electronic Ticket Indicator, a code that indicates if an electronic ticket was issued.  Defaults to true.
    * @return eticketIndicator
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isEticketIndicator() {
     return eticketIndicator;
   }
 
-  public void setEticketIndicator(Boolean eticketIndicator) {
+  public void setEticketIndicator(@javax.annotation.Nullable Boolean eticketIndicator) {
     this.eticketIndicator = eticketIndicator;
   }
 
 
-  public AirlineAdvice noAirSegments(Integer noAirSegments) {
+  public AirlineAdvice noAirSegments(@javax.annotation.Nullable Integer noAirSegments) {
     this.noAirSegments = noAirSegments;
     return this;
   }
 
-   /**
+  /**
    * A value that indicates the number of air travel segments included on this ticket.  Valid entries include the numerals “0” through “4”. Required only if the transaction type is TKT or EXC. 
    * minimum: 0
    * maximum: 4
    * @return noAirSegments
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getNoAirSegments() {
     return noAirSegments;
   }
 
-  public void setNoAirSegments(Integer noAirSegments) {
+  public void setNoAirSegments(@javax.annotation.Nullable Integer noAirSegments) {
     this.noAirSegments = noAirSegments;
   }
 
 
-  public AirlineAdvice numberInParty(Integer numberInParty) {
+  public AirlineAdvice numberInParty(@javax.annotation.Nullable Integer numberInParty) {
     this.numberInParty = numberInParty;
     return this;
   }
 
-   /**
+  /**
    * The number of people in the party.
    * @return numberInParty
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getNumberInParty() {
     return numberInParty;
   }
 
-  public void setNumberInParty(Integer numberInParty) {
+  public void setNumberInParty(@javax.annotation.Nullable Integer numberInParty) {
     this.numberInParty = numberInParty;
   }
 
 
-  public AirlineAdvice originalTicketNo(String originalTicketNo) {
+  public AirlineAdvice originalTicketNo(@javax.annotation.Nullable String originalTicketNo) {
     this.originalTicketNo = originalTicketNo;
     return this;
   }
 
-   /**
+  /**
    * Required if transaction type is EXC.
    * @return originalTicketNo
-  **/
+   */
   @javax.annotation.Nullable
   public String getOriginalTicketNo() {
     return originalTicketNo;
   }
 
-  public void setOriginalTicketNo(String originalTicketNo) {
+  public void setOriginalTicketNo(@javax.annotation.Nullable String originalTicketNo) {
     this.originalTicketNo = originalTicketNo;
   }
 
 
-  public AirlineAdvice passengerName(String passengerName) {
+  public AirlineAdvice passengerName(@javax.annotation.Nullable String passengerName) {
     this.passengerName = passengerName;
     return this;
   }
 
-   /**
+  /**
    * The name of the passenger when the traveller is not the card member that purchased the ticket. Required only if the transaction type is TKT or EXC.
    * @return passengerName
-  **/
+   */
   @javax.annotation.Nullable
   public String getPassengerName() {
     return passengerName;
   }
 
-  public void setPassengerName(String passengerName) {
+  public void setPassengerName(@javax.annotation.Nullable String passengerName) {
     this.passengerName = passengerName;
   }
 
 
-  public AirlineAdvice segment1(AirlineSegment segment1) {
+  public AirlineAdvice segment1(@javax.annotation.Nonnull AirlineSegment segment1) {
     this.segment1 = segment1;
     return this;
   }
 
-   /**
+  /**
    * Get segment1
    * @return segment1
-  **/
+   */
   @javax.annotation.Nonnull
   public AirlineSegment getSegment1() {
     return segment1;
   }
 
-  public void setSegment1(AirlineSegment segment1) {
+  public void setSegment1(@javax.annotation.Nonnull AirlineSegment segment1) {
     this.segment1 = segment1;
   }
 
 
-  public AirlineAdvice segment2(AirlineSegment segment2) {
+  public AirlineAdvice segment2(@javax.annotation.Nullable AirlineSegment segment2) {
     this.segment2 = segment2;
     return this;
   }
 
-   /**
+  /**
    * Get segment2
    * @return segment2
-  **/
+   */
   @javax.annotation.Nullable
   public AirlineSegment getSegment2() {
     return segment2;
   }
 
-  public void setSegment2(AirlineSegment segment2) {
+  public void setSegment2(@javax.annotation.Nullable AirlineSegment segment2) {
     this.segment2 = segment2;
   }
 
 
-  public AirlineAdvice segment3(AirlineSegment segment3) {
+  public AirlineAdvice segment3(@javax.annotation.Nullable AirlineSegment segment3) {
     this.segment3 = segment3;
     return this;
   }
 
-   /**
+  /**
    * Get segment3
    * @return segment3
-  **/
+   */
   @javax.annotation.Nullable
   public AirlineSegment getSegment3() {
     return segment3;
   }
 
-  public void setSegment3(AirlineSegment segment3) {
+  public void setSegment3(@javax.annotation.Nullable AirlineSegment segment3) {
     this.segment3 = segment3;
   }
 
 
-  public AirlineAdvice segment4(AirlineSegment segment4) {
+  public AirlineAdvice segment4(@javax.annotation.Nullable AirlineSegment segment4) {
     this.segment4 = segment4;
     return this;
   }
 
-   /**
+  /**
    * Get segment4
    * @return segment4
-  **/
+   */
   @javax.annotation.Nullable
   public AirlineSegment getSegment4() {
     return segment4;
   }
 
-  public void setSegment4(AirlineSegment segment4) {
+  public void setSegment4(@javax.annotation.Nullable AirlineSegment segment4) {
     this.segment4 = segment4;
   }
 
 
-  public AirlineAdvice ticketIssueCity(String ticketIssueCity) {
+  public AirlineAdvice ticketIssueCity(@javax.annotation.Nonnull String ticketIssueCity) {
     this.ticketIssueCity = ticketIssueCity;
     return this;
   }
 
-   /**
+  /**
    * The name of the city town or village where the transaction took place.
    * @return ticketIssueCity
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTicketIssueCity() {
     return ticketIssueCity;
   }
 
-  public void setTicketIssueCity(String ticketIssueCity) {
+  public void setTicketIssueCity(@javax.annotation.Nonnull String ticketIssueCity) {
     this.ticketIssueCity = ticketIssueCity;
   }
 
 
-  public AirlineAdvice ticketIssueDate(LocalDate ticketIssueDate) {
+  public AirlineAdvice ticketIssueDate(@javax.annotation.Nonnull LocalDate ticketIssueDate) {
     this.ticketIssueDate = ticketIssueDate;
     return this;
   }
 
-   /**
+  /**
    * The date the ticket was issued in ISO Date format (yyyy-MM-dd).
    * @return ticketIssueDate
-  **/
+   */
   @javax.annotation.Nonnull
   public LocalDate getTicketIssueDate() {
     return ticketIssueDate;
   }
 
-  public void setTicketIssueDate(LocalDate ticketIssueDate) {
+  public void setTicketIssueDate(@javax.annotation.Nonnull LocalDate ticketIssueDate) {
     this.ticketIssueDate = ticketIssueDate;
   }
 
 
-  public AirlineAdvice ticketIssueName(String ticketIssueName) {
+  public AirlineAdvice ticketIssueName(@javax.annotation.Nonnull String ticketIssueName) {
     this.ticketIssueName = ticketIssueName;
     return this;
   }
 
-   /**
+  /**
    * The name of the agency generating the ticket.
    * @return ticketIssueName
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTicketIssueName() {
     return ticketIssueName;
   }
 
-  public void setTicketIssueName(String ticketIssueName) {
+  public void setTicketIssueName(@javax.annotation.Nonnull String ticketIssueName) {
     this.ticketIssueName = ticketIssueName;
   }
 
 
-  public AirlineAdvice ticketNo(String ticketNo) {
+  public AirlineAdvice ticketNo(@javax.annotation.Nonnull String ticketNo) {
     this.ticketNo = ticketNo;
     return this;
   }
 
-   /**
+  /**
    * This must be a valid ticket number, i.e. numeric (the first 3 digits must represent the valid IATA plate carrier code). The final check digit should be validated prior to submission. On credit charges, this field should contain the number of the original ticket, and not of a replacement. 
    * @return ticketNo
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTicketNo() {
     return ticketNo;
   }
 
-  public void setTicketNo(String ticketNo) {
+  public void setTicketNo(@javax.annotation.Nonnull String ticketNo) {
     this.ticketNo = ticketNo;
   }
 
 
-  public AirlineAdvice transactionType(String transactionType) {
+  public AirlineAdvice transactionType(@javax.annotation.Nonnull String transactionType) {
     this.transactionType = transactionType;
     return this;
   }
 
-   /**
+  /**
    * This field contains the Transaction Type code assigned to this transaction. Valid codes include:   - &#x60;TKT&#x60; &#x3D; Ticket Purchase   - &#x60;REF&#x60; &#x3D; Refund   - &#x60;EXC&#x60; &#x3D; Exchange Ticket   - &#x60;MSC&#x60; &#x3D; Miscellaneous (non-Ticket Purchase- and non-Exchange Ticket-related transactions only). 
    * @return transactionType
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTransactionType() {
     return transactionType;
   }
 
-  public void setTransactionType(String transactionType) {
+  public void setTransactionType(@javax.annotation.Nonnull String transactionType) {
     this.transactionType = transactionType;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the AirlineAdvice instance itself
+   */
+  public AirlineAdvice putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -449,12 +508,13 @@ public class AirlineAdvice {
         Objects.equals(this.ticketIssueDate, airlineAdvice.ticketIssueDate) &&
         Objects.equals(this.ticketIssueName, airlineAdvice.ticketIssueName) &&
         Objects.equals(this.ticketNo, airlineAdvice.ticketNo) &&
-        Objects.equals(this.transactionType, airlineAdvice.transactionType);
+        Objects.equals(this.transactionType, airlineAdvice.transactionType)&&
+        Objects.equals(this.additionalProperties, airlineAdvice.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(carrierName, conjunctionTicketIndicator, eticketIndicator, noAirSegments, numberInParty, originalTicketNo, passengerName, segment1, segment2, segment3, segment4, ticketIssueCity, ticketIssueDate, ticketIssueName, ticketNo, transactionType);
+    return Objects.hash(carrierName, conjunctionTicketIndicator, eticketIndicator, noAirSegments, numberInParty, originalTicketNo, passengerName, segment1, segment2, segment3, segment4, ticketIssueCity, ticketIssueDate, ticketIssueName, ticketNo, transactionType, additionalProperties);
   }
 
   @Override
@@ -477,6 +537,7 @@ public class AirlineAdvice {
     sb.append("    ticketIssueName: ").append(toIndentedString(ticketIssueName)).append("\n");
     sb.append("    ticketNo: ").append(toIndentedString(ticketNo)).append("\n");
     sb.append("    transactionType: ").append(toIndentedString(transactionType)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -527,24 +588,16 @@ public class AirlineAdvice {
     openapiRequiredFields.add("transaction_type");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to AirlineAdvice
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AirlineAdvice
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!AirlineAdvice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in AirlineAdvice is not found in the empty JSON string", AirlineAdvice.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!AirlineAdvice.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AirlineAdvice` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
@@ -607,6 +660,28 @@ public class AirlineAdvice {
            @Override
            public void write(JsonWriter out, AirlineAdvice value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -614,29 +689,50 @@ public class AirlineAdvice {
            public AirlineAdvice read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             AirlineAdvice instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of AirlineAdvice given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of AirlineAdvice
-  * @throws IOException if the JSON string is invalid with respect to AirlineAdvice
-  */
+  /**
+   * Create an instance of AirlineAdvice given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AirlineAdvice
+   * @throws IOException if the JSON string is invalid with respect to AirlineAdvice
+   */
   public static AirlineAdvice fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AirlineAdvice.class);
   }
 
- /**
-  * Convert an instance of AirlineAdvice to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of AirlineAdvice to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

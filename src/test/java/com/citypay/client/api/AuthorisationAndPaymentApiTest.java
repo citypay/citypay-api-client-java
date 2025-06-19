@@ -22,23 +22,18 @@ import com.citypay.client.model.BinLookup;
 import com.citypay.client.model.CResAuthRequest;
 import com.citypay.client.model.CaptureRequest;
 import com.citypay.client.model.Decision;
-import com.citypay.client.model.Error;
 import com.citypay.client.model.PaResAuthRequest;
 import com.citypay.client.model.RefundRequest;
 import com.citypay.client.model.RetrieveRequest;
 import com.citypay.client.model.VoidRequest;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for AuthorisationAndPaymentApi
  */
-@Ignore
+@Disabled
 public class AuthorisationAndPaymentApiTest {
 
     private final AuthorisationAndPaymentApi api = new AuthorisationAndPaymentApi();
@@ -119,7 +114,7 @@ public class AuthorisationAndPaymentApiTest {
     @Test
     public void paResRequestTest() throws ApiException {
         PaResAuthRequest paResAuthRequest = null;
-        AuthResponse response = api.paResRequest(paResAuthRequest);
+//        AuthResponse response = api.paResRequest(paResAuthRequest);
 
         // TODO: test validations
     }

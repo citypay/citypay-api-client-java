@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,121 +51,170 @@ import com.citypay.client.JSON;
 public class EventDataModel {
   public static final String SERIALIZED_NAME_EVENT_END_DATE = "event_end_date";
   @SerializedName(SERIALIZED_NAME_EVENT_END_DATE)
+  @javax.annotation.Nullable
   private LocalDate eventEndDate;
 
   public static final String SERIALIZED_NAME_EVENT_ID = "event_id";
   @SerializedName(SERIALIZED_NAME_EVENT_ID)
+  @javax.annotation.Nullable
   private String eventId;
 
   public static final String SERIALIZED_NAME_EVENT_ORGANISER_ID = "event_organiser_id";
   @SerializedName(SERIALIZED_NAME_EVENT_ORGANISER_ID)
+  @javax.annotation.Nullable
   private String eventOrganiserId;
 
   public static final String SERIALIZED_NAME_EVENT_START_DATE = "event_start_date";
   @SerializedName(SERIALIZED_NAME_EVENT_START_DATE)
+  @javax.annotation.Nullable
   private LocalDate eventStartDate;
 
   public static final String SERIALIZED_NAME_PAYMENT_TYPE = "payment_type";
   @SerializedName(SERIALIZED_NAME_PAYMENT_TYPE)
+  @javax.annotation.Nullable
   private String paymentType;
 
   public EventDataModel() {
   }
 
-  public EventDataModel eventEndDate(LocalDate eventEndDate) {
+  public EventDataModel eventEndDate(@javax.annotation.Nullable LocalDate eventEndDate) {
     this.eventEndDate = eventEndDate;
     return this;
   }
 
-   /**
+  /**
    * The date when the event ends in ISO format (yyyy-MM-dd).
    * @return eventEndDate
-  **/
+   */
   @javax.annotation.Nullable
   public LocalDate getEventEndDate() {
     return eventEndDate;
   }
 
-  public void setEventEndDate(LocalDate eventEndDate) {
+  public void setEventEndDate(@javax.annotation.Nullable LocalDate eventEndDate) {
     this.eventEndDate = eventEndDate;
   }
 
 
-  public EventDataModel eventId(String eventId) {
+  public EventDataModel eventId(@javax.annotation.Nullable String eventId) {
     this.eventId = eventId;
     return this;
   }
 
-   /**
+  /**
    * An id of the event.
    * @return eventId
-  **/
+   */
   @javax.annotation.Nullable
   public String getEventId() {
     return eventId;
   }
 
-  public void setEventId(String eventId) {
+  public void setEventId(@javax.annotation.Nullable String eventId) {
     this.eventId = eventId;
   }
 
 
-  public EventDataModel eventOrganiserId(String eventOrganiserId) {
+  public EventDataModel eventOrganiserId(@javax.annotation.Nullable String eventOrganiserId) {
     this.eventOrganiserId = eventOrganiserId;
     return this;
   }
 
-   /**
+  /**
    * An id of the event organiser.
    * @return eventOrganiserId
-  **/
+   */
   @javax.annotation.Nullable
   public String getEventOrganiserId() {
     return eventOrganiserId;
   }
 
-  public void setEventOrganiserId(String eventOrganiserId) {
+  public void setEventOrganiserId(@javax.annotation.Nullable String eventOrganiserId) {
     this.eventOrganiserId = eventOrganiserId;
   }
 
 
-  public EventDataModel eventStartDate(LocalDate eventStartDate) {
+  public EventDataModel eventStartDate(@javax.annotation.Nullable LocalDate eventStartDate) {
     this.eventStartDate = eventStartDate;
     return this;
   }
 
-   /**
+  /**
    * The date when the event starts in ISO format (yyyy-MM-dd).
    * @return eventStartDate
-  **/
+   */
   @javax.annotation.Nullable
   public LocalDate getEventStartDate() {
     return eventStartDate;
   }
 
-  public void setEventStartDate(LocalDate eventStartDate) {
+  public void setEventStartDate(@javax.annotation.Nullable LocalDate eventStartDate) {
     this.eventStartDate = eventStartDate;
   }
 
 
-  public EventDataModel paymentType(String paymentType) {
+  public EventDataModel paymentType(@javax.annotation.Nullable String paymentType) {
     this.paymentType = paymentType;
     return this;
   }
 
-   /**
+  /**
    * The type of payment such as &#x60;deposit&#x60; or &#x60;balance&#x60;.
    * @return paymentType
-  **/
+   */
   @javax.annotation.Nullable
   public String getPaymentType() {
     return paymentType;
   }
 
-  public void setPaymentType(String paymentType) {
+  public void setPaymentType(@javax.annotation.Nullable String paymentType) {
     this.paymentType = paymentType;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the EventDataModel instance itself
+   */
+  public EventDataModel putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -182,12 +230,13 @@ public class EventDataModel {
         Objects.equals(this.eventId, eventDataModel.eventId) &&
         Objects.equals(this.eventOrganiserId, eventDataModel.eventOrganiserId) &&
         Objects.equals(this.eventStartDate, eventDataModel.eventStartDate) &&
-        Objects.equals(this.paymentType, eventDataModel.paymentType);
+        Objects.equals(this.paymentType, eventDataModel.paymentType)&&
+        Objects.equals(this.additionalProperties, eventDataModel.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(eventEndDate, eventId, eventOrganiserId, eventStartDate, paymentType);
+    return Objects.hash(eventEndDate, eventId, eventOrganiserId, eventStartDate, paymentType, additionalProperties);
   }
 
   @Override
@@ -199,6 +248,7 @@ public class EventDataModel {
     sb.append("    eventOrganiserId: ").append(toIndentedString(eventOrganiserId)).append("\n");
     sb.append("    eventStartDate: ").append(toIndentedString(eventStartDate)).append("\n");
     sb.append("    paymentType: ").append(toIndentedString(paymentType)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -231,24 +281,16 @@ public class EventDataModel {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to EventDataModel
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to EventDataModel
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!EventDataModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in EventDataModel is not found in the empty JSON string", EventDataModel.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!EventDataModel.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EventDataModel` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -278,6 +320,28 @@ public class EventDataModel {
            @Override
            public void write(JsonWriter out, EventDataModel value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -285,29 +349,50 @@ public class EventDataModel {
            public EventDataModel read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             EventDataModel instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of EventDataModel given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of EventDataModel
-  * @throws IOException if the JSON string is invalid with respect to EventDataModel
-  */
+  /**
+   * Create an instance of EventDataModel given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of EventDataModel
+   * @throws IOException if the JSON string is invalid with respect to EventDataModel
+   */
   public static EventDataModel fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, EventDataModel.class);
   }
 
- /**
-  * Convert an instance of EventDataModel to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of EventDataModel to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

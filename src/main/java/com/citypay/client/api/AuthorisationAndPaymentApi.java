@@ -34,13 +34,13 @@ import com.citypay.client.model.Bin;
 import com.citypay.client.model.BinLookup;
 import com.citypay.client.model.CResAuthRequest;
 import com.citypay.client.model.CaptureRequest;
+import com.citypay.client.model.CardTokenisationRequest;
+import com.citypay.client.model.CardTokenisationResponse;
 import com.citypay.client.model.Decision;
 import com.citypay.client.model.Error;
-import com.citypay.client.model.PaResAuthRequest;
-import com.citypay.client.model.PaymentIntent;
-import com.citypay.client.model.PaymentIntentReference;
 import com.citypay.client.model.RefundRequest;
 import com.citypay.client.model.RetrieveRequest;
+import com.citypay.client.model.VerificationRequest;
 import com.citypay.client.model.VoidRequest;
 
 import java.lang.reflect.Type;
@@ -93,7 +93,8 @@ public class AuthorisationAndPaymentApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A decision made by the result of processing. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -103,7 +104,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call authorisationRequestCall(AuthRequest authRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call authorisationRequestCall(@javax.annotation.Nonnull AuthRequest authRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -151,7 +152,7 @@ public class AuthorisationAndPaymentApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call authorisationRequestValidateBeforeCall(AuthRequest authRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call authorisationRequestValidateBeforeCall(@javax.annotation.Nonnull AuthRequest authRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'authRequest' is set
         if (authRequest == null) {
             throw new ApiException("Missing the required parameter 'authRequest' when calling authorisationRequest(Async)");
@@ -168,7 +169,8 @@ public class AuthorisationAndPaymentApi {
      * @return Decision
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A decision made by the result of processing. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -178,7 +180,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Decision authorisationRequest(AuthRequest authRequest) throws ApiException {
+    public Decision authorisationRequest(@javax.annotation.Nonnull AuthRequest authRequest) throws ApiException {
         ApiResponse<Decision> localVarResp = authorisationRequestWithHttpInfo(authRequest);
         return localVarResp.getData();
     }
@@ -190,7 +192,8 @@ public class AuthorisationAndPaymentApi {
      * @return ApiResponse&lt;Decision&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A decision made by the result of processing. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -200,7 +203,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Decision> authorisationRequestWithHttpInfo(AuthRequest authRequest) throws ApiException {
+    public ApiResponse<Decision> authorisationRequestWithHttpInfo(@javax.annotation.Nonnull AuthRequest authRequest) throws ApiException {
         okhttp3.Call localVarCall = authorisationRequestValidateBeforeCall(authRequest, null);
         Type localVarReturnType = new TypeToken<Decision>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -214,7 +217,8 @@ public class AuthorisationAndPaymentApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A decision made by the result of processing. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -224,7 +228,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call authorisationRequestAsync(AuthRequest authRequest, final ApiCallback<Decision> _callback) throws ApiException {
+    public okhttp3.Call authorisationRequestAsync(@javax.annotation.Nonnull AuthRequest authRequest, final ApiCallback<Decision> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = authorisationRequestValidateBeforeCall(authRequest, _callback);
         Type localVarReturnType = new TypeToken<Decision>(){}.getType();
@@ -238,7 +242,8 @@ public class AuthorisationAndPaymentApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of the bin lookup request returning a bin object determined by the gateway service. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -248,7 +253,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call binRangeLookupRequestCall(BinLookup binLookup, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call binRangeLookupRequestCall(@javax.annotation.Nonnull BinLookup binLookup, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -296,7 +301,7 @@ public class AuthorisationAndPaymentApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call binRangeLookupRequestValidateBeforeCall(BinLookup binLookup, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call binRangeLookupRequestValidateBeforeCall(@javax.annotation.Nonnull BinLookup binLookup, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'binLookup' is set
         if (binLookup == null) {
             throw new ApiException("Missing the required parameter 'binLookup' when calling binRangeLookupRequest(Async)");
@@ -313,7 +318,8 @@ public class AuthorisationAndPaymentApi {
      * @return Bin
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of the bin lookup request returning a bin object determined by the gateway service. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -323,7 +329,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Bin binRangeLookupRequest(BinLookup binLookup) throws ApiException {
+    public Bin binRangeLookupRequest(@javax.annotation.Nonnull BinLookup binLookup) throws ApiException {
         ApiResponse<Bin> localVarResp = binRangeLookupRequestWithHttpInfo(binLookup);
         return localVarResp.getData();
     }
@@ -335,7 +341,8 @@ public class AuthorisationAndPaymentApi {
      * @return ApiResponse&lt;Bin&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of the bin lookup request returning a bin object determined by the gateway service. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -345,7 +352,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Bin> binRangeLookupRequestWithHttpInfo(BinLookup binLookup) throws ApiException {
+    public ApiResponse<Bin> binRangeLookupRequestWithHttpInfo(@javax.annotation.Nonnull BinLookup binLookup) throws ApiException {
         okhttp3.Call localVarCall = binRangeLookupRequestValidateBeforeCall(binLookup, null);
         Type localVarReturnType = new TypeToken<Bin>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -359,7 +366,8 @@ public class AuthorisationAndPaymentApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of the bin lookup request returning a bin object determined by the gateway service. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -369,7 +377,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call binRangeLookupRequestAsync(BinLookup binLookup, final ApiCallback<Bin> _callback) throws ApiException {
+    public okhttp3.Call binRangeLookupRequestAsync(@javax.annotation.Nonnull BinLookup binLookup, final ApiCallback<Bin> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = binRangeLookupRequestValidateBeforeCall(binLookup, _callback);
         Type localVarReturnType = new TypeToken<Bin>(){}.getType();
@@ -383,7 +391,8 @@ public class AuthorisationAndPaymentApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of processing the 3DSv2 authorisation data. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -393,7 +402,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call cResRequestCall(CResAuthRequest cresAuthRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call cResRequestCall(@javax.annotation.Nonnull CResAuthRequest cresAuthRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -441,7 +450,7 @@ public class AuthorisationAndPaymentApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call cResRequestValidateBeforeCall(CResAuthRequest cresAuthRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call cResRequestValidateBeforeCall(@javax.annotation.Nonnull CResAuthRequest cresAuthRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'cresAuthRequest' is set
         if (cresAuthRequest == null) {
             throw new ApiException("Missing the required parameter 'cresAuthRequest' when calling cResRequest(Async)");
@@ -458,7 +467,8 @@ public class AuthorisationAndPaymentApi {
      * @return AuthResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of processing the 3DSv2 authorisation data. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -468,7 +478,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public AuthResponse cResRequest(CResAuthRequest cresAuthRequest) throws ApiException {
+    public AuthResponse cResRequest(@javax.annotation.Nonnull CResAuthRequest cresAuthRequest) throws ApiException {
         ApiResponse<AuthResponse> localVarResp = cResRequestWithHttpInfo(cresAuthRequest);
         return localVarResp.getData();
     }
@@ -480,7 +490,8 @@ public class AuthorisationAndPaymentApi {
      * @return ApiResponse&lt;AuthResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of processing the 3DSv2 authorisation data. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -490,7 +501,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AuthResponse> cResRequestWithHttpInfo(CResAuthRequest cresAuthRequest) throws ApiException {
+    public ApiResponse<AuthResponse> cResRequestWithHttpInfo(@javax.annotation.Nonnull CResAuthRequest cresAuthRequest) throws ApiException {
         okhttp3.Call localVarCall = cResRequestValidateBeforeCall(cresAuthRequest, null);
         Type localVarReturnType = new TypeToken<AuthResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -504,7 +515,8 @@ public class AuthorisationAndPaymentApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of processing the 3DSv2 authorisation data. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -514,7 +526,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call cResRequestAsync(CResAuthRequest cresAuthRequest, final ApiCallback<AuthResponse> _callback) throws ApiException {
+    public okhttp3.Call cResRequestAsync(@javax.annotation.Nonnull CResAuthRequest cresAuthRequest, final ApiCallback<AuthResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = cResRequestValidateBeforeCall(cresAuthRequest, _callback);
         Type localVarReturnType = new TypeToken<AuthResponse>(){}.getType();
@@ -528,7 +540,8 @@ public class AuthorisationAndPaymentApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result and acknowledgement of the capture request. The response will return a &#x60;000/001&#x60; response on a successful capture otherwise an error code response explaining the error. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -538,7 +551,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call captureRequestCall(CaptureRequest captureRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call captureRequestCall(@javax.annotation.Nonnull CaptureRequest captureRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -586,7 +599,7 @@ public class AuthorisationAndPaymentApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call captureRequestValidateBeforeCall(CaptureRequest captureRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call captureRequestValidateBeforeCall(@javax.annotation.Nonnull CaptureRequest captureRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'captureRequest' is set
         if (captureRequest == null) {
             throw new ApiException("Missing the required parameter 'captureRequest' when calling captureRequest(Async)");
@@ -603,7 +616,8 @@ public class AuthorisationAndPaymentApi {
      * @return Acknowledgement
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result and acknowledgement of the capture request. The response will return a &#x60;000/001&#x60; response on a successful capture otherwise an error code response explaining the error. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -613,7 +627,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Acknowledgement captureRequest(CaptureRequest captureRequest) throws ApiException {
+    public Acknowledgement captureRequest(@javax.annotation.Nonnull CaptureRequest captureRequest) throws ApiException {
         ApiResponse<Acknowledgement> localVarResp = captureRequestWithHttpInfo(captureRequest);
         return localVarResp.getData();
     }
@@ -625,7 +639,8 @@ public class AuthorisationAndPaymentApi {
      * @return ApiResponse&lt;Acknowledgement&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result and acknowledgement of the capture request. The response will return a &#x60;000/001&#x60; response on a successful capture otherwise an error code response explaining the error. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -635,7 +650,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Acknowledgement> captureRequestWithHttpInfo(CaptureRequest captureRequest) throws ApiException {
+    public ApiResponse<Acknowledgement> captureRequestWithHttpInfo(@javax.annotation.Nonnull CaptureRequest captureRequest) throws ApiException {
         okhttp3.Call localVarCall = captureRequestValidateBeforeCall(captureRequest, null);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -649,7 +664,8 @@ public class AuthorisationAndPaymentApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result and acknowledgement of the capture request. The response will return a &#x60;000/001&#x60; response on a successful capture otherwise an error code response explaining the error. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -659,7 +675,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call captureRequestAsync(CaptureRequest captureRequest, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+    public okhttp3.Call captureRequestAsync(@javax.annotation.Nonnull CaptureRequest captureRequest, final ApiCallback<Acknowledgement> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = captureRequestValidateBeforeCall(captureRequest, _callback);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
@@ -667,15 +683,16 @@ public class AuthorisationAndPaymentApi {
         return localVarCall;
     }
     /**
-     * Build call for createPaymentIntent
-     * @param paymentIntent  (required)
+     * Build call for cardTokenisationRequest
+     * @param cardTokenisationRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns the id of the payment intent. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A result of the tokenisation request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
@@ -683,7 +700,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createPaymentIntentCall(PaymentIntent paymentIntent, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call cardTokenisationRequestCall(@javax.annotation.Nonnull CardTokenisationRequest cardTokenisationRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -697,10 +714,10 @@ public class AuthorisationAndPaymentApi {
             basePath = null;
         }
 
-        Object localVarPostBody = paymentIntent;
+        Object localVarPostBody = cardTokenisationRequest;
 
         // create path and map variables
-        String localVarPath = "/v6/intent/create";
+        String localVarPath = "/v6/tokenise";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -726,31 +743,32 @@ public class AuthorisationAndPaymentApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "cp-api-key" };
+        String[] localVarAuthNames = new String[] { "cp-domain-key", "cp-api-key" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createPaymentIntentValidateBeforeCall(PaymentIntent paymentIntent, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'paymentIntent' is set
-        if (paymentIntent == null) {
-            throw new ApiException("Missing the required parameter 'paymentIntent' when calling createPaymentIntent(Async)");
+    private okhttp3.Call cardTokenisationRequestValidateBeforeCall(@javax.annotation.Nonnull CardTokenisationRequest cardTokenisationRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'cardTokenisationRequest' is set
+        if (cardTokenisationRequest == null) {
+            throw new ApiException("Missing the required parameter 'cardTokenisationRequest' when calling cardTokenisationRequest(Async)");
         }
 
-        return createPaymentIntentCall(paymentIntent, _callback);
+        return cardTokenisationRequestCall(cardTokenisationRequest, _callback);
 
     }
 
     /**
-     * Create a Payment Intent
-     * This endpoint initiates the creation of a payment intent, which is a precursor to processing a payment. A payment intent captures the details of a prospective payment transaction, including the payment amount, currency, and associated billing and shipping information. 
-     * @param paymentIntent  (required)
-     * @return PaymentIntentReference
+     * Card Tokenisation Request
+     * Performs a tokenisation request for card details.
+     * @param cardTokenisationRequest  (required)
+     * @return CardTokenisationResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns the id of the payment intent. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A result of the tokenisation request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
@@ -758,21 +776,22 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public PaymentIntentReference createPaymentIntent(PaymentIntent paymentIntent) throws ApiException {
-        ApiResponse<PaymentIntentReference> localVarResp = createPaymentIntentWithHttpInfo(paymentIntent);
+    public CardTokenisationResponse cardTokenisationRequest(@javax.annotation.Nonnull CardTokenisationRequest cardTokenisationRequest) throws ApiException {
+        ApiResponse<CardTokenisationResponse> localVarResp = cardTokenisationRequestWithHttpInfo(cardTokenisationRequest);
         return localVarResp.getData();
     }
 
     /**
-     * Create a Payment Intent
-     * This endpoint initiates the creation of a payment intent, which is a precursor to processing a payment. A payment intent captures the details of a prospective payment transaction, including the payment amount, currency, and associated billing and shipping information. 
-     * @param paymentIntent  (required)
-     * @return ApiResponse&lt;PaymentIntentReference&gt;
+     * Card Tokenisation Request
+     * Performs a tokenisation request for card details.
+     * @param cardTokenisationRequest  (required)
+     * @return ApiResponse&lt;CardTokenisationResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns the id of the payment intent. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A result of the tokenisation request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
@@ -780,23 +799,24 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaymentIntentReference> createPaymentIntentWithHttpInfo(PaymentIntent paymentIntent) throws ApiException {
-        okhttp3.Call localVarCall = createPaymentIntentValidateBeforeCall(paymentIntent, null);
-        Type localVarReturnType = new TypeToken<PaymentIntentReference>(){}.getType();
+    public ApiResponse<CardTokenisationResponse> cardTokenisationRequestWithHttpInfo(@javax.annotation.Nonnull CardTokenisationRequest cardTokenisationRequest) throws ApiException {
+        okhttp3.Call localVarCall = cardTokenisationRequestValidateBeforeCall(cardTokenisationRequest, null);
+        Type localVarReturnType = new TypeToken<CardTokenisationResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Create a Payment Intent (asynchronously)
-     * This endpoint initiates the creation of a payment intent, which is a precursor to processing a payment. A payment intent captures the details of a prospective payment transaction, including the payment amount, currency, and associated billing and shipping information. 
-     * @param paymentIntent  (required)
+     * Card Tokenisation Request (asynchronously)
+     * Performs a tokenisation request for card details.
+     * @param cardTokenisationRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns the id of the payment intent. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> A result of the tokenisation request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
@@ -804,155 +824,10 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createPaymentIntentAsync(PaymentIntent paymentIntent, final ApiCallback<PaymentIntentReference> _callback) throws ApiException {
+    public okhttp3.Call cardTokenisationRequestAsync(@javax.annotation.Nonnull CardTokenisationRequest cardTokenisationRequest, final ApiCallback<CardTokenisationResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createPaymentIntentValidateBeforeCall(paymentIntent, _callback);
-        Type localVarReturnType = new TypeToken<PaymentIntentReference>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for paResRequest
-     * @param paResAuthRequest  (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A result of processing the 3DSv1 authorisation data. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call paResRequestCall(PaResAuthRequest paResAuthRequest, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = paResAuthRequest;
-
-        // create path and map variables
-        String localVarPath = "/v6/pares";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json",
-            "text/xml"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json",
-            "text/xml"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "cp-api-key" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call paResRequestValidateBeforeCall(PaResAuthRequest paResAuthRequest, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'paResAuthRequest' is set
-        if (paResAuthRequest == null) {
-            throw new ApiException("Missing the required parameter 'paResAuthRequest' when calling paResRequest(Async)");
-        }
-
-        return paResRequestCall(paResAuthRequest, _callback);
-
-    }
-
-    /**
-     * PaRes
-     * The Payer Authentication Response (PaRes) is an operation after the result of authentication   being performed. The request uses an encoded packet of authentication data to  notify us of the completion of the liability shift. Once this value has been unpacked and its signature is checked, our systems will proceed to authorisation processing.    Any call to the PaRes operation will require a previous authorisation request and cannot be called  on its own without a previous [authentication required](#authenticationrequired)  being obtained. 
-     * @param paResAuthRequest  (required)
-     * @return AuthResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A result of processing the 3DSv1 authorisation data. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
-     </table>
-     */
-    public AuthResponse paResRequest(PaResAuthRequest paResAuthRequest) throws ApiException {
-        ApiResponse<AuthResponse> localVarResp = paResRequestWithHttpInfo(paResAuthRequest);
-        return localVarResp.getData();
-    }
-
-    /**
-     * PaRes
-     * The Payer Authentication Response (PaRes) is an operation after the result of authentication   being performed. The request uses an encoded packet of authentication data to  notify us of the completion of the liability shift. Once this value has been unpacked and its signature is checked, our systems will proceed to authorisation processing.    Any call to the PaRes operation will require a previous authorisation request and cannot be called  on its own without a previous [authentication required](#authenticationrequired)  being obtained. 
-     * @param paResAuthRequest  (required)
-     * @return ApiResponse&lt;AuthResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A result of processing the 3DSv1 authorisation data. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<AuthResponse> paResRequestWithHttpInfo(PaResAuthRequest paResAuthRequest) throws ApiException {
-        okhttp3.Call localVarCall = paResRequestValidateBeforeCall(paResAuthRequest, null);
-        Type localVarReturnType = new TypeToken<AuthResponse>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * PaRes (asynchronously)
-     * The Payer Authentication Response (PaRes) is an operation after the result of authentication   being performed. The request uses an encoded packet of authentication data to  notify us of the completion of the liability shift. Once this value has been unpacked and its signature is checked, our systems will proceed to authorisation processing.    Any call to the PaRes operation will require a previous authorisation request and cannot be called  on its own without a previous [authentication required](#authenticationrequired)  being obtained. 
-     * @param paResAuthRequest  (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> A result of processing the 3DSv1 authorisation data. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call paResRequestAsync(PaResAuthRequest paResAuthRequest, final ApiCallback<AuthResponse> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = paResRequestValidateBeforeCall(paResAuthRequest, _callback);
-        Type localVarReturnType = new TypeToken<AuthResponse>(){}.getType();
+        okhttp3.Call localVarCall = cardTokenisationRequestValidateBeforeCall(cardTokenisationRequest, _callback);
+        Type localVarReturnType = new TypeToken<CardTokenisationResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -963,7 +838,8 @@ public class AuthorisationAndPaymentApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of the refund of sale processing. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -973,7 +849,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call refundRequestCall(RefundRequest refundRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call refundRequestCall(@javax.annotation.Nonnull RefundRequest refundRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1021,7 +897,7 @@ public class AuthorisationAndPaymentApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call refundRequestValidateBeforeCall(RefundRequest refundRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call refundRequestValidateBeforeCall(@javax.annotation.Nonnull RefundRequest refundRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'refundRequest' is set
         if (refundRequest == null) {
             throw new ApiException("Missing the required parameter 'refundRequest' when calling refundRequest(Async)");
@@ -1038,7 +914,8 @@ public class AuthorisationAndPaymentApi {
      * @return AuthResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of the refund of sale processing. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1048,7 +925,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public AuthResponse refundRequest(RefundRequest refundRequest) throws ApiException {
+    public AuthResponse refundRequest(@javax.annotation.Nonnull RefundRequest refundRequest) throws ApiException {
         ApiResponse<AuthResponse> localVarResp = refundRequestWithHttpInfo(refundRequest);
         return localVarResp.getData();
     }
@@ -1060,7 +937,8 @@ public class AuthorisationAndPaymentApi {
      * @return ApiResponse&lt;AuthResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of the refund of sale processing. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1070,7 +948,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AuthResponse> refundRequestWithHttpInfo(RefundRequest refundRequest) throws ApiException {
+    public ApiResponse<AuthResponse> refundRequestWithHttpInfo(@javax.annotation.Nonnull RefundRequest refundRequest) throws ApiException {
         okhttp3.Call localVarCall = refundRequestValidateBeforeCall(refundRequest, null);
         Type localVarReturnType = new TypeToken<AuthResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1084,7 +962,8 @@ public class AuthorisationAndPaymentApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of the refund of sale processing. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1094,7 +973,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call refundRequestAsync(RefundRequest refundRequest, final ApiCallback<AuthResponse> _callback) throws ApiException {
+    public okhttp3.Call refundRequestAsync(@javax.annotation.Nonnull RefundRequest refundRequest, final ApiCallback<AuthResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = refundRequestValidateBeforeCall(refundRequest, _callback);
         Type localVarReturnType = new TypeToken<AuthResponse>(){}.getType();
@@ -1108,7 +987,8 @@ public class AuthorisationAndPaymentApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of the retrieval request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1118,7 +998,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call retrievalRequestCall(RetrieveRequest retrieveRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call retrievalRequestCall(@javax.annotation.Nonnull RetrieveRequest retrieveRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1166,7 +1046,7 @@ public class AuthorisationAndPaymentApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call retrievalRequestValidateBeforeCall(RetrieveRequest retrieveRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call retrievalRequestValidateBeforeCall(@javax.annotation.Nonnull RetrieveRequest retrieveRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'retrieveRequest' is set
         if (retrieveRequest == null) {
             throw new ApiException("Missing the required parameter 'retrieveRequest' when calling retrievalRequest(Async)");
@@ -1177,13 +1057,14 @@ public class AuthorisationAndPaymentApi {
     }
 
     /**
-     * Retrieval
+     * Transaction Retrieval
      * A retrieval request which allows an integration to obtain the result of a transaction processed in the last 90 days. The request allows for retrieval based on the identifier or transaction  number.   The process may return multiple results in particular where a transaction was processed multiple times against the same identifier. This can happen if errors were first received. The API therefore returns up to the first 5 transactions in the latest date time order.  It is not intended for this operation to be a replacement for reporting and only allows for base transaction information to be returned. 
      * @param retrieveRequest  (required)
      * @return AuthReferences
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of the retrieval request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1193,19 +1074,20 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public AuthReferences retrievalRequest(RetrieveRequest retrieveRequest) throws ApiException {
+    public AuthReferences retrievalRequest(@javax.annotation.Nonnull RetrieveRequest retrieveRequest) throws ApiException {
         ApiResponse<AuthReferences> localVarResp = retrievalRequestWithHttpInfo(retrieveRequest);
         return localVarResp.getData();
     }
 
     /**
-     * Retrieval
+     * Transaction Retrieval
      * A retrieval request which allows an integration to obtain the result of a transaction processed in the last 90 days. The request allows for retrieval based on the identifier or transaction  number.   The process may return multiple results in particular where a transaction was processed multiple times against the same identifier. This can happen if errors were first received. The API therefore returns up to the first 5 transactions in the latest date time order.  It is not intended for this operation to be a replacement for reporting and only allows for base transaction information to be returned. 
      * @param retrieveRequest  (required)
      * @return ApiResponse&lt;AuthReferences&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of the retrieval request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1215,21 +1097,22 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AuthReferences> retrievalRequestWithHttpInfo(RetrieveRequest retrieveRequest) throws ApiException {
+    public ApiResponse<AuthReferences> retrievalRequestWithHttpInfo(@javax.annotation.Nonnull RetrieveRequest retrieveRequest) throws ApiException {
         okhttp3.Call localVarCall = retrievalRequestValidateBeforeCall(retrieveRequest, null);
         Type localVarReturnType = new TypeToken<AuthReferences>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Retrieval (asynchronously)
+     * Transaction Retrieval (asynchronously)
      * A retrieval request which allows an integration to obtain the result of a transaction processed in the last 90 days. The request allows for retrieval based on the identifier or transaction  number.   The process may return multiple results in particular where a transaction was processed multiple times against the same identifier. This can happen if errors were first received. The API therefore returns up to the first 5 transactions in the latest date time order.  It is not intended for this operation to be a replacement for reporting and only allows for base transaction information to be returned. 
      * @param retrieveRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> A result of the retrieval request. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1239,10 +1122,159 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call retrievalRequestAsync(RetrieveRequest retrieveRequest, final ApiCallback<AuthReferences> _callback) throws ApiException {
+    public okhttp3.Call retrievalRequestAsync(@javax.annotation.Nonnull RetrieveRequest retrieveRequest, final ApiCallback<AuthReferences> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = retrievalRequestValidateBeforeCall(retrieveRequest, _callback);
         Type localVarReturnType = new TypeToken<AuthReferences>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for verificationRequest
+     * @param verificationRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> A decision made by the result of verification. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call verificationRequestCall(@javax.annotation.Nonnull VerificationRequest verificationRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = verificationRequest;
+
+        // create path and map variables
+        String localVarPath = "/v6/verify";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json",
+            "text/xml"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/xml"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "cp-api-key" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call verificationRequestValidateBeforeCall(@javax.annotation.Nonnull VerificationRequest verificationRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'verificationRequest' is set
+        if (verificationRequest == null) {
+            throw new ApiException("Missing the required parameter 'verificationRequest' when calling verificationRequest(Async)");
+        }
+
+        return verificationRequestCall(verificationRequest, _callback);
+
+    }
+
+    /**
+     * Verification
+     * Performs a request for verification for a card payment request.
+     * @param verificationRequest  (required)
+     * @return Decision
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> A decision made by the result of verification. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Decision verificationRequest(@javax.annotation.Nonnull VerificationRequest verificationRequest) throws ApiException {
+        ApiResponse<Decision> localVarResp = verificationRequestWithHttpInfo(verificationRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Verification
+     * Performs a request for verification for a card payment request.
+     * @param verificationRequest  (required)
+     * @return ApiResponse&lt;Decision&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> A decision made by the result of verification. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Decision> verificationRequestWithHttpInfo(@javax.annotation.Nonnull VerificationRequest verificationRequest) throws ApiException {
+        okhttp3.Call localVarCall = verificationRequestValidateBeforeCall(verificationRequest, null);
+        Type localVarReturnType = new TypeToken<Decision>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Verification (asynchronously)
+     * Performs a request for verification for a card payment request.
+     * @param verificationRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> A decision made by the result of verification. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. No api key has been provided and is required for this operation. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable Entity. Should a failure occur that prevents processing of the API call. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call verificationRequestAsync(@javax.annotation.Nonnull VerificationRequest verificationRequest, final ApiCallback<Decision> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = verificationRequestValidateBeforeCall(verificationRequest, _callback);
+        Type localVarReturnType = new TypeToken<Decision>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -1253,7 +1285,8 @@ public class AuthorisationAndPaymentApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> &lt;/br&gt;A result and acknowledgement of the void request, returning an &#x60;080/003&#x60; response code on successful void/cancellation of the transaction.&lt;/br&gt;&lt;/br&gt;If an error occurs an error code will be returned explaining the failure. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1263,7 +1296,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call voidRequestCall(VoidRequest voidRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call voidRequestCall(@javax.annotation.Nonnull VoidRequest voidRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1311,7 +1344,7 @@ public class AuthorisationAndPaymentApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call voidRequestValidateBeforeCall(VoidRequest voidRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call voidRequestValidateBeforeCall(@javax.annotation.Nonnull VoidRequest voidRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'voidRequest' is set
         if (voidRequest == null) {
             throw new ApiException("Missing the required parameter 'voidRequest' when calling voidRequest(Async)");
@@ -1328,7 +1361,8 @@ public class AuthorisationAndPaymentApi {
      * @return Acknowledgement
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> &lt;/br&gt;A result and acknowledgement of the void request, returning an &#x60;080/003&#x60; response code on successful void/cancellation of the transaction.&lt;/br&gt;&lt;/br&gt;If an error occurs an error code will be returned explaining the failure. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1338,7 +1372,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public Acknowledgement voidRequest(VoidRequest voidRequest) throws ApiException {
+    public Acknowledgement voidRequest(@javax.annotation.Nonnull VoidRequest voidRequest) throws ApiException {
         ApiResponse<Acknowledgement> localVarResp = voidRequestWithHttpInfo(voidRequest);
         return localVarResp.getData();
     }
@@ -1350,7 +1384,8 @@ public class AuthorisationAndPaymentApi {
      * @return ApiResponse&lt;Acknowledgement&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> &lt;/br&gt;A result and acknowledgement of the void request, returning an &#x60;080/003&#x60; response code on successful void/cancellation of the transaction.&lt;/br&gt;&lt;/br&gt;If an error occurs an error code will be returned explaining the failure. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1360,7 +1395,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Acknowledgement> voidRequestWithHttpInfo(VoidRequest voidRequest) throws ApiException {
+    public ApiResponse<Acknowledgement> voidRequestWithHttpInfo(@javax.annotation.Nonnull VoidRequest voidRequest) throws ApiException {
         okhttp3.Call localVarCall = voidRequestValidateBeforeCall(voidRequest, null);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1374,7 +1409,8 @@ public class AuthorisationAndPaymentApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> &lt;/br&gt;A result and acknowledgement of the void request, returning an &#x60;080/003&#x60; response code on successful void/cancellation of the transaction.&lt;/br&gt;&lt;/br&gt;If an error occurs an error code will be returned explaining the failure. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Should the incoming data not be validly determined. </td><td>  -  </td></tr>
@@ -1384,7 +1420,7 @@ public class AuthorisationAndPaymentApi {
         <tr><td> 500 </td><td> Server Error. The server was unable to complete the request. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call voidRequestAsync(VoidRequest voidRequest, final ApiCallback<Acknowledgement> _callback) throws ApiException {
+    public okhttp3.Call voidRequestAsync(@javax.annotation.Nonnull VoidRequest voidRequest, final ApiCallback<Acknowledgement> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = voidRequestValidateBeforeCall(voidRequest, _callback);
         Type localVarReturnType = new TypeToken<Acknowledgement>(){}.getType();

@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -54,36 +53,43 @@ import com.citypay.client.JSON;
 public class PaylinkCart {
   public static final String SERIALIZED_NAME_CONTENTS = "contents";
   @SerializedName(SERIALIZED_NAME_CONTENTS)
-  private List<PaylinkCartItemModel> contents;
+  @javax.annotation.Nullable
+  private List<PaylinkCartItemModel> contents = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_COUPON = "coupon";
   @SerializedName(SERIALIZED_NAME_COUPON)
+  @javax.annotation.Nullable
   private String coupon;
 
   public static final String SERIALIZED_NAME_MODE = "mode";
   @SerializedName(SERIALIZED_NAME_MODE)
+  @javax.annotation.Nullable
   private Integer mode;
 
   public static final String SERIALIZED_NAME_PRODUCT_DESCRIPTION = "product_description";
   @SerializedName(SERIALIZED_NAME_PRODUCT_DESCRIPTION)
+  @javax.annotation.Nullable
   private String productDescription;
 
   public static final String SERIALIZED_NAME_PRODUCT_INFORMATION = "product_information";
   @SerializedName(SERIALIZED_NAME_PRODUCT_INFORMATION)
+  @javax.annotation.Nullable
   private String productInformation;
 
   public static final String SERIALIZED_NAME_SHIPPING = "shipping";
   @SerializedName(SERIALIZED_NAME_SHIPPING)
+  @javax.annotation.Nullable
   private Integer shipping;
 
   public static final String SERIALIZED_NAME_TAX = "tax";
   @SerializedName(SERIALIZED_NAME_TAX)
+  @javax.annotation.Nullable
   private Integer tax;
 
   public PaylinkCart() {
   }
 
-  public PaylinkCart contents(List<PaylinkCartItemModel> contents) {
+  public PaylinkCart contents(@javax.annotation.Nullable List<PaylinkCartItemModel> contents) {
     this.contents = contents;
     return this;
   }
@@ -96,133 +102,177 @@ public class PaylinkCart {
     return this;
   }
 
-   /**
+  /**
    * Get contents
    * @return contents
-  **/
+   */
   @javax.annotation.Nullable
   public List<PaylinkCartItemModel> getContents() {
     return contents;
   }
 
-  public void setContents(List<PaylinkCartItemModel> contents) {
+  public void setContents(@javax.annotation.Nullable List<PaylinkCartItemModel> contents) {
     this.contents = contents;
   }
 
 
-  public PaylinkCart coupon(String coupon) {
+  public PaylinkCart coupon(@javax.annotation.Nullable String coupon) {
     this.coupon = coupon;
     return this;
   }
 
-   /**
+  /**
    * A coupon redeemed with the transaction.
    * @return coupon
-  **/
+   */
   @javax.annotation.Nullable
   public String getCoupon() {
     return coupon;
   }
 
-  public void setCoupon(String coupon) {
+  public void setCoupon(@javax.annotation.Nullable String coupon) {
     this.coupon = coupon;
   }
 
 
-  public PaylinkCart mode(Integer mode) {
+  public PaylinkCart mode(@javax.annotation.Nullable Integer mode) {
     this.mode = mode;
     return this;
   }
 
-   /**
-   * The mode field specifies the behaviour or functionality of the cart.  Valid values are:   0 - No cart - No cart is shown  1 - Read-only - The cart is shown with a breakdown of the item details provided by objects in the contents array.  2 - Selection cart - The cart is shown as a drop-down box of available cart items that the customer can a single item select from.  3 - Dynamic cart - a text box is rendered to enable the operator to input an amount.  4 - Multi cart - The cart is displayed with items rendered with selectable quantities. 
+  /**
+   * The mode field specifies the behaviour or functionality of the cart.  Valid values are:  - &#x60;0&#x60; No cart - No cart is shown - &#x60;1&#x60; Read-only - The cart is shown with a breakdown of the item details provided by objects in the contents array. - &#x60;2&#x60; Selection cart - The cart is shown as a drop-down box of available cart items that the customer can a single item select from. - &#x60;3&#x60; Dynamic cart - a text box is rendered to enable the operator to input an amount. - &#x60;4&#x60; Multi cart - The cart is displayed with items rendered with selectable quantities. 
    * @return mode
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMode() {
     return mode;
   }
 
-  public void setMode(Integer mode) {
+  public void setMode(@javax.annotation.Nullable Integer mode) {
     this.mode = mode;
   }
 
 
-  public PaylinkCart productDescription(String productDescription) {
+  public PaylinkCart productDescription(@javax.annotation.Nullable String productDescription) {
     this.productDescription = productDescription;
     return this;
   }
 
-   /**
+  /**
    * Specifies a description about the product or service that is the subject of the transaction. It will be rendered in the header of the page with no labels.
    * @return productDescription
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductDescription() {
     return productDescription;
   }
 
-  public void setProductDescription(String productDescription) {
+  public void setProductDescription(@javax.annotation.Nullable String productDescription) {
     this.productDescription = productDescription;
   }
 
 
-  public PaylinkCart productInformation(String productInformation) {
+  public PaylinkCart productInformation(@javax.annotation.Nullable String productInformation) {
     this.productInformation = productInformation;
     return this;
   }
 
-   /**
+  /**
    * Specifies information about the product or service that is the subject of the transaction. It will be rendered in the header of the page.
    * @return productInformation
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductInformation() {
     return productInformation;
   }
 
-  public void setProductInformation(String productInformation) {
+  public void setProductInformation(@javax.annotation.Nullable String productInformation) {
     this.productInformation = productInformation;
   }
 
 
-  public PaylinkCart shipping(Integer shipping) {
+  public PaylinkCart shipping(@javax.annotation.Nullable Integer shipping) {
     this.shipping = shipping;
     return this;
   }
 
-   /**
+  /**
    * The shipping amount of the transaction in the lowest denomination of currency.
    * @return shipping
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getShipping() {
     return shipping;
   }
 
-  public void setShipping(Integer shipping) {
+  public void setShipping(@javax.annotation.Nullable Integer shipping) {
     this.shipping = shipping;
   }
 
 
-  public PaylinkCart tax(Integer tax) {
+  public PaylinkCart tax(@javax.annotation.Nullable Integer tax) {
     this.tax = tax;
     return this;
   }
 
-   /**
+  /**
    * The tax amount of the transaction in the lowest denomination of currency.
    * @return tax
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTax() {
     return tax;
   }
 
-  public void setTax(Integer tax) {
+  public void setTax(@javax.annotation.Nullable Integer tax) {
     this.tax = tax;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the PaylinkCart instance itself
+   */
+  public PaylinkCart putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -240,12 +290,13 @@ public class PaylinkCart {
         Objects.equals(this.productDescription, paylinkCart.productDescription) &&
         Objects.equals(this.productInformation, paylinkCart.productInformation) &&
         Objects.equals(this.shipping, paylinkCart.shipping) &&
-        Objects.equals(this.tax, paylinkCart.tax);
+        Objects.equals(this.tax, paylinkCart.tax)&&
+        Objects.equals(this.additionalProperties, paylinkCart.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contents, coupon, mode, productDescription, productInformation, shipping, tax);
+    return Objects.hash(contents, coupon, mode, productDescription, productInformation, shipping, tax, additionalProperties);
   }
 
   @Override
@@ -259,6 +310,7 @@ public class PaylinkCart {
     sb.append("    productInformation: ").append(toIndentedString(productInformation)).append("\n");
     sb.append("    shipping: ").append(toIndentedString(shipping)).append("\n");
     sb.append("    tax: ").append(toIndentedString(tax)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -293,24 +345,16 @@ public class PaylinkCart {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkCart
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkCart
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkCart.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkCart is not found in the empty JSON string", PaylinkCart.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PaylinkCart.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkCart` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -354,6 +398,28 @@ public class PaylinkCart {
            @Override
            public void write(JsonWriter out, PaylinkCart value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -361,29 +427,50 @@ public class PaylinkCart {
            public PaylinkCart read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             PaylinkCart instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of PaylinkCart given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkCart
-  * @throws IOException if the JSON string is invalid with respect to PaylinkCart
-  */
+  /**
+   * Create an instance of PaylinkCart given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkCart
+   * @throws IOException if the JSON string is invalid with respect to PaylinkCart
+   */
   public static PaylinkCart fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkCart.class);
   }
 
- /**
-  * Convert an instance of PaylinkCart to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkCart to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

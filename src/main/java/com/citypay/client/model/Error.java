@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,121 +51,170 @@ import com.citypay.client.JSON;
 public class Error {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
+  @javax.annotation.Nullable
   private String code;
 
   public static final String SERIALIZED_NAME_CONTEXT = "context";
   @SerializedName(SERIALIZED_NAME_CONTEXT)
+  @javax.annotation.Nullable
   private String context;
 
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
+  @javax.annotation.Nullable
   private String identifier;
 
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
+  @javax.annotation.Nullable
   private String message;
 
   public static final String SERIALIZED_NAME_RESPONSE_DT = "response_dt";
   @SerializedName(SERIALIZED_NAME_RESPONSE_DT)
+  @javax.annotation.Nullable
   private OffsetDateTime responseDt;
 
   public Error() {
   }
 
-  public Error code(String code) {
+  public Error code(@javax.annotation.Nullable String code) {
     this.code = code;
     return this;
   }
 
-   /**
+  /**
    * A response code providing a result of the process.
    * @return code
-  **/
+   */
   @javax.annotation.Nullable
   public String getCode() {
     return code;
   }
 
-  public void setCode(String code) {
+  public void setCode(@javax.annotation.Nullable String code) {
     this.code = code;
   }
 
 
-  public Error context(String context) {
+  public Error context(@javax.annotation.Nullable String context) {
     this.context = context;
     return this;
   }
 
-   /**
+  /**
    * A context id of the process used for referencing transactions through support.
    * @return context
-  **/
+   */
   @javax.annotation.Nullable
   public String getContext() {
     return context;
   }
 
-  public void setContext(String context) {
+  public void setContext(@javax.annotation.Nullable String context) {
     this.context = context;
   }
 
 
-  public Error identifier(String identifier) {
+  public Error identifier(@javax.annotation.Nullable String identifier) {
     this.identifier = identifier;
     return this;
   }
 
-   /**
+  /**
    * An identifier if presented in the original request.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nullable
   public String getIdentifier() {
     return identifier;
   }
 
-  public void setIdentifier(String identifier) {
+  public void setIdentifier(@javax.annotation.Nullable String identifier) {
     this.identifier = identifier;
   }
 
 
-  public Error message(String message) {
+  public Error message(@javax.annotation.Nullable String message) {
     this.message = message;
     return this;
   }
 
-   /**
+  /**
    * A response message providing a description of the result of the process.
    * @return message
-  **/
+   */
   @javax.annotation.Nullable
   public String getMessage() {
     return message;
   }
 
-  public void setMessage(String message) {
+  public void setMessage(@javax.annotation.Nullable String message) {
     this.message = message;
   }
 
 
-  public Error responseDt(OffsetDateTime responseDt) {
+  public Error responseDt(@javax.annotation.Nullable OffsetDateTime responseDt) {
     this.responseDt = responseDt;
     return this;
   }
 
-   /**
+  /**
    * The ISO-8601 UTC date and time of the response data.
    * @return responseDt
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getResponseDt() {
     return responseDt;
   }
 
-  public void setResponseDt(OffsetDateTime responseDt) {
+  public void setResponseDt(@javax.annotation.Nullable OffsetDateTime responseDt) {
     this.responseDt = responseDt;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the Error instance itself
+   */
+  public Error putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -182,12 +230,13 @@ public class Error {
         Objects.equals(this.context, error.context) &&
         Objects.equals(this.identifier, error.identifier) &&
         Objects.equals(this.message, error.message) &&
-        Objects.equals(this.responseDt, error.responseDt);
+        Objects.equals(this.responseDt, error.responseDt)&&
+        Objects.equals(this.additionalProperties, error.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, context, identifier, message, responseDt);
+    return Objects.hash(code, context, identifier, message, responseDt, additionalProperties);
   }
 
   @Override
@@ -199,6 +248,7 @@ public class Error {
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    responseDt: ").append(toIndentedString(responseDt)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -231,24 +281,16 @@ public class Error {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Error
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Error
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!Error.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in Error is not found in the empty JSON string", Error.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!Error.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Error` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -281,6 +323,28 @@ public class Error {
            @Override
            public void write(JsonWriter out, Error value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -288,29 +352,50 @@ public class Error {
            public Error read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             Error instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of Error given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Error
-  * @throws IOException if the JSON string is invalid with respect to Error
-  */
+  /**
+   * Create an instance of Error given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Error
+   * @throws IOException if the JSON string is invalid with respect to Error
+   */
   public static Error fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Error.class);
   }
 
- /**
-  * Convert an instance of Error to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Error to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

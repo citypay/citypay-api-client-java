@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,190 +51,242 @@ import com.citypay.client.JSON;
 public class AirlineSegment {
   public static final String SERIALIZED_NAME_ARRIVAL_LOCATION_CODE = "arrival_location_code";
   @SerializedName(SERIALIZED_NAME_ARRIVAL_LOCATION_CODE)
+  @javax.annotation.Nonnull
   private String arrivalLocationCode;
 
   public static final String SERIALIZED_NAME_CARRIER_CODE = "carrier_code";
   @SerializedName(SERIALIZED_NAME_CARRIER_CODE)
+  @javax.annotation.Nonnull
   private String carrierCode;
 
   public static final String SERIALIZED_NAME_CLASS_SERVICE_CODE = "class_service_code";
   @SerializedName(SERIALIZED_NAME_CLASS_SERVICE_CODE)
+  @javax.annotation.Nonnull
   private String classServiceCode;
 
   public static final String SERIALIZED_NAME_DEPARTURE_DATE = "departure_date";
   @SerializedName(SERIALIZED_NAME_DEPARTURE_DATE)
+  @javax.annotation.Nonnull
   private LocalDate departureDate;
 
   public static final String SERIALIZED_NAME_DEPARTURE_LOCATION_CODE = "departure_location_code";
   @SerializedName(SERIALIZED_NAME_DEPARTURE_LOCATION_CODE)
+  @javax.annotation.Nullable
   private String departureLocationCode;
 
   public static final String SERIALIZED_NAME_FLIGHT_NUMBER = "flight_number";
   @SerializedName(SERIALIZED_NAME_FLIGHT_NUMBER)
+  @javax.annotation.Nonnull
   private String flightNumber;
 
   public static final String SERIALIZED_NAME_SEGMENT_FARE = "segment_fare";
   @SerializedName(SERIALIZED_NAME_SEGMENT_FARE)
+  @javax.annotation.Nullable
   private Integer segmentFare;
 
   public static final String SERIALIZED_NAME_STOP_OVER_INDICATOR = "stop_over_indicator";
   @SerializedName(SERIALIZED_NAME_STOP_OVER_INDICATOR)
+  @javax.annotation.Nullable
   private String stopOverIndicator;
 
   public AirlineSegment() {
   }
 
-  public AirlineSegment arrivalLocationCode(String arrivalLocationCode) {
+  public AirlineSegment arrivalLocationCode(@javax.annotation.Nonnull String arrivalLocationCode) {
     this.arrivalLocationCode = arrivalLocationCode;
     return this;
   }
 
-   /**
+  /**
    * A standard airline routing code (airport code or location identifier) applicable to the arrival portion of this segment. 
    * @return arrivalLocationCode
-  **/
+   */
   @javax.annotation.Nonnull
   public String getArrivalLocationCode() {
     return arrivalLocationCode;
   }
 
-  public void setArrivalLocationCode(String arrivalLocationCode) {
+  public void setArrivalLocationCode(@javax.annotation.Nonnull String arrivalLocationCode) {
     this.arrivalLocationCode = arrivalLocationCode;
   }
 
 
-  public AirlineSegment carrierCode(String carrierCode) {
+  public AirlineSegment carrierCode(@javax.annotation.Nonnull String carrierCode) {
     this.carrierCode = carrierCode;
     return this;
   }
 
-   /**
+  /**
    * This field contains the two character airline designator code (air carrier code or airline code) that corresponds to the airline carrier applicable for up to four flight segments of this trip itinerary. 
    * @return carrierCode
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCarrierCode() {
     return carrierCode;
   }
 
-  public void setCarrierCode(String carrierCode) {
+  public void setCarrierCode(@javax.annotation.Nonnull String carrierCode) {
     this.carrierCode = carrierCode;
   }
 
 
-  public AirlineSegment classServiceCode(String classServiceCode) {
+  public AirlineSegment classServiceCode(@javax.annotation.Nonnull String classServiceCode) {
     this.classServiceCode = classServiceCode;
     return this;
   }
 
-   /**
+  /**
    * This field contains a code that corresponds to the fare class (A, B, C, D, Premium, Discounted, etc.) within the overall class of service (e.g., First Class, Business, Economy) applicable to this travel segment, as specified in the IATA Standard Code allocation table. 
    * @return classServiceCode
-  **/
+   */
   @javax.annotation.Nonnull
   public String getClassServiceCode() {
     return classServiceCode;
   }
 
-  public void setClassServiceCode(String classServiceCode) {
+  public void setClassServiceCode(@javax.annotation.Nonnull String classServiceCode) {
     this.classServiceCode = classServiceCode;
   }
 
 
-  public AirlineSegment departureDate(LocalDate departureDate) {
+  public AirlineSegment departureDate(@javax.annotation.Nonnull LocalDate departureDate) {
     this.departureDate = departureDate;
     return this;
   }
 
-   /**
+  /**
    * The Departure Date for the travel segment in ISO Date Format (yyyy-MM-dd).
    * @return departureDate
-  **/
+   */
   @javax.annotation.Nonnull
   public LocalDate getDepartureDate() {
     return departureDate;
   }
 
-  public void setDepartureDate(LocalDate departureDate) {
+  public void setDepartureDate(@javax.annotation.Nonnull LocalDate departureDate) {
     this.departureDate = departureDate;
   }
 
 
-  public AirlineSegment departureLocationCode(String departureLocationCode) {
+  public AirlineSegment departureLocationCode(@javax.annotation.Nullable String departureLocationCode) {
     this.departureLocationCode = departureLocationCode;
     return this;
   }
 
-   /**
+  /**
    * A standard airline routing code (airport code or location identifier) applicable to the departure portion of this segment. 
    * @return departureLocationCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getDepartureLocationCode() {
     return departureLocationCode;
   }
 
-  public void setDepartureLocationCode(String departureLocationCode) {
+  public void setDepartureLocationCode(@javax.annotation.Nullable String departureLocationCode) {
     this.departureLocationCode = departureLocationCode;
   }
 
 
-  public AirlineSegment flightNumber(String flightNumber) {
+  public AirlineSegment flightNumber(@javax.annotation.Nonnull String flightNumber) {
     this.flightNumber = flightNumber;
     return this;
   }
 
-   /**
+  /**
    * This field contains the carrier-assigned Flight Number for this travel segment.
    * @return flightNumber
-  **/
+   */
   @javax.annotation.Nonnull
   public String getFlightNumber() {
     return flightNumber;
   }
 
-  public void setFlightNumber(String flightNumber) {
+  public void setFlightNumber(@javax.annotation.Nonnull String flightNumber) {
     this.flightNumber = flightNumber;
   }
 
 
-  public AirlineSegment segmentFare(Integer segmentFare) {
+  public AirlineSegment segmentFare(@javax.annotation.Nullable Integer segmentFare) {
     this.segmentFare = segmentFare;
     return this;
   }
 
-   /**
+  /**
    * This field contains the total Fare for this travel segment.
    * @return segmentFare
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getSegmentFare() {
     return segmentFare;
   }
 
-  public void setSegmentFare(Integer segmentFare) {
+  public void setSegmentFare(@javax.annotation.Nullable Integer segmentFare) {
     this.segmentFare = segmentFare;
   }
 
 
-  public AirlineSegment stopOverIndicator(String stopOverIndicator) {
+  public AirlineSegment stopOverIndicator(@javax.annotation.Nullable String stopOverIndicator) {
     this.stopOverIndicator = stopOverIndicator;
     return this;
   }
 
-   /**
+  /**
    * O &#x3D; Stopover allowed, X &#x3D; Stopover not allowed.
    * @return stopOverIndicator
-  **/
+   */
   @javax.annotation.Nullable
   public String getStopOverIndicator() {
     return stopOverIndicator;
   }
 
-  public void setStopOverIndicator(String stopOverIndicator) {
+  public void setStopOverIndicator(@javax.annotation.Nullable String stopOverIndicator) {
     this.stopOverIndicator = stopOverIndicator;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the AirlineSegment instance itself
+   */
+  public AirlineSegment putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -254,12 +305,13 @@ public class AirlineSegment {
         Objects.equals(this.departureLocationCode, airlineSegment.departureLocationCode) &&
         Objects.equals(this.flightNumber, airlineSegment.flightNumber) &&
         Objects.equals(this.segmentFare, airlineSegment.segmentFare) &&
-        Objects.equals(this.stopOverIndicator, airlineSegment.stopOverIndicator);
+        Objects.equals(this.stopOverIndicator, airlineSegment.stopOverIndicator)&&
+        Objects.equals(this.additionalProperties, airlineSegment.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(arrivalLocationCode, carrierCode, classServiceCode, departureDate, departureLocationCode, flightNumber, segmentFare, stopOverIndicator);
+    return Objects.hash(arrivalLocationCode, carrierCode, classServiceCode, departureDate, departureLocationCode, flightNumber, segmentFare, stopOverIndicator, additionalProperties);
   }
 
   @Override
@@ -274,6 +326,7 @@ public class AirlineSegment {
     sb.append("    flightNumber: ").append(toIndentedString(flightNumber)).append("\n");
     sb.append("    segmentFare: ").append(toIndentedString(segmentFare)).append("\n");
     sb.append("    stopOverIndicator: ").append(toIndentedString(stopOverIndicator)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -314,24 +367,16 @@ public class AirlineSegment {
     openapiRequiredFields.add("flight_number");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to AirlineSegment
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AirlineSegment
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!AirlineSegment.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in AirlineSegment is not found in the empty JSON string", AirlineSegment.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!AirlineSegment.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AirlineSegment` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
@@ -377,6 +422,28 @@ public class AirlineSegment {
            @Override
            public void write(JsonWriter out, AirlineSegment value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -384,29 +451,50 @@ public class AirlineSegment {
            public AirlineSegment read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             AirlineSegment instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of AirlineSegment given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of AirlineSegment
-  * @throws IOException if the JSON string is invalid with respect to AirlineSegment
-  */
+  /**
+   * Create an instance of AirlineSegment given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AirlineSegment
+   * @throws IOException if the JSON string is invalid with respect to AirlineSegment
+   */
   public static AirlineSegment fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AirlineSegment.class);
   }
 
- /**
-  * Convert an instance of AirlineSegment to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of AirlineSegment to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

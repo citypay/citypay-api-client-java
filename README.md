@@ -2,8 +2,9 @@
 
 [![Build Status](https://github.com/citypay/citypay-api-client-java/actions/workflows/maven.yml/badge.svg)](https://github.com/citypay/citypay-api-client-java/actions/workflows/maven.yml)
 CityPay Payment API
-- API version: 6.6.40
-  - Build date: 2024-04-22T13:59:31.520907161Z[Etc/UTC]
+- API version: 6.9.2
+  - Build date: 2025-06-19T10:43:48.671338044Z[Etc/UTC]
+  - Generator version: 7.13.0
 
 
 Welcome to the CityPay API, a robust HTTP API payment solution designed for seamless server-to-server 
@@ -73,7 +74,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.citypay</groupId>
   <artifactId>citypay-api-client-java</artifactId>
-  <version>1.1.5</version>
+  <version>1.1.6</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -87,7 +88,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/citypay-api-client-java-1.1.5.jar`
+* `target/citypay-api-client-java-1.1.6.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -137,10 +138,10 @@ Class | Method | HTTP request | Description
 *AuthorisationAndPaymentApi* | [**binRangeLookupRequest**](docs/AuthorisationAndPaymentApi.md#binRangeLookupRequest) | **POST** /v6/bin | Bin Lookup
 *AuthorisationAndPaymentApi* | [**cResRequest**](docs/AuthorisationAndPaymentApi.md#cResRequest) | **POST** /v6/cres | CRes
 *AuthorisationAndPaymentApi* | [**captureRequest**](docs/AuthorisationAndPaymentApi.md#captureRequest) | **POST** /v6/capture | Capture
-*AuthorisationAndPaymentApi* | [**createPaymentIntent**](docs/AuthorisationAndPaymentApi.md#createPaymentIntent) | **POST** /v6/intent/create | Create a Payment Intent
-*AuthorisationAndPaymentApi* | [**paResRequest**](docs/AuthorisationAndPaymentApi.md#paResRequest) | **POST** /v6/pares | PaRes
+*AuthorisationAndPaymentApi* | [**cardTokenisationRequest**](docs/AuthorisationAndPaymentApi.md#cardTokenisationRequest) | **POST** /v6/tokenise | Card Tokenisation Request
 *AuthorisationAndPaymentApi* | [**refundRequest**](docs/AuthorisationAndPaymentApi.md#refundRequest) | **POST** /v6/refund | Refund
-*AuthorisationAndPaymentApi* | [**retrievalRequest**](docs/AuthorisationAndPaymentApi.md#retrievalRequest) | **POST** /v6/retrieve | Retrieval
+*AuthorisationAndPaymentApi* | [**retrievalRequest**](docs/AuthorisationAndPaymentApi.md#retrievalRequest) | **POST** /v6/retrieve | Transaction Retrieval
+*AuthorisationAndPaymentApi* | [**verificationRequest**](docs/AuthorisationAndPaymentApi.md#verificationRequest) | **POST** /v6/verify | Verification
 *AuthorisationAndPaymentApi* | [**voidRequest**](docs/AuthorisationAndPaymentApi.md#voidRequest) | **POST** /v6/void | Void
 *BatchProcessingApi* | [**batchProcessRequest**](docs/BatchProcessingApi.md#batchProcessRequest) | **POST** /v6/batch/process | Batch Process Request
 *BatchProcessingApi* | [**batchRetrieveRequest**](docs/BatchProcessingApi.md#batchRetrieveRequest) | **POST** /v6/batch/retrieve | Batch Retrieve Request
@@ -165,10 +166,12 @@ Class | Method | HTTP request | Description
 *OperationalFunctionsApi* | [**domainKeyGenRequest**](docs/OperationalFunctionsApi.md#domainKeyGenRequest) | **POST** /dk/gen | Domain Key Generation Request
 *OperationalFunctionsApi* | [**listMerchantsRequest**](docs/OperationalFunctionsApi.md#listMerchantsRequest) | **GET** /v6/merchants/{clientid} | List Merchants Request
 *OperationalFunctionsApi* | [**pingRequest**](docs/OperationalFunctionsApi.md#pingRequest) | **POST** /v6/ping | Ping Request
+*OperationalFunctionsApi* | [**registerTempKey**](docs/OperationalFunctionsApi.md#registerTempKey) | **POST** /v6/permissions/register-temp-ip | Register Temp Key
+*PaylinkApi* | [**paylinkTokenCloseRequest**](docs/PaylinkApi.md#paylinkTokenCloseRequest) | **PUT** /paylink/{token}/close | Close Paylink Token
 *PaylinkApi* | [**tokenAdjustmentRequest**](docs/PaylinkApi.md#tokenAdjustmentRequest) | **POST** /paylink/{token}/adjustment | Paylink Token Adjustment
+*PaylinkApi* | [**tokenAttachmentStatus**](docs/PaylinkApi.md#tokenAttachmentStatus) | **GET** /paylink/{token}/attachment-status/{attachment} | Checks an attachment status
 *PaylinkApi* | [**tokenCancelRequest**](docs/PaylinkApi.md#tokenCancelRequest) | **PUT** /paylink/{token}/cancel | Cancel a Paylink Token
 *PaylinkApi* | [**tokenChangesRequest**](docs/PaylinkApi.md#tokenChangesRequest) | **POST** /paylink/token/changes | Paylink Token Audit
-*PaylinkApi* | [**tokenCloseRequest**](docs/PaylinkApi.md#tokenCloseRequest) | **PUT** /paylink/{token}/close | Close Paylink Token
 *PaylinkApi* | [**tokenCreateBillPaymentRequest**](docs/PaylinkApi.md#tokenCreateBillPaymentRequest) | **POST** /paylink/bill-payment | Create Bill Payment Paylink Token
 *PaylinkApi* | [**tokenCreateRequest**](docs/PaylinkApi.md#tokenCreateRequest) | **POST** /paylink/create | Create Paylink Token
 *PaylinkApi* | [**tokenPurgeAttachmentsRequest**](docs/PaylinkApi.md#tokenPurgeAttachmentsRequest) | **PUT** /paylink/{token}/purge-attachments | Purges any attachments for a Paylink Token
@@ -176,11 +179,18 @@ Class | Method | HTTP request | Description
 *PaylinkApi* | [**tokenReopenRequest**](docs/PaylinkApi.md#tokenReopenRequest) | **PUT** /paylink/{token}/reopen | Reopen Paylink Token
 *PaylinkApi* | [**tokenResendNotificationRequest**](docs/PaylinkApi.md#tokenResendNotificationRequest) | **POST** /paylink/{token}/resend-notification | Resend a notification for Paylink Token
 *PaylinkApi* | [**tokenStatusRequest**](docs/PaylinkApi.md#tokenStatusRequest) | **GET** /paylink/{token}/status | Paylink Token Status
+*PaymentIntentApi* | [**createPaymentIntent**](docs/PaymentIntentApi.md#createPaymentIntent) | **POST** /v6/intent/create | Create a Payment Intent
+*PaymentIntentApi* | [**getPaymentIntent**](docs/PaymentIntentApi.md#getPaymentIntent) | **POST** /v6/intent/retrieve | Retrieves a Payment Intent
 *ReportingApi* | [**batchedTransactionReportRequest**](docs/ReportingApi.md#batchedTransactionReportRequest) | **POST** /v6/merchant-batch/{merchantid}/{batch_no}/transactions | Batch Transaction Report Request
 *ReportingApi* | [**merchantBatchReportRequest**](docs/ReportingApi.md#merchantBatchReportRequest) | **POST** /v6/merchant-batch/report | Merchant Batch Report Request
 *ReportingApi* | [**merchantBatchRequest**](docs/ReportingApi.md#merchantBatchRequest) | **GET** /v6/merchant-batch/{merchantid}/{batch_no} | Merchant Batch Request
 *ReportingApi* | [**remittanceRangeReport**](docs/ReportingApi.md#remittanceRangeReport) | **POST** /v6/remittance/report/{clientid} | Remittance Report Request
 *ReportingApi* | [**remittanceReportRequest**](docs/ReportingApi.md#remittanceReportRequest) | **GET** /v6/remittance/report/{clientid}/{date} | Remittance Date Report Request
+*ReportingApi* | [**transactionReportRequest**](docs/ReportingApi.md#transactionReportRequest) | **POST** /v6/transactions | Transaction Report Request
+*WebHooks* | [**webHookChannelCreateRequest**](docs/WebHooks.md#webHookChannelCreateRequest) | **POST** /hooks/channel/create | Web Hook Channel Create Request
+*WebHooks* | [**webHookChannelDeleteRequest**](docs/WebHooks.md#webHookChannelDeleteRequest) | **POST** /hooks/channel/delete | Web Hook Channel Delete Request
+*WebHooks* | [**webHookSubscriptionRequest**](docs/WebHooks.md#webHookSubscriptionRequest) | **POST** /hooks/subscribe | Web Hook Subscription Request
+*WebHooks* | [**webHookUnsubscribeRequest**](docs/WebHooks.md#webHookUnsubscribeRequest) | **POST** /hooks/unsubscribe | Web Hook Unsubscribe Request
 
 
 ## Documentation for Models
@@ -190,6 +200,8 @@ Class | Method | HTTP request | Description
  - [Acknowledgement](docs/Acknowledgement.md)
  - [AclCheckRequest](docs/AclCheckRequest.md)
  - [AclCheckResponseModel](docs/AclCheckResponseModel.md)
+ - [AdjustmentCondition](docs/AdjustmentCondition.md)
+ - [Adjustments](docs/Adjustments.md)
  - [AirlineAdvice](docs/AirlineAdvice.md)
  - [AirlineSegment](docs/AirlineSegment.md)
  - [AuthReference](docs/AuthReference.md)
@@ -210,6 +222,8 @@ Class | Method | HTTP request | Description
  - [Card](docs/Card.md)
  - [CardHolderAccount](docs/CardHolderAccount.md)
  - [CardStatus](docs/CardStatus.md)
+ - [CardTokenisationRequest](docs/CardTokenisationRequest.md)
+ - [CardTokenisationResponse](docs/CardTokenisationResponse.md)
  - [ChargeRequest](docs/ChargeRequest.md)
  - [CheckBatchStatus](docs/CheckBatchStatus.md)
  - [CheckBatchStatusResponse](docs/CheckBatchStatusResponse.md)
@@ -224,6 +238,8 @@ Class | Method | HTTP request | Description
  - [EventDataModel](docs/EventDataModel.md)
  - [Exists](docs/Exists.md)
  - [ExternalMPI](docs/ExternalMPI.md)
+ - [FindPaymentIntentRequest](docs/FindPaymentIntentRequest.md)
+ - [HttpConfig](docs/HttpConfig.md)
  - [ListMerchantsResponse](docs/ListMerchantsResponse.md)
  - [MCC6012](docs/MCC6012.md)
  - [Merchant](docs/Merchant.md)
@@ -231,7 +247,6 @@ Class | Method | HTTP request | Description
  - [MerchantBatchReportResponse](docs/MerchantBatchReportResponse.md)
  - [MerchantBatchResponse](docs/MerchantBatchResponse.md)
  - [NetSummaryResponse](docs/NetSummaryResponse.md)
- - [PaResAuthRequest](docs/PaResAuthRequest.md)
  - [PaylinkAddress](docs/PaylinkAddress.md)
  - [PaylinkAdjustmentRequest](docs/PaylinkAdjustmentRequest.md)
  - [PaylinkAttachmentRequest](docs/PaylinkAttachmentRequest.md)
@@ -255,13 +270,15 @@ Class | Method | HTTP request | Description
  - [PaylinkTokenStatusChangeRequest](docs/PaylinkTokenStatusChangeRequest.md)
  - [PaylinkTokenStatusChangeResponse](docs/PaylinkTokenStatusChangeResponse.md)
  - [PaylinkUI](docs/PaylinkUI.md)
- - [PaymentIntent](docs/PaymentIntent.md)
  - [PaymentIntentReference](docs/PaymentIntentReference.md)
+ - [PaymentIntentRequestModel](docs/PaymentIntentRequestModel.md)
+ - [PaymentIntentResponseModel](docs/PaymentIntentResponseModel.md)
  - [Ping](docs/Ping.md)
  - [ProcessBatchRequest](docs/ProcessBatchRequest.md)
  - [ProcessBatchResponse](docs/ProcessBatchResponse.md)
  - [RefundRequest](docs/RefundRequest.md)
  - [RegisterCard](docs/RegisterCard.md)
+ - [RegisterIpModel](docs/RegisterIpModel.md)
  - [RemittanceData](docs/RemittanceData.md)
  - [RemittanceReportRequest](docs/RemittanceReportRequest.md)
  - [RemittanceReportResponse](docs/RemittanceReportResponse.md)
@@ -270,7 +287,15 @@ Class | Method | HTTP request | Description
  - [RetrieveRequest](docs/RetrieveRequest.md)
  - [ThreeDSecure](docs/ThreeDSecure.md)
  - [TokenisationResponseModel](docs/TokenisationResponseModel.md)
+ - [TransactionReportRequest](docs/TransactionReportRequest.md)
+ - [VerificationRequest](docs/VerificationRequest.md)
  - [VoidRequest](docs/VoidRequest.md)
+ - [WebHookChannelCreateRequest](docs/WebHookChannelCreateRequest.md)
+ - [WebHookChannelCreateResponse](docs/WebHookChannelCreateResponse.md)
+ - [WebHookChannelDeleteRequest](docs/WebHookChannelDeleteRequest.md)
+ - [WebHookSubscriptionRequest](docs/WebHookSubscriptionRequest.md)
+ - [WebHookSubscriptionResponse](docs/WebHookSubscriptionResponse.md)
+ - [WebHookUnsubscribeRequest](docs/WebHookUnsubscribeRequest.md)
 
 
 <a id="documentation-for-authorization"></a>

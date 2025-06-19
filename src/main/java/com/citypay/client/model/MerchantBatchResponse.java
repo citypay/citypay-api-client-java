@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,167 +52,218 @@ import com.citypay.client.JSON;
 public class MerchantBatchResponse {
   public static final String SERIALIZED_NAME_BATCH_CLOSED = "batch_closed";
   @SerializedName(SERIALIZED_NAME_BATCH_CLOSED)
+  @javax.annotation.Nullable
   private OffsetDateTime batchClosed;
 
   public static final String SERIALIZED_NAME_BATCH_NO = "batch_no";
   @SerializedName(SERIALIZED_NAME_BATCH_NO)
+  @javax.annotation.Nullable
   private String batchNo;
 
   public static final String SERIALIZED_NAME_BATCH_STATUS = "batch_status";
   @SerializedName(SERIALIZED_NAME_BATCH_STATUS)
+  @javax.annotation.Nullable
   private String batchStatus;
 
   public static final String SERIALIZED_NAME_BATCH_STATUS_CODE = "batch_status_code";
   @SerializedName(SERIALIZED_NAME_BATCH_STATUS_CODE)
+  @javax.annotation.Nullable
   private String batchStatusCode;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_MERCHANTID = "merchantid";
   @SerializedName(SERIALIZED_NAME_MERCHANTID)
+  @javax.annotation.Nullable
   private Integer merchantid;
 
   public static final String SERIALIZED_NAME_NET_SUMMARY = "net_summary";
   @SerializedName(SERIALIZED_NAME_NET_SUMMARY)
+  @javax.annotation.Nullable
   private NetSummaryResponse netSummary;
 
   public MerchantBatchResponse() {
   }
 
-  public MerchantBatchResponse batchClosed(OffsetDateTime batchClosed) {
+  public MerchantBatchResponse batchClosed(@javax.annotation.Nullable OffsetDateTime batchClosed) {
     this.batchClosed = batchClosed;
     return this;
   }
 
-   /**
+  /**
    * The date and time when the batch was closed. This is represented in ISO 8601 format (e.g., YYYY-MM-DDTHH:MM:SSZ) and indicates when the batch processing was completed.
    * @return batchClosed
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getBatchClosed() {
     return batchClosed;
   }
 
-  public void setBatchClosed(OffsetDateTime batchClosed) {
+  public void setBatchClosed(@javax.annotation.Nullable OffsetDateTime batchClosed) {
     this.batchClosed = batchClosed;
   }
 
 
-  public MerchantBatchResponse batchNo(String batchNo) {
+  public MerchantBatchResponse batchNo(@javax.annotation.Nullable String batchNo) {
     this.batchNo = batchNo;
     return this;
   }
 
-   /**
+  /**
    * The incremental identifier of the batch. This number is used to track and reference the batch in subsequent operations or inquiries.
    * @return batchNo
-  **/
+   */
   @javax.annotation.Nullable
   public String getBatchNo() {
     return batchNo;
   }
 
-  public void setBatchNo(String batchNo) {
+  public void setBatchNo(@javax.annotation.Nullable String batchNo) {
     this.batchNo = batchNo;
   }
 
 
-  public MerchantBatchResponse batchStatus(String batchStatus) {
+  public MerchantBatchResponse batchStatus(@javax.annotation.Nullable String batchStatus) {
     this.batchStatus = batchStatus;
     return this;
   }
 
-   /**
+  /**
    * A descriptive string detailing the current status of the batch. This status provides a human-readable explanation of the batch&#39;s processing state.
    * @return batchStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getBatchStatus() {
     return batchStatus;
   }
 
-  public void setBatchStatus(String batchStatus) {
+  public void setBatchStatus(@javax.annotation.Nullable String batchStatus) {
     this.batchStatus = batchStatus;
   }
 
 
-  public MerchantBatchResponse batchStatusCode(String batchStatusCode) {
+  public MerchantBatchResponse batchStatusCode(@javax.annotation.Nullable String batchStatusCode) {
     this.batchStatusCode = batchStatusCode;
     return this;
   }
 
-   /**
+  /**
    * A batch status code that represents the processing state of the batch. Batches will be one of  - &#39;O&#39; defining the batch is open for settlement and not yet settled  - &#39;X&#39; defines that the batch is external to our systems and managed elsewhere  - &#39;C&#39; defines that the batch is cancelled and not settled  - &#39;S&#39; defines that the batch has been settled and remitted. 
    * @return batchStatusCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getBatchStatusCode() {
     return batchStatusCode;
   }
 
-  public void setBatchStatusCode(String batchStatusCode) {
+  public void setBatchStatusCode(@javax.annotation.Nullable String batchStatusCode) {
     this.batchStatusCode = batchStatusCode;
   }
 
 
-  public MerchantBatchResponse currency(String currency) {
+  public MerchantBatchResponse currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * The currency of the batch.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public MerchantBatchResponse merchantid(Integer merchantid) {
+  public MerchantBatchResponse merchantid(@javax.annotation.Nullable Integer merchantid) {
     this.merchantid = merchantid;
     return this;
   }
 
-   /**
+  /**
    * The Merchant ID (MID) associated with the batch. This identifier specifies which merchant account the batch was processed for, linking transactions to the merchant.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMerchantid() {
     return merchantid;
   }
 
-  public void setMerchantid(Integer merchantid) {
+  public void setMerchantid(@javax.annotation.Nullable Integer merchantid) {
     this.merchantid = merchantid;
   }
 
 
-  public MerchantBatchResponse netSummary(NetSummaryResponse netSummary) {
+  public MerchantBatchResponse netSummary(@javax.annotation.Nullable NetSummaryResponse netSummary) {
     this.netSummary = netSummary;
     return this;
   }
 
-   /**
+  /**
    * Get netSummary
    * @return netSummary
-  **/
+   */
   @javax.annotation.Nullable
   public NetSummaryResponse getNetSummary() {
     return netSummary;
   }
 
-  public void setNetSummary(NetSummaryResponse netSummary) {
+  public void setNetSummary(@javax.annotation.Nullable NetSummaryResponse netSummary) {
     this.netSummary = netSummary;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the MerchantBatchResponse instance itself
+   */
+  public MerchantBatchResponse putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -231,12 +281,13 @@ public class MerchantBatchResponse {
         Objects.equals(this.batchStatusCode, merchantBatchResponse.batchStatusCode) &&
         Objects.equals(this.currency, merchantBatchResponse.currency) &&
         Objects.equals(this.merchantid, merchantBatchResponse.merchantid) &&
-        Objects.equals(this.netSummary, merchantBatchResponse.netSummary);
+        Objects.equals(this.netSummary, merchantBatchResponse.netSummary)&&
+        Objects.equals(this.additionalProperties, merchantBatchResponse.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(batchClosed, batchNo, batchStatus, batchStatusCode, currency, merchantid, netSummary);
+    return Objects.hash(batchClosed, batchNo, batchStatus, batchStatusCode, currency, merchantid, netSummary, additionalProperties);
   }
 
   @Override
@@ -250,6 +301,7 @@ public class MerchantBatchResponse {
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    merchantid: ").append(toIndentedString(merchantid)).append("\n");
     sb.append("    netSummary: ").append(toIndentedString(netSummary)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -284,24 +336,16 @@ public class MerchantBatchResponse {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to MerchantBatchResponse
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MerchantBatchResponse
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!MerchantBatchResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in MerchantBatchResponse is not found in the empty JSON string", MerchantBatchResponse.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!MerchantBatchResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MerchantBatchResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -338,6 +382,28 @@ public class MerchantBatchResponse {
            @Override
            public void write(JsonWriter out, MerchantBatchResponse value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -345,29 +411,50 @@ public class MerchantBatchResponse {
            public MerchantBatchResponse read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             MerchantBatchResponse instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of MerchantBatchResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MerchantBatchResponse
-  * @throws IOException if the JSON string is invalid with respect to MerchantBatchResponse
-  */
+  /**
+   * Create an instance of MerchantBatchResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MerchantBatchResponse
+   * @throws IOException if the JSON string is invalid with respect to MerchantBatchResponse
+   */
   public static MerchantBatchResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MerchantBatchResponse.class);
   }
 
- /**
-  * Convert an instance of MerchantBatchResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MerchantBatchResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

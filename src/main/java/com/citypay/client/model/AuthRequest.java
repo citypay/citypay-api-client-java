@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -44,7 +45,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -59,465 +59,618 @@ import com.citypay.client.JSON;
 public class AuthRequest {
   public static final String SERIALIZED_NAME_AIRLINE_DATA = "airline_data";
   @SerializedName(SERIALIZED_NAME_AIRLINE_DATA)
+  @javax.annotation.Nullable
   private AirlineAdvice airlineData;
 
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
+  @javax.annotation.Nonnull
   private Integer amount;
 
   public static final String SERIALIZED_NAME_AVS_POSTCODE_POLICY = "avs_postcode_policy";
   @SerializedName(SERIALIZED_NAME_AVS_POSTCODE_POLICY)
+  @javax.annotation.Nullable
   private String avsPostcodePolicy;
 
   public static final String SERIALIZED_NAME_BILL_TO = "bill_to";
   @SerializedName(SERIALIZED_NAME_BILL_TO)
+  @javax.annotation.Nullable
   private ContactDetails billTo;
+
+  public static final String SERIALIZED_NAME_CARDHOLDER_AGREEMENT = "cardholder_agreement";
+  @SerializedName(SERIALIZED_NAME_CARDHOLDER_AGREEMENT)
+  @javax.annotation.Nullable
+  private String cardholderAgreement;
 
   public static final String SERIALIZED_NAME_CARDNUMBER = "cardnumber";
   @SerializedName(SERIALIZED_NAME_CARDNUMBER)
+  @javax.annotation.Nullable
   private String cardnumber;
+
+  public static final String SERIALIZED_NAME_CP_CARD_TOKEN = "cp_card_token";
+  @SerializedName(SERIALIZED_NAME_CP_CARD_TOKEN)
+  @javax.annotation.Nullable
+  private String cpCardToken;
 
   public static final String SERIALIZED_NAME_CSC = "csc";
   @SerializedName(SERIALIZED_NAME_CSC)
+  @javax.annotation.Nullable
   private String csc;
 
   public static final String SERIALIZED_NAME_CSC_POLICY = "csc_policy";
   @SerializedName(SERIALIZED_NAME_CSC_POLICY)
+  @javax.annotation.Nullable
   private String cscPolicy;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_DUPLICATE_POLICY = "duplicate_policy";
   @SerializedName(SERIALIZED_NAME_DUPLICATE_POLICY)
+  @javax.annotation.Nullable
   private String duplicatePolicy;
 
   public static final String SERIALIZED_NAME_EVENT_MANAGEMENT = "event_management";
   @SerializedName(SERIALIZED_NAME_EVENT_MANAGEMENT)
+  @javax.annotation.Nullable
   private EventDataModel eventManagement;
 
   public static final String SERIALIZED_NAME_EXPMONTH = "expmonth";
   @SerializedName(SERIALIZED_NAME_EXPMONTH)
+  @javax.annotation.Nullable
   private Integer expmonth;
 
   public static final String SERIALIZED_NAME_EXPYEAR = "expyear";
   @SerializedName(SERIALIZED_NAME_EXPYEAR)
+  @javax.annotation.Nullable
   private Integer expyear;
 
   public static final String SERIALIZED_NAME_EXTERNAL_MPI = "external_mpi";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_MPI)
+  @javax.annotation.Nullable
   private ExternalMPI externalMpi;
 
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
+  @javax.annotation.Nonnull
   private String identifier;
+
+  public static final String SERIALIZED_NAME_INITIATION = "initiation";
+  @SerializedName(SERIALIZED_NAME_INITIATION)
+  @javax.annotation.Nullable
+  private String initiation;
 
   public static final String SERIALIZED_NAME_MATCH_AVSA = "match_avsa";
   @SerializedName(SERIALIZED_NAME_MATCH_AVSA)
+  @javax.annotation.Nullable
   private String matchAvsa;
 
   public static final String SERIALIZED_NAME_MCC6012 = "mcc6012";
   @SerializedName(SERIALIZED_NAME_MCC6012)
+  @javax.annotation.Nullable
   private MCC6012 mcc6012;
 
   public static final String SERIALIZED_NAME_MERCHANTID = "merchantid";
   @SerializedName(SERIALIZED_NAME_MERCHANTID)
+  @javax.annotation.Nonnull
   private Integer merchantid;
 
   public static final String SERIALIZED_NAME_NAME_ON_CARD = "name_on_card";
   @SerializedName(SERIALIZED_NAME_NAME_ON_CARD)
+  @javax.annotation.Nullable
   private String nameOnCard;
+
+  public static final String SERIALIZED_NAME_PAYMENT_INTENT_ID = "payment_intent_id";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_INTENT_ID)
+  @javax.annotation.Nullable
+  private String paymentIntentId;
+
+  public static final String SERIALIZED_NAME_PRE_AUTH = "pre_auth";
+  @SerializedName(SERIALIZED_NAME_PRE_AUTH)
+  @javax.annotation.Nullable
+  private String preAuth;
 
   public static final String SERIALIZED_NAME_SHIP_TO = "ship_to";
   @SerializedName(SERIALIZED_NAME_SHIP_TO)
+  @javax.annotation.Nullable
   private ContactDetails shipTo;
 
   public static final String SERIALIZED_NAME_TAG = "tag";
   @SerializedName(SERIALIZED_NAME_TAG)
-  private List<String> tag;
+  @javax.annotation.Nullable
+  private List<String> tag = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_THREEDS_TOKEN = "threeds_token";
+  @SerializedName(SERIALIZED_NAME_THREEDS_TOKEN)
+  @javax.annotation.Nullable
+  private String threedsToken;
 
   public static final String SERIALIZED_NAME_THREEDSECURE = "threedsecure";
   @SerializedName(SERIALIZED_NAME_THREEDSECURE)
+  @javax.annotation.Nullable
   private ThreeDSecure threedsecure;
 
   public static final String SERIALIZED_NAME_TRANS_INFO = "trans_info";
   @SerializedName(SERIALIZED_NAME_TRANS_INFO)
+  @javax.annotation.Nullable
   private String transInfo;
 
   public static final String SERIALIZED_NAME_TRANS_TYPE = "trans_type";
   @SerializedName(SERIALIZED_NAME_TRANS_TYPE)
+  @javax.annotation.Nullable
   private String transType;
+
+  public static final String SERIALIZED_NAME_UUID = "uuid";
+  @SerializedName(SERIALIZED_NAME_UUID)
+  @javax.annotation.Nullable
+  private UUID uuid;
 
   public AuthRequest() {
   }
 
-  public AuthRequest airlineData(AirlineAdvice airlineData) {
+  public AuthRequest airlineData(@javax.annotation.Nullable AirlineAdvice airlineData) {
     this.airlineData = airlineData;
     return this;
   }
 
-   /**
+  /**
    * Get airlineData
    * @return airlineData
-  **/
+   */
   @javax.annotation.Nullable
   public AirlineAdvice getAirlineData() {
     return airlineData;
   }
 
-  public void setAirlineData(AirlineAdvice airlineData) {
+  public void setAirlineData(@javax.annotation.Nullable AirlineAdvice airlineData) {
     this.airlineData = airlineData;
   }
 
 
-  public AuthRequest amount(Integer amount) {
+  public AuthRequest amount(@javax.annotation.Nonnull Integer amount) {
     this.amount = amount;
     return this;
   }
 
-   /**
+  /**
    * The amount to authorise in the lowest unit of currency with a variable length to a maximum of 12 digits.  No decimal points are to be included and no divisional characters such as 1,024.  The amount should be the total amount required for the transaction.  For example with GBP £1,021.95 the amount value is 102195. 
    * @return amount
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getAmount() {
     return amount;
   }
 
-  public void setAmount(Integer amount) {
+  public void setAmount(@javax.annotation.Nonnull Integer amount) {
     this.amount = amount;
   }
 
 
-  public AuthRequest avsPostcodePolicy(String avsPostcodePolicy) {
+  public AuthRequest avsPostcodePolicy(@javax.annotation.Nullable String avsPostcodePolicy) {
     this.avsPostcodePolicy = avsPostcodePolicy;
     return this;
   }
 
-   /**
+  /**
    * A policy value which determines whether an AVS postcode policy is enforced or bypassed.  Values are:   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation. 
    * @return avsPostcodePolicy
-  **/
+   */
   @javax.annotation.Nullable
   public String getAvsPostcodePolicy() {
     return avsPostcodePolicy;
   }
 
-  public void setAvsPostcodePolicy(String avsPostcodePolicy) {
+  public void setAvsPostcodePolicy(@javax.annotation.Nullable String avsPostcodePolicy) {
     this.avsPostcodePolicy = avsPostcodePolicy;
   }
 
 
-  public AuthRequest billTo(ContactDetails billTo) {
+  public AuthRequest billTo(@javax.annotation.Nullable ContactDetails billTo) {
     this.billTo = billTo;
     return this;
   }
 
-   /**
+  /**
    * Get billTo
    * @return billTo
-  **/
+   */
   @javax.annotation.Nullable
   public ContactDetails getBillTo() {
     return billTo;
   }
 
-  public void setBillTo(ContactDetails billTo) {
+  public void setBillTo(@javax.annotation.Nullable ContactDetails billTo) {
     this.billTo = billTo;
   }
 
 
-  public AuthRequest cardnumber(String cardnumber) {
+  public AuthRequest cardholderAgreement(@javax.annotation.Nullable String cardholderAgreement) {
+    this.cardholderAgreement = cardholderAgreement;
+    return this;
+  }
+
+  /**
+   * Merchant-initiated transactions (MITs) are payments you trigger, where the cardholder has previously consented to you carrying out such payments. These may be scheduled (such as recurring payments and installments) or unscheduled (like account top-ups triggered by balance thresholds and no-show charges).  Scheduled These are regular payments using stored card details, like installments or a monthly subscription fee.  - &#x60;I&#x60; Instalment - A single purchase of goods or services billed to a cardholder in multiple transactions, over a period of time agreed by the cardholder and you.  - &#x60;R&#x60; Recurring - Transactions processed at fixed, regular intervals not to exceed one year between transactions, representing an agreement between a cardholder and you to purchase goods or services provided over a period of time.  Unscheduled These are payments using stored card details that do not occur on a regular schedule, like top-ups for a digital wallet triggered by the balance falling below a certain threshold.  - &#x60;A&#x60; Reauthorisation - a purchase made after the original purchase. A common scenario is delayed/split shipments.  - &#x60;C&#x60; Unscheduled Payment - A transaction using a stored credential for a fixed or variable amount that does not occur on a scheduled or regularly occurring transaction date. This includes account top-ups triggered by balance thresholds.  - &#x60;D&#x60; Delayed Charge - A delayed charge is typically used in hotel, cruise lines and vehicle rental environments to perform a supplemental account charge after original services are rendered.  - &#x60;L&#x60; Incremental - An incremental authorisation is typically found in hotel and car rental environments, where the cardholder has agreed to pay for any service incurred during the duration of the contract. An incremental authorisation is where you need to seek authorisation of further funds in addition to what you have originally requested. A common scenario is additional services charged to the contract, such as extending a stay in a hotel.  - &#x60;S&#x60; Resubmission - When the original purchase occurred, but you were not able to get authorisation at the time the goods or services were provided. It should be only used where the goods or services have already been provided, but the authorisation request is declined for insufficient funds.  - &#x60;X&#x60; No-show - A no-show is a transaction where you are enabled to charge for services which the cardholder entered into an agreement to purchase, but the cardholder did not meet the terms of the agreement.  - &#x60;N&#x60; Not Applicable - For all other transactions the value will be not applicable. 
+   * @return cardholderAgreement
+   */
+  @javax.annotation.Nullable
+  public String getCardholderAgreement() {
+    return cardholderAgreement;
+  }
+
+  public void setCardholderAgreement(@javax.annotation.Nullable String cardholderAgreement) {
+    this.cardholderAgreement = cardholderAgreement;
+  }
+
+
+  public AuthRequest cardnumber(@javax.annotation.Nullable String cardnumber) {
     this.cardnumber = cardnumber;
     return this;
   }
 
-   /**
+  /**
    * The card number (PAN) with a variable length to a maximum of 21 digits in numerical form. Any non numeric characters will be stripped out of the card number, this includes whitespace or separators internal of the provided value.  The card number must be treated as sensitive data. We only provide an obfuscated value in logging and reporting.  The plaintext value is encrypted in our database using AES 256 GMC bit encryption for settlement or refund purposes.  When providing the card number to our gateway through the authorisation API you will be handling the card data on your application. This will require further PCI controls to be in place and this value must never be stored. 
    * @return cardnumber
-  **/
-  @javax.annotation.Nonnull
+   */
+  @javax.annotation.Nullable
   public String getCardnumber() {
     return cardnumber;
   }
 
-  public void setCardnumber(String cardnumber) {
+  public void setCardnumber(@javax.annotation.Nullable String cardnumber) {
     this.cardnumber = cardnumber;
   }
 
 
-  public AuthRequest csc(String csc) {
+  public AuthRequest cpCardToken(@javax.annotation.Nullable String cpCardToken) {
+    this.cpCardToken = cpCardToken;
+    return this;
+  }
+
+  /**
+   * The card token previously stored and created by the /tokenise route.
+   * @return cpCardToken
+   */
+  @javax.annotation.Nullable
+  public String getCpCardToken() {
+    return cpCardToken;
+  }
+
+  public void setCpCardToken(@javax.annotation.Nullable String cpCardToken) {
+    this.cpCardToken = cpCardToken;
+  }
+
+
+  public AuthRequest csc(@javax.annotation.Nullable String csc) {
     this.csc = csc;
     return this;
   }
 
-   /**
+  /**
    * The Card Security Code (CSC) (also known as CV2/CVV2) is normally found on the back of the card (American Express has it on the front). The value helps to identify possession of the card as it is not available within the chip or magnetic swipe.  When forwarding the CSC, please ensure the value is a string as some values start with 0 and this will be stripped out by any integer parsing.  The CSC number aids fraud prevention in Mail Order and Internet payments.  Business rules are available on your account to identify whether to accept or decline transactions based on mismatched results of the CSC.  The Payment Card Industry (PCI) requires that at no stage of a transaction should the CSC be stored.  This applies to all entities handling card data.  It should also not be used in any hashing process.  CityPay do not store the value and have no method of retrieving the value once the transaction has been processed. For this reason, duplicate checking is unable to determine the CSC in its duplication check algorithm. 
    * @return csc
-  **/
+   */
   @javax.annotation.Nullable
   public String getCsc() {
     return csc;
   }
 
-  public void setCsc(String csc) {
+  public void setCsc(@javax.annotation.Nullable String csc) {
     this.csc = csc;
   }
 
 
-  public AuthRequest cscPolicy(String cscPolicy) {
+  public AuthRequest cscPolicy(@javax.annotation.Nullable String cscPolicy) {
     this.cscPolicy = cscPolicy;
     return this;
   }
 
-   /**
+  /**
    * A policy value which determines whether a CSC policy is enforced or bypassed.  Values are:   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the CSC value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the CSC did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send the CSC details for authorisation. 
    * @return cscPolicy
-  **/
+   */
   @javax.annotation.Nullable
   public String getCscPolicy() {
     return cscPolicy;
   }
 
-  public void setCscPolicy(String cscPolicy) {
+  public void setCscPolicy(@javax.annotation.Nullable String cscPolicy) {
     this.cscPolicy = cscPolicy;
   }
 
 
-  public AuthRequest currency(String currency) {
+  public AuthRequest currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * The processing currency for the transaction. Will default to the merchant account currency.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public AuthRequest duplicatePolicy(String duplicatePolicy) {
+  public AuthRequest duplicatePolicy(@javax.annotation.Nullable String duplicatePolicy) {
     this.duplicatePolicy = duplicatePolicy;
     return this;
   }
 
-   /**
+  /**
    * A policy value which determines whether a duplication policy is enforced or bypassed. A duplication check has a window of time set against your account within which it can action. If a previous transaction with matching values occurred within the window, any subsequent transaction will result in a T001 result.  Values are   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be checked for duplication within the duplication window.   &#x60;2&#x60; to bypass. Transactions that are bypassed will not be checked for duplication within the duplication window.   &#x60;3&#x60; to ignore. Transactions that are ignored will have the same affect as bypass. 
    * @return duplicatePolicy
-  **/
+   */
   @javax.annotation.Nullable
   public String getDuplicatePolicy() {
     return duplicatePolicy;
   }
 
-  public void setDuplicatePolicy(String duplicatePolicy) {
+  public void setDuplicatePolicy(@javax.annotation.Nullable String duplicatePolicy) {
     this.duplicatePolicy = duplicatePolicy;
   }
 
 
-  public AuthRequest eventManagement(EventDataModel eventManagement) {
+  public AuthRequest eventManagement(@javax.annotation.Nullable EventDataModel eventManagement) {
     this.eventManagement = eventManagement;
     return this;
   }
 
-   /**
+  /**
    * Get eventManagement
    * @return eventManagement
-  **/
+   */
   @javax.annotation.Nullable
   public EventDataModel getEventManagement() {
     return eventManagement;
   }
 
-  public void setEventManagement(EventDataModel eventManagement) {
+  public void setEventManagement(@javax.annotation.Nullable EventDataModel eventManagement) {
     this.eventManagement = eventManagement;
   }
 
 
-  public AuthRequest expmonth(Integer expmonth) {
+  public AuthRequest expmonth(@javax.annotation.Nullable Integer expmonth) {
     this.expmonth = expmonth;
     return this;
   }
 
-   /**
+  /**
    * The month of expiry of the card. The month value should be a numerical value between 1 and 12. 
    * minimum: 1
    * maximum: 12
    * @return expmonth
-  **/
-  @javax.annotation.Nonnull
+   */
+  @javax.annotation.Nullable
   public Integer getExpmonth() {
     return expmonth;
   }
 
-  public void setExpmonth(Integer expmonth) {
+  public void setExpmonth(@javax.annotation.Nullable Integer expmonth) {
     this.expmonth = expmonth;
   }
 
 
-  public AuthRequest expyear(Integer expyear) {
+  public AuthRequest expyear(@javax.annotation.Nullable Integer expyear) {
     this.expyear = expyear;
     return this;
   }
 
-   /**
+  /**
    * The year of expiry of the card. 
    * minimum: 2000
    * maximum: 2100
    * @return expyear
-  **/
-  @javax.annotation.Nonnull
+   */
+  @javax.annotation.Nullable
   public Integer getExpyear() {
     return expyear;
   }
 
-  public void setExpyear(Integer expyear) {
+  public void setExpyear(@javax.annotation.Nullable Integer expyear) {
     this.expyear = expyear;
   }
 
 
-  public AuthRequest externalMpi(ExternalMPI externalMpi) {
+  public AuthRequest externalMpi(@javax.annotation.Nullable ExternalMPI externalMpi) {
     this.externalMpi = externalMpi;
     return this;
   }
 
-   /**
+  /**
    * Get externalMpi
    * @return externalMpi
-  **/
+   */
   @javax.annotation.Nullable
   public ExternalMPI getExternalMpi() {
     return externalMpi;
   }
 
-  public void setExternalMpi(ExternalMPI externalMpi) {
+  public void setExternalMpi(@javax.annotation.Nullable ExternalMPI externalMpi) {
     this.externalMpi = externalMpi;
   }
 
 
-  public AuthRequest identifier(String identifier) {
+  public AuthRequest identifier(@javax.annotation.Nonnull String identifier) {
     this.identifier = identifier;
     return this;
   }
 
-   /**
+  /**
    * The identifier of the transaction to process. The value should be a valid reference and may be used to perform  post processing actions and to aid in reconciliation of transactions.  The value should be a valid printable string with ASCII character ranges from 0x32 to 0x127.  The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier) this will aid in ensuring each transaction is identifiable.  When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent request will ensure that a transaction is considered as different. 
    * @return identifier
-  **/
+   */
   @javax.annotation.Nonnull
   public String getIdentifier() {
     return identifier;
   }
 
-  public void setIdentifier(String identifier) {
+  public void setIdentifier(@javax.annotation.Nonnull String identifier) {
     this.identifier = identifier;
   }
 
 
-  public AuthRequest matchAvsa(String matchAvsa) {
+  public AuthRequest initiation(@javax.annotation.Nullable String initiation) {
+    this.initiation = initiation;
+    return this;
+  }
+
+  /**
+   * Transactions charged using the API are defined as:  **Cardholder Initiated**: A _cardholder initiated transaction_ (CIT) is where the cardholder selects the card for use for a purchase using previously stored details. An example would be a customer buying an item from your website after being present with their saved card details at checkout.  **Merchant Intiated**: A _merchant initiated transaction_ (MIT) is an authorisation initiated where you as the  merchant submit a cardholders previously stored details without the cardholder&#39;s participation. An example would  be a subscription to a membership scheme to debit their card monthly.  MITs have different reasons such as reauthorisation, delayed, unscheduled, incremental, recurring, instalment, no-show or resubmission.  The following values apply   - &#x60;M&#x60; - specifies that the transaction is initiated by the merchant   - &#x60;C&#x60; - specifies that the transaction is initiated by the cardholder  Where transactions are merchant initiated, a valid cardholder agreement must be defined. 
+   * @return initiation
+   */
+  @javax.annotation.Nullable
+  public String getInitiation() {
+    return initiation;
+  }
+
+  public void setInitiation(@javax.annotation.Nullable String initiation) {
+    this.initiation = initiation;
+  }
+
+
+  public AuthRequest matchAvsa(@javax.annotation.Nullable String matchAvsa) {
     this.matchAvsa = matchAvsa;
     return this;
   }
 
-   /**
+  /**
    * A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.  Values are:   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the address did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation. 
    * @return matchAvsa
-  **/
+   */
   @javax.annotation.Nullable
   public String getMatchAvsa() {
     return matchAvsa;
   }
 
-  public void setMatchAvsa(String matchAvsa) {
+  public void setMatchAvsa(@javax.annotation.Nullable String matchAvsa) {
     this.matchAvsa = matchAvsa;
   }
 
 
-  public AuthRequest mcc6012(MCC6012 mcc6012) {
+  public AuthRequest mcc6012(@javax.annotation.Nullable MCC6012 mcc6012) {
     this.mcc6012 = mcc6012;
     return this;
   }
 
-   /**
+  /**
    * Get mcc6012
    * @return mcc6012
-  **/
+   */
   @javax.annotation.Nullable
   public MCC6012 getMcc6012() {
     return mcc6012;
   }
 
-  public void setMcc6012(MCC6012 mcc6012) {
+  public void setMcc6012(@javax.annotation.Nullable MCC6012 mcc6012) {
     this.mcc6012 = mcc6012;
   }
 
 
-  public AuthRequest merchantid(Integer merchantid) {
+  public AuthRequest merchantid(@javax.annotation.Nonnull Integer merchantid) {
     this.merchantid = merchantid;
     return this;
   }
 
-   /**
+  /**
    * Identifies the merchant account to perform processing for.
    * @return merchantid
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getMerchantid() {
     return merchantid;
   }
 
-  public void setMerchantid(Integer merchantid) {
+  public void setMerchantid(@javax.annotation.Nonnull Integer merchantid) {
     this.merchantid = merchantid;
   }
 
 
-  public AuthRequest nameOnCard(String nameOnCard) {
+  public AuthRequest nameOnCard(@javax.annotation.Nullable String nameOnCard) {
     this.nameOnCard = nameOnCard;
     return this;
   }
 
-   /**
+  /**
    * The card holder name as appears on the card such as MR N E BODY. Required for some acquirers. 
    * @return nameOnCard
-  **/
+   */
   @javax.annotation.Nullable
   public String getNameOnCard() {
     return nameOnCard;
   }
 
-  public void setNameOnCard(String nameOnCard) {
+  public void setNameOnCard(@javax.annotation.Nullable String nameOnCard) {
     this.nameOnCard = nameOnCard;
   }
 
 
-  public AuthRequest shipTo(ContactDetails shipTo) {
+  public AuthRequest paymentIntentId(@javax.annotation.Nullable String paymentIntentId) {
+    this.paymentIntentId = paymentIntentId;
+    return this;
+  }
+
+  /**
+   * A payment intent id previously registered that this transaction is linked to.
+   * @return paymentIntentId
+   */
+  @javax.annotation.Nullable
+  public String getPaymentIntentId() {
+    return paymentIntentId;
+  }
+
+  public void setPaymentIntentId(@javax.annotation.Nullable String paymentIntentId) {
+    this.paymentIntentId = paymentIntentId;
+  }
+
+
+  public AuthRequest preAuth(@javax.annotation.Nullable String preAuth) {
+    this.preAuth = preAuth;
+    return this;
+  }
+
+  /**
+   * A policy value which determines whether a pre auth policy is enforced or bypassed.  Values are:   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy.  Enforces pre-authorisation when it does not pre-auth by default.   &#x60;2&#x60; to bypass. Bypasses pre-authorisation when it is enabled to pre auth by default.   &#x60;3&#x60; to ignore. The same as the default policy (0). Although it currently mirrors the default, this option is included for compatibility with other policies. 
+   * @return preAuth
+   */
+  @javax.annotation.Nullable
+  public String getPreAuth() {
+    return preAuth;
+  }
+
+  public void setPreAuth(@javax.annotation.Nullable String preAuth) {
+    this.preAuth = preAuth;
+  }
+
+
+  public AuthRequest shipTo(@javax.annotation.Nullable ContactDetails shipTo) {
     this.shipTo = shipTo;
     return this;
   }
 
-   /**
+  /**
    * Get shipTo
    * @return shipTo
-  **/
+   */
   @javax.annotation.Nullable
   public ContactDetails getShipTo() {
     return shipTo;
   }
 
-  public void setShipTo(ContactDetails shipTo) {
+  public void setShipTo(@javax.annotation.Nullable ContactDetails shipTo) {
     this.shipTo = shipTo;
   }
 
 
-  public AuthRequest tag(List<String> tag) {
+  public AuthRequest tag(@javax.annotation.Nullable List<String> tag) {
     this.tag = tag;
     return this;
   }
@@ -530,76 +683,158 @@ public class AuthRequest {
     return this;
   }
 
-   /**
+  /**
    * Get tag
    * @return tag
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getTag() {
     return tag;
   }
 
-  public void setTag(List<String> tag) {
+  public void setTag(@javax.annotation.Nullable List<String> tag) {
     this.tag = tag;
   }
 
 
-  public AuthRequest threedsecure(ThreeDSecure threedsecure) {
+  public AuthRequest threedsToken(@javax.annotation.Nullable String threedsToken) {
+    this.threedsToken = threedsToken;
+    return this;
+  }
+
+  /**
+   * The threedsecure token generated by a call to /areq which may or may not be challenged.
+   * @return threedsToken
+   */
+  @javax.annotation.Nullable
+  public String getThreedsToken() {
+    return threedsToken;
+  }
+
+  public void setThreedsToken(@javax.annotation.Nullable String threedsToken) {
+    this.threedsToken = threedsToken;
+  }
+
+
+  public AuthRequest threedsecure(@javax.annotation.Nullable ThreeDSecure threedsecure) {
     this.threedsecure = threedsecure;
     return this;
   }
 
-   /**
+  /**
    * Get threedsecure
    * @return threedsecure
-  **/
+   */
   @javax.annotation.Nullable
   public ThreeDSecure getThreedsecure() {
     return threedsecure;
   }
 
-  public void setThreedsecure(ThreeDSecure threedsecure) {
+  public void setThreedsecure(@javax.annotation.Nullable ThreeDSecure threedsecure) {
     this.threedsecure = threedsecure;
   }
 
 
-  public AuthRequest transInfo(String transInfo) {
+  public AuthRequest transInfo(@javax.annotation.Nullable String transInfo) {
     this.transInfo = transInfo;
     return this;
   }
 
-   /**
+  /**
    * Further information that can be added to the transaction will display in reporting. Can be used for flexible values such as operator id.
    * @return transInfo
-  **/
+   */
   @javax.annotation.Nullable
   public String getTransInfo() {
     return transInfo;
   }
 
-  public void setTransInfo(String transInfo) {
+  public void setTransInfo(@javax.annotation.Nullable String transInfo) {
     this.transInfo = transInfo;
   }
 
 
-  public AuthRequest transType(String transType) {
+  public AuthRequest transType(@javax.annotation.Nullable String transType) {
     this.transType = transType;
     return this;
   }
 
-   /**
+  /**
    * The type of transaction being submitted. Normally this value is not required and your account manager may request that you set this field.
    * @return transType
-  **/
+   */
   @javax.annotation.Nullable
   public String getTransType() {
     return transType;
   }
 
-  public void setTransType(String transType) {
+  public void setTransType(@javax.annotation.Nullable String transType) {
     this.transType = transType;
   }
 
+
+  public AuthRequest uuid(@javax.annotation.Nullable UUID uuid) {
+    this.uuid = uuid;
+    return this;
+  }
+
+  /**
+   * A uuid for the session. The value tracks through 3ds session and therefore should be a valid v4 uuid.
+   * @return uuid
+   */
+  @javax.annotation.Nullable
+  public UUID getUuid() {
+    return uuid;
+  }
+
+  public void setUuid(@javax.annotation.Nullable UUID uuid) {
+    this.uuid = uuid;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the AuthRequest instance itself
+   */
+  public AuthRequest putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -615,7 +850,9 @@ public class AuthRequest {
         Objects.equals(this.amount, authRequest.amount) &&
         Objects.equals(this.avsPostcodePolicy, authRequest.avsPostcodePolicy) &&
         Objects.equals(this.billTo, authRequest.billTo) &&
+        Objects.equals(this.cardholderAgreement, authRequest.cardholderAgreement) &&
         Objects.equals(this.cardnumber, authRequest.cardnumber) &&
+        Objects.equals(this.cpCardToken, authRequest.cpCardToken) &&
         Objects.equals(this.csc, authRequest.csc) &&
         Objects.equals(this.cscPolicy, authRequest.cscPolicy) &&
         Objects.equals(this.currency, authRequest.currency) &&
@@ -625,20 +862,26 @@ public class AuthRequest {
         Objects.equals(this.expyear, authRequest.expyear) &&
         Objects.equals(this.externalMpi, authRequest.externalMpi) &&
         Objects.equals(this.identifier, authRequest.identifier) &&
+        Objects.equals(this.initiation, authRequest.initiation) &&
         Objects.equals(this.matchAvsa, authRequest.matchAvsa) &&
         Objects.equals(this.mcc6012, authRequest.mcc6012) &&
         Objects.equals(this.merchantid, authRequest.merchantid) &&
         Objects.equals(this.nameOnCard, authRequest.nameOnCard) &&
+        Objects.equals(this.paymentIntentId, authRequest.paymentIntentId) &&
+        Objects.equals(this.preAuth, authRequest.preAuth) &&
         Objects.equals(this.shipTo, authRequest.shipTo) &&
         Objects.equals(this.tag, authRequest.tag) &&
+        Objects.equals(this.threedsToken, authRequest.threedsToken) &&
         Objects.equals(this.threedsecure, authRequest.threedsecure) &&
         Objects.equals(this.transInfo, authRequest.transInfo) &&
-        Objects.equals(this.transType, authRequest.transType);
+        Objects.equals(this.transType, authRequest.transType) &&
+        Objects.equals(this.uuid, authRequest.uuid)&&
+        Objects.equals(this.additionalProperties, authRequest.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(airlineData, amount, avsPostcodePolicy, billTo, cardnumber, csc, cscPolicy, currency, duplicatePolicy, eventManagement, expmonth, expyear, externalMpi, identifier, matchAvsa, mcc6012, merchantid, nameOnCard, shipTo, tag, threedsecure, transInfo, transType);
+    return Objects.hash(airlineData, amount, avsPostcodePolicy, billTo, cardholderAgreement, cardnumber, cpCardToken, csc, cscPolicy, currency, duplicatePolicy, eventManagement, expmonth, expyear, externalMpi, identifier, initiation, matchAvsa, mcc6012, merchantid, nameOnCard, paymentIntentId, preAuth, shipTo, tag, threedsToken, threedsecure, transInfo, transType, uuid, additionalProperties);
   }
 
   @Override
@@ -649,7 +892,9 @@ public class AuthRequest {
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    avsPostcodePolicy: ").append(toIndentedString(avsPostcodePolicy)).append("\n");
     sb.append("    billTo: ").append(toIndentedString(billTo)).append("\n");
+    sb.append("    cardholderAgreement: ").append(toIndentedString(cardholderAgreement)).append("\n");
     sb.append("    cardnumber: ").append(toIndentedString(cardnumber)).append("\n");
+    sb.append("    cpCardToken: ").append(toIndentedString(cpCardToken)).append("\n");
     sb.append("    csc: ").append(toIndentedString(csc)).append("\n");
     sb.append("    cscPolicy: ").append(toIndentedString(cscPolicy)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
@@ -659,15 +904,21 @@ public class AuthRequest {
     sb.append("    expyear: ").append(toIndentedString(expyear)).append("\n");
     sb.append("    externalMpi: ").append(toIndentedString(externalMpi)).append("\n");
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
+    sb.append("    initiation: ").append(toIndentedString(initiation)).append("\n");
     sb.append("    matchAvsa: ").append(toIndentedString(matchAvsa)).append("\n");
     sb.append("    mcc6012: ").append(toIndentedString(mcc6012)).append("\n");
     sb.append("    merchantid: ").append(toIndentedString(merchantid)).append("\n");
     sb.append("    nameOnCard: ").append(toIndentedString(nameOnCard)).append("\n");
+    sb.append("    paymentIntentId: ").append(toIndentedString(paymentIntentId)).append("\n");
+    sb.append("    preAuth: ").append(toIndentedString(preAuth)).append("\n");
     sb.append("    shipTo: ").append(toIndentedString(shipTo)).append("\n");
     sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
+    sb.append("    threedsToken: ").append(toIndentedString(threedsToken)).append("\n");
     sb.append("    threedsecure: ").append(toIndentedString(threedsecure)).append("\n");
     sb.append("    transInfo: ").append(toIndentedString(transInfo)).append("\n");
     sb.append("    transType: ").append(toIndentedString(transType)).append("\n");
+    sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -694,7 +945,9 @@ public class AuthRequest {
     openapiFields.add("amount");
     openapiFields.add("avs_postcode_policy");
     openapiFields.add("bill_to");
+    openapiFields.add("cardholder_agreement");
     openapiFields.add("cardnumber");
+    openapiFields.add("cp_card_token");
     openapiFields.add("csc");
     openapiFields.add("csc_policy");
     openapiFields.add("currency");
@@ -704,44 +957,38 @@ public class AuthRequest {
     openapiFields.add("expyear");
     openapiFields.add("external_mpi");
     openapiFields.add("identifier");
+    openapiFields.add("initiation");
     openapiFields.add("match_avsa");
     openapiFields.add("mcc6012");
     openapiFields.add("merchantid");
     openapiFields.add("name_on_card");
+    openapiFields.add("payment_intent_id");
+    openapiFields.add("pre_auth");
     openapiFields.add("ship_to");
     openapiFields.add("tag");
+    openapiFields.add("threeds_token");
     openapiFields.add("threedsecure");
     openapiFields.add("trans_info");
     openapiFields.add("trans_type");
+    openapiFields.add("uuid");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("amount");
-    openapiRequiredFields.add("cardnumber");
-    openapiRequiredFields.add("expmonth");
-    openapiRequiredFields.add("expyear");
     openapiRequiredFields.add("identifier");
     openapiRequiredFields.add("merchantid");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to AuthRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AuthRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!AuthRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in AuthRequest is not found in the empty JSON string", AuthRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!AuthRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuthRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
@@ -763,8 +1010,14 @@ public class AuthRequest {
       if (jsonObj.get("bill_to") != null && !jsonObj.get("bill_to").isJsonNull()) {
         ContactDetails.validateJsonElement(jsonObj.get("bill_to"));
       }
-      if (!jsonObj.get("cardnumber").isJsonPrimitive()) {
+      if ((jsonObj.get("cardholder_agreement") != null && !jsonObj.get("cardholder_agreement").isJsonNull()) && !jsonObj.get("cardholder_agreement").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cardholder_agreement` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cardholder_agreement").toString()));
+      }
+      if ((jsonObj.get("cardnumber") != null && !jsonObj.get("cardnumber").isJsonNull()) && !jsonObj.get("cardnumber").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `cardnumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cardnumber").toString()));
+      }
+      if ((jsonObj.get("cp_card_token") != null && !jsonObj.get("cp_card_token").isJsonNull()) && !jsonObj.get("cp_card_token").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cp_card_token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cp_card_token").toString()));
       }
       if ((jsonObj.get("csc") != null && !jsonObj.get("csc").isJsonNull()) && !jsonObj.get("csc").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `csc` to be a primitive type in the JSON string but got `%s`", jsonObj.get("csc").toString()));
@@ -789,6 +1042,9 @@ public class AuthRequest {
       if (!jsonObj.get("identifier").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `identifier` to be a primitive type in the JSON string but got `%s`", jsonObj.get("identifier").toString()));
       }
+      if ((jsonObj.get("initiation") != null && !jsonObj.get("initiation").isJsonNull()) && !jsonObj.get("initiation").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `initiation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("initiation").toString()));
+      }
       if ((jsonObj.get("match_avsa") != null && !jsonObj.get("match_avsa").isJsonNull()) && !jsonObj.get("match_avsa").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `match_avsa` to be a primitive type in the JSON string but got `%s`", jsonObj.get("match_avsa").toString()));
       }
@@ -799,6 +1055,12 @@ public class AuthRequest {
       if ((jsonObj.get("name_on_card") != null && !jsonObj.get("name_on_card").isJsonNull()) && !jsonObj.get("name_on_card").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name_on_card` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name_on_card").toString()));
       }
+      if ((jsonObj.get("payment_intent_id") != null && !jsonObj.get("payment_intent_id").isJsonNull()) && !jsonObj.get("payment_intent_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `payment_intent_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_intent_id").toString()));
+      }
+      if ((jsonObj.get("pre_auth") != null && !jsonObj.get("pre_auth").isJsonNull()) && !jsonObj.get("pre_auth").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `pre_auth` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pre_auth").toString()));
+      }
       // validate the optional field `ship_to`
       if (jsonObj.get("ship_to") != null && !jsonObj.get("ship_to").isJsonNull()) {
         ContactDetails.validateJsonElement(jsonObj.get("ship_to"));
@@ -806,6 +1068,9 @@ public class AuthRequest {
       // ensure the optional json data is an array if present
       if (jsonObj.get("tag") != null && !jsonObj.get("tag").isJsonNull() && !jsonObj.get("tag").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `tag` to be an array in the JSON string but got `%s`", jsonObj.get("tag").toString()));
+      }
+      if ((jsonObj.get("threeds_token") != null && !jsonObj.get("threeds_token").isJsonNull()) && !jsonObj.get("threeds_token").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `threeds_token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("threeds_token").toString()));
       }
       // validate the optional field `threedsecure`
       if (jsonObj.get("threedsecure") != null && !jsonObj.get("threedsecure").isJsonNull()) {
@@ -816,6 +1081,9 @@ public class AuthRequest {
       }
       if ((jsonObj.get("trans_type") != null && !jsonObj.get("trans_type").isJsonNull()) && !jsonObj.get("trans_type").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `trans_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("trans_type").toString()));
+      }
+      if ((jsonObj.get("uuid") != null && !jsonObj.get("uuid").isJsonNull()) && !jsonObj.get("uuid").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `uuid` to be a primitive type in the JSON string but got `%s`", jsonObj.get("uuid").toString()));
       }
   }
 
@@ -834,6 +1102,28 @@ public class AuthRequest {
            @Override
            public void write(JsonWriter out, AuthRequest value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -841,29 +1131,50 @@ public class AuthRequest {
            public AuthRequest read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             AuthRequest instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of AuthRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of AuthRequest
-  * @throws IOException if the JSON string is invalid with respect to AuthRequest
-  */
+  /**
+   * Create an instance of AuthRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AuthRequest
+   * @throws IOException if the JSON string is invalid with respect to AuthRequest
+   */
   public static AuthRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AuthRequest.class);
   }
 
- /**
-  * Convert an instance of AuthRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of AuthRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

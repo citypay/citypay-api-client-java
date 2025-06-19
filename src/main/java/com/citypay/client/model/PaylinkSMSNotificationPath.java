@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,52 +50,98 @@ import com.citypay.client.JSON;
 public class PaylinkSMSNotificationPath {
   public static final String SERIALIZED_NAME_TEMPLATE = "template";
   @SerializedName(SERIALIZED_NAME_TEMPLATE)
+  @javax.annotation.Nullable
   private String template;
 
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
+  @javax.annotation.Nonnull
   private String to;
 
   public PaylinkSMSNotificationPath() {
   }
 
-  public PaylinkSMSNotificationPath template(String template) {
+  public PaylinkSMSNotificationPath template(@javax.annotation.Nullable String template) {
     this.template = template;
     return this;
   }
 
-   /**
+  /**
    * An optional template name to use a template other than the default.
    * @return template
-  **/
+   */
   @javax.annotation.Nullable
   public String getTemplate() {
     return template;
   }
 
-  public void setTemplate(String template) {
+  public void setTemplate(@javax.annotation.Nullable String template) {
     this.template = template;
   }
 
 
-  public PaylinkSMSNotificationPath to(String to) {
+  public PaylinkSMSNotificationPath to(@javax.annotation.Nonnull String to) {
     this.to = to;
     return this;
   }
 
-   /**
+  /**
    * The phone number in [E.164](https://en.wikipedia.org/wiki/E.164) format to send the message to.
    * @return to
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTo() {
     return to;
   }
 
-  public void setTo(String to) {
+  public void setTo(@javax.annotation.Nonnull String to) {
     this.to = to;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the PaylinkSMSNotificationPath instance itself
+   */
+  public PaylinkSMSNotificationPath putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -109,12 +154,13 @@ public class PaylinkSMSNotificationPath {
     }
     PaylinkSMSNotificationPath paylinkSMSNotificationPath = (PaylinkSMSNotificationPath) o;
     return Objects.equals(this.template, paylinkSMSNotificationPath.template) &&
-        Objects.equals(this.to, paylinkSMSNotificationPath.to);
+        Objects.equals(this.to, paylinkSMSNotificationPath.to)&&
+        Objects.equals(this.additionalProperties, paylinkSMSNotificationPath.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(template, to);
+    return Objects.hash(template, to, additionalProperties);
   }
 
   @Override
@@ -123,6 +169,7 @@ public class PaylinkSMSNotificationPath {
     sb.append("class PaylinkSMSNotificationPath {\n");
     sb.append("    template: ").append(toIndentedString(template)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -153,24 +200,16 @@ public class PaylinkSMSNotificationPath {
     openapiRequiredFields.add("to");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkSMSNotificationPath
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkSMSNotificationPath
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkSMSNotificationPath.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkSMSNotificationPath is not found in the empty JSON string", PaylinkSMSNotificationPath.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PaylinkSMSNotificationPath.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkSMSNotificationPath` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
@@ -204,6 +243,28 @@ public class PaylinkSMSNotificationPath {
            @Override
            public void write(JsonWriter out, PaylinkSMSNotificationPath value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -211,29 +272,50 @@ public class PaylinkSMSNotificationPath {
            public PaylinkSMSNotificationPath read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             PaylinkSMSNotificationPath instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of PaylinkSMSNotificationPath given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkSMSNotificationPath
-  * @throws IOException if the JSON string is invalid with respect to PaylinkSMSNotificationPath
-  */
+  /**
+   * Create an instance of PaylinkSMSNotificationPath given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkSMSNotificationPath
+   * @throws IOException if the JSON string is invalid with respect to PaylinkSMSNotificationPath
+   */
   public static PaylinkSMSNotificationPath fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkSMSNotificationPath.class);
   }
 
- /**
-  * Convert an instance of PaylinkSMSNotificationPath to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkSMSNotificationPath to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

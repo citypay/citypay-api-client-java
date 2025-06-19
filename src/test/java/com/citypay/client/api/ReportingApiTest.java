@@ -14,14 +14,9 @@ package com.citypay.client.api;
 
 import com.citypay.client.ApiException;
 import com.citypay.client.model.*;
-import com.citypay.client.model.Error;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for ReportingApi

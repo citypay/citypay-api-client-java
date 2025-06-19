@@ -14,20 +14,17 @@ import com.citypay.client.utils.Digest;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import okhttp3.*;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
-import java.util.Objects;
 import java.util.UUID;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ApiSandboxTest {
-
     public static String clientId = System.getenv("CP_CLIENT_ID");
     public static String licenceKey = System.getenv("CP_LICENCE_KEY");
     public static String merchantId = System.getenv("CP_MERCHANT_ID");
@@ -35,7 +32,7 @@ public class ApiSandboxTest {
     public static ApiClient defaultClient;
     public static String key;
 
-    @Before
+    @BeforeEach
     public void setupConfig() {
         {
 
@@ -183,15 +180,19 @@ public class ApiSandboxTest {
 
         OkHttpClient httpClient = new OkHttpClient();
 
-        String string = String.format("{\"creq\":\"%s\",\"threeDSSessionData\":\"%s\"}", result.getRequestChallenged().getCreq(),  result.getRequestChallenged().getThreedserverTransId());
-        MediaType JSON = MediaType.get("application/json");
-        RequestBody body = RequestBody.create(String.valueOf(string), JSON);
+        String formData = String.format("transStatus=Y&reason=01&creq=%s&threeDSSessionData=%s",
+                java.net.URLEncoder.encode(result.getRequestChallenged().getCreq(), "UTF-8"),
+                java.net.URLEncoder.encode(result.getRequestChallenged().getThreedserverTransId(), "UTF-8"));
+
+        MediaType FORM = MediaType.get("application/x-www-form-urlencoded");
+        RequestBody body = RequestBody.create(formData, FORM);
 
         Request request = new Request.Builder()
-                .url("https://sandbox.citypay.com/3dsv2/acs")
-                .addHeader("Content-Type", "application/json")
+                .url("https://sandbox.citypay.com/3dsv2/gen-rreq")
+                .addHeader("Content-Type", "application/x-www-form-urlencoded")
                 .post(body)
                 .build();
+
 
         try (Response response = httpClient.newCall(request).execute()) {
 

@@ -1,4 +1,3 @@
-
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 #
@@ -22,14 +21,14 @@ jobs:
       CP_MERCHANT_ID: ${{ secrets.CP_MERCHANT_ID }}
     strategy:
       matrix:
-        java: [ '21', '17', '12', '11', '8' ]
+        java: [ 17, 21 ]
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK
-        uses: actions/setup-java@v2
-        with:
-          java-version: ${{ matrix.java }}
-          distribution: 'adopt'
-          cache: maven
-      - name: Build with Maven
-        run: mvn -B package --no-transfer-progress --file pom.xml
+    - uses: actions/checkout@v4
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ matrix.java }}
+        distribution: 'temurin'
+        cache: maven
+    - name: Build with Maven
+      run: mvn -B package --no-transfer-progress --file pom.xml

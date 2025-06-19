@@ -4,10 +4,11 @@ All URIs are relative to *https://api.citypay.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**paylinkTokenCloseRequest**](PaylinkApi.md#paylinkTokenCloseRequest) | **PUT** /paylink/{token}/close | Close Paylink Token |
 | [**tokenAdjustmentRequest**](PaylinkApi.md#tokenAdjustmentRequest) | **POST** /paylink/{token}/adjustment | Paylink Token Adjustment |
+| [**tokenAttachmentStatus**](PaylinkApi.md#tokenAttachmentStatus) | **GET** /paylink/{token}/attachment-status/{attachment} | Checks an attachment status |
 | [**tokenCancelRequest**](PaylinkApi.md#tokenCancelRequest) | **PUT** /paylink/{token}/cancel | Cancel a Paylink Token |
 | [**tokenChangesRequest**](PaylinkApi.md#tokenChangesRequest) | **POST** /paylink/token/changes | Paylink Token Audit |
-| [**tokenCloseRequest**](PaylinkApi.md#tokenCloseRequest) | **PUT** /paylink/{token}/close | Close Paylink Token |
 | [**tokenCreateBillPaymentRequest**](PaylinkApi.md#tokenCreateBillPaymentRequest) | **POST** /paylink/bill-payment | Create Bill Payment Paylink Token |
 | [**tokenCreateRequest**](PaylinkApi.md#tokenCreateRequest) | **POST** /paylink/create | Create Paylink Token |
 | [**tokenPurgeAttachmentsRequest**](PaylinkApi.md#tokenPurgeAttachmentsRequest) | **PUT** /paylink/{token}/purge-attachments | Purges any attachments for a Paylink Token |
@@ -16,6 +17,84 @@ All URIs are relative to *https://api.citypay.com*
 | [**tokenResendNotificationRequest**](PaylinkApi.md#tokenResendNotificationRequest) | **POST** /paylink/{token}/resend-notification | Resend a notification for Paylink Token |
 | [**tokenStatusRequest**](PaylinkApi.md#tokenStatusRequest) | **GET** /paylink/{token}/status | Paylink Token Status |
 
+
+
+## paylinkTokenCloseRequest
+
+> Acknowledgement paylinkTokenCloseRequest(token)
+
+Close Paylink Token
+
+Closes a paylink token that was previously created.
+
+### Example
+
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.model.*;
+import com.citypay.client.api.PaylinkApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
+
+        PaylinkApi apiInstance = new PaylinkApi(defaultClient);
+        String token = "token_example"; // String | The token returned by the create token process.
+        try {
+            Acknowledgement result = apiInstance.paylinkTokenCloseRequest(token);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PaylinkApi#paylinkTokenCloseRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| The token returned by the create token process. | |
+
+### Return type
+
+[**Acknowledgement**](Acknowledgement.md)
+
+### Authorization
+
+[cp-api-key](../README.md#cp-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/xml
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Confirms that the Paylink token was marked for closure. |  -  |
+| **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+| **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+| **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+| **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
+| **500** | Server Error. The server was unable to complete the request. |  -  |
 
 
 ## tokenAdjustmentRequest
@@ -95,6 +174,89 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Response defining the result of the token request. |  -  |
+| **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
+| **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
+| **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
+| **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
+| **500** | Server Error. The server was unable to complete the request. |  -  |
+
+
+## tokenAttachmentStatus
+
+> Acknowledgement tokenAttachmentStatus(token, attachment)
+
+Checks an attachment status
+
+The `TokenAttachmentStatus` processes a request to check the status of a Paylink BPS attachment, 
+verifying its successful upload and returning metadata such as the MD5 hash, upload time, 
+and content type to ensure file integrity and correctness.
+
+
+### Example
+
+```java
+// Import classes:
+import com.citypay.client.ApiClient;
+import com.citypay.client.ApiException;
+import com.citypay.client.Configuration;
+import com.citypay.client.auth.*;
+import com.citypay.client.model.*;
+import com.citypay.client.api.PaylinkApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.citypay.com");
+        
+        // Configure API key authorization: cp-api-key
+        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
+        cp-api-key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cp-api-key.setApiKeyPrefix("Token");
+
+        PaylinkApi apiInstance = new PaylinkApi(defaultClient);
+        String token = "token_example"; // String | The token returned by the create token process.
+        String attachment = "attachment_example"; // String | The attachemnt name requested.
+        try {
+            Acknowledgement result = apiInstance.tokenAttachmentStatus(token, attachment);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PaylinkApi#tokenAttachmentStatus");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| The token returned by the create token process. | |
+| **attachment** | **String**| The attachemnt name requested. | |
+
+### Return type
+
+[**Acknowledgement**](Acknowledgement.md)
+
+### Authorization
+
+[cp-api-key](../README.md#cp-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/xml
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Verifies that the attachment has been successfully uploaded and returns an MD5 hash of its content to ensure the integrity and correctness of the file during validation. |  -  |
 | **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 | **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
 | **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
@@ -251,86 +413,6 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Changes from tokens actioned after the pivotal date provided in the request. |  -  |
-| **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
-| **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
-| **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |
-| **422** | Unprocessable Entity. Should a failure occur that prevents processing of the API call. |  -  |
-| **500** | Server Error. The server was unable to complete the request. |  -  |
-
-
-## tokenCloseRequest
-
-> Acknowledgement tokenCloseRequest(token)
-
-Close Paylink Token
-
-Marks a Paylink Token as closed. This closes the Token for any future action and the Token will not appear in any status
-request calls.
-
-
-### Example
-
-```java
-// Import classes:
-import com.citypay.client.ApiClient;
-import com.citypay.client.ApiException;
-import com.citypay.client.Configuration;
-import com.citypay.client.auth.*;
-import com.citypay.client.model.*;
-import com.citypay.client.api.PaylinkApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.citypay.com");
-        
-        // Configure API key authorization: cp-api-key
-        ApiKeyAuth cp-api-key = (ApiKeyAuth) defaultClient.getAuthentication("cp-api-key");
-        cp-api-key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //cp-api-key.setApiKeyPrefix("Token");
-
-        PaylinkApi apiInstance = new PaylinkApi(defaultClient);
-        String token = "token_example"; // String | The token returned by the create token process.
-        try {
-            Acknowledgement result = apiInstance.tokenCloseRequest(token);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling PaylinkApi#tokenCloseRequest");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **token** | **String**| The token returned by the create token process. | |
-
-### Return type
-
-[**Acknowledgement**](Acknowledgement.md)
-
-### Authorization
-
-[cp-api-key](../README.md#cp-api-key)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json, text/xml
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Confirms that the token was marked for closure. |  -  |
 | **400** | Bad Request. Should the incoming data not be validly determined. |  -  |
 | **401** | Unauthorized. No api key has been provided and is required for this operation. |  -  |
 | **403** | Forbidden. The api key was provided and understood but is either incorrect or does not have permission to access the account provided on the request. |  -  |

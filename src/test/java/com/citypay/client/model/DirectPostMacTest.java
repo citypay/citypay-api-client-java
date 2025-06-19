@@ -1,12 +1,12 @@
 package com.citypay.client.model;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 import static com.citypay.client.model.ApiKeyTest.hexStringToByteArray;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.Assert.assertTrue;
 
 public class DirectPostMacTest {

@@ -36,7 +36,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,305 +50,362 @@ import com.citypay.client.JSON;
 public class ThreeDSecure {
   public static final String SERIALIZED_NAME_ACCEPT_HEADERS = "accept_headers";
   @SerializedName(SERIALIZED_NAME_ACCEPT_HEADERS)
+  @javax.annotation.Nullable
   private String acceptHeaders;
 
   public static final String SERIALIZED_NAME_BROWSER_COLOR_DEPTH = "browserColorDepth";
   @SerializedName(SERIALIZED_NAME_BROWSER_COLOR_DEPTH)
+  @javax.annotation.Nullable
   private String browserColorDepth;
 
   public static final String SERIALIZED_NAME_BROWSER_I_P = "browserIP";
   @SerializedName(SERIALIZED_NAME_BROWSER_I_P)
+  @javax.annotation.Nullable
   private String browserIP;
 
   public static final String SERIALIZED_NAME_BROWSER_JAVA_ENABLED = "browserJavaEnabled";
   @SerializedName(SERIALIZED_NAME_BROWSER_JAVA_ENABLED)
+  @javax.annotation.Nullable
   private String browserJavaEnabled;
 
   public static final String SERIALIZED_NAME_BROWSER_LANGUAGE = "browserLanguage";
   @SerializedName(SERIALIZED_NAME_BROWSER_LANGUAGE)
+  @javax.annotation.Nullable
   private String browserLanguage;
 
   public static final String SERIALIZED_NAME_BROWSER_SCREEN_HEIGHT = "browserScreenHeight";
   @SerializedName(SERIALIZED_NAME_BROWSER_SCREEN_HEIGHT)
+  @javax.annotation.Nullable
   private String browserScreenHeight;
 
   public static final String SERIALIZED_NAME_BROWSER_SCREEN_WIDTH = "browserScreenWidth";
   @SerializedName(SERIALIZED_NAME_BROWSER_SCREEN_WIDTH)
+  @javax.annotation.Nullable
   private String browserScreenWidth;
 
   public static final String SERIALIZED_NAME_BROWSER_T_Z = "browserTZ";
   @SerializedName(SERIALIZED_NAME_BROWSER_T_Z)
+  @javax.annotation.Nullable
   private String browserTZ;
 
   public static final String SERIALIZED_NAME_CP_BX = "cp_bx";
   @SerializedName(SERIALIZED_NAME_CP_BX)
+  @javax.annotation.Nullable
   private String cpBx;
 
   public static final String SERIALIZED_NAME_DOWNGRADE1 = "downgrade1";
   @SerializedName(SERIALIZED_NAME_DOWNGRADE1)
+  @javax.annotation.Nullable
   private Boolean downgrade1;
 
   public static final String SERIALIZED_NAME_MERCHANT_TERMURL = "merchant_termurl";
   @SerializedName(SERIALIZED_NAME_MERCHANT_TERMURL)
+  @javax.annotation.Nullable
   private String merchantTermurl;
 
   public static final String SERIALIZED_NAME_TDS_POLICY = "tds_policy";
   @SerializedName(SERIALIZED_NAME_TDS_POLICY)
+  @javax.annotation.Nullable
   private String tdsPolicy;
 
   public static final String SERIALIZED_NAME_USER_AGENT = "user_agent";
   @SerializedName(SERIALIZED_NAME_USER_AGENT)
+  @javax.annotation.Nullable
   private String userAgent;
 
   public ThreeDSecure() {
   }
 
-  public ThreeDSecure acceptHeaders(String acceptHeaders) {
+  public ThreeDSecure acceptHeaders(@javax.annotation.Nullable String acceptHeaders) {
     this.acceptHeaders = acceptHeaders;
     return this;
   }
 
-   /**
+  /**
    * Required for 3DSv1. Optional if the &#x60;cp_bx&#x60; value is provided otherwise required for 3Dv2 processing operating in browser authentication mode.  The &#x60;cp_bx&#x60; value will override any value supplied to this field.  The content of the HTTP accept header as sent to the merchant from the cardholder&#39;s user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. 
    * @return acceptHeaders
-  **/
+   */
   @javax.annotation.Nullable
   public String getAcceptHeaders() {
     return acceptHeaders;
   }
 
-  public void setAcceptHeaders(String acceptHeaders) {
+  public void setAcceptHeaders(@javax.annotation.Nullable String acceptHeaders) {
     this.acceptHeaders = acceptHeaders;
   }
 
 
-  public ThreeDSecure browserColorDepth(String browserColorDepth) {
+  public ThreeDSecure browserColorDepth(@javax.annotation.Nullable String browserColorDepth) {
     this.browserColorDepth = browserColorDepth;
     return this;
   }
 
-   /**
+  /**
    * BrowserColorDepth field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
    * @return browserColorDepth
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrowserColorDepth() {
     return browserColorDepth;
   }
 
-  public void setBrowserColorDepth(String browserColorDepth) {
+  public void setBrowserColorDepth(@javax.annotation.Nullable String browserColorDepth) {
     this.browserColorDepth = browserColorDepth;
   }
 
 
-  public ThreeDSecure browserIP(String browserIP) {
+  public ThreeDSecure browserIP(@javax.annotation.Nullable String browserIP) {
     this.browserIP = browserIP;
     return this;
   }
 
-   /**
+  /**
    * BrowserIP field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
    * @return browserIP
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrowserIP() {
     return browserIP;
   }
 
-  public void setBrowserIP(String browserIP) {
+  public void setBrowserIP(@javax.annotation.Nullable String browserIP) {
     this.browserIP = browserIP;
   }
 
 
-  public ThreeDSecure browserJavaEnabled(String browserJavaEnabled) {
+  public ThreeDSecure browserJavaEnabled(@javax.annotation.Nullable String browserJavaEnabled) {
     this.browserJavaEnabled = browserJavaEnabled;
     return this;
   }
 
-   /**
+  /**
    * BrowserJavaEnabled field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
    * @return browserJavaEnabled
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrowserJavaEnabled() {
     return browserJavaEnabled;
   }
 
-  public void setBrowserJavaEnabled(String browserJavaEnabled) {
+  public void setBrowserJavaEnabled(@javax.annotation.Nullable String browserJavaEnabled) {
     this.browserJavaEnabled = browserJavaEnabled;
   }
 
 
-  public ThreeDSecure browserLanguage(String browserLanguage) {
+  public ThreeDSecure browserLanguage(@javax.annotation.Nullable String browserLanguage) {
     this.browserLanguage = browserLanguage;
     return this;
   }
 
-   /**
+  /**
    * BrowserLanguage field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
    * @return browserLanguage
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrowserLanguage() {
     return browserLanguage;
   }
 
-  public void setBrowserLanguage(String browserLanguage) {
+  public void setBrowserLanguage(@javax.annotation.Nullable String browserLanguage) {
     this.browserLanguage = browserLanguage;
   }
 
 
-  public ThreeDSecure browserScreenHeight(String browserScreenHeight) {
+  public ThreeDSecure browserScreenHeight(@javax.annotation.Nullable String browserScreenHeight) {
     this.browserScreenHeight = browserScreenHeight;
     return this;
   }
 
-   /**
+  /**
    * BrowserScreenHeight field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
    * @return browserScreenHeight
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrowserScreenHeight() {
     return browserScreenHeight;
   }
 
-  public void setBrowserScreenHeight(String browserScreenHeight) {
+  public void setBrowserScreenHeight(@javax.annotation.Nullable String browserScreenHeight) {
     this.browserScreenHeight = browserScreenHeight;
   }
 
 
-  public ThreeDSecure browserScreenWidth(String browserScreenWidth) {
+  public ThreeDSecure browserScreenWidth(@javax.annotation.Nullable String browserScreenWidth) {
     this.browserScreenWidth = browserScreenWidth;
     return this;
   }
 
-   /**
+  /**
    * BrowserScreenWidth field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
    * @return browserScreenWidth
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrowserScreenWidth() {
     return browserScreenWidth;
   }
 
-  public void setBrowserScreenWidth(String browserScreenWidth) {
+  public void setBrowserScreenWidth(@javax.annotation.Nullable String browserScreenWidth) {
     this.browserScreenWidth = browserScreenWidth;
   }
 
 
-  public ThreeDSecure browserTZ(String browserTZ) {
+  public ThreeDSecure browserTZ(@javax.annotation.Nullable String browserTZ) {
     this.browserTZ = browserTZ;
     return this;
   }
 
-   /**
+  /**
    * BrowserTZ offset field used for 3DSv2 browser enablement. Recommendation is to use citypay.js and the &#x60;bx&#x60; function to gather this value.
    * @return browserTZ
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrowserTZ() {
     return browserTZ;
   }
 
-  public void setBrowserTZ(String browserTZ) {
+  public void setBrowserTZ(@javax.annotation.Nullable String browserTZ) {
     this.browserTZ = browserTZ;
   }
 
 
-  public ThreeDSecure cpBx(String cpBx) {
+  public ThreeDSecure cpBx(@javax.annotation.Nullable String cpBx) {
     this.cpBx = cpBx;
     return this;
   }
 
-   /**
+  /**
    * Required for 3DSv2.  Browser extension value produced by the citypay.js &#x60;bx&#x60; function. See [https://sandbox.citypay.com/3dsv2/bx](https://sandbox.citypay.com/3dsv2/bx) for  details. 
    * @return cpBx
-  **/
+   */
   @javax.annotation.Nullable
   public String getCpBx() {
     return cpBx;
   }
 
-  public void setCpBx(String cpBx) {
+  public void setCpBx(@javax.annotation.Nullable String cpBx) {
     this.cpBx = cpBx;
   }
 
 
-  public ThreeDSecure downgrade1(Boolean downgrade1) {
+  public ThreeDSecure downgrade1(@javax.annotation.Nullable Boolean downgrade1) {
     this.downgrade1 = downgrade1;
     return this;
   }
 
-   /**
+  /**
    * Where a merchant is configured for 3DSv2, setting this option will attempt to downgrade the transaction to  3DSv1. 
    * @return downgrade1
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean isDowngrade1() {
     return downgrade1;
   }
 
-  public void setDowngrade1(Boolean downgrade1) {
+  public void setDowngrade1(@javax.annotation.Nullable Boolean downgrade1) {
     this.downgrade1 = downgrade1;
   }
 
 
-  public ThreeDSecure merchantTermurl(String merchantTermurl) {
+  public ThreeDSecure merchantTermurl(@javax.annotation.Nullable String merchantTermurl) {
     this.merchantTermurl = merchantTermurl;
     return this;
   }
 
-   /**
+  /**
    * A controller URL for 3D-Secure processing that any response from an authentication request or challenge request should be sent to.  The controller should forward on the response from the URL back via this API for subsequent processing. 
    * @return merchantTermurl
-  **/
+   */
   @javax.annotation.Nullable
   public String getMerchantTermurl() {
     return merchantTermurl;
   }
 
-  public void setMerchantTermurl(String merchantTermurl) {
+  public void setMerchantTermurl(@javax.annotation.Nullable String merchantTermurl) {
     this.merchantTermurl = merchantTermurl;
   }
 
 
-  public ThreeDSecure tdsPolicy(String tdsPolicy) {
+  public ThreeDSecure tdsPolicy(@javax.annotation.Nullable String tdsPolicy) {
     this.tdsPolicy = tdsPolicy;
     return this;
   }
 
-   /**
+  /**
    * A policy value which determines whether ThreeDSecure is enforced or bypassed. Note that this will only work for e-commerce transactions and accounts that have 3DSecure enabled and fully registered with Visa, MasterCard or American Express. It is useful when transactions may be wanted to bypass processing rules.  Note that this may affect the liability shift of transactions and may occur a higher fee with the acquiring bank.  Values are   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions will be enabled for 3DS processing   &#x60;2&#x60; to bypass. Transactions that are bypassed will switch off 3DS processing. 
    * @return tdsPolicy
-  **/
+   */
   @javax.annotation.Nullable
   public String getTdsPolicy() {
     return tdsPolicy;
   }
 
-  public void setTdsPolicy(String tdsPolicy) {
+  public void setTdsPolicy(@javax.annotation.Nullable String tdsPolicy) {
     this.tdsPolicy = tdsPolicy;
   }
 
 
-  public ThreeDSecure userAgent(String userAgent) {
+  public ThreeDSecure userAgent(@javax.annotation.Nullable String userAgent) {
     this.userAgent = userAgent;
     return this;
   }
 
-   /**
+  /**
    * Required for 3DSv1.  Optional if the &#x60;cp_bx&#x60; value is provided otherwise required 3Dv2 processing operating in browser authentication mode.  The &#x60;cp_bx&#x60; value will override any value supplied to this field.  The content of the HTTP user-agent header as sent to the merchant from the cardholder&#39;s user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1. 
    * @return userAgent
-  **/
+   */
   @javax.annotation.Nullable
   public String getUserAgent() {
     return userAgent;
   }
 
-  public void setUserAgent(String userAgent) {
+  public void setUserAgent(@javax.annotation.Nullable String userAgent) {
     this.userAgent = userAgent;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the ThreeDSecure instance itself
+   */
+  public ThreeDSecure putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -373,12 +429,13 @@ public class ThreeDSecure {
         Objects.equals(this.downgrade1, threeDSecure.downgrade1) &&
         Objects.equals(this.merchantTermurl, threeDSecure.merchantTermurl) &&
         Objects.equals(this.tdsPolicy, threeDSecure.tdsPolicy) &&
-        Objects.equals(this.userAgent, threeDSecure.userAgent);
+        Objects.equals(this.userAgent, threeDSecure.userAgent)&&
+        Objects.equals(this.additionalProperties, threeDSecure.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(acceptHeaders, browserColorDepth, browserIP, browserJavaEnabled, browserLanguage, browserScreenHeight, browserScreenWidth, browserTZ, cpBx, downgrade1, merchantTermurl, tdsPolicy, userAgent);
+    return Objects.hash(acceptHeaders, browserColorDepth, browserIP, browserJavaEnabled, browserLanguage, browserScreenHeight, browserScreenWidth, browserTZ, cpBx, downgrade1, merchantTermurl, tdsPolicy, userAgent, additionalProperties);
   }
 
   @Override
@@ -398,6 +455,7 @@ public class ThreeDSecure {
     sb.append("    merchantTermurl: ").append(toIndentedString(merchantTermurl)).append("\n");
     sb.append("    tdsPolicy: ").append(toIndentedString(tdsPolicy)).append("\n");
     sb.append("    userAgent: ").append(toIndentedString(userAgent)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -438,24 +496,16 @@ public class ThreeDSecure {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to ThreeDSecure
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ThreeDSecure
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!ThreeDSecure.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ThreeDSecure is not found in the empty JSON string", ThreeDSecure.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ThreeDSecure.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ThreeDSecure` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -512,6 +562,28 @@ public class ThreeDSecure {
            @Override
            public void write(JsonWriter out, ThreeDSecure value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -519,29 +591,50 @@ public class ThreeDSecure {
            public ThreeDSecure read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             ThreeDSecure instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of ThreeDSecure given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ThreeDSecure
-  * @throws IOException if the JSON string is invalid with respect to ThreeDSecure
-  */
+  /**
+   * Create an instance of ThreeDSecure given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ThreeDSecure
+   * @throws IOException if the JSON string is invalid with respect to ThreeDSecure
+   */
   public static ThreeDSecure fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ThreeDSecure.class);
   }
 
- /**
-  * Convert an instance of ThreeDSecure to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ThreeDSecure to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

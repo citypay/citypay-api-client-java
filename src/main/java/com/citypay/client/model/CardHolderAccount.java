@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -56,63 +55,72 @@ import com.citypay.client.JSON;
 public class CardHolderAccount {
   public static final String SERIALIZED_NAME_ACCOUNT_ID = "account_id";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_ID)
+  @javax.annotation.Nonnull
   private String accountId;
 
   public static final String SERIALIZED_NAME_CARDS = "cards";
   @SerializedName(SERIALIZED_NAME_CARDS)
-  private List<Card> cards;
+  @javax.annotation.Nullable
+  private List<Card> cards = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CONTACT = "contact";
   @SerializedName(SERIALIZED_NAME_CONTACT)
+  @javax.annotation.Nonnull
   private ContactDetails contact;
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
   @SerializedName(SERIALIZED_NAME_DATE_CREATED)
+  @javax.annotation.Nullable
   private OffsetDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_DEFAULT_CARD_ID = "default_card_id";
   @SerializedName(SERIALIZED_NAME_DEFAULT_CARD_ID)
+  @javax.annotation.Nullable
   private String defaultCardId;
 
   public static final String SERIALIZED_NAME_DEFAULT_CARD_INDEX = "default_card_index";
   @SerializedName(SERIALIZED_NAME_DEFAULT_CARD_INDEX)
+  @javax.annotation.Nullable
   private Integer defaultCardIndex;
 
   public static final String SERIALIZED_NAME_LAST_MODIFIED = "last_modified";
   @SerializedName(SERIALIZED_NAME_LAST_MODIFIED)
+  @javax.annotation.Nullable
   private OffsetDateTime lastModified;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_UNIQUE_ID = "unique_id";
   @SerializedName(SERIALIZED_NAME_UNIQUE_ID)
+  @javax.annotation.Nullable
   private String uniqueId;
 
   public CardHolderAccount() {
   }
 
-  public CardHolderAccount accountId(String accountId) {
+  public CardHolderAccount accountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
     return this;
   }
 
-   /**
+  /**
    * The account id of the card holder account provided by the merchant which uniquely identifies the account. 
    * @return accountId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getAccountId() {
     return accountId;
   }
 
-  public void setAccountId(String accountId) {
+  public void setAccountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
   }
 
 
-  public CardHolderAccount cards(List<Card> cards) {
+  public CardHolderAccount cards(@javax.annotation.Nullable List<Card> cards) {
     this.cards = cards;
     return this;
   }
@@ -125,152 +133,196 @@ public class CardHolderAccount {
     return this;
   }
 
-   /**
+  /**
    * Get cards
    * @return cards
-  **/
+   */
   @javax.annotation.Nullable
   public List<Card> getCards() {
     return cards;
   }
 
-  public void setCards(List<Card> cards) {
+  public void setCards(@javax.annotation.Nullable List<Card> cards) {
     this.cards = cards;
   }
 
 
-  public CardHolderAccount contact(ContactDetails contact) {
+  public CardHolderAccount contact(@javax.annotation.Nonnull ContactDetails contact) {
     this.contact = contact;
     return this;
   }
 
-   /**
+  /**
    * Get contact
    * @return contact
-  **/
+   */
   @javax.annotation.Nonnull
   public ContactDetails getContact() {
     return contact;
   }
 
-  public void setContact(ContactDetails contact) {
+  public void setContact(@javax.annotation.Nonnull ContactDetails contact) {
     this.contact = contact;
   }
 
 
-  public CardHolderAccount dateCreated(OffsetDateTime dateCreated) {
+  public CardHolderAccount dateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
     this.dateCreated = dateCreated;
     return this;
   }
 
-   /**
+  /**
    * The date and time the account was created.
    * @return dateCreated
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDateCreated() {
     return dateCreated;
   }
 
-  public void setDateCreated(OffsetDateTime dateCreated) {
+  public void setDateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
     this.dateCreated = dateCreated;
   }
 
 
-  public CardHolderAccount defaultCardId(String defaultCardId) {
+  public CardHolderAccount defaultCardId(@javax.annotation.Nullable String defaultCardId) {
     this.defaultCardId = defaultCardId;
     return this;
   }
 
-   /**
+  /**
    * The id of the default card.
    * @return defaultCardId
-  **/
+   */
   @javax.annotation.Nullable
   public String getDefaultCardId() {
     return defaultCardId;
   }
 
-  public void setDefaultCardId(String defaultCardId) {
+  public void setDefaultCardId(@javax.annotation.Nullable String defaultCardId) {
     this.defaultCardId = defaultCardId;
   }
 
 
-  public CardHolderAccount defaultCardIndex(Integer defaultCardIndex) {
+  public CardHolderAccount defaultCardIndex(@javax.annotation.Nullable Integer defaultCardIndex) {
     this.defaultCardIndex = defaultCardIndex;
     return this;
   }
 
-   /**
+  /**
    * The index in the array of the default card.
    * @return defaultCardIndex
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getDefaultCardIndex() {
     return defaultCardIndex;
   }
 
-  public void setDefaultCardIndex(Integer defaultCardIndex) {
+  public void setDefaultCardIndex(@javax.annotation.Nullable Integer defaultCardIndex) {
     this.defaultCardIndex = defaultCardIndex;
   }
 
 
-  public CardHolderAccount lastModified(OffsetDateTime lastModified) {
+  public CardHolderAccount lastModified(@javax.annotation.Nullable OffsetDateTime lastModified) {
     this.lastModified = lastModified;
     return this;
   }
 
-   /**
+  /**
    * The date and time the account was last modified.
    * @return lastModified
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getLastModified() {
     return lastModified;
   }
 
-  public void setLastModified(OffsetDateTime lastModified) {
+  public void setLastModified(@javax.annotation.Nullable OffsetDateTime lastModified) {
     this.lastModified = lastModified;
   }
 
 
-  public CardHolderAccount status(String status) {
+  public CardHolderAccount status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * Defines the status of the account for processing valid values are   - ACTIVE for active accounts that are able to process   - DISABLED for accounts that are currently disabled for processing. 
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public CardHolderAccount uniqueId(String uniqueId) {
+  public CardHolderAccount uniqueId(@javax.annotation.Nullable String uniqueId) {
     this.uniqueId = uniqueId;
     return this;
   }
 
-   /**
+  /**
    * A unique id of the card holder account which uniquely identifies the stored account. This value is not searchable.
    * @return uniqueId
-  **/
+   */
   @javax.annotation.Nullable
   public String getUniqueId() {
     return uniqueId;
   }
 
-  public void setUniqueId(String uniqueId) {
+  public void setUniqueId(@javax.annotation.Nullable String uniqueId) {
     this.uniqueId = uniqueId;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the CardHolderAccount instance itself
+   */
+  public CardHolderAccount putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -290,12 +342,13 @@ public class CardHolderAccount {
         Objects.equals(this.defaultCardIndex, cardHolderAccount.defaultCardIndex) &&
         Objects.equals(this.lastModified, cardHolderAccount.lastModified) &&
         Objects.equals(this.status, cardHolderAccount.status) &&
-        Objects.equals(this.uniqueId, cardHolderAccount.uniqueId);
+        Objects.equals(this.uniqueId, cardHolderAccount.uniqueId)&&
+        Objects.equals(this.additionalProperties, cardHolderAccount.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, cards, contact, dateCreated, defaultCardId, defaultCardIndex, lastModified, status, uniqueId);
+    return Objects.hash(accountId, cards, contact, dateCreated, defaultCardId, defaultCardIndex, lastModified, status, uniqueId, additionalProperties);
   }
 
   @Override
@@ -311,6 +364,7 @@ public class CardHolderAccount {
     sb.append("    lastModified: ").append(toIndentedString(lastModified)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    uniqueId: ").append(toIndentedString(uniqueId)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -349,24 +403,16 @@ public class CardHolderAccount {
     openapiRequiredFields.add("contact");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CardHolderAccount
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CardHolderAccount
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CardHolderAccount.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CardHolderAccount is not found in the empty JSON string", CardHolderAccount.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CardHolderAccount.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CardHolderAccount` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
@@ -422,6 +468,28 @@ public class CardHolderAccount {
            @Override
            public void write(JsonWriter out, CardHolderAccount value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -429,29 +497,50 @@ public class CardHolderAccount {
            public CardHolderAccount read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             CardHolderAccount instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CardHolderAccount given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CardHolderAccount
-  * @throws IOException if the JSON string is invalid with respect to CardHolderAccount
-  */
+  /**
+   * Create an instance of CardHolderAccount given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CardHolderAccount
+   * @throws IOException if the JSON string is invalid with respect to CardHolderAccount
+   */
   public static CardHolderAccount fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CardHolderAccount.class);
   }
 
- /**
-  * Convert an instance of CardHolderAccount to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CardHolderAccount to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

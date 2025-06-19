@@ -14,7 +14,6 @@ package com.citypay.client.api;
 
 import com.citypay.client.ApiException;
 import com.citypay.client.model.Acknowledgement;
-import com.citypay.client.model.Error;
 import com.citypay.client.model.PaylinkAdjustmentRequest;
 import com.citypay.client.model.PaylinkBillPaymentTokenRequest;
 import com.citypay.client.model.PaylinkTokenCreated;
@@ -22,18 +21,18 @@ import com.citypay.client.model.PaylinkTokenRequestModel;
 import com.citypay.client.model.PaylinkTokenStatus;
 import com.citypay.client.model.PaylinkTokenStatusChangeRequest;
 import com.citypay.client.model.PaylinkTokenStatusChangeResponse;
-import org.junit.Test;
-import org.junit.Ignore;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
  * API tests for PaylinkApi
  */
-@Ignore
+
 public class PaylinkApiTest {
 
     private final PaylinkApi api = new PaylinkApi();
@@ -49,10 +48,6 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenAdjustmentRequestTest() throws ApiException {
-        String token = null;
-        PaylinkAdjustmentRequest paylinkAdjustmentRequest = null;
-        Acknowledgement response = api.tokenAdjustmentRequest(token, paylinkAdjustmentRequest);
-
         // TODO: test validations
     }
     
@@ -66,9 +61,6 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenCloseRequestTest() throws ApiException {
-        String token = null;
-        Acknowledgement response = api.tokenCloseRequest(token);
-
         // TODO: test validations
     }
     
@@ -82,9 +74,6 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenCreateBillPaymentRequestTest() throws ApiException {
-        PaylinkBillPaymentTokenRequest paylinkBillPaymentTokenRequest = null;
-        PaylinkTokenCreated response = api.tokenCreateBillPaymentRequest(paylinkBillPaymentTokenRequest);
-
         // TODO: test validations
     }
     
@@ -98,9 +87,6 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenCreateRequestTest() throws ApiException {
-        PaylinkTokenRequestModel paylinkTokenRequestModel = null;
-        PaylinkTokenCreated response = api.tokenCreateRequest(paylinkTokenRequestModel);
-
         // TODO: test validations
     }
     
@@ -114,9 +100,6 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenReconciledRequestTest() throws ApiException {
-        String token = null;
-        Acknowledgement response = api.tokenReconciledRequest(token);
-
         // TODO: test validations
     }
     
@@ -130,9 +113,6 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenReopenRequestTest() throws ApiException {
-        String token = null;
-        Acknowledgement response = api.tokenReopenRequest(token);
-
         // TODO: test validations
     }
     
@@ -146,9 +126,6 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenStatusChangesRequestTest() throws ApiException {
-        PaylinkTokenStatusChangeRequest paylinkTokenStatusChangeRequest = null;
-        PaylinkTokenStatusChangeResponse response = api.tokenChangesRequest(paylinkTokenStatusChangeRequest);
-
         // TODO: test validations
     }
     
@@ -162,10 +139,28 @@ public class PaylinkApiTest {
      */
     @Test
     public void tokenStatusRequestTest() throws ApiException {
-        String token = null;
-        PaylinkTokenStatus response = api.tokenStatusRequest(token);
-
         // TODO: test validations
+    }
+
+    @Test
+    public void testPaylinkTokenCreatedJsonValidation() throws IOException {
+        String PaylinkTokenCreatedResponse = "{"
+                + "\"date_created\": \"2025-06-11T11:01:59Z\","
+                + "\"mid\": 123,"
+                + "\"id\": \"00000000-0000-0000-0000-000000000000\","
+                + "\"identifier\": \"95b857a1-5955-4b86-963c-5a6dbfc4fb95\","
+                + "\"mode\": \"test\","
+                + "\"qrcode\": \"https://payments.citypay.com/AAAAAAA/AAAZZZCCCDDDEEE/qrcode\","
+                + "\"result\": 0,"
+                + "\"server_version\": \"x.x.x\","
+                + "\"source\": \"x.x.x.x\","
+                + "\"token\": \"AAAZZZCCCDDDEEE\","
+                + "\"url\": \"https://payments.citypay.com/AAAAAAA/AAAZZZCCCDDDEEE\""
+                + "}";
+
+        JsonElement element = JsonParser.parseString(PaylinkTokenCreatedResponse);
+        PaylinkTokenCreated.validateJsonElement(element);
+        assertDoesNotThrow(() -> PaylinkTokenCreated.validateJsonElement(element));
     }
     
 }

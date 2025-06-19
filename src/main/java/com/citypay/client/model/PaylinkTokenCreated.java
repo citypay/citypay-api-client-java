@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -56,121 +55,148 @@ import com.citypay.client.JSON;
 public class PaylinkTokenCreated {
   public static final String SERIALIZED_NAME_ATTACHMENTS = "attachments";
   @SerializedName(SERIALIZED_NAME_ATTACHMENTS)
-  private PaylinkAttachmentResult attachments;
+  @javax.annotation.Nullable
+  private List<PaylinkAttachmentResult> attachments = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_BPS = "bps";
   @SerializedName(SERIALIZED_NAME_BPS)
+  @javax.annotation.Nullable
   private String bps;
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
   @SerializedName(SERIALIZED_NAME_DATE_CREATED)
+  @javax.annotation.Nullable
   private OffsetDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
-  private List<PaylinkErrorCode> errors;
+  @javax.annotation.Nullable
+  private List<PaylinkErrorCode> errors = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nonnull
   private String id;
 
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)
+  @javax.annotation.Nullable
   private String identifier;
+
+  public static final String SERIALIZED_NAME_MERCHANTID = "merchantid";
+  @SerializedName(SERIALIZED_NAME_MERCHANTID)
+  @javax.annotation.Nullable
+  private Integer merchantid;
 
   public static final String SERIALIZED_NAME_MODE = "mode";
   @SerializedName(SERIALIZED_NAME_MODE)
+  @javax.annotation.Nullable
   private String mode;
 
   public static final String SERIALIZED_NAME_QRCODE = "qrcode";
   @SerializedName(SERIALIZED_NAME_QRCODE)
+  @javax.annotation.Nullable
   private String qrcode;
 
   public static final String SERIALIZED_NAME_RESULT = "result";
   @SerializedName(SERIALIZED_NAME_RESULT)
+  @javax.annotation.Nonnull
   private Integer result;
 
   public static final String SERIALIZED_NAME_SERVER_VERSION = "server_version";
   @SerializedName(SERIALIZED_NAME_SERVER_VERSION)
+  @javax.annotation.Nullable
   private String serverVersion;
 
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
+  @javax.annotation.Nullable
   private String source;
 
   public static final String SERIALIZED_NAME_TOKEN = "token";
   @SerializedName(SERIALIZED_NAME_TOKEN)
+  @javax.annotation.Nonnull
   private String token;
 
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
+  @javax.annotation.Nullable
   private String url;
 
   public static final String SERIALIZED_NAME_USC = "usc";
   @SerializedName(SERIALIZED_NAME_USC)
+  @javax.annotation.Nullable
   private String usc;
 
   public PaylinkTokenCreated() {
   }
 
-  public PaylinkTokenCreated attachments(PaylinkAttachmentResult attachments) {
+  public PaylinkTokenCreated attachments(@javax.annotation.Nullable List<PaylinkAttachmentResult> attachments) {
     this.attachments = attachments;
     return this;
   }
 
-   /**
+  public PaylinkTokenCreated addAttachmentsItem(PaylinkAttachmentResult attachmentsItem) {
+    if (this.attachments == null) {
+      this.attachments = new ArrayList<>();
+    }
+    this.attachments.add(attachmentsItem);
+    return this;
+  }
+
+  /**
    * Get attachments
    * @return attachments
-  **/
+   */
   @javax.annotation.Nullable
-  public PaylinkAttachmentResult getAttachments() {
+  public List<PaylinkAttachmentResult> getAttachments() {
     return attachments;
   }
 
-  public void setAttachments(PaylinkAttachmentResult attachments) {
+  public void setAttachments(@javax.annotation.Nullable List<PaylinkAttachmentResult> attachments) {
     this.attachments = attachments;
   }
 
 
-  public PaylinkTokenCreated bps(String bps) {
+  public PaylinkTokenCreated bps(@javax.annotation.Nullable String bps) {
     this.bps = bps;
     return this;
   }
 
-   /**
+  /**
    * true if BPS has been enabled on this token.
    * @return bps
-  **/
+   */
   @javax.annotation.Nullable
   public String getBps() {
     return bps;
   }
 
-  public void setBps(String bps) {
+  public void setBps(@javax.annotation.Nullable String bps) {
     this.bps = bps;
   }
 
 
-  public PaylinkTokenCreated dateCreated(OffsetDateTime dateCreated) {
+  public PaylinkTokenCreated dateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
     this.dateCreated = dateCreated;
     return this;
   }
 
-   /**
+  /**
    * Date and time the token was generated.
    * @return dateCreated
-  **/
+   */
   @javax.annotation.Nullable
   public OffsetDateTime getDateCreated() {
     return dateCreated;
   }
 
-  public void setDateCreated(OffsetDateTime dateCreated) {
+  public void setDateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
     this.dateCreated = dateCreated;
   }
 
 
-  public PaylinkTokenCreated errors(List<PaylinkErrorCode> errors) {
+  public PaylinkTokenCreated errors(@javax.annotation.Nullable List<PaylinkErrorCode> errors) {
     this.errors = errors;
     return this;
   }
@@ -183,209 +209,272 @@ public class PaylinkTokenCreated {
     return this;
   }
 
-   /**
+  /**
    * Get errors
    * @return errors
-  **/
+   */
   @javax.annotation.Nullable
   public List<PaylinkErrorCode> getErrors() {
     return errors;
   }
 
-  public void setErrors(List<PaylinkErrorCode> errors) {
+  public void setErrors(@javax.annotation.Nullable List<PaylinkErrorCode> errors) {
     this.errors = errors;
   }
 
 
-  public PaylinkTokenCreated id(String id) {
+  public PaylinkTokenCreated id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * A unique id of the request.
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public PaylinkTokenCreated identifier(String identifier) {
+  public PaylinkTokenCreated identifier(@javax.annotation.Nullable String identifier) {
     this.identifier = identifier;
     return this;
   }
 
-   /**
+  /**
    * The identifier as presented in the TokenRequest.
    * @return identifier
-  **/
+   */
   @javax.annotation.Nullable
   public String getIdentifier() {
     return identifier;
   }
 
-  public void setIdentifier(String identifier) {
+  public void setIdentifier(@javax.annotation.Nullable String identifier) {
     this.identifier = identifier;
   }
 
 
-  public PaylinkTokenCreated mode(String mode) {
+  public PaylinkTokenCreated merchantid(@javax.annotation.Nullable Integer merchantid) {
+    this.merchantid = merchantid;
+    return this;
+  }
+
+  /**
+   * The merchant id of the token.
+   * @return merchantid
+   */
+  @javax.annotation.Nullable
+  public Integer getMerchantid() {
+    return merchantid;
+  }
+
+  public void setMerchantid(@javax.annotation.Nullable Integer merchantid) {
+    this.merchantid = merchantid;
+  }
+
+
+  public PaylinkTokenCreated mode(@javax.annotation.Nullable String mode) {
     this.mode = mode;
     return this;
   }
 
-   /**
+  /**
    * Determines whether the token is &#x60;live&#x60; or &#x60;test&#x60;.
    * @return mode
-  **/
+   */
   @javax.annotation.Nullable
   public String getMode() {
     return mode;
   }
 
-  public void setMode(String mode) {
+  public void setMode(@javax.annotation.Nullable String mode) {
     this.mode = mode;
   }
 
 
-  public PaylinkTokenCreated qrcode(String qrcode) {
+  public PaylinkTokenCreated qrcode(@javax.annotation.Nullable String qrcode) {
     this.qrcode = qrcode;
     return this;
   }
 
-   /**
+  /**
    * A URL of a qrcode which can be used to refer to the token URL.
    * @return qrcode
-  **/
+   */
   @javax.annotation.Nullable
   public String getQrcode() {
     return qrcode;
   }
 
-  public void setQrcode(String qrcode) {
+  public void setQrcode(@javax.annotation.Nullable String qrcode) {
     this.qrcode = qrcode;
   }
 
 
-  public PaylinkTokenCreated result(Integer result) {
+  public PaylinkTokenCreated result(@javax.annotation.Nonnull Integer result) {
     this.result = result;
     return this;
   }
 
-   /**
+  /**
    * The result field contains the result for the Paylink Token Request. 0 - indicates that an error was encountered while creating the token. 1 - which indicates that a Token was successfully created.
    * @return result
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getResult() {
     return result;
   }
 
-  public void setResult(Integer result) {
+  public void setResult(@javax.annotation.Nonnull Integer result) {
     this.result = result;
   }
 
 
-  public PaylinkTokenCreated serverVersion(String serverVersion) {
+  public PaylinkTokenCreated serverVersion(@javax.annotation.Nullable String serverVersion) {
     this.serverVersion = serverVersion;
     return this;
   }
 
-   /**
+  /**
    * the version of the server performing the call.
    * @return serverVersion
-  **/
+   */
   @javax.annotation.Nullable
   public String getServerVersion() {
     return serverVersion;
   }
 
-  public void setServerVersion(String serverVersion) {
+  public void setServerVersion(@javax.annotation.Nullable String serverVersion) {
     this.serverVersion = serverVersion;
   }
 
 
-  public PaylinkTokenCreated source(String source) {
+  public PaylinkTokenCreated source(@javax.annotation.Nullable String source) {
     this.source = source;
     return this;
   }
 
-   /**
+  /**
    * The incoming IP address of the call.
    * @return source
-  **/
+   */
   @javax.annotation.Nullable
   public String getSource() {
     return source;
   }
 
-  public void setSource(String source) {
+  public void setSource(@javax.annotation.Nullable String source) {
     this.source = source;
   }
 
 
-  public PaylinkTokenCreated token(String token) {
+  public PaylinkTokenCreated token(@javax.annotation.Nonnull String token) {
     this.token = token;
     return this;
   }
 
-   /**
+  /**
    * A token generated for the request used to refer to the transaction in consequential calls.
    * @return token
-  **/
+   */
   @javax.annotation.Nonnull
   public String getToken() {
     return token;
   }
 
-  public void setToken(String token) {
+  public void setToken(@javax.annotation.Nonnull String token) {
     this.token = token;
   }
 
 
-  public PaylinkTokenCreated url(String url) {
+  public PaylinkTokenCreated url(@javax.annotation.Nullable String url) {
     this.url = url;
     return this;
   }
 
-   /**
+  /**
    * The Paylink token URL used to checkout by the card holder.
    * @return url
-  **/
+   */
   @javax.annotation.Nullable
   public String getUrl() {
     return url;
   }
 
-  public void setUrl(String url) {
+  public void setUrl(@javax.annotation.Nullable String url) {
     this.url = url;
   }
 
 
-  public PaylinkTokenCreated usc(String usc) {
+  public PaylinkTokenCreated usc(@javax.annotation.Nullable String usc) {
     this.usc = usc;
     return this;
   }
 
-   /**
+  /**
    * A UrlShortCode (USC) used for short links.
    * @return usc
-  **/
+   */
   @javax.annotation.Nullable
   public String getUsc() {
     return usc;
   }
 
-  public void setUsc(String usc) {
+  public void setUsc(@javax.annotation.Nullable String usc) {
     this.usc = usc;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the PaylinkTokenCreated instance itself
+   */
+  public PaylinkTokenCreated putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -403,6 +492,7 @@ public class PaylinkTokenCreated {
         Objects.equals(this.errors, paylinkTokenCreated.errors) &&
         Objects.equals(this.id, paylinkTokenCreated.id) &&
         Objects.equals(this.identifier, paylinkTokenCreated.identifier) &&
+        Objects.equals(this.merchantid, paylinkTokenCreated.merchantid) &&
         Objects.equals(this.mode, paylinkTokenCreated.mode) &&
         Objects.equals(this.qrcode, paylinkTokenCreated.qrcode) &&
         Objects.equals(this.result, paylinkTokenCreated.result) &&
@@ -410,12 +500,13 @@ public class PaylinkTokenCreated {
         Objects.equals(this.source, paylinkTokenCreated.source) &&
         Objects.equals(this.token, paylinkTokenCreated.token) &&
         Objects.equals(this.url, paylinkTokenCreated.url) &&
-        Objects.equals(this.usc, paylinkTokenCreated.usc);
+        Objects.equals(this.usc, paylinkTokenCreated.usc)&&
+        Objects.equals(this.additionalProperties, paylinkTokenCreated.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(attachments, bps, dateCreated, errors, id, identifier, mode, qrcode, result, serverVersion, source, token, url, usc);
+    return Objects.hash(attachments, bps, dateCreated, errors, id, identifier, merchantid, mode, qrcode, result, serverVersion, source, token, url, usc, additionalProperties);
   }
 
   @Override
@@ -428,6 +519,7 @@ public class PaylinkTokenCreated {
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
+    sb.append("    merchantid: ").append(toIndentedString(merchantid)).append("\n");
     sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
     sb.append("    qrcode: ").append(toIndentedString(qrcode)).append("\n");
     sb.append("    result: ").append(toIndentedString(result)).append("\n");
@@ -436,6 +528,7 @@ public class PaylinkTokenCreated {
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    usc: ").append(toIndentedString(usc)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -464,6 +557,7 @@ public class PaylinkTokenCreated {
     openapiFields.add("errors");
     openapiFields.add("id");
     openapiFields.add("identifier");
+    openapiFields.add("merchantid");
     openapiFields.add("mode");
     openapiFields.add("qrcode");
     openapiFields.add("result");
@@ -480,24 +574,16 @@ public class PaylinkTokenCreated {
     openapiRequiredFields.add("token");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaylinkTokenCreated
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaylinkTokenCreated
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaylinkTokenCreated.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in PaylinkTokenCreated is not found in the empty JSON string", PaylinkTokenCreated.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PaylinkTokenCreated.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaylinkTokenCreated` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
@@ -508,9 +594,19 @@ public class PaylinkTokenCreated {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `attachments`
       if (jsonObj.get("attachments") != null && !jsonObj.get("attachments").isJsonNull()) {
-        PaylinkAttachmentResult.validateJsonElement(jsonObj.get("attachments"));
+        JsonArray jsonArrayattachments = jsonObj.getAsJsonArray("attachments");
+        if (jsonArrayattachments != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("attachments").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `attachments` to be an array in the JSON string but got `%s`", jsonObj.get("attachments").toString()));
+          }
+
+          // validate the optional field `attachments` (array)
+          for (int i = 0; i < jsonArrayattachments.size(); i++) {
+            PaylinkAttachmentResult.validateJsonElement(jsonArrayattachments.get(i));
+          };
+        }
       }
       if ((jsonObj.get("bps") != null && !jsonObj.get("bps").isJsonNull()) && !jsonObj.get("bps").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `bps` to be a primitive type in the JSON string but got `%s`", jsonObj.get("bps").toString()));
@@ -573,6 +669,28 @@ public class PaylinkTokenCreated {
            @Override
            public void write(JsonWriter out, PaylinkTokenCreated value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -580,29 +698,50 @@ public class PaylinkTokenCreated {
            public PaylinkTokenCreated read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             PaylinkTokenCreated instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of PaylinkTokenCreated given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaylinkTokenCreated
-  * @throws IOException if the JSON string is invalid with respect to PaylinkTokenCreated
-  */
+  /**
+   * Create an instance of PaylinkTokenCreated given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaylinkTokenCreated
+   * @throws IOException if the JSON string is invalid with respect to PaylinkTokenCreated
+   */
   public static PaylinkTokenCreated fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaylinkTokenCreated.class);
   }
 
- /**
-  * Convert an instance of PaylinkTokenCreated to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaylinkTokenCreated to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }
