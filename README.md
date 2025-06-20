@@ -74,7 +74,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.citypay</groupId>
   <artifactId>citypay-api-client-java</artifactId>
-  <version>1.1.6</version>
+  <version>1.1.7</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -88,7 +88,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/citypay-api-client-java-1.1.6.jar`
+* `target/citypay-api-client-java-1.1.7.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
