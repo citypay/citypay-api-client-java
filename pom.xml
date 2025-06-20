@@ -5,7 +5,7 @@
     <artifactId>citypay-api-client-java</artifactId>
     <packaging>jar</packaging>
     <name>citypay-api-client-java</name>
-    <version>1.1.6</version>
+    <version>1.1.7</version>
     <url>https://github.com/citypay/citypay-api-client-java</url>
     <description>CityPay API Java Client</description>
     <scm>
@@ -159,6 +159,7 @@
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
+                        <phase>verify</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
@@ -182,6 +183,7 @@
                 <executions>
                     <execution>
                         <id>attach-sources</id>
+                        <phase>verify</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
@@ -241,7 +243,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>3.2.1</version>
+                        <version>3.2.7</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
