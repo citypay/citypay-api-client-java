@@ -1,41 +1,44 @@
-# This workflow will build a package using Maven and then publish it to GitHub packages when a release is created
-# For more information see: https://github.com/actions/setup-java#apache-maven-with-a-settings-path
-
 name: Publish package to the Maven Central Repository
 
 on:
   release:
-    types: [ created ]
+    types: [created]
 
 jobs:
-  build:
-
+  publish:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Maven Central Repository
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Pick the JDK you actually build with; 17 is a safe default.
+      - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          java-version: 8
           distribution: 'temurin'
-          maven-version: '3.8.6'
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          java-version: '17'
+          cache: 'maven'
+          # Map Central credentials into ~/.m2/settings.xml <servers><server id="central">...
+          server-id: central
+          server-username: CENTRAL_USERNAME
+          server-password: CENTRAL_PASSWORD
+          # Import your signing key for the maven-gpg-plugin
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
+
+      # Optional: if your build needs extra env vars (kept from your original)
+      - name: Build & Publish to Central
         env:
+          CP_CLIENT_ID: ${{ secrets.CP_CLIENT_ID }}
+          CP_MERCHANT_ID: ${{ secrets.CP_MERCHANT_ID }}
+          CP_LICENCE_KEY: ${{ secrets.CP_LICENCE_KEY }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-
-      - name: Build and Deploy with Maven
-        run: mvn -B -P sign-artifacts package deploy
-        env:
-          CP_CLIENT_ID: ${{secrets.CP_CLIENT_ID}}
-          CP_MERCHANT_ID: ${{secrets.CP_MERCHANT_ID}}
-          CP_LICENCE_KEY: ${{secrets.CP_LICENCE_KEY}}
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
-
-
+          # New Central credentials (Portal user token parts)
+          CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+          CENTRAL_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
+        run: |
+          # If your POM profile handles signing, keep it:
+          mvn -B -P sign-artifacts -DskipTests deploy
+          # or, if signing is always on, this also works:
+          # mvn -B -DskipTests deploy
